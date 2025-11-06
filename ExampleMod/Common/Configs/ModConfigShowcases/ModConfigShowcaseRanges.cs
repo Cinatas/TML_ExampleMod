@@ -7,8 +7,8 @@ using Terraria;
 using Terraria.ModLoader.Config;
 
 
-// This file contains fake ModConfig class that showcase creating config section
-// by using fields with defined ranges.
+// 此文件包含展示创建配置部分的假 ModConfig 类
+// 通过使用具有定义范围的字段。
 
 // Because this config was designed to show off various UI capabilities,
 // this config have no effect on the mod and provides purely teaching example.
@@ -19,10 +19,10 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 	{
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		// With no annotations on a float, a range from 0 to 1 with ticks of 0.01 is the default.
+		// 在浮点数上没有注释时，默认范围为 0 到 1，刻度为 0.01。
 		public float NormalFloat;
 
-		// We can specify range, increments, and even whether or not to draw guide ticks with annotations.
+		// 我们可以使用注释指定范围、增量，甚至是否绘制引导刻度。
 		[Range(2f, 3f)]
 		[Increment(.25f)]
 		[DrawTicks]
@@ -37,7 +37,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[DefaultValue(2f)]
 		public float RangedFloat;
 
-		// With no annotations on an int, a range from 0 to 100 is the default. Ints will be displayed as a text input unless a Slider attribute is present.
+		// 在整数上没有注释时，默认范围为 0 到 100。除非存在 Slider 属性，否则整数将显示为文本输入。
 		public int NormalInt;
 
 		[Increment(5)]
@@ -46,8 +46,8 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[Slider] // The Slider attribute makes this field be presented with a slider rather than a text input. The default ticks is 1.
 		public int RangedInteger;
 
-		// We can annotate a List<int> and the range, ticks, increment, and slider attributes will be used by all elements of the List.
-		// We can use DefaultListValue to set the default value for items added to the list. Using DefaultValue here will crash the game.
+		// 我们可以注释 List<int>，列表的所有元素将使用范围、刻度、增量和滑块属性。
+		// 我们可以使用 DefaultListValue 为添加到列表的项设置默认值。在这里使用 DefaultValue 会导致游戏崩溃。
 		[Range(10, 20)]
 		[Increment(2)]
 		[DrawTicks]
@@ -60,11 +60,11 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[DrawTicks]
 		public Vector2 RangedWithIncrementVector2;
 
-		// A method annotated with OnDeserialized will run after deserialization. You can use it for enforcing things like ranges, since Range and Increment are UI suggestions.
+		// 用 OnDeserialized 注释的方法将在反序列化后运行。你可以使用它来强制执行范围等内容，因为 Range 和 Increment 是 UI 建议。
 		[OnDeserialized]
 		internal void OnDeserializedMethod(StreamingContext context) {
-			// RangeAttribute is just a suggestion to the UI. If we want to enforce constraints, we need to validate the data here. Users can edit config files manually with values outside the RangeAttribute, so we fix here if necessary.
-			// Both enforcing ranges and not enforcing ranges have uses in mods. Make sure you fix config values if values outside the range will mess up your mod.
+			// RangeAttribute 只是对 UI 的建议。如果我们想强制执行约束，我们需要在这里验证数据。用户可以使用 RangeAttribute 之外的值手动编辑配置文件，因此如有必要，我们在这里修复。
+			// 强制执行范围和不强制执行范围在模组中都有用途。如果范围外的值会弄乱你的模组，请确保修复配置值。
 			RangedFloat = Utils.Clamp(RangedFloat, 2f, 5f);
 		}
 	}

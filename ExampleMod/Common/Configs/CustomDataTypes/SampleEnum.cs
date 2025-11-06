@@ -5,7 +5,7 @@ namespace ExampleMod.Common.Configs.CustomDataTypes
 	{
 		Weird,
 		Odd,
-		// Enum members can be individually labeled as well
+		// 枚举成员也可以单独标记
 		// [LabelKey("$Mods.ExampleMod.Configs.SampleEnum.Strange.Label")]
 		Strange,
 		Peculiar

@@ -9,15 +9,15 @@ using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
 
-// ATTENTION: Below this point is custom config UI element.
-// Be aware that mods using custom config elements will break with the next few tModLoader updates until their design is finalized.
-// You will need to be very active in updating your mod if you use these as they can break in any update.
+// 注意：此点以下是自定义配置 UI 元素。
+// 请注意，使用自定义配置元素的模组将在接下来的几个 tModLoader 更新中中断，直到它们的设计最终确定。
+// 如果你使用这些，你需要非常积极地更新你的模组，因为它们可能在任何更新中中断。
 
-// This file defines a custom ConfigElement based on Corner enum
+// 此文件定义基于 Corner 枚举的自定义 ConfigElement
 // with custom drawing implemented that can be used in ModConfig classes.
 namespace ExampleMod.Common.Configs.CustomUI
 {
-	// This custom config UI element shows a completely custom config element that handles setting and getting the values in addition to custom drawing.
+	// 此自定义配置 UI 元素展示了一个完全自定义的配置元素，除了自定义绘制外，还处理设置和获取值。
 	[JsonConverter(typeof(StringEnumConverter))]
 	[CustomModConfigItem(typeof(CornerElement))]
 	public enum Corner

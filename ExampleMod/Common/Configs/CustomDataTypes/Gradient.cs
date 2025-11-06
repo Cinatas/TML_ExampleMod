@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.ComponentModel;
 
-// This file defines custom data type that represents Gradient data type that can be used in ModConfig classes.
+// 此文件定义表示可在 ModConfig 类中使用的渐变数据类型的自定义数据类型。
 namespace ExampleMod.Common.Configs.CustomDataTypes
 {
 	public class Gradient
