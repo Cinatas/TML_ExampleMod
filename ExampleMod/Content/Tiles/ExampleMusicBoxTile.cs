@@ -13,7 +13,7 @@ using Terraria.Utilities;
 
 namespace ExampleMod.Content.Tiles
 {
-	// 参见 ExampleMod/Common/Systems/MusicLoadingSystem for an explanation on music.
+	// 参见 ExampleMod/Common/Systems/MusicLoadingSystem for an explanation on 音乐.
 	public class ExampleMusicBoxTile : ModTile
 	{
 		public override void SetStaticDefaults() {
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-			// This code spawns the music notes when the music box is open.
+			// This code spawns the 音乐 notes when the 音乐 box is 打开.
 			if (Lighting.UpdateEveryFrame && new FastRandom(Main.TileFrameSeed).WithModifier(i, j).Next(4) != 0) {
 				return;
 			}

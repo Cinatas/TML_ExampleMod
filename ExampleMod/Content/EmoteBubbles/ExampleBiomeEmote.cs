@@ -20,15 +20,15 @@ namespace ExampleMod.Content.EmoteBubbles
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle frame, Vector2 origin, SpriteEffects spriteEffects) {
-			// Extra_48 is the texture of all vanilla emotes.
+			// Extra_48 is the 纹理 of all vanilla emotes.
 			Texture2D bubbleTexture = TextureAssets.Extra[ExtrasID.EmoteBubble].Value;
-			// 这是 the frame rectangle 对于 bubble in emotes texture.
+			// 这是 the 帧 rectangle 对于 bubble in emotes 纹理.
 			Rectangle bubbleFrame = bubbleTexture.Frame(8, 39, EmoteBubble.IsFullyDisplayed ? 1 : 0);
 
-			// 绘制 the bubble background.
+			// 绘制 the bubble 背景.
 			spriteBatch.Draw(bubbleTexture, position, bubbleFrame, Color.White, 0f, origin, 1f, spriteEffects, 0f);
 
-			// 如果 the emote bubble isn't fully displayed (bubble pop-up animation is being displayed),
+			// 如果 the emote bubble isn't fully displayed (bubble pop-up 动画 is being displayed),
 			// don't draw the emote content.
 			if (!EmoteBubble.IsFullyDisplayed) {
 				return false;
@@ -37,17 +37,17 @@ namespace ExampleMod.Content.EmoteBubbles
 			// 绘制 the emote.
 			spriteBatch.Draw(texture, position, frame, Color.White, 0f, origin, 1f, spriteEffects, 0f);
 
-			return false; // Stop vanilla drawing code.
+			return false; // 停止 vanilla drawing code.
 		}
 
-		// 此方法 is for drawing emote 在 emotes menu.
+		// 此方法 is for drawing emote 在 emotes 菜单.
 		public override bool PreDrawInEmoteMenu(SpriteBatch spriteBatch, EmoteButton uiEmoteButton, Vector2 position, Rectangle frame, Vector2 origin) {
-			// This color is used for border that becomes yellow (or blue) when you hover your cursor over it.
+			// This 颜色 is used for 边框 that becomes yellow (or blue) when you 悬停 your cursor over it.
 			Color borderColor = Color.Black;
 			if (uiEmoteButton.Hovered) {
 				borderColor = Main.OurFavoriteColor;
 			}
-			// 这是 the frame rectangle 对于 bubble in emotes texture.
+			// 这是 the 帧 rectangle 对于 bubble in emotes 纹理.
 			Rectangle bubbleFrame = uiEmoteButton.BubbleTexture.Frame(8, 39, 1, 0);
 
 			// 绘制 everything

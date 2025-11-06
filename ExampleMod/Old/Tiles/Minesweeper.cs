@@ -6,13 +6,13 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Tiles
 {
-	// This class replicates the behavior 的 game Minesweeper within a ModTile.
+	// This 类 replicates the behavior 的 game Minesweeper within a ModTile.
 	// This contrived example serves to teach modders about what TileFrame is capable of. Usually ModTiles are "framed" according to vanilla patterns. We override this behavior as a teaching example.
 	public class Minesweeper : ModTile
 	{
 		public override void SetDefaults() {
-			// Most 1x1 tiles without a TileObjectData don't set tileFrameImportant because FrameTile will reconstruct the frame automatically. 
-			// This tile is special because we need it to preserve the hidden mine tiles.
+			// Most 1x1 tiles without a TileObjectData don't set tileFrameImportant because FrameTile will reconstruct the 帧 automatically. 
+			// This 图格 is special because we need it to preserve the hidden 地雷 tiles.
 			Main.tileFrameImportant[Type] = true;
 			Main.tileSolid[Type] = true; // 待办事项： tModLoader hook for allowing non solid tiles to be hammer-able.
 			drop = ItemType<MinesweeperItem>();
@@ -22,50 +22,50 @@ namespace ExampleMod.Tiles
 
 		public override void PlaceInWorld(int i, int j, Item item) {
 			Tile tile = Main.tile[i, j];
-			if (Main.rand.NextBool(4)) // 1 in 4 placed Tiles 将 a Mine
+			if (Main.rand.NextBool(4)) // 1 in 4 placed Tiles 将 a 地雷
 			{
 				tile.frameX = 18;
 				TileFrame8Neighbors(i, j);
-				if (Main.netMode == NetmodeID.MultiplayerClient) // If we are a multiplayer client, we need to inform the server 的 changes we've made 到 Tile.
+				if (Main.netMode == NetmodeID.MultiplayerClient) // If we are a multiplayer 客户端, we need to inform the 服务器 的 changes we've made 到 图格.
 					NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
 			}
 		}
 
-		// When a tile is hammered, we need to reveal it and possibly update nearby tiles. 
+		// When a 图格 is hammered, we need to reveal it and possibly 更新 nearby tiles. 
 		public override bool Slope(int i, int j) {
 			Tile tile = Main.tile[i, j];
 			bool IsBomb = (tile.frameX == 18 || tile.frameX == 5 * 18) && tile.frameY == 0;
 
 			if (IsBomb) {
-				// 生成ing a Grenade projectile that dies quickly is the simplest way to get this effect
+				// 生成ing a 手榴弹 弹幕 that dies quickly is the simplest way to get this 效果
 				int projectile = Projectile.NewProjectile(i * 16 + 8, j * 16 + 8, 0, 0, ProjectileID.Grenade, 30, 1, Main.myPlayer);
 				Main.projectile[projectile].timeLeft = 2;
 				Main.projectile[projectile].netUpdate = true;
 				tile.frameX = 5 * 18;
 
-				if (Main.netMode == NetmodeID.MultiplayerClient) // Slope is called on Clients, so we need to inform the server of changes.
+				if (Main.netMode == NetmodeID.MultiplayerClient) // Slope is called on Clients, so we need to inform the 服务器 of changes.
 					NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
 			}
 			else {
 				short mineCount = NearbyMines(i, j);
 				if (mineCount == 0)
 					RevealNeighbors(i, j);
-				tile.frameX = 0; // TileFrame will take care of setting this correctly. 
+				tile.frameX = 0; // TileFrame will take care of 设置 this correctly. 
 				tile.frameY = 18;
 
 				WorldGen.TileFrame(i, j);
 				TileFrame8Neighbors(i, j);
 			}
-			// By returning false, we tell Terraria to skip the default sloping behavior
+			// By returning 假, we tell Terraria to 跳过 the default sloping behavior
 			return false;
 		}
 
 		// By using ModTile.TileFrame, we can have tiles adapt to nearby tiles however we like.
-		// TileFrame is called to correct the frameX and frameY values of this Tile. Usually this happens when a Tile is placed nearby or when the world is first loaded.
+		// TileFrame is called to correct the frameX and frameY values of this 图格. Usually this happens when a 图格 is placed nearby or when the 世界 is first loaded.
 		public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
 			Tile tile = Main.tile[i, j];
 			bool changed = false;
-			// frameX and frameY correspond 到 top left corner 的 sprite 在 tile spritesheet.
+			// frameX and frameY correspond 到 顶部 左 corner 的 精灵 在 图格 spritesheet.
 			bool revealed = !((tile.frameX == 18 || tile.frameX == 0) && tile.frameY == 0);
 			bool revealedBomb = tile.frameX == 5 * 18 && tile.frameY == 0;
 			if (revealed && !revealedBomb) {
@@ -79,17 +79,17 @@ namespace ExampleMod.Tiles
 				if (Main.netMode == NetmodeID.MultiplayerClient)
 					NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
 
-				// Since this tile changed, we will change other nearby tiles. This isn't typical but is suitable for minesweeper. 
+				// Since this 图格 changed, we will change other nearby tiles. This isn't typical but is suitable for minesweeper. 
 				TileFrame8Neighbors(i, j);
 			}
 			return false;
 		}
 
-		// A recursive method that visits nearby Minesweeper tiles and reveals them, continuing to reveal if there are no nearby mines.
+		// A recursive 方法 that visits nearby Minesweeper tiles and reveals them, continuing to reveal if there are no nearby mines.
 		void RevealNeighbors(int i, int j) {
 			Tile tile = Framing.GetTileSafely(i, j);
 			if (tile.active() && tile.type == Type && (tile.frameY != 18 /*|| (tile.frameX == 0 && tile.frameY == 18)*/)) {
-				// revealed, not right number, TileFrame will fix
+				// revealed, not 右 数字, TileFrame will fix
 				tile.frameX = 0;
 				tile.frameY = 18;
 

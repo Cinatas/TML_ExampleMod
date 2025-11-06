@@ -33,8 +33,8 @@ namespace ExampleMod.Common.Systems
 		}
 
 		// Detouring 应该 the same (except for one thing mentioned below), this is just an example so you can check this is actually working
-		// One thing to note is that for technical reasons, the self parameter is an object type
-		// You will never need to actually cast it to type WorldGen though, since it contains no instance fields or methods
+		// One thing to note is that for technical reasons, the self 参数 is an 对象 类型
+		// You will never need to actually cast it to 类型 WorldGen though, since it contains no 实例 fields or methods
 		void Detour_Shinies(WorldGen.orig_GenPassDetour orig, object self, GenerationProgress progress, GameConfiguration configuration) {
 			ModContent.GetInstance<ExampleMod>().Logger.Debug("(On Hook) Before Shinies");
 			orig(self, progress, configuration);

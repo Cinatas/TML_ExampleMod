@@ -9,14 +9,14 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Weapons
 {
 	/// <summary>
-	/// This item can help conceptualize various damage modification concepts. <br/>
-	/// The Item.damage of this weapon is 100 so the math is easy to follow. Damage variation is disabled for all modes except the 1st mode 对于 same reason. <br/>
-	/// When testing this weap在 first time, it is recommended to disable other mods and to remove all damage boosting accessories, as they will complicate the math being taught. <br/>
-	/// Testing against <see cref="NPCID.BlueArmoredBonesNoPants"/> is recommended as it has high defense (50), good knockback resistance, and enough health for a few hits. Having 50 defense makes the math for defense and armor penetration easy to follow.
+	/// This 项 can 帮助 conceptualize various 伤害 modification concepts. <br/>
+	/// The 项.伤害 of this 武器 is 100 so the math is easy to follow. 伤害 variation is disabled for all modes except the 1st 模式 对于 same reason. <br/>
+	/// When testing this weap在 first 时间, it is recommended to 禁用 other mods and to 删除 all 伤害 boosting accessories, as they will complicate the math being taught. <br/>
+	/// Testing against <see cref="NPCID.BlueArmoredBonesNoPants"/> is recommended as it has high 防御 (50), good knockback resistance, and enough 生命值 for a few hits. Having 50 防御 makes the math for 防御 and 护甲 penetration easy to follow.
 	/// <br/>
-	/// The math taught in this example also assumes the player is in a normal world. <br/> 
-	/// Use right click to switch modes.<br/>
-	/// This example is purely for demonstration purposes only, it will not work in multiplayer. This should also 不 considered correct code for a working dual-use weapon. <br/>
+	/// The math taught in this example also assumes the 玩家 is in a normal 世界. <br/> 
+	/// Use 右 点击 to switch modes.<br/>
+	/// This example is purely for demonstration purposes only, it will not work in multiplayer. This should also 不 considered correct code for a working dual-use 武器. <br/>
 	/// </summary>
 	public class HitModifiersShowcase : ModItem
 	{
@@ -63,7 +63,7 @@ namespace ExampleMod.Content.Items.Weapons
 					mode = 0;
 				}
 				Main.NewText($"Switching to mode #{mode}: {GetMessageForMode()}");
-				// This line will trigger NetSend to be called 在 end of this game update, allowing the changes to useStyle to be in sync. 
+				// This line will 触发器 NetSend to be called 在 结束 of this game 更新, allowing the changes to useStyle to be in 同步. 
 				Item.NetStateChanged();
 			}
 			else {
@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Items.Weapons
 				case 4:
 					return "10 extra armor penetration. Test against high defense enemy";
 				case 5:
-					// 这是 similar 到 Lightning Aura and Flymeal weapon effects
+					// 这是 similar 到 Lightning Aura and Flymeal 武器 effects
 					return "50% extra armor penetration. Ignores 50% of enemy defense";
 				case 6:
 					return "Will apply ExampleDefenseDebuff, reducing defense by 25%";
@@ -103,7 +103,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers) {
-			// These effects modify the hit itself, so they need to be in this method.
+			// These effects modify the hit itself, so they need to be in this 方法.
 			if (mode != 0) {
 				modifiers.DamageVariationScale *= 0f;
 			}
@@ -111,7 +111,7 @@ namespace ExampleMod.Content.Items.Weapons
 				modifiers.Knockback += .5f;
 			}
 			else if (mode == 3) {
-				modifiers.CritDamage += 2f; // 默认 crit is 100% more than a normal hit, so with this in effect, crits should deal 4x damage
+				modifiers.CritDamage += 2f; // 默认 crit is 100% more than a normal hit, so with this in 效果, crits should deal 4x 伤害
 			}
 			else if (mode == 4) {
 				modifiers.ArmorPenetration += 10f;
@@ -120,11 +120,11 @@ namespace ExampleMod.Content.Items.Weapons
 				modifiers.ScalingArmorPenetration += 0.5f;
 			}
 
-			// Below is an example of using ModifyHitInfo to alter the final value of damage, between Modify and OnHit hooks.
-			// This 'backdoor' is a replacement 对于 old style of modifiers which allowed modifying the damage via `ref`
-			// Please only use this if absolutely necessary, as multiple mods freely altering the damage results will create incompatible or unintuitive player experiences.
+			// Below is an example of using ModifyHitInfo to alter the final 值 of 伤害, between Modify and OnHit hooks.
+			// This 'backdoor' is a replacement 对于 old style of modifiers which allowed modifying the 伤害 via `ref`
+			// Please only use this if absolutely necessary, as multiple mods freely altering the 伤害 results will create incompatible or unintuitive 玩家 experiences.
 			//
-			// 对于 example, the effect below 可能 better implemented by checking `player.GetWeaponDamage(Item)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
+			// 对于 example, the 效果 below 可能 better implemented by checking `玩家.GetWeaponDamage(项)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
 			/*
 			modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
 				if (hitInfo.Damage > 10) {
@@ -136,7 +136,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) {
 			// These effects act on a hit happening, so they should go here.
-			// Buffs added locally are automatically synced 到 server and other players in multiplayer
+			// Buffs added locally are automatically synced 到 服务器 and other players in multiplayer
 			if (mode == 6) {
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600);
 			}
@@ -148,9 +148,9 @@ namespace ExampleMod.Content.Items.Weapons
 			}
 		}
 
-		// Due 到 differences in pvp damage calculations, only some 的 effects of this weapon work in pvp.
+		// Due 到 differences in pvp 伤害 calculations, only some 的 effects of this 武器 work in pvp.
 		public override void ModifyHitPvp(Player player, Player target, ref Player.HurtModifiers modifiers) {
-			// 不像 the effects in OnHitPvp, these specific effects need to run on all clients to keep things in sync, so there is no check for local player.
+			// 不像 the effects in OnHitPvp, these specific effects need to run on all clients to keep things in 同步, so there is no check for local 玩家.
 			if (mode == 2) {
 				modifiers.Knockback += .5f;
 			}
@@ -163,14 +163,14 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo) {
-			// These effects of this weapon should only run 在 player damaging another, this check does that.
+			// These effects of this 武器 should only run 在 玩家 damaging another, this check does that.
 			if (player != Main.LocalPlayer) {
 				return;
 			}
 
 			if (mode == 6) {
-				// This AddBuff is not quiet because it is affecting another player. This allows it to broadcast to all players th在 target has a buff. (Main.pvpBuff 必须 set to true for other players to be able to give buffs to a player)
-				// 注意 that in PvP, it is possible to attack a player and see them take damage, but by the time the hit message arrives 在 target client, they may have recharged a dodge. In this case, the target will not actually take damage, and their health will appear to restore. Because the attacking player applies the debuff, the target will receive the debuff regardless
+				// This AddBuff is not quiet because it is affecting another 玩家. This allows it to broadcast to all players th在 目标 has a 增益. (Main.pvpBuff 必须 set to 真 for other players to be able to give buffs to a 玩家)
+				// 注意 that in PvP, it is possible to 攻击 a 玩家 and see them take 伤害, but by the 时间 the hit 消息 arrives 在 目标 客户端, they may have recharged a dodge. In this case, the 目标 will not actually take 伤害, and their 生命值 will appear to restore. Because the attacking 玩家 applies the 减益, the 目标 will receive the 减益 regardless
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600, quiet: false);
 			}
 			else if (mode == 7) {

@@ -22,19 +22,19 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.autoReuse = true;
 			Item.consumable = true;
 
-			// Weapon Properties			
+			// 武器 Properties			
 			Item.damage = 33;
 			Item.knockBack = 5f;
-			Item.noUseGraphic = true; // The item should 不 visible when used
-			Item.noMelee = true; // The projectile will do the damage and not the item
+			Item.noUseGraphic = true; // The 项 should 不 visible when used
+			Item.noMelee = true; // The 弹幕 will do the 伤害 and not the 项
 			Item.DamageType = DamageClass.Ranged;
 
-			// Projectile Properties
+			// 弹幕 Properties
 			Item.shootSpeed = 12f;
-			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleJavelinProjectile>(); // The projectile that 将 thrown
+			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleJavelinProjectile>(); // The 弹幕 that 将 thrown
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe(20)
 				.AddIngredient<ExampleItem>()

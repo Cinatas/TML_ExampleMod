@@ -12,8 +12,8 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// 此类 shows off many things common to Lamp tiles in Terraria. The process for creating this example is detailed in: https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#examplelamp-tile
-	// 如果 you can't figure out how to recreate a vanilla tile, see that guide for instructions on how to figure it out yourself.
+	// 此类 shows off many things common to Lamp tiles in Terraria. The 过程 for creating this example is detailed in: https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#examplelamp-图格
+	// 如果 you can't figure out how to recreate a vanilla 图格, see that guide for instructions on how to figure it out yourself.
 	internal class ExampleLamp : ModTile
 	{
 		private Asset<Texture2D> flameTexture;
@@ -25,11 +25,11 @@ namespace ExampleMod.Content.Tiles
 			Main.tileNoAttach[Type] = true;
 			Main.tileWaterDeath[Type] = true;
 			Main.tileLavaDeath[Type] = true;
-			// Main.tileFlame[Type] = true; // Main.tileFlame is only useful for vanilla tiles. Modded tiles can manually draw flames in PostDraw.
+			// Main.tileFlame[类型] = 真; // Main.tileFlame is only useful for vanilla tiles. Modded tiles can manually draw flames in PostDraw.
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
-			TileObjectData.newTile.DrawFlipHorizontal = true; // 不像 vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs f或更多 information.
+			TileObjectData.newTile.DrawFlipHorizontal = true; // 不像 vanilla lamps, this lamp alternates 方向, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs f或更多 information.
 			TileObjectData.newTile.StyleLineSkip = 2;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.WaterDeath = true;
@@ -41,7 +41,7 @@ namespace ExampleMod.Content.Tiles
 			AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.FloorLamp"));
 
 			// Assets
-			flameTexture = ModContent.Request<Texture2D>(Texture + "_Flame"); // We could also reuse TextureAssets.Flames[] textures, but using our own texture is nice.
+			flameTexture = ModContent.Request<Texture2D>(Texture + "_Flame"); // We could also reuse TextureAssets.Flames[] textures, but using our own 纹理 is nice.
 		}
 
 		public override void HitWire(int i, int j) {
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Tiles
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
 			Tile tile = Main.tile[i, j];
 			if (tile.TileFrameX == 0) {
-				// 我们 can support different light colors for different styles here: switch (tile.frameY / 54)
+				// 我们 can support different light colors for different styles here: switch (图格.frameY / 54)
 				r = 1f;
 				g = 0.75f;
 				b = 1f;
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Tiles
 			short frameX = tile.TileFrameX;
 			short frameY = tile.TileFrameY;
 
-			// 返回 if the lamp is off (when frameX is 0), or if a random check failed.
+			// 返回 if the lamp is off (when frameX is 0), or if a 随机 check failed.
 			if (frameX != 0 || !Main.rand.NextBool(40)) {
 				return;
 			}
@@ -148,9 +148,9 @@ namespace ExampleMod.Content.Tiles
 
 			TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref frameX, ref frameY);
 
-			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 remove any casts.
+			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 删除 any casts.
 
-			// 我们 can support different flames for different styles here: int style = Main.tile[j, i].frameY / 54;
+			// 我们 can support different flames for different styles here: int style = Main.图格[j, i].frameY / 54;
 			for (int c = 0; c < 7; c++) {
 				float shakeX = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
 				float shakeY = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;

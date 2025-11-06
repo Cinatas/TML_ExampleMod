@@ -12,7 +12,7 @@ namespace ExampleMod.Common
 			// 接受的音乐格式为：.mp3、.ogg 和 .wav 文件。
 			// 添加音乐时，请勿在代码中添加文件扩展名！
 
-			// MusicLoader.AddMusic(Mod, "Assets/Music/MysteriousMystery");
+			// MusicLoader.AddMusic(Mod, "Assets/音乐/MysteriousMystery");
 
 			// 可以在Content/Items/Placeable/ExampleMusicBox.cs中找到音乐盒注册的示例。
 		}

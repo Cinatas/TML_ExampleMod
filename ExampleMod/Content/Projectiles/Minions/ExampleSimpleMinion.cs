@@ -9,24 +9,24 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles.Minions
 {
-	// 此文件 contains all the code necessary for a minion
-	// - ModItem - the weapon which you use to summ在 minion with
-	// - ModBuff - the icon you can click on to despawn the minion
-	// - ModProjectile - the minion itself
+	// 此文件 contains all the code necessary for a 仆从
+	// - ModItem - the 武器 which you use to summ在 仆从 with
+	// - ModBuff - the 图标 you can 点击 on to despawn the 仆从
+	// - ModProjectile - the 仆从 itself
 
-	// It is not recommended to put all these classes 在 same file. For demonstrations sake they are all compacted together so you get a better overview.
-	// 要 get a better understanding of how everything works together, and how to code minion AI, read the guide: https://github.com/tModLoader/tModLoader/wiki/Basic-Minion-Guide
-	// 这是 NOT an in-depth guide to advanced minion AI
+	// It is not recommended to put all these classes 在 same 文件. For demonstrations sake they are all compacted together so you get a better overview.
+	// 要 get a better understanding of how everything works together, and how to code 仆从 AI, read the guide: https://github.com/tModLoader/tModLoader/wiki/Basic-仆从-Guide
+	// 这是 NOT an in-depth guide to advanced 仆从 AI
 
 	public class ExampleSimpleMinionBuff : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			Main.buffNoSave[Type] = true; // This buff won't save when you exit the world
-			Main.buffNoTimeDisplay[Type] = true; // The time remaining won't display on this buff
+			Main.buffNoSave[Type] = true; // This 增益 won't 保存 when you 退出 the 世界
+			Main.buffNoTimeDisplay[Type] = true; // The 时间 remaining won't 显示 on this 增益
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
-			// 如果 the minions exist reset the buff time, otherwise remove the buff 从 player
+			// 如果 the minions exist 重置 the 增益 时间, otherwise 删除 the 增益 从 玩家
 			if (player.ownedProjectileCounts[ModContent.ProjectileType<ExampleSimpleMinion>()] > 0) {
 				player.buffTime[buffIndex] = 18000;
 			}
@@ -40,51 +40,51 @@ namespace ExampleMod.Content.Projectiles.Minions
 	public class ExampleSimpleMinionItem : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere 在 whole screen while using a controller
+			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the 玩家 目标 anywhere 在 whole 屏幕 while using a controller
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 
-			ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f; // The default value is 1, but other values are supported. See the docs f或更多 guidance. 
+			ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f; // The default 值 is 1, but other values are supported. See the docs f或更多 guidance. 
 		}
 
 		public override void SetDefaults() {
 			Item.damage = 30;
 			Item.knockBack = 3f;
-			Item.mana = 10; // mana cost
+			Item.mana = 10; // 魔力 成本
 			Item.width = 32;
 			Item.height = 32;
 			Item.useTime = 36;
 			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing; // how the player's arm moves when using the item
+			Item.useStyle = ItemUseStyleID.Swing; // how the 玩家's arm moves when using the 项
 			Item.value = Item.sellPrice(gold: 30);
 			Item.rare = ItemRarityID.Cyan;
-			Item.UseSound = SoundID.Item44; // What sound should play when using the item
+			Item.UseSound = SoundID.Item44; // What 声音 should play when using the 项
 
-			// These below are needed for a minion weapon
-			Item.noMelee = true; // this item doesn't do any melee damage
-			Item.DamageType = DamageClass.Summon; // 使 the damage register as summon. If your item does not have any damage type, it becomes true damage (which means that damage scalars will not affect it). Be sure to have a damage type
+			// These below are needed for a 仆从 武器
+			Item.noMelee = true; // this 项 doesn't do any melee 伤害
+			Item.DamageType = DamageClass.Summon; // 使 the 伤害 register as summon. If your 项 does not have any 伤害 类型, it becomes 真 伤害 (which means that 伤害 scalars will not affect it). Be sure to have a 伤害 类型
 			Item.buffType = ModContent.BuffType<ExampleSimpleMinionBuff>();
-			// No buffTime because otherwise the item tooltip would say something like "1 minute duration"
-			Item.shoot = ModContent.ProjectileType<ExampleSimpleMinion>(); // This item creates the minion projectile
+			// No buffTime because otherwise the 项 工具提示 would say something like "1 minute 持续时间"
+			Item.shoot = ModContent.ProjectileType<ExampleSimpleMinion>(); // This 项 creates the 仆从 弹幕
 		}
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			// 在这里 you can change where the minion is spawned. Most vanilla minions spawn 在 cursor position
+			// 在这里 you can change where the 仆从 is spawned. Most vanilla minions 生成 在 cursor 位置
 			position = Main.MouseWorld;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			// 这是 needed so the buff that keeps your minion alive and allows you to despawn it properly applies
+			// 这是 needed so the 增益 that keeps your 仆从 alive and allows you to despawn it properly applies
 			player.AddBuff(Item.buffType, 2);
 
-			// Minions have to be spawned manually, then have originalDamage assigned 到 damage 的 summon item
+			// Minions have to be spawned manually, then have originalDamage assigned 到 伤害 的 summon 项
 			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
 			projectile.originalDamage = Item.damage;
 
-			// Since we spawned the projectile manually already, we do not need the game to spawn it for ourselves anymore, so return false
+			// Since we spawned the 弹幕 manually already, we do not need the game to 生成 it for ourselves anymore, so 返回 假
 			return false;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient(ModContent.ItemType<ExampleItem>())
@@ -93,48 +93,48 @@ namespace ExampleMod.Content.Projectiles.Minions
 		}
 	}
 
-	// This minion shows a few mandatory things that make it behave properly.
-	// Its attack pattern is simple: If an enemy is in range of 43 tiles, it will fly to it and deal contact damage
-	// 如果 the player targets a certain NPC with right-click, it will fly through tiles to it
-	// 如果 it isn't attacking, it will float near the player with minimal movement
+	// This 仆从 shows a few mandatory things that make it behave properly.
+	// Its 攻击 pattern is simple: If an 敌人 is in 范围 of 43 tiles, it will fly to it and deal contact 伤害
+	// 如果 the 玩家 targets a certain NPC with 右-点击, it will fly through tiles to it
+	// 如果 it isn't attacking, it will float near the 玩家 with minimal movement
 	public class ExampleSimpleMinion : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			// 设置s the amount of frames this minion has on its spritesheet
+			// 设置s the amount of frames this 仆从 has on its spritesheet
 			Main.projFrames[Projectile.type] = 4;
-			// 这是 necessary for right-click targeting
+			// 这是 necessary for 右-点击 targeting
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
-			Main.projPet[Projectile.type] = true; // Denotes that this projectile is a pet or minion
+			Main.projPet[Projectile.type] = true; // Denotes that this 弹幕 is a 宠物 or 仆从
 
-			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; // This is needed so your minion can properly spawn when summoned and replaced when other minions are summoned
-			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // 使 the cultist resistant to this projectile, as it's resistant to all homing projectiles.
+			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; // This is needed so your 仆从 can properly 生成 when summoned and replaced when other minions are summoned
+			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // 使 the cultist resistant to this 弹幕, as it's resistant to all homing projectiles.
 		}
 
 		public sealed override void SetDefaults() {
 			Projectile.width = 18;
 			Projectile.height = 28;
-			Projectile.tileCollide = false; // 使 the minion go through tiles freely
+			Projectile.tileCollide = false; // 使 the 仆从 go through tiles freely
 
-			// These below are needed for a minion weapon
-			Projectile.friendly = true; // 仅 controls if it deals damage to enemies on contact (more on that later)
-			Projectile.minion = true; // Declares this as a minion (has many effects)
-			Projectile.DamageType = DamageClass.Summon; // Declares the damage type (needed for it to deal damage)
-			Projectile.minionSlots = 1f; // Amount of slots this minion occupies 从 total minion slots available 到 player (more on that later)
-			Projectile.penetrate = -1; // Needed so the minion doesn't despawn on collision with enemies or tiles
+			// These below are needed for a 仆从 武器
+			Projectile.friendly = true; // 仅 controls if it deals 伤害 to enemies on contact (more on that later)
+			Projectile.minion = true; // Declares this as a 仆从 (has many effects)
+			Projectile.DamageType = DamageClass.Summon; // Declares the 伤害 类型 (needed for it to deal 伤害)
+			Projectile.minionSlots = 1f; // Amount of slots this 仆从 occupies 从 total 仆从 slots available 到 玩家 (more on that later)
+			Projectile.penetrate = -1; // Needed so the 仆从 doesn't despawn on collision with enemies or tiles
 		}
 
-		// 在这里 you can decide if your minion breaks things like grass or pots
+		// 在这里 you can decide if your 仆从 breaks things like grass or pots
 		public override bool? CanCutTiles() {
 			return false;
 		}
 
-		// 这是 mandatory if your minion deals contact damage (further related stuff in AI() 在 Movement region)
+		// 这是 mandatory if your 仆从 deals contact 伤害 (further related stuff in AI() 在 Movement 区域)
 		public override bool MinionContactDamage() {
 			return true;
 		}
 
-		// AI of this minion is split into multiple methods to avoid bloat. This method just passes values between calls actual parts 的 AI.
+		// AI of this 仆从 is 拆分 into multiple methods to avoid bloat. This 方法 just passes values between calls actual parts 的 AI.
 		public override void AI() {
 			Player owner = Main.player[Projectile.owner];
 
@@ -148,7 +148,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			Visuals();
 		}
 
-		// 这是 the "active check", makes sure the minion is alive while the player is alive, and despawns if not
+		// 这是 the "active check", makes sure the 仆从 is alive while the 玩家 is alive, and despawns if not
 		private bool CheckActive(Player owner) {
 			if (owner.dead || !owner.active) {
 				owner.ClearBuff(ModContent.BuffType<ExampleSimpleMinionBuff>());
@@ -165,28 +165,28 @@ namespace ExampleMod.Content.Projectiles.Minions
 
 		private void GeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition) {
 			Vector2 idlePosition = owner.Center;
-			idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles 从 center 的 player)
+			idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles 从 中心 的 玩家)
 
-			// 如果 your minion doesn't aimlessly move around when it's idle, you need to "put" it in到 line of other summoned minions
-			// index is projectile.minionPos
+			// 如果 your 仆从 doesn't aimlessly 移动 around when it's idle, you need to "put" it in到 line of other summoned minions
+			// 索引 is 弹幕.minionPos
 			float minionPositionOffsetX = (10 + Projectile.minionPos * 40) * -owner.direction;
-			idlePosition.X += minionPositionOffsetX; // Go behind the player
+			idlePosition.X += minionPositionOffsetX; // Go behind the 玩家
 
 			// All of this code below this line is adapted from Spazmamini code (ID 388, aiStyle 66)
 
-			// Teleport to player if distance is too big
+			// 传送 to 玩家 if 距离 is too big
 			vectorToIdlePosition = idlePosition - Projectile.Center;
 			distanceToIdlePosition = vectorToIdlePosition.Length();
 
 			if (Main.myPlayer == owner.whoAmI && distanceToIdlePosition > 2000f) {
-				// Whenever you deal with non-regular events that change the behavior or position drastically, make sure to only run the code 在 owner 的 projectile,
-				// 然后 set netUpdate to true
+				// Whenever you deal with non-regular events that change the behavior or 位置 drastically, make sure to only run the code 在 所有者 的 弹幕,
+				// 然后 set netUpdate to 真
 				Projectile.position = idlePosition;
 				Projectile.velocity *= 0.1f;
 				Projectile.netUpdate = true;
 			}
 
-			// 如果 your minion is flying, you want to do this independently of any conditions
+			// 如果 your 仆从 is flying, you want to do this independently of any conditions
 			float overlapVelocity = 0.04f;
 
 			// Fix overlap with other minions
@@ -210,17 +210,17 @@ namespace ExampleMod.Content.Projectiles.Minions
 		}
 
 		private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
-			// Starting search distance
+			// Starting 搜索 距离
 			distanceFromTarget = 700f;
 			targetCenter = Projectile.position;
 			foundTarget = false;
 
-			// This code is required if your minion weapon has the targeting feature
+			// This code is required if your 仆从 武器 has the targeting feature
 			if (owner.HasMinionAttackTargetNPC) {
 				NPC npc = Main.npc[owner.MinionAttackTargetNPC];
 				float between = Vector2.Distance(npc.Center, Projectile.Center);
 
-				// Reasonable distance away so it doesn't target across multiple screens
+				// Reasonable 距离 away so it doesn't 目标 across multiple screens
 				if (between < 2000f) {
 					distanceFromTarget = between;
 					targetCenter = npc.Center;
@@ -229,15 +229,15 @@ namespace ExampleMod.Content.Projectiles.Minions
 			}
 
 			if (!foundTarget) {
-				// This code is required either way, used for finding a target
+				// This code is required either way, used for finding a 目标
 				foreach (var npc in Main.ActiveNPCs) {
 					if (npc.CanBeChasedBy()) {
 						float between = Vector2.Distance(npc.Center, Projectile.Center);
 						bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
 						bool inRange = between < distanceFromTarget;
 						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-						// 添加itional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
-						// number depends on various parameters seen 在 movement code below. Test different ones out until it works alright
+						// 添加itional check for this specific 仆从 behavior, otherwise it will 停止 attacking once it dashed through an 敌人 while flying though tiles afterwards
+						// 数字 depends on various parameters seen 在 movement code below. 测试 different ones out until it works alright
 						bool closeThroughWall = between < 100f;
 
 						if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
@@ -249,10 +249,10 @@ namespace ExampleMod.Content.Projectiles.Minions
 				}
 			}
 
-			// friendly needs to be set to true so the minion can deal contact damage
-			// friendly needs to be set to false so it doesn't damage things like target dummies while idling
-			// Both things depend on if it has a target or not, so it's just one assignment here
-			// 你 don't need this assignment if your minion is shooting things instead of dealing contact damage
+			// friendly needs to be set to 真 so the 仆从 can deal contact 伤害
+			// friendly needs to be set to 假 so it doesn't 伤害 things like 目标 dummies while idling
+			// Both things depend on if it has a 目标 or not, so it's just one assignment here
+			// 你 don't need this assignment if your 仆从 is shooting things instead of dealing contact 伤害
 			Projectile.friendly = foundTarget;
 		}
 
@@ -262,9 +262,9 @@ namespace ExampleMod.Content.Projectiles.Minions
 			float inertia = 20f;
 
 			if (foundTarget) {
-				// Minion has a target: attack (here, fly towards the enemy)
+				// 仆从 has a 目标: 攻击 (here, fly towards the 敌人)
 				if (distanceFromTarget > 40f) {
-					// immediate range around the target (so it doesn't latch onto it when close)
+					// immediate 范围 around the 目标 (so it doesn't latch onto it when 关闭)
 					Vector2 direction = targetCenter - Projectile.Center;
 					direction.Normalize();
 					direction *= speed;
@@ -273,22 +273,22 @@ namespace ExampleMod.Content.Projectiles.Minions
 				}
 			}
 			else {
-				// Minion doesn't have a target: return to player and idle
+				// 仆从 doesn't have a 目标: 返回 to 玩家 and idle
 				if (distanceToIdlePosition > 600f) {
-					// Speed up the minion if it's away 从 player
+					// 速度 up the 仆从 if it's away 从 玩家
 					speed = 12f;
 					inertia = 60f;
 				}
 				else {
-					// Slow down the minion if closer 到 player
+					// Slow down the 仆从 if closer 到 玩家
 					speed = 4f;
 					inertia = 80f;
 				}
 
 				if (distanceToIdlePosition > 20f) {
-					// immediate range around the player (when it passively floats about)
+					// immediate 范围 around the 玩家 (when it passively floats about)
 
-					// 这是 a simple movement formula using the two parameters and its desired direction to create a "homing" movement
+					// 这是 a simple movement 公式 using the two parameters and its desired 方向 to create a "homing" movement
 					vectorToIdlePosition.Normalize();
 					vectorToIdlePosition *= speed;
 					Projectile.velocity = (Projectile.velocity * (inertia - 1) + vectorToIdlePosition) / inertia;
@@ -302,10 +302,10 @@ namespace ExampleMod.Content.Projectiles.Minions
 		}
 
 		private void Visuals() {
-			// So it will lean slightly towards the direction it's moving
+			// So it will lean slightly towards the 方向 it's moving
 			Projectile.rotation = Projectile.velocity.X * 0.05f;
 
-			// 这是 a simple "loop through all frames from top to bottom" animation
+			// 这是 a simple "循环 through all frames from 顶部 to 底部" 动画
 			int frameSpeed = 5;
 
 			Projectile.frameCounter++;

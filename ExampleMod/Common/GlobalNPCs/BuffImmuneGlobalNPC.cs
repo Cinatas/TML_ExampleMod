@@ -11,7 +11,7 @@ namespace ExampleMod.Common.GlobalNPCs
 	// 如果需要更改其他模组内容的免疫并且 GrantImmunityWith 不足，则可以在 PostSetupContent 中调整 SpecificDebuffImmunity。
 	// 仅在 ModNPC/GlobalNPC.SetDefaults 中直接调整 NPC.buffImmune[] 以实现复杂或世界状态特定逻辑。
 	// 可以在 AI 或 SetDefaults 方法期间调整 NPC.buffImmune[]，但请注意减益继承不适用于手动更改。
-	// 例如：当 Boss 旋转时，设置 NPC.buffImmune[OnFire] = true。
+	// 例如：当 Boss 旋转时，设置 NPC.buffImmune[OnFire] = 真。
 	// 使用 NPC.BecomeImmuneTo 和 NPC.ClearImmuneToBuffs 方法而不是直接调整 NPC.buffImmune[] 将允许减益继承。MinionBossBody 展示了这种方法。
 	public class BuffImmuneGlobalNPC : GlobalNPC
 	{
@@ -38,7 +38,7 @@ namespace ExampleMod.Common.GlobalNPCs
 			// DesertGhoulCrimson 施加灵液，因此此模组将其更改为对灵液免疫，这反过来也将使其对双足飞龙诅咒和 ExampleDefenseDebuff 免疫。
 			NPCID.Sets.SpecificDebuffImmunity[NPCID.DesertGhoulCrimson][BuffID.Ichor] = true;
 
-			// 圣骑士特别对灵液免疫，但在此处将其设置为 false 将使其不免疫。这是此模组的假设设计决策。任何其他模组正确使用 GrantImmunityWith 为其自己的灵液变体继承灵液增益免疫不会导致圣骑士对该增益免疫，如预期的那样。
+			// 圣骑士特别对灵液免疫，但在此处将其设置为 假 将使其不免疫。这是此模组的假设设计决策。任何其他模组正确使用 GrantImmunityWith 为其自己的灵液变体继承灵液增益免疫不会导致圣骑士对该增益免疫，如预期的那样。
 			NPCID.Sets.SpecificDebuffImmunity[NPCID.Paladin][BuffID.Ichor] = false;
 		}
 

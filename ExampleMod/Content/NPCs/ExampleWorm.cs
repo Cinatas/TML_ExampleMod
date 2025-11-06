@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.NPCs
 {
-	// These three class showcase usage 的 WormHead, WormBody and WormTail classes from Worm.cs
+	// These three 类 showcase usage 的 WormHead, WormBody and WormTail classes from Worm.cs
 	internal class ExampleWormHead : WormHead
 	{
 		public override int BodyType => ModContent.NPCType<ExampleWormBody>();
@@ -17,7 +17,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void SetStaticDefaults() {
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers() { // Influences how the NPC looks 在 Bestiary
-				CustomTexturePath = "ExampleMod/Content/NPCs/ExampleWorm_Bestiary", // If the NPC is multiple parts like a worm, a custom texture 对于 Bestiary is encouraged.
+				CustomTexturePath = "ExampleMod/Content/NPCs/ExampleWorm_Bestiary", // If the NPC is multiple parts like a worm, a custom 纹理 对于 Bestiary is encouraged.
 				Position = new Vector2(40f, 24f),
 				PortraitPositionXOverride = 0f,
 				PortraitPositionYOverride = 12f
@@ -26,26 +26,26 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetDefaults() {
-			// Head is 10 defense, body 20, tail 30.
+			// Head is 10 防御, body 20, tail 30.
 			NPC.CloneDefaults(NPCID.DiggerHead);
 			NPC.aiStyle = -1;
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
 
-				// 设置s the description of this NPC 即 listed 在 bestiary.
+				// 设置s the 描述 of this NPC 即 listed 在 bestiary.
 				new FlavorTextBestiaryInfoElement("Looks like a Digger fell into some aqua-colored paint. Oh well.")
 			});
 		}
 
 		public override void Init() {
 			// 设置 the segment variance
-			// 如果 you want the segment length to be constant, set these two properties 到 same value
+			// 如果 you want the segment 长度 to be constant, set these two properties 到 same 值
 			MinSegmentLength = 6;
 			MaxSegmentLength = 12;
 
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.NPCs
 
 		// 此方法 is invoked from ExampleWormHead, ExampleWormBody and ExampleWormTail
 		internal static void CommonWormInit(Worm worm) {
-			// These two properties handle the movement 的 worm
+			// These two properties 处理 the movement 的 worm
 			worm.MoveSpeed = 5.5f;
 			worm.Acceleration = 0.045f;
 		}
@@ -71,11 +71,11 @@ namespace ExampleMod.Content.NPCs
 		public override void AI() {
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				if (attackCounter > 0) {
-					attackCounter--; // tick down the attack counter.
+					attackCounter--; // tick down the 攻击 计数器.
 				}
 
 				Player target = Main.player[NPC.target];
-				// 如果 the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path 到 target unobstructed by blocks, summon a projectile.
+				// 如果 the 攻击 计数器 is 0, this NPC is less than 12.5 tiles away from its 目标, and has a 路径 到 目标 unobstructed by blocks, summon a 弹幕.
 				if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1)) {
 					Vector2 direction = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
 					direction = direction.RotatedByRandom(MathHelper.ToRadians(10));

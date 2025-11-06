@@ -24,7 +24,7 @@ namespace ExampleMod.Items.Accessories
 		}
 
 		public override int ChoosePrefix(UnifiedRandom rand) {
-			// When the item is given a prefix, only roll the best modifiers for accessories
+			// When the 项 is given a 前缀, only roll the best modifiers for accessories
 			return rand.Next(new int[] { PrefixID.Arcane, PrefixID.Lucky, PrefixID.Menacing, PrefixID.Quick, PrefixID.Violent, PrefixID.Warding });
 		}
 

@@ -29,7 +29,7 @@ namespace ExampleMod.Common.Configs.CustomDataTypes
 		}
 
 		// 在这里，你需要编写对象的字符串表示形式，以便易于再次重建
-		// 在 json 文件中，它看起来像这样："True, 5"
+		// 在 json 文件中，它看起来像这样："真, 5"
 		public override string ToString() {
 			return $"{SomeBool}, {SomeNumber}";
 		}

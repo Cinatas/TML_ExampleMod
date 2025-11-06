@@ -83,7 +83,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override void SplitStack(Item source, int numToTransfer) {
-			//Item is a clone of decrease, but useCount should 不 cloned, so set it to 0 对于 new item.
+			//项 is a clone of decrease, but useCount should 不 cloned, so set it to 0 对于 new 项.
 			useCount = 0;
 
 			MergeUseCount(source);

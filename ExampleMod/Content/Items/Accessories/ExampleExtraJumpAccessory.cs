@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	// 展示 a basic extra jump
+	// 展示 a basic extra 跳跃
 	public class ExampleExtraJumpAccessory : ModItem
 	{
 		public override void SetDefaults() {
@@ -33,27 +33,27 @@ namespace ExampleMod.Content.Items.Accessories
 		public override Position GetDefaultPosition() => new After(BlizzardInABottle);
 
 		public override IEnumerable<Position> GetModdedConstraints() {
-			// 默认情况下, modded extra jumps set to be between two vanilla extra jumps (via After and Before) are ordered in load order.
-			// This hook allows you to organize where this extra jump is located relative to other modded extra jumps that are also
+			// 默认情况下, modded extra jumps set to be between two vanilla extra jumps (via After and Before) are ordered in 加载 顺序.
+			// This hook allows you to organize where this extra 跳跃 is located relative to other modded extra jumps that are also
 			// placed between the same two vanilla extra jumps.
 			yield return new Before(ModContent.GetInstance<MultipleUseExtraJump>());
 		}
 
 		public override float GetDurationMultiplier(Player player) {
-			// 使用 this hook to set the duration 的 extra jump
+			// 使用 this hook to set the 持续时间 的 extra 跳跃
 			// XML summary for this hook mentions the values used by the vanilla extra jumps
 			return 2.25f;
 		}
 
 		public override void UpdateHorizontalSpeeds(Player player) {
-			// 使用 this hook to modify "player.runAcceleration" and "player.maxRunSpeed"
+			// 使用 this hook to modify "玩家.runAcceleration" and "玩家.maxRunSpeed"
 			// XML summary for this hook mentions the values used by the vanilla extra jumps
 			player.runAcceleration *= 1.75f;
 			player.maxRunSpeed *= 2f;
 		}
 
 		public override void OnStarted(Player player, ref bool playSound) {
-			// 使用 this hook to trigger effects that should appear 在 start 的 extra jump
+			// 使用 this hook to 触发器 effects that should appear 在 开始 的 extra 跳跃
 			// 此示例 mimics the logic for spawning the puff of smoke 从 Cloud in a Bottle
 			int offsetY = player.height;
 			if (player.gravDir == -1f)
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void ShowVisuals(Player player) {
-			// 使用 this hook to trigger effects that should appear throughout the duration 的 extra jump
+			// 使用 this hook to 触发器 effects that should appear throughout the 持续时间 的 extra 跳跃
 			// 此示例 mimics the logic for spawning the dust 从 Blizzard in a Bottle
 			int offsetY = player.height - 6;
 			if (player.gravDir == -1f)

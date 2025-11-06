@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleWhipProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			// This makes the projectile use whip collision detection and allows flasks to be applied to it.
+			// This makes the 弹幕 use whip collision detection and allows flasks to be applied to it.
 			ProjectileID.Sets.IsAWhip[Type] = true;
 		}
 
@@ -21,8 +21,8 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DefaultToWhip();
 
 			// use these to change 从 vanilla defaults
-			// Projectile.WhipSettings.Segments = 20;
-			// Projectile.WhipSettings.RangeMultiplier = 1f;
+			// 弹幕.WhipSettings.Segments = 20;
+			// 弹幕.WhipSettings.RangeMultiplier = 1f;
 		}
 
 		private float Timer {
@@ -36,11 +36,11 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// 此示例 uses PreAI to implement a charging mechanic.
-		// 如果 you remove this, also remove Item.channel = true 从 item's SetDefaults.
+		// 如果 you 删除 this, also 删除 项.通道 = 真 从 项's SetDefaults.
 		public override bool PreAI() {
 			Player owner = Main.player[Projectile.owner];
 
-			// 像 other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
+			// 像 other whips, this whip updates twice per 帧 (弹幕.extraUpdates = 1), so 120 is equal to 1 second.
 			if (!owner.channel || ChargeTime >= 120) {
 				return true; // Let the vanilla whip AI run.
 			}
@@ -48,10 +48,10 @@ namespace ExampleMod.Content.Projectiles
 			if (++ChargeTime % 12 == 0) // 1 segment per 12 ticks of charge.
 				Projectile.WhipSettings.Segments++;
 
-			// Increase range up to 2x for full charge.
+			// Increase 范围 up to 2x for full charge.
 			Projectile.WhipSettings.RangeMultiplier += 1 / 120f;
 
-			// 重置 the animation and item timer while charging.
+			// 重置 the 动画 and 项 计时器 while charging.
 			owner.itemAnimation = owner.itemAnimationMax;
 			owner.itemTime = owner.itemTimeMax;
 
@@ -61,7 +61,7 @@ namespace ExampleMod.Content.Projectiles
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			target.AddBuff(ModContent.BuffType<ExampleWhipDebuff>(), 240);
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-			Projectile.damage = (int)(Projectile.damage * 0.5f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
+			Projectile.damage = (int)(Projectile.damage * 0.5f); // Multihit 惩罚. Decrease the 伤害 the more enemies the whip hits.
 		}
 
 		// 此方法 draws a line between all points 的 whip, in case there's empty space between the sprites.
@@ -91,9 +91,9 @@ namespace ExampleMod.Content.Projectiles
 
 			DrawLine(list);
 
-			//Main.DrawWhip_WhipBland(Projectile, list);
+			//Main.DrawWhip_WhipBland(弹幕, 列表);
 			// code below is for custom drawing.
-			// 如果 you don't want that, you can remove it all and instead call one of vanilla's DrawWhip methods, like above.
+			// 如果 you don't want that, you can 删除 it all and instead call one of vanilla's DrawWhip methods, like above.
 			// 然而, you must adhere to how they draw if you do.
 
 			SpriteEffects flip = Projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -103,20 +103,20 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 pos = list[0];
 
 			for (int i = 0; i < list.Count - 1; i++) {
-				// These two values are set to suit this projectile's sprite, but won't necessarily work for your own.
+				// These two values are set to suit this 弹幕's 精灵, but won't necessarily work for your own.
 				// 你 can change them if they don't!
-				Rectangle frame = new Rectangle(0, 0, 10, 26); // The size 的 Handle (measured in pixels)
-				Vector2 origin = new Vector2(5, 8); // Offset for where the player's hand will start measured 从 top left 的 image.
+				Rectangle frame = new Rectangle(0, 0, 10, 26); // The 大小 的 处理 (measured in pixels)
+				Vector2 origin = new Vector2(5, 8); // 偏移 for where the 玩家's hand will 开始 measured 从 顶部 左 的 图像.
 				float scale = 1;
 
 				// These statements determine what part 的 spritesheet to draw 对于 current segment.
-				// They can also be changed to suit your sprite.
+				// They can also be changed to suit your 精灵.
 				if (i == list.Count - 2) {
-					// 这是 the head 的 whip. You need to measure the sprite to figure out these values.
-					frame.Y = 74; // Distance 从 top 的 sprite 到 start 的 frame.
-					frame.Height = 18; // Height 的 frame.
+					// 这是 the head 的 whip. You need to measure the 精灵 to figure out these values.
+					frame.Y = 74; // 距离 从 顶部 的 精灵 到 开始 的 帧.
+					frame.Height = 18; // 高度 的 帧.
 
-					// 对于 a more impactful look, this scales the tip 的 whip up when fully extended, and down when curled up.
+					// 对于 a more impactful look, this scales the 提示 的 whip up when fully extended, and down when curled up.
 					Projectile.GetWhipSettings(Projectile, out float timeToFlyOut, out int _, out float _);
 					float t = Timer / timeToFlyOut;
 					scale = MathHelper.Lerp(0.5f, 1.5f, Utils.GetLerpValue(0.1f, 0.7f, t, true) * Utils.GetLerpValue(0.9f, 0.7f, t, true));
@@ -140,7 +140,7 @@ namespace ExampleMod.Content.Projectiles
 				Vector2 element = list[i];
 				Vector2 diff = list[i + 1] - element;
 
-				float rotation = diff.ToRotation() - MathHelper.PiOver2; // This projectile's sprite faces down, so PiOver2 is used to correct rotation.
+				float rotation = diff.ToRotation() - MathHelper.PiOver2; // This 弹幕's 精灵 faces down, so PiOver2 is used to correct 旋转.
 				Color color = Lighting.GetColor(element.ToTileCoordinates());
 
 				Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, flip, 0);

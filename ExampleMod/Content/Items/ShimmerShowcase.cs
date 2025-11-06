@@ -26,9 +26,9 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void AddRecipes() {
-			// Many items have multiple recipes. The first added recipe will usually be used for shimmer decrafting.
-			// Recipe decraft conditions 可能 used to only allow decrafting under certain conditions, the first recipe found that satisfies all of it's decraft conditions 将 used.
-			// Therefore, this desert-specific example has priority over the world evil examples registered after it.
+			// Many items have multiple recipes. The first added 配方 will usually be used for shimmer decrafting.
+			// 配方 decraft conditions 可能 used to only 允许 decrafting under certain conditions, the first 配方 found that satisfies all of it's decraft conditions 将 used.
+			// Therefore, this desert-specific example has priority over the 世界 evil examples registered after it.
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddIngredient(ItemID.Cactus)
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items
 				.AddDecraftCondition(Condition.InDesert)
 				.Register();
 
-			// 在 these 2 examples, decraft conditions are used to make the recipes decraftable only 在ir respective world types
+			// 在 these 2 examples, decraft conditions are used to make the recipes decraftable only 在ir respective 世界 types
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddIngredient(ItemID.RottenChunk)
@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Items
 				.AddDecraftCondition(Condition.CrimsonWorld)
 				.Register();
 
-			// 最后, the ApplyConditionsAsDecraftConditions method 可以 used to quickly mirror any crafting conditions on到 decrafting conditions.
+			// 最后, the ApplyConditionsAsDecraftConditions 方法 可以 used to quickly mirror any 制作 conditions on到 decrafting conditions.
 		}
 	}
 
@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void AddRecipes() {
-			// 默认情况下, the first added recipe 将 used for shimmer decrafting. We can use DisableDecraft() to tell the game to ignore this recipe and use the below recipe instead.
+			// 默认情况下, the first added 配方 将 used for shimmer decrafting. We can use DisableDecraft() to tell the game to 忽略 this 配方 and use the below 配方 instead.
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddIngredient(ItemID.PadThai)
@@ -73,7 +73,7 @@ namespace ExampleMod.Content.Items
 				.DisableDecraft()
 				.Register();
 
-			// 添加CustomShimmerResult 可以 used to change the decrafting results. Rather that return 1 ExampleItem, decrafting this item will return 1 Rotten Egg and 3 Chain.
+			// 添加CustomShimmerResult 可以 used to change the decrafting results. Rather that 返回 1 ExampleItem, decrafting this 项 will 返回 1 Rotten Egg and 3 Chain.
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()

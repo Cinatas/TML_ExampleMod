@@ -9,32 +9,32 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleSpear : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead 在 UseItem() hook.
-			ItemID.Sets.Spears[Item.type] = true; // This allows the game to recognize our new item as a spear.
+			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use 动画-tied 声音 playback, so that we're able to make it be tied to use 时间 instead 在 UseItem() hook.
+			ItemID.Sets.Spears[Item.type] = true; // This allows the game to recognize our new 项 as a spear.
 		}
 
 		public override void SetDefaults() {
 			// 常见 Properties
-			Item.rare = ItemRarityID.Pink; // Assign this item a rarity level of Pink
-			Item.value = Item.sellPrice(silver: 10); // The number and type of coins item 可以 sold for to an NPC
+			Item.rare = ItemRarityID.Pink; // Assign this 项 a 稀有度 级别 of Pink
+			Item.value = Item.sellPrice(silver: 10); // The 数字 and 类型 of coins 项 可以 sold for to an NPC
 
 			// 使用 Properties
-			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
-			Item.useAnimation = 12; // The length 的 item's use animation in ticks (60 ticks == 1 second.)
-			Item.useTime = 18; // The length 的 item's use time in ticks (60 ticks == 1 second.)
-			Item.UseSound = SoundID.Item71; // The sound that this item plays when used.
-			Item.autoReuse = true; // 允许s the player to hold click to automatically use the item again. Most spears don't autoReuse, but it's possible when used in conjunction with CanUseItem()
+			Item.useStyle = ItemUseStyleID.Shoot; // How you use the 项 (swinging, holding out, etc.)
+			Item.useAnimation = 12; // The 长度 的 项's use 动画 in ticks (60 ticks == 1 second.)
+			Item.useTime = 18; // The 长度 的 项's use 时间 in ticks (60 ticks == 1 second.)
+			Item.UseSound = SoundID.Item71; // The 声音 that this 项 plays when used.
+			Item.autoReuse = true; // 允许s the 玩家 to hold 点击 to automatically use the 项 again. Most spears don't autoReuse, but it's possible when used in conjunction with CanUseItem()
 
-			// Weapon Properties
+			// 武器 Properties
 			Item.damage = 25;
 			Item.knockBack = 6.5f;
-			Item.noUseGraphic = true; // When true, the item's sprite will 不 visible while the item is in use. This is true because the spear projectile is what's shown so we do not want to show the spear sprite 以及.
+			Item.noUseGraphic = true; // When 真, the 项's 精灵 will 不 visible while the 项 is in use. This is 真 because the spear 弹幕 is what's shown so we do not want to show the spear 精灵 以及.
 			Item.DamageType = DamageClass.Melee;
-			Item.noMelee = true; // 允许s the item's animation to do damage. This is important because the spear is actually a projectile instead of an item. This prevents the melee hitbox of this item.
+			Item.noMelee = true; // 允许s the 项's 动画 to do 伤害. This is important because the spear is actually a 弹幕 instead of an 项. This prevents the melee hitbox of this 项.
 
-			// Projectile Properties
-			Item.shootSpeed = 3.7f; // The speed 的 projectile measured in pixels per frame.
-			Item.shoot = ModContent.ProjectileType<ExampleSpearProjectile>(); // The projectile 即 fired from this weapon
+			// 弹幕 Properties
+			Item.shootSpeed = 3.7f; // The 速度 的 弹幕 measured in pixels per 帧.
+			Item.shoot = ModContent.ProjectileType<ExampleSpearProjectile>(); // The 弹幕 即 fired from this 武器
 		}
 
 		public override bool CanUseItem(Player player) {
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool? UseItem(Player player) {
-			// Because we're skipping sound playback on use animation start, we have to play it ourselves whenever the item is actually used.
+			// Because we're skipping 声音 playback on use 动画 开始, we have to play it ourselves whenever the 项 is actually used.
 			if (!Main.dedServ && Item.UseSound.HasValue) {
 				SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
 			}
@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Items.Weapons
 			return null;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

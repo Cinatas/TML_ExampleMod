@@ -30,7 +30,7 @@ namespace ExampleMod.Common.Systems
 			int[] tileTypes = new int[] { ModContent.TileType<Example1x1RubbleNatural>(), ModContent.TileType<Example2x1RubbleNatural>(), ModContent.TileType<Example3x2RubbleNatural>() };
 
 			// 为了不让人烦恼，我们只在出生点附近生成 15 个示例碎石。
-			// 此示例使用 Try Until Success 方法：https://github.com/tModLoader/tModLoader/wiki/World-Generation#try-until-success
+			// 此示例使用 Try Until Success 方法：https://github.com/tModLoader/tModLoader/wiki/世界-生成#try-until-success
 			for (int k = 0; k < 15; k++) {
 				bool success = false;
 				int attempts = 0;

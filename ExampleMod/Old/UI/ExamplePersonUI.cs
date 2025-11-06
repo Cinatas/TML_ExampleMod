@@ -15,7 +15,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.UI
 {
-	// This class represents the UIState for our ExamplePerson Awesomeify chat function. It is similar 到 Goblin Tinkerer's Reforge function, except it only gives Awesome and ReallyAwesome prefixes. 
+	// This 类 represents the UIState for our ExamplePerson Awesomeify chat 函数. It is similar 到 Goblin Tinkerer's Reforge 函数, except it only gives Awesome and ReallyAwesome prefixes. 
 	internal class ExamplePersonUI : UIState
 	{
 		private VanillaItemSlotWrapper _vanillaItemSlot;
@@ -27,36 +27,36 @@ namespace ExampleMod.UI
 				ValidItemFunc = item => item.IsAir || !item.IsAir && item.Prefix(-3)
 			};
 
-			// Here we limit the items that 可以 placed 在 slot. We are fine with placing an empty item in or a non-empty item that 可以 prefixed. Calling Prefix(-3) is the way to know if the item in question can take a prefix or not.
+			// Here we 限制 the items that 可以 placed 在 槽位. We are fine with placing an empty 项 in or a non-empty 项 that 可以 prefixed. Calling 前缀(-3) is the way to know if the 项 in question can take a 前缀 or not.
 			Append(_vanillaItemSlot);
 		}
 
-		// OnDeactivate is called when the UserInterface switches to a different state. In this mod, we switch between no state (null) and this state (ExamplePersonUI).
-		// Using OnDeactivate is useful for clearing out Item slots and returning them 到 player, as we do here.
+		// OnDeactivate is called when the UserInterface switches to a different 状态. In this mod, we switch between no 状态 (空) and this 状态 (ExamplePersonUI).
+		// Using OnDeactivate is useful for clearing out 项 slots and returning them 到 玩家, as we do here.
 		public override void OnDeactivate() {
 			if (_vanillaItemSlot.Item.IsAir) {
 				return;
 			}
 
-			// QuickSpawnClonedItem will preserve mod data 的 item. QuickSpawnItem will just spawn a fresh version 的 item, losing the prefix.
+			// QuickSpawnClonedItem will preserve mod 数据 的 项. QuickSpawnItem will just 生成 a fresh 版本 的 项, losing the 前缀.
 			Main.LocalPlayer.QuickSpawnClonedItem(_vanillaItemSlot.Item, _vanillaItemSlot.Item.stack);
 
-			// Now that we've spawned the item back on到 player, we reset the item by turning it into air.
+			// Now that we've spawned the 项 back on到 玩家, we 重置 the 项 by turning it into air.
 			_vanillaItemSlot.Item.TurnToAir();
 
-			// Note that in ExamplePerson we call .SetState(new UI.ExamplePersonUI());, thereby creating a new instance of this UIState 每次. 
-			// You could go with a different design, keeping around the same UIState instance if you wanted. This would preserve the UIState between opening and closing. Up to you.
+			// Note that in ExamplePerson we call .SetState(new 用户界面.ExamplePersonUI());, thereby creating a new 实例 of this UIState 每次. 
+			// You could go with a different design, keeping around the same UIState 实例 if you wanted. This would preserve the UIState between opening and closing. Up to you.
 		}
 
-		// 更新 is called on a UIState while it is the active state 的 UserInterface.
-		// We use Update to handle automatically closing our UI when the player is 不再 talking to our Example Person NPC.
+		// 更新 is called on a UIState while it is the active 状态 的 UserInterface.
+		// We use 更新 to 处理 automatically closing our 用户界面 when the 玩家 is 不再 talking to our Example Person NPC.
 		public override void Update(GameTime gameTime) {
-			// 不要 delete this or the UIElements attached to this UIState will cease to function.
+			// 不要 删除 this or the UIElements attached to this UIState will cease to 函数.
 			base.Update(gameTime);
 
-			// talkNPC is the index 的 NPC the player is currently talking to. By checking talkNPC, we can tell when the player switches to another NPC or closes the NPC chat dialog.
+			// talkNPC is the 索引 的 NPC the 玩家 is currently talking to. By checking talkNPC, we can tell when the 玩家 switches to another NPC or closes the NPC chat 对话框.
 			if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != NPCType<ExamplePerson>()) {
-				// When that happens, we can set the state of our UserInterface to null, thereby closing this UIState. This will trigger OnDeactivate above.
+				// When that happens, we can set the 状态 of our UserInterface to 空, thereby closing this UIState. This will 触发器 OnDeactivate above.
 				GetInstance<ExampleMod>().ExamplePersonUserInterface.SetState(null);
 			}
 		}
@@ -66,13 +66,13 @@ namespace ExampleMod.UI
 		protected override void DrawSelf(SpriteBatch spriteBatch) {
 			base.DrawSelf(spriteBatch);
 
-			// This will hide the crafting menu similar 到 reforge menu. For best results this UI is placed before "Vanilla: Inventory" to prevent 1 frame 的 craft menu showing.
+			// This will hide the 制作 菜单 similar 到 reforge 菜单. For best results this 用户界面 is placed before "Vanilla: 库存" to 防止 1 帧 的 craft 菜单 showing.
 			Main.HidePlayerCraftingMenu = true;
 
-			// Here we have a lot of code. This code is mainly adapted 从 vanilla code 对于 reforge option.
-			// This code draws "Place an item here" when no item is 在 slot and draws the reforge cost and a reforge button when an item is 在 slot.
-			// This code could possibly be better as different UIElements that are added and removed, but that's not the main point of this example.
-			// If you are making a UI, add UIElements in OnInitialize that act on your ItemSlot or other inputs rather than the non-UIElement approach you see below.
+			// Here we have a lot of code. This code is mainly adapted 从 vanilla code 对于 reforge 选项.
+			// This code draws "Place an 项 here" when no 项 is 在 槽位 and draws the reforge 成本 and a reforge 按钮 when an 项 is 在 槽位.
+			// This code could possibly be better as different UIElements that are added and removed, but that's not the main 点 of this example.
+			// If you are making a 用户界面, add UIElements in OnInitialize that act on your ItemSlot or other inputs rather than the non-UIElement approach you see below.
 
 			const int SlotX = 50;
 			const int SlotY = 270;
@@ -133,7 +133,7 @@ namespace ExampleMod.UI
 
 			reforgeItem = reforgeItem.CloneWithModdedDataFrom(_vanillaItemSlot.Item);
 
-			// This is the main effect of this slot. Giving the Awesome prefix 90% 的 time and the ReallyAwesome prefix the other 10% 的 time. All for a constant 1 gold. Useless, but informative.
+			// This is the main 效果 of this 槽位. Giving the Awesome 前缀 90% 的 时间 and the ReallyAwesome 前缀 the other 10% 的 时间. All for a constant 1 金币. Useless, but informative.
 			if (Main.rand.NextBool(10)) {
 				reforgeItem.Prefix(GetInstance<ExampleMod>().PrefixType("ReallyAwesome"));
 			}

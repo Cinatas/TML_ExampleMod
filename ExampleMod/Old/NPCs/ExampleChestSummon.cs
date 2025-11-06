@@ -23,7 +23,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// 允许s mimic spawning in single player with autopause on
+		// 允许s mimic spawning in single 玩家 with autopause on
 		public override void UpdateAutopause() {
 			LastChest = player.chest;
 		}

@@ -13,22 +13,22 @@ namespace ExampleMod.Common.Systems
 	public class DownedBossSystem : ModSystem
 	{
 		public static bool downedMinionBoss = false;
-		// public static bool downedOtherBoss = false;
+		// public static bool downedOtherBoss = 假;
 
 		public override void ClearWorld() {
 			downedMinionBoss = false;
-			// downedOtherBoss = false;
+			// downedOtherBoss = 假;
 		}
 
-		// We save our data sets using TagCompounds.
-		// NOTE: The tag instance provided here is always empty 默认情况下.
+		// We 保存 our 数据 sets using TagCompounds.
+		// NOTE: The tag 实例 provided here is always empty 默认情况下.
 		public override void SaveWorldData(TagCompound tag) {
 			if (downedMinionBoss) {
 				tag["downedMinionBoss"] = true;
 			}
 
 			// if (downedOtherBoss) {
-			//	tag["downedOtherBoss"] = true;
+			//	tag["downedOtherBoss"] = 真;
 			// }
 		}
 
@@ -38,7 +38,7 @@ namespace ExampleMod.Common.Systems
 		}
 
 		public override void NetSend(BinaryWriter writer) {
-			// Order of operations is important and has to match that of NetReceive
+			// 顺序 of operations is important and has to 匹配 that of NetReceive
 			var flags = new BitsByte();
 			flags[0] = downedMinionBoss;
 			// flags[1] = downedOtherBoss;
@@ -47,12 +47,12 @@ namespace ExampleMod.Common.Systems
 			/*
 			Remember that Bytes/BitsByte only have up to 8 entries. If you have more than 8 flags you want to sync, use multiple BitsByte:
 				This is wrong:
-			flags[8] = downed9thBoss; // an index of 8 is nonsense.
+			flags[8] = downed9thBoss; // an 索引 of 8 is nonsense.
 				This is correct:
 			flags[7] = downed8thBoss;
 			writer.Write(flags);
 			BitsByte flags2 = new BitsByte(); // 创建 another BitsByte
-			flags2[0] = downed9thBoss; // start again from 0
+			flags2[0] = downed9thBoss; // 开始 again from 0
 			// up to 7 more flags here
 			writer.Write(flags2); // write this byte
 			*/
@@ -81,7 +81,7 @@ namespace ExampleMod.Common.Systems
 				downedOtherBoss,
 			};
 			BitArray bitArray = new BitArray(flags);
-			byte[] bytes = new byte[(bitArray.Length - 1) / 8 + 1]; // Calculation for correct length 的 byte array
+			byte[] bytes = new byte[(bitArray.Length - 1) / 8 + 1]; // 计算 for correct 长度 的 byte 数组
 			bitArray.CopyTo(bytes, 0);
 
 			writer.Write(bytes.Length);
@@ -90,12 +90,12 @@ namespace ExampleMod.Common.Systems
 		}
 
 		public override void NetReceive(BinaryReader reader) {
-			// Order of operations is important and has to match that of NetSend
+			// 顺序 of operations is important and has to 匹配 that of NetSend
 			BitsByte flags = reader.ReadByte();
 			downedMinionBoss = flags[0];
 			// downedOtherBoss = flags[1];
 
-			// As mentioned in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional data:
+			// As mentioned in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional 数据:
 			// BitsByte flags2 = reader.ReadByte();
 			// downed9thBoss = flags2[0];
 

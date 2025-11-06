@@ -12,7 +12,7 @@ namespace ExampleMod.Items.Abomination
 	{
 		public override void SetStaticDefaults() {
 			Tooltip.SetDefault("The underworld would like this.");
-			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 13; // This helps sort inventory know this is a boss summoning item.
+			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 13; // This helps 排序 库存 know this is a Boss summoning 项.
 		}
 
 		public override void SetDefaults() {
@@ -27,9 +27,9 @@ namespace ExampleMod.Items.Abomination
 			item.consumable = true;
 		}
 
-		// We use the CanUseItem hook to prevent a player from using this item while the boss is present 在 world.
+		// We use the CanUseItem hook to 防止 a 玩家 from using this 项 while the Boss is present 在 世界.
 		public override bool CanUseItem(Player player) {
-			// "player.ZoneUnderworldHeight" could also be written as "player.position.Y / 16f > Main.maxTilesY - 200"
+			// "玩家.ZoneUnderworldHeight" could also be written as "玩家.位置.Y / 16f > Main.maxTilesY - 200"
 			return NPC.downedPlantBoss && player.ZoneUnderworldHeight && !NPC.AnyNPCs(NPCType<NPCs.Abomination.Abomination>()) && !NPC.AnyNPCs(NPCType<CaptiveElement>()) && !NPC.AnyNPCs(NPCType<CaptiveElement2>());
 		}
 

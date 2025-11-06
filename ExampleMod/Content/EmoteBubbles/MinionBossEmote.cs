@@ -7,7 +7,7 @@ namespace ExampleMod.Content.EmoteBubbles
 	public class MinionBossEmote : ModEmoteBubble
 	{
 		public override void SetStaticDefaults() {
-			// 默认 emote command name 将 a lowercase version 的 classname to match other vanilla commands.
+			// 默认 emote 命令 名称 将 a lowercase 版本 的 classname to 匹配 other vanilla commands.
 			// This 可以 changed 在 localization files.
 
 			// 添加 the emote to "bosses" category
@@ -15,7 +15,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		}
 
 		public override bool IsUnlocked() {
-			// This emote only shows when minion boss is downed, just as vanilla do.
+			// This emote only shows when 仆从 Boss is downed, just as vanilla do.
 			return DownedBossSystem.downedMinionBoss;
 		}
 	}

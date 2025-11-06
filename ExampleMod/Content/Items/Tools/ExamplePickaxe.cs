@@ -19,13 +19,13 @@ namespace ExampleMod.Content.Items.Tools
 			Item.useAnimation = 10;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 6;
-			Item.value = Item.buyPrice(gold: 1); // Buy this item for one gold - change gold to any coin and change the value to any number <= 100
+			Item.value = Item.buyPrice(gold: 1); // 购买 this 项 for one 金币 - change 金币 to any 硬币 and change the 值 to any 数字 <= 100
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 
-			Item.pick = 220; // How strong the pickaxe is, see https://terraria.wiki.gg/wiki/Pickaxe_power for a list of common values
-			Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee speed affects how fast the tool swings for damage purposes, but not how fast it can dig
+			Item.pick = 220; // How strong the pickaxe is, see https://terraria.wiki.gg/wiki/Pickaxe_power for a 列表 of common values
+			Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee 速度 affects how fast the tool swings for 伤害 purposes, but not how fast it can dig
 		}
 
 		public override void MeleeEffects(Player player, Rectangle hitbox) {
@@ -35,13 +35,13 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override void UseAnimation(Player player) {
-			// Randomly causes the player to use Example Pickaxe Emote when using the item
+			// Randomly causes the 玩家 to use Example Pickaxe Emote when using the 项
 			if (Main.myPlayer == player.whoAmI && player.ItemTimeIsZero && Main.rand.NextBool(60)) {
 				EmoteBubble.MakePlayerEmote(player, ModContent.EmoteBubbleType<ExamplePickaxeEmote>());
 			}
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

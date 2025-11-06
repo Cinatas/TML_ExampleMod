@@ -22,7 +22,7 @@ namespace ExampleMod.Common.GlobalItems
 				// 原版已经有许多默认的研究分类组，你可以将物品添加到其中。通常会自动完成，但有一些例外。有关例外的示例，请参考 ExampleFishingCrate 文件。
 			}
 
-			// 想要快速检查其模组中物品的当前物品分类组值的模组作者可以使用以下代码片段，然后检查 client.log。
+			// 想要快速检查其模组中物品的当前物品分类组值的模组作者可以使用以下代码片段，然后检查 客户端.日志。
 			/*
 			if (item.ModItem?.Mod == Mod) {
 				Mod.Logger.Info($"{item.ModItem.Name}: {itemGroup}");

@@ -51,7 +51,7 @@ namespace ExampleMod.Common.GlobalBuffs
 				textPos.Y += offset;
 			}
 
-			// 返回 true 以让游戏绘制增益图标。
+			// 返回 真 以让游戏绘制增益图标。
 			return true;
 		}
 

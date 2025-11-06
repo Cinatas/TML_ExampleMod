@@ -10,7 +10,7 @@ namespace ExampleMod.Common
 {
 	public class ExamplePlayerDrawLayer : PlayerDrawLayer
 	{
-		// 在此属性中返回 true 可使此层出现在小地图玩家头部图标上。
+		// 在此属性中返回 真 可使此层出现在小地图玩家头部图标上。
 		public override bool IsHeadLayer => true;
 
 		public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) {
@@ -42,7 +42,7 @@ namespace ExampleMod.Common
 				null, // 源矩形。
 				Color.White, // 颜色。
 				0f, // 旋转。
-				exampleItemTexture.Size() * 0.5f, // Origin. Uses the texture's center.
+				exampleItemTexture.Size() * 0.5f, // 原点. Uses the 纹理's 中心.
 				1f, // 缩放。
 				SpriteEffects.None, // 精灵效果。
 				0 // 层。在 Terraria 中始终为 0。

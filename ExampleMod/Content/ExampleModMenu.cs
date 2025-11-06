@@ -11,7 +11,7 @@ namespace ExampleMod.Content
 {
 	public class ExampleModMenu : ModMenu
 	{
-		private const string menuAssetPath = "ExampleMod/Assets/Textures/Menu"; // 创建s a constant variable representing the texture path, so we don't have to write it out multiple times
+		private const string menuAssetPath = "ExampleMod/Assets/Textures/Menu"; // 创建s a constant 变量 representing the 纹理 路径, so we don't have to write it out multiple times
 
 		private Asset<Texture2D> sunTexture;
 		private Asset<Texture2D> moonTexture;
@@ -41,11 +41,11 @@ namespace ExampleMod.Content
 		public override string DisplayName => "Example ModMenu";
 
 		public override void OnSelected() {
-			SoundEngine.PlaySound(SoundID.Thunder); // Plays a thunder sound when this ModMenu is selected
+			SoundEngine.PlaySound(SoundID.Thunder); // Plays a thunder 声音 when this ModMenu is selected
 		}
 
 		public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
-			drawColor = Main.DiscoColor; // 更改s the draw color 的 logo
+			drawColor = Main.DiscoColor; // 更改s the draw 颜色 的 logo
 			return true;
 		}
 	}

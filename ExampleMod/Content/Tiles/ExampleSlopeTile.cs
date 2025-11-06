@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Tiles
 	{
 		public override void SetStaticDefaults() {
 			Main.tileFrameImportant[Type] = true;
-			TileID.Sets.CanBeSloped[Type] = true; // 允许 this tile to be sloped, because it isn't solid
+			TileID.Sets.CanBeSloped[Type] = true; // 允许 this 图格 to be sloped, because it isn't solid
 		}
 
 		public override bool Slope(int i, int j) {

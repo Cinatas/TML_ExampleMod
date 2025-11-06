@@ -26,25 +26,25 @@ namespace ExampleMod.Content.NPCs
 	[AutoloadHead]
 	class ExampleTravelingMerchant : ModNPC
 	{
-		// Time of day for traveler to leave (6PM)
+		// 时间 of day for traveler to leave (6PM)
 		public const double despawnTime = 48600.0;
 
-		// the time of day the traveler will spawn (double.MaxValue for no spawn). Saved and loaded 与 world in TravelingMerchantSystem
+		// the 时间 of day the traveler will 生成 (double.MaxValue for no 生成). Saved and loaded 与 世界 in TravelingMerchantSystem
 		public static double spawnTime = double.MaxValue;
 
-		// list of items 在 traveler's shop. Saved 与 world and set when the traveler spawns. Synced by the server to clients in multi player
+		// 列表 of items 在 traveler's 商店. Saved 与 世界 and set when the traveler spawns. Synced by the 服务器 to clients in multi 玩家
 		public readonly static List<Item> shopItems = new();
 
-		// 一个 static instance 的 declarative shop, defining all the items which 可以 brought. Used to create a new inventory when the NPC spawns
+		// 一个 static 实例 的 declarative 商店, defining all the items which 可以 brought. Used to create a new 库存 when the NPC spawns
 		public static ExampleTravelingMerchantShop Shop;
 
 		private static int ShimmerHeadIndex;
 		private static Profiles.StackedNPCProfile NPCProfile;
 
 		public override bool PreAI() {
-			if ((!Main.dayTime || Main.time >= despawnTime) && !IsNpcOnscreen(NPC.Center)) // If it's past the despawn time and the NPC isn't onscreen
+			if ((!Main.dayTime || Main.time >= despawnTime) && !IsNpcOnscreen(NPC.Center)) // If it's past the despawn 时间 and the NPC isn't onscreen
 			{
-				// 在这里 we despawn the NPC and send a message stating th在 NPC has despawned
+				// 在这里 we despawn the NPC and send a 消息 stating th在 NPC has despawned
 				// LegacyMisc.35 is {0) has departed!
 				if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.35", NPC.FullName), 50, 125, 255);
 				else ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.35", NPC.GetFullNetName()), new Color(50, 125, 255));
@@ -106,26 +106,26 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public static void UpdateTravelingMerchant() {
-			bool travelerIsThere = (NPC.FindFirstNPC(ModContent.NPCType<ExampleTravelingMerchant>()) != -1); // Find a Merchant if there's one spawned 在 world
+			bool travelerIsThere = (NPC.FindFirstNPC(ModContent.NPCType<ExampleTravelingMerchant>()) != -1); // 查找 a 商人 if there's one spawned 在 世界
 
-			// Main.time is set to 0 each morning, and only for one update. Sundialling will never skip past time 0 so this is the place for 'on new day' code
+			// Main.时间 is set to 0 each morning, and only for one 更新. Sundialling will never 跳过 past 时间 0 so this is the place for 'on new day' code
 			if (Main.dayTime && Main.time == 0) {
-				// insert code here to change the spawn chance based on other conditions (say, NPCs which have arrived, or milestones the player has passed)
-				// 你 can also add a day counter here to prevent the merchant from possibly spawning multiple days in a row.
+				// insert code here to change the 生成 概率 based on other conditions (say, NPCs which have arrived, or milestones the 玩家 has passed)
+				// 你 can also add a day 计数器 here to 防止 the 商人 from possibly spawning multiple days in a 行.
 
-				// NPC won't spawn today if it stayed all night
-				if (!travelerIsThere && Main.rand.NextBool(4)) { // 4 = 25% Chance
-					// 在这里 we can make it so the NPC doesn't spawn 在 EXACT same time 每次 it does spawn
+				// NPC won't 生成 today if it stayed all night
+				if (!travelerIsThere && Main.rand.NextBool(4)) { // 4 = 25% 概率
+					// 在这里 we can make it so the NPC doesn't 生成 在 EXACT same 时间 每次 it does 生成
 					spawnTime = GetRandomSpawnTime(5400, 8100); // minTime = 6:00am, maxTime = 7:30am
 				}
 				else {
-					spawnTime = double.MaxValue; // no spawn today
+					spawnTime = double.MaxValue; // no 生成 today
 				}
 			}
 
-			// 生成 the traveler if the spawn conditions are met (time of day, no events, no sundial)
+			// 生成 the traveler if the 生成 conditions are met (时间 of day, no events, no sundial)
 			if (!travelerIsThere && CanSpawnNow()) {
-				int newTraveler = NPC.NewNPC(Terraria.Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, ModContent.NPCType<ExampleTravelingMerchant>(), 1); // 生成ing 在 world spawn
+				int newTraveler = NPC.NewNPC(Terraria.Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, ModContent.NPCType<ExampleTravelingMerchant>(), 1); // 生成ing 在 世界 生成
 				NPC traveler = Main.npc[newTraveler];
 				traveler.homeless = true;
 				traveler.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
@@ -141,15 +141,15 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		private static bool CanSpawnNow() {
-			// can't spawn 如果有的话 events are running
+			// can't 生成 如果有的话 events are running
 			if (Main.eclipse || Main.invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0)
 				return false;
 
-			// can't spawn if the sundial is active
+			// can't 生成 if the sundial is active
 			if (Main.IsFastForwardingTime())
 				return false;
 
-			// can spawn if daytime, and between the spawn and despawn times
+			// can 生成 if daytime, and between the 生成 and despawn times
 			return Main.dayTime && Main.time >= spawnTime && Main.time < despawnTime;
 		}
 
@@ -158,7 +158,7 @@ namespace ExampleMod.Content.NPCs
 			int h = NPC.sHeight + NPC.safeRangeY * 2;
 			Rectangle npcScreenRect = new Rectangle((int)center.X - w / 2, (int)center.Y - h / 2, w, h);
 			foreach (Player player in Main.ActivePlayers) {
-				// 如果 any player is close enough 到 traveling merchant, it will prevent the npc from despawning
+				// 如果 any 玩家 is 关闭 enough 到 traveling 商人, it will 防止 the npc from despawning
 				if (player.getRect().Intersects(npcScreenRect)) {
 					return true;
 				}
@@ -167,7 +167,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public static double GetRandomSpawnTime(double minTime, double maxTime) {
-			// 一个 simple formula to get a random time between two chosen times
+			// 一个 simple 公式 to get a 随机 时间 between two chosen times
 			return (maxTime - minTime) * Main.rand.NextDouble() + minTime;
 		}
 
@@ -181,18 +181,18 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.ExtraFramesCount[Type] = 9;
 			NPCID.Sets.AttackFrameCount[Type] = 4;
 			NPCID.Sets.DangerDetectRange[Type] = 60;
-			NPCID.Sets.AttackType[Type] = 3; // Swings a weapon. This NPC attacks in roughly the same manner as Stylist
+			NPCID.Sets.AttackType[Type] = 3; // Swings a 武器. This NPC attacks in roughly the same manner as Stylist
 			NPCID.Sets.AttackTime[Type] = 12;
 			NPCID.Sets.AttackAverageChance[Type] = 1;
 			NPCID.Sets.HatOffsetY[Type] = 4;
 			NPCID.Sets.ShimmerTownTransform[Type] = true;
-			NPCID.Sets.NoTownNPCHappiness[Type] = true; // 防止s the happiness button
+			NPCID.Sets.NoTownNPCHappiness[Type] = true; // 防止s the happiness 按钮
 			NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<ExampleTravellingMerchantEmote>();
 
 			// Influences how the NPC looks 在 Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 2f, // 绘制s the NPC 在 bestiary as if its walking +2 tiles 在 x direction
-				Direction = -1 // -1 is left and 1 is right.
+				Velocity = 2f, // 绘制s the NPC 在 bestiary as if its walking +2 tiles 在 x 方向
+				Direction = -1 // -1 is 左 and 1 is 右.
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -223,10 +223,10 @@ namespace ExampleMod.Content.NPCs
 			shopItems.Clear();
    			shopItems.AddRange(Shop.GenerateNewInventoryList());
 
-			// 在 multi player, ensure the shop items are synced with clients (see TravelingMerchantSystem.cs)
+			// 在 multi 玩家, ensure the 商店 items are synced with clients (see TravelingMerchantSystem.cs)
 			if (Main.netMode == NetmodeID.Server) {
-				// 我们 recommend modders avoid sending WorldData too often, or filling it with too much data, lest too much bandwidth be consumed sending redundant data repeatedly
-				// Consider sending a custom packet instead of WorldData if you have a significant amount of data to synchronise
+				// 我们 recommend modders avoid sending WorldData too often, or filling it with too much 数据, lest too much bandwidth be consumed sending redundant 数据 repeatedly
+				// Consider sending a custom 数据包 instead of WorldData if you have a significant amount of 数据 to synchronise
 				NetMessage.SendData(MessageID.WorldData);
    			}
 		}
@@ -246,7 +246,7 @@ namespace ExampleMod.Content.NPCs
 			// 创建 gore when the NPC is killed.
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
 				// 检索 the gore types. This NPC has shimmer variants for head, arm, and leg gore. It also has a custom hat gore. (7 gores)
-				// This NPC will spawn either the assigned party hat or a custom hat gore when not shimmered. When shimmered the top hat is part 的 head and no hat gore is spawned.
+				// This NPC will 生成 either the assigned party hat or a custom hat gore when not shimmered. When shimmered the 顶部 hat is part 的 head and no hat gore is spawned.
 				int hatGore = NPC.GetPartyHatGore();
 				// 如果 not wearing a party hat, and not shimmered, retrieve the custom hat gore 
 				if (hatGore == 0 && !NPC.IsShimmerVariant) {
@@ -279,7 +279,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs) {
-			return false; // This should always be false, because we spawn 在 Traveling Merchant manually
+			return false; // This should always be 假, because we 生成 在 Traveling 商人 manually
 		}
 
 		public override ITownNPCProfile TownNPCProfile() {
@@ -310,9 +310,9 @@ namespace ExampleMod.Content.NPCs
 			string hivePackDialogue = Language.GetTextValue("Mods.ExampleMod.Dialogue.ExampleTravelingMerchant.HiveBackpackDialogue");
 			chat.Add(hivePackDialogue);
 
-			string dialogueLine = chat; // chat is implicitly cast to a string.
+			string dialogueLine = chat; // chat is implicitly cast to a 字符串.
 			if (hivePackDialogue.Equals(dialogueLine)) {
-				// Main.npcChatCornerItem shows a single item 在 corner, like the Angler Quest chat.
+				// Main.npcChatCornerItem shows a single 项 在 corner, like the Angler 任务 chat.
 				Main.npcChatCornerItem = ItemID.HiveBackpack;
 			}
 
@@ -325,7 +325,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (firstButton) {
-				shop = Shop.Name; // Opens the shop
+				shop = Shop.Name; // Opens the 商店
 			}
 		}
 
@@ -363,7 +363,7 @@ namespace ExampleMod.Content.NPCs
 
 	// 你 have the freedom to implement custom shops however you want
 	// 此示例 uses a 'pool' concept where items 将 randomly selected from a pool with equal weight
-	// 我们 copy a bunch of code from NPCShop and NPCShop.Entry, allowing this shop to be easily adjusted by other mods.
+	// 我们 复制 a bunch of code from NPCShop and NPCShop.Entry, allowing this 商店 to be easily adjusted by other mods.
 	// 
 	// This uses some fairly advanced C# to avoid being excessively long, so make sure you learn the language before trying to adapt it significantly
 	public class ExampleTravelingMerchantShop : AbstractNPCShop
@@ -392,9 +392,9 @@ namespace ExampleMod.Content.NPCs
 			public Pool Add<T>(params Condition[] conditions) where T : ModItem => Add(ModContent.ItemType<T>(), conditions);
 			public Pool Add(int item, params Condition[] conditions) => Add(ContentSamples.ItemsByType[item], conditions);
 
-			// Picks a number of items (up to Slots) 从 entries list, provided conditions are met.
+			// Picks a 数字 of items (up to Slots) 从 entries 列表, provided conditions are met.
 			public IEnumerable<Item> PickItems() {
-				// 这是 not a fast way to pick items without replacement, but it's certainly easy. Be careful not to do this many many times per frame, or on huge lists of items.
+				// 这是 not a fast way to pick items without replacement, but it's certainly easy. Be careful not to do this many many times per 帧, or on huge lists of items.
 				var list = Entries.Where(e => !e.Disabled && e.ConditionsMet()).ToList();
 				for (int i = 0; i < Slots; i++) {
 					if (list.Count == 0)
@@ -403,7 +403,7 @@ namespace ExampleMod.Content.NPCs
 					int k = Main.rand.Next(list.Count);
 					yield return list[k].Item;
 
-					// 删除 the entry 从 list so it can't be selected again this pick
+					// 删除 the entry 从 列表 so it can't be selected again this pick
 					list.RemoveAt(k);
 				}
 			}
@@ -421,12 +421,12 @@ namespace ExampleMod.Content.NPCs
 			return pool;
 		}
 
-		// Some methods to add a pool with a single item
+		// Some methods to add a pool with a single 项
 		public void Add(Item item, params Condition[] conditions) => AddPool(item.ModItem?.FullName ?? $"Terraria/{item.type}", slots: 1).Add(item, conditions);
 		public void Add<T>(params Condition[] conditions) where T : ModItem => Add(ModContent.ItemType<T>(), conditions);
 		public void Add(int item, params Condition[] conditions) => Add(ContentSamples.ItemsByType[item], conditions);
 
-		// 在这里 is where we actually 'roll' the contents 的 shop
+		// 在这里 is where we actually 'roll' the contents 的 商店
 		public List<Item> GenerateNewInventoryList() {
 			var items = new List<Item>();
 			foreach (var pool in Pools) {
@@ -438,7 +438,7 @@ namespace ExampleMod.Content.NPCs
 		public override void FillShop(ICollection<Item> items, NPC npc) {
 			// use the items which were selected when the NPC spawned.
 			foreach (var item in ExampleTravelingMerchant.shopItems) {
-				// 使 sure to add a clone 的 item, in case any ModifyActiveShop hooks adjust the item when the shop is opened
+				// 使 sure to add a clone 的 项, in case any ModifyActiveShop hooks adjust the 项 when the 商店 is opened
 				items.Add(item.Clone());
 			}
 		}
@@ -450,12 +450,12 @@ namespace ExampleMod.Content.NPCs
 			foreach (var item in ExampleTravelingMerchant.shopItems) {
 
 				if (i == items.Length - 1) {
-					// leave the last slot empty for selling
+					// leave the last 槽位 empty for selling
 					overflow = true;
 					return;
 				}
 
-				// 使 sure to add a clone 的 item, in case any ModifyActiveShop hooks adjust the item when the shop is opened
+				// 使 sure to add a clone 的 项, in case any ModifyActiveShop hooks adjust the 项 when the 商店 is opened
 				items[i++] = item.Clone();
 			}
 		}

@@ -11,10 +11,10 @@ namespace ExampleMod.Content.Items
 		public override void SetStaticDefaults() {
 			// 避免 loading assets on dedicated servers. They don't use graphics cards.
 			if (!Main.dedServ) {
-				// following code creates an effect (shader) reference and associates it with this item's type Id.
+				// following code creates an 效果 (shader) 引用 and associates it with this 项's 类型 ID.
 				GameShaders.Armor.BindShader(
 					Item.type,
-					new ArmorShaderData(Mod.Assets.Request<Effect>("Assets/Effects/ExampleEffect"), "ExampleDyePass") // Be sure to update the effect path and pass name here.
+					new ArmorShaderData(Mod.Assets.Request<Effect>("Assets/Effects/ExampleEffect"), "ExampleDyePass") // Be sure to 更新 the 效果 路径 and pass 名称 here.
 				);
 			}
 
@@ -22,11 +22,11 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void SetDefaults() {
-			// Item.dye will already be assigned to this item prior to SetDefaults because 的 above GameShaders.Armor.BindShader code in Load().
-			// This code here remembers Item.dye so that information isn't lost during CloneDefaults.
+			// 项.dye will already be assigned to this 项 prior to SetDefaults because 的 above GameShaders.护甲.BindShader code in 加载().
+			// This code here remembers 项.dye so that information isn't lost during CloneDefaults.
 			int dye = Item.dye;
 
-			Item.CloneDefaults(ItemID.GelDye); // 使 the item copy the attributes 的 item "Gel Dye" Change "GelDye" to whatever dye type you want.
+			Item.CloneDefaults(ItemID.GelDye); // 使 the 项 复制 the attributes 的 项 "Gel Dye" Change "GelDye" to whatever dye 类型 you want.
 
 			Item.dye = dye;
 		}

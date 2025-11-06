@@ -36,15 +36,15 @@ namespace ExampleMod.Content.Tiles.Furniture
 			DustType = ModContent.DustType<Sparkle>();
 			AdjTiles = new int[] { TileID.Containers };
 
-			// Other tiles with just one map entry use CreateMapEntryName() to use the default translationkey, "MapEntry"
+			// Other tiles with just one 地图 entry use CreateMapEntryName() to use the default translationkey, "MapEntry"
 			// Since ExampleChest needs multiple, we register our own MapEntry keys
 			AddMapEntry(new Color(200, 200, 200), this.GetLocalization("MapEntry0"), MapChestName);
 			AddMapEntry(new Color(0, 141, 63), this.GetLocalization("MapEntry1"), MapChestName);
 
-			// Style 1 is ExampleChest when locked. We want that tile style to drop the ExampleChest item 以及. Use the Chest Lock item to lock this chest.
-			// No item places ExampleChest 在 locked style, so the automatically determined item drop is unknown, this is why RegisterItemDrop is necessary in this situation. 
+			// Style 1 is ExampleChest when locked. We want that 图格 style to 放下 the ExampleChest 项 以及. Use the 箱子 Lock 项 to lock this 箱子.
+			// No 项 places ExampleChest 在 locked style, so the automatically determined 项 放下 is unknown, this is why RegisterItemDrop is necessary in this situation. 
 			RegisterItemDrop(ModContent.ItemType<Items.Placeable.Furniture.ExampleChest>(), 1);
-			// Sometimes mods remove content, 例如 tile styles, or tiles accidentally get corrupted. We can, if desired, register a fallback item for any tile style that doesn't have an automatically determined item drop. This is done by omitting the tileStyles parameter.
+			// Sometimes mods 删除 content, 例如 图格 styles, or tiles accidentally get corrupted. We can, if desired, register a fallback 项 for any 图格 style that doesn't have an automatically determined 项 放下. This is done by omitting the tileStyles 参数.
 			RegisterItemDrop(ItemID.Chest);
 
 			// Placement
@@ -66,7 +66,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.addTile(Type);
 		}
 
-		// 此示例 shows using GetItemDrops to manually decide item drops. This example is for a tile with a TileObjectData.
+		// 此示例 shows using GetItemDrops to manually decide 项 drops. This example is for a 图格 with a TileObjectData.
 		// 此示例 is commented out because the RegisterItemDrop line in SetStaticDefaults above handles this situation and is the recommended approach, but the code is still useful to learn from if conditional drops need to be implemented.
 		/*
 		public override IEnumerable<Item> GetItemDrops(int i, int j) {
@@ -110,9 +110,9 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override bool LockChest(int i, int j, ref short frameXAdjustment, ref bool manual) {
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
-			// 我们 need to return true only if the tile style is the unlocked variant of a chest that supports locking. 
+			// 我们 need to 返回 真 only if the 图格 style is the unlocked variant of a 箱子 that supports locking. 
 			if (style == 0) {
-				// 我们 can check other conditions 以及, 例如 how biome chests can't be locked until Plantera is defeated
+				// 我们 can check other conditions 以及, 例如 how 生物群系 chests can't be locked until Plantera is defeated
 				return true;
 			}
 			return false;
@@ -147,7 +147,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// 我们 override KillMultiTile to handle additional logic other than the item drop. In this case, unregistering the Chest 从 world
+			// 我们 override KillMultiTile to 处理 additional logic other than the 项 放下. In this case, unregistering the 箱子 从 世界
 			Chest.DestroyChest(i, j);
 		}
 
@@ -194,7 +194,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			}
 			else {
 				if (isLocked) {
-					// 确保 to change the code in UnlockChest if you don't want the chest to only unlock at night.
+					// 确保 to change the code in UnlockChest if you don't want the 箱子 to only unlock at night.
 					int key = ModContent.ItemType<ExampleChestKey>();
 					if (player.HasItemInInventoryOrOpenVoidBag(key) && Chest.Unlock(left, top) && player.ConsumeItem(key, includeVoidBag: true)) {
 						if (Main.netMode == NetmodeID.MultiplayerClient) {
@@ -242,7 +242,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				player.cursorItemIconText = Language.GetTextValue("LegacyChestType.0");
 			}
 			else {
-				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text 对于 currently selected language
+				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName 文本 对于 currently selected language
 				player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
 				if (player.cursorItemIconText == defaultName) {
 					player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Furniture.ExampleChest>();

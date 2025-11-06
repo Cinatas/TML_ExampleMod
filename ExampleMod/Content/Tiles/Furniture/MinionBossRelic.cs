@@ -12,57 +12,57 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles.Furniture
 {
-	// 常见 code for a Master Mode boss relic
-	// Supports optional Item.placeStyle handling if you wish to add more relics but use the same tile type (then it 将 wise to name this class something more generic like BossRelic)
-	// 如果 you want to add more relics but don't want to use the Item.placeStyle approach, see the inheritance example 在 bottom 的 file
+	// 常见 code for a Master 模式 Boss relic
+	// Supports optional 项.placeStyle handling if you wish to add more relics but use the same 图格 类型 (then it 将 wise to 名称 this 类 something more generic like BossRelic)
+	// 如果 you want to add more relics but don't want to use the 项.placeStyle approach, see the inheritance example 在 底部 的 文件
 	public class MinionBossRelic : ModTile
 	{
 		public const int FrameWidth = 18 * 3;
 		public const int FrameHeight = 18 * 4;
 		public const int HorizontalFrames = 1;
-		public const int VerticalFrames = 1; // 可选: Increase this number to match the amount of relics you have on your extra sheet, if you choose to use the Item.placeStyle approach
+		public const int VerticalFrames = 1; // 可选: Increase this 数字 to 匹配 the amount of relics you have on your extra sheet, if you choose to use the 项.placeStyle approach
 
 		public Asset<Texture2D> RelicTexture;
 
 		// Every relic has its own extra floating part, 应该 50x50. Optional: Expand this sheet if you want to add more, stacked vertically
-		// 如果 you do not use the Item.placeStyle approach, and you extend from this class, you can override this to point to a different texture
+		// 如果 you do not use the 项.placeStyle approach, and you extend from this 类, you can override this to 点 to a different 纹理
 		public virtual string RelicTextureName => "ExampleMod/Content/Tiles/Furniture/MinionBossRelic";
 
-		// All relics use the same pedestal texture, this one is copied from vanilla
+		// All relics use the same pedestal 纹理, this one is copied from vanilla
 		public override string Texture => "ExampleMod/Content/Tiles/Furniture/RelicPedestal";
 
 		public override void Load() {
-			// Cache the extra texture displayed 在 pedestal
+			// 缓存 the extra 纹理 displayed 在 pedestal
 			RelicTexture = ModContent.Request<Texture2D>(RelicTextureName);
 		}
 
 		public override void SetStaticDefaults() {
 			Main.tileShine[Type] = 400; // Responsible for golden particles
 			Main.tileFrameImportant[Type] = true; // Any multitile requires this
-			TileID.Sets.InteractibleByNPCs[Type] = true; // Town NPCs will palm their hand at this tile
+			TileID.Sets.InteractibleByNPCs[Type] = true; // Town NPCs will palm their hand at this 图格
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4); // Relics are 3x4
-			TileObjectData.newTile.LavaDeath = false; // Does not break when lava touches it
-			TileObjectData.newTile.DrawYOffset = 2; // So the tile sinks in到 ground
-			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; // Player faces 到 left
-			TileObjectData.newTile.StyleHorizontal = false; // Based on how the alternate sprites are positioned 在 sprite (默认情况下, true)
+			TileObjectData.newTile.LavaDeath = false; // Does not 中断 when lava touches it
+			TileObjectData.newTile.DrawYOffset = 2; // So the 图格 sinks in到 ground
+			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; // 玩家 faces 到 左
+			TileObjectData.newTile.StyleHorizontal = false; // Based on how the alternate sprites are positioned 在 精灵 (默认情况下, 真)
 
-			// This controls how styles are laid out 在 texture file. This tile is special in that all styles will use the same texture section to draw the pedestal.
+			// This controls how styles are laid out 在 纹理 文件. This 图格 is special in that all styles will use the same 纹理 section to draw the pedestal.
 			TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
 			TileObjectData.newTile.StyleMultiplier = 2;
 			TileObjectData.newTile.StyleWrapLimit = 2;
-			TileObjectData.newTile.styleLineSkipVisualOverride = 0; // This forces the tile preview to draw as if drawing the 1st style.
+			TileObjectData.newTile.styleLineSkipVisualOverride = 0; // This forces the 图格 preview to draw as if drawing the 1st style.
 
-			// 注册 an alternate tile data with flipped direction
-			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); // Copy everything from above, saves us some code
-			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // Player faces 到 right
+			// 注册 an alternate 图格 数据 with flipped 方向
+			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); // 复制 everything from above, saves us some code
+			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // 玩家 faces 到 右
 			TileObjectData.addAlternate(1);
 
-			// 注册 the tile data itself
+			// 注册 the 图格 数据 itself
 			TileObjectData.addTile(Type);
 
-			// 注册 map name and color
-			// "MapObject.Relic" refers 到 translation key 对于 vanilla "Relic" text
+			// 注册 地图 名称 and 颜色
+			// "MapObject.Relic" refers 到 翻译 键 对于 vanilla "Relic" 文本
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
 		}
 
@@ -71,14 +71,14 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-			// This forces the tile to draw the pedestal even if the placeStyle differs. 
+			// This forces the 图格 to draw the pedestal even if the placeStyle differs. 
 			tileFrameX %= FrameWidth; // Clamps the frameX
 			tileFrameY %= FrameHeight * 2; // Clamps the frameY (two horizontally aligned place styles, hence * 2)
 		}
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-			// Since this tile does not have the hovering part on its sheet, we have to animate it ourselves
-			// Therefore we register the top-left 的 tile as a "special point"
+			// Since this 图格 does not have the hovering part on its sheet, we have to animate it ourselves
+			// Therefore we register the 顶部-左 的 图格 as a "special 点"
 			// This allows us to draw things in SpecialDraw
 			if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
 				Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
@@ -86,13 +86,13 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) {
-			// 这是 lighting-mode specific, always include this if you draw tiles manually
+			// 这是 lighting-模式 specific, always include this if you draw tiles manually
 			Vector2 offScreen = new Vector2(Main.offScreenRange);
 			if (Main.drawToScreen) {
 				offScreen = Vector2.Zero;
 			}
 
-			// Take the tile, check if it actually exists
+			// Take the 图格, check if it actually exists
 			Point p = new Point(i, j);
 			Tile tile = Main.tile[p.X, p.Y];
 			if (tile == null || !tile.HasTile) {
@@ -102,7 +102,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// 获取 the initial draw parameters
 			Texture2D texture = RelicTexture.Value;
 
-			int frameY = tile.TileFrameX / FrameWidth; // Picks the frame 在 sheet based 在 placeStyle 的 item
+			int frameY = tile.TileFrameX / FrameWidth; // Picks the 帧 在 sheet based 在 placeStyle 的 项
 			Rectangle frame = texture.Frame(HorizontalFrames, VerticalFrames, 0, frameY);
 
 			Vector2 origin = frame.Size() / 2f;
@@ -110,18 +110,18 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 			Color color = Lighting.GetColor(p.X, p.Y);
 
-			bool direction = tile.TileFrameY / FrameHeight != 0; // This is related 到 alternate tile data we registered before
+			bool direction = tile.TileFrameY / FrameHeight != 0; // This is related 到 alternate 图格 数据 we registered before
 			SpriteEffects effects = direction ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-			// Some math magic to make it smoothly move up and down over time
+			// Some math magic to make it smoothly 移动 up and down over 时间
 			const float TwoPi = (float)Math.PI * 2f;
 			float offset = (float)Math.Sin(Main.GlobalTimeWrappedHourly * TwoPi / 5f);
 			Vector2 drawPos = worldPos + offScreen - Main.screenPosition + new Vector2(0f, -40f) + new Vector2(0f, offset * 4f);
 
-			// 绘制 the main texture
+			// 绘制 the main 纹理
 			spriteBatch.Draw(texture, drawPos, frame, color, 0f, origin, 1f, effects, 0f);
 
-			// 绘制 the periodic glow effect
+			// 绘制 the periodic glow 效果
 			float scale = (float)Math.Sin(Main.GlobalTimeWrappedHourly * TwoPi / 2f) * 0.3f + 0.7f;
 			Color effectColor = color;
 			effectColor.A = 0;
@@ -132,8 +132,8 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 	}
 
-	// 如果 you want to make more relics but do not use the Item.placeStyle approach, you can use inheritance to avoid using duplicate code:
-	// Your tile code would then inherit 从 MinionBossRelic class (which you should make abstract) and should look like this:
+	// 如果 you want to make more relics but do not use the 项.placeStyle approach, you can use inheritance to avoid using duplicate code:
+	// Your 图格 code would then inherit 从 MinionBossRelic 类 (which you should make abstract) and should look like this:
 	/*
 	public class MyBossRelic : MinionBossRelic
 	{
@@ -145,6 +145,6 @@ namespace ExampleMod.Content.Tiles.Furniture
 	}
 	*/
 
-	// Your item code would then just use the MyBossRelic tile type, and keep placeStyle on 0
-	// textures for MyBossRelic item/tile have to be supplied separately
+	// Your 项 code would then just use the MyBossRelic 图格 类型, and keep placeStyle on 0
+	// textures for MyBossRelic 项/图格 have to be supplied separately
 }

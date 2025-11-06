@@ -6,58 +6,58 @@ using Terraria.Utilities;
 namespace ExampleMod.Items
 {
 	/// <summary>
-	/// This class demonstrates how to manipulate the chances of prefixes given to items.
-	/// For other prefix related hooks and their usage, see also:
+	/// This 类 demonstrates how to manipulate the chances of prefixes given to items.
+	/// For other 前缀 related hooks and their usage, see also:
 	/// <seealso cref="Accessories.ManaHeart"/>
 	/// <seealso cref="Weapons.ExampleYoyo"/>
 	/// </summary>
 	public class PrefixChanceGlobalItem : GlobalItem
 	{
 		public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand) {
-			// pre: The prefix being applied 到 item, or the roll mode
-			// -1 is when an item is naturally generated in a chest, crafted, purchased from an NPC, looted from a grab bag (excluding presents), or dropped by a slain enemy
-			// -2 is when an item is rolled 在 tinkerer
-			// -3 determines if an item 可以 placed 在 tinkerer slot
+			// pre: The 前缀 being applied 到 项, or the roll 模式
+			// -1 is when an 项 is naturally generated in a 箱子, crafted, purchased from an NPC, looted from a grab bag (excluding presents), or dropped by a slain 敌人
+			// -2 is when an 项 is rolled 在 tinkerer
+			// -3 determines if an 项 可以 placed 在 tinkerer 槽位
 
-			// To prevent putting an item 在 tinkerer slot, return false when pre is -3
+			// To 防止 putting an 项 在 tinkerer 槽位, 返回 假 when pre is -3
 			if (pre == -3 && item.type == ItemID.LaserRifle) {
-				// This will make the Laser Rifle 不 reforgeable at all (useful if you want your item to preserve its custom name color)
+				// This will make the Laser Rifle 不 reforgeable at all (useful if you want your 项 to preserve its custom 名称 颜色)
 				return false;
 			}
 
-			// To make an item reset its prefix when reforging
+			// To make an 项 重置 its 前缀 when reforging
 			if (pre == -2) {
 				if (Main.LocalPlayer.HasBuff(BuffID.Cursed)) {
-					// If the player is cursed, make it remove the prefix
+					// If the 玩家 is cursed, make it 删除 the 前缀
 					return false;
 				}
 			}
 
-			// To prevent rolling of a prefix on spawn, return false when pre is -1
+			// To 防止 rolling of a 前缀 on 生成, 返回 假 when pre is -1
 			if (pre == -1) {
 				if (item.melee && item.modItem?.mod == mod) {
-					// All melee weapons from ExampleMod won't have a prefix when they are crafted, bought, taken from a generated chest, opened, or dropped by an enemy
+					// All melee weapons from ExampleMod won't have a 前缀 when they are crafted, bought, taken from a generated 箱子, opened, or dropped by an 敌人
 					return false;
 				}
 			}
 
 			// 对于 following code, this is useful to know (从 terraria wiki):
-			// Nearly all weapons and accessories have a 75% chance of receiving a random modifier up在 item's creation
-			// (naturally generated in a chest, crafted, purchased from an NPC, looted from a grab bag (excluding presents), or dropped by a slain enemy).
+			// Nearly all weapons and accessories have a 75% 概率 of receiving a 随机 修饰符 up在 项's creation
+			// (naturally generated in a 箱子, crafted, purchased from an NPC, looted from a grab bag (excluding presents), or dropped by a slain 敌人).
 
-			// To change the chance of a prefix being rolled or not, return true or false depending on some condition
+			// To change the 概率 of a 前缀 being rolled or not, 返回 真 or 假 depending on some 条件
 			if (pre == -1 && item.type == ItemID.Shackle) {
 				// Force rolling
-				// 返回 true;
+				// 返回 真;
 
-				// When using random numbers, make sure to use the rand object passed into this method, and not Main.rand.
-				// This will make it consistent with worldgen should this item be spawned in a chest
+				// When using 随机 numbers, make sure to use the rand 对象 passed into this 方法, and not Main.rand.
+				// This will make it consistent with worldgen should this 项 be spawned in a 箱子
 				if (rand.NextFloat() < 0.5f) {
-					// Increase the chance of not receiving any prefix on spawn by 50%
+					// Increase the 概率 of not receiving any 前缀 on 生成 by 50%
 					return false;
 				}
-				// Keep in mind that if the code arrives here, there is still a 25% chance that it won't get a modifier.
-				// If you want a more controlled approach, return true in an else block
+				// Keep in mind that if the code arrives here, there is still a 25% 概率 that it won't get a 修饰符.
+				// If you want a more controlled approach, 返回 真 in an else 方块
 			}
 
 			return null;

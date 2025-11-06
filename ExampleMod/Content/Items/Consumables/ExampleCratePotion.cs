@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items.Consumables
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 20;
 
-			// Dust that will appear 在se colors when the item with ItemUseStyleID.DrinkLiquid is used
+			// Dust that will appear 在se colors when the 项 with ItemUseStyleID.DrinkLiquid is used
 			ItemID.Sets.DrinkParticleColors[Type] = new Color[3] {
 				new Color(240, 240, 240),
 				new Color(200, 200, 200),
@@ -30,11 +30,11 @@ namespace ExampleMod.Content.Items.Consumables
 			Item.consumable = true;
 			Item.rare = ItemRarityID.Green;
 			Item.value = Item.buyPrice(silver: 8);
-			Item.buffType = ModContent.BuffType<Buffs.ExampleCrateBuff>(); // Specify an existing buff to be applied when used.
-			Item.buffTime = 3 * 60 * 60; // The amount of time the buff declared in Item.buffType will last in ticks. Set to 3 minutes, as 60 ticks = 1 second.
+			Item.buffType = ModContent.BuffType<Buffs.ExampleCrateBuff>(); // Specify an existing 增益 to be applied when used.
+			Item.buffTime = 3 * 60 * 60; // The amount of 时间 the 增益 declared in 项.buffType will last in ticks. Set to 3 minutes, as 60 ticks = 1 second.
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient(ItemID.CratePotion, 4)

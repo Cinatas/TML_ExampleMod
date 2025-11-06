@@ -19,7 +19,7 @@ namespace ExampleMod.Common.GlobalNPCs
 		}
 
 		// 虽然这在客户端和服务器上都运行，但只有生成 NPC 的会话知道其来源
-		// 因此，下面演示的检查在客户端始终为 false，代码永远不会运行！
+		// 因此，下面演示的检查在客户端始终为 假，代码永远不会运行！
 		public override void OnSpawn(NPC npc, IEntitySource source) {
 
 			// 在血月期间由克苏鲁龙卷风生成时

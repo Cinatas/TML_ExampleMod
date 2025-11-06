@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 			Item.buffType = ModContent.BuffType<ExampleLightPetBuff>();
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

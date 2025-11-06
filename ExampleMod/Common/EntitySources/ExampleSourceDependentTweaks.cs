@@ -39,7 +39,7 @@ namespace ExampleMod.Common.EntitySources
 		}
 
 		public override void OnSpawn(Item item, IEntitySource source) {
-			// 使 coins spawned 从 lucky coin accessory fly in到 air
+			// 使 coins spawned 从 lucky 硬币 饰品 fly in到 air
 			if (source.Context == "LuckyCoin") {
 				item.velocity.Y -= 20;
 			}

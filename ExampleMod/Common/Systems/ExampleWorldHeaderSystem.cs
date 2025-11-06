@@ -46,7 +46,7 @@ namespace ExampleMod.Common.Systems
 			}
 
 			// 检查此世界是否至少使用模组的特定版本生成。
-			// 在 v2023.8 中添加了跟踪用于生成世界的模组，因此如果 WorldGenModsRecorded 为 false，我们无法确定生成此世界时是否启用了 ExampleMod。
+			// 在 v2023.8 中添加了跟踪用于生成世界的模组，因此如果 WorldGenModsRecorded 为 假，我们无法确定生成此世界时是否启用了 ExampleMod。
 			if (!Main.ActiveWorldFileData.WorldGenModsRecorded) {
 				return;
 			}

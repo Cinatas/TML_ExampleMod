@@ -46,10 +46,10 @@ namespace ExampleMod
 
 						// 我们将值设置为参数提供的值。
 						// 可选地，您可以返回一个值，指示赋值成功。
-						// 返回 true;
+						// 返回 真;
 						Main.LocalPlayer.GetModPlayer<ExampleInfoDisplayPlayer>().showMinionCount = minionSet;
 
-						// 返回一个 'true' 布尔值，作为操作成功的多种方式之一。
+						// 返回一个 '真' 布尔值，作为操作成功的多种方式之一。
 						return true;
 				}
 			}
@@ -59,7 +59,7 @@ namespace ExampleMod
 				return ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount;
 			}
 
-			// 如果提供的参数不匹配我们想要返回值的任何内容，我们将返回一个 'false' 布尔值。
+			// 如果提供的参数不匹配我们想要返回值的任何内容，我们将返回一个 '假' 布尔值。
 			// 此值可以是您希望提供的任何默认值。
 			return false;
 		}

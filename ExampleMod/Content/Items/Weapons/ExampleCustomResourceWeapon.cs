@@ -8,10 +8,10 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// Holding this item will cause the ExampleResourceBar UI to show, displaying the player's custom resource amounts tracked in ExampleResourcePlayer.
+	// Holding this 项 will cause the ExampleResourceBar 用户界面 to show, displaying the 玩家's custom 资源 amounts tracked in ExampleResourcePlayer.
 	public class ExampleCustomResourceWeapon : ModItem
 	{
-		private int exampleResourceCost; // 添加 our custom resource cost
+		private int exampleResourceCost; // 添加 our custom 资源 成本
 
 		public static LocalizedText UsesXExampleResourceText { get; private set; }
 
@@ -36,21 +36,21 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.shoot = ProjectileID.VortexBeaterRocket;
 			Item.shootSpeed = 7;
 			Item.crit = 32;
-			exampleResourceCost = 5; // 设置 our custom resource cost to 5
+			exampleResourceCost = 5; // 设置 our custom 资源 成本 to 5
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
 			tooltips.Add(new TooltipLine(Mod, "ExampleResourceCost", UsesXExampleResourceText.Format(exampleResourceCost)));
 		}
 
-		// 确保 you can't use the item if you don't have enough resource
+		// 确保 you can't use the 项 if you don't have enough 资源
 		public override bool CanUseItem(Player player) {
 			var exampleResourcePlayer = player.GetModPlayer<ExampleResourcePlayer>();
 
 			return exampleResourcePlayer.exampleResourceCurrent >= exampleResourceCost;
 		}
 
-		// Reduce resource on use
+		// Reduce 资源 on use
 		public override bool? UseItem(Player player) {
 			var exampleResourcePlayer = player.GetModPlayer<ExampleResourcePlayer>();
 

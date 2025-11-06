@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Tiles
 		private Asset<Texture2D> branchesTexture;
 		private Asset<Texture2D> topsTexture;
 
-		// 这是 a blind copy-paste from Vanilla's PurityPalmTree settings.
+		// 这是 a blind 复制-粘贴 from Vanilla's PurityPalmTree settings.
 		// 待办事项： This needs some explanations
 		public override TreePaintingSettings TreeShaderSettings => new TreePaintingSettings {
 			UseSpecialGroups = true,
@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Tiles
 			topsTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExampleTree_Tops");
 		}
 
-		// 这是 the primary texture 对于 trunk. Branches and foliage use different settings.
+		// 这是 the primary 纹理 对于 trunk. Branches and foliage use different settings.
 		public override Asset<Texture2D> GetTexture() {
 			return texture;
 		}
@@ -43,13 +43,13 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void SetTreeFoliageSettings(Tile tile, ref int xoffset, ref int treeFrame, ref int floorY, ref int topTextureFrameWidth, ref int topTextureFrameHeight) {
-			// 这是 where fancy code could go, but let's save that for an advanced example
+			// 这是 where fancy code could go, but let's 保存 that for an advanced example
 		}
 
 		// Branch Textures
 		public override Asset<Texture2D> GetBranchTextures() => branchesTexture;
 
-		// Top Textures
+		// 顶部 Textures
 		public override Asset<Texture2D> GetTopTextures() => topsTexture;
 
 		public override int DropWood() {

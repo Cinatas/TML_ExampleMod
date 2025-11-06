@@ -58,7 +58,7 @@ namespace ExampleMod.NPCs
 					Item.NewItem(npc.getRect(), mod.ItemType(type), stack);
 				}
 			}
-			// See BossBags.OpenVanillaBag to see how to handle adding items 到 boss bags used in expert mode. You'll want to do both for most items added to boss drops.
+			// See BossBags.OpenVanillaBag to see how to 处理 adding items 到 Boss bags used in expert 模式. You'll want to do both for most items added to Boss drops.
 			if (npc.type == NPCID.DukeFishron && !Main.expertMode) {
 				Item.NewItem(npc.getRect(), ItemType<Items.Abomination.Bubble>(), Main.rand.Next(5, 8));
 			}
@@ -119,7 +119,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// 使 any NPC with a chat complain 到 player if they have the stinky debuff.
+		// 使 any NPC with a chat complain 到 玩家 if they have the stinky 减益.
 		public override void GetChat(NPC npc, ref string chat) {
 			if (Main.LocalPlayer.HasBuff(BuffID.Stinky)) {
 				switch (Main.rand.Next(3)) {
@@ -136,7 +136,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// If the player clicks any chat button and has the stinky debuff, prevent the button from working.
+		// If the 玩家 clicks any chat 按钮 and has the stinky 减益, 防止 the 按钮 from working.
 		public override bool PreChatButtonClicked(NPC npc, bool firstButton) {
 			return !Main.LocalPlayer.HasBuff(BuffID.Stinky);
 		}

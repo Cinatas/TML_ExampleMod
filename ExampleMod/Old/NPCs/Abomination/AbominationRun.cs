@@ -36,7 +36,7 @@ namespace ExampleMod.NPCs.Abomination
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.buffImmune[24] = true;
 			music = MusicID.Boss2;
-			// 自定义 Music: music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DriveMusic");
+			// 自定义 音乐: 音乐 = mod.GetSoundSlot(SoundType.音乐, "Sounds/音乐/DriveMusic");
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {

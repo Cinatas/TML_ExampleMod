@@ -23,7 +23,7 @@ namespace ExampleMod.Common.Players
 
 			// 这些示例展示了按键绑定的其他潜在行为，例如双击和按住。
 			
-			// We can use Current and a timer to run code after the keybind has been held for some time
+			// We can use Current and a 计时器 to run code after the keybind has been held for some 时间
 			if (KeybindSystem.LearningExampleKeybind.Current) {
 				LearningExampleKeybindHeldTimer++;
 				if (LearningExampleKeybindHeldTimer == 30) {
@@ -34,14 +34,14 @@ namespace ExampleMod.Common.Players
 				LearningExampleKeybindHeldTimer = 0;
 			}
 
-			// We can use JustPressed and a timer to implement a double tap behavior 以及.
+			// We can use JustPressed and a 计时器 to implement a double tap behavior 以及.
 			LearningExampleKeybindDoubleTapTimer = Math.Max(0, LearningExampleKeybindDoubleTapTimer - 1);
 			if (KeybindSystem.LearningExampleKeybind.JustPressed) {
 				if (LearningExampleKeybindDoubleTapTimer > 0) {
 					Main.NewText("LearningExampleKeybind double tapped within a quarter of a a second");
 				}
 				else {
-					// On 1st press, set timer for 15, if a 2nd press happens before it reaches 0, it 将 a double tap.
+					// On 1st press, set 计时器 for 15, if a 2nd press happens before it reaches 0, it 将 a double tap.
 					LearningExampleKeybindDoubleTapTimer = 15;
 				}
 			}

@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar")); // localized text for "Metal Bar"
+			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar")); // localized 文本 for "Metal 条"
 		}
 	}
 }

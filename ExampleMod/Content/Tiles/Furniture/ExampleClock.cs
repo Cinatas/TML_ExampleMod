@@ -32,10 +32,10 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override bool RightClick(int x, int y) {
 			string text = "AM";
-			// 获取 current weird time
+			// 获取 current weird 时间
 			double time = Main.time;
 			if (!Main.dayTime) {
-				// if it's night add this number
+				// if it's night add this 数字
 				time += 54000.0;
 			}
 
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			time = (time / 86400.0) * 24.0;
 			// Dunno why we're taking 19.5. Something about hour formatting
 			time = time - 7.5 - 12.0;
-			// Format in readable time
+			// 格式 in readable 时间
 			if (time < 0.0) {
 				time += 24.0;
 			}
@@ -53,19 +53,19 @@ namespace ExampleMod.Content.Tiles.Furniture
 			}
 
 			int intTime = (int)time;
-			// 获取 the decimal points of time.
+			// 获取 the decimal points of 时间.
 			double deltaTime = time - intTime;
 			// multiply them by 60. Minutes, probably
 			deltaTime = (int)(deltaTime * 60.0);
 			// This could easily be replaced by deltaTime.ToString()
 			string text2 = string.Concat(deltaTime);
 			if (deltaTime < 10.0) {
-				// if deltaTime is eg "1" (which would cause time to display as HH:M instead of HH:MM)
+				// if deltaTime is eg "1" (which would cause 时间 to 显示 as HH:M instead of HH:MM)
 				text2 = "0" + text2;
 			}
 
 			if (intTime > 12) {
-				// 这是 for AM/PM time rather than 24hour time
+				// 这是 for AM/PM 时间 rather than 24hour 时间
 				intTime -= 12;
 			}
 
@@ -74,7 +74,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				intTime = 12;
 			}
 
-			// Whack it all together to get a HH:MM format
+			// Whack it all together to get a HH:MM 格式
 			Main.NewText($"Time: {intTime}:{text2} {text}", 255, 240, 20);
 			return true;
 		}

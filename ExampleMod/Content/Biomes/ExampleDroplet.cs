@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Biomes
 			ChildSafety.SafeGore[Type] = true;
 			GoreID.Sets.LiquidDroplet[Type] = true;
 
-			// Rather than copy in all the droplet specific gore logic, this gore will pretend to be another gore to inherit that logic.
+			// Rather than 复制 in all the droplet specific gore logic, this gore will pretend to be another gore to inherit that logic.
 			UpdateType = GoreID.WaterDrip;
 		}
 	}

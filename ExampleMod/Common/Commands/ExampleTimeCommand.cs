@@ -6,7 +6,7 @@ namespace ExampleMod.Common.Commands
 {
 	public class ExampleTimeCommand : ModCommand
 	{
-		// CommandType.World 表示命令可以在单人和多人模式的聊天中使用，但在多人模式中在服务器上执行
+		// CommandType.世界 表示命令可以在单人和多人模式的聊天中使用，但在多人模式中在服务器上执行
 		public override CommandType Type
 			=> CommandType.World;
 

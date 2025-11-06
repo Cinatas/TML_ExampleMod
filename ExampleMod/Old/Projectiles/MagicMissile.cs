@@ -14,7 +14,7 @@ namespace ExampleMod.Projectiles
 		public override void SetDefaults() {
 			projectile.width = 10;
 			projectile.height = 10;
-			// projectile.aiStyle = 9; // Vanilla magic missile uses this aiStyle, but using it wouldn't let us fine tune the projectile speed or dust
+			// 弹幕.aiStyle = 9; // Vanilla magic missile uses this aiStyle, but using it wouldn't let us fine tune the 弹幕 速度 or dust
 			projectile.friendly = true;
 			projectile.light = 0.8f;
 			projectile.magic = true;
@@ -24,7 +24,7 @@ namespace ExampleMod.Projectiles
 		public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 0);
 
 		public override void AI() {
-			// This part makes the projectile do a shime sound every 10 ticks as long as it is moving.
+			// This part makes the 弹幕 do a shime 声音 every 10 ticks as long as it is moving.
 			if (projectile.soundDelay == 0 && Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y) > 2f) {
 				projectile.soundDelay = 10;
 				SoundEngine.PlaySound(SoundID.Item9, projectile.position);
@@ -35,17 +35,17 @@ namespace ExampleMod.Projectiles
 			dust.velocity *= 0.3f;
 			dust.noGravity = true;
 
-			// In Multi Player (MP) This code only runs 在 client 的 projectile's owner, this is because it relies on mouse position, 即n't the same across all clients.
+			// In Multi 玩家 (MP) This code only runs 在 客户端 的 弹幕's 所有者, this is because it relies on 鼠标 位置, 即n't the same across all clients.
 			if (Main.myPlayer == projectile.owner && projectile.ai[0] == 0f) {
 
 				Player player = Main.player[projectile.owner];
-				// If the player channels the weapon, do something. This check only works if item.channel is true 对于 weapon.
+				// If the 玩家 channels the 武器, do something. This check only works if 项.通道 is 真 对于 武器.
 				if (player.channel) {
-					float maxDistance = 18f; // This also sets the maximun speed the projectile can reach while following the cursor.
+					float maxDistance = 18f; // This also sets the maximun 速度 the 弹幕 can reach while following the cursor.
 					Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
 					float distanceToCursor = vectorToCursor.Length();
 
-					// Here we can see th在 speed 的 projectile depends 在 distance 到 cursor.
+					// Here we can see th在 速度 的 弹幕 depends 在 距离 到 cursor.
 					if (distanceToCursor > maxDistance) {
 						distanceToCursor = maxDistance / distanceToCursor;
 						vectorToCursor *= distanceToCursor;
@@ -56,8 +56,8 @@ namespace ExampleMod.Projectiles
 					int velocityYBy1000 = (int)(vectorToCursor.Y * 1000f);
 					int oldVelocityYBy1000 = (int)(projectile.velocity.Y * 1000f);
 
-					// This code checks if the precious velocity 的 projectile is different enough from its new velocity, and if it is, syncs it 与 server and the other clients in MP.
-					// We previously multiplied the speed by 1000, then casted it to int, this is to reduce its precision and prevent the speed from being synced too much.
+					// This code checks if the precious 速度 的 弹幕 is different enough from its new 速度, and if it is, syncs it 与 服务器 and the other clients in MP.
+					// We previously multiplied the 速度 by 1000, then casted it to int, this is to reduce its 精度 and 防止 the 速度 from being synced too much.
 					if (velocityXBy1000 != oldVelocityXBy1000 || velocityYBy1000 != oldVelocityYBy1000) {
 						projectile.netUpdate = true;
 					}
@@ -65,17 +65,17 @@ namespace ExampleMod.Projectiles
 					projectile.velocity = vectorToCursor;
 
 				}
-				// If the player stops channeling, do something else.
+				// If the 玩家 stops channeling, do something else.
 				else if (projectile.ai[0] == 0f) {
 
-					// This code block is very similar 到 previous one, but only runs once after the player stops channeling their weapon.
+					// This code 方块 is very similar 到 previous one, but only runs once after the 玩家 stops channeling their 武器.
 					projectile.netUpdate = true;
 
-					float maxDistance = 14f; // This also sets the maximun speed the projectile can reach after it stops following the cursor.
+					float maxDistance = 14f; // This also sets the maximun 速度 the 弹幕 can reach after it stops following the cursor.
 					Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
 					float distanceToCursor = vectorToCursor.Length();
 
-					//If the projectile was 在 cursor's position, set it to move 在 oposite direction 从 player.
+					//If the 弹幕 was 在 cursor's 位置, set it to 移动 在 oposite 方向 从 玩家.
 					if (distanceToCursor == 0f) {
 						vectorToCursor = projectile.Center - player.Center;
 						distanceToCursor = vectorToCursor.Length();
@@ -94,33 +94,33 @@ namespace ExampleMod.Projectiles
 				}
 			}
 
-			// 设置 the rotation so the projectile points towards where it's going.
+			// 设置 the 旋转 so the 弹幕 points towards where it's going.
 			if (projectile.velocity != Vector2.Zero) {
 				projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver4;
 			}
 		}
 
 		public override void Kill(int timeLeft) {
-			// If the projectile dies without hitting an enemy, crate a small explosion that hits all enemies 在 area.
+			// If the 弹幕 dies without hitting an 敌人, crate a small explosion that hits all enemies 在 区域.
 			if (projectile.penetrate == 1) {
-				// 使 the projectile hit all enemies as it circunvents the penetrate limit.
+				// 使 the 弹幕 hit all enemies as it circunvents the penetrate 限制.
 				projectile.maxPenetrate = -1;
 				projectile.penetrate = -1;
 
 				int explosionArea = 60;
 				Vector2 oldSize = projectile.Size;
-				// Resize the projectile hitbox to be bigger.
+				// Resize the 弹幕 hitbox to be bigger.
 				projectile.position = projectile.Center;
 				projectile.Size += new Vector2(explosionArea);
 				projectile.Center = projectile.position;
 
 				projectile.tileCollide = false;
 				projectile.velocity *= 0.01f;
-				// Damage enemies inside the hitbox area
+				// 伤害 enemies inside the hitbox 区域
 				projectile.Damage();
 				projectile.scale = 0.01f;
 
-				//Resize the hitbox to its original size
+				//Resize the hitbox to its original 大小
 				projectile.position = projectile.Center;
 				projectile.Size = new Vector2(10);
 				projectile.Center = projectile.position;

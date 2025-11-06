@@ -23,8 +23,8 @@ namespace ExampleMod
 {
 	public class ExampleMod : Mod
 	{
-		// 与 new fonts in 1.3.5, font files are pretty big now so you need to generate the font file before building the mod.
-		// You can use https://forums.terraria.org/index.php?threads/dynamicspritefontgenerator-0-4-generate-fonts-without-xna-game-studio.57127/ to make dynamicspritefonts
+		// 与 new fonts in 1.3.5, 字体 files are pretty big now so you need to generate the 字体 文件 before building the mod.
+		// You can use https://forums.terraria.org/索引.php?threads/dynamicspritefontgenerator-0-4-generate-fonts-without-xna-game-studio.57127/ to make dynamicspritefonts
 		public static DynamicSpriteFont exampleFont;
 
 		private UserInterface _exampleUserInterface;
@@ -33,51 +33,51 @@ namespace ExampleMod
 		internal ExampleUI ExampleUI;
 		internal ExampleResourceBar ExampleResourceBar;
 
-		// Your mod instance has a Logger field, use it.
-		// 可选: You can create your own logger this way, recommended is a custom logging class if you do a lot of logging
-		// You need to reference the log4net library to do this, this 可以 found 在 tModLoader repository
-		// inside the references folder. You do not have to add this to build.txt as tML has it natively.
+		// Your mod 实例 has a Logger 字段, use it.
+		// 可选: You can create your own logger this way, recommended is a custom logging 类 if you do a lot of logging
+		// You need to 引用 the log4net library to do this, this 可以 found 在 tModLoader repository
+		// inside the references 文件夹. You do not have to add this to build.txt as tML has it natively.
 		// internal ILog Logging = LogManager.GetLogger("ExampleMod");
 
 		public ExampleMod() {
-			// 默认情况下, all Autoload properties are True. You only need to change this if you know what you are doing.
+			// 默认情况下, all Autoload properties are 真. You only need to change this if you know what you are doing.
 			//Properties = new ModProperties()
 			//{
-			//	Autoload = true,
-			//	AutoloadGores = true,
-			//	AutoloadSounds = true,
-			//	AutoloadBackgrounds = true
+			//	Autoload = 真,
+			//	AutoloadGores = 真,
+			//	AutoloadSounds = 真,
+			//	AutoloadBackgrounds = 真
 			//};
 		}
 
 		public override void Load() {
-			// Will show up in client.log under the ExampleMod name
+			// Will show up in 客户端.日志 under the ExampleMod 名称
 			Logger.InfoFormat("{0} example logging", Name);
-			// In older tModLoader versions we used: ErrorLogger.Log("blabla");
-			// Replace that with above
+			// In older tModLoader versions we used: ErrorLogger.日志("blabla");
+			// 替换 that with above
 
 			Mundane.AddHacks();
 
-			// All code below runs only if we're not loading on a server
+			// All code below runs only if we're not loading on a 服务器
 			if (!Main.dedServ) {
 				// 添加 certain equip textures
 				AddEquipTexture(null, EquipType.Legs, "ExampleRobe_Legs", "ExampleMod/Items/Armor/ExampleRobe_Legs");
 
-				// 注册 a new music box
+				// 注册 a new 音乐 box
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MarbleGallery"), ItemType("ExampleMusicBox"), TileType("ExampleMusicBox"));
 
-				// 更改 the vanilla loom texture
-				Main.instance.LoadTiles(TileID.Loom); // 首先 load the tile texture
+				// 更改 the vanilla loom 纹理
+				Main.instance.LoadTiles(TileID.Loom); // 首先 加载 the 图格 纹理
 				Main.tileTexture[TileID.Loom] = GetTexture("Tiles/AnimatedLoom"); // Now we change it
 
-				//What if....Replace a vanilla item texture and equip texture.
+				//What if....替换 a vanilla 项 纹理 and equip 纹理.
 				//Main.itemTexture[ItemID.CopperHelmet] = GetTexture("Resprite/CopperHelmet_Item");
-				//Item copperHelmet = new Item();
+				//项 copperHelmet = new 项();
 				//copperHelmet.SetDefaults(ItemID.CopperHelmet);
-				//Main.armorHeadLoaded[copperHelmet.headSlot] = true;
+				//Main.armorHeadLoaded[copperHelmet.headSlot] = 真;
 				//Main.armorHeadTexture[copperHelmet.headSlot] = GetTexture("Resprite/CopperHelmet_Head");
 
-				// 创建 new skies and screen filters
+				// 创建 new skies and 屏幕 filters
 				Filters.Scene["ExampleMod:PuritySpirit"] = new Filter(new PuritySpiritScreenShaderData("FilterMiniTower").UseColor(0.4f, 0.9f, 0.4f).UseOpacity(0.7f), EffectPriority.VeryHigh);
 				SkyManager.Instance["ExampleMod:PuritySpirit"] = new PuritySpiritSky();
 				Filters.Scene["ExampleMod:MonolithVoid"] = new Filter(new ScreenShaderData("FilterMoonLord"), EffectPriority.Medium);
@@ -89,20 +89,20 @@ namespace ExampleMod
 				if (FontExists("Fonts/ExampleFont"))
 					exampleFont = GetFont("Fonts/ExampleFont");
 
-				// 自定义 UI
+				// 自定义 用户界面
 				ExampleUI = new ExampleUI();
 				ExampleUI.Activate();
 				_exampleUserInterface = new UserInterface();
 				_exampleUserInterface.SetState(ExampleUI);
 
-				// 使用rInterface can only show 1 UIState at a time. If you want different "pages" for a UI, switch between UIStates 在 same UserInterface instance. 
-				// We want both the Coin counter and the Example Person UI to be independent and coexist simultaneously, so we have them each 在ir own UserInterface.
+				// 使用rInterface can only show 1 UIState at a 时间. If you want different "pages" for a 用户界面, switch between UIStates 在 same UserInterface 实例. 
+				// We want both the 硬币 计数器 and the Example Person 用户界面 to be independent and coexist simultaneously, so we have them each 在ir own UserInterface.
 				ExamplePersonUserInterface = new UserInterface();
 				// We will call .SetState later in ExamplePerson.OnChatButtonClicked
 			}
 
-			// 注册 custom mod translations, lives left is for Spirit of Purity
-			// See the .lang files 在 Localization folder for an easier to manage approach to translations. These few examples are here just to illustrate the concept.
+			// 注册 custom mod translations, lives 左 is for Spirit of Purity
+			// See the .lang files 在 Localization 文件夹 for an easier to 管理 approach to translations. These few examples are here just to illustrate the concept.
 			ModTranslation text = CreateTranslation("LivesLeft");
 			text.SetDefault("{0} has {1} lives left!");
 			AddTranslation(text);
@@ -120,22 +120,22 @@ namespace ExampleMod
 			text.SetDefault("Use a [i:" + ModContent.ItemType<Items.Abomination.FoulOrb>() + "] 在 underworld after Plantera has been defeated");
 			AddTranslation(text);
 
-			// Volcano warning is 对于 random volcano tremor
+			// Volcano 警告 is 对于 随机 volcano tremor
 			text = CreateTranslation("VolcanoWarning");
 			text.SetDefault("Did you hear something....A Volcano! Find Cover!");
 			AddTranslation(text);
 		}
 
 		public override void Unload() {
-			// All code below runs only if we're not loading on a server
+			// All code below runs only if we're not loading on a 服务器
 			if (!Main.dedServ) {
-				Main.tileFrame[TileID.Loom] = 0; // 重置 the frame 的 loom tile
-				Main.tileSetsLoaded[TileID.Loom] = false; // Causes the loom tile to reload its vanilla texture
+				Main.tileFrame[TileID.Loom] = 0; // 重置 the 帧 的 loom 图格
+				Main.tileSetsLoaded[TileID.Loom] = false; // Causes the loom 图格 to 重新加载 its vanilla 纹理
 			}
 
 			// Unload static references
-			// You need to clear static references to assets (Texture2D, SoundEffects, Effects). 
-			// In addition to that, if you want your mod to completely unload during unload, you need to clear static references to anything referencing your Mod class
+			// You need to 清除 static references to assets (Texture2D, SoundEffects, Effects). 
+			// In addition to that, if you want your mod to completely unload during unload, you need to 清除 static references to anything referencing your Mod 类
 			NPCs.ExampleTravelingMerchant.shopItems.Clear();
 		}
 
@@ -171,33 +171,33 @@ namespace ExampleMod
 		}
 
 		public override void AddRecipeGroups() {
-			// 创建s a new recipe group
+			// 创建s a new 配方 分组
 			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemType("ExampleItem")), new[]
 			{
 				ItemType("ExampleItem"),
 				ItemType("EquipMaterial"),
 				ItemType("BossItem")
 			});
-			// 注册 the new recipe group 与 specified name
+			// 注册 the new 配方 分组 与 specified 名称
 			RecipeGroup.RegisterGroup("ExampleMod:ExampleItem", group);
 
-			// 修改ing a vanilla recipe group. Now we can use Lava Snail to craft Snail Statue
+			// 修改ing a vanilla 配方 分组. Now we can use Lava Snail to craft Snail Statue
 			RecipeGroup snailGroup = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Snails"]];
 			snailGroup.ValidItems.Add(ModContent.ItemType<NPCs.ExampleCritterItem>());
 
-			// We also add ExampleSand 到 Sand group, 即 used 在 Magic Sand Dropper recipe
+			// We also add ExampleSand 到 Sand 分组, 即 used 在 Magic Sand Dropper 配方
 			RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Sand"]].ValidItems.Add(ModContent.ItemType<Items.Placeable.ExampleSand>());
 		}
 
 		// Learn how to do Recipes: https://github.com/tModLoader/tModLoader/wiki/Basic-Recipes 
 		public override void AddRecipes() {
-			// Here is an example of a recipe.
+			// Here is an example of a 配方.
 			ModRecipe recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemType("ExampleItem"));
 			recipe.SetResult(ItemID.Wood, 999);
 			recipe.AddRecipe();
 
-			// To make ExampleMod more organized, the rest 的 recipes are added elsewhere, see the method calls below.
+			// To make ExampleMod more organized, the rest 的 recipes are added elsewhere, see the 方法 calls below.
 			// See RecipeHelper.cs
 			RecipeHelper.AddExampleRecipes(this);
 			RecipeHelper.ExampleRecipeEditing(this);
@@ -328,7 +328,7 @@ namespace ExampleMod
 				layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
 					"ExampleMod: Example Person UI",
 					delegate {
-						// If the current UIState 的 UserInterface is null, nothing will draw. We don't need to track a separate .visible value.
+						// If the current UIState 的 UserInterface is 空, nothing will draw. We don't need to 跟踪 a 分离 .visible 值.
 						ExamplePersonUserInterface.Draw(Main.spriteBatch, new GameTime());
 						return true;
 					},
@@ -359,13 +359,13 @@ namespace ExampleMod
 		public override void HandlePacket(BinaryReader reader, int whoAmI) {
 			ExampleModMessageType msgType = (ExampleModMessageType)reader.ReadByte();
 			switch (msgType) {
-				// This message sent by the server to initialize the Volcano Tremor on clients
+				// This 消息 sent by the 服务器 to initialize the Volcano Tremor on clients
 				case ExampleModMessageType.SetTremorTime:
 					int tremorTime = reader.ReadInt32();
 					ExampleWorld world = GetInstance<ExampleWorld>();
 					world.VolcanoTremorTime = tremorTime;
 					break;
-				// This message sent by the server to initialize the Volcano Rubble.
+				// This 消息 sent by the 服务器 to initialize the Volcano Rubble.
 				case ExampleModMessageType.VolcanicRubbleMultiplayerFix:
 					int numberProjectiles = reader.ReadInt32();
 					for (int i = 0; i < numberProjectiles; i++) {
@@ -374,7 +374,7 @@ namespace ExampleMod
 						for (int j = 0; j < 1000; j++) {
 							if (Main.projectile[j].owner == 255 && Main.projectile[j].identity == identity && Main.projectile[j].active) {
 								Main.projectile[j].hostile = true;
-								//Main.projectile[j].name = "Volcanic Rubble";
+								//Main.弹幕[j].名称 = "Volcanic Rubble";
 								found = true;
 								break;
 							}
@@ -404,14 +404,14 @@ namespace ExampleMod
 						NetMessage.BroadcastChatMessage(text, new Color(255, 25, 25));
 					}
 					break;
-				// This message syncs ExamplePlayer.exampleLifeFruits
+				// This 消息 syncs ExamplePlayer.exampleLifeFruits
 				case ExampleModMessageType.ExamplePlayerSyncPlayer:
 					byte playernumber = reader.ReadByte();
 					ExamplePlayer examplePlayer = Main.player[playernumber].GetModPlayer<ExamplePlayer>();
 					int exampleLifeFruits = reader.ReadInt32();
 					examplePlayer.exampleLifeFruits = exampleLifeFruits;
 					examplePlayer.nonStopParty = reader.ReadBoolean();
-					// SyncPlayer 将 called automatically, so there is no need to forward this data to other clients.
+					// SyncPlayer 将 called automatically, so there is no need to forward this 数据 to other clients.
 					break;
 				case ExampleModMessageType.NonStopPartyChanged:
 					playernumber = reader.ReadByte();

@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	// 展示 a more complicated extra jump, where the player can jump mid-air with it three (3) times
+	// 展示 a more complicated extra 跳跃, where the 玩家 can 跳跃 mid-air with it three (3) times
 	public class ExampleMultiExtraJumpAccessory : ModItem
 	{
 		public override void SetDefaults() {
@@ -30,10 +30,10 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// Find the line that contains the dummy string 从 localization text
+			// 查找 the line that contains the dummy 字符串 从 localization 文本
 			int index = tooltips.FindIndex(static line => line.Text.Contains("<JUMPS>"));
 			if (index >= 0) {
-				// ... 然后 replace it
+				// ... 然后 替换 it
 				ref string text = ref tooltips[index].Text;
 				text = text.Replace("<JUMPS>", $"{Main.LocalPlayer.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining}");
 			}
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Items.Accessories
 		public override Position GetDefaultPosition() => new After(BlizzardInABottle);
 
 		public override float GetDurationMultiplier(Player player) {
-			// Each successive jump has weaker power
+			// Each successive 跳跃 has weaker power
 			return player.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining switch {
 				1 => 0.2f,
 				2 => 0.5f,
@@ -55,12 +55,12 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void OnRefreshed(Player player) {
-			// 重置 the jump counter
+			// 重置 the 跳跃 计数器
 			player.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining = 3;
 		}
 
 		public override void OnStarted(Player player, ref bool playSound) {
-			// 获取 the jump counter
+			// 获取 the 跳跃 计数器
 			ref int jumps = ref player.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining;
 
 			// 生成 rings of fire particles
@@ -109,7 +109,7 @@ namespace ExampleMod.Content.Items.Accessories
 				}
 			}
 
-			// Play a different sound
+			// Play a different 声音
 			playSound = false;
 
 			float pitch = jumps switch {
@@ -121,10 +121,10 @@ namespace ExampleMod.Content.Items.Accessories
 
 			SoundEngine.PlaySound(SoundID.Item8 with { Pitch = pitch, PitchVariance = 0.04f }, player.Bottom);
 
-			// Decrement the jump counter
+			// Decrement the 跳跃 计数器
 			jumps--;
 
-			// 允许 the jump to be used again while the jump counter is > 0
+			// 允许 the 跳跃 to be used again while the 跳跃 计数器 is > 0
 			if (jumps > 0)
 				player.GetJumpState(this).Available = true;
 		}

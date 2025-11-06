@@ -31,7 +31,7 @@ namespace ExampleMod.Common.Commands
 				throw new UsageException("至少 one argument was expected.");
 
 			// 如果无法解析整数，意味着我们有一个名称（或错误使用了命令）
-			// 在这种情况下，type 等于 0
+			// 在这种情况下，类型 等于 0
 			if (!int.TryParse(args[0], out int type)) {
 				// 将元素名称中的下划线替换为空格
 				string name = args[0].Replace("_", " ");

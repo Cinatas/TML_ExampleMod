@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Items.ExampleDamageClass
 {
-	// This class handles everything for our custom damage class
-	// Any class that we wish to be using our custom damage class will derive from this class, instead of ModItem
+	// This 类 handles everything for our custom 伤害 类
+	// Any 类 that we wish to be using our custom 伤害 类 will derive from this 类, instead of ModItem
 	public abstract class ExampleDamageItem : ModItem
 	{
 		public override bool CloneNewInstances => true;
@@ -15,11 +15,11 @@ namespace ExampleMod.Items.ExampleDamageClass
 		public virtual void SafeSetDefaults() {
 		}
 
-		// By making the override sealed, we prevent derived classes from further overriding the method and enforcing the use of SafeSetDefaults()
-		// We do this to ensure th在 vanilla damage types are always set to false, which makes the custom damage type work
+		// By making the override sealed, we 防止 derived classes from further overriding the 方法 and enforcing the use of SafeSetDefaults()
+		// We do this to ensure th在 vanilla 伤害 types are always set to 假, which makes the custom 伤害 类型 work
 		public sealed override void SetDefaults() {
 			SafeSetDefaults();
-			// all vanilla damage types 必须 false for custom damage types to work
+			// all vanilla 伤害 types 必须 假 for custom 伤害 types to work
 			item.melee = false;
 			item.ranged = false;
 			item.magic = false;
@@ -43,17 +43,17 @@ namespace ExampleMod.Items.ExampleDamageClass
 			crit += ExampleDamagePlayer.ModPlayer(player).exampleCrit;
 		}
 
-		// Because we want the damage tooltip to show our custom damage, we need to modify it
+		// Because we want the 伤害 工具提示 to show our custom 伤害, we need to modify it
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// 获取 the vanilla damage tooltip
+			// 获取 the vanilla 伤害 工具提示
 			TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
 			if (tt != null) {
-				// We want to grab the last word 的 tooltip, 即 the translated word for 'damage' (depending on what language the player is using)
-				// So we split the string by whitespace, and grab the last word 从 returned arrays to get the damage word, and the first to get the damage shown 在 tooltip
+				// We want to grab the last word 的 工具提示, 即 the translated word for '伤害' (depending on what language the 玩家 is using)
+				// So we 拆分 the 字符串 by whitespace, and grab the last word 从 returned arrays to get the 伤害 word, and the first to get the 伤害 shown 在 工具提示
 				string[] splitText = tt.text.Split(' ');
 				string damageValue = splitText.First();
 				string damageWord = splitText.Last();
-				// 更改 the tooltip text
+				// 更改 the 工具提示 文本
 				tt.text = damageValue + " example " + damageWord;
 			}
 		}

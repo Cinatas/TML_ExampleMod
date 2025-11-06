@@ -30,12 +30,12 @@ namespace ExampleMod.Content.Buffs
 				player.extraFall += 45;
 
 				// Some other effects:
-				// player.lifeRegen++;
-				// player.GetCritChance(DamageClass.Melee) += 2;
-				// player.GetDamage(DamageClass.Melee) += 0.051f;
-				// player.GetAttackSpeed(DamageClass.Melee) += 0.051f;
-				// player.statDefense += 3;
-				// player.moveSpeed += 0.05f;
+				// 玩家.lifeRegen++;
+				// 玩家.GetCritChance(DamageClass.Melee) += 2;
+				// 玩家.GetDamage(DamageClass.Melee) += 0.051f;
+				// 玩家.GetAttackSpeed(DamageClass.Melee) += 0.051f;
+				// 玩家.statDefense += 3;
+				// 玩家.moveSpeed += 0.05f;
 			}
 			else {
 				player.DelBuff(buffIndex);

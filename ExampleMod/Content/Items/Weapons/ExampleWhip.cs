@@ -13,13 +13,13 @@ namespace ExampleMod.Content.Items.Weapons
 
 		public override void SetDefaults() {
 			// 此方法 quickly sets the whip's properties.
-			// Mouse over to see its parameters.
+			// 鼠标 over to see its parameters.
 			Item.DefaultToWhip(ModContent.ProjectileType<ExampleWhipProjectile>(), 20, 2, 4);
 			Item.rare = ItemRarityID.Green;
 			Item.channel = true;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

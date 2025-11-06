@@ -7,8 +7,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.NPCs
 {
-	// This NPC inherits 从 Hover abstract class included in ExampleMod, 即 a more customizable copy 的 vanilla Hovering AI.
-	// It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, 以及 as the `acceleration` and `accelerationY` field being set 在 class constructor.
+	// This NPC inherits 从 悬停 abstract 类 included in ExampleMod, 即 a more customizable 复制 的 vanilla Hovering AI.
+	// It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, 以及 as the `acceleration` and `accelerationY` 字段 being set 在 类 constructor.
 	public class FallenSoul : Hover
 	{
 		public FallenSoul() {
@@ -31,7 +31,7 @@ namespace ExampleMod.NPCs
 			animationType = NPCID.Wraith;
 		}
 
-		// 允许s hitting the NPC with melee type weapons, even if it's friendly.
+		// 允许s hitting the NPC with melee 类型 weapons, even if it's friendly.
 		public override bool? CanBeHitByItem(Player player, Item item) {
 			return true;
 		}
@@ -55,13 +55,13 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// 允许s the NPC to talk 与 player, even if it isn't a town NPC.
+		// 允许s the NPC to talk 与 玩家, even if it isn't a town NPC.
 		public override bool CanChat() {
 			return true;
 		}
 
 		public override string GetChat() {
-			// npc.SpawnedFromStatue value is kept when the NPC is transformed.
+			// npc.SpawnedFromStatue 值 is kept when the NPC is transformed.
 			switch (Main.rand.Next(npc.SpawnedFromStatue ? 5 : 3)) {
 				case 0:
 					return "Thank you, now i don't have to haunt random people anymore, only you.";
@@ -80,17 +80,17 @@ namespace ExampleMod.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
 			if (firstButton) {
-				// Hit the NPC for about 500 damage
+				// Hit the NPC for about 500 伤害
 				Main.LocalPlayer.ApplyDamageToNPC(npc, Main.DamageVar(500), 5f, Main.LocalPlayer.direction, true);
 			}
 		}
 
-		// 仅 show health bar 的 NPC when close 到 player
+		// 仅 show 生命值 条 的 NPC when 关闭 到 玩家
 		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) {
 			float distance = npc.Distance(Main.player[npc.target].Center);
 			if (distance <= 200) {
 				if (distance > 100) {
-					// 使 the health bar become smaller the farther away the NPC is.
+					// 使 the 生命值 条 become smaller the farther away the NPC is.
 					scale *= (100 - (distance - 100)) / 100;
 				}
 				return null;
@@ -98,7 +98,7 @@ namespace ExampleMod.NPCs
 			return false;
 		}
 
-		// 使 the NPC invisible when far away 从 player.
+		// 使 the NPC invisible when far away 从 玩家.
 		public override void CustomBehavior(ref float ai) {
 			float distance = npc.Distance(Main.player[npc.target].Center);
 			if (distance <= 250) {
@@ -112,9 +112,9 @@ namespace ExampleMod.NPCs
 			npc.alpha = 255;
 		}
 
-		// 使 the NPC stop moving if it is close 到 player.
+		// 使 the NPC 停止 moving if it is 关闭 到 玩家.
 		public override bool ShouldMove(float ai) {
-			npc.ai[2] = 0; // 防止s the NPC from stopping following their target.
+			npc.ai[2] = 0; // 防止s the NPC from stopping following their 目标.
 			if (npc.Distance(Main.player[npc.target].Center) < 150f) {
 				npc.velocity *= 0.95f;
 				if (Math.Abs(npc.velocity.X) < 0.1f) {

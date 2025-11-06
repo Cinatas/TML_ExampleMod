@@ -7,7 +7,7 @@ namespace ExampleMod.Common.Commands
 {
 	public class ExampleSummonCommand : ModCommand
 	{
-		// CommandType.World 表示命令可以在单人和多人模式的聊天中使用，但在多人模式中在服务器上执行
+		// CommandType.世界 表示命令可以在单人和多人模式的聊天中使用，但在多人模式中在服务器上执行
 		public override CommandType Type
 			=> CommandType.World;
 
@@ -37,7 +37,7 @@ namespace ExampleMod.Common.Commands
 			}
 
 			// 生成的默认值
-			// 位置 - Player.Bottom，NPC 数量 - 1 
+			// 位置 - 玩家.底部，NPC 数量 - 1 
 			int xSpawnPosition = (int)caller.Player.Bottom.X;
 			int ySpawnPosition = (int)caller.Player.Bottom.Y;
 			int numToSpawn = 1;

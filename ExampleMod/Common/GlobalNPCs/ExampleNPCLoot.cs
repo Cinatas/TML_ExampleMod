@@ -32,11 +32,11 @@ namespace ExampleMod.Common.GlobalNPCs
 				// 删除Where 将删除与提供的表达式匹配的任何掉落规则。
 				// 要创建自己的表达式来删除原版掉落规则，你通常必须研究添加这些规则的原始源代码。
 				npcLoot.RemoveWhere(
-					// 如果满足以下条件，则以下表达式返回 true：
+					// 如果满足以下条件，则以下表达式返回 真：
 					rule => rule is ItemDropWithConditionRule drop // 如果规则是 ItemDropWithConditionRule 实例
-						&& drop.itemId == ItemID.GreenCap // And that instance drops a green cap&& drop.itemId == ItemID.GreenCap // And that instance drops a green cap drop.itemId == ItemID.GreenCap // 并且该实例掉落绿色蘑菇
-						&& drop.condition is Conditions.NamedNPC npcNameCondition // ..And if its condition is that an npc name must match some string
-						&& npcNameCondition.neededName == "Andrew" // And the condition's string is "Andrew".&& npcNameCondition.neededName == "Andrew" // And the condition's string is "Andrew". npcNameCondition.neededName == "Andrew" // 并且条件的字符串是"Andrew"。
+						&& drop.itemId == ItemID.GreenCap // And that 实例 drops a green cap&& 放下.itemId == ItemID.GreenCap // And that 实例 drops a green cap 放下.itemId == ItemID.GreenCap // 并且该实例掉落绿色蘑菇
+						&& drop.condition is Conditions.NamedNPC npcNameCondition // ..And if its 条件 is that an npc 名称 must 匹配 some 字符串
+						&& npcNameCondition.neededName == "Andrew" // And the 条件's 字符串 is "Andrew".&& npcNameCondition.neededName == "Andrew" // And the 条件's 字符串 is "Andrew". npcNameCondition.neededName == "Andrew" // 并且条件的字符串是"Andrew"。
 				);
 
 				npcLoot.Add(ItemDropRule.Common(ItemID.GreenCap, 1)); // 结合上面的删除，这使得任何名字的向导都会掉落绿色蘑菇。
@@ -66,7 +66,7 @@ namespace ExampleMod.Common.GlobalNPCs
 				npcLoot.Add(ItemDropRule.NormalvsExpert(4269, 6, 1));
 				*/
 			}
-			// 编辑现有掉落规则, but for a boss
+			// 编辑现有掉落规则, but for a Boss
 			// 除了此代码之外，我们还在 Common/GlobalItems/BossBagLoot.cs 中执行类似的代码来编辑 Boss 袋战利品。如果你的编辑也应该影响 Boss 袋，请记住两者都要做。
 			if (npc.type == NPCID.QueenBee) {
 				foreach (var rule in npcLoot.Get()) {
@@ -90,14 +90,14 @@ namespace ExampleMod.Common.GlobalNPCs
 				npcLoot.Add(ItemDropRule.ByCondition(Condition.TimeDay.ToDropCondition(ShowItemDropInUI.Always), ModContent.ItemType<ExampleSword>()));
 			}
 
-			//TODO: Add the rest 的 vanilla drop rules!!
+			//TODO: Add the rest 的 vanilla 放下 rules!!
 		}
 
 		// 修改GlobalLoot 允许你修改每个 NPC 都应该能够掉落的战利品，最好有一个条件。
 		// 原版将其用于生物群系钥匙、夜晚/光明之魂以及节日掉落。
 		// 修改GlobalLoot 中的任何掉落规则都应该只运行一次。其他所有内容都应该放在 ModifyNPCLoot 中。
 		public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
-			// 如果 ExampleSoulCondition 为 true，则以 20% 的概率掉落 ExampleSoul。有关如何确定的信息，请参阅 Common/ItemDropRules/DropConditions/ExampleSoulCondition.cs
+			// 如果 ExampleSoulCondition 为 真，则以 20% 的概率掉落 ExampleSoul。有关如何确定的信息，请参阅 Common/ItemDropRules/DropConditions/ExampleSoulCondition.cs
 			globalLoot.Add(ItemDropRule.ByCondition(new ExampleSoulCondition(), ModContent.ItemType<ExampleSoul>(), 5, 1, 1));
 		}
 	}

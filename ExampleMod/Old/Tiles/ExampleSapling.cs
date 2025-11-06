@@ -50,22 +50,22 @@ namespace ExampleMod.Tiles
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
 		public override void RandomUpdate(int i, int j) {
-			// A random chance to slow down growth
+			// A 随机 概率 to slow down growth
 			if (WorldGen.genRand.Next(20) == 0) {
-				Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile 在 given coordinates
+				Tile tile = Framing.GetTileSafely(i, j); // Safely get the 图格 在 given coordinates
 				bool growSucess; // A bool to see if the tree growing was sucessful.
 
-				// Style 0 is 对于 ExampleTree sapling, and style 1 is 例如PalmTree, so here we check frameX to call the correct method.
+				// Style 0 is 对于 ExampleTree sapling, and style 1 is 例如PalmTree, so here we check frameX to call the correct 方法.
 				// Any pixels before 54 在 tilesheet are 例如Tree while any pixels above it are 例如PalmTree
 				if (tile.frameX < 54)
 					growSucess = WorldGen.GrowTree(i, j);
 				else
 					growSucess = WorldGen.GrowPalmTree(i, j);
 
-				// A flag to check if a player is near the sapling
+				// A 标志 to check if a 玩家 is near the sapling
 				bool isPlayerNear = WorldGen.PlayerLOS(i, j);
 
-				//If growing the tree was a sucess and the player is near, show growing effects
+				//If growing the tree was a sucess and the 玩家 is near, show growing effects
 				if (growSucess && isPlayerNear)
 					WorldGen.TreeGrowFXCheck(i, j);
 			}

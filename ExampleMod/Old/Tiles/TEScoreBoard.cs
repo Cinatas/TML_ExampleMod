@@ -19,19 +19,19 @@ namespace ExampleMod.Tiles
 	{
 		public override void NPCLoot(NPC npc) {
 			if (npc.lastInteraction == 255) {
-				//Main.NewText("Accidental Death, score unchanged");
+				//Main.NewText("Accidental Death, 分数 unchanged");
 				return;
 			}
 			int TEScoreBoardType = TileEntityType<TEScoreBoard>();
 			foreach (TileEntity current in TileEntity.ByID.Values) {
 				if (current.type == TEScoreBoardType) {
 					//QuickBox is a neat tool for visualizing things while modding.
-					//Dust.QuickBox(npc.position, npc.position + new Vector2(npc.width, npc.height), 1, Color.White, null);
+					//Dust.QuickBox(npc.位置, npc.位置 + new Vector2(npc.宽度, npc.高度), 1, 颜色.White, 空);
 					var scoreboard = current as TEScoreBoard;
 					if (scoreboard.GetPlayArea().Intersects(npc.getRect())) {
 						Player scoringPlayer = Main.player[npc.lastInteraction];
 						int score = 0;
-						// Using HalfVector2 and ReinterpretCast.UIntAsFloat is a way to pack a Vector2 into a single float variable.
+						// Using HalfVector2 and ReinterpretCast.UIntAsFloat is a way to pack a Vector2 into a single float 变量.
 						HalfVector2 halfVector = new HalfVector2((current.Position.X + 1) * 16, (current.Position.Y + 1) * 16);
 						Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileType<Projectiles.ScorePoint>(), 0, 0, Main.myPlayer, ReLogic.Utilities.ReinterpretCast.UIntAsFloat(halfVector.PackedValue), npc.lastInteraction);
 						scoreboard.scores.TryGetValue(scoringPlayer.name, out score);
@@ -50,10 +50,10 @@ namespace ExampleMod.Tiles
 		}
 	}
 
-	// TODO, reset scores option
+	// TODO, 重置 scores 选项
 	public class TEScoreBoard : ModTileEntity
 	{
-		// Half the width in Tile Coordinates.
+		// Half the 宽度 in 图格 Coordinates.
 		internal const int range = 50;
 		internal Dictionary<string, int> scores = new Dictionary<string, int>();
 		internal bool scoresChanged;
@@ -61,7 +61,7 @@ namespace ExampleMod.Tiles
 
 
 		/// <summary>
-		/// Returns a rectangle representing the play area in World coordinates.
+		/// Returns a rectangle representing the play 区域 in 世界 coordinates.
 		/// </summary>
 		public Rectangle GetPlayArea() {
 			return new Rectangle((Position.X + 1) * 16 - range * 16, (Position.Y + 1) * 16 - range * 16, range * 16 * 2, range * 16 * 2);
@@ -69,7 +69,7 @@ namespace ExampleMod.Tiles
 
 		public override void Update() {
 			if (scoresChanged) {
-				// Sending 86 aka, TileEntitySharing, triggers NetSend. Think of it like manually calling sync.
+				// Sending 86 aka, TileEntitySharing, triggers NetSend. Think of it like manually calling 同步.
 				NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID, Position.X, Position.Y);
 				scoresChanged = false;
 			}
@@ -113,7 +113,7 @@ namespace ExampleMod.Tiles
 		}
 
 		public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction) {
-			//Main.NewText("i " + i + " j " + j + " t " + type + " s " + style + " d " + direction);
+			//Main.NewText("i " + i + " j " + j + " t " + 类型 + " s " + style + " d " + 方向);
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
 				NetMessage.SendTileSquare(Main.myPlayer, i, j, 3);
 				NetMessage.SendData(MessageID.TileEntityPlacement, -1, -1, null, i, j, Type, 0f, 0, 0, 0);
@@ -132,7 +132,7 @@ namespace ExampleMod.Tiles
 			TileID.Sets.FramesOnKillWall[Type] = true; // 必要 since we have a placement that uses AnchorWall
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-			// We set processedCoordinates to true so our Hook_AfterPlacement gets top left coordinates, regardless of Origin.
+			// We set processedCoordinates to 真 so our Hook_AfterPlacement gets 顶部 左 coordinates, regardless of 原点.
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(GetInstance<TEScoreBoard>().Hook_AfterPlacement, -1, 0, true);
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 5;
@@ -164,7 +164,7 @@ namespace ExampleMod.Tiles
 			name.SetDefault("ScoreBoard");
 			AddMapEntry(new Color(26, 127, 206), name);
 			disableSmartCursor = true; //?
-									//TODO	Main.highlightMaskTexture[Type] = mod.GetTexture("Tiles/ScoreBoard_Outline");
+									//TODO	Main.highlightMaskTexture[类型] = mod.GetTexture("Tiles/ScoreBoard_Outline");
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {

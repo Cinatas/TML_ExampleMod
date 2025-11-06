@@ -4,10 +4,10 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.EmoteBubbles
 {
-	// This abstract class is used for town NPC emotes quick setup.
+	// This abstract 类 is used for town NPC emotes quick setup.
 	public abstract class ModTownEmote : ModEmoteBubble
 	{
-		// Redirecting texture path.
+		// Redirecting 纹理 路径.
 		public override string Texture => "ExampleMod/Content/EmoteBubbles/NPCEmotes";
 
 		public override void SetStaticDefaults() {
@@ -16,26 +16,26 @@ namespace ExampleMod.Content.EmoteBubbles
 		}
 
 		/// <summary>
-		/// Which row 的 sprite sheet is this NPC emote in?
-		/// This is used to help get the correct frame rectangle for different emotes.
+		/// Which 行 的 精灵 sheet is this NPC emote in?
+		/// This is used to 帮助 get the correct 帧 rectangle for different emotes.
 		/// </summary>
 		public virtual int Row => 0;
 
-		// 你 should decide the frame rectangle yourself by these two methods.
+		// 你 should decide the 帧 rectangle yourself by these two methods.
 		public override Rectangle? GetFrame() {
 			return new Rectangle(EmoteBubble.frame * 34, 28 * Row, 34, 28);
 		}
 
-		// Do note that you should never use EmoteBubble instance as the GetFrame() method above
-		// in "Emote Menu Methods" (methods with -InEmoteMenu suffix).
-		// Because in that case the value of EmoteBubble is always null.
+		// Do note that you should never use EmoteBubble 实例 as the GetFrame() 方法 above
+		// in "Emote 菜单 Methods" (methods with -InEmoteMenu 后缀).
+		// Because in that case the 值 of EmoteBubble is always 空.
 		public override Rectangle? GetFrameInEmoteMenu(int frame, int frameCounter) {
 			return new Rectangle(frame * 34, 28 * Row, 34, 28);
 		}
 	}
 
-	// 这是 a showcase of using the same texture for different emotes.
-	// Command names 的se classes are defined using .hjson files 在 Localization/ folder.
+	// 这是 a showcase of using the same 纹理 for different emotes.
+	// 命令 names 的se classes are defined using .hjson files 在 Localization/ 文件夹.
 	public class ExamplePersonEmote : ModTownEmote
 	{
 		public override void OnSpawn() {

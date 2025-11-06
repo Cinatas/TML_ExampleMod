@@ -13,8 +13,8 @@ namespace ExampleMod.Common.Systems
 		// 跟踪 ExamplePerson 是否曾在此世界中生成
 		public static bool unlockedExamplePersonSpawn = false;
 
-		// 在世界中救出的城镇 NPC 将遵循类似的实现，唯一的区别是如何将值设置为 true。
-		// public static bool savedExamplePerson = false;
+		// 在世界中救出的城镇 NPC 将遵循类似的实现，唯一的区别是如何将值设置为 真。
+		// public static bool savedExamplePerson = 假;
 
 		public override void ClearWorld() {
 			unlockedExamplePersonSpawn = false;
@@ -27,7 +27,7 @@ namespace ExampleMod.Common.Systems
 		public override void LoadWorldData(TagCompound tag) {
 			unlockedExamplePersonSpawn = tag.GetBool(nameof(unlockedExamplePersonSpawn));
 
-			// This line sets unlockedExamplePersonSpawn to true if an ExamplePerson is already 在 world. This is only needed because unlockedExamplePersonSpawn was added in an update to this mod, meaning that existing users might have unlockedExamplePersonSpawn incorrectly set to false.
+			// This line sets unlockedExamplePersonSpawn to 真 if an ExamplePerson is already 在 世界. This is only needed because unlockedExamplePersonSpawn was added in an 更新 to this mod, meaning that existing users might have unlockedExamplePersonSpawn incorrectly set to 假.
 			// If you are tracking Town NPC unlocks from your initial mod release, then this isn't necessary.
 			unlockedExamplePersonSpawn |= NPC.AnyNPCs(ModContent.NPCType<ExamplePerson>());
 		}

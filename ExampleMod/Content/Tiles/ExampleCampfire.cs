@@ -14,7 +14,7 @@ using Terraria.Utilities;
 
 namespace ExampleMod.Content.Tiles
 {
-	// Campfires are special tiles that support the block swap feature and the biome torch feature. ExampleSurfaceBiome shows how the biome campfire is assigned.
+	// Campfires are special tiles that support the 方块 swap feature and the 生物群系 torch feature. ExampleSurfaceBiome shows how the 生物群系 campfire is assigned.
 	public class ExampleCampfire : ModTile
 	{
 		private Asset<Texture2D> flameTexture;
@@ -82,8 +82,8 @@ namespace ExampleMod.Content.Tiles
 			ToggleTile(i, j);
 		}
 
-		// ToggleTile is a method that contains code shared by HitWire and RightClick, since they both toggle the state 的 tile.
-		// 注意 that TileFrameY doesn't necessarily match up 与 image 即 drawn, AnimateTile and AnimateIndividualTile contribute 到 drawing decisions.
+		// ToggleTile is a 方法 that contains code shared by HitWire and RightClick, since they both toggle the 状态 的 图格.
+		// 注意 that TileFrameY doesn't necessarily 匹配 up 与 图像 即 drawn, AnimateTile and AnimateIndividualTile contribute 到 drawing decisions.
 		public void ToggleTile(int i, int j) {
 			Tile tile = Main.tile[i, j];
 			int topX = i - tile.TileFrameX % 54 / 18;
@@ -128,7 +128,7 @@ namespace ExampleMod.Content.Tiles
 			}
 			if (!Lighting.UpdateEveryFrame || new FastRandom(Main.TileFrameSeed).WithModifier(i, j).Next(4) == 0) {
 				Tile tile = Main.tile[i, j];
-				// 仅 emit dust 从 top tiles, and only if toggled on. This logic limits dust spawning under different conditions.
+				// 仅 emit dust 从 顶部 tiles, and only if toggled on. This logic limits dust spawning under different conditions.
 				if (tile.TileFrameY == 0 && Main.rand.NextBool(3) && ((Main.drawToScreen && Main.rand.NextBool(4)) || !Main.drawToScreen)) {
 					Dust dust = Dust.NewDustDirect(new Vector2(i * 16 + 2, j * 16 - 4), 4, 8, DustID.Smoke, 0f, 0f, 100);
 					if (tile.TileFrameX == 0)
@@ -180,11 +180,11 @@ namespace ExampleMod.Content.Tiles
 				int addFrY = 0;
 
 				TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref frameX, ref frameY); // 计算 the draw offsets
-				TileLoader.SetAnimationFrame(Type, i, j, ref addFrX, ref addFrY); // 计算 the animation offsets
+				TileLoader.SetAnimationFrame(Type, i, j, ref addFrX, ref addFrY); // 计算 the 动画 offsets
 
 				Rectangle drawRectangle = new Rectangle(tile.TileFrameX, tile.TileFrameY + addFrY, 16, 16);
 
-				// flame is manually drawn separate 从 tile texture so that it 可以 drawn at full brightness.
+				// flame is manually drawn 分离 从 图格 纹理 so that it 可以 drawn at full brightness.
 				spriteBatch.Draw(flameTexture.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + offsetY) + zero, drawRectangle, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 		}

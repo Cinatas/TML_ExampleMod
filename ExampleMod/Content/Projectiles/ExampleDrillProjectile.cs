@@ -22,20 +22,20 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.penetrate = -1;
 			Projectile.DamageType = DamageClass.Melee;
 			Projectile.ownerHitCheck = true;
-			Projectile.aiStyle = -1; // Replace with 20 if you do not want custom code
-			Projectile.hide = true; // 隐藏s the projectile, so it will draw 在 player's hand when we set the player's heldProj to this one.
+			Projectile.aiStyle = -1; // 替换 with 20 if you do not want custom code
+			Projectile.hide = true; // 隐藏s the 弹幕, so it will draw 在 玩家's hand when we set the 玩家's heldProj to this one.
 		}
 
 		// This code is adapted and simplified from aiStyle 20 to use a different dust and more noises. If you want to use aiStyle 20, you do not need to do any of this.
-		// It 应该 noted that this projectile has no effect on mining and is mostly visual.
+		// It 应该 noted that this 弹幕 has no 效果 on mining and is mostly visual.
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
 			Projectile.timeLeft = 60;
 
-			// Animation code could go here if the projectile was animated. 
+			// 动画 code could go here if the 弹幕 was animated. 
 
-			// Plays a sound every 20 ticks. In aiStyle 20, soundDelay is set to 30 ticks.
+			// Plays a 声音 every 20 ticks. In aiStyle 20, soundDelay is set to 30 ticks.
 			if (Projectile.soundDelay <= 0) {
 				SoundEngine.PlaySound(SoundID.Item22, Projectile.Center);
 				Projectile.soundDelay = 20;
@@ -43,17 +43,17 @@ namespace ExampleMod.Content.Projectiles
 
 			Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter);
 			if (Main.myPlayer == Projectile.owner) {
-				// This code must only be ran 在 client 的 projectile owner
+				// This code must only be ran 在 客户端 的 弹幕 所有者
 				if (player.channel) {
 					float holdoutDistance = player.HeldItem.shootSpeed * Projectile.scale;
-					// 计算 a normalized vector from player to mouse and multiply by holdoutDistance to determine resulting holdoutOffset
+					// 计算 a normalized vector from 玩家 to 鼠标 and multiply by holdoutDistance to determine resulting holdoutOffset
 					Vector2 holdoutOffset = holdoutDistance * Vector2.Normalize(Main.MouseWorld - playerCenter);
 					if (holdoutOffset.X != Projectile.velocity.X || holdoutOffset.Y != Projectile.velocity.Y) {
-						// This will sync the projectile, most importantly, the velocity.
+						// This will 同步 the 弹幕, most importantly, the 速度.
 						Projectile.netUpdate = true;
 					}
 
-					// Projectile.velocity acts as a holdoutOffset for held projectiles.
+					// 弹幕.速度 acts as a holdoutOffset for held projectiles.
 					Projectile.velocity = holdoutOffset;
 				}
 				else {
@@ -69,10 +69,10 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			Projectile.spriteDirection = Projectile.direction;
-			player.ChangeDir(Projectile.direction); // 更改 the player's direction based 在 projectile's own
-			player.heldProj = Projectile.whoAmI; // We tell the player th在 drill is the held projectile, so it will draw 在ir hand
-			player.SetDummyItemTime(2); // 使 sure the player's item time does not change while the projectile is out
-			Projectile.Center = playerCenter; // Centers the projectile 在 player. Projectile.velocity 将 added to this in later Terraria code causing the projectile to be held away 从 player at a set distance.
+			player.ChangeDir(Projectile.direction); // 更改 the 玩家's 方向 based 在 弹幕's own
+			player.heldProj = Projectile.whoAmI; // We tell the 玩家 th在 drill is the held 弹幕, so it will draw 在ir hand
+			player.SetDummyItemTime(2); // 使 sure the 玩家's 项 时间 does not change while the 弹幕 is out
+			Projectile.Center = playerCenter; // Centers the 弹幕 在 玩家. 弹幕.速度 将 added to this in later Terraria code causing the 弹幕 to be held away 从 玩家 at a set 距离.
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 			player.itemRotation = (Projectile.velocity * Projectile.direction).ToRotation();
 

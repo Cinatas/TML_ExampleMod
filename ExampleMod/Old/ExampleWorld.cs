@@ -29,7 +29,7 @@ namespace ExampleMod
 		public const int DefaultVolcanoTremorTime = 200; // ~ 3 seconds
 		public const int DefaultVolcanoCountdown = 300; // 5 seconds
 		public const int DefaultVolcanoCooldown = 10000; // 至少 3 min of daytime between volcanoes
-		public const int VolcanoChance = 10000; // Chance each tick of Volcano if cooldown exhausted.
+		public const int VolcanoChance = 10000; // 概率 each tick of Volcano if cooldown exhausted.
 		public int VolcanoCountdown;
 		public int VolcanoCooldown = DefaultVolcanoCooldown;
 		public int VolcanoTremorTime;
@@ -91,9 +91,9 @@ namespace ExampleMod
 			downedPuritySpirit = flags[1];
 		}
 
-		// We use this hook to add 3 steps to world generation at various points. 
+		// We use this hook to add 3 steps to 世界 生成 at various points. 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight) {
-			// This second step that we add will go after "Traps" and follows the same pattern.
+			// This second 步骤 that we add will go after "Traps" and follows the same pattern.
 			int TrapsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Traps"));
 
 			if (TrapsIndex != -1) {
@@ -104,8 +104,8 @@ namespace ExampleMod
 
 			if (LivingTreesIndex != -1) {
 				tasks.Insert(LivingTreesIndex + 1, new PassLegacy("Post Terrain", (progress, configuration) => {
-					// We can inline the world generation code like this, but if exceptions happen within this code 
-					// the error messages are difficult to read, so making methods is better. This is called an anonymous method.
+					// We can inline the 世界 生成 code like this, but if exceptions happen within this code 
+					// the 错误 messages are difficult to read, so making methods is better. This is called an anonymous 方法.
 					progress.Message = "What is it Lassie, did Timmy fall down a well?";
 
 					MakeWells();
@@ -117,8 +117,8 @@ namespace ExampleMod
 			progress.Message = "Example Mod Traps";
 
 			// Computers are fast, so WorldGen code sometimes looks stupid.
-			// Here, we want to place a bunch of tiles 在 world, so we just repeat until success. It might be useful to keep track of attempts and check for attempts > maxattempts so you don't have infinite loops. 
-			// The WorldGen.PlaceTile method returns a bool, but it is useless. Instead, we check the tile after calling it and if it is the desired tile, we know we succeeded.
+			// Here, we want to place a bunch of tiles 在 世界, so we just repeat until success. It might be useful to keep 跟踪 of attempts and check for attempts > maxattempts so you don't have infinite loops. 
+			// The WorldGen.PlaceTile 方法 returns a bool, but it is useless. Instead, we check the 图格 after calling it and if it is the desired 图格, we know we succeeded.
 			for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++) {
 				bool placeSuccessful = false;
 				Tile tile;
@@ -297,15 +297,15 @@ namespace ExampleMod
 			return true;
 		}
 
-		// We can use PostWorldGen for world generation tasks that don't need to happen between vanilla world generation steps.
+		// We can use PostWorldGen for 世界 生成 tasks that don't need to happen between vanilla 世界 生成 steps.
 		public override void PostWorldGen() {
-			// This is simply generating a line of Chlorophyte halfway down the world.
+			// This is simply generating a line of Chlorophyte halfway down the 世界.
 			//for (int i = 0; i < Main.maxTilesX; i++)
 			//{
-			//	Main.tile[i, Main.maxTilesY / 2].type = TileID.Chlorophyte;
+			//	Main.图格[i, Main.maxTilesY / 2].类型 = TileID.Chlorophyte;
 			//}
 
-			// Here we spawn Example Person just like the Guide.
+			// Here we 生成 Example Person just like the Guide.
 			int num = NPC.NewNPC((Main.spawnTileX + 5) * 16, Main.spawnTileY * 16, NPCType<ExamplePerson>(), 0, 0f, 0f, 0f, 0f, 255);
 			Main.npc[num].homeTileX = Main.spawnTileX + 5;
 			Main.npc[num].homeTileY = Main.spawnTileY;
@@ -320,15 +320,15 @@ namespace ExampleMod
 		}
 
 		public override void TileCountsAvailable(int[] tileCounts) {
-			// Here we count various tiles towards ZoneExample
+			// Here we 计数 various tiles towards ZoneExample
 			exampleTiles = tileCounts[TileType<ExampleBlock>()] + tileCounts[TileType<ExampleSand>()];
 
-			// We can also add to vanilla biome counts if appropriate. Here we are adding 到 ZoneDesert since we have a sand tile 在 mod.
+			// We can also add to vanilla 生物群系 counts if appropriate. Here we are adding 到 ZoneDesert since we have a sand 图格 在 mod.
 			SceneMetrics.DesertTileThreshold += tileCounts[TileType<ExampleSand>()];
 		}
 
 		public override void PreUpdate() {
-			// 更新 everything about spawning the traveling merchant 从 methods we have 在 Traveling Merchant's class
+			// 更新 everything about spawning the traveling 商人 从 methods we have 在 Traveling 商人's 类
 			ExampleTravelingMerchant.UpdateTravelingMerchant();
 		}
 
@@ -341,10 +341,10 @@ namespace ExampleMod
 					string key = "Mods.ExampleMod.VolcanoWarning";
 					Color messageColor = Color.Orange;
 
-					if (Main.netMode == NetmodeID.Server) { // Server
+					if (Main.netMode == NetmodeID.Server) { // 服务器
 						ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key), messageColor);
 					}
-					else if (Main.netMode == NetmodeID.SinglePlayer) { // Single Player
+					else if (Main.netMode == NetmodeID.SinglePlayer) { // Single 玩家
 						Main.NewText(Language.GetTextValue(key), messageColor);
 					}
 
@@ -356,7 +356,7 @@ namespace ExampleMod
 				VolcanoCountdown--;
 				if (VolcanoCountdown == 0) {
 					VolcanoTremorTime = DefaultVolcanoTremorTime;
-					// Since PostUpdate only happens in single and server, we need to inform the clients to shake if this is a server
+					// Since PostUpdate only happens in single and 服务器, we need to inform the clients to shake if this is a 服务器
 					if (Main.netMode == NetmodeID.Server) {
 						var netMessage = mod.GetPacket();
 						netMessage.Write((byte)ExampleModMessageType.SetTremorTime);
@@ -400,7 +400,7 @@ namespace ExampleMod
 			}
 		}
 
-		// In ExampleMod, we use PostDrawTiles to draw the TEScoreBoard area. PostDrawTiles draws before players, npc, and projectiles, so it works well.
+		// In ExampleMod, we use PostDrawTiles to draw the TEScoreBoard 区域. PostDrawTiles draws before players, npc, and projectiles, so it works well.
 		public override void PostDrawTiles() {
 			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
@@ -415,7 +415,7 @@ namespace ExampleMod
 					var scoreBoard = item.Value as TEScoreBoard;
 					Rectangle scoreBoardArea = scoreBoard.GetPlayArea();
 
-					// We only want to draw while the area is visible. 
+					// We only want to draw while the 区域 is visible. 
 
 					if (screenRect.Intersects(scoreBoardArea)) {
 						scoreBoardArea.Offset((int)-Main.screenPosition.X, (int)-Main.screenPosition.Y);
@@ -427,7 +427,7 @@ namespace ExampleMod
 			Main.spriteBatch.End();
 		}
 
-		// A helper method that draws a bordered rectangle. 
+		// A helper 方法 that draws a bordered rectangle. 
 		public static void DrawBorderedRect(SpriteBatch spriteBatch, Color color, Color borderColor, Vector2 position, Vector2 size, int borderWidth) {
 			var magicPixel = TextureAssets.MagicPixel.Value;
 

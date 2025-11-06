@@ -8,8 +8,8 @@ namespace ExampleMod.Common.GlobalNPCs
 	public class ExampleNPCHappiness : GlobalNPC
 	{
 		public override void SetStaticDefaults() {
-			int examplePersonType = ModContent.NPCType<Content.NPCs.ExamplePerson>(); // 获取 ExamplePerson's type
-			var guideHappiness = NPCHappiness.Get(NPCID.Guide); // 获取 the key in到 Guide's happiness
+			int examplePersonType = ModContent.NPCType<Content.NPCs.ExamplePerson>(); // 获取 ExamplePerson's 类型
+			var guideHappiness = NPCHappiness.Get(NPCID.Guide); // 获取 the 键 in到 Guide's happiness
 
 			guideHappiness.SetNPCAffection(examplePersonType, AffectionLevel.Love); // 使 the Guide love ExamplePerson!
 

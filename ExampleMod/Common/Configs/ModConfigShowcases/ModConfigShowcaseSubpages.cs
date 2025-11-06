@@ -6,7 +6,7 @@ using Terraria.ModLoader.Config;
 // 此文件包含展示定义子页面的假 ModConfig 类
 // 可用于将配置部分分离为子配置以便于管理。
 
-// 因为此配置旨在展示各种 UI 功能，
+// 因为此配置旨在展示各种 用户界面 功能，
 // 此配置对模组没有影响，纯粹提供教学示例。
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
@@ -16,7 +16,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
 		[Header("SeparatePageExamples")]
-		// 使用 SeparatePage，对象将作为按钮呈现给用户。该按钮将引导到一个单独的页面，其中将呈现常规 UI。对组织很有用。
+		// 使用 SeparatePage，对象将作为按钮呈现给用户。该按钮将引导到一个单独的页面，其中将呈现常规 用户界面。对组织很有用。
 		[SeparatePage]
 		public Gradient gradient = new Gradient();
 

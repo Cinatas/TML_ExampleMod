@@ -25,7 +25,7 @@ namespace ExampleMod.Common.GlobalNPCs
 						exampleJavelinCount++;
 					}
 				}
-				// 请记住，lifeRegen 影响实际生命损失，damage 只是文本。
+				// 请记住，lifeRegen 影响实际生命损失，伤害 只是文本。
 				// 此处显示的逻辑与原版减益在显示的伤害数字和实际生命损失方面的堆叠方式相匹配。
 				npc.lifeRegen -= exampleJavelinCount * 2 * 3;
 				if (damage < exampleJavelinCount * 3) {

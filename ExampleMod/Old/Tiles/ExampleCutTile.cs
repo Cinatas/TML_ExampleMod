@@ -8,8 +8,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Tiles
 {
-	// This example shows how to have a tile 即 cut by weapons, like vines and grass.
-	// This example also shows how to spawn a projectile on death like Beehive and Boulder trap.
+	// This example shows how to have a 图格 即 剪切 by weapons, like vines and grass.
+	// This example also shows how to 生成 a 弹幕 on death like Beehive and Boulder 陷阱.
 	internal class ExampleCutTileTile : ModTile
 	{
 		public override void SetDefaults() {
@@ -17,7 +17,7 @@ namespace ExampleMod.Tiles
 			Main.tileCut[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-			// We need to change the 3x3 default to allow only placement anchored to top rather than on bottom. Also, the 1,1 means that only the middle tile needs to attach
+			// We need to change the 3x3 default to 允许 only placement anchored to 顶部 rather than on 底部. Also, the 1,1 means that only the middle 图格 needs to attach
 			TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 1);
 			TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
 			// This is so we can place from above.
@@ -34,12 +34,12 @@ namespace ExampleMod.Tiles
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			//Projectile.NewProjectile((float)(k * 16) + 15.5f, (float)(num4 * 16 + 16), 0f, 0f, 99, 70, 10f, Main.myPlayer, 0f, 0f);
+			//弹幕.NewProjectile((float)(k * 16) + 15.5f, (float)(num4 * 16 + 16), 0f, 0f, 99, 70, 10f, Main.myPlayer, 0f, 0f);
 			if (!WorldGen.gen && Main.netMode != NetmodeID.MultiplayerClient) {
 				Projectile.NewProjectile((i + 1.5f) * 16f, (j + 1.5f) * 16f, 0f, 0f, ProjectileID.Boulder, 70, 10f, Main.myPlayer, 0f, 0f);
 			}
 
-			//Item.NewItem(i * 16, j * 16, 48, 48, ItemType<ExampleCutTileItem>());
+			//项.NewItem(i * 16, j * 16, 48, 48, ItemType<ExampleCutTileItem>());
 		}
 	}
 

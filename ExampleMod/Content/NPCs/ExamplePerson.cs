@@ -51,40 +51,40 @@ namespace ExampleMod.Content.NPCs
 			Main.npcFrameCount[Type] = 25; // The total amount of frames the NPC has
 
 			NPCID.Sets.ExtraFramesCount[Type] = 9; // Generally for Town NPCs, but this is how the NPC does extra things 例如 sitting in a chair and talking to other NPCs. This is the remaining frames after the walking frames.
-			NPCID.Sets.AttackFrameCount[Type] = 4; // The amount of frames 在 attacking animation.
-			NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away 从 center 的 NPC that it tries to attack enemies.
-			NPCID.Sets.AttackType[Type] = 0; // The type of attack the Town NPC performs. 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
-			NPCID.Sets.AttackTime[Type] = 90; // The amount of time it takes 对于 NPC's attack animation to be over once it starts.
-			NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator 对于 chance for a Town NPC to attack. Lower numbers make the Town NPC appear more aggressive.
-			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
+			NPCID.Sets.AttackFrameCount[Type] = 4; // The amount of frames 在 attacking 动画.
+			NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away 从 中心 的 NPC that it tries to 攻击 enemies.
+			NPCID.Sets.AttackType[Type] = 0; // The 类型 of 攻击 the Town NPC performs. 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
+			NPCID.Sets.AttackTime[Type] = 90; // The amount of 时间 it takes 对于 NPC's 攻击 动画 to be over once it starts.
+			NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator 对于 概率 for a Town NPC to 攻击. Lower numbers make the Town NPC appear more aggressive.
+			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y 偏移.
 			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says th在 Town NPC has a Shimmered form. Otherwise, the Town NPC 将come transparent when touching Shimmer like other enemies.
 
-			NPCID.Sets.ShimmerTownTransform[Type] = true; // 允许s for this NPC to have a different texture after touching the Shimmer liquid.
+			NPCID.Sets.ShimmerTownTransform[Type] = true; // 允许s for this NPC to have a different 纹理 after touching the Shimmer liquid.
 
 			// Connects this NPC with a custom emote.
-			// This makes it when the NPC is 在 world, other NPCs will "talk about him".
-			// By setting this you don't have to override the PickEmote method 对于 emote to appear.
+			// This makes it when the NPC is 在 世界, other NPCs will "talk about him".
+			// By 设置 this you don't have to override the PickEmote 方法 对于 emote to appear.
 			NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<ExamplePersonEmote>();
 
 			// Influences how the NPC looks 在 Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 1f, // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x direction
-				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left 默认情况下 but ExamplePerson 将 drawn facing the right
-				// Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
+				Velocity = 1f, // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x 方向
+				Direction = 1 // -1 is 左 and 1 is 右. NPCs are drawn facing the 左 默认情况下 but ExamplePerson 将 drawn facing the 右
+				// 旋转 = MathHelper.ToRadians(180) // You can also change the 旋转 of an NPC. 旋转 is measured in radians
 				// 如果 you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
-			// 设置 Example Person's biome and neighbor preferences 与 NPCHappiness hook. You can add happiness text and remarks with localization (See an example in ExampleMod/Localization/en-US.lang).
-			// NOTE: The following code uses chaining - a style that works due 到 fact th在 SetXAffection methods return the same NPCHappiness instance they're called on.
+			// 设置 Example Person's 生物群系 and neighbor preferences 与 NPCHappiness hook. You can add happiness 文本 and remarks with localization (See an example in ExampleMod/Localization/en-US.lang).
+			// NOTE: The following code uses chaining - a style that works due 到 fact th在 SetXAffection methods 返回 the same NPCHappiness 实例 they're called on.
 			NPC.Happiness
 				.SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // 示例 Person prefers the forest.
 				.SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike) // 示例 Person dislikes the snow.
-				.SetBiomeAffection<ExampleSurfaceBiome>(AffectionLevel.Love) // 示例 Person likes the Example Surface Biome
+				.SetBiomeAffection<ExampleSurfaceBiome>(AffectionLevel.Love) // 示例 Person likes the Example Surface 生物群系
 				.SetNPCAffection(NPCID.Dryad, AffectionLevel.Love) // Loves living near the dryad.
 				.SetNPCAffection(NPCID.Guide, AffectionLevel.Like) // 像s living near the guide.
-				.SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike) // Dislikes living near the merchant.
+				.SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike) // Dislikes living near the 商人.
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate) // Hates living near the demolitionist.
 			; // < Mind the semicolon!
 
@@ -97,7 +97,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void SetDefaults() {
 			NPC.townNPC = true; // 设置s NPC to be a Town NPC
-			NPC.friendly = true; // NPC Will not attack player
+			NPC.friendly = true; // NPC Will not 攻击 玩家
 			NPC.width = 18;
 			NPC.height = 40;
 			NPC.aiStyle = 7;
@@ -112,13 +112,13 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the preferred biomes of this town NPC listed 在 bestiary.
-				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
+				// With Town NPCs, you usually set this to what 生物群系 it likes the most in regards to NPC happiness.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
-				// 设置s your NPC's flavor text 在 bestiary.
+				// 设置s your NPC's flavor 文本 在 bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Person is here to help you understand everything about tModLoader."),
 
 				// 你 can add multiple elements if you really wanted to
@@ -127,15 +127,15 @@ namespace ExampleMod.Content.NPCs
 			});
 		}
 
-		// PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
-		// 返回ing false will allow you to manually draw your NPC
+		// PreDraw hook is useful for drawing things before our 精灵 is drawn or running code before the 精灵 is drawn
+		// 返回ing 假 will 允许 you to manually draw your NPC
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
 			// This code slowly rotates the NPC 在 bestiary
-			// (simply checking NPC.IsABestiaryIconDummy and incrementing NPC.Rotation won't work here as it gets overridden by drawModifiers.Rotation each tick)
+			// (simply checking NPC.IsABestiaryIconDummy and incrementing NPC.旋转 won't work here as it gets overridden by drawModifiers.旋转 each tick)
 			if (NPCID.Sets.NPCBestiaryDrawOffset.TryGetValue(Type, out NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers)) {
 				drawModifiers.Rotation += 0.001f;
 
-				// Replace the existing NPCBestiaryDrawModifiers with our new one with an adjusted rotation
+				// 替换 the existing NPCBestiaryDrawModifiers with our new one with an adjusted 旋转
 				NPCID.Sets.NPCBestiaryDrawOffset.Remove(Type);
 				NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 			}
@@ -175,19 +175,19 @@ namespace ExampleMod.Content.NPCs
 
 		public override void OnSpawn(IEntitySource source) {
 			if(source is EntitySource_SpawnNPC) {
-				// 一个 TownNPC is "unlocked" once it successfully spawns in到 world.
+				// 一个 TownNPC is "unlocked" once it successfully spawns in到 世界.
 				TownNPCRespawnSystem.unlockedExamplePersonSpawn = true;
 			}
 		}
 
-		public override bool CanTownNPCSpawn(int numTownNPCs) { // 需要ments 对于 town NPC to spawn.
+		public override bool CanTownNPCSpawn(int numTownNPCs) { // 需要ments 对于 town NPC to 生成.
 			if (TownNPCRespawnSystem.unlockedExamplePersonSpawn) {
-				// 如果 Example Person has spawned in this world before, we don't require the user satisfying the ExampleItem/ExampleBlock inventory conditions for a respawn.
+				// 如果 Example Person has spawned in this 世界 before, we don't require the 用户 satisfying the ExampleItem/ExampleBlock 库存 conditions for a 重生.
 				return true;
 			}
 
 			foreach (var player in Main.ActivePlayers) {
-				// Player has to have either an ExampleItem or an ExampleBlock in order 对于 NPC to spawn
+				// 玩家 has to have either an ExampleItem or an ExampleBlock in 顺序 对于 NPC to 生成
 				if (player.inventory.Any(item => item.type == ModContent.ItemType<ExampleItem>() || item.type == ModContent.ItemType<Items.Placeable.ExampleBlock>())) {
 					return true;
 				}
@@ -196,7 +196,7 @@ namespace ExampleMod.Content.NPCs
 			return false;
 		}
 
-		// 示例 Person needs a house built out of ExampleMod tiles. You can delete this whole method in your townNPC 对于 regular house conditions.
+		// 示例 Person needs a house built out of ExampleMod tiles. You can 删除 this whole 方法 in your townNPC 对于 regular house conditions.
 		public override bool CheckConditions(int left, int right, int top, int bottom) {
 			int score = 0;
 			for (int x = left; x <= right; x++) {
@@ -247,7 +247,7 @@ namespace ExampleMod.Content.NPCs
 			if (partyGirl >= 0 && Main.rand.NextBool(4)) {
 				chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.PartyGirlDialogue", Main.npc[partyGirl].GivenName));
 			}
-			// These are things th在 NPC has a chance of telling you when you talk to it.
+			// These are things th在 NPC has a 概率 of telling you when you talk to it.
 			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue1"));
 			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue2"));
 			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue3"));
@@ -257,22 +257,22 @@ namespace ExampleMod.Content.NPCs
 
 			NumberOfTimesTalkedTo++;
 			if (NumberOfTimesTalkedTo >= 10) {
-				//This counter is linked to a single instance 的 NPC, so if ExamplePerson is killed, the counter will reset.
+				//This 计数器 is linked to a single 实例 的 NPC, so if ExamplePerson is killed, the 计数器 will 重置.
 				chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.TalkALot"));
 			}
 
-			string chosenChat = chat; // chat is implicitly cast to a string. This is where the random choice is made.
+			string chosenChat = chat; // chat is implicitly cast to a 字符串. This is where the 随机 choice is made.
 
-			// 在这里 is some additional logic based 在 chosen chat line. In this case, we want to display an item 在 corner for StandardDialogue4.
+			// 在这里 is some additional logic based 在 chosen chat line. In this case, we want to 显示 an 项 在 corner for StandardDialogue4.
 			if (chosenChat == Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue4")) {
-				// Main.npcChatCornerItem shows a single item 在 corner, like the Angler Quest chat.
+				// Main.npcChatCornerItem shows a single 项 在 corner, like the Angler 任务 chat.
 				Main.npcChatCornerItem = ItemID.HiveBackpack;
 			}
 
 			return chosenChat;
 		}
 
-		public override void SetChatButtons(ref string button, ref string button2) { // Wh在 chat buttons are when you open up the chat UI
+		public override void SetChatButtons(ref string button, ref string button2) { // Wh在 chat buttons are when you 打开 up the chat 用户界面
 			button = Language.GetTextValue("LegacyInterface.28");
 			button2 = "Awesomeify";
 			if (Main.LocalPlayer.HasItem(ItemID.HiveBackpack)) {
@@ -282,10 +282,10 @@ namespace ExampleMod.Content.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (firstButton) {
-				// 我们 want 3 different functionalities for chat buttons, so we use HasItem to change button 1 between a shop and upgrade action.
+				// 我们 want 3 different functionalities for chat buttons, so we use HasItem to change 按钮 1 between a 商店 and 升级 action.
 
 				if (Main.LocalPlayer.HasItem(ItemID.HiveBackpack)) {
-					SoundEngine.PlaySound(SoundID.Item37); // Reforge/Anvil sound
+					SoundEngine.PlaySound(SoundID.Item37); // Reforge/Anvil 声音
 
 					Main.npcChatText = $"I upgraded your {Lang.GetItemNameValue(ItemID.HiveBackpack)} to a {Lang.GetItemNameValue(ModContent.ItemType<WaspNest>())}";
 
@@ -298,17 +298,17 @@ namespace ExampleMod.Content.NPCs
 					return;
 				}
 
-				shop = ShopName; // Name 的 shop tab we want to open.
+				shop = ShopName; // 名称 的 商店 选项卡 we want to 打开.
 			}
 		}
 
-		// Not completely finished, but below is wh在 NPC will sell
+		// Not completely finished, but below is wh在 NPC will 出售
 		public override void AddShops() {
 			var npcShop = new NPCShop(Type, ShopName)
 				.Add<ExampleItem>()
 				//.Add<EquipMaterial>()
 				//.Add<BossItem>()
-				.Add(new Item(ModContent.ItemType<Items.Placeable.Furniture.ExampleWorkbench>()) { shopCustomPrice = Item.buyPrice(copper: 15) }) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<Items.Placeable.Furniture.ExampleWorkbench>()) { shopCustomPrice = Item.buyPrice(copper: 15) }) // This example sets a custom 价格, ExampleNPCShop.cs has more info on custom prices and 货币. 
 				.Add<Items.Placeable.Furniture.ExampleChair>()
 				.Add<Items.Placeable.Furniture.ExampleDoor>()
 				.Add<Items.Placeable.Furniture.ExampleBed>()
@@ -317,12 +317,12 @@ namespace ExampleMod.Content.NPCs
 				.Add<Items.Tools.ExampleHamaxe>()
 				.Add<Items.Consumables.ExampleHealingPotion>(new Condition("Mods.ExampleMod.Conditions.PlayerHasLifeforceBuff", () => Main.LocalPlayer.HasBuff(BuffID.Lifeforce)))
 				.Add<Items.Weapons.ExampleSword>(Condition.MoonPhasesQuarter0)
-				//.Add<ExampleGun>(Condition.MoonPhasesQuarter1)
+				//.Add<ExampleGun>(条件.MoonPhasesQuarter1)
 				.Add<Items.Ammo.ExampleBullet>(Condition.MoonPhasesQuarter1)
 				.Add<Items.Weapons.ExampleStaff>(ExampleConditions.DownedMinionBoss)
 				.Add<ExampleOnBuyItem>()
-				.Add(ItemID.AcornAxe) // Here is an example of how to sell an existing vanilla item.
-				.Add<Items.Weapons.ExampleYoyo>(Condition.IsNpcShimmered); // Let's sell an yoyo if this NPC is shimmered!
+				.Add(ItemID.AcornAxe) // Here is an example of how to 出售 an existing vanilla 项.
+				.Add<Items.Weapons.ExampleYoyo>(Condition.IsNpcShimmered); // Let's 出售 an yoyo if this NPC is shimmered!
 
 			if (ModContent.GetInstance<ExampleModConfig>().ExampleWingsToggle) {
 				npcShop.Add<ExampleWings>(ExampleConditions.InExampleBiome);
@@ -331,12 +331,12 @@ namespace ExampleMod.Content.NPCs
 			if (ModContent.TryFind("SummonersAssociation/BloodTalisman", out ModItem bloodTalisman)) {
 				npcShop.Add(bloodTalisman.Type);
 			}
-			npcShop.Register(); // Name of this shop tab
+			npcShop.Register(); // 名称 of this 商店 选项卡
 		}
 
 		public override void ModifyActiveShop(string shopName, Item[] items) {
 			foreach (Item item in items) {
-				// Skip 'air' items and null items.
+				// 跳过 'air' items and 空 items.
 				if (item == null || item.type == ItemID.None) {
 					continue;
 				}
@@ -353,10 +353,10 @@ namespace ExampleMod.Content.NPCs
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ExampleCostume>()));
 		}
 
-		// 使 this Town NPC teleport 到 King and/or Queen statue when triggered. Return toKingStatue for only King Statues. Return !toKingStatue for only Queen Statues. Return true for both.
+		// 使 this Town NPC 传送 到 King and/or Queen statue when triggered. 返回 toKingStatue for only King Statues. 返回 !toKingStatue for only Queen Statues. 返回 真 for both.
 		public override bool CanGoToStatue(bool toKingStatue) => true;
 
-		// 使 something happen when the npc teleports to a statue. Since this method only runs server side, any visual effects like dusts or gores have to be synced across all clients manually.
+		// 使 something happen when the npc teleports to a statue. Since this 方法 only runs 服务器 side, any visual effects like dusts or gores have to be synced across all clients manually.
 		public override void OnGoToStatue(bool toKingStatue) {
 			if (Main.netMode == NetmodeID.Server) {
 				ModPacket packet = Mod.GetPacket();
@@ -369,7 +369,7 @@ namespace ExampleMod.Content.NPCs
 			}
 		}
 
-		// 创建 a square of pixels around the NPC on teleport.
+		// 创建 a square of pixels around the NPC on 传送.
 		public void StatueTeleport() {
 			for (int i = 0; i < 30; i++) {
 				Vector2 position = Main.rand.NextVector2Square(-20, 21);
@@ -402,7 +402,7 @@ namespace ExampleMod.Content.NPCs
 		public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
 			multiplier = 12f;
 			randomOffset = 2f;
-			// SparklingBall is not affected by gravity, so gravityCorrection is left alone.
+			// SparklingBall is not affected by gravity, so gravityCorrection is 左 alone.
 		}
 
 		public override void LoadData(TagCompound tag) {
@@ -413,21 +413,21 @@ namespace ExampleMod.Content.NPCs
 			tag["numberOfTimesTalkedTo"] = NumberOfTimesTalkedTo;
 		}
 
-		// Let the NPC "talk about" minion boss
+		// Let the NPC "talk about" 仆从 Boss
 		public override int? PickEmote(Player closestPlayer, List<int> emoteList, WorldUIAnchor otherAnchor) {
-			// 默认情况下 this NPC will have a chance to use the Minion Boss Emote even if Minion Boss is not downed yet
+			// 默认情况下 this NPC will have a 概率 to use the 仆从 Boss Emote even if 仆从 Boss is not downed yet
 			int type = ModContent.EmoteBubbleType<MinionBossEmote>();
 			// 如果 the NPC is talking 到 Demolitionist, it 将 more likely to react with angry emote
 			if (otherAnchor.entity is NPC { type: NPCID.Demolitionist }) {
 				type = EmoteID.EmotionAnger;
 			}
 
-			// 使 the selection more likely by adding it 到 list multiple times
+			// 使 the selection more likely by adding it 到 列表 multiple times
 			for (int i = 0; i < 4; i++) {
 				emoteList.Add(type);
 			}
 
-			// 使用 this or return null if you don't want to override the emote selection totally
+			// 使用 this or 返回 空 if you don't want to override the emote selection totally
 			return base.PickEmote(closestPlayer, emoteList, otherAnchor);
 		}
 	}

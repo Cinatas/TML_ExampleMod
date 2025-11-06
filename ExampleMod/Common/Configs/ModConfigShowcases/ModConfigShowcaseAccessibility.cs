@@ -3,12 +3,12 @@ using Newtonsoft.Json;
 using Terraria;
 using Terraria.ModLoader.Config;
 
-// This file contains fake ModConfig class that showcase using
-// access modifiers (to control which fields 应该 visible and have their value saved to file)
+// This 文件 contains fake ModConfig 类 that showcase using
+// access modifiers (to 控制 which fields 应该 visible and have their 值 saved to 文件)
 // and properties (to implement simple "presets" system).
 
-// Because this config was designed to show off various UI capabilities,
-// this config have no effect 在 mod and provides purely teaching example.
+// Because this 配置 was designed to show off various 用户界面 capabilities,
+// this 配置 have no 效果 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
 	[BackgroundColor(164, 153, 190)]
@@ -17,7 +17,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
 		// Private and Internal fields and properties will 不 shown.
-		// Note that private and internal values will 不 replaced by the deserialization, so initializer and ctor work.
+		// Note that private and internal values will 不 replaced by the 反序列化, so initializer and ctor work.
 		// You should avoid private and internal values in
 #pragma warning disable CS0414
 		private float Private = 144;
@@ -27,7 +27,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		// Public fields are most common. Use public for most items.
 		public float Public;
 
-		// Will not show. Avoid static. Due to how ModConfig works, static fields will not work correctly. Use a static field named Instance 在 manner used in ExampleConfigServer for accessing ModConfig fields 在 rest of your mod.
+		// Will not show. Avoid static. Due to how ModConfig works, static fields will not work correctly. Use a static 字段 named 实例 在 manner used in ExampleConfigServer for accessing ModConfig fields 在 rest of your mod.
 		public static float Static;
 
 		// 获取 only properties will show up, but 将 grayed out to show th在y can't be changed.
@@ -36,30 +36,30 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		// AutoProperties work the same as fields.
 		public float AutoProperty { get; set; }
 
-		// Properties work 以及. The backing field 将 ignored when writing the json out.
+		// Properties work 以及. The backing 字段 将 ignored when writing the json out.
 		private float propertyBackingField;
 		public float Property {
 			get { return propertyBackingField; }
-			set { propertyBackingField = value + 0.2f; } // + 0.2f is just to mess 与 user.
+			set { propertyBackingField = value + 0.2f; } // + 0.2f is just to mess 与 用户.
 		}
 
-		// Using JsonIgnore on a public field means the field won't show up 在 json or UI. Not really useful.
+		// Using JsonIgnore on a public 字段 means the 字段 won't show up 在 json or 用户界面. Not really useful.
 		[JsonIgnore]
 		public float Ignore;
 
-		// Using ShowDespiteJsonIgnore overrides JsonIgnore 对于 UI. Use this to display info 到 user 如果需要. The value won't be saved since it is derived from other fields.
+		// Using ShowDespiteJsonIgnore overrides JsonIgnore 对于 用户界面. Use this to 显示 info 到 用户 如果需要. The 值 won't be saved since it is derived from other fields.
 		// 使用ful for things like displaying sums or calculated relationships.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		public float IgnoreWithLabelGetter => AutoProperty + Public;
 
-		// Reference type getters kind of work 与 UI. You can experiment with this if you want.
+		// 引用 类型 getters kind of work 与 用户界面. You can experiment with this if you want.
 		[JsonIgnore]
 		public Pair pair2 => pair;
 		public Pair pair;
 
 		// 设置 only properties will crash tModLoader.
-		// public float Setter { set { Public = value; } }
+		// public float Setter { set { Public = 值; } }
 
 		// The following shows how you can use properties to implement a preset system
 		public bool PresetA {
@@ -91,9 +91,9 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 			Internal = 0.2f;
 		}
 
-		// ShouldSerialize{FieldNameHere}. ShouldSerialize 可以 useful, but this example is simply replicating the behavior of JSONIgnore and is just an example 例如s sake. https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+		// ShouldSerialize{FieldNameHere}. ShouldSerialize 可以 useful, but this example is simply replicating the behavior of JSONIgnore and is just an example 例如s sake. https://www.newtonsoft.com/json/帮助/html/ConditionalProperties.htm
 		public bool ShouldSerializeGetter() {
-			// We can have some logic in here to determine if the value is worth saving, but this is just a trivial example
+			// We can have some logic in here to determine if the 值 is worth saving, but this is just a trivial example
 			return false;
 		}
 	}

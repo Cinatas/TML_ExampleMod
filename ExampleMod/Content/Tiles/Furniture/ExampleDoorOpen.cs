@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			Main.tileSolid[Type] = false;
 			Main.tileLavaDeath[Type] = true;
 			Main.tileNoSunLight[Type] = true;
-			TileID.Sets.HousingWalls[Type] = true; // needed for non-solid blocks to count as walls
+			TileID.Sets.HousingWalls[Type] = true; // needed for non-solid blocks to 计数 as walls
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 			TileID.Sets.CloseDoorID[Type] = ModContent.TileType<ExampleDoorClosed>();
@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 			DustType = ModContent.DustType<Sparkle>();
 			AdjTiles = new int[] { TileID.OpenDoor };
-			// Tiles usually drop their corresponding item automatically, but RegisterItemDrop is needed here since the ExampleDoor item places ExampleDoorClosed, not this tile.
+			// Tiles usually 放下 their corresponding 项 automatically, but RegisterItemDrop is needed here since the ExampleDoor 项 places ExampleDoorClosed, not this 图格.
 			RegisterItemDrop(ModContent.ItemType<ExampleDoor>(), 0);
 			TileID.Sets.CloseDoorID[Type] = ModContent.TileType<ExampleDoorClosed>();
 
@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.newTile.CoordinatePadding = 2;
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 2;
-			TileObjectData.newTile.StyleWrapLimit = 2; // Since the wrap limit is 2, a 2nd style 将 below the first 在 spritesheet even though this is StyleHorizontal = true
+			TileObjectData.newTile.StyleWrapLimit = 2; // Since the wrap 限制 is 2, a 2nd style 将 below the first 在 spritesheet even though this is StyleHorizontal = 真
 			TileObjectData.newTile.Direction = TileObjectDirection.PlaceRight;
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newAlternate.Origin = new Point16(0, 1);

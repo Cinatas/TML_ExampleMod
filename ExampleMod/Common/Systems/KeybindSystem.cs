@@ -18,7 +18,7 @@ namespace ExampleMod.Common.Systems
 
 		// 有关卸载过程的详细说明，请参阅 ExampleMod.cs 的 Unload() 方法。
 		public override void Unload() {
-			// Not required if your AssemblyLoadContext is unloading properly, but nulling out static fields can help you figure out what's keeping it loaded.
+			// Not required if your AssemblyLoadContext is unloading properly, but nulling out static fields can 帮助 you figure out what's keeping it loaded.
 			RandomBuffKeybind = null;
 			LearningExampleKeybind = null;
 		}

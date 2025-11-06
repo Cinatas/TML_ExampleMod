@@ -14,11 +14,11 @@ namespace ExampleMod.Common.Players
 			}
 
 			// 用我们自己的覆盖原版失明眼睛状态。
-			// It's enough to check for `Player.blind`, but that way it wouldn't replace `IsBlind` eye state set by other mods.
-			// Decide yourself whatever option fits your needs.
+			// It's enough to check for `玩家.blind`, but that way it wouldn't 替换 `IsBlind` eye 状态 set by other mods.
+			// Decide yourself whatever 选项 fits your needs.
 			if (Player.eyeHelper.CurrentEyeState == PlayerEyeHelper.EyeState.IsBlind) {
-				// Close players eyes for 115 ticks out of 120 ticks.
-				// The remaining 5 ticks player will have half closed eyes.
+				// 关闭 players eyes for 115 ticks out of 120 ticks.
+				// The remaining 5 ticks 玩家 will have half closed eyes.
 				if ((Player.eyeHelper.TimeInState % 120 - 115) < 0) {
 					Player.eyeHelper.CurrentEyeFrame = PlayerEyeHelper.EyeFrame.EyeClosed;
 				}

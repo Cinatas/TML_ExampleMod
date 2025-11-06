@@ -14,7 +14,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace ExampleMod.Content.NPCs
 {
-	//The ExampleZombieThief is essentially the same as a regular Zombie, but it steals ExampleItems and keep them until it is killed, being saved 与 world if it has enough 的m.
+	//The ExampleZombieThief is essentially the same as a regular Zombie, but it steals ExampleItems and keep them until it is killed, being saved 与 世界 if it has enough 的m.
 	public class ExampleZombieThief : ModNPC
 	{
 		public int StolenItems = 0;
@@ -24,7 +24,7 @@ namespace ExampleMod.Content.NPCs
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				// Influences how the NPC looks 在 Bestiary
-				Velocity = 1f // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x direction
+				Velocity = 1f // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x 方向
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
@@ -41,20 +41,20 @@ namespace ExampleMod.Content.NPCs
 			NPC.knockBackResist = 0.5f;
 			NPC.aiStyle = 3; // Fighter AI, important to choose the aiStyle that matches the NPCID that we want to mimic
 
-			AIType = NPCID.Zombie; // 使用 vanilla zombie's type when executing AI code. (This also means it will try to despawn during daytime)
-			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's type when executing animation code. Important to also match Main.npcFrameCount[NPC.type] in SetStaticDefaults.
+			AIType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing AI code. (This also means it will try to despawn during daytime)
+			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing 动画 code. Important to also 匹配 Main.npcFrameCount[NPC.类型] in SetStaticDefaults.
 			Banner = Item.NPCtoBanner(NPCID.Zombie); // 使 this NPC get affected by the normal zombie banner.
 			BannerItem = Item.BannerToItem(Banner); // 使 kills of this NPC go towards dropping the banner it's associated with.
 			SpawnModBiomes = new int[] { ModContent.GetInstance<ExampleSurfaceBiome>().Type }; // Associates this NPC 与 ExampleSurfaceBiome in Bestiary
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
-				// 设置s the description of this NPC 即 listed 在 bestiary.
+				// 设置s the 描述 of this NPC 即 listed 在 bestiary.
 				new FlavorTextBestiaryInfoElement("This type of zombie really like Example Items. They steal them as soon as they find some."),
 			});
 		}
@@ -66,14 +66,14 @@ namespace ExampleMod.Content.NPCs
 
 			Rectangle hitbox = NPC.Hitbox;
 			foreach (Item item in Main.item) {
-				//Pickup the items only if the NPC touches them and they aren't already being grabbed by a player
+				//Pickup the items only if the NPC touches them and they aren't already being grabbed by a 玩家
 				if (item.active && !item.beingGrabbed && item.type == ModContent.ItemType<ExampleItem>() &&	hitbox.Intersects(item.Hitbox)) {
 					item.active = false;
 					StolenItems += item.stack;
 
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item.whoAmI);
 
-					// 显示 emote when stealing an example item
+					// 显示 emote when stealing an example 项
 					EmoteBubble.NewBubble(ModContent.EmoteBubbleType<ExampleItemEmote>(), new WorldUIAnchor(NPC), 90);
 				}
 			}
@@ -92,9 +92,9 @@ namespace ExampleMod.Content.NPCs
 				return;
 			}
 
-			// Drop all the stolen items when the NPC dies
+			// 放下 all the stolen items when the NPC dies
 			while (StolenItems > 0) {
-				// Loop until all items are dropped, to avoid dropping more than maxStack items
+				// 循环 until all items are dropped, to avoid dropping more than maxStack items
 				int droppedAmount = Math.Min(ModContent.GetInstance<ExampleItem>().Item.maxStack, StolenItems);
 				StolenItems -= droppedAmount;
 				Item.NewItem(NPC.GetSource_Death(), NPC.Center, ModContent.ItemType<ExampleItem>(), droppedAmount, true);
@@ -102,21 +102,21 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-			// Can only spawn 在 ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
+			// Can only 生成 在 ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
 			if (spawnInfo.Player.InModBiome(ModContent.GetInstance<ExampleSurfaceBiome>()) && !NPC.AnyNPCs(Type)) {
-				return SpawnCondition.OverworldNightMonster.Chance * 0.1f; // 生成 with 1/10th the chance of a regular zombie.
+				return SpawnCondition.OverworldNightMonster.Chance * 0.1f; // 生成 with 1/10th the 概率 of a regular zombie.
 			}
 
 			return 0f;
 		}
 
 		public override bool NeedSaving() {
-			return StolenItems >= 10; // 仅 save if the NPC has more than 10 stolen items, to avoid keeping the NPC in memory if it only has few
+			return StolenItems >= 10; // 仅 保存 if the NPC has more than 10 stolen items, to avoid keeping the NPC in 内存 if it only has few
 		}
 
 		public override void SaveData(TagCompound tag) {
 			if (StolenItems > 0) {
-				// 注意 that at this point it may have less than 10 stolen items, if another mod or part of our decides to save the NPC
+				// 注意 that at this 点 it may have less than 10 stolen items, if another mod or part of our decides to 保存 the NPC
 				tag["StolenItems"] = StolenItems;
 			}
 		}

@@ -588,8 +588,8 @@ namespace ExampleMod.NPCs.PuritySpirit
 			{
 				//This is an alternate syntax you can use
 				//var maskChooser = new WeightedRandom<int>();
-				//maskChooser.Add(ItemType<Items.Armor.PuritySpiritMask>());
-				//maskChooser.Add(ItemType<Items.Armor.BunnyMask>());
+				//maskChooser.Add(ItemType<Items.护甲.PuritySpiritMask>());
+				//maskChooser.Add(ItemType<Items.护甲.BunnyMask>());
 				//maskChooser.Add(ItemID.Bunny, 5.0);
 				//int maskChoice = maskChooser;
 
@@ -638,7 +638,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 			if (!ExampleWorld.downedPuritySpirit) {
 				ExampleWorld.downedPuritySpirit = true;
 				if (Main.netMode == NetmodeID.Server) {
-					NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+					NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new 世界 状态.
 				}
 			}
 		}

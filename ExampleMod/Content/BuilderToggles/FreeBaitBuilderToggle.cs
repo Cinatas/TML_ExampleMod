@@ -11,9 +11,9 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.BuilderToggles;
 
 // 此示例 shows almost all BuilderToggle hooks.
-// As it is just an example, it behaves more like a "button" than a "toggle".
-// Left clicking allows you to select bait type and right clicking gives you 10 free bait 的 selected type.
-// 自定义 drawing is showcased in this example to handle frame changes.
+// As it is just an example, it behaves more like a "按钮" than a "toggle".
+// 左 clicking allows you to select bait 类型 and 右 clicking gives you 10 free bait 的 selected 类型.
+// 自定义 drawing is showcased in this example to 处理 帧 changes.
 public class FreeBaitBuilderToggle : BuilderToggle
 {
 	public static LocalizedText NameText { get; private set; }
@@ -28,14 +28,14 @@ public class FreeBaitBuilderToggle : BuilderToggle
 	public override Position OrderPosition => new After(TorchBiome);
 
 	public override bool OnLeftClick(ref SoundStyle? sound) {
-		// 更改 the click sound.
-		// 如果 you don't want a sound to play, set sound to null.
+		// 更改 the 点击 声音.
+		// 如果 you don't want a 声音 to play, set 声音 to 空.
 		sound = SoundID.DrumTomHigh;
 		return true;
 	}
 
 	public override void OnRightClick() {
-		// Give the player free baits when right clicked.
+		// Give the 玩家 free baits when 右 clicked.
 		SoundEngine.PlaySound(Main.rand.NextBool() ? SoundID.DrumCymbal1 : SoundID.DrumCymbal2);
 		int itemType = CurrentState switch {
 			0 => ItemID.ApprenticeBait,
@@ -48,15 +48,15 @@ public class FreeBaitBuilderToggle : BuilderToggle
 		Main.LocalPlayer.QuickSpawnItem(new EntitySource_Gift(Main.LocalPlayer), itemType, 10);
 	}
 
-	// 使用 custom drawing to handle frame changes.
+	// 使用 custom drawing to 处理 帧 changes.
 	public override bool Draw(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams) {
 		drawParams.Frame = drawParams.Texture.Frame(4, 2, CurrentState % 4);
 		return true;
 	}
 
-	// Truffle Worm has a unique hover texture.
+	// Truffle Worm has a unique 悬停 纹理.
 	public override bool DrawHover(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams) {
-		int column = CurrentState == 3 ? 1 : 0; // The hover texture for TruffleWorm is unique
+		int column = CurrentState == 3 ? 1 : 0; // The 悬停 纹理 for TruffleWorm is unique
 		drawParams.Frame = drawParams.Texture.Frame(4, 2, column, 1);
 		return true;
 	}

@@ -17,8 +17,8 @@ namespace ExampleMod.Common.GlobalNPCs
 				// 此物品以正常价格出售。
 				shop.Add<ExampleMountItem>();
 
-				// 我们可以使用 shopCustomPrice 和 shopSpecialCurrency 来支持自定义价格和货币。通常商店以 item.value 的价格出售物品。
-				// 在 SetupShop 中编辑 item.value 是一种不正确的方法。
+				// 我们可以使用 shopCustomPrice 和 shopSpecialCurrency 来支持自定义价格和货币。通常商店以 项.值 的价格出售物品。
+				// 在 SetupShop 中编辑 项.值 是一种不正确的方法。
 
 				// 此商店条目以 2 个防御者奖章的价格出售。
 				shop.Add(new Item(ModContent.ItemType<ExampleMountItem>()) {
@@ -33,7 +33,7 @@ namespace ExampleMod.Common.GlobalNPCs
 				});
 			}
 			else if (shop.NpcType == NPCID.Wizard) {
-				// shopContents.Add(ModContent.ItemType<Infinity>(), ChestLoot.Condition.InExpertMode);
+				// shopContents.Add(ModContent.ItemType<Infinity>(), ChestLoot.条件.InExpertMode);
 			}
 			else if (shop.NpcType == NPCID.Stylist) {
 				shop.Add<ExampleHairDye>();

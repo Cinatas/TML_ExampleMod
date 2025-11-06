@@ -7,9 +7,9 @@ namespace ExampleMod.Items.ExampleDamageClass
 {
 	public class ExampleResourceStaff : ExampleDamageItem
 	{
-		// This is a staff that uses the example damage class stuff you've set up before, but uses exampleResource instead of mana.
-		// This is a very simple way of doing it, and if you plan on multiple items using exampleResource then I'd suggest making a new abstract ModItem class that inherits ExampleDamageItem,
-		// and doing the CanUseItem and UseItem in a more generalized way there, so you can just define the resource usage in SetDefaults and it'll do it automatically for you.
+		// This is a staff that uses the example 伤害 类 stuff you've set up before, but uses exampleResource instead of 魔力.
+		// This is a very simple way of doing it, and if you plan on multiple items using exampleResource then I'd suggest making a new abstract ModItem 类 that inherits ExampleDamageItem,
+		// and doing the CanUseItem and UseItem in a more generalized way there, so you can just define the 资源 usage in SetDefaults and it'll do it automatically for you.
 		public override void SetStaticDefaults() {
 			Item.staff[item.type] = true;
 		}
@@ -20,10 +20,10 @@ namespace ExampleMod.Items.ExampleDamageClass
 			item.damage = 32;
 			item.knockBack = 3;
 			item.rare = ItemRarityID.Red;
-			item.mana = 0; // 使 sure to nullify the mana usage 的 staff here, as it still copies the setdefaults 的 amethyst staff.
+			item.mana = 0; // 使 sure to nullify the 魔力 usage 的 staff here, as it still copies the setdefaults 的 amethyst staff.
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			// 示例ResourceCost is a field 在 base class ExampleDamageItem. This item consumes 10 Example Resource to use.
+			// 示例ResourceCost is a 字段 在 base 类 ExampleDamageItem. This 项 consumes 10 Example 资源 to use.
 			exampleResourceCost = 10;
 		}
 	}

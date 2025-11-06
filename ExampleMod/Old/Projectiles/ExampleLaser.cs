@@ -11,27 +11,27 @@ namespace ExampleMod.Projectiles
 	// Using custom drawing, dust effects, and custom collision checks for tiles
 	public class ExampleLaser : ModProjectile
 	{
-		// 使用 a different style for constant so it is very clear in code when a constant is used
+		// 使用 a different style for constant so it is very 清除 in code when a constant is used
 
-		// The maximum charge value
+		// The 最大 charge 值
 		private const float MAX_CHARGE = 50f;
-		//The distance charge particle 从 player center
+		//The 距离 charge particle 从 玩家 中心
 		private const float MOVE_DISTANCE = 60f;
 
-		// The actual distance is stored 在 ai0 field
-		// By making a property to handle this it makes our life easier, and the accessibility more readable
+		// The actual 距离 is stored 在 ai0 字段
+		// By making a 属性 to 处理 this it makes our life easier, and the 可访问性 more readable
 		public float Distance {
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
 		}
 
-		// The actual charge value is stored 在 localAI0 field
+		// The actual charge 值 is stored 在 localAI0 字段
 		public float Charge {
 			get => projectile.localAI[0];
 			set => projectile.localAI[0] = value;
 		}
 
-		// Are we at max charge? With c#6 you can simply use => which indicates this is a get only property
+		// Are we at max charge? With c#6 you can simply use => which indicates this is a get only 属性
 		public bool IsAtMaxCharge => Charge == MAX_CHARGE;
 
 		public override void SetDefaults() {
@@ -45,7 +45,7 @@ namespace ExampleMod.Projectiles
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) {
-			// We start drawing the laser if we have charged up
+			// We 开始 drawing the laser if we have charged up
 			if (IsAtMaxCharge) {
 				DrawLaser(spriteBatch, Main.projectileTexture[projectile.type], Main.player[projectile.owner].Center,
 					projectile.velocity, 10, projectile.damage, -1.57f, 1f, 1000f, Color.White, (int)MOVE_DISTANCE);
@@ -53,7 +53,7 @@ namespace ExampleMod.Projectiles
 			return false;
 		}
 
-		// The core function of drawing a laser
+		// The core 函数 of drawing a laser
 		public void DrawLaser(SpriteBatch spriteBatch, Texture2D texture, Vector2 start, Vector2 unit, float step, int damage, float rotation = 0f, float scale = 1f, float maxDist = 2000f, Color color = default(Color), int transDist = 50) {
 			float r = unit.ToRotation() + rotation;
 
@@ -75,7 +75,7 @@ namespace ExampleMod.Projectiles
 				new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
 		}
 
-		// 更改 the way of collision check 的 projectile
+		// 更改 the way of collision check 的 弹幕
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			// We can only collide if we are at max charge, 即 when the laser is actually fired
 			if (!IsAtMaxCharge) return false;
@@ -89,27 +89,27 @@ namespace ExampleMod.Projectiles
 				player.Center + unit * Distance, 22, ref point);
 		}
 
-		// 设置 custom immunity time on hitting an NPC
+		// 设置 custom immunity 时间 on hitting an NPC
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
 			target.immune[projectile.owner] = 5;
 		}
 
-		// The AI 的 projectile
+		// The AI 的 弹幕
 		public override void AI() {
 			Player player = Main.player[projectile.owner];
 			projectile.position = player.Center + projectile.velocity * MOVE_DISTANCE;
 			projectile.timeLeft = 2;
 
 			// By separating large AI into methods it becomes very easy to see the flow 的 AI in a broader sense
-			// 首先 we update player variables that are needed to channel the laser
+			// 首先 we 更新 玩家 variables that are needed to 通道 the laser
 			// Then we run our charging laser logic
-			// If we are fully charged, we proceed to update the laser's position
-			// 最后 we spawn some effects like dusts and light
+			// If we are fully charged, we proceed to 更新 the laser's 位置
+			// 最后 we 生成 some effects like dusts and light
 
 			UpdatePlayer(player);
 			ChargeLaser(player);
 
-			// If laser is not charged yet, stop the AI here.
+			// If laser is not charged yet, 停止 the AI here.
 			if (Charge < MAX_CHARGE) return;
 
 			SetLaserPosition(player);
@@ -163,12 +163,12 @@ namespace ExampleMod.Projectiles
 		}
 
 		private void ChargeLaser(Player player) {
-			// Kill the projectile if the player stops channeling
+			// Kill the 弹幕 if the 玩家 stops channeling
 			if (!player.channel) {
 				projectile.Kill();
 			}
 			else {
-				// Do we still have enough mana? If not, we kill the projectile because we cannot use it anymore
+				// Do we still have enough 魔力? If not, we kill the 弹幕 because we cannot use it anymore
 				if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true)) {
 					projectile.Kill();
 				}
@@ -193,7 +193,7 @@ namespace ExampleMod.Projectiles
 		}
 
 		private void UpdatePlayer(Player player) {
-			// Multiplayer support here, only run this code if the client running it is the owner 的 projectile
+			// Multiplayer support here, only run this code if the 客户端 running it is the 所有者 的 弹幕
 			if (projectile.owner == Main.myPlayer) {
 				Vector2 diff = Main.MouseWorld - player.Center;
 				diff.Normalize();
@@ -202,11 +202,11 @@ namespace ExampleMod.Projectiles
 				projectile.netUpdate = true;
 			}
 			int dir = projectile.direction;
-			player.ChangeDir(dir); // 设置 player direction to where we are shooting
-			player.heldProj = projectile.whoAmI; // 更新 player's held projectile
-			player.itemTime = 2; // 设置 item time to 2 frames while we are used
-			player.itemAnimation = 2; // 设置 item animation time to 2 frames while we are used
-			player.itemRotation = (float)Math.Atan2(projectile.velocity.Y * dir, projectile.velocity.X * dir); // 设置 the item rotation to where we are shooting
+			player.ChangeDir(dir); // 设置 玩家 方向 to where we are shooting
+			player.heldProj = projectile.whoAmI; // 更新 玩家's held 弹幕
+			player.itemTime = 2; // 设置 项 时间 to 2 frames while we are used
+			player.itemAnimation = 2; // 设置 项 动画 时间 to 2 frames while we are used
+			player.itemRotation = (float)Math.Atan2(projectile.velocity.Y * dir, projectile.velocity.X * dir); // 设置 the 项 旋转 to where we are shooting
 		}
 
 		private void CastLights() {

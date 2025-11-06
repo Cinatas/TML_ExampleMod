@@ -9,7 +9,7 @@ using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
 
-// 注意：此点以下是自定义配置 UI 元素。
+// 注意：此点以下是自定义配置 用户界面 元素。
 // 请注意，使用自定义配置元素的模组将在接下来的几个 tModLoader 更新中中断，直到它们的设计最终确定。
 // 如果你使用这些，你需要非常积极地更新你的模组，因为它们可能在任何更新中中断。
 
@@ -17,7 +17,7 @@ using Terraria.UI;
 // with custom drawing implemented that 可以 used in ModConfig classes.
 namespace ExampleMod.Common.Configs.CustomUI
 {
-	// 此自定义配置 UI 元素展示了一个完全自定义的配置元素，除了自定义绘制外，还处理设置和获取值。
+	// 此自定义配置 用户界面 元素展示了一个完全自定义的配置元素，除了自定义绘制外，还处理设置和获取值。
 	[JsonConverter(typeof(StringEnumConverter))]
 	[CustomModConfigItem(typeof(CornerElement))]
 	public enum Corner

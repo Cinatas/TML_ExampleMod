@@ -19,7 +19,7 @@ namespace ExampleMod.Common.GlobalProjectiles
 		}
 
 		public override void OnSpawn(Projectile projectile, IEntitySource source) {
-			//不要尝试存储 itemSource.Item。Terraria 可以使用 SetDefaults() 重新使用物品实例，
+			//不要尝试存储 itemSource.项。Terraria 可以使用 SetDefaults() 重新使用物品实例，
 			//这意味着你保存的实例可能变成空气或另一个物品。存储 GlobalItem 实例要安全得多。
 			if (source is IEntitySource_WithStatsFromItem itemSource) {
 				itemSource.Item.TryGetGlobalItem(out sourceGlobalItem);

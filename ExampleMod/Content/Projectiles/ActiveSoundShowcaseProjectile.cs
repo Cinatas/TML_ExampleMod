@@ -10,25 +10,25 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	/// <summary>
-	/// Showcases ActiveSounds. The various styles when studied in order serve to teach important concepts, please experiment 与m in-game.
-	/// Do note th在 earlier examples aren't useful to copy, if you are just looking for an example to copy, consult SoundUpdateCallbackApproach and LoopedSound, as they are the most suitable examples.
-	/// This example serves as a companion 到 Active Sounds section 的 Sounds wiki page, please study them both together: https://github.com/tModLoader/tModLoader/wiki/Basic-Sounds#active-sounds
+	/// Showcases ActiveSounds. The various styles when studied in 顺序 serve to teach important concepts, please experiment 与m in-game.
+	/// Do note th在 earlier examples aren't useful to 复制, if you are just looking for an example to 复制, consult SoundUpdateCallbackApproach and LoopedSound, as they are the most suitable examples.
+	/// This example serves as a companion 到 Active Sounds section 的 Sounds wiki 页面, please study them both together: https://github.com/tModLoader/tModLoader/wiki/Basic-Sounds#active-sounds
 	/// </summary>
 	public class ActiveSoundShowcaseProjectile : ModProjectile
 	{
 		internal enum ActiveSoundShowcaseStyle
 		{
-			// 此示例 plays a long sound (12 seconds) and never attempts to change it. Notice how the sound plays without any location, the player and projectile can move left or right and the sound panning and volume do not change. Also note th在 sound keeps playing after the projectile dies.
+			// 此示例 plays a long 声音 (12 seconds) and never attempts to change it. Notice how the 声音 plays without any 位置, the 玩家 and 弹幕 can 移动 左 or 右 and the 声音 panning and 音量 do not change. Also note th在 声音 keeps playing after the 弹幕 dies.
 			FireAndForget,
-			// 此示例 improves on FireAndForget. The Projectile position is passed into PlaySound. The sound still does not update location, but the player can move around the initial spawn location and the sound pans and volume adjusts accordingly.
+			// 此示例 improves on FireAndForget. The 弹幕 位置 is passed into PlaySound. The 声音 still does not 更新 位置, but the 玩家 can 移动 around the initial 生成 位置 and the 声音 pans and 音量 adjusts accordingly.
 			FireAndForgetPlusInitialPosition,
-			// Further improving on FireAndForgetPlusInitialPosition, this example updates the sound location in AI and stops the sound when the projectile is killed in Kill.
+			// Further improving on FireAndForgetPlusInitialPosition, this example updates the 声音 位置 in AI and stops the 声音 when the 弹幕 is killed in Kill.
 			SyncSoundToProjectilePosition,
-			// Further improving on SyncSoundToProjectilePosition, this example uses the SoundUpdateCallback parameter to keep all sound logic organized in a single place instead of spread between different methods.
+			// Further improving on SyncSoundToProjectilePosition, this example uses the SoundUpdateCallback 参数 to keep all 声音 logic organized in a single place instead of spread between different methods.
 			SoundUpdateCallbackApproach,
-			// LoopedSound shows using SoundUpdateCallback once again to adjust sound position. The SoundStyle used is looped, so SoundUpdateCallback is necessary in case Projectile.Kill doesn't get called for some exceptional reason.
+			// LoopedSound shows using SoundUpdateCallback once again to adjust 声音 位置. The SoundStyle used is looped, so SoundUpdateCallback is necessary in case 弹幕.Kill doesn't get called for some exceptional reason.
 			LoopedSound,
-			// LoopedSoundAdvanced adjusts pitch and volume dynamically 在 SoundUpdateCallback, in addition 到 usual sound position.
+			// LoopedSoundAdvanced adjusts 音高 and 音量 dynamically 在 SoundUpdateCallback, in addition 到 usual 声音 位置.
 			LoopedSoundAdvanced,
 		}
 
@@ -55,7 +55,7 @@ namespace ExampleMod.Content.Projectiles
 		public override void SetDefaults() {
 			Projectile.width = 22;
 			Projectile.height = 24;
-			Projectile.penetrate = 4; // Can bounce 3 times and dies on 4th tile collide
+			Projectile.penetrate = 4; // Can bounce 3 times and dies on 4th 图格 collide
 			Projectile.timeLeft = 300; // Despawns after 5 seconds
 		}
 
@@ -66,10 +66,10 @@ namespace ExampleMod.Content.Projectiles
 		public override void AI() {
 			Projectile.frame = (int)Style;
 
-			// Sounds are paused when the game loses focus (Player switches to another program). In some situations the modder might want to restart a sound when the game is focused again, in other situations that might 不 desired. Some 的se examples use a bool, "played", to track if the sound has been played since the projectile spawned, while others do not and will attempt to restart the sound if it is not currently playing.
+			// Sounds are paused when the game loses focus (玩家 switches to another program). In some situations the modder might want to restart a 声音 when the game is focused again, in other situations that might 不 desired. Some 的se examples use a bool, "played", to 跟踪 if the 声音 has been played since the 弹幕 spawned, while others do not and will attempt to restart the 声音 if it is not currently playing.
 
-			// 另外 note that in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" 默认情况下, so if 2 projectiles attempt to play the same sound, they'll constantly interrupt each other every AI update, making a horrible sound.
-			// 在 a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. 例如, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances accordingly. The modder might also decide th在 sound should not restart when the game is re-focused and use logic to only attempt to play the sound once.
+			// 另外 note that in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" 默认情况下, so if 2 projectiles attempt to play the same 声音, they'll constantly interrupt each other every AI 更新, making a horrible 声音.
+			// 在 a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. 例如, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances accordingly. The modder might also decide th在 声音 should not restart when the game is re-focused and use logic to only attempt to play the 声音 once.
 			switch (Style) {
 				case ActiveSoundShowcaseStyle.FireAndForget:
 					if (!played) {
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Projectiles
 						soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position);
 					}
 					else {
-						// 如果 the sound is playing, update the sound's position to match the current position 的 projectile.
+						// 如果 the 声音 is playing, 更新 the 声音's 位置 to 匹配 the current 位置 的 弹幕.
 						activeSoundTwister.Position = Projectile.position;
 					}
 					break;
@@ -97,11 +97,11 @@ namespace ExampleMod.Content.Projectiles
 						var tracker = new ProjectileAudioTracker(Projectile);
 						soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position, soundInstance => BasicSoundUpdateCallback(tracker, soundInstance));
 
-						// 如果 only the sound stopping when the projectile is killed is required, this simpler code 可以 used:
-						//soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position, soundInstance => tracker.IsActiveAndInGame());
+						// 如果 only the 声音 stopping when the 弹幕 is killed is required, this simpler code 可以 used:
+						//soundSlot = SoundEngine.PlaySound(soundStyleTwister, 弹幕.位置, soundInstance => tracker.IsActiveAndInGame());
 
-						// Do NOT make this mistake, the ProjectileAudioTracker object 必须 initialized outside the callback:
-						// soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position, soundInstance => new ProjectileAudioTracker(Projectile).IsActiveAndInGame()); // WRONG
+						// Do NOT make this mistake, the ProjectileAudioTracker 对象 必须 initialized outside the 回调:
+						// soundSlot = SoundEngine.PlaySound(soundStyleTwister, 弹幕.位置, soundInstance => new ProjectileAudioTracker(弹幕).IsActiveAndInGame()); // WRONG
 					}
 					break;
 				case ActiveSoundShowcaseStyle.LoopedSound:
@@ -114,12 +114,12 @@ namespace ExampleMod.Content.Projectiles
 						});
 					}
 
-					// SlotId 可以 stored as a float, 例如 in Projectile.localAI entries. This 可以 an alternative to making a SlotId field 在 class.
-					// 不要 use ai slots for SlotId, since those will sync and sounds and sound slots are completely local and are not synced
-					// SlotId soundSlot = SlotId.FromFloat(Projectile.localAI[0]);
-					// Projectile.localAI[0] = soundSlot.ToFloat();
+					// SlotId 可以 stored as a float, 例如 in 弹幕.localAI entries. This 可以 an alternative to making a SlotId 字段 在 类.
+					// 不要 use ai slots for SlotId, since those will 同步 and sounds and 声音 slots are completely local and are not synced
+					// SlotId soundSlot = SlotId.FromFloat(弹幕.localAI[0]);
+					// 弹幕.localAI[0] = soundSlot.ToFloat();
 
-					// As an alternate approach to TryGetActiveSound, we could use FindActiveSound. The difference is that FindActiveSound will find any ActiveSound matching the given SoundStyle, so if 2 projectile instances spawn the same SoundStyle, the ActiveSound retrieved isn't necessarily the sound spawned by this instance. This 可以 useful, but in this situation we want the ActiveSound spawned by this projectile.
+					// As an alternate approach to TryGetActiveSound, we could use FindActiveSound. The difference is that FindActiveSound will 查找 any ActiveSound matching the given SoundStyle, so if 2 弹幕 instances 生成 the same SoundStyle, the ActiveSound retrieved isn't necessarily the 声音 spawned by this 实例. This 可以 useful, but in this situation we want the ActiveSound spawned by this 弹幕.
 					/* 
 					var activeSoundB = SoundEngine.FindActiveSound(soundStyleIgniteLoop);
 					if (activeSoundB == null) {
@@ -137,19 +137,19 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private bool BasicSoundUpdateCallback(ProjectileAudioTracker tracker, ActiveSound soundInstance) {
-			// 更新 sound location according to projectile position
+			// 更新 声音 位置 according to 弹幕 位置
 			soundInstance.Position = Projectile.position;
-			// ProjectileAudioTracker is necessary to avoid rare situations where sounds can loop indefinitely. IsActiveAndInGame returns a value indicating if the sound should still be active.
+			// ProjectileAudioTracker is necessary to avoid rare situations where sounds can 循环 indefinitely. IsActiveAndInGame returns a 值 indicating if the 声音 should still be active.
 			return tracker.IsActiveAndInGame();
 		}
 
 		private bool AdvancedSoundUpdateCallback(ProjectileAudioTracker tracker, ActiveSound soundInstance) {
 			soundInstance.Position = Projectile.position;
 
-			// Dynamic pitch example: Pitch rises 每次 the projectile bounces
+			// Dynamic 音高 example: 音高 rises 每次 the 弹幕 bounces
 			soundInstance.Pitch = (Projectile.maxPenetrate - Projectile.penetrate) * 0.15f;
 
-			// Muffle the sound if the projectile is wet
+			// Muffle the 声音 if the 弹幕 is wet
 			if (Projectile.wet) {
 				soundInstance.Pitch -= 0.4f;
 				soundInstance.Volume = MathHelper.Clamp(soundInstance.Style.Volume - 0.4f, 0f, 1f);
@@ -159,9 +159,9 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnKill(int timeLeft) {
-			// 对于 long sounds, the sound 可以 stopped when the projectile is killed.
+			// 对于 long sounds, the 声音 可以 stopped when the 弹幕 is killed.
 			// This approach is not foolproof, so it should 不 used, especially for looped sounds.
-			// 参见 SoundUpdateCallbackApproach 对于 better approach. This example, however, does show how an ActiveSound 可以 modified from another hook other than where the sound was played.
+			// 参见 SoundUpdateCallbackApproach 对于 better approach. This example, however, does show how an ActiveSound 可以 modified from another hook other than where the 声音 was played.
 			if (Style == ActiveSoundShowcaseStyle.SyncSoundToProjectilePosition) {
 				if (SoundEngine.TryGetActiveSound(soundSlot, out var activeSound)) {
 					activeSound.Stop();
@@ -170,8 +170,8 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-			// 如果 collide with tile, reduce the penetrate.
-			// So the projectile can reflect 至多 3 times
+			// 如果 collide with 图格, reduce the penetrate.
+			// So the 弹幕 can reflect 至多 3 times
 			Projectile.penetrate--;
 			if (Projectile.penetrate <= 0) {
 				Projectile.Kill();
@@ -180,12 +180,12 @@ namespace ExampleMod.Content.Projectiles
 				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
 				SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
-				// 如果 the projectile hits the left or right side 的 tile, reverse the X velocity
+				// 如果 the 弹幕 hits the 左 or 右 side 的 图格, reverse the X 速度
 				if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon) {
 					Projectile.velocity.X = -oldVelocity.X;
 				}
 
-				// 如果 the projectile hits the top or bottom side 的 tile, reverse the Y velocity
+				// 如果 the 弹幕 hits the 顶部 or 底部 side 的 图格, reverse the Y 速度
 				if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) {
 					Projectile.velocity.Y = -oldVelocity.Y;
 				}

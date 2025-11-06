@@ -18,15 +18,15 @@ namespace ExampleMod.Common.Players
 
 		// 这 3 个字段与示例闪避相关。示例闪避是根据神圣套装奖励的闪避能力建模的。
 		// 示例Dodge 指示玩家是否主动具有闪避下一次攻击的能力。这由 ExampleDodgeBuff 设置，在此示例中由 HitModifiersShowcase 武器应用。仅当 exampleDodgeCooldown 为 0 时才应用增益，如果闪避攻击或玩家不再持有 HitModifiersShowcase，则会自动清除。
-		public bool exampleDodge; // 待办事项： Example of custom player render
+		public bool exampleDodge; // 待办事项： Example of custom 玩家 render
 		// 用于在消耗示例闪避和下次可以获得闪避增益之间添加延迟。
 		public int exampleDodgeCooldown;
-		// Controls the intensity 的 visual effect 的 dodge.
+		// Controls the intensity 的 visual 效果 的 dodge.
 		public int exampleDodgeVisualCounter;
 
-		// If this player has an accessory which gives this effect
+		// If this 玩家 has an 饰品 which gives this 效果
 		public bool hasAbsorbTeamDamageEffect;
-		// If the player is currently in range of a player with hasAbsorbTeamDamageEffect
+		// If the 玩家 is currently in 范围 of a 玩家 with hasAbsorbTeamDamageEffect
 		public bool defendedByAbsorbTeamDamageEffect;
 
 		public bool exampleDefenseDebuff;
@@ -56,8 +56,8 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override void PostUpdateEquips() {
-			// If the conditions 对于 player having the buff are 不再 true, remove the buff.
-			// This could could technically go in ExampleDodgeBuff.Update, but typically these effects are given by armor or accessories, so showing this example here is more useful.
+			// If the conditions 对于 玩家 having the 增益 are 不再 真, 删除 the 增益.
+			// This could could technically go in ExampleDodgeBuff.更新, but typically these effects are given by 护甲 or accessories, so showing this example here is more useful.
 			if (exampleDodge && Player.HeldItem.type != ModContent.ItemType<HitModifiersShowcase>()) {
 				Player.ClearBuff(ModContent.BuffType<ExampleDodgeBuff>());
 			}
@@ -67,13 +67,13 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright) {
-			// 示例DodgeVisualCounter helps fade the color effect in and out.
+			// 示例DodgeVisualCounter helps fade the 颜色 效果 in and out.
 			if (exampleDodgeVisualCounter > 0) {
 				g = Math.Max(0, g - exampleDodgeVisualCounter * 0.03f);
 			}
 
 			if (exampleDefenseDebuff) {
-				// These color adjustments match the withered armor debuff visuals.
+				// These 颜色 adjustments 匹配 the withered 护甲 减益 visuals.
 				g *= 0.5f;
 				r *= 0.75f;
 			}
@@ -88,11 +88,11 @@ namespace ExampleMod.Common.Players
 			return false;
 		}
 
-		// 示例DodgeEffects() 将 called from ConsumableDodge and HandleExampleDodgeMessage to sync the effect.
+		// 示例DodgeEffects() 将 called from ConsumableDodge and HandleExampleDodgeMessage to 同步 the 效果.
 		public void ExampleDodgeEffects() {
 			Player.SetImmuneTimeForAllTypes(Player.longInvince ? 120 : 80);
 
-			// Some sound and visual effects
+			// Some 声音 and visual effects
 			for (int i = 0; i < 50; i++) {
 				Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
 				Dust d = Dust.NewDustPerfect(Player.Center + speed * 16, DustID.BlueCrystalShard, speed * 5, Scale: 1.5f);
@@ -100,14 +100,14 @@ namespace ExampleMod.Common.Players
 			}
 			SoundEngine.PlaySound(SoundID.Shatter with { Pitch = 0.5f });
 
-			// The visual and sound effects happen on all clients, but the code below only runs 对于 dodging player 
+			// The visual and 声音 effects happen on all clients, but the code below only runs 对于 dodging 玩家 
 			if (Player.whoAmI != Main.myPlayer) {
 				return;
 			}
 
-			// 清除ing the buff and assigning the cooldown time
+			// 清除ing the 增益 and assigning the cooldown 时间
 			Player.ClearBuff(ModContent.BuffType<ExampleDodgeBuff>());
-			exampleDodgeCooldown = 180; // 3 second cooldown before the buff 可以 given again.
+			exampleDodgeCooldown = 180; // 3 second cooldown before the 增益 可以 given again.
 
 			if (Main.netMode != NetmodeID.SinglePlayer) {
 				SendExampleDodgeMessage(Player.whoAmI);
@@ -123,7 +123,7 @@ namespace ExampleMod.Common.Players
 			Main.player[player].GetModPlayer<ExampleDamageModificationPlayer>().ExampleDodgeEffects();
 
 			if (Main.netMode == NetmodeID.Server) {
-				// If the server receives this message, it sends it to all other clients to sync the effects.
+				// If the 服务器 receives this 消息, it sends it to all other clients to 同步 the effects.
 				SendExampleDodgeMessage(player);
 			}
 		}
@@ -143,18 +143,18 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override void OnHurt(Player.HurtInfo info) {
-			// On Hurt is used in this example to act upon another player being hurt.
-			// If the player who was hurt was defended, check if the local player should take the remaining damage 对于m
+			// On Hurt is used in this example to act upon another 玩家 being hurt.
+			// If the 玩家 who was hurt was defended, check if the local 玩家 should take the remaining 伤害 对于m
 			Player localPlayer = Main.LocalPlayer;
 			if (defendedByAbsorbTeamDamageEffect && Player != localPlayer && IsClosestShieldWearerInRange(localPlayer, Player.Center, Player.team)) {
-				// The intention of AbsorbTeamDamageAccessory is to transfer 30% of damage taken by teammates 到 wearer.
-				// In ModifiedHurt, we reduce the damage by 30%. The resulting reduced damage is passed to OnHurt, where the player wearing AbsorbTeamDamageAccessory hurts themselves.
-				// Since OnHurt is provided 与 damage already reduced by 30%, we need to reverse the math to determine how much the damage was originally reduced by
-				// Working through the math, the amount of damage that was reduced is equal to: damage * (percent / (1 - percent))
+				// The intention of AbsorbTeamDamageAccessory is to transfer 30% of 伤害 taken by teammates 到 wearer.
+				// In ModifiedHurt, we reduce the 伤害 by 30%. The resulting reduced 伤害 is passed to OnHurt, where the 玩家 wearing AbsorbTeamDamageAccessory hurts themselves.
+				// Since OnHurt is provided 与 伤害 already reduced by 30%, we need to reverse the math to determine how much the 伤害 was originally reduced by
+				// Working through the math, the amount of 伤害 that was reduced is equal to: 伤害 * (percent / (1 - percent))
 				float percent = AbsorbTeamDamageAccessory.DamageAbsorptionMultiplier;
 				int damage = (int)(info.Damage * (percent / (1 - percent)));
 
-				// 不要 bother pinging the defending player and upsetting their immunity frames if the portion of damage we're taking rounds down to 0
+				// 不要 bother pinging the defending 玩家 and upsetting their immunity frames if the portion of 伤害 we're taking rounds down to 0
 				if (damage > 0) {
 					localPlayer.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
 				}
@@ -173,13 +173,13 @@ namespace ExampleMod.Common.Players
 		private static bool IsAbleToAbsorbDamageForTeammate(Player player, int team) {
 			return player.active
 				&& !player.dead
-				&& !player.immune // This check 可以 removed, allowing players to take hits for team-mates in quick succession. Removing it can also help with de-syncs where the player getting hurt thinks there is no-one to tank the damage, but by the time the hit arrives 在 player 与 shield, they take extra damage
+				&& !player.immune // This check 可以 removed, allowing players to take hits for 团队-mates in quick succession. Removing it can also 帮助 with de-syncs where the 玩家 getting hurt thinks there is no-one to tank the 伤害, but by the 时间 the hit arrives 在 玩家 与 shield, they take extra 伤害
 				&& player.GetModPlayer<ExampleDamageModificationPlayer>().hasAbsorbTeamDamageEffect
 				&& player.team == team
 				&& player.statLife > player.statLifeMax2 * AbsorbTeamDamageAccessory.DamageAbsorptionAbilityLifeThreshold;
 		}
 
-		// This code finds the closest player wearing AbsorbTeamDamageAccessory. 
+		// This code finds the closest 玩家 wearing AbsorbTeamDamageAccessory. 
 		private static bool IsClosestShieldWearerInRange(Player player, Vector2 target, int team) {
 			if (!IsAbleToAbsorbDamageForTeammate(player, team)) {
 				return false;
@@ -187,7 +187,7 @@ namespace ExampleMod.Common.Players
 
 			float distance = player.Distance(target);
 			if (distance > AbsorbTeamDamageAccessory.DamageAbsorptionRange) {
-				return false; // player we're out of range, so can't take the hit
+				return false; // 玩家 we're out of 范围, so can't take the hit
 			}
 
 			foreach (var otherPlayer in Main.ActivePlayers) {

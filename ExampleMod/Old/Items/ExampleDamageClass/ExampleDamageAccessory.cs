@@ -24,8 +24,8 @@ namespace ExampleMod.Items.ExampleDamageClass
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
 			ExampleDamagePlayer modPlayer = ExampleDamagePlayer.ModPlayer(player);
-			modPlayer.exampleDamageAdd += 0.2f; // 添加 20% 到 additive bonus
-			modPlayer.exampleDamageMult *= 1.2f; // 添加 20% 到 multiplicative bonus
+			modPlayer.exampleDamageAdd += 0.2f; // 添加 20% 到 additive 奖励
+			modPlayer.exampleDamageMult *= 1.2f; // 添加 20% 到 multiplicative 奖励
 			modPlayer.exampleCrit += 15; // 添加 15% crit
 			modPlayer.exampleKnockback += 5; // 添加 5 knockback
 		}

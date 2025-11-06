@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.NPCs
 {
-	// This example is very advanced. It shows how to use shaders, manual NPC drawing, CheckDead usage, and making a death animation. It also has a fairly basic custom AI that acts fairly similar 到 Dungeon Guardian.
-	// Watch this for a quick demonstration 的 death animation and shader: https://gfycat.com/SlowUnimportantFlea
+	// This example is very advanced. It shows how to use shaders, manual NPC drawing, CheckDead usage, and making a death 动画. It also has a fairly basic custom AI that acts fairly similar 到 Dungeon Guardian.
+	// Watch this for a quick demonstration 的 death 动画 and shader: https://gfycat.com/SlowUnimportantFlea
 	public class DeathAnimation : ModNPC
 	{
 		public override void SetStaticDefaults() {
@@ -29,7 +29,7 @@ namespace ExampleMod.NPCs
 			npc.noTileCollide = true;
 			npc.knockBackResist = 0f;
 
-			// Because our width and height don't match the texture size, we use drawOffsetY to attempt to center the drawing 的 NPC. This lets the hitbox better conform 到 shape of our NPC. Hitboxes don't rotate, so this approach is needed to let the hitbox better represent the position 的 damageable portion 的 NPC.
+			// Because our 宽度 and 高度 don't 匹配 the 纹理 大小, we use drawOffsetY to attempt to 中心 the drawing 的 NPC. This lets the hitbox better conform 到 shape of our NPC. Hitboxes don't 旋转, so this approach is needed to let the hitbox better represent the 位置 的 damageable portion 的 NPC.
 			drawOffsetY = 30;
 		}
 
@@ -39,33 +39,33 @@ namespace ExampleMod.NPCs
 		}
 
 		// PreDraw and PostDraw are responsible for applying 然后 removing the shader. If you omit PostDraw, the following NPC to be drawn will inherit the shader, so don't do that.
-		// 基本ally, we need to End the previous spriteBatch, start it again, apply our shader, draw the NPC, and finally End and Start a fresh spriteBatch.
+		// 基本ally, we need to 结束 the previous spriteBatch, 开始 it again, apply our shader, draw the NPC, and finally 结束 and 开始 a fresh spriteBatch.
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor) {
 			Main.spriteBatch.End();
 			Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
 
-			// 检索 reference to shader
+			// 检索 引用 to shader
 			var deathShader = GameShaders.Misc["ExampleMod:DeathAnimation"];
 
-			// 重置 back to default value.
+			// 重置 back to default 值.
 			deathShader.UseOpacity(1f);
-			// We use npc.ai[3] as a counter since the real death.
+			// We use npc.ai[3] as a 计数器 since the real death.
 			if (npc.ai[3] > 30f) {
-				// Our shader uses the Opacity register to drive the effect. See ExampleEffectDeath.fx to see how the Opacity parameter factors in到 shader math. 
+				// Our shader uses the Opacity register to drive the 效果. See ExampleEffectDeath.fx to see how the Opacity 参数 factors in到 shader math. 
 				deathShader.UseOpacity(1f - (npc.ai[3] - 30f) / 150f);
 			}
-			// 调用 Apply to apply the shader 到 SpriteBatch. Only 1 shader 可以 active at a time.
+			// 调用 Apply to apply the shader 到 SpriteBatch. Only 1 shader 可以 active at a 时间.
 			deathShader.Apply(null);
 			return true;
 		}
 
 		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor) {
-			// As mentioned above, be sure not to forget this step.
+			// As mentioned above, be sure not to forget this 步骤.
 			Main.spriteBatch.End();
 			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
 		}
 
-		// We use CheckDead to delay death providing time for our death drama to happen. The logic here is a bit complicated, if you are curious, please step through AI and CheckDead in Visual Studio to see how CheckDead prevents death the first time but allows it after the death drama has finished.
+		// We use CheckDead to 延迟 death providing 时间 for our death drama to happen. The logic here is a bit complicated, if you are curious, please 步骤 through AI and CheckDead in Visual Studio to see how CheckDead prevents death the first 时间 but allows it after the death drama has finished.
 		public override bool CheckDead() {
 			if (npc.ai[3] == 0f) {
 				npc.ai[3] = 1f;
@@ -80,15 +80,15 @@ namespace ExampleMod.NPCs
 
 		public override void FindFrame(int frameHeight) {
 			if (npc.ai[3] > 0f) {
-				// If our ModNPC is currently dying, show the sad face part 的 sprite.
+				// If our ModNPC is currently dying, show the sad face part 的 精灵.
 				npc.frame.Y = frameHeight;
 			}
 		}
 
-		// This AI was adapted 从 Dungeon Guardian AI 然后 modified. Below are some notes I used while figuring out what each ai value represented. It is a good skill to develop if you wish to make AI.
+		// This AI was adapted 从 Dungeon Guardian AI 然后 modified. Below are some notes I used while figuring out what each ai 值 represented. It is a good skill to develop if you wish to make AI.
 		// npc.ai[0]: Just Spawned
-		//		0: just spawned, needs target
-		//		1: has target
+		//		0: just spawned, needs 目标
+		//		1: has 目标
 		// npc.ai[1]:
 		//		0: No roar yet
 		//		2: played roar, chasing
@@ -96,13 +96,13 @@ namespace ExampleMod.NPCs
 		// npc.ai[2]: Not Used
 		// npc.ai[3]:
 		//		0: death drama not activated
-		//		>0: dying animation timer
+		//		>0: dying 动画 计时器
 		public override void AI() {
 			// death drama
 			if (npc.ai[3] > 0f) {
 				npc.dontTakeDamage = true;
-				npc.ai[3] += 1f; // increase our death timer.
-								//npc.velocity = Vector2.UnitY * npc.velocity.Length();
+				npc.ai[3] += 1f; // increase our death 计时器.
+								//npc.速度 = Vector2.UnitY * npc.速度.长度();
 				npc.velocity.X *= 0.95f; // lose inertia
 				if (npc.velocity.Y < 0.5f) {
 					npc.velocity.Y = npc.velocity.Y + 0.02f;
@@ -114,7 +114,7 @@ namespace ExampleMod.NPCs
 					//		npc.Opacity = 1f - (npc.ai[3] - 120f) / 60f;
 				}
 				if (Main.rand.NextBool(5) && npc.ai[3] < 120f) {
-					// This dust spawn adapted 从 Pillar death code in vanilla.
+					// This dust 生成 adapted 从 Pillar death code in vanilla.
 					for (int dustNumber = 0; dustNumber < 3; dustNumber++) {
 						Dust dust = Main.dust[Dust.NewDust(npc.Left, npc.width, npc.height / 2, 242, 0f, 0f, 0, default(Color), 1f)];
 						dust.position = npc.Center + Vector2.UnitY.RotatedByRandom(4.1887903213500977) * new Vector2(npc.width * 1.5f, npc.height * 1.1f) * 0.8f * (0.8f + Main.rand.NextFloat() * 0.2f);
@@ -127,18 +127,18 @@ namespace ExampleMod.NPCs
 				}
 
 				if (npc.ai[3] % 60f == 1f) {
-					//SoundEngine.PlaySound(4, npc.Center, 22);
-					SoundEngine.PlaySound(SoundID.NPCDeath22, npc.Center); // every second while dying, play a sound
+					//SoundEngine.PlaySound(4, npc.中心, 22);
+					SoundEngine.PlaySound(SoundID.NPCDeath22, npc.Center); // every second while dying, play a 声音
 				}
 				if (npc.ai[3] >= 180f) {
 					npc.life = 0;
 					npc.HitEffect(0, 0);
-					npc.checkDead(); // This will trigger ModNPC.CheckDead the second time, causing the real death.
+					npc.checkDead(); // This will 触发器 ModNPC.CheckDead the second 时间, causing the real death.
 				}
 				return;
 			}
 
-			// Below this point is the normal AI code.
+			// Below this 点 is the normal AI code.
 			if (npc.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient) {
 				npc.TargetClosest(true);
 				npc.ai[0] = 1f;
@@ -156,14 +156,14 @@ namespace ExampleMod.NPCs
 			if (npc.ai[1] == 2f) {
 				npc.rotation += npc.direction * 0.03f;
 				if (Vector2.Distance(Main.player[npc.target].Center, npc.Center) > 250) {
-					//npc.velocity += (Main.player[npc.target].Center - npc.Center) * new Vector2(.3f, .1f);
+					//npc.速度 += (Main.玩家[npc.目标].中心 - npc.中心) * new Vector2(.3f, .1f);
 					npc.velocity += Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * new Vector2(.3f, .1f);
 				}
 
 				npc.velocity *= 0.98f;
 				npc.velocity.X = Utils.Clamp(npc.velocity.X, -4, 4);
 				npc.velocity.Y = Utils.Clamp(npc.velocity.Y, -2, 2);
-				//npc.velocity = Utils.Clamp(npc.velocity.Length(), -3, 3) * npc.velocity.SafeNormalize(Vector2.Zero);
+				//npc.速度 = Utils.Clamp(npc.速度.长度(), -3, 3) * npc.速度.SafeNormalize(Vector2.Zero);
 			}
 			else if (npc.ai[1] == 3f) {
 				npc.velocity.Y = npc.velocity.Y + 0.1f;
@@ -192,13 +192,13 @@ public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 	Main.spriteBatch.End();
 	Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
 
-	// 检索 reference to shader
+	// 检索 引用 to shader
 	var deathShader = GameShaders.Misc["ExampleMod:DeathAnimation"];
 	deathShader.UseOpacity(1f);
-	// npc.ai[3] we use as a counter since the real death.
+	// npc.ai[3] we use as a 计数器 since the real death.
 	if (npc.ai[3] > 30f)
 	{
-		// Our shader uses Opacity to drive the effect.
+		// Our shader uses Opacity to drive the 效果.
 		deathShader.UseOpacity(1f - (npc.ai[3] - 30f) / 150f);
 	}
 	deathShader.Apply(null);
@@ -215,7 +215,7 @@ public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 		Main.spriteBatch.Draw(Main.npcTexture[npc.type], new Vector2(npc.position.X - Main.screenPosition.X + npc.width / 2 - Main.npcTexture[npc.type].Width* npc.scale / 2f + origin.X* npc.scale, npc.position.Y - Main.screenPosition.Y + npc.height - Main.npcTexture[npc.type].Height* npc.scale / Main.npcFrameCount[npc.type] + 4f + extraDrawY + origin.Y* npc.scale + npc.gfxOffY), npc.frame, npc.GetColor(drawColor), npc.rotation, origin, npc.scale, spriteEffects, 0f);
 	}
 
-	// Restart spriteBatch to reset applied shaders
+	// Restart spriteBatch to 重置 applied shaders
 	Main.spriteBatch.End();
 	Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.Transform);
 

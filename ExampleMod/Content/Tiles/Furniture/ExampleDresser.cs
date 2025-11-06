@@ -134,7 +134,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			return true;
 		}
 
-		// 这是 not a hook, this is just a normal method used by the MouseOver and MouseOverFar hooks to avoid repeating code.
+		// 这是 not a hook, this is just a normal 方法 used by the MouseOver and MouseOverFar hooks to avoid repeating code.
 		public void MouseOverNearAndFarSharedLogic(Player player, int i, int j) {
 			Tile tile = Main.tile[i, j];
 			int left = i;
@@ -149,7 +149,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				player.cursorItemIconText = Language.GetTextValue("LegacyDresserType.0");
 			}
 			else {
-				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text 对于 currently selected language
+				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName 文本 对于 currently selected language
 
 				if (Main.chest[chestIndex].name != "") {
 					player.cursorItemIconText = Main.chest[chestIndex].name;

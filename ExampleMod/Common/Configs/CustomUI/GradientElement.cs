@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 
-// 注意：此点以下是自定义配置 UI 元素。
+// 注意：此点以下是自定义配置 用户界面 元素。
 // 请注意，使用自定义配置元素的模组将在接下来的几个 tModLoader 更新中中断，直到它们的设计最终确定。
 // 如果你使用这些，你需要非常积极地更新你的模组，因为它们可能在任何更新中中断。
 
@@ -15,7 +15,7 @@ using Terraria.ModLoader.Config.UI;
 // 实现了可在 ModConfig 类中使用的自定义绘制。
 namespace ExampleMod.Common.Configs.CustomUI
 {
-	// 此自定义配置 UI 元素使用原版配置元素与自定义绘制配对。
+	// 此自定义配置 用户界面 元素使用原版配置元素与自定义绘制配对。
 	class GradientElement : ConfigElement
 	{
 		public override void OnBind() {
@@ -29,7 +29,7 @@ namespace ExampleMod.Common.Configs.CustomUI
 				MemberInfo.SetValue(Item, subitem);
 			}
 
-			// Item 是所有者对象实例，MemberInfo 是 Item 中此字段的信息
+			// 项 是所有者对象实例，MemberInfo 是 项 中此字段的信息
 
 			int height = 30;
 			int order = 0;
@@ -56,8 +56,8 @@ namespace ExampleMod.Common.Configs.CustomUI
 					spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(left + i, hitbox.Y, 1, 30), Color.Lerp(g.start, g.end, percent));
 				}
 
-				//Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(hitbox.X + hitbox.Width / 2, hitbox.Y, hitbox.Width / 4, 30), g.start);
-				//Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(hitbox.X + 3 * hitbox.Width / 4, hitbox.Y, hitbox.Width / 4, 30), g.end);
+				//Main.spriteBatch.Draw(TextureAssets.MagicPixel.值, new Rectangle(hitbox.X + hitbox.宽度 / 2, hitbox.Y, hitbox.宽度 / 4, 30), g.开始);
+				//Main.spriteBatch.Draw(TextureAssets.MagicPixel.值, new Rectangle(hitbox.X + 3 * hitbox.宽度 / 4, hitbox.Y, hitbox.宽度 / 4, 30), g.结束);
 			}
 		}
 	}

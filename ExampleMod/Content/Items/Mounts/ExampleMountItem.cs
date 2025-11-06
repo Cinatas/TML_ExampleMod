@@ -12,15 +12,15 @@ namespace ExampleMod.Content.Items.Mounts
 			Item.height = 30;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing; // how the player's arm moves when using the item
+			Item.useStyle = ItemUseStyleID.Swing; // how the 玩家's arm moves when using the 项
 			Item.value = Item.sellPrice(gold: 3);
 			Item.rare = ItemRarityID.Green;
-			Item.UseSound = SoundID.Item79; // What sound should play when using the item
-			Item.noMelee = true; // this item doesn't do any melee damage
+			Item.UseSound = SoundID.Item79; // What 声音 should play when using the 项
+			Item.noMelee = true; // this 项 doesn't do any melee 伤害
 			Item.mountType = ModContent.MountType<ExampleMount>();
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

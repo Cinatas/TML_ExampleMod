@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Buffs
 {
 	/// <summary>
-	/// This buff is modeled after the "Holy Protection" buff given 到 player by the Hallowed armor set bonus. <br/>
-	/// Use <see cref="Items.Weapons.HitModifiersShowcase"/> in mode 7 to apply this buff.
+	/// This 增益 is modeled after the "Holy Protection" 增益 given 到 玩家 by the Hallowed 护甲 set 奖励. <br/>
+	/// Use <see cref="Items.Weapons.HitModifiersShowcase"/> in 模式 7 to apply this 增益.
 	/// </summary>
 	internal class ExampleDodgeBuff : ModBuff
 	{

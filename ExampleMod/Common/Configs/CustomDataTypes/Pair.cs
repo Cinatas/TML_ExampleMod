@@ -9,7 +9,7 @@ namespace ExampleMod.Common.Configs.CustomDataTypes
 		public bool enabled;
 		public int boost;
 
-		// 如果你重写 ToString，它将显示为附加到 ModConfig UI 中的标签。
+		// 如果你重写 ToString，它将显示为附加到 ModConfig 用户界面 中的标签。
 		public override string ToString() {
 			return $"Boost: {(enabled ? "" + boost : "disabled")}";
 		}

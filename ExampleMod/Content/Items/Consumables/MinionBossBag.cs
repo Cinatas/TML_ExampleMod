@@ -7,15 +7,15 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// 基本 code for a boss treasure bag
+	// 基本 code for a Boss treasure bag
 	public class MinionBossBag : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// This set is one that every boss bag should have.
-			// It will create a glowing effect around the item when dropped 在 world.
-			// It will also let our boss bag drop dev armor..
+			// This set is one that every Boss bag should have.
+			// It will create a glowing 效果 around the 项 when dropped 在 世界.
+			// It will also let our Boss bag 放下 dev 护甲..
 			ItemID.Sets.BossBag[Type] = true;
-			ItemID.Sets.PreHardmodeLikeBossBag[Type] = true; // ..But this set ensures that dev armor will only be dropped on special world seeds, since that's the behavior of pre-hardmode boss bags.
+			ItemID.Sets.PreHardmodeLikeBossBag[Type] = true; // ..But this set ensures that dev 护甲 will only be dropped on special 世界 seeds, since that's the behavior of pre-hardmode Boss bags.
 
 			Item.ResearchUnlockCount = 3;
 		}
@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Items.Consumables
 			Item.width = 24;
 			Item.height = 24;
 			Item.rare = ItemRarityID.Purple;
-			Item.expert = true; // This makes sure that "Expert" displays 在 tooltip and the item name color changes
+			Item.expert = true; // This makes sure that "Expert" displays 在 工具提示 and the 项 名称 颜色 changes
 		}
 
 		public override bool CanRightClick() {

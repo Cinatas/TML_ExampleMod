@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Weapons
 {
 	/// <summary>
-	///     Star Wrath/Starfury style weapon. Spawn projectiles from sky that aim towards mouse.
-	///     See Source code for Star Wrath projectile to see how it passes through tiles.
+	///     Star Wrath/Starfury style 武器. 生成 projectiles from sky that aim towards 鼠标.
+	///     See Source code for Star Wrath 弹幕 to see how it passes through tiles.
 	///     For a detailed sword guide see <see cref="ExampleSword" />
 	/// </summary>
 	public class ExampleShootingSword : ModItem
@@ -32,22 +32,22 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.UseSound = SoundID.Item1;
 
 			Item.shoot = ProjectileID.StarWrath; // ID 的 projectiles the sword will shoot
-			Item.shootSpeed = 8f; // Speed 的 projectiles the sword will shoot
+			Item.shootSpeed = 8f; // 速度 的 projectiles the sword will shoot
 
-			// 如果 you want melee speed to only affect the swing speed 的 weapon and not the shoot speed (not recommended)
-			// Item.attackSpeedOnlyAffectsWeaponAnimation = true;
+			// 如果 you want melee 速度 to only affect the swing 速度 的 武器 and not the shoot 速度 (not recommended)
+			// 项.attackSpeedOnlyAffectsWeaponAnimation = 真;
 
-			// Normally shooting a projectile makes the player face the projectile, but if you don't want that (like the beam sword) use this line of code
-			// Item.ChangePlayerDirectionOnShoot = false;
+			// Normally shooting a 弹幕 makes the 玩家 face the 弹幕, but if you don't want that (like the beam sword) use this line of code
+			// 项.ChangePlayerDirectionOnShoot = 假;
 		}
-		// 此方法 gets called when firing your weapon/sword.
+		// 此方法 gets called when firing your 武器/sword.
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
 			float ceilingLimit = target.Y;
 			if (ceilingLimit > player.Center.Y - 200f) {
 				ceilingLimit = player.Center.Y - 200f;
 			}
-			// Loop these functions 3 times.
+			// 循环 these functions 3 times.
 			for (int i = 0; i < 3; i++) {
 				position = player.Center - new Vector2(Main.rand.NextFloat(401) * player.direction, 600f);
 				position.Y -= 100 * i;
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Items.Weapons
 			return false;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

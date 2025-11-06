@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.BuilderToggles
 {
-	// 示例s in this file don't actually affect anything, they just show typical approaches 对于 BuilderToggle half 的 effect.
+	// 示例s in this 文件 don't actually affect anything, they just show typical approaches 对于 BuilderToggle half 的 效果.
 	// 一个 full example would have code doing something, 例如 drawing an overlay, after checking ModContent.GetInstance<YourBuilderToggle>().Active() and ModContent.GetInstance<YourBuilderToggle>().CurrentState.
 	// That code is highly dependent on what you want to accomplish.
 
@@ -33,7 +33,7 @@ namespace ExampleMod.Content.BuilderToggles
 		}
 
 
-		// Right click to cycle through states backwards.
+		// 右 点击 to 循环 through states backwards.
 		public override void OnRightClick() {
 			CurrentState -= 1;
 			if (CurrentState < 0) {

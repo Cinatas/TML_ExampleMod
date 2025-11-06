@@ -7,15 +7,15 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles.Rockets
 {
-	// This grenade is 对于 grenades shot by the Grenade Launcher, not the grenades that you can throw.
+	// This 手榴弹 is 对于 grenades shot by the 手榴弹 Launcher, not the grenades that you can throw.
 	public class ExampleGrenadeProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			ProjectileID.Sets.PlayerHurtDamageIgnoresDifficultyScaling[Type] = true; // Damage dealt to players does not scale with difficulty in vanilla.
+			ProjectileID.Sets.PlayerHurtDamageIgnoresDifficultyScaling[Type] = true; // 伤害 dealt to players does not 缩放 with difficulty in vanilla.
 
 			// This set handles some things for us already:
-			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in 对于 Worthy worlds.
+			// 设置s the timeLeft to 3 and the 弹幕 方向 when colliding with an NPC or 玩家 in PVP (so the explosive can detonate).
+			// Explosives also bounce off the 顶部 of Shimmer, detonate with no blast 伤害 when touching the 底部 or sides of Shimmer, and 伤害 other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
 		public override void SetDefaults() {
@@ -24,19 +24,19 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			Projectile.friendly = true;
 			Projectile.penetrate = -1; // Infinite penetration so th在 blast can hit all enemies within its radius.
 			Projectile.DamageType = DamageClass.Ranged;
-			// usesLocalNPCImmunity and localNPCHitCooldown of -1 mean the projectile can only hit the same target once.
+			// usesLocalNPCImmunity and localNPCHitCooldown of -1 mean the 弹幕 can only hit the same 目标 once.
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = -1;
 
 			Projectile.timeLeft = 180;
 
 			// Grenades use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here 与 correct AIType.
-			// But, using our own AI allows us to customize things like the dusts th在 grenade creates.
-			// Projectile.aiStyle = ProjAIStyleID.Explosive;
+			// But, using our own AI allows us to customize things like the dusts th在 手榴弹 creates.
+			// 弹幕.aiStyle = ProjAIStyleID.Explosive;
 			// AIType = ProjectileID.GrenadeI;
 		}
 		public override void AI() {
-			// 如果 timeLeft is <= 3, then explode the grenade.
+			// 如果 timeLeft is <= 3, then explode the 手榴弹.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow();
 			}
@@ -60,7 +60,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				Projectile.velocity.Y += 0.2f;
 			}
 
-			// Rotate the grenade 在 direction it is moving.
+			// 旋转 the 手榴弹 在 方向 it is moving.
 			Projectile.rotation += Projectile.velocity.X * 0.1f;
 		}
 
@@ -74,31 +74,31 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				Projectile.velocity.Y = oldVelocity.Y * -0.4f;
 			}
 
-			// 返回 false so the projectile doesn't get killed. If you do want your projectile to explode on contact with tiles, do not return true here.
-			// 如果 you return true, the projectile will die without being resized (no blast radius).
-			// 代替, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
+			// 返回 假 so the 弹幕 doesn't get killed. If you do want your 弹幕 to explode on contact with tiles, do not 返回 真 here.
+			// 如果 you 返回 真, the 弹幕 will die without being resized (no blast radius).
+			// 代替, set `弹幕.timeLeft = 3;` like the Example 火箭 弹幕.
 			return false;
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the grenade explodes on slopes.
-			Projectile.alpha = 255; // 使 the grenade invisible.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the 手榴弹 explodes on slopes.
+			Projectile.alpha = 255; // 使 the 手榴弹 invisible.
 
-			// Resize the hitbox 的 projectile 对于 blast "radius".
-			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
+			// Resize the hitbox 的 弹幕 对于 blast "radius".
+			// 火箭 I: 128, 火箭 III: 200, Mini Nuke 火箭: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
 			// 设置 the knockback 的 blast.
-			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
+			// 火箭 I: 8f, 火箭 III: 10f, Mini Nuke 火箭: 12f
 			Projectile.knockBack = 8f;
 		}
 
 		public override void OnKill(int timeLeft) {
-			// Play an exploding sound.
+			// Play an exploding 声音.
 			SoundEngine.PlaySound(SoundID.Item62, Projectile.position);
 
-			// Resize the projectile again so the explosion dust and gore spawn 从 middle.
-			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
+			// Resize the 弹幕 again so the explosion dust and gore 生成 从 middle.
+			// 火箭 I: 22, 火箭 III: 80, Mini Nuke 火箭: 50
 			Projectile.Resize(22, 22);
 
 			// 生成 a bunch of smoke dusts.
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// 要 make the explosion destroy tiles, take a look 在 commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look 在 commented out code in Example 火箭 弹幕.
 		}
 	}
 }

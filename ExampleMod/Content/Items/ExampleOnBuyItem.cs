@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items
 {
 	/// <summary>
-	/// This item showcases one 的 ways for you to do something when an item is bought from an NPC with a shop.
+	/// This 项 showcases one 的 ways for you to do something when an 项 is bought from an NPC with a 商店.
 	/// </summary>
 	public class ExampleOnBuyItem : ModItem
 	{
@@ -32,12 +32,12 @@ namespace ExampleMod.Content.Items
 				return;
 			}
 
-			// 对于 fun, we'll give the buying player a 50% chance to die whenever they buy this item from an NPC.
+			// 对于 fun, we'll give the buying 玩家 a 50% 概率 to die whenever they 购买 this 项 from an NPC.
 			if (!Main.rand.NextBool()) {
 				return;
 			}
 
-			// 这是 only ever called 在 local client, so the local player will do.
+			// 这是 only ever called 在 local 客户端, so the local 玩家 will do.
 			Player player = Main.LocalPlayer;
 			player.KillMe(PlayerDeathReason.ByCustomReason(DeathMessage.Format(player.name)), 9999, 0);
 		}

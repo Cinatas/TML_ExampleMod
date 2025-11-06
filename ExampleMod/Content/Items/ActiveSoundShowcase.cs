@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items
 {
-	// 此示例 showcases how to loop and adjust sounds as they are playing. These are referred to as active sounds.
-	// weapon will shoot a projectile that 将have differently depending on how far away 从 player the cursor is.
+	// 此示例 showcases how to 循环 and adjust sounds as they are playing. These are referred to as active sounds.
+	// 武器 will shoot a 弹幕 that 将have differently depending on how far away 从 玩家 the cursor is.
 	// This allows the modder to experiment with each behavior independently to see how they work in game.
 	public class ActiveSoundShowcase : ModItem
 	{

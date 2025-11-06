@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Mounts
 			MountID.Sets.Cart[Type] = true;
 			MountID.Sets.FacePlayersVelocity[Type] = true;
 
-			// Helper method setting many common properties for a minecart
+			// Helper 方法 设置 many common properties for a minecart
 			Mount.SetAsMinecart(
 				MountData,
 				ModContent.BuffType<ExampleMinecartBuff>(),
@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Mounts
 			MountData.delegations.MinecartLandingSound = DelegateMethods.Minecart.LandingSoundFart;
 			MountData.delegations.MinecartBumperSound = DelegateMethods.Minecart.BumperSoundFart;
 
-			// 重要 to note is that runSpeed, dashSpeed, and acceleration will get overridden when the player has used the Minecart Upgrade Kit. Keep that in mind when changing the values yourself
+			// 重要 to note is that runSpeed, dashSpeed, and acceleration will get overridden when the 玩家 has used the Minecart 升级 Kit. Keep that in mind when changing the values yourself
 		}
 
 		public override void UpdateEffects(Player player) {

@@ -9,19 +9,19 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 {
 	public class ExampleLightPetProjectile : ModProjectile
 	{
-		private const int DashCooldown = 1000; // How frequently this pet will dash at enemies.
-		private const float DashSpeed = 20f; // The speed with which this pet will dash at enemies.
+		private const int DashCooldown = 1000; // How frequently this 宠物 will dash at enemies.
+		private const float DashSpeed = 20f; // The 速度 with which this 宠物 will dash at enemies.
 		private const int FadeInTicks = 30;
 		private const int FullBrightTicks = 200;
 		private const int FadeOutTicks = 30;
 		private const float Range = 500f;
 
-		private static readonly float RangeHypotenuse = (float)(Math.Sqrt(2.0) * Range); // This comes 从 formula for calculating the diagonal of a square (a * √2)
+		private static readonly float RangeHypotenuse = (float)(Math.Sqrt(2.0) * Range); // This comes 从 公式 for calculating the diagonal of a square (a * √2)
 		private static readonly float RangeHypotenuseSquared = RangeHypotenuse * RangeHypotenuse;
 
-		// following 2 lines of code are ref properties (learn about them in google) 到 Projectile.ai array entries, which will help us make our code way more readable.
-		// We're using the ai array because it's automatically synchronized by the base game in multiplayer, which saves us from writing a lot of boilerplate code.
-		// 注意 th在 Projectile.ai array is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and sync them manually.
+		// following 2 lines of code are ref properties (learn about them in google) 到 弹幕.ai 数组 entries, which will 帮助 us make our code way more readable.
+		// We're using the ai 数组 because it's automatically synchronized by the base game in multiplayer, which saves us from writing a lot of boilerplate code.
+		// 注意 th在 弹幕.ai 数组 is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and 同步 them manually.
 		public ref float AIFadeProgress => ref Projectile.ai[0];
 		public ref float AIDashCharge => ref Projectile.ai[1];
 
@@ -47,13 +47,13 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// 如果 the player is 不再 active (online) - deactivate (remove) the projectile.
+			// 如果 the 玩家 is 不再 active (online) - 停用 (删除) the 弹幕.
 			if (!player.active) {
 				Projectile.active = false;
 				return;
 			}
 
-			// Keep the projectile disappearing as long as the player isn't dead and has the pet buff.
+			// Keep the 弹幕 disappearing as long as the 玩家 isn't dead and has the 宠物 增益.
 			if (!player.dead && player.HasBuff(ModContent.BuffType<ExampleLightPetBuff>())) {
 				Projectile.timeLeft = 2;
 			}
@@ -62,17 +62,17 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 			UpdateFading(player);
 			UpdateExtraMovement();
 
-			// Rotates the pet when it moves horizontally.
+			// Rotates the 宠物 when it moves horizontally.
 			Projectile.rotation += Projectile.velocity.X / 20f;
 
-			// Lights up area around it.
+			// Lights up 区域 around it.
 			if (!Main.dedServ) {
 				Lighting.AddLight(Projectile.Center, Projectile.Opacity * 0.9f, Projectile.Opacity * 0.1f, Projectile.Opacity * 0.3f);
 			}
 		}
 
 		private void UpdateDash(Player player) {
-			// following code makes our pet dash at enemies when certain conditions are met
+			// following code makes our 宠物 dash at enemies when certain conditions are met
 
 			AIDashCharge++;
 
@@ -82,20 +82,20 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 
 			// Enumerate
 			foreach (var npc in Main.ActiveNPCs) {
-				// Ignore this npc if it's friendly.
+				// 忽略 this npc if it's friendly.
 				if (npc.friendly) {
 					continue;
 				}
 
-				// Ignore this npc if it's too far away. Note that we're using squared values for our checks, to avoid square root calculations as a small, but effective optimization.
+				// 忽略 this npc if it's too far away. Note that we're using squared values for our checks, to avoid square root calculations as a small, but effective optimization.
 				if (player.DistanceSQ(npc.Center) >= RangeHypotenuseSquared) {
 					continue;
 				}
 
-				Projectile.velocity += Vector2.Normalize(npc.Center - Projectile.Center) * DashSpeed; // Fling the projectile towards the npc.
+				Projectile.velocity += Vector2.Normalize(npc.Center - Projectile.Center) * DashSpeed; // Fling the 弹幕 towards the npc.
 				AIDashCharge = 0f; // 重置 the charge.
 
-				// Play a sound.
+				// Play a 声音.
 				if (!Main.dedServ) {
 					SoundEngine.PlaySound(SoundID.Item42, Projectile.Center);
 				}
@@ -107,7 +107,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		private void UpdateFading(Player player) {
 			//TODO: Comment and clean this up more.
 
-			var playerCenter = player.Center; // Cache the player's center vector to avoid recalculations.
+			var playerCenter = player.Center; // 缓存 the 玩家's 中心 vector to avoid recalculations.
 
 			AIFadeProgress++;
 
@@ -146,12 +146,12 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		}
 
 		private void UpdateExtraMovement() {
-			// 添加s some friction 到 pet's movement as long as its speed is above 1
+			// 添加s some friction 到 宠物's movement as long as its 速度 is above 1
 			if (Projectile.velocity.Length() > 1f) {
 				Projectile.velocity *= 0.98f;
 			}
 
-			// 如果 the pet stops - launch it into a random direction at a low speed.
+			// 如果 the 宠物 stops - launch it into a 随机 方向 at a low 速度.
 			if (Projectile.velocity == Vector2.Zero) {
 				Projectile.velocity = Vector2.UnitX.RotatedBy(Main.rand.NextFloat() * MathHelper.TwoPi) * 2f;
 			}

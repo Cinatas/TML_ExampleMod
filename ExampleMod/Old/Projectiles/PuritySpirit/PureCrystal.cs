@@ -70,8 +70,8 @@ namespace ExampleMod.Projectiles.PuritySpirit
 		}
 
 		public override void PostDraw(SpriteBatch spriteBatch, Color lightColor) {
-			//Vector2 drawPos = projectile.position - Main.screenPosition;
-			//spriteBatch.Draw(mod.GetTexture("Projectiles/PuritySpirit/PureCrystalShield"), drawPos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			//Vector2 drawPos = 弹幕.位置 - Main.screenPosition;
+			//spriteBatch.Draw(mod.GetTexture("Projectiles/PuritySpirit/PureCrystalShield"), drawPos, 空, 颜色.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			if (!projectile.hostile) {
 				return;
 			}

@@ -8,10 +8,10 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items
 {
 	// 此类 showcases a "pickup". Also known as a power-up.
-	// Pickup refers to items that don't enter then inventory when picked up, but rather have some other effect when obtained.
-	// Pickups usually provide resources 到 player, 例如 hearts providing life or stars providing mana. Nebula armor boosters are another example.
-	// 此示例 drops from enemies when Example Resource is low, similar to how hearts and stars only drop if the player is lacking health or mana.
-	// 参见 ExampleResourcePickupGlobalNPC 对于 item drop code.
+	// Pickup refers to items that don't enter then 库存 when picked up, but rather have some other 效果 when obtained.
+	// Pickups usually provide resources 到 玩家, 例如 hearts providing life or stars providing 魔力. Nebula 护甲 boosters are another example.
+	// 此示例 drops from enemies when Example 资源 is low, similar to how hearts and stars only 放下 if the 玩家 is lacking 生命值 or 魔力.
+	// 参见 ExampleResourcePickupGlobalNPC 对于 项 放下 code.
 	public class ExampleResourcePickup : ModItem {
 		public static readonly int ExampleResourceHealAmount = 50;
 
@@ -30,21 +30,21 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override bool OnPickup(Player player) {
-			// 当 the item is picked up, heal the player's ExampleResource stat and spawn and sync the corresponding CombatText
+			// 当 the 项 is picked up, heal the 玩家's ExampleResource stat and 生成 and 同步 the corresponding CombatText
 			player.GetModPlayer<ExampleResourcePlayer>().HealExampleResource(ExampleResourceHealAmount);
 
-			// 我们 need to play this ourselves since we are returning false meaning it won't play automatically.
+			// 我们 need to play this ourselves since we are returning 假 meaning it won't play automatically.
 			SoundEngine.PlaySound(SoundID.Grab, player.Center);
 
-			// 我们 return false to prevent the item from going in到 players inventory.
+			// 我们 返回 假 to 防止 the 项 from going in到 players 库存.
 			return false;
 		}
 
-		// Since ItemID.Sets.IsAPickup is true, we don't need to override the ItemSpace hook to allow picking up the item when inventory is full
+		// Since ItemID.Sets.IsAPickup is 真, we don't need to override the ItemSpace hook to 允许 picking up the 项 when 库存 is full
 
-		// 我们 can override CanPickup to prevent attempting to pick up this item when at max ExampleResource, but hearts and stars do not do this so we won't either.
+		// 我们 can override CanPickup to 防止 attempting to pick up this 项 when at max ExampleResource, but hearts and stars do not do this so we won't either.
 
-		// GrabRange 可以 used to implement effects similar to Heartreach potion or Celestial Magnet.
+		// GrabRange 可以 used to implement effects similar to Heartreach 药水 or Celestial Magnet.
 		public override void GrabRange(Player player, ref int grabRange) {
 			if (player.GetModPlayer<ExampleResourcePlayer>().exampleResourceMagnet) {
 				grabRange += ExampleResourcePlayer.exampleResourceMagnetGrabRange;

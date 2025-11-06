@@ -18,7 +18,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override Asset<Texture2D> GetTexture() => texture;
 
-		// This 将 where the Cactus Fruit Texture would go, if we had one.
+		// This 将 where the Cactus Fruit 纹理 would go, if we had one.
 		public override Asset<Texture2D> GetFruitTexture() => fruitTexture;
 	}
 }

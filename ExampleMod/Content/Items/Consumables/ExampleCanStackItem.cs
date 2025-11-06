@@ -9,17 +9,17 @@ using Terraria.ModLoader.IO;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This showcases how the CanStack hook 可以 used in conjunction with custom data
-	// 自定义 data is also shown in ExampleDataItem, but here we need to use more hooks
+	// This showcases how the CanStack hook 可以 used in conjunction with custom 数据
+	// 自定义 数据 is also shown in ExampleDataItem, but here we need to use more hooks
 
-	// This item, when crafted, stores the players name, and only lets other players open it. Bags 与 same stored name aren't stackable
+	// This 项, when crafted, stores the players 名称, and only lets other players 打开 it. Bags 与 same stored 名称 aren't stackable
 	public class ExampleCanStackItem : ModItem
 	{
-		// 我们 set this when the item is crafted. In other contexts, this 将 an empty string
+		// 我们 set this when the 项 is crafted. In other contexts, this 将 an empty 字符串
 		public string craftedPlayerName = string.Empty;
 
 		public override void SetDefaults() {
-			Item.maxStack = Item.CommonMaxStack; // This item is stackable, otherwise the example wouldn't work
+			Item.maxStack = Item.CommonMaxStack; // This 项 is stackable, otherwise the example wouldn't work
 			Item.consumable = true;
 			Item.width = 22;
 			Item.height = 26;
@@ -32,19 +32,19 @@ namespace ExampleMod.Content.Items.Consumables
 				return false;
 			}
 
-			// bag can't be opened by the player who crafted it
+			// bag can't be opened by the 玩家 who crafted it
 			return Main.LocalPlayer.name != craftedPlayerName;
 		}
 
 		public override bool CanStack(Item source) {
-			// bag can only be stacked with other bags if the names match
+			// bag can only be stacked with other bags if the names 匹配
 
-			// 我们 have to cast the second item 到 class (This is safe to do as the hook is only called on items 的 same type)
+			// 我们 have to cast the second 项 到 类 (This is safe to do as the hook is only called on items 的 same 类型)
 			var name1 = craftedPlayerName;
 			var name2 = ((ExampleCanStackItem)source.ModItem).craftedPlayerName;
 
-			// let items which have been spawned in and not assigned to a player, to stack with other bags the the current player owns
-			// This lets you craft multiple items in到 mouse-held stack
+			// let items which have been spawned in and not assigned to a 玩家, to 堆叠 with other bags the the current 玩家 owns
+			// This lets you craft multiple items in到 鼠标-held 堆叠
 			if (name1 == string.Empty) {
 				name1 = Main.LocalPlayer.name;
 			}
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override void OnStack(Item source, int numToTransfer) {
-			// Combined with CanStack above, this ensures that empty spawned items can combine with bags made by the current player
+			// Combined with CanStack above, this ensures that empty spawned items can 组合 with bags made by the current 玩家
 			if (craftedPlayerName == string.Empty) {
 				craftedPlayerName = ((ExampleCanStackItem)source.ModItem).craftedPlayerName;
 			}
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Items.Consumables
 			itemLoot.Add(hardmodeCondition);
 		}
 
-		// following 4 hooks are needed if your item data 应该 persistent between saves, and work in multiplayer
+		// following 4 hooks are needed if your 项 数据 应该 persistent between saves, and work in multiplayer
 		public override void SaveData(TagCompound tag) {
 			tag.Add("craftedPlayerName", craftedPlayerName);
 		}
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
 			if (craftedPlayerName != string.Empty) {
-				// 在这里 we make a distinction to disclose th在 bag can't be opened by the player who crafted it
+				// 在这里 we make a distinction to disclose th在 bag can't be opened by the 玩家 who crafted it
 				if (Main.LocalPlayer.name == craftedPlayerName) {
 					tooltips.Add(new TooltipLine(Mod, "CraftedPlayerNameCannotOpen", $"You crafted this bag and cannot open it!"));
 				}
@@ -103,7 +103,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override void OnCreated(ItemCreationContext context) {
 			if (context is RecipeItemCreationContext) {
-				// 如果 the item was crafted, store the crafting players name
+				// 如果 the 项 was crafted, store the 制作 players 名称
 				craftedPlayerName = Main.LocalPlayer.name;
 			}
 		}
