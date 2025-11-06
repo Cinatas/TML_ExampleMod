@@ -13,7 +13,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 		public static void AddHacks() {
 			// 设置 ourselves to be ranged temporarily to benefit from ranged bonuses
 			// This is needed because terraria changes the variables before calling tML's 方法
-			// based on if the 项 was set to be ranged. Ours isn't, but we still want our custom bow
+			// 基于 if the 项 was set to be ranged. Ours isn't, but we still want our custom bow
 			// to benefit from ranged bonuses, despite being an Example 伤害 武器.
 			// This is how to do it.
 			On.Terraria.Player.GetWeaponDamage += PlayerOnGetWeaponDamage;
@@ -38,7 +38,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 			return dmg;
 		}
 
-		// Our ExampleDamageItem abstract 类 handles all code related to our custom 伤害 类
+		// Our ExampleDamageItem abstract 类 handles all code 与...相关 our custom 伤害 类
 		public override void SafeSetDefaults() {
 			item.CloneDefaults(ItemID.WoodenBow);
 			item.Size = new Vector2(18, 46);
@@ -49,7 +49,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 		}
 
 		public override void GetWeaponCrit(Player player, ref int crit) {
-			// It is hard to hook into every place checking 项's crit and fake 项.ranged = 真
+			// 它是 hard to hook into 每个 place checking 项's crit and fake 项.ranged = 真
 			// 代替, we can mimick regular ranged crit assignment
 			crit = Main.LocalPlayer.rangedCrit - Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem].crit + Main.HoverItem.crit;
 			base.GetWeaponCrit(player, ref crit);

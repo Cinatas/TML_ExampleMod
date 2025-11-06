@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Projectiles
 {
-	// The following laser shows a channeled ability, after charging up the laser 将 fired
+	// 以下 laser shows a channeled ability, after charging up the laser 将 fired
 	// Using custom drawing, dust effects, and custom collision checks for tiles
 	public class ExampleLaser : ModProjectile
 	{
@@ -77,14 +77,14 @@ namespace ExampleMod.Projectiles
 
 		// 更改 the way of collision check 的 弹幕
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// We can only collide if we are at max charge, 即 when the laser is actually fired
+			// 我们可以 only collide if we are at max charge, 即 when the laser is actually fired
 			if (!IsAtMaxCharge) return false;
 
 			Player player = Main.player[projectile.owner];
 			Vector2 unit = projectile.velocity;
 			float point = 0f;
 			// 运行 an AABB versus Line check to look for collisions, look up AABB collision first to see how it works
-			// It will look for collisions 在 given line using AABB
+			// 它将 look for collisions 在 given line using AABB
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center,
 				player.Center + unit * Distance, 22, ref point);
 		}
@@ -168,7 +168,7 @@ namespace ExampleMod.Projectiles
 				projectile.Kill();
 			}
 			else {
-				// Do we still have enough 魔力? If not, we kill the 弹幕 because we cannot use it anymore
+				// Do we still have enough 魔力? If not, we kill the 弹幕 because we cannot use it 任何more
 				if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true)) {
 					projectile.Kill();
 				}

@@ -40,7 +40,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 27; // The 数字 of frames our 精灵 has.
 			NPCID.Sets.ExtraFramesCount[Type] = 20; // The 数字 of frames after the walking frames.
-			NPCID.Sets.AttackFrameCount[Type] = 0; // Town Pets don't have any attacking frames.
+			NPCID.Sets.AttackFrameCount[Type] = 0; // Town Pets don't have 任何 attacking frames.
 			NPCID.Sets.DangerDetectRange[Type] = 250; // How far away the NPC will detect danger. Measured in pixels.
 			NPCID.Sets.AttackType[Type] = -1; // Town Pets do not 攻击. The default for this set is -1, so it is safe to 删除 this line if you wish.
 			NPCID.Sets.AttackTime[Type] = -1; // Town Pets do not 攻击. The default for this set is -1, so it is safe to 删除 this line if you wish.
@@ -49,7 +49,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPCID.Sets.ShimmerTownTransform[Type] = false; // Town Pets don't have a Shimmer variant.
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true; // But they are still immune to Shimmer.
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true; // And Confused.
-			NPCID.Sets.ExtraTextureCount[Type] = 0; // Even though we have several variation textures, we don't use this set. The default for this set is 0, so it is safe to 删除 this line if you wish.
+			NPCID.Sets.ExtraTextureCount[Type] = 0; // Even though we have 几个 variation textures, we don't use this set. The default for this set is 0, so it is safe to 删除 this line if you wish.
 			NPCID.Sets.NPCFramingGroup[Type] = 8; // How the party hat is animated to 匹配 the walking 动画. Town Cat = 4, Town Dog = 5, Town Bunny = 6, Town Slimes = 7, No 偏移 = 8
 
 			NPCID.Sets.IsTownPet[Type] = true; // Our NPC is a Town 宠物
@@ -81,7 +81,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPC.DeathSound = SoundID.NPCDeath6;
 			NPC.knockBackResist = 0.5f;
 			NPC.housingCategory = 1; // This means it can share a house with a normal Town NPC.
-			AnimationType = NPCID.TownBunny; // This example matches the animations 的 Town Bunny.
+			AnimationType = NPCID.TownBunny; // 此示例 matches the animations 的 Town Bunny.
 		}
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
@@ -156,7 +156,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 		public override bool PreAI() {
 			// 如果 your Town 宠物 can sit in chairs with NPCID.Sets.CannotSitOnFurniture[类型] = 假
-			// 我们 want to 移动 the Town NPC up visually to 匹配 the 高度 的 chair.
+			// 我们 想要 移动 the Town NPC up visually to 匹配 the 高度 的 chair.
 			// NPC.ai[0] is set to 5f for Town NPC AI when they are sitting in a chair.
 			if (NPC.ai[0] == 5f) {
 				DrawOffsetY = -10; // 记住: Negative Y is up. So, this is moving the NPC up visually by 10 pixels.
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			else {
 				DrawOffsetY = 0; // 重置 it back to 0 when not sitting in a chair.
 			}
-			// Do not try to add or subtract 从 DrawOffsetY. It'll cause the 精灵 to change its 高度 every 帧 which will make it go off 的 屏幕.
+			// Do not 尝试 add or subtract 从 DrawOffsetY. It'll cause the 精灵 to change its 高度 每个 帧 which will make it go off 的 屏幕.
 
 			// 如果 your Town 宠物 doesn't sit in furniture, you can 删除 this entire PreAI() 方法.
 
@@ -189,7 +189,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			position.X += NPC.width * NPC.direction;
 
-			// (Town Pets can't use emotes, so this example here won't actually do anything.)
+			// (Town Pets can't use emotes, so this example here won't actually do 任何thing.)
 			// (For a working example, see ExampleMod/Common/GlobalNPCs/GuideGlobalNPC.cs)
 		}
 		*/
@@ -201,7 +201,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			// NPCFramingGroup is used vertically 偏移 the party hat to 匹配 the animations 的 NPC.
 			// 分组 8 has no inherit offsets 对于 party hat.
 
-			int frame = NPC.frame.Y / NPC.frame.Height; // The current 帧.
+			int frame = NPC.frame.Y / NPC.frame.Height; // 当前的 帧.
 			int xOffset = 8; // 移动 the party hat forward so it is actually 在 Town 宠物's head.
 			// Then 移动 the party hat 左/右 depending 在 帧.
 			// These numbers were achieved by measuring the 精灵 relative 到 "normal" 位置 的 party hat.
@@ -243,7 +243,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			}
 			position.X += xOffset * NPC.spriteDirection;
 
-			// 我们 set NPCID.Sets.HatOffsetY[类型] = -2 so that means every 帧 is moved up 2 additional units.
+			// 我们 set NPCID.Sets.HatOffsetY[类型] = -2 以便 means 每个 帧 is moved up 2 additional units.
 			int yOffset = 0;
 			// Then 移动 the party hat up/down depending 在 帧.
 			// These numbers were achieved by measuring the 精灵 relative 到 "normal" 位置 的 party hat.
@@ -301,7 +301,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 	{
 		private static readonly string filePath = "ExampleMod/Content/NPCs/TownPets/ExampleTownPet"; // The 路径 to our base 纹理.
 
-		// 加载 all of our textures only one 时间 during mod 加载 时间.
+		// 加载 所有 our textures only one 时间 during mod 加载 时间.
 		private readonly Asset<Texture2D> variant0 = ModContent.Request<Texture2D>(filePath);
 		private readonly Asset<Texture2D> variant1 = ModContent.Request<Texture2D>($"{filePath}_1");
 		private readonly Asset<Texture2D> variant2 = ModContent.Request<Texture2D>($"{filePath}_2");

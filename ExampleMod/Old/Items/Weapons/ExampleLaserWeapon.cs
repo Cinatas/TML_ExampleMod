@@ -16,7 +16,7 @@ namespace ExampleMod.Items.Weapons
 			item.damage = 40;
 			item.noMelee = true;
 			item.magic = true;
-			item.channel = true; //通道 so that you can held the 武器 [Important]
+			item.channel = true; //通道 以便 you can held the 武器 [Important]
 			item.mana = 5;
 			item.rare = ItemRarityID.Pink;
 			item.width = 28;

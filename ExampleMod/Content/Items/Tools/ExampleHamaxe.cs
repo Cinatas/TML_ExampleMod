@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override void MeleeEffects(Player player, Rectangle hitbox) {
-			if (Main.rand.NextBool(10)) { // This creates a 1/10 概率 that a dust will 生成 every 帧 that this 项 is in its 'Swinging' 动画.
+			if (Main.rand.NextBool(10)) { // This creates a 1/10 概率 that a dust will 生成 每个 帧 that this 项 is in its 'Swinging' 动画.
 				// 创建s a dust 在 hitbox rectangle, following the rules of our 'if' conditional.
 				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ModContent.DustType<Sparkle>());
 			}

@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Mounts
 			Item.value = Item.sellPrice(gold: 3);
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item79; // What 声音 should play when using the 项
-			Item.noMelee = true; // this 项 doesn't do any melee 伤害
+			Item.noMelee = true; // this 项 doesn't do 任何 melee 伤害
 			Item.mountType = ModContent.MountType<ExampleMount>();
 		}
 

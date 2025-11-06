@@ -7,7 +7,7 @@ using Terraria.ModLoader.Config;
 // access modifiers (to 控制 which fields 应该 visible and have their 值 saved to 文件)
 // and properties (to implement simple "presets" system).
 
-// Because this 配置 was designed to show off various 用户界面 capabilities,
+// Because this 配置 was designed to show off 各种 用户界面 capabilities,
 // this 配置 have no 效果 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
@@ -18,7 +18,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		// Private and Internal fields and properties will 不 shown.
 		// Note that private and internal values will 不 replaced by the 反序列化, so initializer and ctor work.
-		// You should avoid private and internal values in
+		// 你应该 avoid private and internal values in
 #pragma warning disable CS0414
 		private float Private = 144;
 #pragma warning restore CS0414
@@ -61,7 +61,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		// 设置 only properties will crash tModLoader.
 		// public float Setter { set { Public = 值; } }
 
-		// The following shows how you can use properties to implement a preset system
+		// 以下 shows how you can use properties to implement a preset system
 		public bool PresetA {
 			get => Data1 == 23 && Data2 == 63;
 			set {
@@ -93,7 +93,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		// ShouldSerialize{FieldNameHere}. ShouldSerialize 可以 useful, but this example is simply replicating the behavior of JSONIgnore and is just an example 例如s sake. https://www.newtonsoft.com/json/帮助/html/ConditionalProperties.htm
 		public bool ShouldSerializeGetter() {
-			// We can have some logic in here to determine if the 值 is worth saving, but this is just a trivial example
+			// 我们可以 have some logic in here to determine if the 值 is worth saving, but this is just a trivial example
 			return false;
 		}
 	}

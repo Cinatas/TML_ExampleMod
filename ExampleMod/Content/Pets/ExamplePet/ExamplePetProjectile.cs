@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Pets.ExamplePet
 			// * You 开始 with ProjectileID.Sets.SimpleLoop, specifying the 开始 and 结束 frames 以及 as the 速度, and optionally if it should animate 从 结束 after reaching the 结束, effectively "bouncing"
 			// * To 停止 the 动画 if the 玩家 is not highlighted/is standing, as done by most grounded pets, add a .WhenNotSelected(0, 0) (you can customize it just like SimpleLoop)
 			// * To set 偏移 and 方向, use .WithOffset(x, y) and .WithSpriteDirection(-1)
-			// * To further customize the behavior and 动画 的 宠物 (as its AI does not run), you have access to a few vanilla presets in DelegateMethods.CharacterPreview to use via .WithCode(). You can also make your own, showcased in MinionBossPetProjectile
+			// * To further customize the behavior and 动画 的 宠物 (as its AI does not run), you have access to 一些 vanilla presets in DelegateMethods.CharacterPreview to use via .WithCode(). You can also make your own, showcased in MinionBossPetProjectile
 			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
 				.WithOffset(-10, -20f)
 				.WithSpriteDirection(-1)

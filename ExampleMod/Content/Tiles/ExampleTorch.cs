@@ -86,17 +86,17 @@ namespace ExampleMod.Content.Tiles
 			// 获取TorchLuck is called when there is an ExampleTorch nearby the 客户端 玩家
 			// 在 most use-cases you should 返回 1f for a good luck torch, or -1f for a bad luck torch.
 			// 你 can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
-			// 记住 th在 overall torch luck is decided by every torch around the 玩家, so it 可能 wise to have a smaller amount of luck impact.
+			// 记住 th在 overall torch luck is decided by 每个 torch around the 玩家, so it 可能 wise to have a smaller amount of luck impact.
 			// Multiple example torches on 屏幕 will have no additional 效果.
 
-			// Positive and negative luck are accumulated separately 然后 compared to some fixed limits in vanilla to determine overall torch luck.
-			// Positive luck is capped at 1, any 值 higher won't make any difference and negative luck is capped at 2.
+			// Positive and negative luck are accumulated separately 然后 与...相比 some fixed limits in vanilla to determine overall torch luck.
+			// Positive luck is capped at 1, 任何 值 higher won't make 任何 difference and negative luck is capped at 2.
 			// 一个 negative luck of 2 will 取消 out all torch luck bonuses.
 
-			// influence positive torch luck can have overall is 0.1 (if positive luck is any 数字 less than 1) or 0.2 (if positive luck is greater than or equal to 1)
+			// influence positive torch luck can have overall is 0.1 (if positive luck is 任何 数字 less than 1) or 0.2 (if positive luck is greater than or equal to 1)
 
 			bool inExampleUndergroundBiome = player.InModBiome<ExampleUndergroundBiome>();
-			return inExampleUndergroundBiome ? 1f : -0.1f; // 示例Torch gives 最大 positive luck when in example 生物群系, otherwise a small negative luck
+			return inExampleUndergroundBiome ? 1f : -0.1f; // 示例Torch gives 最大 positive luck when in example 生物群系, 否则 a small negative luck
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = Main.rand.Next(1, 3);
@@ -137,7 +137,7 @@ namespace ExampleMod.Content.Tiles
 				return;
 			}
 
-			// following code draws multiple flames on 顶部 our placed torch.
+			// following code draws 多个 flames on 顶部 our placed torch.
 
 			int offsetY = 0;
 
@@ -151,7 +151,7 @@ namespace ExampleMod.Content.Tiles
 				zero = Vector2.Zero;
 			}
 
-			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 删除 any casts.
+			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 删除 任何 casts.
 			Color color = new Color(100, 100, 100, 0);
 			int width = 20;
 			int height = 20;

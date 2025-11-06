@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Tiles
 	}
 
 	// 一个 plant with 3 stages, planted, growing and grown
-	// Sadly, modded plants are unable to be grown by the flower boots
+	// Sadly, modded plants are un能够 be grown by the flower boots
 	//TODO smart cursor support for herbs, see SmartCursorHelper.Step_AlchemySeeds
 	//TODO Staff of Regrowth:
 	//- 玩家.PlaceThing_Tiles_BlockPlacementForAssortedThings: check where 类型 == 84 (grown herb)
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Tiles
 			// 我们 do not use this because our 图格 should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
 			//Main.tileSpelunker[类型] = 真;
 
-			// Do NOT use this, it causes many unintended side effects
+			// Do NOT use this, it causes m任何 unintended side effects
 			//Main.tileAlch[类型] = 真;
 
 			LocalizedText name = CreateMapEntryName();
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Tiles
 			if (tile.HasTile) {
 				int tileType = tile.TileType;
 				if (tileType == Type) {
-					PlantStage stage = GetStage(i, j); // The current 阶段 的 herb
+					PlantStage stage = GetStage(i, j); // 当前的 阶段 的 herb
 
 					// Can only place 在 same herb again if it's grown already
 					return stage == PlantStage.Grown;
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Tiles
 			PlantStage stage = GetStage(i, j);
 
 			if (stage == PlantStage.Planted) {
-				// Do not 放下 anything when just planted
+				// Do not 放下 任何thing when just planted
 				return false;
 			}
 			return true;

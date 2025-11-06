@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Tiles
 {
 	internal class ExampleAnimatedTile : ModTile
 	{
-		// 如果 you want to know more about tiles, please follow this link
+		// 如果 you 想要 know more about tiles, please follow this link
 		// https://github.com/tModLoader/tModLoader/wiki/Basic-图格
 		public override void SetStaticDefaults() {
 			// 如果 a 图格 is a light source
@@ -67,7 +67,7 @@ namespace ExampleMod.Content.Tiles
 			uniqueAnimationFrame %= 6;
 
 			// frameYOffset = modTile.AnimationFrameHeight * Main.tileFrame[类型] will already be set before this hook is called
-			// But we have a horizontal animated 纹理, so we use frameXOffset instead of frameYOffset
+			// But we have a horizontal animated 纹理, so we use frameXOffset 代替 frameYOffset
 			frameXOffset = uniqueAnimationFrame * animationFrameWidth;
 		}
 
@@ -81,7 +81,7 @@ namespace ExampleMod.Content.Tiles
 			return base.KillSound(i, j, fail);
 		}
 
-		// 待办事项： It's better to have an actual 类 for this example, instead of comments
+		// 待办事项： It's better to have an actual 类 for this example, 代替 comments
 
 		// Below is an example completely manually drawing a 图格. It shows some interesting concepts that 可能 useful f或更多 advanced things
 		/*public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
@@ -124,7 +124,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override void AnimateTile(ref int frame, ref int frameCounter) {
 			/*
-			// Spend 9 ticks on each of 6 frames, looping
+			// Spend 9 ticks on 每个 6 frames, looping
 			frameCounter++;
 			if (frameCounter >= 9) {
 				frameCounter = 0;

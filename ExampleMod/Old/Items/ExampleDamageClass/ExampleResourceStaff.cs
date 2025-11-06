@@ -7,8 +7,8 @@ namespace ExampleMod.Items.ExampleDamageClass
 {
 	public class ExampleResourceStaff : ExampleDamageItem
 	{
-		// This is a staff that uses the example 伤害 类 stuff you've set up before, but uses exampleResource instead of 魔力.
-		// This is a very simple way of doing it, and if you plan on multiple items using exampleResource then I'd suggest making a new abstract ModItem 类 that inherits ExampleDamageItem,
+		// 这是一个 staff that uses the example 伤害 类 stuff you've set up before, but uses exampleResource 代替 魔力.
+		// 这是一个 very simple way of doing it, and if you plan on 多个 items using exampleResource then I'd suggest making a new abstract ModItem 类 that inherits ExampleDamageItem,
 		// and doing the CanUseItem and UseItem in a more generalized way there, so you can just define the 资源 usage in SetDefaults and it'll do it automatically for you.
 		public override void SetStaticDefaults() {
 			Item.staff[item.type] = true;

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.NPCs
 {
-	// This example is very advanced. It shows how to use shaders, manual NPC drawing, CheckDead usage, and making a death 动画. It also has a fairly basic custom AI that acts fairly similar 到 Dungeon Guardian.
+	// 此示例 is very advanced. It shows how to use shaders, manual NPC drawing, CheckDead usage, and making a death 动画. It also has a fairly basic custom AI that acts fairly similar 到 Dungeon Guardian.
 	// Watch this for a quick demonstration 的 death 动画 and shader: https://gfycat.com/SlowUnimportantFlea
 	public class DeathAnimation : ModNPC
 	{
@@ -39,7 +39,7 @@ namespace ExampleMod.NPCs
 		}
 
 		// PreDraw and PostDraw are responsible for applying 然后 removing the shader. If you omit PostDraw, the following NPC to be drawn will inherit the shader, so don't do that.
-		// 基本ally, we need to 结束 the previous spriteBatch, 开始 it again, apply our shader, draw the NPC, and finally 结束 and 开始 a fresh spriteBatch.
+		// 基本ally, we 需要 结束 the previous spriteBatch, 开始 it again, apply our shader, draw the NPC, and finally 结束 and 开始 a fresh spriteBatch.
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor) {
 			Main.spriteBatch.End();
 			Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
@@ -49,7 +49,7 @@ namespace ExampleMod.NPCs
 
 			// 重置 back to default 值.
 			deathShader.UseOpacity(1f);
-			// We use npc.ai[3] as a 计数器 since the real death.
+			// 我们使用 npc.ai[3] as a 计数器 since the real death.
 			if (npc.ai[3] > 30f) {
 				// Our shader uses the Opacity register to drive the 效果. See ExampleEffectDeath.fx to see how the Opacity 参数 factors in到 shader math. 
 				deathShader.UseOpacity(1f - (npc.ai[3] - 30f) / 150f);
@@ -65,7 +65,7 @@ namespace ExampleMod.NPCs
 			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
 		}
 
-		// We use CheckDead to 延迟 death providing 时间 for our death drama to happen. The logic here is a bit complicated, if you are curious, please 步骤 through AI and CheckDead in Visual Studio to see how CheckDead prevents death the first 时间 but allows it after the death drama has finished.
+		// 我们使用 CheckDead to 延迟 death providing 时间 for our death drama to happen. The logic here is a bit complicated, if you are curious, please 步骤 through AI and CheckDead in Visual Studio to see how CheckDead prevents death the first 时间 but allows it after the death drama has finished.
 		public override bool CheckDead() {
 			if (npc.ai[3] == 0f) {
 				npc.ai[3] = 1f;
@@ -128,12 +128,12 @@ namespace ExampleMod.NPCs
 
 				if (npc.ai[3] % 60f == 1f) {
 					//SoundEngine.PlaySound(4, npc.中心, 22);
-					SoundEngine.PlaySound(SoundID.NPCDeath22, npc.Center); // every second while dying, play a 声音
+					SoundEngine.PlaySound(SoundID.NPCDeath22, npc.Center); // 每个 second while dying, play a 声音
 				}
 				if (npc.ai[3] >= 180f) {
 					npc.life = 0;
 					npc.HitEffect(0, 0);
-					npc.checkDead(); // This will 触发器 ModNPC.CheckDead the second 时间, causing the real death.
+					npc.checkDead(); // 这将 触发器 ModNPC.CheckDead the second 时间, causing the real death.
 				}
 				return;
 			}

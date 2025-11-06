@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Tiles
 	/// An example for creating a Pylon, identical to how they 函数 in Vanilla. Shows off <seealso cref="ModPylon"/>, an abstract
 	/// 扩展名 of <seealso cref="ModTile"/> that has additional functionality for Pylon specific tiles.
 	/// <br>
-	/// If you are going to make multiple pylons that all act the same (like in Vanilla), it is recommended you make a base 类
+	/// If you are 将要 make 多个 pylons that all act the same (like in Vanilla), it is recommended you make a base 类
 	/// with override functionality in 顺序 to 防止 writing boilerplate. (例如, making a "CrystalTexture" 属性 that you can
 	/// override in 顺序 to streamline that 过程.)
 	/// </br>
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Tiles
 		public Asset<Texture2D> mapIcon;
 
 		public override void Load() {
-			// We'll need these textures for later, it's best practice to 缓存 them on 加载 instead of continually requesting every draw call.
+			// We'll need these textures 以后, it's best practice to 缓存 them on 加载 代替 continually requesting 每个 draw call.
 			crystalTexture = ModContent.Request<Texture2D>(Texture + "_Crystal");
 			crystalHighlightTexture = ModContent.Request<Texture2D>(Texture + "_CrystalHighlight");
 			mapIcon = ModContent.Request<Texture2D>(Texture + "_MapIcon");
@@ -82,24 +82,24 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void MouseOver(int i, int j) {
-			// 显示 a little pylon 图标 在 鼠标 indicating we are hovering over it.
+			// 显示 一点 pylon 图标 在 鼠标 indicating we are hovering over it.
 			Main.LocalPlayer.cursorItemIconEnabled = true;
 			Main.LocalPlayer.cursorItemIconID = ModContent.ItemType<ExamplePylonItem>();
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// 我们 need to clean up after ourselves, since this is still a "unique" 图格, 分离 from Vanilla Pylons, so we must kill the TileEntity.
+			// 我们 需要 clean up after ourselves, since this is still a "unique" 图格, 分离 from Vanilla Pylons, so we must kill the TileEntity.
 			ModContent.GetInstance<SimplePylonTileEntity>().Kill(i, j);
 		}
 
 		public override bool ValidTeleportCheck_NPCCount(TeleportPylonInfo pylonInfo, int defaultNecessaryNPCCount) {
-			// Let's say for fun sake that no NPCs need to be nearby in 顺序 for this pylon to 函数. If you want your pylon to 函数 just like vanilla,
-			// you don't need to override this 方法 at all.
+			// Let's say for fun sake that no NPCs 需要 be nearby in 顺序 for this pylon to 函数. If you want your pylon to 函数 just like vanilla,
+			// you don't 需要 override this 方法 at all.
 			return true;
 		}
 
 		public override bool ValidTeleportCheck_BiomeRequirements(TeleportPylonInfo pylonInfo, SceneMetrics sceneData) {
-			// 右 before this hook is called, the sceneData 参数 exports its information based on wherever the destination pylon is,
+			// 右 before this hook is called, the sceneData 参数 exports its information 基于 wherever the destination pylon is,
 			// and by 扩展名, it will call ALL ModSystems that use the TileCountsAvailable 方法. This means, that if you determine biomes
 			// based off of 图格 计数, when this hook is called, you can simply check the 图格 阈值, like we do here. 在 context of ExampleMod,
 			// something is considered with在 Example Surface/Underground 生物群系 if there are 40 或更多 example blocks at that 位置.
@@ -114,7 +114,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) {
-			// 我们 want to draw the pylon crystal the exact same way vanilla does, so we can use this built in 方法 in ModPylon for default crystal drawing:
+			// 我们 想要 draw the pylon crystal the exact same way vanilla does, so we can use this built in 方法 in ModPylon for default crystal drawing:
 			// 对于 the sake of example, lets make our pylon create a bit more dust by decreasing the dustConsequent 值 down to 1. If you want your dust spawning to be identical to vanilla, set dustConsequent to 4.
 			// 我们 also multiply the pylonShadowColor in 顺序 to decrease its opacity, so it actually looks like a "shadow"
 			DefaultDrawPylonCrystal(spriteBatch, i, j, crystalTexture, crystalHighlightTexture, new Vector2(0f, -12f), Color.White * 0.1f, Color.White, 1, CrystalVerticalFrameCount);

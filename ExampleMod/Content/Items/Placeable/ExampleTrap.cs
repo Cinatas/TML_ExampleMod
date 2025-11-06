@@ -5,9 +5,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Placeable
 {
-	// This 项 shows off using 1 类 to 加载 multiple items. This is an alternate to typical inheritance.
-	// Read the comments in this example carefully, as there are many parts necessary to make this approach work.
-	// real strength of this approach is when you have many items that vary by small changes, like how these 2 陷阱 items vary only by placeStyle.
+	// This 项 shows off using 1 类 to 加载 多个 items. This is an alternate to typical inheritance.
+	// Read the comments in this example carefully, as there are m任何 parts necessary to make this approach work.
+	// real strength of this approach is when you have m任何 items that vary by small changes, like how these 2 陷阱 items vary only by placeStyle.
 	public class ExampleTrap : ModItem
 	{
 		// This inner 类 is an ILoadable, the game will automatically call the 加载 方法 when loading this mod.
@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Items.Placeable
 			}
 		}
 
-		// CloneNewInstances is needed so that fields in this 类 are Cloned onto new instances, 例如 when this 项 is crafted or hovered over.
+		// CloneNewInstances is needed 以便 fields in this 类 are Cloned onto new instances, 例如 when this 项 is crafted or hovered over.
 		// 默认情况下, the game creates new instances rather than clone. By forcing Clone, we can preserve fields per 项 added by the mod while sharing the same 类.
 		protected override bool CloneNewInstances => true;
 		private readonly int placeStyle;
@@ -47,13 +47,13 @@ namespace ExampleMod.Content.Items.Placeable
 			throw new Exception("Invalid style");
 		}
 
-		// Content loaded multiple times must have a non-default constructor. This is where unique 数据 is passed in to be used later. This also prevents the game from attempting to add this ModItem 到 game automatically.
+		// Content loaded 多个 times must have a non-default constructor. This is where unique 数据 is passed in to be used later. This also prevents the game from attempting to add this ModItem 到 game automatically.
 		public ExampleTrap(int placeStyle) {
 			this.placeStyle = placeStyle;
 		}
 
 		public override void SetDefaults() {
-			// With all the setup above, placeStyle 将 either 0 or 1 对于 2 ExampleTrap instances we've loaded.
+			// With all the setup above, placeStyle 将 任一 0 or 1 对于 2 ExampleTrap instances we've loaded.
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ExampleTrap>(), placeStyle);
 
 			Item.width = 12;

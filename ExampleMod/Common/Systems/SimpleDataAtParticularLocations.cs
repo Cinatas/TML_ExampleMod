@@ -14,10 +14,10 @@ using Terraria.ModLoader.IO;
 
 ///			Some other common use cases not exampled:
 /// Getting 数据 for a particular 图格 类型 your mod added, that was placed in 世界:
-///		触发器 fetch of 数据 using adjTiles[类型]. If 数据 is ordered, use appropriate 版本 of PosData.Lookup. If 数据 is not ordered, you will likely need to 查找 via enumeration.
+///		触发器 fetch of 数据 using adjTiles[类型]. If 数据 is ordered, use appropriate 版本 of PosData.Lookup. If 数据 is not ordered, you will likely 需要 查找 via enumeration.
 ///		If it is unordered additions, you may elect to build myMap yourself OR attempt to insert the 数据 so it remains ordered. The latter will lead to better post-事件 性能.
 ///	Clustering 数据 to achieve sparsity:
-///		If your application has multiple repeat static 数据 in a 行, you should elect to use Clustered 模式 在 builder to compress it. Note that you should NOT use PosData.LookupExact in this case.
+///		If your application has 多个 repeat static 数据 in a 行, you should elect to use Clustered 模式 在 builder to compress it. Note that you should NOT use PosData.LookupExact in this case.
 
 
 // 未来待办事项：改进文档。
@@ -58,8 +58,8 @@ namespace ExampleMod.Common.Systems
 			myMap = list.ToArray();
 		}
 
-		// We define what we want to generate as additional 位置 数据, for this example, in PostWorldGen.
-		// We will create a simple 列 of byte 数据 going down the horizontal 中心 的 世界 that we will later use in PreUpdateWorld.
+		// We define what we 想要 generate as additional 位置 数据, for this example, in PostWorldGen.
+		// 我们将 create a simple 列 of byte 数据 going down the horizontal 中心 的 世界 that we will later use in PreUpdateWorld.
 		public override void PostWorldGen() {
 			var builder = new PosData<byte>.OrderedSparseLookupBuilder(compressEqualValues: false);
 
@@ -68,7 +68,7 @@ namespace ExampleMod.Common.Systems
 			for (int y = 0; y < Main.maxTilesY; y++) {
 				builder.Add(
 					xCenter, y, // The locations
-					(byte)(y % 255) // The 数据 we want to store 在 位置
+					(byte)(y % 255) // The 数据 we 想要 store 在 位置
 				);
 			}
 
@@ -85,7 +85,7 @@ namespace ExampleMod.Common.Systems
 			}
 		}
 
-		// We use the 列 at 世界 中心 to paint nearby tiles based 在 玩家's proximity 到 nearest entry 在 地图.
+		// 我们使用 the 列 at 世界 中心 to paint nearby tiles based 在 玩家's proximity 到 nearest entry 在 地图.
 		// In this case, the nearest entry should correspond 到 玩家's depth.
 		public void UpdateFromNearestInMap(Player player) {
 			// 获取 玩家 位置 in 图格 coordinates

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This 项 showcases some advanced capabilities of healing potions. It heals a dynamic amount and adjusts its 工具提示 accordingly.
+	// This 项 showcases some advanced capabilities of healing potions. It heals a dynamic amount and adjusts its 工具提示 相应地.
 	// 一个 typical healing 药水 can get rid 的 ModifyTooltips and GetHealLife methods and just assign 项.healLife.
 	// 一个 魔力 药水 is exactly the same, except 项.healMana is used instead. (Also GetHealMana 将 used for dynamic 魔力 recovery values)
 	public class ExampleHealingPotion : ModItem

@@ -16,7 +16,7 @@ namespace ExampleMod.Common.Players
 		// Nearby 箱子 finding
 		public override void PostUpdateMiscEffects() {
 			if (Main.netMode == NetmodeID.Server) {
-				// We don't need to do any 配方 stuff 在 服务器
+				// We don't 需要 do 任何 配方 stuff 在 服务器
 				return;
 			}
 
@@ -53,8 +53,8 @@ namespace ExampleMod.Common.Players
 				int chestIndex = Chest.FindChest(pos.X, pos.Y);
 				if (chestIndex > -1 && !Chest.IsLocked(pos.X, pos.Y)) {
 					Chest chest = Main.chest[chestIndex];
-					// Unopened chests in multiplayer have not initialized the items inside 的m, so we check for safety if the first 项 is not 空 (assuming that all others won't be 空 either)
-					// Ideally, we would want to write custom netcode to 请求 箱子 contents, see how a mod like 配方 Browser handles this: https://github.com/JavidPack/RecipeBrowser/blob/1.4/RecipeBrowser.cs, look for usage of packets
+					// Unopened chests in multiplayer have not initialized the items inside 的m, so we check for safety if the first 项 is not 空 (assuming that all others won't be 空 任一)
+					// Ideally, we would 想要 write custom netcode to 请求 箱子 contents, see how a mod like 配方 Browser handles this: https://github.com/JavidPack/RecipeBrowser/blob/1.4/RecipeBrowser.cs, look for usage of packets
 					if (chest.item[0] != null) {
 						_chestIndexNearby = chestIndex;
 						break;
@@ -63,7 +63,7 @@ namespace ExampleMod.Common.Players
 			}
 
 			// If the nearby 箱子 changed, call FindRecipes to 刷新 available recipes
-			// Since FindRecipes takes a long 时间 to run, we should try to avoid calling it frequently
+			// Since FindRecipes takes a long 时间 to run, we should 尝试 avoid calling it frequently
 			if (oldChestIndex != _chestIndexNearby) {
 				Recipe.FindRecipes();
 			}
@@ -75,7 +75,7 @@ namespace ExampleMod.Common.Players
 			if (_chestIndexNearby is -1 || Player.chest == _chestIndexNearby || Main.chest[_chestIndexNearby] is not Chest chest)
 				return base.AddMaterialsForCrafting(out itemConsumedCallback);
 
-			// onUsedForCrafting invokes when the 项 is consumed, 可以 used to send packets in multiplayer 模式
+			// onUsedForCrafting invokes when the 项 is consumed, 可以 用于 send packets in multiplayer 模式
 			// If there is no need for this, just set it to 空
 			itemConsumedCallback = (_, index) => {
 				if (Main.netMode is NetmodeID.MultiplayerClient) {
@@ -85,7 +85,7 @@ namespace ExampleMod.Common.Players
 			};
 
 			// 返回s the items 在 箱子 to use them for 制作
-			// The returned 列表 should 不 a cloned 版本 of items otherwise items will 不 consumed
+			// The returned 列表 should 不 a cloned 版本 of items 否则 items will 不 consumed
 			return chest.item;
 		}
 	}

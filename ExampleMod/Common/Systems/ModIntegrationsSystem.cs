@@ -19,13 +19,13 @@ namespace ExampleMod.Common.Systems
 	public class ModIntegrationsSystem : ModSystem
 	{
 		public override void PostSetupContent() {
-			// Most often, mods require you to use the PostSetupContent hook to call their methods. This guarantees various 数据 is initialized and set up properly
+			// Most often, mods require you to use the PostSetupContent hook to call their methods. This guarantees 各种 数据 is initialized and set up properly
 
 			// Boss Checklist shows comprehensive information about bosses in its own 用户界面. We can customize it:
 			// https://forums.terraria.org/索引.php?threads/.50668/
 			DoBossChecklistIntegration();
 
-			// We can integrate with other mods here by following the same pattern. Some modders may prefer a ModSystem for each mod they integrate with, or some other design.
+			// 我们可以 integrate with other mods here by following the same pattern. Some modders may prefer a ModSystem for each mod they integrate with, or some other design.
 		}
 
 		private void DoBossChecklistIntegration() {
@@ -37,13 +37,13 @@ namespace ExampleMod.Common.Systems
 				return;
 			}
 
-			// For some messages, mods might not have them at release, so we need to 验证 when the last 迭代 的 方法 variation was first added 到 mod, in this case 1.6
-			// Usually mods either provide that informati在mselves in some way, or it's found 在 GitHub through commit history/blame
+			// For some messages, mods might not have them at release, so we 需要 验证 when the last 迭代 的 方法 variation was first added 到 mod, in this case 1.6
+			// Usually mods 任一 provide that informati在mselves in some way, or it's found 在 GitHub through commit history/blame
 			if (bossChecklistMod.Version < new Version(1, 6)) {
 				return;
 			}
 
-			// The "LogBoss" 方法 requires many parameters, defined separately below:
+			// The "LogBoss" 方法 requires m任何 parameters, defined separately below:
 
 			// Your entry 键 可以 used by other developers to submit mod-collaborative 数据 to your entry. It should 不 changed once defined
 			string internalName = "MinionBoss";
@@ -57,7 +57,7 @@ namespace ExampleMod.Common.Systems
 			// The NPC 类型 的 Boss
 			int bossType = ModContent.NPCType<Content.NPCs.MinionBoss.MinionBossBody>();
 
-			// The 项 used to summ在 Boss with (if available)
+			// The 项 用于 summ在 Boss with (如果可用)
 			int spawnItem = ModContent.ItemType<Content.Items.Consumables.MinionBossSummonItem>();
 
 			// "collectibles" like relic, 奖杯, mask, 宠物
@@ -70,7 +70,7 @@ namespace ExampleMod.Common.Systems
 			};
 
 			// 默认情况下, it draws the first 帧 的 Boss, omit if you don't need custom drawing
-			// But we want to draw the bestiary 纹理 instead, so we create the code for that to draw centered 在 intended 位置
+			// But we 想要 draw the bestiary 纹理 instead, so we create the code for that to draw centered 在 intended 位置
 			var customPortrait = (SpriteBatch sb, Rectangle rect, Color color) => {
 				Texture2D texture = ModContent.Request<Texture2D>("ExampleMod/Assets/Textures/Bestiary/MinionBoss_Preview").Value;
 				Vector2 centered = new Vector2(rect.X + (rect.Width / 2) - (texture.Width / 2), rect.Y + (rect.Height / 2) - (texture.Height / 2));

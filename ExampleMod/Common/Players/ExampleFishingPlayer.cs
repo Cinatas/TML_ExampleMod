@@ -34,10 +34,10 @@ namespace ExampleMod.Common.Players
 			if (attempt.playerFishingConditions.PoleItemType == ModContent.ItemType<ExampleFishingRod>() && inWater && inExampleSurfaceBiome) {
 				// In this example, we will fish up an Example Person 从 water in Example Surface 生物群系,
 				// as long as there isn't one 在 世界 yet
-				// NOTE: if a fishing rod has multiple bobbers, then each one can 生成 the NPC
+				// NOTE: if a fishing rod has 多个 bobbers, then each one can 生成 the NPC
 				int npc = ModContent.NPCType<ExamplePerson>();
 				if (!NPC.AnyNPCs(npc)) {
-					// 使 sure itemDrop = -1 when summoning an NPC, as otherwise terraria will only 生成 the 项
+					// 使 sure itemDrop = -1 when summoning an NPC, as 否则 terraria will only 生成 the 项
 					npcSpawn = npc;
 					itemDrop = -1;
 
@@ -55,12 +55,12 @@ namespace ExampleMod.Common.Players
 			}
 
 			if (inWater && inExampleSurfaceBiome && attempt.crate) {
-				// If the game rolls a crate, we want to give ours 到 玩家 if he is in Example Surface 生物群系
+				// If the game rolls a crate, we 想要 give ours 到 玩家 if he is in Example Surface 生物群系
 
-				// We don't want to 替换 golden/titanium crates (the highest tier crates), as they take highest priority in crate catches
+				// We don't 想要 替换 golden/titanium crates (the highest tier crates), as they take highest priority in crate catches
 				// Their 放下 conditions are "veryrare" or "legendary"
 				// (After that come 生物群系 crates ("rare"), then iron/mythril ("uncommon"), then wood/pearl (none 的 previous))
-				// Let's 替换 生物群系 crates 50% 的 时间 (玩家 可能 in multiple (modded) biomes, we should respect that)
+				// Let's 替换 生物群系 crates 50% 的 时间 (玩家 可能 in 多个 (modded) biomes, we should respect that)
 				if (!attempt.veryrare && !attempt.legendary && attempt.rare && Main.rand.NextBool()) {
 					itemDrop = ModContent.ItemType<Content.Items.Consumables.ExampleFishingCrate>();
 					return; // This is important so your code after this that rolls items will not run
@@ -68,10 +68,10 @@ namespace ExampleMod.Common.Players
 			}
 
 			// Here we will set the catch conditions for our ExampleQuestFish
-			int exampleQuestFish = ModContent.ItemType<Content.Items.ExampleQuestFish>(); // We'll store the 类型 as a 变量, since we'll be referencing it several times
+			int exampleQuestFish = ModContent.ItemType<Content.Items.ExampleQuestFish>(); // We'll store the 类型 as a 变量, since we'll be referencing it 几个 times
 			// 首先 we check if today's 任务 matches our 任务 fish
 			if (attempt.questFish == exampleQuestFish) {
-				// Our ExampleQuestFish states that it can only be caught whilst upside-down, so we'll have to check the gravity
+				// Our ExampleQuestFish states that it can only be caught whilst upside-down, so we'll 必须 check the gravity
 				// Normal gravity is positive, whilst reversed gravity is negative
 				// 最后, most vanilla 任务 fish only appear on an uncommon roll, so we'll do the same
 				if (Player.gravDir < 0f && attempt.uncommon) {
@@ -95,7 +95,7 @@ namespace ExampleMod.Common.Players
 			return null; // Let the default logic run
 		}
 
-		// If fishing with ladybug, we will receive multiple "fish" per bobber. Does not apply to 任务 fish
+		// If fishing with ladybug, we will receive 多个 "fish" per bobber. Does not apply to 任务 fish
 		public override void ModifyCaughtFish(Item fish) {
 			// In this example, we make sure that we got a Ladybug as bait, and later on use that to determine what we catch
 			if (Player.GetFishingConditions().BaitItemType == ItemID.LadyBug && fish.rare != ItemRarityID.Quest) {

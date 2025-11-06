@@ -6,14 +6,14 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// 这是 the 项 used to summon a Boss, in this case the modded 仆从 Boss from Example Mod. For vanilla Boss summons, see comments in SetStaticDefaults
+	// 这是 the 项 用于 summon a Boss, in this case the modded 仆从 Boss from Example Mod. For vanilla Boss summons, see comments in SetStaticDefaults
 	public class MinionBossSummonItem : ModItem
 	{
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 3;
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps 排序 库存 know that this is a Boss summoning 项.
 
-			// 如果 this 将 for a vanilla Boss that has no summon 项, you would have to include this line here:
+			// 如果 this 将 for a vanilla Boss that has no summon 项, you would 必须 include this line here:
 			// NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = 真;
 
 			// 否则 the UseItem code to 生成 it will not work in multiplayer
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool CanUseItem(Player player) {
-			// 如果 you decide to use the below UseItem code, you have to include !NPC.AnyNPCs(ID), as this is also the check the 服务器 does when receiving MessageID.SpawnBoss.
+			// 如果 you decide to use the below UseItem code, you 必须 include !NPC.AnyNPCs(ID), as this is also the check the 服务器 does when receiving MessageID.SpawnBoss.
 			// 如果 you want more constraints 对于 summon 项, 组合 them as 布尔值 expressions:
 			//    返回 !Main.IsItDay() && !NPC.AnyNPCs(ModContent.NPCType<MinionBossBody>()); would mean "not daytime and no MinionBossBody currently alive"
 			return !NPC.AnyNPCs(ModContent.NPCType<MinionBossBody>());
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Items.Consumables
 				}
 				else {
 					// 如果 the 玩家 is in multiplayer, 请求 a 生成
-					// This will only work if NPCID.Sets.MPAllowedEnemies[类型] is 真, which we set in MinionBossBody
+					// 这将 only work if NPCID.Sets.MPAllowedEnemies[类型] is 真, which we set in MinionBossBody
 					NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
 				}
 			}

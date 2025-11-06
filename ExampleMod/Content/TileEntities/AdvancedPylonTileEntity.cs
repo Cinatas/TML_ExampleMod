@@ -27,9 +27,9 @@ namespace ExampleMod.Content.TileEntities
 		}
 
 		public override void NetSend(BinaryWriter writer) {
-			// 我们 want to make sure that our 数据 is synced properly across clients and 服务器.
+			// 我们 想要 make sure that our 数据 is synced properly across clients and 服务器.
 			// NetSend is called whenever a TileEntitySharing 消息 is sent, so the game will 处理 this automatically for us,
-			// granted that we send a 消息 when we need to.
+			// granted that we send a 消息 when we 需要.
 			writer.Write(isActive);
 		}
 

@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.DamageType = DamageClass.Melee;
 			Item.shoot = ModContent.ProjectileType<ExampleSwingingEnergySwordProjectile>();
 			Item.noMelee = true; // This is set the sword itself doesn't deal 伤害 (only the 弹幕 does).
-			Item.shootsEveryUse = true; // This makes sure 玩家.ItemAnimationJustStarted is set when swinging.
+			Item.shootsEveryUse = true; // 这使 sure 玩家.ItemAnimationJustStarted is set when swinging.
 			Item.autoReuse = true;
 		}
 
@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleBar>(12)
-				.AddTile(TileID.MythrilAnvil) // This includes both the Mythril and Orichalcum Anvils.
+				.AddTile(TileID.MythrilAnvil) // This includes 两者 the Mythril and Orichalcum Anvils.
 				.Register();
 		}
 	}

@@ -91,7 +91,7 @@ namespace ExampleMod
 			downedPuritySpirit = flags[1];
 		}
 
-		// We use this hook to add 3 steps to 世界 生成 at various points. 
+		// 我们使用 this hook to add 3 steps to 世界 生成 at 各种 points. 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight) {
 			// This second 步骤 that we add will go after "Traps" and follows the same pattern.
 			int TrapsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Traps"));
@@ -104,7 +104,7 @@ namespace ExampleMod
 
 			if (LivingTreesIndex != -1) {
 				tasks.Insert(LivingTreesIndex + 1, new PassLegacy("Post Terrain", (progress, configuration) => {
-					// We can inline the 世界 生成 code like this, but if exceptions happen within this code 
+					// 我们可以 inline the 世界 生成 code like this, but if exceptions happen within this code 
 					// the 错误 messages are difficult to read, so making methods is better. This is called an anonymous 方法.
 					progress.Message = "What is it Lassie, did Timmy fall down a well?";
 
@@ -117,7 +117,7 @@ namespace ExampleMod
 			progress.Message = "Example Mod Traps";
 
 			// Computers are fast, so WorldGen code sometimes looks stupid.
-			// Here, we want to place a bunch of tiles 在 世界, so we just repeat until success. It might be useful to keep 跟踪 of attempts and check for attempts > maxattempts so you don't have infinite loops. 
+			// Here, we 想要 place a bunch of tiles 在 世界, so we just repeat until success. It might be useful to keep 跟踪 of attempts and check for attempts > maxattempts so you don't have infinite loops. 
 			// The WorldGen.PlaceTile 方法 returns a bool, but it is useless. Instead, we check the 图格 after calling it and if it is the desired 图格, we know we succeeded.
 			for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++) {
 				bool placeSuccessful = false;
@@ -297,7 +297,7 @@ namespace ExampleMod
 			return true;
 		}
 
-		// We can use PostWorldGen for 世界 生成 tasks that don't need to happen between vanilla 世界 生成 steps.
+		// 我们可以 use PostWorldGen for 世界 生成 tasks that don't 需要 happen between vanilla 世界 生成 steps.
 		public override void PostWorldGen() {
 			// This is simply generating a line of Chlorophyte halfway down the 世界.
 			//for (int i = 0; i < Main.maxTilesX; i++)
@@ -320,15 +320,15 @@ namespace ExampleMod
 		}
 
 		public override void TileCountsAvailable(int[] tileCounts) {
-			// Here we 计数 various tiles towards ZoneExample
+			// Here we 计数 各种 tiles towards ZoneExample
 			exampleTiles = tileCounts[TileType<ExampleBlock>()] + tileCounts[TileType<ExampleSand>()];
 
-			// We can also add to vanilla 生物群系 counts if appropriate. Here we are adding 到 ZoneDesert since we have a sand 图格 在 mod.
+			// 我们可以 also add to vanilla 生物群系 counts if appropriate. Here we are adding 到 ZoneDesert since we have a sand 图格 在 mod.
 			SceneMetrics.DesertTileThreshold += tileCounts[TileType<ExampleSand>()];
 		}
 
 		public override void PreUpdate() {
-			// 更新 everything about spawning the traveling 商人 从 methods we have 在 Traveling 商人's 类
+			// 更新 每个thing about spawning the traveling 商人 从 methods we have 在 Traveling 商人's 类
 			ExampleTravelingMerchant.UpdateTravelingMerchant();
 		}
 
@@ -356,7 +356,7 @@ namespace ExampleMod
 				VolcanoCountdown--;
 				if (VolcanoCountdown == 0) {
 					VolcanoTremorTime = DefaultVolcanoTremorTime;
-					// Since PostUpdate only happens in single and 服务器, we need to inform the clients to shake if this is a 服务器
+					// Since PostUpdate only happens in single and 服务器, we 需要 inform the clients to shake if this is a 服务器
 					if (Main.netMode == NetmodeID.Server) {
 						var netMessage = mod.GetPacket();
 						netMessage.Write((byte)ExampleModMessageType.SetTremorTime);
@@ -415,7 +415,7 @@ namespace ExampleMod
 					var scoreBoard = item.Value as TEScoreBoard;
 					Rectangle scoreBoardArea = scoreBoard.GetPlayArea();
 
-					// We only want to draw while the 区域 is visible. 
+					// We only 想要 draw while the 区域 is visible. 
 
 					if (screenRect.Intersects(scoreBoardArea)) {
 						scoreBoardArea.Offset((int)-Main.screenPosition.X, (int)-Main.screenPosition.Y);

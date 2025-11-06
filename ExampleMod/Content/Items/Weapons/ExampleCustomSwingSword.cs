@@ -8,11 +8,11 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Weapons
 {
 	// 示例CustomSwingSword is an example of a sword with a custom swing using a held 弹幕
-	// 这是 great if you want to make melee weapons with complex swing behavior
+	// 这是 great if you 想要 make melee weapons with complex swing behavior
 	public class ExampleCustomSwingSword : ModItem
 	{
 		public int attackType = 0; // keeps 跟踪 of which 攻击 it is
-		public int comboExpireTimer = 0; // we want the 攻击 pattern to 重置 if the 武器 is not used for certain period of 时间
+		public int comboExpireTimer = 0; // 我们想要 the 攻击 pattern to 重置 if the 武器 is not used for certain period of 时间
 
 		public override void SetDefaults() {
 			// 常见 Properties
@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Items.Weapons
 			// 注意 that useTime and useAnimation for this 项 don't actually affect the behavior because the held 弹幕 handles that. 
 			// Each 攻击 takes a different amount of 时间 to execute
 			// Conforming 到 项 useTime and useAnimation makes it much harder to design
-			// It does, however, affect the 项 工具提示, so don't leave it out.
+			// 它, however, affect the 项 工具提示, so don't leave it out.
 			Item.useTime = 40;
 			Item.useAnimation = 40;
 			Item.useStyle = ItemUseStyleID.Shoot;
@@ -35,8 +35,8 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.autoReuse = true; // This determines whether the 武器 has autoswing
 			Item.damage = 62; // The 伤害 of your sword, this is dynamically adjusted 在 弹幕 code.
 			Item.DamageType = DamageClass.Melee; // Deals melee 伤害
-			Item.noMelee = true;  // This makes sure the 项 does not deal 伤害 从 swinging 动画
-			Item.noUseGraphic = true; // This makes sure the 项 does not get shown when the 玩家 swings his hand
+			Item.noMelee = true;  // 这使 sure the 项 does not deal 伤害 从 swinging 动画
+			Item.noUseGraphic = true; // 这使 sure the 项 does not get shown when the 玩家 swings his hand
 
 			// 弹幕 Properties
 			Item.shoot = ModContent.ProjectileType<ExampleCustomSwingProjectile>(); // The sword as a 弹幕

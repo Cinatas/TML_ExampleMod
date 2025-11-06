@@ -81,7 +81,7 @@ namespace ExampleMod.Content.Items.Accessories
 			}
 		}
 
-		// 这是 the perfect place to apply dash movement, it's after the vanilla movement code, and before the 玩家's 位置 is modified based on 速度.
+		// 这是 the perfect place to apply dash movement, it's after the vanilla movement code, and before the 玩家's 位置 is modified 基于 速度.
 		// 如果 they double tapped this 帧, they'll 移动 fast this 帧
 		public override void PreUpdateMovement() {
 			// if the 玩家 can use our dash, has double tapped in a 方向, and our dash isn't currently on cooldown
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Items.Accessories
 					case DashUp when Player.velocity.Y > -DashVelocity:
 					case DashDown when Player.velocity.Y < DashVelocity: {
 							// Y-速度 is set here
-							// 如果 the 方向 requested was DashUp, then we adjust the 速度 to make the dash appear "faster" due to gravity being immediately in 效果
+							// 如果 the 方向 requested was DashUp, then we adjust the 速度 to make the dash appear "faster" 由于 gravity being immediately in 效果
 							// This adjustment is roughly 1.3x the intended dash 速度
 							float dashDirection = DashDir == DashDown ? 1 : -1.3f;
 							newVelocity.Y = dashDirection * DashVelocity;
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Items.Accessories
 				DashTimer = DashDuration;
 				Player.velocity = newVelocity;
 
-				// 在这里 you'd be able to set an 效果 that happens when the dash first activates
+				// 在这里 you'd be 能够 set an 效果 that happens when the dash first activates
 				// Some examples include:  the larger smoke 效果 从 Master Ninja Gear and Tabi
 			}
 
@@ -123,7 +123,7 @@ namespace ExampleMod.Content.Items.Accessories
 				DashDelay--;
 
 			if (DashTimer > 0) { // dash is active
-				// 这是 where we set the afterimage 效果.  You can 替换 these two lines with whatever you want to happen during the dash
+				// 这是 where we set the afterimage 效果.  You can 替换 these two lines with whatever you 想要 happen during the dash
 				// Some examples include:  spawning dust where the 玩家 is, adding buffs, making the 玩家 immune, etc.
 				// 在这里 we take advantage of "玩家.eocDash" and "玩家.armorEffectDrawShadowEOCShield" to get the Shield of Cthulhu's afterimage 效果
 				Player.eocDash = DashTimer;

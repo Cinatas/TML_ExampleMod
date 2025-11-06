@@ -17,7 +17,7 @@ namespace ExampleMod.Content.Items.Armor
 		public override void SetDefaults() {
 			Item.width = 18; // 宽度 的 项
 			Item.height = 18; // 高度 的 项
-			Item.value = Item.sellPrice(gold: 1); // How many coins the 项 is worth
+			Item.value = Item.sellPrice(gold: 1); // How m任何 coins the 项 is worth
 			Item.rare = ItemRarityID.Green; // The 稀有度 的 项
 			Item.defense = 5; // The amount of 防御 the 项 will give when equipped
 		}

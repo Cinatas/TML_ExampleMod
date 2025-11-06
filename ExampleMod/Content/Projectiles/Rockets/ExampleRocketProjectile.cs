@@ -58,7 +58,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						fireDust.velocity *= 0.2f;
 						fireDust.noGravity = true;
 
-						// 使用d by the liquid rockets which leave trails 的ir liquid instead of fire.
+						// 使用d by the liquid rockets which leave trails 的ir liquid 代替 fire.
 						// if (fireDust.类型 == Dust.dustWater()) {
 						//	fireDust.缩放 *= 0.65f;
 						//	fireDust.速度 += 弹幕.速度 * 0.1f;
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				}
 
 				// Increase the 速度 的 火箭 if it is moving less than 1 方块 per second.
-				// It is not recommended to increase the 数字 past 16f to increase the 速度 的 火箭. It could 开始 no clipping through blocks.
+				// 它是 not recommended to increase the 数字 past 16f to increase the 速度 的 火箭. It could 开始 no clipping through blocks.
 				// 代替, increase extraUpdates in SetDefaults() to make the 火箭 移动 faster.
 				if (Math.Abs(Projectile.velocity.X) <= 15f && Math.Abs(Projectile.velocity.Y) <= 15f) {
 					Projectile.velocity *= 1.1f;

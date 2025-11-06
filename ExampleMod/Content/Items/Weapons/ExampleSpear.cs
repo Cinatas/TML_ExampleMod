@@ -9,8 +9,8 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleSpear : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use 动画-tied 声音 playback, so that we're able to make it be tied to use 时间 instead 在 UseItem() hook.
-			ItemID.Sets.Spears[Item.type] = true; // This allows the game to recognize our new 项 as a spear.
+			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use 动画-tied 声音 playback, 以便 we're 能够 make it be tied to use 时间 instead 在 UseItem() hook.
+			ItemID.Sets.Spears[Item.type] = true; // 这允许 the game to recognize our new 项 as a spear.
 		}
 
 		public override void SetDefaults() {
@@ -28,9 +28,9 @@ namespace ExampleMod.Content.Items.Weapons
 			// 武器 Properties
 			Item.damage = 25;
 			Item.knockBack = 6.5f;
-			Item.noUseGraphic = true; // When 真, the 项's 精灵 will 不 visible while the 项 is in use. This is 真 because the spear 弹幕 is what's shown so we do not want to show the spear 精灵 以及.
+			Item.noUseGraphic = true; // When 真, the 项's 精灵 will 不 visible while the 项 is in use. This is 真 because the spear 弹幕 is what's shown so we do not 想要 show the spear 精灵 以及.
 			Item.DamageType = DamageClass.Melee;
-			Item.noMelee = true; // 允许s the 项's 动画 to do 伤害. This is important because the spear is actually a 弹幕 instead of an 项. This prevents the melee hitbox of this 项.
+			Item.noMelee = true; // 允许s the 项's 动画 to do 伤害. This is important because the spear is actually a 弹幕 代替 an 项. This prevents the melee hitbox of this 项.
 
 			// 弹幕 Properties
 			Item.shootSpeed = 3.7f; // The 速度 的 弹幕 measured in pixels per 帧.
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool? UseItem(Player player) {
-			// Because we're skipping 声音 playback on use 动画 开始, we have to play it ourselves whenever the 项 is actually used.
+			// Because we're skipping 声音 playback on use 动画 开始, we 必须 play it ourselves whenever the 项 is actually used.
 			if (!Main.dedServ && Item.UseSound.HasValue) {
 				SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
 			}

@@ -64,7 +64,7 @@ namespace ExampleMod.Items
 			return !player.GetModPlayer<ExamplePlayer>().infinity;
 		}
 
-		// Replenishes the 魔力 的 玩家 has soon as they need some, by exactly the amount they need, and stops the 魔力 flower from triggering.
+		// Replenishes the 魔力 的 玩家 h一旦 they need some, by exactly the amount they need, and stops the 魔力 flower from triggering.
 		public override void OnMissingMana(Item item, Player player, int neededMana) {
 			if (player.GetModPlayer<ExamplePlayer>().infinity) {
 				player.statMana += neededMana;

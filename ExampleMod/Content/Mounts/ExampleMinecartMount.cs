@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Mounts
 			MountID.Sets.Cart[Type] = true;
 			MountID.Sets.FacePlayersVelocity[Type] = true;
 
-			// Helper 方法 设置 many common properties for a minecart
+			// Helper 方法 设置 m任何 common properties for a minecart
 			Mount.SetAsMinecart(
 				MountData,
 				ModContent.BuffType<ExampleMinecartBuff>(),

@@ -21,7 +21,7 @@ namespace ExampleMod.Items
 
 			// To 防止 putting an 项 在 tinkerer 槽位, 返回 假 when pre is -3
 			if (pre == -3 && item.type == ItemID.LaserRifle) {
-				// This will make the Laser Rifle 不 reforgeable at all (useful if you want your 项 to preserve its custom 名称 颜色)
+				// 这将 make the Laser Rifle 不 reforgeable at all (useful if you want your 项 to preserve its custom 名称 颜色)
 				return false;
 			}
 
@@ -45,15 +45,15 @@ namespace ExampleMod.Items
 			// Nearly all weapons and accessories have a 75% 概率 of receiving a 随机 修饰符 up在 项's creation
 			// (naturally generated in a 箱子, crafted, purchased from an NPC, looted from a grab bag (excluding presents), or dropped by a slain 敌人).
 
-			// To change the 概率 of a 前缀 being rolled or not, 返回 真 or 假 depending on some 条件
+			// To change the 概率 of a 前缀 being rolled or not, 返回 真 or 假 取决于 some 条件
 			if (pre == -1 && item.type == ItemID.Shackle) {
 				// Force rolling
 				// 返回 真;
 
 				// When using 随机 numbers, make sure to use the rand 对象 passed into this 方法, and not Main.rand.
-				// This will make it consistent with worldgen should this 项 be spawned in a 箱子
+				// 这将 make it consistent with worldgen should this 项 be spawned in a 箱子
 				if (rand.NextFloat() < 0.5f) {
-					// Increase the 概率 of not receiving any 前缀 on 生成 by 50%
+					// Increase the 概率 of not receiving 任何 前缀 on 生成 by 50%
 					return false;
 				}
 				// Keep in mind that if the code arrives here, there is still a 25% 概率 that it won't get a 修饰符.

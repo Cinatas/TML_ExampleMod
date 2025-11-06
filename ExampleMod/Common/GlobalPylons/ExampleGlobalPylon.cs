@@ -42,9 +42,9 @@ namespace ExampleMod.Common.GlobalPylons
 				return true;
 			}
 			// What if we wanted to change something for a modded 类型? If you have strong 引用 到 modded pylon in question,
-			// you can simply use the 类:
+			// 你可以 simply use the 类:
 			if (pylonType == ModContent.PylonType<ExamplePylonTileAdvanced>()) {
-				return null; //We don't want to *actually* change any functionality 的 advanced pylon, so we 返回 空.
+				return null; //We don't 想要 *actually* change 任何 functionality 的 advanced pylon, so we 返回 空.
 				//Obviously, if you wanted to actually change something about the modded pylon, you'd 返回 something other than 空 here.
 			}
 
@@ -52,12 +52,12 @@ namespace ExampleMod.Common.GlobalPylons
 		}
 
 		public override bool? ValidTeleportCheck_PreBiomeRequirements(TeleportPylonInfo pylonInfo, SceneMetrics sceneData) {
-			// What if we want to do something based 在 类型 of pylon in particular? Well all we have to do is check the pylon's 类型!
+			// What if we 想要 do something based 在 类型 of pylon in particular? Well all we 必须 do is check the pylon's 类型!
 			// Let's 允许 the Jungle Pylon to work 在 snow, 例如:
 			if (pylonInfo.TypeOfPylon == TeleportPylonType.Jungle) {
-				// If another mod tries to mess with Jungle pylons, we don't want to 返回 a forceful 假, if applicable. If Jungle AND snow
-				// are both 假, we will 返回 空 to 允许 for other mods to try and change things based 在 Jungle pylon.
-				// Granted that no other mod does anything to change the 空 值, the teleportation 过程 will fail, under the above circumstances.
+				// If another mod tries to mess with Jungle pylons, we don't 想要 返回 a forceful 假, 如果适用. If Jungle AND snow
+				// are 两者 假, we will 返回 空 to 允许 for other mods to try and change things based 在 Jungle pylon.
+				// Granted that no other mod does 任何thing to change the 空 值, the teleportation 过程 will fail, under the above circumstances.
 				return sceneData.EnoughTilesForJungle || sceneData.EnoughTilesForSnow ? true : null;
 			}
 
@@ -67,7 +67,7 @@ namespace ExampleMod.Common.GlobalPylons
 		public override void PostValidTeleportCheck(TeleportPylonInfo destinationPylonInfo, TeleportPylonInfo nearbyPylonInfo, ref bool destinationPylonValid, ref bool validNearbyPylonFound, ref string errorKey) {
 			// Since there is not an explicit hook for it (since it's too specific), what if we wanted to nullify vanilla's check to 防止 accessing the Lihzahrd Temple early with a pylon?
 
-			// We just need to check that to see if the Lihzahrd Temple check is the actual 错误 we got (not some other 错误) which in this case is done by checking the 错误 键.
+			// We just 需要 check that to see if the Lihzahrd Temple check is the actual 错误 we got (not some other 错误) which in this case is done by checking the 错误 键.
 			// We also do another quick check to make sure that we are still near a valid pylon.
 			// If 即 真, we can set destinationPylonValid to 真, overriding the teleportation prevention.
 			if (validNearbyPylonFound && errorKey == "Net.CannotTeleportToPylonBecauseAccessingLihzahrdTempleEarly") {

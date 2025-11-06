@@ -49,7 +49,7 @@ namespace ExampleMod.UI
 		}
 
 		// 更新 is called on a UIState while it is the active 状态 的 UserInterface.
-		// We use 更新 to 处理 automatically closing our 用户界面 when the 玩家 is 不再 talking to our Example Person NPC.
+		// 我们使用 更新 to 处理 automatically closing our 用户界面 when the 玩家 is 不再 talking to our Example Person NPC.
 		public override void Update(GameTime gameTime) {
 			// 不要 删除 this or the UIElements attached to this UIState will cease to 函数.
 			base.Update(gameTime);
@@ -66,10 +66,10 @@ namespace ExampleMod.UI
 		protected override void DrawSelf(SpriteBatch spriteBatch) {
 			base.DrawSelf(spriteBatch);
 
-			// This will hide the 制作 菜单 similar 到 reforge 菜单. For best results this 用户界面 is placed before "Vanilla: 库存" to 防止 1 帧 的 craft 菜单 showing.
+			// 这将 hide the 制作 菜单 similar 到 reforge 菜单. For best results this 用户界面 is placed before "Vanilla: 库存" to 防止 1 帧 的 craft 菜单 showing.
 			Main.HidePlayerCraftingMenu = true;
 
-			// Here we have a lot of code. This code is mainly adapted 从 vanilla code 对于 reforge 选项.
+			// Here we have 很多 code. This code is mainly adapted 从 vanilla code 对于 reforge 选项.
 			// This code draws "Place an 项 here" when no 项 is 在 槽位 and draws the reforge 成本 and a reforge 按钮 when an 项 is 在 槽位.
 			// This code could possibly be better as different UIElements that are added and removed, but that's not the main 点 of this example.
 			// If you are making a 用户界面, add UIElements in OnInitialize that act on your ItemSlot or other inputs rather than the non-UIElement approach you see below.
@@ -133,7 +133,7 @@ namespace ExampleMod.UI
 
 			reforgeItem = reforgeItem.CloneWithModdedDataFrom(_vanillaItemSlot.Item);
 
-			// This is the main 效果 of this 槽位. Giving the Awesome 前缀 90% 的 时间 and the ReallyAwesome 前缀 the other 10% 的 时间. All for a constant 1 金币. Useless, but informative.
+			// 这是 main 效果 of this 槽位. Giving the Awesome 前缀 90% 的 时间 and the ReallyAwesome 前缀 the other 10% 的 时间. All for a constant 1 金币. Useless, but informative.
 			if (Main.rand.NextBool(10)) {
 				reforgeItem.Prefix(GetInstance<ExampleMod>().PrefixType("ReallyAwesome"));
 			}

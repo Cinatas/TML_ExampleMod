@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 namespace ExampleMod.Projectiles.Minions
 {
 	// PurityWisp uses inheritace as an example of how it 可以 useful in modding.
-	// HoverShooter and 仆从 classes 帮助 abstract common functionality away, 即 useful for mods that have many similar behaviors.
+	// HoverShooter and 仆从 classes 帮助 abstract common functionality away, 即 useful for mods that have m任何 similar behaviors.
 	// Inheritance is an advanced topic and 可能 confusing to new programmers, see ExampleSimpleMinion.cs for a simpler 仆从 example.
 	public class PurityWisp : HoverShooter
 	{

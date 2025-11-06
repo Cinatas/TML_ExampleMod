@@ -11,7 +11,7 @@ namespace ExampleMod.Content
 {
 	public class ExampleModMenu : ModMenu
 	{
-		private const string menuAssetPath = "ExampleMod/Assets/Textures/Menu"; // 创建s a constant 变量 representing the 纹理 路径, so we don't have to write it out multiple times
+		private const string menuAssetPath = "ExampleMod/Assets/Textures/Menu"; // 创建s a constant 变量 representing the 纹理 路径, so we don't 必须 write it out 多个 times
 
 		private Asset<Texture2D> sunTexture;
 		private Asset<Texture2D> moonTexture;

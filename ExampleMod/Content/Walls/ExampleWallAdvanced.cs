@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Walls
 		}
 
 		public override void AnimateWall(ref byte frame, ref byte frameCounter) {
-			// 循环 through 2 frames of 动画, changing every 5 game frames
+			// 循环 through 2 frames of 动画, changing 每个 5 game frames
 			if (++frameCounter >= 5) {
 				frameCounter = 0;
 				frame = (byte)(++frame % 2);

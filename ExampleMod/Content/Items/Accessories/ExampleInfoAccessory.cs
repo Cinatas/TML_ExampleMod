@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void SetDefaults() {
-			// 我们 don't need to add anything particularly unique 对于 stats of this 项; so let's just clone the Radar.
+			// 我们 don't 需要 add 任何thing particularly unique 对于 stats of this 项; so let's just clone the Radar.
 			Item.CloneDefaults(ItemID.Radar);
 		}
 

@@ -10,7 +10,7 @@ namespace ExampleMod.Common.Systems
 	{
 		/// <summary>
 		/// The bool for whether the Example Town 宠物 License has been used.
-		/// <para/> (Doesn't really have anything to do with buying, but it is named as such to 匹配 the vanilla NPC.boughtCat, NPC.boughtDog, and NPC.boughtBunny)
+		/// <para/> (Doesn't really have 任何thing to do with buying, but it is named as such to 匹配 the vanilla NPC.boughtCat, NPC.boughtDog, and NPC.boughtBunny)
 		/// </summary>
 		public static bool boughtExampleTownPet = false;
 

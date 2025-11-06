@@ -9,13 +9,13 @@ namespace ExampleMod.Content.Projectiles
 	// code 的 项 that spawns it is located 在 底部.
 
 	// NPC.immune determines if an npc 可以 hit by a 项 or 弹幕 owned by a particular 玩家 (it is an 数组, each 槽位 corresponds to different players (whoAmI))
-	// NPC.immune is decremented towards 0 every 更新
+	// NPC.immune is decremented towards 0 每个 更新
 	// Melee items set NPC.immune to 玩家.itemAnimation, which starts at 项.useAnimation and decrements towards 0
 	// Projectiles, however, provide mechanisms for custom immunity.
 	// 1. penetrate == 1: A 弹幕 with penetrate set to 1 in SetDefaults will hit regardless 的 NPC's immunity counters (The penetrate from SetDefaults is remembered in maxPenetrate)
 	//	Ex: Wooden 箭.
 	// 2. No code and penetrate > 1, penetrate == -1, or (appliesImmunityTimeOnSingleHits && penetrate == 1): npc.immune[所有者] 将 set to 10.
-	// 	The NPC 将 hit if not immune and 将come immune to all 伤害 for 10 ticks
+	// 	The NPC 将 hit 如果不是 immune and 将come immune to all 伤害 for 10 ticks
 	// 	Ex: Unholy 箭
 	// 3. Override OnHitNPC: If not immune, when it hits it manually set an immune other than 10
 	// 	Ex: Arkhalis: Sets it to 5
@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Projectiles
 	// 	Use this if you want other projectiles a 概率 to 伤害, but don't want the same 弹幕 类型 to hit an npc rapidly.
 	// 	Ex: Ghastly Glaive is the only one who uses this.
 	// 5. 弹幕.usesLocalNPCImmunity and 弹幕.localNPCHitCooldown: Specifies the 弹幕 manages it's own immunity timers for each npc
-	// 	Use this if you want the multiple projectiles 的 same 类型 to have a 概率 to 攻击 rapidly, but don't want a single 弹幕 to hit rapidly. A -1 值 prevents the same 弹幕 from ever hitting the npc again.
+	// 	Use this if you want the 多个 projectiles 的 same 类型 to have a 概率 to 攻击 rapidly, but don't want a single 弹幕 to hit rapidly. A -1 值 prevents the same 弹幕 from ever hitting the npc again.
 	// 	Ex: Lightning Aura sentries use this. (localNPCHitCooldown = 3, but other code controls how fast the 弹幕 itself hits)
 	// 		Overlapping Auras all have a 概率 to hit after each other even though they share the same ID.
 	// Try the above by uncommenting out the respective bits of code 在 弹幕 below.
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.width = 12; // The 宽度 of 弹幕 hitbox
 			Projectile.height = 12; // The 高度 of 弹幕 hitbox
 
-			// 复制 the ai of any given 弹幕 using AIType, since we want
+			// 复制 the ai of 任何 given 弹幕 using AIType, since we want
 			// the 弹幕 to essentially behave the same way as the vanilla 弹幕.
 			AIType = ProjectileID.Bullet;
 

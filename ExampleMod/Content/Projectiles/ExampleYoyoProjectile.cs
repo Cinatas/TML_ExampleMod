@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleYoyoProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			// following sets are only applicable to yoyo that use aiStyle 99.
+			// following sets are only applic能够 yoyo that use aiStyle 99.
 
 			// YoyosLifeTimeMultiplier is how long in seconds the yoyo will stay out before automatically returning 到 玩家. 
 			// Vanilla values 范围 from 3f (Wood) to 16f (Chik), and defaults to -1f. Leaving as -1 will make the 时间 infinite.
@@ -31,8 +31,8 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.friendly = true; // 玩家 shot 弹幕. Does 伤害 to enemies but not to friendly Town NPCs.
 			Projectile.DamageType = DamageClass.MeleeNoSpeed; // Benefits from melee bonuses. MeleeNoSpeed means the 项 will not 缩放 with 攻击 速度.
-			Projectile.penetrate = -1; // All vanilla yoyos have infinite penetration. The 数字 of enemies the yoyo can hit before being pulled back in is based on YoyosLifeTimeMultiplier.
-			// 弹幕.缩放 = 1f; // The 缩放 的 弹幕. Most yoyos are 1f, but a few are larger. The Kraken is the largest at 1.2f
+			Projectile.penetrate = -1; // All vanilla yoyos have infinite penetration. The 数字 of enemies the yoyo can hit before being pulled back in is 基于 YoyosLifeTimeMultiplier.
+			// 弹幕.缩放 = 1f; // The 缩放 的 弹幕. Most yoyos are 1f, but 一些 are larger. The Kraken is the largest at 1.2f
 		}
 
 		// notes for aiStyle 99: 

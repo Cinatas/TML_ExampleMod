@@ -12,10 +12,10 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleCloneWeapon : ModItem
 	{
 		public override void SetDefaults() {
-			// 此方法 右 here is the backbone of what we're doing here; by using this 方法, we 复制 all of
-			// the meowmere's SetDefault stats (例如 项.melee and 项.shoot) on to our 项, so we don't have to
-			// go in到 source and 复制 the stats ourselves. It saves a lot of 时间 and looks much cleaner; if you're
-			// going to 复制 the stats of an 项, use CloneDefaults().
+			// 此方法 右 here is the backbone of what we're doing here; by using this 方法, we 复制 所有
+			// the meowmere's SetDefault stats (例如 项.melee and 项.shoot) on to our 项, so we don't 必须
+			// go in到 source and 复制 the stats ourselves. It saves 很多 时间 and looks much cleaner; if you're
+			// 将要 复制 the stats of an 项, use CloneDefaults().
 
 			Item.CloneDefaults(ItemID.Meowmere);
 

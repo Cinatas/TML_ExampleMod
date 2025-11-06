@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// 示例Bobber is a fishing bobber spawned by ExampleFishingRod.
-	// Aside 从 code in SetDefaults, everything else 应该 ignored when making a typical bobber 弹幕.
+	// Aside 从 code in SetDefaults, 每个thing else 应该 ignored when making a typical bobber 弹幕.
 	// Typically the fishing rod 项 decides the line 颜色, but this bobber decides its own line 颜色 and serves as an example of using OnSpawn, SendExtraAI, and ReceiveExtraAI to 同步 a 随机 值 determined when spawned.
 	public class ExampleBobber : ModProjectile
 	{

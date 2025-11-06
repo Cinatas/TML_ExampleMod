@@ -9,7 +9,7 @@ namespace ExampleMod
 	public static class RecipeHelper
 	{
 		// Here we've made a helper 方法 we can use to shorten our code.
-		// This is because many of our recipes follow the same terminology: one 成分, one result, one possible required 图格
+		// This is because m任何 of our recipes follow the same terminology: one 成分, one result, one possible required 图格
 		private static void MakeSimpleRecipe(Mod mod, string modIngredient, short resultType, int ingredientStack = 1, int resultStack = 1, string reqTile = null)
 		// notice the last parameters 可以 made optional by specifying a default 值
 		{
@@ -35,7 +35,7 @@ namespace ExampleMod
 			MakeSimpleRecipe(mod, "ExampleItem", ItemID.GoldChest); // notice how we can omit the 堆叠, it has a default 值
 			MakeSimpleRecipe(mod, "ExampleItem", ItemID.MusicBoxDungeon);
 
-			// 代替 of having to call AddBossRecipes from our main 文件, we can also call it here, as a result the 方法 can remain private
+			// 代替 of having to call AddBossRecipes from our main 文件, we can also call it here, 因此 the 方法 can remain private
 			AddBossRecipes(mod);
 		}
 
@@ -52,7 +52,7 @@ namespace ExampleMod
 			MakeSimpleRecipe(mod, "BossItem", ItemID.MechanicalWorm, 10, 20, "ExampleWorkbench");
 			MakeSimpleRecipe(mod, "BossItem", ItemID.MechanicalSkull, 10, 20, "ExampleWorkbench");
 			// Here we see another way to retrieve 类型 ids from classnames, using generic calls
-			// This way you don't have to specify the mod, because you simply pass the ID 的 项 as you would for vanilla items.
+			// This way you don't 必须 specify the mod, because you simply pass the ID 的 项 as you would for vanilla items.
 			// 使用ful for those who program in an IDE who wish to avoid spelling mistakes.
 			// What's also neat is th在 references to classes 可以 automatically included in refactors, 字符串 literals cannot. (unless you have ReSharper)
 			ModRecipe recipe = new ModRecipe(mod);
@@ -69,18 +69,18 @@ namespace ExampleMod
 			RecipeFinder finder = new RecipeFinder(); // 使 a new RecipeFinder
 			finder.AddIngredient(ItemID.Chain); // 添加 Chain (with a 堆叠 of 1) 到 finder
 
-			foreach (Recipe recipe in finder.SearchRecipes()) // 循环 every 配方 found by the finder
+			foreach (Recipe recipe in finder.SearchRecipes()) // 循环 每个 配方 found by the finder
 			{
 				RecipeEditor editor = new RecipeEditor(recipe); // 对于 currently looped 配方, make a new RecipeEditor
 				editor.DeleteIngredient(ItemID.Chain); // 删除 the Chain 成分.
 			}
 
-			// The following is a more precise example, finding an exact 配方 and deleting it if possible.
+			// 以下 is a more precise example, finding an exact 配方 and deleting it 如果可能.
 			finder = new RecipeFinder(); // 使 a new RecipeFinder
 			finder.AddRecipeGroup("IronBar"); // 添加 a new 配方 分组, in this case the vanilla one for iron or lead bars.
-			finder.AddTile(TileID.Anvils); // 添加 a required 图格, any anvil
+			finder.AddTile(TileID.Anvils); // 添加 a required 图格, 任何 anvil
 			finder.SetResult(ItemID.Chain, 10); // 设置 the result to be 10 chains
-			Recipe exactRecipe = finder.FindExactRecipe(); // try to 查找 the exact 配方 matching our criteria
+			Recipe exactRecipe = finder.FindExactRecipe(); // 尝试 查找 the exact 配方 matching our criteria
 
 			bool isRecipeFound = exactRecipe != null; // if our 配方 is not 空, it means we found the exact 配方
 			if (isRecipeFound) // since our 配方 is found, we can 继续

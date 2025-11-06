@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleSwingingEnergySwordProjectile : ModProjectile
 	{
 
-		// 我们 could use a vanilla 纹理 if we want instead of supplying our own.
+		// 我们 could use a vanilla 纹理 if we want 代替 supplying our own.
 		// public override 字符串 纹理 => "Terraria/Images/Projectile_" + ProjectileID.Excalibur;
 
 		public override void SetStaticDefaults() {
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.ignoreWater = true;
 			Projectile.ownerHitCheck = true; // A line of sight check so the 弹幕 can't deal 伤害 through tiles.
 			Projectile.ownerHitCheckDistance = 300f; // The 最大 范围 th在 弹幕 can hit a 目标. 300 pixels is 18.75 tiles.
-			Projectile.usesOwnerMeleeHitCD = true; // This will make the 弹幕 apply the standard 数字 of immunity frames as normal melee attacks.
+			Projectile.usesOwnerMeleeHitCD = true; // 这将 make the 弹幕 apply the standard 数字 of immunity frames as normal melee attacks.
 			// Normally, projectiles die after they have hit all the enemies they can.
 			// But, for this case, we want the 弹幕 to 继续 to live so we can have the visuals 的 swing.
 			Projectile.stopsDealingDamageAfterPenetrateHits = true;
@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Projectiles
 			// 弹幕.aiStyle = ProjAIStyleID.NightsEdge; // 190
 			// AIType = ProjectileID.Excalibur;
 
-			// 如果 you are using custom AI, add this line. Otherwise, visuals from Flasks will 生成 在 中心 的 弹幕 instead of around the arc.
+			// 如果 you are using custom AI, add this line. Otherwise, visuals from Flasks will 生成 在 中心 的 弹幕 代替 around the arc.
 			// 我们 will 生成 the visuals around the arc ourselves 在 AI().
 			Projectile.noEnchantmentVisuals = true;
 		}
@@ -66,7 +66,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.localAI[0]++; // Current 时间 th在 弹幕 has been alive.
 			Player player = Main.player[Projectile.owner];
-			float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1]; // The current 时间 over the max 时间.
+			float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1]; // 当前的 时间 over the max 时间.
 			float direction = Projectile.ai[0];
 			float velocityRotation = Projectile.velocity.ToRotation();
 			float adjustedRotation = MathHelper.Pi * direction * percentageOfLife + velocityRotation + direction * MathHelper.Pi + player.fullRotation;
@@ -124,7 +124,7 @@ namespace ExampleMod.Content.Projectiles
 			// Smaller Pi numbers will 旋转 the collision clockwise.
 			// (弹幕.ai[0] is the 方向)
 			float collisionRotation = MathHelper.Pi * 2f / 25f * Projectile.ai[0];
-			float maximumAngle = MathHelper.PiOver4; // The maximumAngle is used to 限制 the 旋转 to create a dead 区域.
+			float maximumAngle = MathHelper.PiOver4; // The maximumAngle is 用于 限制 the 旋转 to create a dead 区域.
 			float coneRotation = Projectile.rotation + collisionRotation;
 
 			// Uncomment this line for a visual representation 的 cone. The dusts are not perfect, but it gives a general idea.
@@ -136,7 +136,7 @@ namespace ExampleMod.Content.Projectiles
 				return true;
 			}
 
-			// first cone isn't the entire swinging arc, though, so we need to check a second cone 对于 back 的 arc.
+			// first cone isn't the entire swinging arc, though, so we 需要 check a second cone 对于 back 的 arc.
 			float backOfTheSwing = Utils.Remap(Projectile.localAI[0], Projectile.ai[1] * 0.3f, Projectile.ai[1] * 0.5f, 1f, 0f);
 			if (backOfTheSwing > 0f) {
 				float coneRotation2 = coneRotation - MathHelper.PiOver4 * Projectile.ai[0] * backOfTheSwing;
@@ -162,7 +162,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-			// Vanilla has several particles that can easily be used anywhere.
+			// Vanilla has 几个 particles that can easily be used 任何where.
 			// particles 从 Particle Orchestra are predefined by vanilla and most can 不 customized that much.
 			// 使用 auto complete to see the other ParticleOrchestraType types there are.
 			// 在这里 we are spawning the Excalibur particle randomly inside 的 目标's hitbox.
@@ -194,7 +194,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 origin = sourceRectangle.Size() / 2f;
 			float scale = Projectile.scale * 1.1f;
 			SpriteEffects spriteEffects = ((!(Projectile.ai[0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None); // Flip the 精灵 based 在 方向 it is facing.
-			float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1]; // The current 时间 over the max 时间.
+			float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1]; // 当前的 时间 over the max 时间.
 			float lerpTime = Utils.Remap(percentageOfLife, 0f, 0.6f, 0f, 1f) * Utils.Remap(percentageOfLife, 0.6f, 1f, 1f, 0f);
 			float lightingColor = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float)Math.Sqrt(3.0);
 			lightingColor = Utils.Remap(lightingColor, 0.2f, 1f, 0f, 1f);

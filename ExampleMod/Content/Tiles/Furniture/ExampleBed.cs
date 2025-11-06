@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info) {
 			// 默认 values 匹配 the regular vanilla bed
-			// 你 might need to mess 与 info here if your bed is not a typical 4x2 图格
+			// 你 might 需要 mess 与 info here if your bed is not a typical 4x2 图格
 			info.VisualOffset.Y += 4f; // 移动 玩家 down a notch because the bed is not as high as a regular bed
 		}
 
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				spawnY--;
 			}
 
-			if (!Player.IsHoveringOverABottomSideOfABed(i, j)) { // This assumes your bed is 4x2 with 2x2 sections. You have to write your own code here otherwise
+			if (!Player.IsHoveringOverABottomSideOfABed(i, j)) { // This assumes your bed is 4x2 with 2x2 sections. You 必须 write your own code here 否则
 				if (player.IsWithinSnappngRangeToTile(i, j, PlayerSleepingHelper.BedSleepingMaxDistance)) {
 					player.GamepadEnableGrappleCooldown();
 					player.sleeping.StartSleeping(player, i, j);

@@ -24,7 +24,7 @@ namespace ExampleMod.Projectiles
 		public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 0);
 
 		public override void AI() {
-			// This part makes the 弹幕 do a shime 声音 every 10 ticks as long as it is moving.
+			// This part makes the 弹幕 do a shime 声音 每个 10 ticks as long as it is moving.
 			if (projectile.soundDelay == 0 && Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y) > 2f) {
 				projectile.soundDelay = 10;
 				SoundEngine.PlaySound(SoundID.Item9, projectile.position);

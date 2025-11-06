@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleYoyo : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// These are all related to gamepad controls and don't seem to affect anything else
+			// These are all 与...相关 gamepad controls and don't seem to affect 任何thing else
 			ItemID.Sets.Yoyo[Item.type] = true; // 使用d to increase the gamepad 范围 when using Strings.
 			ItemID.Sets.GamepadExtraRange[Item.type] = 15; // Increases the gamepad 范围. Some vanilla values: 4 (Wood), 10 (Valor), 13 (Yelets), 18 (The Eye of Cthulhu), 21 (Terrarian).
 			ItemID.Sets.GamepadSmartQuickReach[Item.type] = true; // Unused, but weapons that require aiming 在 屏幕 are in this set.
@@ -24,7 +24,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.useStyle = ItemUseStyleID.Shoot; // The way the 项 is used (e.g. swinging, throwing, etc.)
 			Item.useTime = 25; // All vanilla yoyos have a useTime of 25.
 			Item.useAnimation = 25; // All vanilla yoyos have a useAnimation of 25.
-			Item.noMelee = true; // This makes it so the 项 doesn't do 伤害 to enemies (the 弹幕 does that).
+			Item.noMelee = true; // 这使 it so the 项 doesn't do 伤害 to enemies (the 弹幕 does that).
 			Item.noUseGraphic = true; // 使 the 项 invisible while using it (the 弹幕 is the visible part).
 			Item.UseSound = SoundID.Item1; // The 声音 that will play when the 项 is used.
 
@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 			// DON'T DO THIS BY ITSELF:
 			// 返回 假;
-			// This will get the game stuck because it will try to reroll 每次. Instead, make it have a 概率 to 返回 真.
+			// 这将 get the game stuck because it will 尝试 reroll 每次. Instead, make it have a 概率 to 返回 真.
 
 			if (Array.IndexOf(unwantedPrefixes, pre) > -1) {
 				// IndexOf returns a positive 索引 的 元素 you 搜索 for. If not found, it's less than 0.

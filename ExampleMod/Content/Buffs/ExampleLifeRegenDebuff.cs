@@ -30,15 +30,15 @@ namespace ExampleMod.Content.Buffs
 			lifeRegenDebuff = false;
 		}
 
-		// 允许s you to give the 玩家 a negative life regeneration based on its 状态 (例如, the "On Fire!" 减益 makes the 玩家 take 伤害-over-时间)
+		// 允许s you to give the 玩家 a negative life regeneration 基于 its 状态 (例如, the "On Fire!" 减益 makes the 玩家 take 伤害-over-时间)
 		// 这是 typically done by 设置 玩家.lifeRegen to 0 if it is positive, 设置 玩家.lifeRegenTime to 0, and subtracting a 数字 from 玩家.lifeRegen
 		// 玩家 will take 伤害 at a rate of half the 数字 you subtract per second
 		public override void UpdateBadLifeRegen() {
 			if (lifeRegenDebuff) {
-				// These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects
+				// These lines zero out 任何 positive lifeRegen. This is expected for all bad life regeneration effects
 				if (Player.lifeRegen > 0)
 					Player.lifeRegen = 0;
-				// 玩家.lifeRegenTime used to increase the 速度 at which the 玩家 reaches its 最大 natural life regeneration
+				// 玩家.lifeRegenTime 用于 increase the 速度 at which the 玩家 reaches its 最大 natural life regeneration
 				// So we set it to 0, and while this 减益 is active, it never reaches it
 				Player.lifeRegenTime = 0;
 				// lifeRegen is measured in 1/2 life per second. Therefore, this 效果 causes 8 life lost per second

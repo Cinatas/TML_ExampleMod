@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Items.Tools
 			Projectile.CloneDefaults(ProjectileID.GemHookAmethyst); // Copies the attributes 的 Amethyst hook's 弹幕.
 		}
 
-		// 使用 this hook for hooks that can have multiple hooks mid-flight: Dual Hook, Web Slinger, Fish Hook, Static Hook, Lunar Hook.
+		// 使用 this hook for hooks that can have 多个 hooks mid-flight: Dual Hook, Web Slinger, Fish Hook, Static Hook, Lunar Hook.
 		public override bool? CanUseGrapple(Player player) {
 			int hooksOut = 0;
 			foreach (var projectile in Main.ActiveProjectiles) {
@@ -111,17 +111,17 @@ namespace ExampleMod.Content.Items.Tools
 		// Can customize what tiles this hook can latch onto, or force/防止 latching altogether, like Squirrel Hook also latching to trees
 		public override bool? GrappleCanLatchOnTo(Player player, int x, int y) {
 			// 默认情况下, the hook returns 空 to apply the vanilla conditions 对于 given 图格 位置 (this 图格 位置 可能 air or an actuated 图格!)
-			// 如果 you want to 返回 真 here, make sure to check for Main.图格[x, y].HasUnactuatedTile (and Main.tileSolid[Main.图格[x, y].TileType] and/or Main.图格[x, y].HasTile 如果需要)
+			// 如果 you 想要 返回 真 here, make sure to check for Main.图格[x, y].HasUnactuatedTile (and Main.tileSolid[Main.图格[x, y].TileType] and/or Main.图格[x, y].HasTile 如果需要)
 
 			// 我们 make this hook latch onto trees just like Squirrel Hook
 
-			// Tree trunks can不 actuated so we don't need to check for that here
+			// Tree trunks can不 actuated so we don't 需要 check for that here
 			Tile tile = Main.tile[x, y];
 			if (TileID.Sets.IsATreeTrunk[tile.TileType] || tile.TileType == TileID.PalmTree) {
 				return true;
 			}
 
-			// 在 any other case, behave like a normal hook
+			// 在 任何 other case, behave like a normal hook
 			return null;
 		}
 

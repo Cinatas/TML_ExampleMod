@@ -14,8 +14,8 @@ namespace ExampleMod.Content.Projectiles.Minions
 	// - ModBuff - the 图标 you can 点击 on to despawn the 仆从
 	// - ModProjectile - the 仆从 itself
 
-	// It is not recommended to put all these classes 在 same 文件. For demonstrations sake they are all compacted together so you get a better overview.
-	// 要 get a better understanding of how everything works together, and how to code 仆从 AI, read the guide: https://github.com/tModLoader/tModLoader/wiki/Basic-仆从-Guide
+	// 它是 not recommended to put all these classes 在 same 文件. For demonstrations sake they are all compacted together so you get a better overview.
+	// 要 get a better understanding of how 每个thing works together, and how to code 仆从 AI, read the guide: https://github.com/tModLoader/tModLoader/wiki/Basic-仆从-Guide
 	// 这是 NOT an in-depth guide to advanced 仆从 AI
 
 	public class ExampleSimpleMinionBuff : ModBuff
@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
-			// 如果 the minions exist 重置 the 增益 时间, otherwise 删除 the 增益 从 玩家
+			// 如果 the minions exist 重置 the 增益 时间, 否则 删除 the 增益 从 玩家
 			if (player.ownedProjectileCounts[ModContent.ProjectileType<ExampleSimpleMinion>()] > 0) {
 				player.buffTime[buffIndex] = 18000;
 			}
@@ -40,10 +40,10 @@ namespace ExampleMod.Content.Projectiles.Minions
 	public class ExampleSimpleMinionItem : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the 玩家 目标 anywhere 在 whole 屏幕 while using a controller
+			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the 玩家 目标 任何where 在 whole 屏幕 while using a controller
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 
-			ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f; // The default 值 is 1, but other values are supported. See the docs f或更多 guidance. 
+			ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f; // 默认的 值 is 1, but other values are supported. See the docs f或更多 guidance. 
 		}
 
 		public override void SetDefaults() {
@@ -60,10 +60,10 @@ namespace ExampleMod.Content.Projectiles.Minions
 			Item.UseSound = SoundID.Item44; // What 声音 should play when using the 项
 
 			// These below are needed for a 仆从 武器
-			Item.noMelee = true; // this 项 doesn't do any melee 伤害
-			Item.DamageType = DamageClass.Summon; // 使 the 伤害 register as summon. If your 项 does not have any 伤害 类型, it becomes 真 伤害 (which means that 伤害 scalars will not affect it). Be sure to have a 伤害 类型
+			Item.noMelee = true; // this 项 doesn't do 任何 melee 伤害
+			Item.DamageType = DamageClass.Summon; // 使 the 伤害 register as summon. If your 项 does not have 任何 伤害 类型, it becomes 真 伤害 (which means that 伤害 scalars will not affect it). Be sure to have a 伤害 类型
 			Item.buffType = ModContent.BuffType<ExampleSimpleMinionBuff>();
-			// No buffTime because otherwise the 项 工具提示 would say something like "1 minute 持续时间"
+			// No buffTime because 否则 the 项 工具提示 would say something like "1 minute 持续时间"
 			Item.shoot = ModContent.ProjectileType<ExampleSimpleMinion>(); // This 项 creates the 仆从 弹幕
 		}
 
@@ -76,11 +76,11 @@ namespace ExampleMod.Content.Projectiles.Minions
 			// 这是 needed so the 增益 that keeps your 仆从 alive and allows you to despawn it properly applies
 			player.AddBuff(Item.buffType, 2);
 
-			// Minions have to be spawned manually, then have originalDamage assigned 到 伤害 的 summon 项
+			// Minions 必须 be spawned manually, then have originalDamage assigned 到 伤害 的 summon 项
 			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
 			projectile.originalDamage = Item.damage;
 
-			// Since we spawned the 弹幕 manually already, we do not need the game to 生成 it for ourselves anymore, so 返回 假
+			// Since we spawned the 弹幕 manually already, we do not need the game to 生成 it for ourselves 任何more, so 返回 假
 			return false;
 		}
 
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 		}
 	}
 
-	// This 仆从 shows a few mandatory things that make it behave properly.
+	// This 仆从 shows 一些 mandatory things that make it behave properly.
 	// Its 攻击 pattern is simple: If an 敌人 is in 范围 of 43 tiles, it will fly to it and deal contact 伤害
 	// 如果 the 玩家 targets a certain NPC with 右-点击, it will fly through tiles to it
 	// 如果 it isn't attacking, it will float near the 玩家 with minimal movement
@@ -118,7 +118,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 
 			// These below are needed for a 仆从 武器
 			Projectile.friendly = true; // 仅 controls if it deals 伤害 to enemies on contact (more on that later)
-			Projectile.minion = true; // Declares this as a 仆从 (has many effects)
+			Projectile.minion = true; // Declares this as a 仆从 (has m任何 effects)
 			Projectile.DamageType = DamageClass.Summon; // Declares the 伤害 类型 (needed for it to deal 伤害)
 			Projectile.minionSlots = 1f; // Amount of slots this 仆从 occupies 从 total 仆从 slots available 到 玩家 (more on that later)
 			Projectile.penetrate = -1; // Needed so the 仆从 doesn't despawn on collision with enemies or tiles
@@ -134,7 +134,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			return true;
 		}
 
-		// AI of this 仆从 is 拆分 into multiple methods to avoid bloat. This 方法 just passes values between calls actual parts 的 AI.
+		// AI of this 仆从 is 拆分 into 多个 methods to avoid bloat. This 方法 just passes values between calls actual parts 的 AI.
 		public override void AI() {
 			Player owner = Main.player[Projectile.owner];
 
@@ -148,7 +148,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			Visuals();
 		}
 
-		// 这是 the "active check", makes sure the 仆从 is alive while the 玩家 is alive, and despawns if not
+		// 这是 the "active check", makes sure the 仆从 is alive while the 玩家 is alive, and despawns 如果不是
 		private bool CheckActive(Player owner) {
 			if (owner.dead || !owner.active) {
 				owner.ClearBuff(ModContent.BuffType<ExampleSimpleMinionBuff>());
@@ -167,7 +167,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			Vector2 idlePosition = owner.Center;
 			idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles 从 中心 的 玩家)
 
-			// 如果 your 仆从 doesn't aimlessly 移动 around when it's idle, you need to "put" it in到 line of other summoned minions
+			// 如果 your 仆从 doesn't aimlessly 移动 around when it's idle, you 需要 "put" it in到 line of other summoned minions
 			// 索引 is 弹幕.minionPos
 			float minionPositionOffsetX = (10 + Projectile.minionPos * 40) * -owner.direction;
 			idlePosition.X += minionPositionOffsetX; // Go behind the 玩家
@@ -186,7 +186,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 				Projectile.netUpdate = true;
 			}
 
-			// 如果 your 仆从 is flying, you want to do this independently of any conditions
+			// 如果 your 仆从 is flying, you 想要 do this independently of 任何 conditions
 			float overlapVelocity = 0.04f;
 
 			// Fix overlap with other minions
@@ -220,7 +220,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 				NPC npc = Main.npc[owner.MinionAttackTargetNPC];
 				float between = Vector2.Distance(npc.Center, Projectile.Center);
 
-				// Reasonable 距离 away so it doesn't 目标 across multiple screens
+				// Reasonable 距离 away so it doesn't 目标 across 多个 screens
 				if (between < 2000f) {
 					distanceFromTarget = between;
 					targetCenter = npc.Center;
@@ -229,15 +229,15 @@ namespace ExampleMod.Content.Projectiles.Minions
 			}
 
 			if (!foundTarget) {
-				// This code is required either way, used for finding a 目标
+				// This code is required 任一 way, used for finding a 目标
 				foreach (var npc in Main.ActiveNPCs) {
 					if (npc.CanBeChasedBy()) {
 						float between = Vector2.Distance(npc.Center, Projectile.Center);
 						bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
 						bool inRange = between < distanceFromTarget;
 						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-						// 添加itional check for this specific 仆从 behavior, otherwise it will 停止 attacking once it dashed through an 敌人 while flying though tiles afterwards
-						// 数字 depends on various parameters seen 在 movement code below. 测试 different ones out until it works alright
+						// 添加itional check for this specific 仆从 behavior, 否则 it will 停止 attacking once it dashed through an 敌人 while flying though tiles afterwards
+						// 数字 depends on 各种 parameters seen 在 movement code below. 测试 different ones out until it works alright
 						bool closeThroughWall = between < 100f;
 
 						if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
@@ -252,7 +252,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			// friendly needs to be set to 真 so the 仆从 can deal contact 伤害
 			// friendly needs to be set to 假 so it doesn't 伤害 things like 目标 dummies while idling
 			// Both things depend on if it has a 目标 or not, so it's just one assignment here
-			// 你 don't need this assignment if your 仆从 is shooting things instead of dealing contact 伤害
+			// 你 don't need this assignment if your 仆从 is shooting things 代替 dealing contact 伤害
 			Projectile.friendly = foundTarget;
 		}
 
@@ -294,7 +294,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 					Projectile.velocity = (Projectile.velocity * (inertia - 1) + vectorToIdlePosition) / inertia;
 				}
 				else if (Projectile.velocity == Vector2.Zero) {
-					// 如果 there is a case where it's not moving at all, give it a little "poke"
+					// 如果 there is a case where it's not moving at all, give it 一点 "poke"
 					Projectile.velocity.X = -0.15f;
 					Projectile.velocity.Y = -0.05f;
 				}

@@ -23,7 +23,7 @@ namespace ExampleMod.Common.Systems
 			// 原版游戏有一个雕像类型数组，我们将把我们的添加到其中。
 			int startIndex = GenVars.statueList.Length; // 保存 the original 长度 的 vanilla 列表 to use later.
 
-			// This is an 数组 of statues we want to add to worldgen.
+			// 这是一个n 数组 of statues we 想要 add to worldgen.
 			// 设置 shouldBeWired to 真 to make the statue 生成 with a pressure plate wired to it (like traps are).
 			(int type, bool shouldBeWired, ushort placeStyle)[] statueTypesToAdd = {
 				(ModContent.TileType<ExampleStatue>(), false, 0),

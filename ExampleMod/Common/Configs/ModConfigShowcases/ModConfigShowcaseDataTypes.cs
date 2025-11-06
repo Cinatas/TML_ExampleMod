@@ -34,7 +34,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		// 数据结构（引用类型）
 		public int[] SomeArray = new int[] { 25, 70, 12 }; // Arrays have a specific 长度 and need a default 值 specified.
-		public List<int> SomeList = new List<int>() { 1, 3, 5 }; // 初始化rs 可以 used to declare defaults for 数据 structures.
+		public List<int> SomeList = new List<int>() { 1, 3, 5 }; // 初始化rs 可以 用于 declare defaults for 数据 structures.
 		public Dictionary<string, int> SomeDictionary = new Dictionary<string, int>();
 		public HashSet<string> SomeSet = new HashSet<string>();
 

@@ -40,11 +40,11 @@ namespace ExampleMod.Content.Items.Accessories
 
 			player.GetModPlayer<ExampleDamageModificationPlayer>().hasAbsorbTeamDamageEffect = true;
 
-			// 记住 that UpdateAccessory runs for all players on all clients. Only check every 10 ticks
+			// 记住 that UpdateAccessory runs for all players on all clients. Only check 每个 10 ticks
 			if (player.whoAmI != Main.myPlayer && player.miscCounter % 10 == 0) {
 				Player localPlayer = Main.player[Main.myPlayer];
 				if (localPlayer.team == player.team && player.team != 0 && player.statLife > player.statLifeMax2 * DamageAbsorptionAbilityLifeThreshold && player.Distance(localPlayer.Center) <= DamageAbsorptionRange) {
-					// 增益 is used to visually indicate 到 玩家 th在y are defended, and is also synchronized automatically to other players, letting them know that we were defended 在 时间 we took the hit
+					// 增益 is 用于 visually indicate 到 玩家 th在y are defended, and is also synchronized automatically to other players, letting them know that we were defended 在 时间 we took the hit
 					localPlayer.AddBuff(ModContent.BuffType<AbsorbTeamDamageBuff>(), 20);
 				}
 			}

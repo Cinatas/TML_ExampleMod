@@ -8,14 +8,14 @@ using Terraria.ModLoader.Config;
 
 // This 文件 contains fake ModConfig 类 that showcase defining default values for 配置 fields.
 
-// Because this 配置 was designed to show off various 用户界面 capabilities,
+// Because this 配置 was designed to show off 各种 用户界面 capabilities,
 // this 配置 have no 效果 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
 	[BackgroundColor(164, 153, 190)]
 	public class ModConfigShowcaseDefaultValues : ModConfig
 	{
-		// There are 2 approaches to default values. One is applicable only to 值 types (int, bool, float, 字符串, structs, etc) and the other to 引用 types (classes).
+		// 有 2 approaches to default values. One is applicable only to 值 types (int, bool, float, 字符串, structs, etc) and the other to 引用 types (classes).
 		// For 值 types, annotate the 字段 与 DefaultValue attribute. Some structs, like 颜色 and Vector2, 接受 a 字符串 that 将 converted to a default 值.
 		// For 引用 types (classes), simply assign the 值 在 字段 initializer or constructor as you would typically do.
 
@@ -61,7 +61,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[JsonDefaultListValue("{\"name\": \"GoldBar\"}")]
 		public List<ItemDefinition> ListOfItemDefinition = new List<ItemDefinition>();
 
-		// For Dictionaries, additional attributes (DefaultDictionaryKeyValue or JsonDefaultDictionaryKeyValue) are used to specify a default 值 对于 键 的 字典 entry. The 值 uses the DefaultListValue or JsonDefaultListValue as 列表 and HashSet do.
+		// For Dictionaries, additional attributes (DefaultDictionaryKeyValue or JsonDefaultDictionaryKeyValue) are 用于 specify a default 值 对于 键 的 字典 entry. The 值 uses the DefaultListValue or JsonDefaultListValue as 列表 and HashSet do.
 		[DefaultDictionaryKeyValue(0.3f)]
 		[DefaultListValue(10)]
 		public Dictionary<float, int> DictionaryDefaults = new Dictionary<float, int>();

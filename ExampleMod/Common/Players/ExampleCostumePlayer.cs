@@ -66,7 +66,7 @@ namespace ExampleMod.Common.Players
 
 		public override void OnHurt(Player.HurtInfo info) {
 			if (BlockyVanityEffects) {
-				// SoundID.Frog is actually SoundType.Ambient, so we need to change it to play 在 correct SoundType.声音 master 音量.
+				// SoundID.Frog is actually SoundType.Ambient, so we 需要 change it to play 在 correct SoundType.声音 master 音量.
 				SoundEngine.PlaySound(SoundID.Frog with { Type = SoundType.Sound }, Player.position);
 			}
 		}

@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items
 		public override void SetDefaults() {
 			Item.width = 20;
 			Item.height = 20;
-			// 注意 that 项.宽度 and 高度 are the in-世界 hitbox dimensions and don't have to 匹配 the 纹理 dimensions. Be mindful of this distinction when writing custom 项 drawing code.
+			// 注意 that 项.宽度 and 高度 are the in-世界 hitbox dimensions and don't 必须 匹配 the 纹理 dimensions. Be mindful of this distinction when writing custom 项 drawing code.
 		}
 
 		public override bool CanRightClick() => true;
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.Items
 				return false; // Since we drew the 纹理, 返回 假 so the 项 isn't drawn twice.
 			}
 			else if (drawMode == DrawModeBehindTexture) {
-				// 自定义ItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we need to calculate values 对于 原点 and sourceRectangle parameters to draw correctly
+				// 自定义ItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we 需要 calculate values 对于 原点 and sourceRectangle parameters to draw correctly
 
 				int backFrameNumber = (int)(Main.GameUpdateCount % 60 / 30);
 				var backSourceRectangle = backTexture.Frame(verticalFrames: 2, frameY: backFrameNumber);
@@ -122,7 +122,7 @@ namespace ExampleMod.Content.Items
 				return false; // Since we drew the 纹理, 返回 假 so the 项 isn't drawn twice.
 			}
 			else if (drawMode == DrawModeBehindTexture) {
-				// 自定义ItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we need to calculate values 对于 原点 and sourceRectangle parameters to draw correctly 
+				// 自定义ItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we 需要 calculate values 对于 原点 and sourceRectangle parameters to draw correctly 
 
 				int backFrameNumber = (int)(Main.GameUpdateCount % 60 / 30);
 				var backSourceRectangle = backTexture.Frame(verticalFrames: 2, frameY: backFrameNumber);
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Items
 				spriteBatch.Draw(backTexture.Value, drawPosition, backSourceRectangle, lightColor, rotation, backOrigin, scale, SpriteEffects.None, 0);
 			}
 			else if (drawMode == DrawModeHighlightAfterImageEffect) {
-				// This code is a 复制 的 ItemID.Sets.BossBag 效果 code from Main.DrawItem. We wouldn't want to use ItemID.Sets.BossBag to get this 效果 for this 项 since ItemID.Sets.BossBag has other effects 以及 that we don't want.
+				// This code is a 复制 的 ItemID.Sets.BossBag 效果 code from Main.DrawItem. We wouldn't 想要 use ItemID.Sets.BossBag to get this 效果 for this 项 since ItemID.Sets.BossBag has other effects 以及 that we don't want.
 				float counter = Item.timeSinceItemSpawned / 240f + Main.GlobalTimeWrappedHourly * 0.04f;
 				float offsetScale = Main.GlobalTimeWrappedHourly;
 				offsetScale %= 4f;
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.Items
 
 			if (drawMode == DrawModeGlowmask) {
 				// 对于 a glowmask 即 the same dimensions as the 项 精灵, we can use all the provided parameters as is to draw the glowmask 纹理.
-				// 代替 的 provided lightColor, however, we use 颜色.White since we want to draw the glowmask 纹理 at full brightness regardless of 世界 lighting conditions.
+				// 代替 的 provided lightColor, however, we use 颜色.White since we 想要 draw the glowmask 纹理 at full brightness 无论 世界 lighting conditions.
 				spriteBatch.Draw(frontTexture.Value, drawPosition, itemFrame, Color.White, rotation, origin, scale, SpriteEffects.None, 0);
 			}
 		}

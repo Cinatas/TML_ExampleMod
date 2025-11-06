@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items
 				// following code creates a hair 颜色-returning delegate (anonymous 方法), and associates it with this 项's 类型 ID.
 				GameShaders.Hair.BindShader(
 					Item.type,
-					new LegacyHairShaderData().UseLegacyMethod((Player player, Color newColor, ref bool lighting) => Main.DiscoColor) // 返回ing Main.DiscoColor will make our hair an animated rainbow. You can 返回 any 颜色 here.
+					new LegacyHairShaderData().UseLegacyMethod((Player player, Color newColor, ref bool lighting) => Main.DiscoColor) // 返回ing Main.DiscoColor will make our hair an animated rainbow. You can 返回 任何 颜色 here.
 				);
 			}
 

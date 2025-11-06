@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.hide = true; // 隐藏s the 弹幕, so it will draw 在 玩家's hand when we set the 玩家's heldProj to this one.
 		}
 
-		// This code is adapted and simplified from aiStyle 20 to use a different dust and more noises. If you want to use aiStyle 20, you do not need to do any of this.
+		// This code is adapted and simplified from aiStyle 20 to use a different dust and more noises. If you 想要 use aiStyle 20, you do not 需要 do 任何 of this.
 		// It 应该 noted that this 弹幕 has no 效果 on mining and is mostly visual.
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// 动画 code could go here if the 弹幕 was animated. 
 
-			// Plays a 声音 every 20 ticks. In aiStyle 20, soundDelay is set to 30 ticks.
+			// Plays a 声音 每个 20 ticks. In aiStyle 20, soundDelay is set to 30 ticks.
 			if (Projectile.soundDelay <= 0) {
 				SoundEngine.PlaySound(SoundID.Item22, Projectile.Center);
 				Projectile.soundDelay = 20;
@@ -49,7 +49,7 @@ namespace ExampleMod.Content.Projectiles
 					// 计算 a normalized vector from 玩家 to 鼠标 and multiply by holdoutDistance to determine resulting holdoutOffset
 					Vector2 holdoutOffset = holdoutDistance * Vector2.Normalize(Main.MouseWorld - playerCenter);
 					if (holdoutOffset.X != Projectile.velocity.X || holdoutOffset.Y != Projectile.velocity.Y) {
-						// This will 同步 the 弹幕, most importantly, the 速度.
+						// 这将 同步 the 弹幕, most importantly, the 速度.
 						Projectile.netUpdate = true;
 					}
 

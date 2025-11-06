@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.GeneralPlacementTiles[Type] = false;
 			TileID.Sets.ChecksForMerge[Type] = true;
 
-			MineResist = 0.5f; // Sand 图格 typically require half as many hits to 地雷.
+			MineResist = 0.5f; // Sand 图格 typically require half as m任何 hits to 地雷.
 			DustType = DustID.Stone;
 			AddMapEntry(new Color(150, 150, 150));
 		}

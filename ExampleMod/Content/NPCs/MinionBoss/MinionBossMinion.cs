@@ -11,9 +11,9 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 	// Please read MinionBossBody.cs first for important comments, they won't be explained here again
 	public class MinionBossMinion : ModNPC
 	{
-		// 这是 a neat trick that uses the fact that NPCs have all NPC.ai[] values set to 0f on 生成 (if not otherwise changed).
+		// 这是 a neat trick that uses the fact that NPCs have all NPC.ai[] values set to 0f on 生成 (如果不是 否则 changed).
 		// 我们 set ParentIndex to a 数字 在 body after spawning it. If we set ParentIndex to 3, NPC.ai[0] 将 4. If NPC.ai[0] is 0, ParentIndex 将 -1.
-		// Now 组合 both facts, and the conclusion is that if this NPC spawns by other means (not 从 body), ParentIndex 将 -1, allowing us to distinguish
+		// Now 组合 两者 facts, and the conclusion is that if this NPC spawns by other means (not 从 body), ParentIndex 将 -1, allowing us to distinguish
 		// between a proper 生成 and an invalid/"cheated" 生成
 		public int ParentIndex {
 			get => (int)NPC.ai[0] - 1;
@@ -68,7 +68,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			NPC.noGravity = true;
 			NPC.noTileCollide = true;
 			NPC.knockBackResist = 0.8f;
-			NPC.alpha = 255; // This makes it transparent upon spawning, we have to manually fade it in in AI()
+			NPC.alpha = 255; // 这使 it transparent upon spawning, we 必须 manually fade it in in AI()
 			NPC.netAlways = true;
 
 			NPC.aiStyle = -1;
@@ -140,7 +140,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 				// * Not spawned by the Boss body (didn't assign a 位置 and parent) or
 				// * Parent isn't active or
 				// * Parent isn't the body
-				// => invalid, kill itself without dropping any items
+				// => invalid, kill itself without dropping 任何 items
 				NPC.active = false;
 				NPC.life = 0;
 				NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
@@ -163,10 +163,10 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			NPC parentNPC = Main.npc[ParentIndex];
 
 			// This basically turns the NPCs PositionIndex into a 数字 between 0f and TwoPi to determine where around
-			// the main body it is positioned at
+			// 主要的 body it is positioned at
 			float rad = (float)PositionOffset * MathHelper.TwoPi;
 
-			// 添加 some slight uniform 旋转 to make the eyes 移动, giving a 概率 to 触摸 the 玩家 and thus helping melee players
+			// 添加 some slight uniform 旋转 to make the eyes 移动, giving a 概率 to 触摸 the 玩家 and 因此 helping melee players
 			RotationTimer += 0.5f;
 			if (RotationTimer > RotationTimerMax) {
 				RotationTimer = 0;
@@ -184,7 +184,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 			float distanceFromBody = parentNPC.width + NPC.width;
 
-			// 偏移 is now a vector that will determine the 位置 的 NPC based on its 索引
+			// 偏移 is now a vector that will determine the 位置 的 NPC 基于 its 索引
 			Vector2 offset = Vector2.One.RotatedBy(rad) * distanceFromBody;
 
 			Vector2 destination = parentNPC.Center + offset;

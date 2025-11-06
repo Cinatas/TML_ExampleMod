@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Consumables
 {
 	// 此文件 showcases how to create an 项 that increases the 玩家's 最大 魔力 on use.
-	// Within your ModPlayer, you need to 保存/加载 a 计数 of usages. You also need to 同步 the 数据 to other players.
-	// overlay used to 显示 the custom 魔力 crystals 可以 found in Common/用户界面/ResourceDisplay/VanillaManaOverlay.cs
+	// Within your ModPlayer, you 需要 保存/加载 a 计数 of usages. You also 需要 同步 the 数据 to other players.
+	// overlay 用于 显示 the custom 魔力 crystals 可以 found in Common/用户界面/ResourceDisplay/VanillaManaOverlay.cs
 	internal class ExampleManaCrystal : ModItem
 	{
 		public static readonly int MaxExampleManaCrystals = 10;
@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Items.Consumables
 			// 此方法 handles permanently increasing the 玩家's max 魔力 and displaying the blue 魔力 文本
 			player.UseManaMaxIncreasingItem(ManaPerCrystal);
 
-			// This 字段 tracks how many 的 example crystals have been consumed
+			// This 字段 tracks how m任何 的 example crystals have been consumed
 			player.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals++;
 
 			return true;

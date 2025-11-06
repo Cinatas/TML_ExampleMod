@@ -44,18 +44,18 @@ namespace ExampleMod.Content.NPCs
 				ILCursor ilCursor = new ILCursor(ilContext);
 
 				// exact 位置 for this hook is very complex to 搜索 for due 到 hook instructions 不ing unique and buried deep in 控制 flow. Switch statements are sometimes compiled to if-else chains, and 调试 builds litter the code with no-ops and redundant locals.
-				// 在 general you want to 搜索 using structure and 函数 rather than numerical constants which may change across different versions or compile settings. Using local 变量 indices is almost always a bad idea.
+				// 在 general you 想要 搜索 using structure and 函数 rather than numerical constants which may change across different versions or compile settings. Using local 变量 indices is almost always a bad idea.
 				// 我们 can 搜索 for
 				// switch (*)
 				//   case 61:
 				//     num115 = 361;
 
-				// 在 general you'd want to look for a specific switch 变量, or perhaps the containing switch (类型) { case 105: but the generated IL is really 变量 and hard to 匹配 in this case.
+				// 在 general you'd 想要 look for a specific switch 变量, or perhaps the containing switch (类型) { case 105: but the generated IL is really 变量 and hard to 匹配 in this case.
 				// We'll just use the fact th在re are no other switch statements with case 61
 
 				ILLabel[] targets = null;
 				while (ilCursor.TryGotoNext(i => i.MatchSwitch(out targets))) {
-					// Some optimizing compilers generate a sub so that all the switch cases 开始 at 0:
+					// Some optimizing compilers generate a sub 以便 all the switch cases 开始 at 0:
 					// ldc.i4.s 30
 					// sub
 					// switch
@@ -74,7 +74,7 @@ namespace ExampleMod.Content.NPCs
 					ilCursor.GotoLabel(target);
 					// 移动 the cursor after 361 is pushed on到 堆叠
 					ilCursor.Index++;
-					// There are lots of extra checks we could add here to make sure we're 在 右 spot, 例如 not encountering any branching instructions
+					// 有 lots of extra checks we could add here to make sure we're 在 右 spot, 例如 not encountering 任何 branching instructions
 
 					// Now we add additional code to modify the current 值 that 将 assigned to num115
 					ilCursor.EmitDelegate((int originalAssign) => Main.rand.NextBool() ? originalAssign : NPC.type);
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.NPCs
 				throw new Exception("Hook location not found, switch(*) { case 61: ...");
 			}
 			catch {
-				// 如果 there are any failures 与 IL editing, this 方法 will dump the IL to Logs/ILDumps/{Mod 名称}/{方法 名称}.txt
+				// 如果 there are 任何 failures 与 IL editing, this 方法 will dump the IL to Logs/ILDumps/{Mod 名称}/{方法 名称}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), ilContext);
 			}
 		}

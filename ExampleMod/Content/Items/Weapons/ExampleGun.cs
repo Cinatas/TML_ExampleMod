@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleGun : ModItem
 	{
 		public override void SetDefaults() {
-			// Modders can use 项.DefaultToRangedWeapon to quickly set many common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
+			// Modders can use 项.DefaultToRangedWeapon to quickly set m任何 common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
 
 			// 常见 Properties
 			Item.width = 62; // Hitbox 宽度 的 项.
@@ -77,7 +77,7 @@ namespace ExampleMod.Content.Items.Weapons
 			}
 		}*/
 
-		// What if I wanted multiple projectiles in a even spread? (Vampire Knives)
+		// What if I wanted 多个 projectiles in a even spread? (Vampire Knives)
 		// Even Arc style: Multiple 弹幕, Even Spread
 		/*public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			float numberProjectiles = 3 + Main.rand.Next(3); // 3, 4, or 5 shots
@@ -123,9 +123,9 @@ namespace ExampleMod.Content.Items.Weapons
 			return true;
 		}*/
 
-		// How can I choose between several projectiles randomly?
+		// How can I choose between 几个 projectiles randomly?
 		/*public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			// 在这里 we randomly set 类型 to either the original (as defined by the ammo), a vanilla 弹幕, or a mod 弹幕.
+			// 在这里 we randomly set 类型 to 任一 the original (as defined by the ammo), a vanilla 弹幕, or a mod 弹幕.
 			type = Main.rand.Next(new int[] { type, ProjectileID.GoldenBullet, ModContent.ProjectileType<Projectiles.ExampleBullet>() });
 		}*/
 	}

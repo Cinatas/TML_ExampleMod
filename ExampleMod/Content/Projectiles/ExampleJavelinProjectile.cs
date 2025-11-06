@@ -45,8 +45,8 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.aiStyle = 0; // The ai style 的 弹幕 (0 means custom AI). F或更多 please 引用 the source code of Terraria
 			Projectile.friendly = true; // Can the 弹幕 deal 伤害 to enemies?
 			Projectile.hostile = false; // Can the 弹幕 deal 伤害 到 玩家?
-			Projectile.DamageType = DamageClass.Ranged; // 使 the 弹幕 deal ranged 伤害. You can set in to DamageClass.Throwing, but 即 not used by any vanilla items
-			Projectile.penetrate = 2; // How many monsters the 弹幕 can penetrate.
+			Projectile.DamageType = DamageClass.Ranged; // 使 the 弹幕 deal ranged 伤害. You can set in to DamageClass.Throwing, but 即 not used by 任何 vanilla items
+			Projectile.penetrate = 2; // How m任何 monsters the 弹幕 can penetrate.
 			Projectile.timeLeft = 600; // The live 时间 对于 弹幕 (60 = 1 second, so 600 is 10 seconds)
 			Projectile.alpha = 255; // The transparency 的 弹幕, 255 for completely transparent. Our custom AI below fades our 弹幕 in. Make sure to 删除 this if you aren't using an aiStyle that fades in.
 			Projectile.light = 0.5f; // How much light emit around the 弹幕
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void AI() {
 			UpdateAlpha();
-			// 运行 either the Sticky AI or Normal AI
+			// 运行 任一 the Sticky AI or Normal AI
 			// Separating into different methods helps keeps your AI clean
 			if (IsStickingToTarget) {
 				StickyAI();
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Projectiles
 		private void NormalAI() {
 			GravityDelayTimer++; // doesn't make sense.
 
-			// 对于 a little while, the javelin will travel 与 same 速度, but after this, the javelin drops 速度 very quickly.
+			// 对于 一点 while, the javelin will travel 与 same 速度, but after this, the javelin drops 速度 very quickly.
 			if (GravityDelayTimer >= GravityDelay) {
 				GravityDelayTimer = GravityDelay;
 
@@ -163,16 +163,16 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		private const int MaxStickingJavelin = 6; // This is the max amount of javelins able to be attached to a single NPC
+		private const int MaxStickingJavelin = 6; // 这是 max amount of javelins 能够 be attached to a single NPC
 		private readonly Point[] stickingJavelins = new Point[MaxStickingJavelin]; // The 点 数组 holding for sticking javelins
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			IsStickingToTarget = true; // we are sticking to a 目标
 			TargetWhoAmI = target.whoAmI; // 设置 the 目标 whoAmI
 			Projectile.velocity = (target.Center - Projectile.Center) *
-				0.75f; // 更改 速度 based on delta 中心 of targets (difference between entity centers)
+				0.75f; // 更改 速度 基于 delta 中心 of targets (difference between entity centers)
 			Projectile.netUpdate = true; // netUpdate this javelin
-			Projectile.damage = 0; // 使 sure the sticking javelins do not deal 伤害 anymore
+			Projectile.damage = 0; // 使 sure the sticking javelins do not deal 伤害 任何more
 
 			// 示例JavelinBuff handles the 伤害 over 时间 (DoT)
 			target.AddBuff(ModContent.BuffType<Buffs.ExampleJavelinDebuff>(), 900);
@@ -184,7 +184,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
 			// 对于 going through platforms and such, javelins use a tad smaller 大小
-			width = height = 10; // notice we set the 宽度 到 高度, the 高度 to 10. so both are 10
+			width = height = 10; // notice we set the 宽度 到 高度, the 高度 to 10. so 两者 are 10
 			return true;
 		}
 
@@ -199,7 +199,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
-			// 如果 attached to an NPC, draw behind tiles (and the npc) if that NPC is behind tiles, otherwise just behind the NPC.
+			// 如果 attached to an NPC, draw behind tiles (and the npc) if that NPC is behind tiles, 否则 just behind the NPC.
 			if (IsStickingToTarget) {
 				int npcIndex = TargetWhoAmI;
 				if (npcIndex >= 0 && npcIndex < 200 && Main.npc[npcIndex].active) {
@@ -217,7 +217,7 @@ namespace ExampleMod.Content.Projectiles
 			behindNPCsAndTiles.Add(index);
 		}
 
-		// 更改 this 数字 if you want to alter how the alpha changes
+		// 更改 this 数字 if you 想要 alter how the alpha changes
 		private const int AlphaFadeInSpeed = 25;
 
 		private void UpdateAlpha() {

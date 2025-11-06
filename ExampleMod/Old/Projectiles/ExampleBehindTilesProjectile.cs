@@ -31,7 +31,7 @@ namespace ExampleMod.Projectiles
 		}
 	}
 	// This .cs 文件 has 2 classes in it, 即 totally fine. (What is important is that namespace+classname is unique. Remember that autoloaded textures follow the namespace+classname convention 以及.)
-	// This is an approach you can take to fit your organization style.
+	// 这是一个n approach you can take to fit your organization style.
 	public class ExampleBehindTilesProjectileItem : ModItem
 	{
 		// 使用 this to use Vanilla textures. The 数字 corresponds 到 ItemID 的 vanilla 项.

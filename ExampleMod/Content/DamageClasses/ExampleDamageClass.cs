@@ -10,8 +10,8 @@ namespace ExampleMod.Content.DamageClasses
 		public override StatInheritanceData GetModifierInheritance(DamageClass damageClass) {
 			// 此方法 lets you make your 伤害 类 benefit from other classes' stat bonuses 默认情况下, 以及 as universal stat bonuses.
 			// 要 briefly summarize the two nonstandard 伤害 类 names used by DamageClass:
-			// 默认 is, you guessed it, the default 伤害 类. It doesn't 缩放 off of any 类-specific stat bonuses or universal stat bonuses.
-			// There are a 数字 of items and projectiles that use this, 例如 thrown waters and the Bone Glove's bones.
+			// 默认 is, you guessed it, the default 伤害 类. It doesn't 缩放 off of 任何 类-specific stat bonuses or universal stat bonuses.
+			// 有 a 数字 of items and projectiles that use this, 例如 thrown waters and the Bone Glove's bones.
 			// Generic, 在 other hand, scales off of all universal stat bonuses and nothing else; it's the base 伤害 类 upon which all others that aren't Default are built.
 			if (damageClass == DamageClass.Generic)
 				return StatInheritanceData.Full;
@@ -24,12 +24,12 @@ namespace ExampleMod.Content.DamageClasses
 				knockbackInheritance: 0f
 			);
 			// Now, what exactly did we just do, you might ask? Well, let's see here...
-			// StatInheritanceData is a struct which you'll need to 返回 one of for any given outcome this 方法.
+			// StatInheritanceData is a struct which you'll 需要 返回 one of for 任何 given outcome this 方法.
 			// Normally, the latter 的se two 将 written as "StatInheritanceData.None", rather than being typed out by hand...
 			// ...but 对于 sake of clarity, we've written it out and labeled each 参数 in 顺序; they 应该 self-explanatory.
 			// 要 explain how these 返回 values work, each one behaves like a 百分比, with 0f being 0%, 1f being 100%, and so on.
 			// 返回 值 indicates how much your 类 will 缩放 off 的 stat in question for whatever 伤害 类(es) you've returned it for.
-			// 如果 you create a StatInheritanceData without any parameters, all 的m 将 set to 1f.
+			// 如果 you create a StatInheritanceData without 任何 parameters, all 的m 将 set to 1f.
 			// 对于 example, if we propose a hypothetical alternate 返回 for DamageClass.Ranged...
 			/*
 			if (damageClass == DamageClass.Ranged)
@@ -44,18 +44,18 @@ namespace ExampleMod.Content.DamageClasses
 			// This would 允许 our custom 类 to benefit 从 following ranged stat bonuses:
 			// - 伤害, at 100% effectiveness
 			// - 攻击 速度, at 40% effectiveness
-			// - Crit 概率, at -100% effectiveness (this means anything that raises ranged crit 概率 specifically will lower the crit 概率 of our custom 类 by the same amount)
+			// - Crit 概率, at -100% effectiveness (this means 任何thing that raises ranged crit 概率 specifically will lower the crit 概率 of our custom 类 by the same amount)
 			// - 护甲 penetration, at 250% effectiveness
 
 			// CAUTION: There is no hardcap on what you can set these to. Please be aware and advised that whatever you set them to may have unintended consequences,
-			// and that we are NOT responsible for any temporary or permanent 伤害 caused to you, your character, or your 世界 as a result of your morbid curiosity.
-			// 要 refer to a non-vanilla 伤害 类 对于se sorts of things, use "ModContent.GetInstance<TargetDamageClassHere>()" instead of "DamageClass.XYZ".
+			// and that we are NOT responsible for 任何 temporary or permanent 伤害 ca用于 you, your character, or your 世界 因此 of your morbid curiosity.
+			// 要 refer to a non-vanilla 伤害 类 对于se sorts of things, use "ModContent.GetInstance<TargetDamageClassHere>()" 代替 "DamageClass.XYZ".
 		}
 
 		public override bool GetEffectInheritance(DamageClass damageClass) {
-			// 此方法 allows you to make your 伤害 类 benefit from and be able to 激活 other classes' effects (e.g. Spectre bolts, Magma Stone) based on what returns 真.
-			// 注意 that unlike our stat inheritance methods up above, you do not need to account for universal bonuses in this 方法.
-			// 对于 this example, we'll make our 类 able to 激活 melee- and magic-specifically effects.
+			// 此方法 allows you to make your 伤害 类 benefit from and be 能够 激活 other classes' effects (e.g. Spectre bolts, Magma Stone) 基于 what returns 真.
+			// 注意 that unlike our stat inheritance methods up above, you do not 需要 account for universal bonuses in this 方法.
+			// 对于 this example, we'll make our 类 能够 激活 melee- and magic-specifically effects.
 			if (damageClass == DamageClass.Melee)
 				return true;
 			if (damageClass == DamageClass.Magic)
@@ -75,12 +75,12 @@ namespace ExampleMod.Content.DamageClasses
 
 		// This 属性 lets you decide whether or not your 伤害 类 can use standard critical strike calculations.
 		// 注意 that 设置 it to 假 will also 防止 the critical strike 概率 工具提示 line from being shown.
-		// This prevention will overrule anything set by ShowStatTooltipLine, so be careful!
+		// This prevention will overrule 任何thing set by ShowStatTooltipLine, so be careful!
 		public override bool UseStandardCritCalcs => true;
 
 		public override bool ShowStatTooltipLine(Player player, string lineName) {
 			// 此方法 lets you 防止 certain common statistical 工具提示 lines from appearing on items associated with this DamageClass.
-			// four line names you can use are "伤害", "CritChance", "速度", and "Knockback". All four cases default to 真, and thus 将 shown. 例如...
+			// four line names you can use are "伤害", "CritChance", "速度", and "Knockback". All four cases default to 真, and 因此 将 shown. 例如...
 			if (lineName == "Speed")
 				return false;
 

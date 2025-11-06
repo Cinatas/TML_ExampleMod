@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Tools
 {
 	// Magic Mirror is one 的 only vanilla items that does its action somewhere other than the 开始 of its 动画, 即 why we use code in UseStyle NOT UseItem.
-	// It may prove a useful guide for ModItems with similar behaviors.
+	// 它可能 prove a useful guide for ModItems with similar behaviors.
 	internal class ExampleMagicMirror : ExampleItem
 	{
 		private static readonly Color[] itemNameCycleColors = {
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Tools
 				player.ApplyItemTime(Item);
 			}
 			else if (player.itemTime == player.itemTimeMax / 2) {
-				// This code runs once halfway through the useTime 的 项. You'll notice with magic mirrors you are still holding the 项 for a little bit after you've teleported.
+				// This code runs once halfway through the useTime 的 项. You'll notice with magic mirrors you are still holding the 项 for 一点 bit after you've teleported.
 
 				// 使 dust 70 times for a cool 效果.
 				for (int d = 0; d < 70; d++) {

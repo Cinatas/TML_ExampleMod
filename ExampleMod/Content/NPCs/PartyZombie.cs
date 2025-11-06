@@ -33,9 +33,9 @@ namespace ExampleMod.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath2;
 			NPC.value = 60f;
 			NPC.knockBackResist = 0.5f;
-			NPC.aiStyle = 3; // Fighter AI, important to choose the aiStyle that matches the NPCID that we want to mimic
+			NPC.aiStyle = 3; // Fighter AI, important to choose the aiStyle that matches the NPCID that we 想要 mimic
 
-			AIType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing AI code. (This also means it will try to despawn during daytime)
+			AIType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing AI code. (This also means it will 尝试 despawn during daytime)
 			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing 动画 code. Important to also 匹配 Main.npcFrameCount[NPC.类型] in SetStaticDefaults.
 			Banner = Item.NPCtoBanner(NPCID.Zombie); // 使 this NPC get affected by the normal zombie banner.
 			BannerItem = Item.BannerToItem(Banner); // 使 kills of this NPC go towards dropping the banner it's associated with.
@@ -44,11 +44,11 @@ namespace ExampleMod.Content.NPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
 			// Since Party Zombie is essentially just another variation of Zombie, we'd like to mimic the Zombie drops.
-			// 要 do this, we can either (1) 复制 the drops 从 Zombie directly or (2) just recreate the drops in our code.
+			// 要 do this, we can 任一 (1) 复制 the drops 从 Zombie directly or (2) just recreate the drops in our code.
 			// (1) Copying the drops directly means that if Terraria updates and changes the Zombie drops, your ModNPC will also inherit the changes automatically.
 			// (2) Recreating the drops can give you more 控制 if desired but requires consulting the wiki, bestiary, or source code 然后 writing 放下 code.
 
-			// (1) This example shows copying the drops directly. For consistency and mod 兼容性, we suggest using the smallest positive NPCID when dealing with npcs with many variants and shared 放下 pools.
+			// (1) This example shows copying the drops directly. For consistency and mod 兼容性, we suggest using the smallest positive NPCID when dealing with npcs with m任何 variants and shared 放下 pools.
 			var zombieDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Zombie, false); // 假 is important here
 			foreach (var zombieDropRule in zombieDropRules) {
 				// 在 this foreach 循环, we simple add each 放下 到 PartyZombie 放下 pool. 
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.NPCs
 			// npcLoot.Add(ItemDropRule.Common(ItemID.Shackle, 50)); // 放下 shackles with a 1 out of 50 概率.
 			// npcLoot.Add(ItemDropRule.Common(ItemID.ZombieArm, 250)); // 放下 zombie arm with a 1 out of 250 概率.
 
-			// 最后, we can add additional drops. Many Zombie variants have their own unique drops: https://terraria.fandom.com/wiki/Zombie
+			// 最后, we can add additional drops. M任何 Zombie variants have their own unique drops: https://terraria.fandom.com/wiki/Zombie
 			npcLoot.Add(ItemDropRule.Common(ItemID.Confetti, 100)); // 1% 概率 to 放下 Confetti
 		}
 
@@ -81,7 +81,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
+			// 我们 can use AddRange 代替 calling Add 多个 times in 顺序 to add 多个 items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
@@ -89,7 +89,7 @@ namespace ExampleMod.Content.NPCs
 				// 设置s the 描述 of this NPC 即 listed 在 bestiary.
 				new FlavorTextBestiaryInfoElement("This type of zombie for some reason really likes to spread confetti around. Otherwise, it behaves just like a normal zombie."),
 
-				// 默认情况下 the last added IBestiaryBackgroundImagePathAndColorProvider 将 used to show the 背景 图像.
+				// 默认情况下 the last added IBestiaryBackgroundImagePathAndColorProvider 将 用于 show the 背景 图像.
 				// 示例SurfaceBiome ModBiomeBestiaryInfoElement is automatically populated into bestiaryEntry.Info prior to this 方法 being called
 				// so we use this line to tell the game to prioritize a specific InfoElement for sourcing the 背景 图像.
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<ExampleSurfaceBiome>().ModBiomeBestiaryInfoElement),

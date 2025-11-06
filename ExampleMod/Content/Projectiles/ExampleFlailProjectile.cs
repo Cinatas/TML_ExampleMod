@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile need to be consulted if more advanced customization is desired, or if you want to learn more advanced modding techniques.
+	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
 	// 示例FlailProjectile is a 复制 的 Sunfury flail 弹幕.
 	internal class ExampleFlailProjectile : ModProjectile
 	{
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			Projectile.netImportant = true; // This ensures th在 弹幕 is synced when other players jo在 世界.
+			Projectile.netImportant = true; // 这确保 th在 弹幕 is synced when other players jo在 世界.
 			Projectile.width = 22; // The 宽度 of your 弹幕
 			Projectile.height = 22; // The 高度 of your 弹幕
 			Projectile.friendly = true; // Deals 伤害 to enemies
@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes 在 ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
-			// 在这里 we reuse the flail 弹幕 aistyle and set the aitype 到 Sunfury. These lines will get our 弹幕 to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code 对于 other behaviors you wish to use.
+			// 在这里 we reuse the flail 弹幕 aistyle and set the aitype 到 Sunfury. These lines will get our 弹幕 to behave exactly like Sunfury would. This only affects the AI code, you'll 需要 adapt other code 对于 other behaviors you wish to use.
 			Projectile.aiStyle = ProjAIStyleID.Flail;
 			AIType = ProjectileID.Sunfury;
 
@@ -35,14 +35,14 @@ namespace ExampleMod.Content.Projectiles
 			DrawOriginOffsetY = -6;
 		}
 
-		// All 的 following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of 弹幕.aiStyle and AIType. You'll need to 查找 corresponding code 在 decompiled source code if you wish to clone a different vanilla 弹幕 as a starting 点.
+		// All 的 following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of 弹幕.aiStyle and AIType. You'll 需要 查找 corresponding code 在 decompiled source code if you wish to clone a different vanilla 弹幕 as a starting 点.
 
 		// 绘制 the 弹幕 in full brightness, ignoring lighting conditions.
 		public override Color? GetAlpha(Color lightColor) {
 			return Color.White;
 		}
 
-		// 在 PreDrawExtras, we trick the game into thinking the 弹幕 is actually a Sunfury 弹幕. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the 弹幕.类型 back to normal so we don't 中断 anything.  
+		// 在 PreDrawExtras, we trick the game into thinking the 弹幕 is actually a Sunfury 弹幕. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the 弹幕.类型 back to normal so we don't 中断 任何thing.  
 		public override bool PreDrawExtras() {
 			Projectile.type = ProjectileID.Sunfury;
 			return base.PreDrawExtras();
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// 最后, you can slightly customize the AI if you read and understand the vanilla aiStyle source code. You can't customize the 范围, retract speeds, or anything else. If you need to customize those things, you'll need to follow ExampleAdvancedFlailProjectile. This example spawns a 手榴弹 右 when the flail starts to retract. 
+		// 最后, you can slightly customize the AI if you read and understand the vanilla aiStyle source code. You can't customize the 范围, retract speeds, or 任何thing else. If you 需要 customize those things, you'll 需要 follow ExampleAdvancedFlailProjectile. This example spawns a 手榴弹 右 when the flail starts to retract. 
 		public override void AI() {
 			// only reason this code works is because the 作者 read the vanilla code and comprehended it well enough to tack on additional logic.
 			if (Main.myPlayer == Projectile.owner && Projectile.ai[0] == 2f && Projectile.ai[1] == 0f) {

@@ -17,19 +17,19 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void SetDefaults() {
-			// 默认ToTorch sets various properties common to torch placing items. 悬停 over DefaultToTorch in Visual Studio to see the specific properties set.
+			// 默认ToTorch sets 各种 properties common to torch placing items. 悬停 over DefaultToTorch in Visual Studio to see the specific properties set.
 			// Of particular note to torches are 项.holdStyle, 项.flame, and 项.noWet. 
 			Item.DefaultToTorch(ModContent.TileType<Tiles.ExampleTorch>(), 0, false);
 			Item.value = 50;
 		}
 
 		public override void HoldItem(Player player) {
-			// This torch can不 used in water, so it shouldn't 生成 particles or light either
+			// This torch can不 used in water, so it shouldn't 生成 particles or light 任一
 			if (player.wet) {
 				return;
 			}
 
-			// 注意 that due to 生物群系 select torch god's favor, the 玩家 may not actually have an ExampleTorch 在ir 库存 when this hook is called, so no modifications 应该 made 到 项 实例.
+			// 注意 that 由于 生物群系 select torch god's favor, the 玩家 may not actually have an ExampleTorch 在ir 库存 when this hook is called, so no modifications 应该 made 到 项 实例.
 
 			// Randomly 生成 sparkles when the torch is held. Bigger 概率 to 生成 them when swinging the torch.
 			if (Main.rand.NextBool(player.itemAnimation > 0 ? 7 : 30)) {

@@ -40,13 +40,13 @@ namespace ExampleMod
 					break;
 				}
 			}
-			//We don't need to check does EoC was defeated, because if it wasn't, code would 返回 earlier
+			//We don't 需要 check does EoC was defeated, because if it wasn't, code would 返回 earlier
 			return foundNPC;
 		}
 
 		//OnCraft is called when we create 项
 		public override void OnCraft(Item item) {
-			//And here a little surprise
+			//And here 一点 surprise
 			Main.LocalPlayer.AddBuff(BuffID.OnFire, 120);
 		}
 	}

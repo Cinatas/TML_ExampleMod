@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleMinigun : ModItem
 	{
 		public override void SetDefaults() {
-			// Modders can use 项.DefaultToRangedWeapon to quickly set many common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee.
+			// Modders can use 项.DefaultToRangedWeapon to quickly set m任何 common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee.
 			// 参见 ExampleGun.SetDefaults to see comments explaining those properties
 			Item.DefaultToRangedWeapon(ProjectileID.PurificationPowder, AmmoID.Bullet, 5, 16f, true);
 

@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleMagicWeapon : ModItem
 	{
 		public override void SetDefaults() {
-			// 默认ToStaff handles 设置 various 项 values that magic staff weapons use.
+			// 默认ToStaff handles 设置 各种 项 values that magic staff weapons use.
 			// 悬停 over DefaultToStaff in Visual Studio to read the documentation!
 			// Shoot a black bolt, also known as the 弹幕 shot 从 onyx blaster.
 			Item.DefaultToStaff(ProjectileID.BlackBolt, 7, 20, 11);
@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void ModifyManaCost(Player player, ref float reduce, ref float mult) {
-			// 我们 can use ModifyManaCost to dynamically adjust the 魔力 成本 of this 项, similar to how Space Gun works 与 Meteor 护甲 set.
+			// 我们 can use ModifyManaCost to dynamically adjust the 魔力 成本 of this 项, 类似于 how Space Gun works 与 Meteor 护甲 set.
 			// 参见 ExampleHood to see how accessories give the reduce 魔力 成本 效果.
 			if (player.statLife < player.statLifeMax2 / 2) {
 				mult *= 0.5f; // Half the 魔力 成本 when at low 生命值. Make sure to use multiplication 与 mult 参数.

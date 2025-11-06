@@ -14,30 +14,30 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleCloneProjectile : ModProjectile
 	{
 		public override void SetDefaults() {
-			// 此方法 右 here is the backbone of what we're doing here; by using this 方法, we 复制 all of
+			// 此方法 右 here is the backbone of what we're doing here; by using this 方法, we 复制 所有
 			// the Meowmere 弹幕's SetDefault stats (例如 弹幕.friendly and 弹幕.penetrate) on to our 弹幕,
-			// so we don't have to go in到 source and 复制 the stats ourselves. It saves a lot of 时间 and looks much cleaner;
-			// if you're going to 复制 the stats of a 弹幕, use CloneDefaults().
+			// so we don't 必须 go in到 source and 复制 the stats ourselves. It saves 很多 时间 and looks much cleaner;
+			// if you're 将要 复制 the stats of a 弹幕, use CloneDefaults().
 
 			Projectile.CloneDefaults(ProjectileID.Meowmere);
 
-			// 要 further the Cloning 过程, we can also 复制 the ai of any given 弹幕 using AIType, since we want
+			// 要 further the Cloning 过程, we can also 复制 the ai of 任何 given 弹幕 using AIType, since we want
 			// the 弹幕 to essentially behave the same way as the vanilla 弹幕.
 			AIType = ProjectileID.Meowmere;
 
 			// 之后 CloneDefaults has been called, we can now modify the stats to our wishes, or keep them as they are.
-			// 对于 the sake of example, lets make our 弹幕 penetrate enemies a few more times than the vanilla 弹幕.
+			// 对于 the sake of example, lets make our 弹幕 penetrate enemies 一些 more times than the vanilla 弹幕.
 			// This 可以 done by modifying 弹幕.penetrate
 			Projectile.penetrate += 3;
 		}
 
-		// While there are several different ways to change how our 弹幕 可能have differently, lets make it so
+		// While there are 几个 different ways to change how our 弹幕 可能have differently, lets make it so
 		// when our 弹幕 finally dies, it will explode into 4 regular Meowmere projectiles.
 		public override void OnKill(int timeLeft) {
 			Vector2 launchVelocity = new Vector2(-4, 0); // 创建 a 速度 moving the 左.
 			for (int i = 0; i < 4; i++) {
 				// Every 迭代, 旋转 the newly spawned 弹幕 by the equivalent 1/4th of a circle (MathHelper.PiOver4)
-				// (Remember that all 旋转 in Terraria is based on Radians, NOT Degrees!)
+				// (Remember that all 旋转 in Terraria is 基于 Radians, NOT Degrees!)
 				launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
 
 				// 生成 a new 弹幕 与 newly rotated 速度, belonging 到 original 弹幕 所有者. The new 弹幕 will inherit the spawning source of this 弹幕.
@@ -45,8 +45,8 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// Now, using CloneDefaults() and aiType doesn't 复制 EVERY aspect 的 弹幕. In Vanilla, several other methods
-		// are used to generate different effects that aren't included in AI. 对于 case 的 Meowmere 弹幕, since the
+		// Now, using CloneDefaults() and aiType doesn't 复制 EVERY aspect 的 弹幕. In Vanilla, 几个 other methods
+		// are 用于 generate different effects that aren't included in AI. 对于 case 的 Meowmere 弹幕, since the
 		// ricochet 声音 is not included 在 AI, we must add it ourselves:
 		public override bool OnTileCollide(Vector2 oldVelocity) {
 			// Since there are two ricochet sounds 对于 Meowmere, we can randomly choose between them like this:

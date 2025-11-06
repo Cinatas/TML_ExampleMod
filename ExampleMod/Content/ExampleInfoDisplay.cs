@@ -15,8 +15,8 @@ namespace ExampleMod.Content
 		public static Color RedInfoTextColor => new(255, 19, 19, Main.mouseTextColor);
 
 		// 默认情况下, the vanilla circular outline 纹理 将 used. 
-		// This info 显示 has a square 图标 instead of a circular one, so we need to use a custom outline 纹理 instead 的 vanilla outline 纹理.
-		// 你 will only need to use a custom 悬停 纹理 if your info 显示 图标 doesn't perfectly 匹配 the shape that vanilla info displays use
+		// This info 显示 has a square 图标 代替 a circular one, so we 需要 use a custom outline 纹理 instead 的 vanilla outline 纹理.
+		// 你 will only 需要 use a custom 悬停 纹理 if your info 显示 图标 doesn't perfectly 匹配 the shape that vanilla info displays use
 		public override string HoverTexture => Texture + "_Hover";
 
 		// This dictates whether or not this info 显示 应该 active
@@ -26,7 +26,7 @@ namespace ExampleMod.Content
 
 		// 在这里 we can change the 值 that 将 displayed 在 game
 		public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
-			// Counting how many minions we have
+			// Counting how m任何 minions we have
 			// 这是 the 值 that will show up when viewing this 显示 in normal play, 右 next 到 图标
 			int minionCount = 0;
 			foreach (var proj in Main.ActiveProjectiles) {
@@ -37,7 +37,7 @@ namespace ExampleMod.Content
 
 			bool noInfo = minionCount == 0;
 			if (noInfo) {
-				// 如果 "No minions" 将 displayed, grey out the 文本 颜色, similar to DPS 仪表 or Radar
+				// 如果 "No minions" 将 displayed, grey out the 文本 颜色, 类似于 DPS 仪表 or Radar
 				displayColor = InactiveInfoTextColor;
 			}
 			else if (minionCount < Main.LocalPlayer.maxMinions) {

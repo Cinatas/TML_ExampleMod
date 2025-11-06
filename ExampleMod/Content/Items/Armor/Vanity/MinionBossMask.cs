@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Items.Armor.Vanity
 			Item.width = 22;
 			Item.height = 28;
 
-			// 常见 values for every Boss mask
+			// 常见 values for 每个 Boss mask
 			Item.rare = ItemRarityID.Blue;
 			Item.value = Item.sellPrice(silver: 75);
 			Item.vanity = true;

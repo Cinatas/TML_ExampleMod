@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Items.Placeable
 	public class ExampleHerbSeeds : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true; // This prevents this 项 from being automatically dropped from ExampleHerb 图格. 
+			ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true; // 这防止 this 项 from being automatically dropped from ExampleHerb 图格. 
 			Item.ResearchUnlockCount = 25;
 		}
 

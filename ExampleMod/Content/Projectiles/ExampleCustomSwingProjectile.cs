@@ -12,8 +12,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// 示例CustomSwingSword is an example of a sword with a custom swing using a held 弹幕
-	// 这是 great if you want to make melee weapons with complex swing behavior
-	// 注意 that this 弹幕 only covers 2 relatively simple swings, everything else is up to you
+	// 这是 great if you 想要 make melee weapons with complex swing behavior
+	// 注意 that this 弹幕 only covers 2 relatively simple swings, 每个thing else is up to you
 	// Aside 从 custom 动画, the custom collision code in Colliding is very important to this 武器
 	public class ExampleCustomSwingProjectile : ModProjectile
 	{
@@ -95,7 +95,7 @@ namespace ExampleMod.Content.Projectiles
 			float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
 
 			if (CurrentAttack == AttackType.Spin) {
-				InitialAngle = (float)(-Math.PI / 2 - Math.PI * 1 / 3 * Projectile.spriteDirection); // 对于 spin, starting 角度 is designated based on 方向 of hit
+				InitialAngle = (float)(-Math.PI / 2 - Math.PI * 1 / 3 * Projectile.spriteDirection); // 对于 spin, starting 角度 is designated 基于 方向 of hit
 			}
 			else {
 				if (Projectile.spriteDirection == 1) {
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 				else {
 					if (targetAngle < 0) {
-						targetAngle += 2 * (float)Math.PI; // This makes the 范围 continuous for easier operations
+						targetAngle += 2 * (float)Math.PI; // 这使 the 范围 continuous for easier operations
 					}
 
 					targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool PreDraw(ref Color lightColor) {
-			// 计算 原点 of sword (hilt) based on orientation and 偏移 sword 旋转 (as sword is angled in its 精灵)
+			// 计算 原点 of sword (hilt) 基于 orientation and 偏移 sword 旋转 (as sword is angled in its 精灵)
 			Vector2 origin;
 			float rotationOffset;
 			SpriteEffects effects;

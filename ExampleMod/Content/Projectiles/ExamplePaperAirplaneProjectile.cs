@@ -36,11 +36,11 @@ namespace ExampleMod.Content.Projectiles
 			// All projectiles have timers that 帮助 to 延迟 certain events
 			// 弹幕.ai[0], 弹幕.ai[1] — timers that are automatically synchronized 在 客户端 and 服务器
 
-			// This will run only once as soon as the 弹幕 spawns.
+			// 这将 run only once 一旦 the 弹幕 spawns.
 			if (Projectile.ai[1] == 0f) {
 				Projectile.direction = (Projectile.velocity.X > 0).ToDirectionInt(); // If it is moving 右, then set 弹幕.方向 to 1. If it is moving 左, then set 弹幕.方向 to -1.
 				Projectile.rotation = Projectile.velocity.ToRotation(); // 设置 the 旋转 based 在 速度.
-				Projectile.ai[1] = 1f; // 设置 弹幕.ai[1] to 1. This is only used to make this section of code run only once.
+				Projectile.ai[1] = 1f; // 设置 弹幕.ai[1] to 1. This is only 用于 make this section of code run only once.
 				Projectile.ai[0] = -Main.rand.Next(30, 80); // 设置 弹幕.ai[0] to a 随机 数字 from -30 to -79.
 				Projectile.netUpdate = true; // 同步 the 弹幕 in a multiplayer game.
 			}
@@ -50,11 +50,11 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.Kill();
 			}
 
-			Projectile.ai[0] += 1f; // Increase 弹幕.ai[0] by 1 every tick. Remember, there are 60 ticks per second.
+			Projectile.ai[0] += 1f; // Increase 弹幕.ai[0] by 1 每个 tick. Remember, there are 60 ticks per second.
 
 			Vector2 rotationVector = Projectile.rotation.ToRotationVector2() * 8f; // 获取 the 旋转 的 弹幕.
 
-			float ySinModifier = (float)Math.Sin((float)Math.PI * 2f * (float)(Main.timeForVisualEffects % 90.0 / 90.0)) * Projectile.direction * Main.WindForVisuals; // This will make the 弹幕 fly in a sine wave fashion.
+			float ySinModifier = (float)Math.Sin((float)Math.PI * 2f * (float)(Main.timeForVisualEffects % 90.0 / 90.0)) * Projectile.direction * Main.WindForVisuals; // 这将 make the 弹幕 fly in a sine wave fashion.
 
 			Vector2 newVelocity = rotationVector + new Vector2(Main.WindForVisuals, ySinModifier); // 创建 a new 速度 using the 旋转 and wind.
 
@@ -78,11 +78,11 @@ namespace ExampleMod.Content.Projectiles
 			if (!(readyForFlip && directionSameAsWind)) {
 				float yModifier = MathHelper.Lerp(0.15f, 0.05f, Math.Abs(Main.WindForVisuals));
 
-				// Half of 时间, decrease the y 速度 a little.
+				// Half of 时间, decrease the y 速度 一点.
 				if (Projectile.timeLeft % 40 < 20) {
 					Projectile.velocity.Y -= yModifier;
 				}
-				// other half of 时间, increase the y 速度 a little.
+				// other half of 时间, increase the y 速度 一点.
 				else {
 					Projectile.velocity.Y += yModifier;
 				}
@@ -107,13 +107,13 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.spriteDirection = Projectile.direction;
 
-			// Let's add some dust for special 效果. In this case, it runs every other tick (30 ticks per second).
+			// Let's add some dust for special 效果. In this case, it runs 每个 other tick (30 ticks per second).
 			if (Projectile.timeLeft % 2 == 0) {
 				Dust.NewDustPerfect(new Vector2(Projectile.Center.X - (Projectile.width * Projectile.direction), Projectile.Center.Y), ModContent.DustType<Dusts.Sparkle>(), null, 0, default, 0.5f); //Here we 生成 the dust 在 back 的 弹幕 with half 缩放.
 			}
 		}
 
-		// 我们 need to draw the 弹幕 manually. If you don't include this, the 弹幕 将 facing the wrong 方向 when flying 左.
+		// 我们 需要 draw the 弹幕 manually. If you don't include this, the 弹幕 将 facing the wrong 方向 when flying 左.
 		public override bool PreDraw(ref Color lightColor) {
 			// 这是 where we specify which way to flip the 精灵. If the 弹幕 is moving 到 左, then flip it vertically.
 			SpriteEffects spriteEffects = ((Projectile.spriteDirection <= 0) ? SpriteEffects.FlipVertically : SpriteEffects.None);
@@ -132,7 +132,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
 				sourceRectangle, drawColor, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
 
-			// It's important to 返回 假, otherwise we also draw the original 纹理.
+			// It's important to 返回 假, 否则 we also draw the original 纹理.
 			return false;
 		}
 
@@ -142,9 +142,9 @@ namespace ExampleMod.Content.Projectiles
 			if (Projectile.owner == Main.myPlayer && !Projectile.noDropItem) {
 				int dropItemType = ModContent.ItemType<Items.ExamplePaperAirplane>(); // This the 项 we want the paper airplane to 放下.
 				int newItem = Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.Hitbox, dropItemType); // 创建 a new 项 在 世界.
-				Main.item[newItem].noGrabDelay = 0; // 设置 the new 项 to be able to be picked up instantly
+				Main.item[newItem].noGrabDelay = 0; // 设置 the new 项 to be 能够 be picked up instantly
 
-				// 在这里 we need to make sure the 项 is synced in multiplayer games.
+				// 在这里 we 需要 make sure the 项 is synced in multiplayer games.
 				if (Main.netMode == NetmodeID.MultiplayerClient && newItem >= 0) {
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem, 1f);
 				}

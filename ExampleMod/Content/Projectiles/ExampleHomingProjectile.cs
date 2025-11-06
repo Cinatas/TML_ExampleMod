@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Projectiles
 				HomingTarget = FindClosestNPC(maxDetectRadius);
 			}
 
-			// 如果 we have a homing 目标, make sure it is still valid. If the NPC dies or moves away, we'll want to 查找 a new 目标
+			// 如果 we have a homing 目标, make sure it is still valid. If the NPC dies or moves away, we'll 想要 查找 a new 目标
 			if (HomingTarget != null && !IsValidTarget(HomingTarget)) {
 				HomingTarget = null;
 			}
@@ -77,7 +77,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// 循环 through all NPCs
 			foreach (var target in Main.ActiveNPCs) {
-				// 检查 if NPC able to be targeted. 
+				// 检查 if NPC 能够 be targeted. 
 				if (IsValidTarget(target)) {
 					// DistanceSquared 函数 returns a squared 距离 between 2 points, skipping relatively expensive square root calculations
 					float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);

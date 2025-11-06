@@ -10,7 +10,7 @@ using Terraria.ModLoader.IO;
 namespace ExampleMod.Content.Items.Consumables
 {
 	// This showcases how the CanStack hook 可以 used in conjunction with custom 数据
-	// 自定义 数据 is also shown in ExampleDataItem, but here we need to use more hooks
+	// 自定义 数据 is also shown in ExampleDataItem, but here we 需要 use more hooks
 
 	// This 项, when crafted, stores the players 名称, and only lets other players 打开 it. Bags 与 same stored 名称 aren't stackable
 	public class ExampleCanStackItem : ModItem
@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Consumables
 		public string craftedPlayerName = string.Empty;
 
 		public override void SetDefaults() {
-			Item.maxStack = Item.CommonMaxStack; // This 项 is stackable, otherwise the example wouldn't work
+			Item.maxStack = Item.CommonMaxStack; // This 项 is stackable, 否则 the example wouldn't work
 			Item.consumable = true;
 			Item.width = 22;
 			Item.height = 26;
@@ -39,12 +39,12 @@ namespace ExampleMod.Content.Items.Consumables
 		public override bool CanStack(Item source) {
 			// bag can only be stacked with other bags if the names 匹配
 
-			// 我们 have to cast the second 项 到 类 (This is safe to do as the hook is only called on items 的 same 类型)
+			// 我们 必须 cast the second 项 到 类 (This is safe to do as the hook is only called on items 的 same 类型)
 			var name1 = craftedPlayerName;
 			var name2 = ((ExampleCanStackItem)source.ModItem).craftedPlayerName;
 
 			// let items which have been spawned in and not assigned to a 玩家, to 堆叠 with other bags the the current 玩家 owns
-			// This lets you craft multiple items in到 鼠标-held 堆叠
+			// This lets you craft 多个 items in到 鼠标-held 堆叠
 			if (name1 == string.Empty) {
 				name1 = Main.LocalPlayer.name;
 			}

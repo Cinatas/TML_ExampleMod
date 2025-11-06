@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 namespace ExampleMod.Tiles
 {
 	// This 类 replicates the behavior 的 game Minesweeper within a ModTile.
-	// This contrived example serves to teach modders about what TileFrame is capable of. Usually ModTiles are "framed" according to vanilla patterns. We override this behavior as a teaching example.
+	// This contrived example serves to teach modders about what TileFrame is capable of. Usually ModTiles are "framed" 根据 vanilla patterns. We override this behavior as a teaching example.
 	public class Minesweeper : ModTile
 	{
 		public override void SetDefaults() {
@@ -26,12 +26,12 @@ namespace ExampleMod.Tiles
 			{
 				tile.frameX = 18;
 				TileFrame8Neighbors(i, j);
-				if (Main.netMode == NetmodeID.MultiplayerClient) // If we are a multiplayer 客户端, we need to inform the 服务器 的 changes we've made 到 图格.
+				if (Main.netMode == NetmodeID.MultiplayerClient) // If we are a multiplayer 客户端, we 需要 inform the 服务器 的 changes we've made 到 图格.
 					NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
 			}
 		}
 
-		// When a 图格 is hammered, we need to reveal it and possibly 更新 nearby tiles. 
+		// When a 图格 is hammered, we 需要 reveal it and possibly 更新 nearby tiles. 
 		public override bool Slope(int i, int j) {
 			Tile tile = Main.tile[i, j];
 			bool IsBomb = (tile.frameX == 18 || tile.frameX == 5 * 18) && tile.frameY == 0;
@@ -43,7 +43,7 @@ namespace ExampleMod.Tiles
 				Main.projectile[projectile].netUpdate = true;
 				tile.frameX = 5 * 18;
 
-				if (Main.netMode == NetmodeID.MultiplayerClient) // Slope is called on Clients, so we need to inform the 服务器 of changes.
+				if (Main.netMode == NetmodeID.MultiplayerClient) // Slope is called on Clients, so we 需要 inform the 服务器 of changes.
 					NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
 			}
 			else {

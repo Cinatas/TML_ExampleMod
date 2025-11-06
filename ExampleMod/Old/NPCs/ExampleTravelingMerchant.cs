@@ -44,8 +44,8 @@ namespace ExampleMod.NPCs
 
 			// Main.时间 is set to 0 each morning, and only for one 更新. Sundialling will never 跳过 past 时间 0 so this is the place for 'on new day' code
 			if (Main.dayTime && Main.time == 0) {
-				// insert code here to change the 生成 概率 based on other conditions (say, npcs which have arrived, or milestones the 玩家 has passed)
-				// You can also add a day 计数器 here to 防止 the 商人 from possibly spawning multiple days in a 行.
+				// insert code here to change the 生成 概率 基于 other conditions (say, npcs which have arrived, or milestones the 玩家 has passed)
+				// 你可以 also add a day 计数器 here to 防止 the 商人 from possibly spawning 多个 days in a 行.
 
 				// NPC won't 生成 today if it stayed all night
 				if (traveler == null && Main.rand.NextBool(4)) { // 4 = 25% 概率
@@ -202,7 +202,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
-			return false; // This should always be 假, because we 生成 在 Travleing 商人 manually
+			return false; // 这应该 always be 假, because we 生成 在 Travleing 商人 manually
 		}
 
 		public override string TownNPCName() {

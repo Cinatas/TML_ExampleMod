@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
-			// 当 overriding GetAlpha, you usually want to take the projectiles alpha into account. As it is a 值 between 0 and 255,
+			// 当 overriding GetAlpha, you usually 想要 take the projectiles alpha into account. As it is a 值 between 0 and 255,
 			// it's annoying to convert it into a float to multiply. Luckily the Opacity 属性 handles that for us (0f transparent, 1f opaque)
 			return Color.White * Projectile.Opacity;
 		}
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Projectiles
 				PlayedSpawnSound = true;
 
 				// 常见 practice regarding 生成 sounds for projectiles is to put them into AI, playing sounds 在 same place where they are spawned
-				// is not multiplayer compatible (either no one will hear it, or only you and not others)
+				// is not multiplayer compatible (任一 no one will hear it, or only you and not others)
 				SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
 			}
 

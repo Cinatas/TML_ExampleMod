@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Tiles
 			AnimationFrameHeight = 36;
 
 			// 我们 can 复制 the TileObjectData directly from an existing 图格 to 复制 changes, 如果有的话, made 到 TileObjectData template the original 图格 copied from.
-			// 在 this case, the original FrogCage 图格 is an exact 复制 of TileObjectData.StyleSmallCage, so either approach works here.
+			// 在 this case, the original FrogCage 图格 is an exact 复制 of TileObjectData.StyleSmallCage, so 任一 approach works here.
 			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.FrogCage, 0));
 			// or TileObjectData.newTile.CopyFrom(TileObjectData.StyleSmallCage);
 			TileObjectData.addTile(Type);

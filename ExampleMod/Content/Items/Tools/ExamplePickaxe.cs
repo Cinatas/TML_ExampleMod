@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Tools
 			Item.useAnimation = 10;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 6;
-			Item.value = Item.buyPrice(gold: 1); // 购买 this 项 for one 金币 - change 金币 to any 硬币 and change the 值 to any 数字 <= 100
+			Item.value = Item.buyPrice(gold: 1); // 购买 this 项 for one 金币 - change 金币 to 任何 硬币 and change the 值 to 任何 数字 <= 100
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

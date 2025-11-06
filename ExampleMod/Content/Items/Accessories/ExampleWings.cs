@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Items.Accessories
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
-				.SortBefore(Main.recipe.First(recipe => recipe.createItem.wingSlot != -1)) // Places this 配方 before any wing so every wing stays together 在 制作 菜单.
+				.SortBefore(Main.recipe.First(recipe => recipe.createItem.wingSlot != -1)) // Places this 配方 before 任何 wing so 每个 wing stays together 在 制作 菜单.
 				.Register();
 		}
 	}

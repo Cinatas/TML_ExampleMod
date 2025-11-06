@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items.Placeable.Furniture
 	{
 		public override void SetDefaults() {
 			// ModContent.TileType<Tiles.Furniture.ExampleWorkbench>() retrieves the ID 的 图格 that this 项 should place when used.
-			// 默认ToPlaceableTile handles 设置 various 项 values that placeable items use
+			// 默认ToPlaceableTile handles 设置 各种 项 values that placeable items use
 			// 悬停 over DefaultToPlaceableTile in Visual Studio to read the documentation!
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.ExampleWorkbench>());
 			Item.width = 28; // The 项 纹理's 宽度

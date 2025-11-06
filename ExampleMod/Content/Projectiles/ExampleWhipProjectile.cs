@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleWhipProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			// This makes the 弹幕 use whip collision detection and allows flasks to be applied to it.
+			// 这使 the 弹幕 use whip collision detection and allows flasks to be applied to it.
 			ProjectileID.Sets.IsAWhip[Type] = true;
 		}
 
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.Projectiles
 				// These statements determine what part 的 spritesheet to draw 对于 current segment.
 				// They can also be changed to suit your 精灵.
 				if (i == list.Count - 2) {
-					// 这是 the head 的 whip. You need to measure the 精灵 to figure out these values.
+					// 这是 the head 的 whip. You 需要 measure the 精灵 to figure out these values.
 					frame.Y = 74; // 距离 从 顶部 的 精灵 到 开始 的 帧.
 					frame.Height = 18; // 高度 的 帧.
 
@@ -140,7 +140,7 @@ namespace ExampleMod.Content.Projectiles
 				Vector2 element = list[i];
 				Vector2 diff = list[i + 1] - element;
 
-				float rotation = diff.ToRotation() - MathHelper.PiOver2; // This 弹幕's 精灵 faces down, so PiOver2 is used to correct 旋转.
+				float rotation = diff.ToRotation() - MathHelper.PiOver2; // This 弹幕's 精灵 faces down, so PiOver2 is 用于 correct 旋转.
 				Color color = Lighting.GetColor(element.ToTileCoordinates());
 
 				Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, flip, 0);

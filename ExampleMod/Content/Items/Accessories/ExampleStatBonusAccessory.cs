@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Accessories
 			// Base 伤害 is added directly 到 武器's base 伤害 and is affected by 伤害 bonuses, while flat 伤害 is applied after all other calculations.
 			// 在 this case, we're doing a 数字 of things:
 			// - Adding 25% 伤害, additively. This is the typical "X% 伤害 increase" that accessories use, use this one.
-			// - Adding 12% 伤害, multiplicatively. This 效果 is almost never used in Terraria, typically you want to use the additive 乘数 above. It is extremely hard to correctly balance the game with multiplicative bonuses.
+			// - Adding 12% 伤害, multiplicatively. This 效果 is almost never used in Terraria, typically you 想要 use the additive 乘数 above. It is extremely hard to correctly balance the game with multiplicative bonuses.
 			// - Adding 4 base 伤害.
 			// - Adding 5 flat 伤害.
 			// Since we're using DamageClass.Generic, these bonuses apply to ALL 伤害 the 玩家 deals.
@@ -47,17 +47,17 @@ namespace ExampleMod.Content.Items.Accessories
 
 			// 获取Crit, similarly to GetDamage, returns a 引用 到 specified 伤害 类' crit 概率.
 			// 在 this case, we're adding 10% crit 概率, but only 对于 melee DamageClass (as such, only melee weapons will receive this 奖励).
-			// NOTE: Once all crit calculations are complete, a 武器 or 类' total crit 概率 is typically cast to an int. Plan accordingly.
+			// NOTE: Once all crit calculations are complete, a 武器 or 类' total crit 概率 is typically cast to an int. Plan 相应地.
 			player.GetCritChance(DamageClass.Melee) += MeleeCritBonus;
 
 			// 获取AttackSpeed is functionally identical to GetDamage and GetKnockback; it's for 攻击 速度.
 			// 在 this case, we'll make ranged weapons 15% faster to use overall.
-			// NOTE: Zero or a negative 值 as the result 的se calculations will throw an exception. Plan accordingly.
+			// NOTE: Zero or a negative 值 as the result 的se calculations will throw an exception. Plan 相应地.
 			player.GetAttackSpeed(DamageClass.Ranged) += RangedAttackSpeedBonus / 100f;
 
 			// 获取ArmorPenetration is functionally identical to GetCritChance, but 对于 护甲 penetration stat instead.
 			// 在 this case, we'll add 5 护甲 penetration to magic weapons.
-			// NOTE: Once all 护甲 pen calculations are complete, the final 护甲 pen amount is cast to an int. Plan accordingly.
+			// NOTE: Once all 护甲 pen calculations are complete, the final 护甲 pen amount is cast to an int. Plan 相应地.
 			player.GetArmorPenetration(DamageClass.Magic) += MagicArmorPenetration;
 
 			// 获取Knockback is functionally identical to GetDamage, but 对于 knockback stat instead.
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 	}
 
-	// Some movement effects are not suitable to be modified in ModItem.UpdateAccessory due to how the math is done.
+	// Some movement effects are not suit能够 be modified in ModItem.UpdateAccessory 由于 how the math is done.
 	// ModPlayer.PostUpdateRunSpeeds is suitable 对于se modifications.
 	public class ExampleStatBonusAccessoryPlayer : ModPlayer {
 		public bool exampleStatBonusAccessory = false;
@@ -85,7 +85,7 @@ namespace ExampleMod.Content.Items.Accessories
 				return;
 			}
 
-			// following modifications are similar to Shadow 护甲 set 奖励
+			// following modifications are 类似于 Shadow 护甲 set 奖励
 			Player.runAcceleration *= 1.75f; // 修改 玩家 run acceleration
 			Player.maxRunSpeed *= 1.15f;
 			Player.accRunSpeed *= 1.15f;

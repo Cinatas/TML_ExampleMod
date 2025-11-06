@@ -20,8 +20,8 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.DamageType = DamageClass.Ranged; // What 类型 of 伤害 does this ammo affect?
 
 			Item.maxStack = Item.CommonMaxStack; // The 最大 数字 of items that 可以 contained within a single 堆叠
-			Item.consumable = true; // This marks the 项 as consumable, making it automatically be consumed when it's used as ammunition, or something else, if possible
-			Item.knockBack = 2f; // 设置s the 项's knockback. Ammunition's knockback added together with 武器 and projectiles.
+			Item.consumable = true; // This marks the 项 as consumable, making it automatically be consumed when it's used as ammunition, or something else, 如果可能
+			Item.knockBack = 2f; // 设置s the 项's knockback. Ammunition's knockback added 与...一起 武器 and projectiles.
 			Item.value = Item.sellPrice(0, 0, 1, 0); // 项 价格 in 铜币 coins (可以 converted with 项.sellPrice/项.buyPrice)
 			Item.rare = ItemRarityID.Yellow; // The 颜色 th在 项's 名称 将 in-game.
 			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleHomingProjectile>(); // The 弹幕 that weapons fire when using this 项 as ammunition.

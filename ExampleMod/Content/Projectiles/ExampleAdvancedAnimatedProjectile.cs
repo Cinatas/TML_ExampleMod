@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Projectiles
 			// All projectiles have timers that 帮助 to 延迟 certain events
 			// 弹幕.ai[0], 弹幕.ai[1] — timers that are automatically synchronized 在 客户端 and 服务器
 			// 弹幕.localAI[0], 弹幕.localAI[0] — only 在 客户端
-			// 在 this example, a 计时器 is used to 控制 the fade in / out and despawn 的 弹幕
+			// 在 this example, a 计时器 is 用于 控制 the fade in / out and despawn 的 弹幕
 			Projectile.ai[0] += 1f;
 
 			FadeInAndOut();
@@ -64,19 +64,19 @@ namespace ExampleMod.Content.Projectiles
 			if (Projectile.ai[0] >= 60f)
 				Projectile.Kill();
 
-			// 设置 both 方向 and spriteDirection to 1 or -1 (右 and 左 respectively)
-			// 弹幕.方向 is automatically set correctly in 弹幕.更新, but we need to set it here or the textures will draw incorrectly 在 1st 帧.
+			// 设置 两者 方向 and spriteDirection to 1 or -1 (右 and 左 respectively)
+			// 弹幕.方向 is automatically set correctly in 弹幕.更新, but we 需要 set it here or the textures will draw incorrectly 在 1st 帧.
 			Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f) ? 1 : -1;
 
 			Projectile.rotation = Projectile.velocity.ToRotation();
-			// Since our 精灵 has an orientation, we need to adjust 旋转 to compensate 对于 draw flipping
+			// Since our 精灵 has an orientation, we 需要 adjust 旋转 to compensate 对于 draw flipping
 			if (Projectile.spriteDirection == -1) {
 				Projectile.rotation += MathHelper.Pi;
 				// 对于 vertical sprites use MathHelper.PiOver2
 			}
 		}
 
-		// Many projectiles fade in so that when they 生成 they don't overlap the gun muzzle they appear from
+		// M任何 projectiles fade in 以便 when they 生成 they don't overlap the gun muzzle they appear from
 		public void FadeInAndOut() {
 			// 如果 last less than 50 ticks — fade in, than more — fade out
 			if (Projectile.ai[0] <= 50f) {
@@ -97,7 +97,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// Some advanced drawing because the 纹理 图像 isn't centered or symmetrical
-		// 如果 you don't want to manually drawing you can use vanilla 弹幕 rendering offsets
+		// 如果 you don't 想要 manually drawing you can use vanilla 弹幕 rendering offsets
 		// 在这里 you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-弹幕#horizontal-精灵-example
 		public override bool PreDraw(ref Color lightColor) {
 			// SpriteEffects helps to flip 纹理 horizontally and vertically
@@ -137,7 +137,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
 				sourceRectangle, drawColor, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
 
-			// It's important to 返回 假, otherwise we also draw the original 纹理.
+			// It's important to 返回 假, 否则 we also draw the original 纹理.
 			return false;
 		}
 	}

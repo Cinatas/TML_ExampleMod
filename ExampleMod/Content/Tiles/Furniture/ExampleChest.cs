@@ -37,14 +37,14 @@ namespace ExampleMod.Content.Tiles.Furniture
 			AdjTiles = new int[] { TileID.Containers };
 
 			// Other tiles with just one 地图 entry use CreateMapEntryName() to use the default translationkey, "MapEntry"
-			// Since ExampleChest needs multiple, we register our own MapEntry keys
+			// Since ExampleChest needs 多个, we register our own MapEntry keys
 			AddMapEntry(new Color(200, 200, 200), this.GetLocalization("MapEntry0"), MapChestName);
 			AddMapEntry(new Color(0, 141, 63), this.GetLocalization("MapEntry1"), MapChestName);
 
 			// Style 1 is ExampleChest when locked. We want that 图格 style to 放下 the ExampleChest 项 以及. Use the 箱子 Lock 项 to lock this 箱子.
 			// No 项 places ExampleChest 在 locked style, so the automatically determined 项 放下 is unknown, this is why RegisterItemDrop is necessary in this situation. 
 			RegisterItemDrop(ModContent.ItemType<Items.Placeable.Furniture.ExampleChest>(), 1);
-			// Sometimes mods 删除 content, 例如 图格 styles, or tiles accidentally get corrupted. We can, if desired, register a fallback 项 for any 图格 style that doesn't have an automatically determined 项 放下. This is done by omitting the tileStyles 参数.
+			// Sometimes mods 删除 content, 例如 图格 styles, or tiles accidentally get corrupted. We can, if desired, register a fallback 项 for 任何 图格 style that doesn't have an automatically determined 项 放下. This is done by omitting the tileStyles 参数.
 			RegisterItemDrop(ItemID.Chest);
 
 			// Placement
@@ -67,7 +67,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		// 此示例 shows using GetItemDrops to manually decide 项 drops. This example is for a 图格 with a TileObjectData.
-		// 此示例 is commented out because the RegisterItemDrop line in SetStaticDefaults above handles this situation and is the recommended approach, but the code is still useful to learn from if conditional drops need to be implemented.
+		// 此示例 is commented out because the RegisterItemDrop line in SetStaticDefaults above handles this situation and is the recommended approach, but the code is still useful to learn from if conditional drops 需要 be implemented.
 		/*
 		public override IEnumerable<Item> GetItemDrops(int i, int j) {
 			Tile tile = Main.tile[i, j];
@@ -110,7 +110,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override bool LockChest(int i, int j, ref short frameXAdjustment, ref bool manual) {
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
-			// 我们 need to 返回 真 only if the 图格 style is the unlocked variant of a 箱子 that supports locking. 
+			// 我们 需要 返回 真 only if the 图格 style is the unlocked variant of a 箱子 that supports locking. 
 			if (style == 0) {
 				// 我们 can check other conditions 以及, 例如 how 生物群系 chests can't be locked until Plantera is defeated
 				return true;

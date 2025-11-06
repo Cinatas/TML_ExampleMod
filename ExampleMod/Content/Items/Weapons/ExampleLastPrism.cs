@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.shoot = ModContent.ProjectileType<ExampleLastPrismHoldout>();
 			Item.shootSpeed = 30f;
 
-			// 更改 the 项's draw 颜色 so that it is visually distinct 从 vanilla Last Prism.
+			// 更改 the 项's draw 颜色 以便 it is visually distinct 从 vanilla Last Prism.
 			Item.color = OverrideColor;
 		}
 

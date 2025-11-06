@@ -12,7 +12,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// 此类 shows off many things common to Lamp tiles in Terraria. The 过程 for creating this example is detailed in: https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#examplelamp-图格
+	// 此类 shows off m任何 things common to Lamp tiles in Terraria. The 过程 for creating this example is detailed in: https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#examplelamp-图格
 	// 如果 you can't figure out how to recreate a vanilla 图格, see that guide for instructions on how to figure it out yourself.
 	internal class ExampleLamp : ModTile
 	{
@@ -148,7 +148,7 @@ namespace ExampleMod.Content.Tiles
 
 			TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref frameX, ref frameY);
 
-			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 删除 any casts.
+			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 删除 任何 casts.
 
 			// 我们 can support different flames for different styles here: int style = Main.图格[j, i].frameY / 54;
 			for (int c = 0; c < 7; c++) {

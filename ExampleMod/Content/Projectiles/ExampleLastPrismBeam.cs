@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Projectiles
 		private const float MaxBeamLength = 2400f;
 
 		// 宽度 的 beam in pixels 对于 purposes of 图格 collision.
-		// This should generally be 左 at 1, otherwise the beam tends to 停止 early when touching tiles.
+		// 这应该 generally be 左 at 1, 否则 the beam tends to 停止 early when touching tiles.
 		private const float BeamTileCollisionWidth = 1f;
 
 		// 宽度 的 beam in pixels 对于 purposes of entity hitbox collision.
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// How quickly the beam adjusts to sudden changes in 长度.
 		// Every 帧, the beam replaces this ratio of its current 长度 with its intended 长度.
-		// Generally you shouldn't need to change this.
+		// Generally you shouldn't 需要 change this.
 		// 设置ting it too low will make the beam lazily pass through walls before being blocked by them.
 		private const float BeamLengthChangeFactor = 0.75f;
 
@@ -58,7 +58,7 @@ namespace ExampleMod.Content.Projectiles
 		private const float BeamLightBrightness = 0.75f;
 
 		// These variables 控制 the beam's potential coloration.
-		// As a 值, hue ranges from 0f to 1f, both of which are pure red. The laser beams vary from 0.57 to 0.75, which winds up being a blue-to-purple gradient.
+		// As a 值, hue ranges from 0f to 1f, 两者 of which are pure red. The laser beams vary from 0.57 to 0.75, which winds up being a blue-to-purple gradient.
 		// Saturation ranges from 0f to 1f and controls how greyed out the 颜色 is. 0 is fully grayscale, 1 is vibrant, intense 颜色.
 		// Lightness ranges from 0f to 1f and controls how dark or light the 颜色 is. 0 is 音高 black. 1 is pure white.
 		private const float BeamColorHue = 0.57f;
@@ -92,7 +92,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.penetrate = -1;
 			Projectile.alpha = 255;
 			// beam itself still stops on tiles, but its invisible "source" 弹幕 ignores them.
-			// This prevents the beams from vanishing if the 玩家 shoves the Prism into a 墙.
+			// 这防止 the beams from vanishing if the 玩家 shoves the Prism into a 墙.
 			Projectile.tileCollide = false;
 
 			// 使用 local NPC immunity allows each beam to strike independently from one another.
@@ -100,12 +100,12 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.localNPCHitCooldown = 10;
 		}
 
-		// Send beam 长度 over the 网络 to 防止 hitbox-affecting and thus cascading desyncs in multiplayer.
+		// Send beam 长度 over the 网络 to 防止 hitbox-affecting and 因此 cascading desyncs in multiplayer.
 		public override void SendExtraAI(BinaryWriter writer) => writer.Write(BeamLength);
 		public override void ReceiveExtraAI(BinaryReader reader) => BeamLength = reader.ReadSingle();
 
 		public override void AI() {
-			// 如果 something has gone wrong with either the beam or the 主机 Prism, destroy the beam.
+			// 如果 something has gone wrong with 任一 the beam or the 主机 Prism, destroy the beam.
 			Projectile hostPrism = Main.projectile[(int)HostPrismIndex];
 			if (Projectile.type != ModContent.ProjectileType<ExampleLastPrismBeam>() || !hostPrism.active || hostPrism.type != ModContent.ProjectileType<ExampleLastPrismHoldout>()) {
 				Projectile.Kill();
@@ -116,13 +116,13 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 hostPrismDir = Vector2.Normalize(hostPrism.velocity);
 			float chargeRatio = MathHelper.Clamp(hostPrism.ai[0] / ExampleLastPrismHoldout.MaxCharge, 0f, 1f);
 
-			// 更新 the beam's 伤害 every 帧 based on charge and the 主机 Prism's 伤害.
+			// 更新 the beam's 伤害 每个 帧 基于 charge and the 主机 Prism's 伤害.
 			Projectile.damage = (int)(hostPrism.damage * GetDamageMultiplier(chargeRatio));
 
 			// beam cannot strike enemies until the 主机 Prism is at a certain charge 级别.
 			Projectile.friendly = hostPrism.ai[0] > ExampleLastPrismHoldout.DamageStart;
 
-			// This 偏移 is used to make each individual beam orient differently based on its Beam ID.
+			// This 偏移 is 用于 make each individual beam orient differently 基于 its Beam ID.
 			float beamIdOffset = BeamID - ExampleLastPrismHoldout.NumBeams / 2f + 0.5f;
 			float beamSpread;
 			float spinRate;
@@ -153,7 +153,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 
-			// 如果 the 主机 Prism is already at max charge, don't calculate anything. Just use the max values.
+			// 如果 the 主机 Prism is already at max charge, don't calculate 任何thing. Just use the max values.
 			else {
 				Projectile.scale = MaxBeamScale;
 				Projectile.Opacity = 1f;
@@ -166,7 +166,7 @@ namespace ExampleMod.Content.Projectiles
 			// amount to which the 角度 changes reduces over 时间 so th在 beams look like they are focusing.
 			float deviationAngle = (hostPrism.ai[0] + beamIdOffset * spinRate) / (spinRate * ExampleLastPrismHoldout.NumBeams) * MathHelper.TwoPi;
 
-			// This trigonometry calculates where the beam is supposed to be pointing.
+			// This trigonometry calculates where the beam is 应该 be pointing.
 			Vector2 unitRot = Vector2.UnitY.RotatedBy(deviationAngle);
 			Vector2 yVec = new Vector2(4f, beamStartSidewaysOffset);
 			float hostPrismAngle = hostPrism.velocity.ToRotation();
@@ -228,7 +228,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			// Overriding that, if the 玩家 shoves the Prism into or through a 墙, the interpolation starts 在 玩家's 中心.
-			// This last part prevents the 玩家 from projecting beams through walls under any circumstances.
+			// This last part prevents the 玩家 from projecting beams through walls under 任何 circumstances.
 			Player player = Main.player[Projectile.owner];
 			if (!Collision.CanHitLine(player.Center, 0, 0, prism.Center, 0, 0)) {
 				samplingPoint = player.Center;
@@ -262,7 +262,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool PreDraw(ref Color lightColor) {
-			// 如果 the beam doesn't have a defined 方向, don't draw anything.
+			// 如果 the beam doesn't have a defined 方向, don't draw 任何thing.
 			if (Projectile.velocity == Vector2.Zero) {
 				return false;
 			}
@@ -298,7 +298,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private Color GetOuterBeamColor() {
-			// This hue 计算 produces a unique 颜色 for each beam based on its Beam ID.
+			// This hue 计算 produces a unique 颜色 for each beam 基于 its Beam ID.
 			float hue = (BeamID / ExampleLastPrismHoldout.NumBeams) % BeamHueVariance + BeamColorHue;
 
 			// Main.hslToRgb converts Hue, Saturation, Lightness into a 颜色 for general purpose use.
@@ -317,8 +317,8 @@ namespace ExampleMod.Content.Projectiles
 			const int type = 15;
 			Vector2 endPosition = Projectile.Center + Projectile.velocity * (BeamLength - 14.5f * Projectile.scale);
 
-			// Main.rand.NextBool is used to give a 50/50 概率 对于 角度 to 点 到 左 or 右.
-			// This gives the dust a 50/50 概率 to fly off on either side 的 beam.
+			// Main.rand.NextBool is 用于 give a 50/50 概率 对于 角度 to 点 到 左 or 右.
+			// This gives the dust a 50/50 概率 to fly off on 任一 side 的 beam.
 			float angle = Projectile.rotation + (Main.rand.NextBool() ? 1f : -1f) * MathHelper.PiOver2;
 			float startDistance = Main.rand.NextFloat(1f, 1.8f);
 			float scale = Main.rand.NextFloat(0.7f, 1.1f);
@@ -347,7 +347,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 
-		// Automatically iterates through every 图格 the laser is overlapping to 剪切 grass at all those locations.
+		// Automatically iterates through 每个 图格 the laser is overlapping to 剪切 grass at all those locations.
 		public override void CutTiles() {
 			// tilecut_0 is an unnamed decompiled 变量 which tells CutTiles how the tiles are being 剪切 (in this case, via a 弹幕).
 			DelegateMethods.tilecut_0 = TileCuttingContext.AttackProjectile;

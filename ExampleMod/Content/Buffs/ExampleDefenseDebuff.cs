@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Buffs
 {
 	/// <summary>
 	/// This 减益 reduces 敌人 护甲 by 25%. Use <see cref="Content.Items.Weapons.HitModifiersShowcase"/> or <see cref="Items.Consumables.ExampleFlask"/> to apply.
-	/// By using a 增益 we can apply to both players and NPCs, and also rely on vanilla to 同步 the AddBuff calls so we don't need to write our own netcode
+	/// By using a 增益 we can apply to 两者 players and NPCs, and also rely on vanilla to 同步 the AddBuff calls so we don't 需要 write our own netcode
 	/// </summary>
 	public class ExampleDefenseDebuff : ModBuff
 	{

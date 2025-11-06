@@ -6,15 +6,15 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Armor
 {
-	// This and several other classes show off using EquipTextures to do a Merfolk or Werewolf 效果.
+	// This and 几个 other classes show off using EquipTextures to do a Merfolk or Werewolf 效果.
 	// Typically 护甲 items are automatically paired with an EquipTexture, but we can manually use EquipTextures to achieve more unique effects.
-	// There is code for this 效果 in many places, look 在 following files 对于 full implementation:
+	// 有 code for this 效果 in m任何 places, look 在 following files 对于 full implementation:
 	// NPCs.ExamplePerson drops this 项 when killed
 	// Content.Items.护甲.ExampleCostume (below) is the 饰品 项 that sets ExampleCostumePlayer values. Note that this 项 does not have EquipTypes set. This is a vital difference and 键 to our approach.
 	// Content.Items.护甲.BlockyHead (below) is an EquipTexture 类. It spawns dust when active.
 	// 示例Costume.加载() shows calling AddEquipTexture 3 times with appropriate parameters. This is how we register EquipTexture manually instead 的 automatic pairing of ModItem and EquipTexture that other equipment uses.
 	// Buffs.Blocky is the 增益 即 shown while in Blocky 模式. The 增益 is responsible 对于 actual stat effects 的 costume. It also needs to 删除 itself when not near town npcs.
-	// 示例CostumePlayer has 6 bools. They 管理 the visibility and other things related to this 效果.
+	// 示例CostumePlayer has 6 bools. They 管理 the visibility and other things 与...相关 this 效果.
 	// 示例CostumePlayer.ResetEffects resets those bool, except blockyAccessoryPrevious 即 special because 的 顺序 of hooks.
 	// 示例CostumePlayer.UpdateEquips is responsible for applying the Blocky 增益 到 玩家 if the conditions are met and the 饰品 is equipped.
 	// 示例CostumePlayer.FrameEffects is most important. It overrides the drawn equipment slots and sets them to our Blocky EquipTextures.
@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Items.Armor
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Body}", EquipType.Body, this);
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Legs}", EquipType.Legs, this);
 
-			//Add a 分离 set of equip textures by providing a custom 名称 引用 instead of an 项 引用
+			//Add a 分离 set of equip textures by providing a custom 名称 引用 代替 an 项 引用
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Head}", EquipType.Head, name: "BlockyAlt", equipTexture: new BlockyHead());
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Body}", EquipType.Body, name: "BlockyAlt");
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Legs}", EquipType.Legs, name: "BlockyAlt");

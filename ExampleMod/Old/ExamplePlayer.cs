@@ -22,8 +22,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod
 {
-	// ModPlayer classes provide a way to attach 数据 to Players and act on that 数据. ExamplePlayer has a lot of functionality related to 
-	// several effects and items in ExampleMod. See SimpleModPlayer for a very simple example of how ModPlayer classes work.
+	// ModPlayer classes provide a way to attach 数据 to Players and act on that 数据. ExamplePlayer has 很多 functionality 与...相关 
+	// 几个 effects and items in ExampleMod. See SimpleModPlayer for a very simple example of how ModPlayer classes work.
 	public class ExamplePlayer : ModPlayer
 	{
 		public int score;
@@ -83,18 +83,18 @@ namespace ExampleMod
 		}
 
 		public override void OnEnterWorld(Player player) {
-			// We can 刷新 用户界面 using OnEnterWorld. OnEnterWorld happens after 加载, so nonStopParty is the correct 值.
+			// 我们可以 刷新 用户界面 using OnEnterWorld. OnEnterWorld happens after 加载, so nonStopParty is the correct 值.
 			GetInstance<ExampleMod>().ExampleUI.ExampleButton.HoverText = "SendClientChanges Example: Non-Stop Party " + (nonStopParty ? "On" : "Off");
 		}
 
 		// In MP, other clients need accurate information about your 玩家 or else bugs happen.
 		// clientClone, SyncPlayer, and SendClientChanges, ensure that information is correct.
-		// We only need to do this for 数据 即 changed by code not executed by all clients, 
+		// We only 需要 do this for 数据 即 changed by code not executed by all clients, 
 		// or 数据 that needs to be shared while joining a 世界.
-		// 例如, examplePet doesn't need to be synced because all clients know th在 玩家 is wearing the ExamplePet 项 in an equipment 槽位. 
-		// The examplePet bool is set for that 玩家 on every clients computer independently (via the 增益.更新), keeping that 数据 in 同步.
-		// 示例LifeFruits, however might be out of 同步. 例如, when joining a 服务器, we need to share the exampleLifeFruits 变量 with all other clients.
-		// In addition, in ExampleUI we have a 按钮 that toggles "Non-停止 Party". We need to 同步 this whenever it changes.
+		// 例如, examplePet doesn't 需要 be synced because all clients know th在 玩家 is wearing the ExamplePet 项 in an equipment 槽位. 
+		// The examplePet bool is set for that 玩家 on 每个 clients computer independently (via the 增益.更新), keeping that 数据 in 同步.
+		// 示例LifeFruits, however might be out of 同步. 例如, when joining a 服务器, we 需要 share the exampleLifeFruits 变量 with all other clients.
+		// In addition, in ExampleUI we have a 按钮 that toggles "Non-停止 Party". We 需要 同步 this whenever it changes.
 		public override void clientClone(ModPlayer clientClone) {
 			ExamplePlayer clone = clientClone as ExamplePlayer;
 			// Here we would make a backup clone of values that are only correct 在 local players 玩家 实例.
@@ -107,7 +107,7 @@ namespace ExampleMod
 			packet.Write((byte)ExampleModMessageType.ExamplePlayerSyncPlayer);
 			packet.Write((byte)player.whoAmI);
 			packet.Write(exampleLifeFruits);
-			packet.Write(nonStopParty); // While we 同步 nonStopParty in SendClientChanges, we still need to send it here 以及 so newly joining players will receive the correct 值.
+			packet.Write(nonStopParty); // While we 同步 nonStopParty in SendClientChanges, we still 需要 send it here 以及 so newly joining players will receive the correct 值.
 			packet.Send(toWho, fromWho);
 		}
 
@@ -171,7 +171,7 @@ namespace ExampleMod
 		public override bool CustomBiomesMatch(Player other) {
 			ExamplePlayer modOther = other.GetModPlayer<ExamplePlayer>();
 			return ZoneExample == modOther.ZoneExample;
-			// If you have several Zones, you might 查找 the &= operator or other logic operators useful:
+			// If you have 几个 Zones, you might 查找 the &= operator or other logic operators useful:
 			// bool allMatch = 真;
 			// allMatch &= ZoneExample == modOther.ZoneExample;
 			// allMatch &= ZoneModel == modOther.ZoneModel;
@@ -213,7 +213,7 @@ namespace ExampleMod
 
 		public override void UpdateBadLifeRegen() {
 			if (eFlames) {
-				// These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects.
+				// These lines zero out 任何 positive lifeRegen. This is expected for all bad life regeneration effects.
 				if (player.lifeRegen > 0) {
 					player.lifeRegen = 0;
 				}
@@ -609,7 +609,7 @@ namespace ExampleMod
 				fullBright = true;
 			}
 
-			if (nonStopParty && drawInfo.shadow == 0f && Main.rand.NextBool(6)) { // 检查ing shadow == 0 helps avoid spawning extra dust because of extra shadow draws.
+			if (nonStopParty && drawInfo.shadow == 0f && Main.rand.NextBool(6)) { // 检查ing shadow == 0 helps avoid spawning extra dust 因为 extra shadow draws.
 				int dustIndex = Dust.NewDust(drawInfo.position + new Vector2(drawInfo.drawPlayer.width / 2 - 2, -30), 4, 4, 219, 0f, 0f, 100, default(Color), 1f);
 				
 				Dust dust = Main.dust[dustIndex];

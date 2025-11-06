@@ -53,7 +53,7 @@ namespace ExampleMod.Common.UI.ExampleResourceUI
 		}
 
 		public override void Draw(SpriteBatch spriteBatch) {
-			// This prevents drawing unless we are using an ExampleCustomResourceWeapon
+			// 这防止 drawing unless we are using an ExampleCustomResourceWeapon
 			if (Main.LocalPlayer.HeldItem.ModItem is not ExampleCustomResourceWeapon)
 				return;
 

@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 // 示例SandBallFallingProjectile is the 弹幕 that spawns when the ExampleSand 图格 falls.
 // 示例SandBallGunProjectile is the 弹幕 即 shot by the Sandgun 武器.
 // Both projectiles share the same aiStyle, ProjAIStyleID.FallingTile, but the AIType line in ExampleSandBallGunProjectile ensures that specific logic 的 aiStyle is used 对于 sandgun 弹幕.
-// It is possible to make a falling 弹幕 not using ProjAIStyleID.FallingTile, but it is a lot of code.
+// It is possible to make a falling 弹幕 not using ProjAIStyleID.FallingTile, but it is 很多 code.
 namespace ExampleMod.Content.Projectiles
 {
 	public abstract class ExampleSandBallProjectile : ModProjectile

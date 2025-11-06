@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) {
-			// Inflict the OnFire 减益 for 1 second onto any NPC/Monster that this hits.
+			// Inflict the OnFire 减益 for 1 second onto 任何 NPC/Monster that this hits.
 			// 60 frames = 1 second
 			target.AddBuff(BuffID.OnFire, 60);
 		}

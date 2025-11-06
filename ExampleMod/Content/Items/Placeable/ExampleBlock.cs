@@ -11,8 +11,8 @@ namespace ExampleMod.Content.Items.Placeable
 			Item.ResearchUnlockCount = 100;
 			ItemID.Sets.ExtractinatorMode[Item.type] = Item.type;
 
-			// Mods 可以 translated to any 的 languages tModLoader supports. See https://github.com/tModLoader/tModLoader/wiki/Localization
-			// Translations go in localization files (.hjson files), but these are listed here as an example to 帮助 modders become aware 的 possibility that users might want to use your mod in other lauguages:
+			// Mods 可以 translated to 任何 的 languages tModLoader supports. See https://github.com/tModLoader/tModLoader/wiki/Localization
+			// Translations go in localization files (.hjson files), but these are listed here as an example to 帮助 modders become aware 的 possibility that users might 想要 use your mod in other lauguages:
 			// English: "Example 方块", "This is a modded 图格."
 			// German: "Beispielblock", "Dies ist ein modded 方块"
 			// Italian: "Blocco di esempio", "Questo è un blocco moddato"
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items.Placeable
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				.Register();
 
-			CreateRecipe() // 添加 multiple recipes set to one 项.
+			CreateRecipe() // 添加 多个 recipes set to one 项.
 				.AddIngredient<ExampleWall>(4)
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				.Register();

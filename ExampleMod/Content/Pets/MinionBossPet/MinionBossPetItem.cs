@@ -10,12 +10,12 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 	public class MinionBossPetItem : ModItem
 	{
 		public override void SetDefaults() {
-			Item.DefaultToVanitypet(ModContent.ProjectileType<MinionBossPetProjectile>(), ModContent.BuffType<MinionBossPetBuff>()); // Vanilla has many useful methods like these, use them! It sets 稀有度 and 值 以及, so we have to overwrite those after
+			Item.DefaultToVanitypet(ModContent.ProjectileType<MinionBossPetProjectile>(), ModContent.BuffType<MinionBossPetBuff>()); // Vanilla has m任何 useful methods like these, use them! It sets 稀有度 and 值 以及, so we 必须 overwrite those after
 
 			Item.width = 28;
 			Item.height = 20;
 			Item.rare = ItemRarityID.Master;
-			Item.master = true; // This makes sure that "Master" displays 在 工具提示, as the 稀有度 only changes the 项 名称 颜色
+			Item.master = true; // 这使 sure that "Master" displays 在 工具提示, as the 稀有度 only changes the 项 名称 颜色
 			Item.value = Item.sellPrice(0, 5);
 		}
 

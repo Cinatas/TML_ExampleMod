@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Dusts
 			dust.scale *= 1.5f; // Multiplies the dust's initial 缩放 by 1.5.
 		}
 
-		public override bool Update(Dust dust) { // 调用s every 帧 the dust is active
+		public override bool Update(Dust dust) { // 调用s 每个 帧 the dust is active
 			dust.position += dust.velocity;
 			dust.rotation += dust.velocity.X * 0.15f;
 			dust.scale *= 0.99f;

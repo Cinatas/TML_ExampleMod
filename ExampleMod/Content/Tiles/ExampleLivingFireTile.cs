@@ -19,16 +19,16 @@ namespace ExampleMod.Content.Tiles
 			DustType = ModContent.DustType<Sparkle>(); // 设置 the dust 类型.
 
 			// 在这里 we set the 地图 颜色 到 same 颜色 as the light 颜色.
-			// 我们 are accessing a 变量 that we defined inside 的 项 so we don't have to repeat entering the values.
+			// 我们 are accessing a 变量 that we defined inside 的 项 so we don't 必须 repeat entering the values.
 			AddMapEntry(new Color(ExampleLivingFire.LightColor));
 
-			// There are 4 frames of 动画 for our 纹理.
+			// 有 4 frames of 动画 for our 纹理.
 			// 纹理 360 pixels tall / 4 frames of 动画 = 90.
 			AnimationFrameHeight = 90;
 		}
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
 			// 在这里 we set the strength 的 light th在 图格 produces.
-			// 我们 are accessing a 变量 that we defined inside 的 项 so we don't have to repeat entering the values.
+			// 我们 are accessing a 变量 that we defined inside 的 项 so we don't 必须 repeat entering the values.
 			r = ExampleLivingFire.LightColor.X;
 			g = ExampleLivingFire.LightColor.Y;
 			b = ExampleLivingFire.LightColor.Z;

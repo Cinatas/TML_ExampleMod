@@ -69,7 +69,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 
 			// Here we check if the DraggableUIPanel is outside the Parent UIElement rectangle
 			// (In our example, the parent 将 ExampleCoinsUI, a UIState. This means that we are checking th在 DraggableUIPanel is outside the whole 屏幕)
-			// By doing this and some simple math, we can snap the 面板 back on 屏幕 if the 用户 resizes his 窗口 or otherwise changes resolution
+			// By doing this and some simple math, we can snap the 面板 back on 屏幕 if the 用户 resizes his 窗口 or 否则 changes resolution
 			var parentSpace = Parent.GetDimensions().ToRectangle();
 			if (!GetDimensions().ToRectangle().Intersects(parentSpace)) {
 				Left.Pixels = Utils.Clamp(Left.Pixels, 0, parentSpace.Right - Width.Pixels);

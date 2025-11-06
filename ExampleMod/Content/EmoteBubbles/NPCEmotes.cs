@@ -17,7 +17,7 @@ namespace ExampleMod.Content.EmoteBubbles
 
 		/// <summary>
 		/// Which 行 的 精灵 sheet is this NPC emote in?
-		/// This is used to 帮助 get the correct 帧 rectangle for different emotes.
+		/// This is 用于 帮助 get the correct 帧 rectangle for different emotes.
 		/// </summary>
 		public virtual int Row => 0;
 

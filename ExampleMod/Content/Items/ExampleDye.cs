@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Items
 
 		public override void SetDefaults() {
 			// 项.dye will already be assigned to this 项 prior to SetDefaults because 的 above GameShaders.护甲.BindShader code in 加载().
-			// This code here remembers 项.dye so that information isn't lost during CloneDefaults.
+			// This code here remembers 项.dye 以便 information isn't lost during CloneDefaults.
 			int dye = Item.dye;
 
 			Item.CloneDefaults(ItemID.GelDye); // 使 the 项 复制 the attributes 的 项 "Gel Dye" Change "GelDye" to whatever dye 类型 you want.

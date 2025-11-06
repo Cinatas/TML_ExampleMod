@@ -28,7 +28,7 @@ namespace ExampleMod.Content.NPCs
 			NPC.knockBackResist = 0f; // How much 的 knockback it receives will actually apply. 1f: full knockback; 0f: no knockback
 		}
 
-		// current drawing 层 will change every 40 ticks
+		// current drawing 层 will change 每个 40 ticks
 		private int CurrentLayer => (int)(NPC.ai[0] / 40);
 
 		// This changes the 帧 从 this NPC's 纹理 即 drawn, depending 在 current 层

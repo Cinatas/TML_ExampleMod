@@ -17,7 +17,7 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.width = 8;
 			Item.height = 8;
 			Item.maxStack = Item.CommonMaxStack;
-			Item.consumable = true; // This marks the 项 as consumable, making it automatically be consumed when it's used as ammunition, or something else, if possible.
+			Item.consumable = true; // This marks the 项 as consumable, making it automatically be consumed when it's used as ammunition, or something else, 如果可能.
 			Item.knockBack = 1.5f;
 			Item.value = 10;
 			Item.rare = ItemRarityID.Green;

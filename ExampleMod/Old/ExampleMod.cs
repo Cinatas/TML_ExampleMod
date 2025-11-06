@@ -23,8 +23,8 @@ namespace ExampleMod
 {
 	public class ExampleMod : Mod
 	{
-		// 与 new fonts in 1.3.5, 字体 files are pretty big now so you need to generate the 字体 文件 before building the mod.
-		// You can use https://forums.terraria.org/索引.php?threads/dynamicspritefontgenerator-0-4-generate-fonts-without-xna-game-studio.57127/ to make dynamicspritefonts
+		// 与 new fonts in 1.3.5, 字体 files are pretty big now so you 需要 generate the 字体 文件 before building the mod.
+		// 你可以 use https://forums.terraria.org/索引.php?threads/dynamicspritefontgenerator-0-4-generate-fonts-without-xna-game-studio.57127/ to make dynamicspritefonts
 		public static DynamicSpriteFont exampleFont;
 
 		private UserInterface _exampleUserInterface;
@@ -34,13 +34,13 @@ namespace ExampleMod
 		internal ExampleResourceBar ExampleResourceBar;
 
 		// Your mod 实例 has a Logger 字段, use it.
-		// 可选: You can create your own logger this way, recommended is a custom logging 类 if you do a lot of logging
-		// You need to 引用 the log4net library to do this, this 可以 found 在 tModLoader repository
-		// inside the references 文件夹. You do not have to add this to build.txt as tML has it natively.
+		// 可选: You can create your own logger this way, recommended is a custom logging 类 if you do 很多 logging
+		// 你需要 to 引用 the log4net library to do this, this 可以 found 在 tModLoader repository
+		// inside the references 文件夹. You do not 必须 add this to build.txt as tML has it natively.
 		// internal ILog Logging = LogManager.GetLogger("ExampleMod");
 
 		public ExampleMod() {
-			// 默认情况下, all Autoload properties are 真. You only need to change this if you know what you are doing.
+			// 默认情况下, all Autoload properties are 真. You only 需要 change this if you know what you are doing.
 			//Properties = new ModProperties()
 			//{
 			//	Autoload = 真,
@@ -96,9 +96,9 @@ namespace ExampleMod
 				_exampleUserInterface.SetState(ExampleUI);
 
 				// 使用rInterface can only show 1 UIState at a 时间. If you want different "pages" for a 用户界面, switch between UIStates 在 same UserInterface 实例. 
-				// We want both the 硬币 计数器 and the Example Person 用户界面 to be independent and coexist simultaneously, so we have them each 在ir own UserInterface.
+				// 我们想要 两者 the 硬币 计数器 and the Example Person 用户界面 to be independent and coexist simultaneously, so we have them each 在ir own UserInterface.
 				ExamplePersonUserInterface = new UserInterface();
-				// We will call .SetState later in ExamplePerson.OnChatButtonClicked
+				// 我们将 call .SetState later in ExamplePerson.OnChatButtonClicked
 			}
 
 			// 注册 custom mod translations, lives 左 is for Spirit of Purity
@@ -134,8 +134,8 @@ namespace ExampleMod
 			}
 
 			// Unload static references
-			// You need to 清除 static references to assets (Texture2D, SoundEffects, Effects). 
-			// In addition to that, if you want your mod to completely unload during unload, you need to 清除 static references to anything referencing your Mod 类
+			// 你需要 to 清除 static references to assets (Texture2D, SoundEffects, Effects). 
+			// In addition to that, if you want your mod to completely unload during unload, you 需要 清除 static references to 任何thing referencing your Mod 类
 			NPCs.ExampleTravelingMerchant.shopItems.Clear();
 		}
 
@@ -328,7 +328,7 @@ namespace ExampleMod
 				layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
 					"ExampleMod: Example Person UI",
 					delegate {
-						// If the current UIState 的 UserInterface is 空, nothing will draw. We don't need to 跟踪 a 分离 .visible 值.
+						// If the current UIState 的 UserInterface is 空, nothing will draw. We don't 需要 跟踪 a 分离 .visible 值.
 						ExamplePersonUserInterface.Draw(Main.spriteBatch, new GameTime());
 						return true;
 					},
@@ -411,13 +411,13 @@ namespace ExampleMod
 					int exampleLifeFruits = reader.ReadInt32();
 					examplePlayer.exampleLifeFruits = exampleLifeFruits;
 					examplePlayer.nonStopParty = reader.ReadBoolean();
-					// SyncPlayer 将 called automatically, so there is no need to forward this 数据 to other clients.
+					// SyncPlayer 将 called automatically, so there is no 需要 forward this 数据 to other clients.
 					break;
 				case ExampleModMessageType.NonStopPartyChanged:
 					playernumber = reader.ReadByte();
 					examplePlayer = Main.player[playernumber].GetModPlayer<ExamplePlayer>();
 					examplePlayer.nonStopParty = reader.ReadBoolean();
-					// 不像 SyncPlayer, here we have to relay/forward these changes to all other connected clients
+					// 不像 SyncPlayer, here we 必须 relay/forward these changes to all other connected clients
 					if (Main.netMode == NetmodeID.Server) {
 						var packet = GetPacket();
 						packet.Write((byte)ExampleModMessageType.NonStopPartyChanged);

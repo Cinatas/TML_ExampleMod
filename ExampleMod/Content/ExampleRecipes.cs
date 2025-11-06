@@ -30,7 +30,7 @@ namespace ExampleMod.Content
 			// 添加 an 项 to an existing Terraria recipeGroup. ExampleCritterItem isn't 金币 but it serves as an example for this.
 			RecipeGroup.recipeGroups[RecipeGroupID.GoldenCritter].ValidItems.Add(ModContent.ItemType<ExampleCritterItem>());
 
-			// While an "IronBar" 分组 exists, "SilverBar" does not. tModLoader will 合并 配方 groups registered 与 same 名称, so if you are registering a 配方 分组 with a vanilla 项 as the 1st 项, you can register it using just the internal 项 名称 if you anticipate other mods wanting to use this 配方 分组 对于 same concept. By doing this, multiple mods can add 到 same 分组 without extra effort. In this case we are adding a SilverBar 分组. Don't store the RecipeGroup 实例, it might 不 used, use the same nameof(ItemID.ItemName) or RecipeGroupID returned from RegisterGroup when using 配方.AddRecipeGroup instead.
+			// While an "IronBar" 分组 exists, "SilverBar" does not. tModLoader will 合并 配方 groups registered 与 same 名称, so if you are registering a 配方 分组 with a vanilla 项 as the 1st 项, you can register it using just the internal 项 名称 if you anticipate other mods wanting to use this 配方 分组 对于 same concept. By doing this, 多个 mods can add 到 same 分组 without extra effort. In this case we are adding a SilverBar 分组. Don't store the RecipeGroup 实例, it might 不 used, use the same nameof(ItemID.ItemName) or RecipeGroupID returned from RegisterGroup when using 配方.AddRecipeGroup instead.
 			RecipeGroup SilverBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.SilverBar)}",
 			ItemID.SilverBar, ItemID.TungstenBar, ModContent.ItemType<Items.Placeable.ExampleBar>());
 			RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), SilverBarRecipeGroup);
@@ -53,7 +53,7 @@ namespace ExampleMod.Content
 
 			// reason why the said chaining works is that all methods on 配方, 与 exception of Register(), 返回 its own 实例,
 			// which lets you call subsequent methods on that 返回 值, without having to 类型 a local 变量's 名称.
-			// 当 using chaining, note that only the last line is supposed to have a semicolon (;).
+			// 当 using chaining, note that only the last line is 应该 have a semicolon (;).
 
 			var resultItem = ModContent.GetInstance<Items.ExampleItem>();
 
@@ -61,9 +61,9 @@ namespace ExampleMod.Content
 			resultItem.CreateRecipe()
 				// 添加s a Vanilla 成分.
 				// Look up ItemIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-Content-IDs#项-ids
-				// 要 specify more than one 成分 类型, use multiple 配方.AddIngredient() calls.
+				// 要 specify more than one 成分 类型, use 多个 配方.AddIngredient() calls.
 				.AddIngredient(ItemID.StoneBlock)
-				// An optional 2nd 参数 will specify a 堆叠 的 项. Any calls to any AddIngredient overload without a 堆叠 值 在 结束 will have the 堆叠 default to 1.
+				// An optional 2nd 参数 will specify a 堆叠 的 项. Any calls to 任何 AddIngredient overload without a 堆叠 值 在 结束 will have the 堆叠 default to 1.
 				.AddIngredient(ItemID.Acorn, 10)
 				// 我们 can also specify the current 项 as an 成分
 				.AddIngredient(resultItem)
@@ -86,7 +86,7 @@ namespace ExampleMod.Content
 				// 添加s a vanilla 图格 要求.
 				// 要 specify a 制作 station, specify a 图格. Look up TileIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-图格-IDs
 				.AddTile(TileID.WorkBenches)
-				// 添加s a mod 图格 要求. To specify more than one 制作 station, use multiple 配方.AddTile() calls.
+				// 添加s a mod 图格 要求. To specify more than one 制作 station, use 多个 配方.AddTile() calls.
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				// An alternate 字符串-based approach 到 above. Try to only use it for other mods' tiles, because it's slower.
 				.AddTile(Mod, "ExampleWorkbench")
@@ -111,12 +111,12 @@ namespace ExampleMod.Content
 			// following 配方 showcases and explains cloning recipes and how they can modified to differ 从 original recipes they came from. //
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			// 如果 you want to make a 复制 of an existing 配方 with a slight difference, you can use Mod.CloneRecipe to create a clone of that 配方.
+			// 如果 you 想要 make a 复制 of an existing 配方 with a slight difference, you can use Mod.CloneRecipe to create a clone of that 配方.
 			// clone will inherit all 的 original 配方's properties except the 所有者 mod 将 this mod. You can change the clone as you see fit.
-			// 如果 you want to make multiple variations of a 配方 in your mod, it 可能 easier to use a helper 方法 instead of cloning.
-			// 确保 to not use 配方 cloning for situations that are better served by properly using AdjTiles, 配方 Groups, or faking various 配方 conditions.
+			// 如果 you 想要 make 多个 variations of a 配方 in your mod, it 可能 easier to use a helper 方法 代替 cloning.
+			// 确保 to not use 配方 cloning for situations that are better served by properly using AdjTiles, 配方 Groups, or faking 各种 配方 conditions.
 
-			// 开始 by creating a 配方 you want to 复制.
+			// 开始 by creating a 配方 you 想要 复制.
 			Recipe baseRecipe = Recipe.Create(ModContent.ItemType<Items.ExampleItem>(), 10);
 			baseRecipe.AddIngredient(ItemID.Wood, 10)
 				.AddIngredient(ItemID.CopperCoin)
@@ -137,7 +137,7 @@ namespace ExampleMod.Content
 			// 当 you're done, call this to register the 配方.
 			clonedRecipe.Register();
 
-			// Recipes can also contain custom 项 consumption logic, similar to how the Alchemy 表格 causes 药水 recipes to consume less ingredients: See https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#custom-项-consumption f或更多 information.
+			// Recipes can also contain custom 项 consumption logic, 类似于 how the Alchemy 表格 causes 药水 recipes to consume less ingredients: See https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#custom-项-consumption f或更多 information.
 			// 此示例 requires the Chain 项 as an 成分, but the DontConsumeChain ConsumeItemCallback causes the Chain to 不 consumed
 			Recipe.Create(ItemID.AlphabetStatueJ)
 				.AddIngredient(ItemID.StoneBlock, 10)

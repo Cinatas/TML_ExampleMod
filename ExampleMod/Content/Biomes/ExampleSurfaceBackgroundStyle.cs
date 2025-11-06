@@ -41,7 +41,7 @@ namespace ExampleMod.Backgrounds
 				case 2:
 					return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid2");
 				case 3:
-					return BackgroundTextureLoader.GetBackgroundSlot("ExampleMod/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid3"); // You can use the full 路径 版本 of GetBackgroundSlot too
+					return BackgroundTextureLoader.GetBackgroundSlot("ExampleMod/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid3"); // 你可以 use the full 路径 版本 of GetBackgroundSlot too
 				default:
 					return -1;
 			}

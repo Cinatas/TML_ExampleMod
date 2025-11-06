@@ -5,17 +5,17 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Prefixes
 {
-	// 此类 serves as an example for declaring 项 'prefixes', or 'modifiers' in other words.
+	// 此类 serves as an example for declaring 项 'prefixes', or 'modifiers' 换句话说.
 	public class ExamplePrefix : ModPrefix
 	{
-		// 我们 declare a custom *virtual* 属性 here, so that another 类型, ExampleDerivedPrefix, could override it and change the effective power for itself.
+		// 我们 declare a custom *virtual* 属性 here, 以便 another 类型, ExampleDerivedPrefix, could override it and change the effective power for itself.
 		public virtual float Power => 1f;
 
 		// 更改 your category this way, defaults to PrefixCategory.Custom. Affects which items can get this 前缀.
 		public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 
 		// 参见 documentation for vanilla weights and more information.
-		// 在 case of multiple prefixes with similar functions this 可以 used with a switch/case to provide different chances for different prefixes
+		// 在 case of 多个 prefixes with similar functions this 可以 used with a switch/case to provide different chances for different prefixes
 		// Note: a weight of 0f might still be rolled. See CanRoll to exclude prefixes.
 		// Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
 		public override float RollChance(Item item) {
@@ -39,12 +39,12 @@ namespace ExampleMod.Content.Prefixes
 			valueMult *= 1f + 0.05f * Power;
 		}
 
-		// 这是 used to modify most other stats of items which have this 修饰符.
+		// 这是 用于 modify most other stats of items which have this 修饰符.
 		public override void Apply(Item item) {
 			//
 		}
 
-		// This 前缀 doesn't affect any non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern 可以 followed for a 前缀 that does affect other stats.
+		// This 前缀 doesn't affect 任何 non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern 可以 followed for a 前缀 that does affect other stats.
 		public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
 			// Due to inheritance, this code runs 例如Prefix and ExampleDerivedPrefix. We add 2 工具提示 lines, the first is the typical 前缀 工具提示 line showing the stats boost, while the other is just some additional flavor 文本.
 
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Prefixes
 			yield return new TooltipLine(Mod, "PrefixWeaponAwesomeDescription", AdditionalTooltip.Value) {
 				IsModifier = true,
 			};
-			// 如果 possible and suitable, try to reuse the 名称 标识符 and 翻译 值 of Terraria prefixes. 例如, this code uses the vanilla 翻译 对于 word 防御, resulting in "-5 防御". Note 即ModifierBad is used for this bad 修饰符.
+			// 如果 possible and suitable, 尝试 reuse the 名称 标识符 and 翻译 值 of Terraria prefixes. 例如, this code uses the vanilla 翻译 对于 word 防御, resulting in "-5 防御". Note 即ModifierBad is used for this bad 修饰符.
 			/*yield return new TooltipLine(Mod, "PrefixAccDefense", "-5" + Lang.tip[25].Value) {
 				IsModifier = true,
 				IsModifierBad = true,
@@ -73,9 +73,9 @@ namespace ExampleMod.Content.Prefixes
 		public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
 		public override void SetStaticDefaults() {
-			// this.GetLocalization is not used here because we want to use a shared 键
+			// this.GetLocalization is not used here because we 想要 use a shared 键
 			PowerTooltip = Mod.GetLocalization($"{LocalizationCategory}.{nameof(PowerTooltip)}");
-			// This seemingly useless code is required to properly register the 键 for AdditionalTooltip
+			// This seemingly useless code is 需要 properly register the 键 for AdditionalTooltip
 			_ = AdditionalTooltip;
 		}
 	}

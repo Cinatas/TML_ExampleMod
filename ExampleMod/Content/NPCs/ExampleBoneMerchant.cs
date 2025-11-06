@@ -19,7 +19,7 @@ namespace ExampleMod.Content.NPCs
 {
 	/// <summary>
 	/// The main focus of this NPC is to show how to make something similar 到 vanilla bone 商人;
-	/// which means th在 NPC will act like any other town NPC but won't have a happiness 按钮, won't appear 在 minimap,
+	/// which means th在 NPC will act like 任何 other town NPC but won't have a happiness 按钮, won't appear 在 minimap,
 	/// and will 生成 like an 敌人 NPC. If you want a traditional town NPC instead, see <see cref="ExamplePerson"/>.
 	/// </summary>
 	public class ExampleBoneMerchant : ModNPC
@@ -45,22 +45,22 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says th在 Town NPC has a Shimmered form. Otherwise, the Town NPC 将come transparent when touching Shimmer like other enemies.
 
 			//This sets entry is the most important part of this NPC. Since it is 真, it tells the game that we want this NPC to act like a town NPC without ACTUALLY being one.
-			//What that means is: the NPC will have the AI of a town NPC, will 攻击 like a town NPC, and have a 商店 (or any other additional functionality if you wish) like a town NPC.
-			//However, the NPC will not have their head displayed 在 地图, will de-生成 when no players are nearby or the 世界 is closed, and will 生成 like any other NPC.
+			//What that means is: the NPC will have the AI of a town NPC, will 攻击 like a town NPC, and have a 商店 (or 任何 other additional functionality if you wish) like a town NPC.
+			//However, the NPC will not have their head displayed 在 地图, will de-生成 when no players are nearby or the 世界 is closed, and will 生成 like 任何 other NPC.
 			NPCID.Sets.ActsLikeTownNPC[Type] = true;
 
-			// This prevents the happiness 按钮
+			// 这防止 the happiness 按钮
 			NPCID.Sets.NoTownNPCHappiness[Type] = true;
 
-			//To reiterate, since this NPC isn't technically a town NPC, we need to tell the game that we still want this NPC to have a custom/randomized 名称 when they 生成.
+			//To reiterate, since this NPC isn't technically a town NPC, we 需要 tell the game that we still want this NPC to have a custom/randomized 名称 when they 生成.
 			//In 顺序 to do this, we simply make this hook 返回 真, which will make the game call the TownNPCName 方法 when spawning the NPC to determine the NPC's 名称.
 			NPCID.Sets.SpawnsWithCustomName[Type] = true;
 
 			// Connects this NPC with a custom emote.
-			// This makes it when the NPC is 在 世界, other NPCs will "talk about him".
+			// 这使 it when the NPC is 在 世界, other NPCs will "talk about him".
 			NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<ExampleBoneMerchantEmote>();
 
-			//The vanilla Bone 商人 cannot interact with doors (打开 or 关闭 them, specifically), but if you want your NPC to be able to interact 与m despite this,
+			//The vanilla Bone 商人 cannot interact with doors (打开 or 关闭 them, specifically), but if you want your NPC to be 能够 interact 与m despite this,
 			//uncomment this line below.
 			//NPCID.Sets.AllowDoorInteraction[类型] = 真;
 
@@ -99,7 +99,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
+			// 我们 can use AddRange 代替 calling Add 多个 times in 顺序 to add 多个 items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the preferred biomes of this town NPC listed 在 bestiary.
 				// With Town NPCs, you usually set this to what 生物群系 it likes the most in regards to NPC happiness.
@@ -108,7 +108,7 @@ namespace ExampleMod.Content.NPCs
 				// 设置s your NPC's flavor 文本 在 bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Bone Merchant will show you how to make a mysterious merchant underground with tModLoader."),
 
-				// 你 can add multiple elements if you really wanted to
+				// 你 can add 多个 elements if you really wanted to
 				// 你 can also use localization keys (see Localization/en-US.lang)
 				new FlavorTextBestiaryInfoElement("Mods.ExampleMod.Bestiary.ExampleBoneMerchant")
 			});

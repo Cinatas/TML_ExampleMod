@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Projectiles
 {
 	public class ExampleSpearProjectile : ModProjectile
 	{
-		// 定义 the 范围 的 Spear 弹幕. These are overridable properties, in case you'll want to make a 类 inheriting from this one.
+		// 定义 the 范围 的 Spear 弹幕. These are overridable properties, in case you'll 想要 make a 类 inheriting from this one.
 		protected virtual float HoldoutRangeMin => 24f;
 		protected virtual float HoldoutRangeMax => 96f;
 

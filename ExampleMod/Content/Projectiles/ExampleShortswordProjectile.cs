@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void SetDefaults() {
 			Projectile.Size = new Vector2(18); // This sets 宽度 and 高度 到 same 值 (important when projectiles can 旋转)
-			Projectile.aiStyle = -1; // 使用 our own AI to customize how it behaves, if you don't want that, keep this at ProjAIStyleID.ShortSword. You would still need to use the code in SetVisualOffsets() though
+			Projectile.aiStyle = -1; // 使用 our own AI to customize how it behaves, if you don't want that, keep this at ProjAIStyleID.ShortSword. You would still 需要 use the code in SetVisualOffsets() though
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false);
 			Projectile.Center = playerCenter + Projectile.velocity * (Timer - 1f);
 
-			// 设置 spriteDirection based on moving 左 or 右. 左 -1, 右 1
+			// 设置 spriteDirection 基于 moving 左 or 右. 左 -1, 右 1
 			Projectile.spriteDirection = (Vector2.Dot(Projectile.velocity, Vector2.UnitX) >= 0f).ToDirectionInt();
 
 			// 点 towards where it is moving, applied 偏移 for 顶部 右 的 精灵 respecting spriteDirection
@@ -73,7 +73,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void SetVisualOffsets() {
-			// 32 is the 精灵 大小 (here both 宽度 and 高度 equal)
+			// 32 is the 精灵 大小 (here 两者 宽度 and 高度 equal)
 			const int HalfSpriteWidth = 32 / 2;
 			const int HalfSpriteHeight = 32 / 2;
 
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// "Hit anything between the 玩家 and the 提示 的 sword"
+			// "Hit 任何thing between the 玩家 and the 提示 的 sword"
 			// shootSpeed is 2.1f for 引用, so this is basically plotting 12 pixels ahead 从 中心
 			Vector2 start = Projectile.Center;
 			Vector2 end = start + Projectile.velocity * 6f;

@@ -15,13 +15,13 @@ namespace ExampleMod.Content.Mounts
 	{
 		private Asset<Texture2D> balloonTexture;
 
-		// Since only a single 实例 of ModMountData ever exists, we can use 玩家.坐骑._mountSpecificData to store additional 数据 related to a specific 坐骑.
+		// Since only a single 实例 of ModMountData ever exists, we can use 玩家.坐骑._mountSpecificData to store additional 数据 与...相关 a specific 坐骑.
 		// 使用 something like this for gameplay effects would require ModPlayer syncing, but this example is purely visual.
 		protected class CarSpecificData
 		{
 			internal static float[] offsets = new float[] { 0, 14, -14 };
 
-			internal int count; // 跟踪 how many balloons are still 左.
+			internal int count; // 跟踪 how m任何 balloons are still 左.
 			internal float[] rotations;
 
 			public CarSpecificData() {
@@ -97,7 +97,7 @@ namespace ExampleMod.Content.Mounts
 			float balloonMovementScale = 0.05f;
 
 			for (int i = 0; i < balloons.count; i++) {
-				ref float rotation = ref balloons.rotations[i]; // This is a 引用 变量. It's set to 点 directly 到 'i' 索引 在 rotations 数组, so it works like an alias here.
+				ref float rotation = ref balloons.rotations[i]; // 这是一个 引用 变量. It's set to 点 directly 到 'i' 索引 在 rotations 数组, so it works like an alias here.
 
 				if (Math.Abs(rotation) > MathHelper.PiOver2)
 					balloonMovementScale *= -1;

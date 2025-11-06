@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Tools
 {
 	// 示例FishingRod is a fishing rod 项.
 	// code in SetDefaults and the code 设置 lineOriginOffset in ModifyFishingLine is all the 将 needed for a typical working fishing rod 项.
-	// All 的 rest 的 code showcases other additional capabilities, 例如 multiple bobbers, custom line colors, and fishing in lava.
+	// All 的 rest 的 code showcases other additional capabilities, 例如 多个 bobbers, custom line colors, and fishing in lava.
 	public class ExampleFishingRod : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -37,8 +37,8 @@ namespace ExampleMod.Content.Items.Tools
 			player.accFishingLine = true;
 		}
 
-		// 覆盖s the default shooting 方法 to fire multiple bobbers.
-		// NOTE: This will 允许 the fishing rod to summon multiple Duke Fishrons with multiple Truffle Worms 在 库存.
+		// 覆盖s the default shooting 方法 to fire 多个 bobbers.
+		// NOTE: This will 允许 the fishing rod to summon 多个 Duke Fishrons with 多个 Truffle Worms 在 库存.
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			int bobberAmount = Main.rand.Next(3, 6); // 3 to 5 bobbers
 			float spreadAmount = 75f; // how much the different bobbers are spread out.
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Items.Tools
 
 		public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor) {
 			// 更改 these two values in 顺序 to change the 原点 of where the line is being drawn.
-			// This will make it draw 43 pixels 右 and 30 pixels up 从 玩家's 中心, while they are looking 右 and in normal gravity.
+			// 这将 make it draw 43 pixels 右 and 30 pixels up 从 玩家's 中心, while they are looking 右 and in normal gravity.
 			lineOriginOffset = new Vector2(43, -30);
 
 			// 设置s the fishing line's 颜色. Note that this 将 overridden by the colored 字符串 accessories.

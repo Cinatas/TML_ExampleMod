@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items
 	public class ExampleResearchPresent : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// 必须 researched as many times as there are items 在 game.
+			// 必须 researched as m任何 times as there are items 在 game.
 			// 如果 fully researched, and a new mod is added, it 将come un-researched and require that much more
 			// Research amount will never go down or over the max 限制 of 9999.
 			Item.ResearchUnlockCount = Utils.Clamp(ItemLoader.ItemCount, 1, 9999);
@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Items
 			Item.CloneDefaults(ItemID.GoodieBag);
 		}
 
-		// This allows 对于 present to be researched even when you already have infinite 的m.
+		// 这允许 对于 present to be researched even when you already have infinite 的m.
 		// 这是 not a standard use 的 research system, but allows for re-running a 'research complete' 效果
 		private CreativeUI.ItemSacrificeResult OnSacrificeItem(On_CreativeUI.orig_SacrificeItem_refItem_refInt32_bool orig,
 				ref Item item, out int amountWeSacrificed, bool returnRemainderToPlayer) {

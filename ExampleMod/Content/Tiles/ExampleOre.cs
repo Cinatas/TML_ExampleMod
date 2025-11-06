@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Tiles
 		}
 	}
 
-	// 示例OreSystem contains code related to spawning ExampleOre. It contains both spawning ore during 世界 生成, seen in ModifyWorldGenTasks, and spawning ore after defeating a Boss, seen in BlessWorldWithExampleOre and MinionBossBody.OnKill.
+	// 示例OreSystem contains code 与...相关 spawning ExampleOre. It contains 两者 spawning ore during 世界 生成, seen in ModifyWorldGenTasks, and spawning ore after defeating a Boss, seen in BlessWorldWithExampleOre and MinionBossBody.OnKill.
 	public class ExampleOreSystem : ModSystem
 	{
 		public static LocalizedText ExampleOrePassMessage { get; private set; }
@@ -54,10 +54,10 @@ namespace ExampleMod.Content.Tiles
 		// logic is located here for organizational purposes.
 		public void BlessWorldWithExampleOre() {
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
-				return; // This should not happen, but just in case.
+				return; // 这应该 not happen, but just in case.
 			}
 
-			// Since this happens during gameplay, we need to run this code on another thread. If we do not, the game will 经验 lag for a brief moment. This is especially necessary for 世界 生成 tasks that would take even longer to execute.
+			// Since this happens during gameplay, we 需要 run this code on another thread. If we do not, the game will 经验 lag for a brief moment. This is especially necessary for 世界 生成 tasks that would take even longer to execute.
 			// 参见 https://github.com/tModLoader/tModLoader/wiki/世界-生成/#long-running-tasks f或更多 information.
 			ThreadPool.QueueUserWorkItem(_ => {
 				// Broadcast a 消息 to notify the 用户.
@@ -68,7 +68,7 @@ namespace ExampleMod.Content.Tiles
 					ChatHelper.BroadcastChatMessage(BlessedWithExampleOreMessage.ToNetworkText(), new Color(50, 255, 130));
 				}
 
-				// 100 controls how many splotches of ore are spawned in到 世界, scaled by 世界 大小. For comparison, the first 3 times altars are smashed about 275, 190, or 120 splotches 的 respective hardmode ores are spawned. 
+				// 100 controls how m任何 splotches of ore are spawned in到 世界, scaled by 世界 大小. For comparison, the first 3 times altars are smashed about 275, 190, or 120 splotches 的 respective hardmode ores are spawned. 
 				int splotches = (int)(100 * (Main.maxTilesX / 4200f));
 				int highestY = (int)Utils.Lerp(Main.rockLayer, Main.UnderworldLayer, 0.5);
 				for (int iteration = 0; iteration < splotches; iteration++) {
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.Tiles
 
 		// 世界 生成 is explained more in https://github.com/tModLoader/tModLoader/wiki/世界-生成
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
-			// Because 世界 生成 is like layering several images on 顶部 of each other, we need to do some steps between the original 世界 生成 steps.
+			// Because 世界 生成 is like layering 几个 images on 顶部 of each other, we 需要 do some steps between the original 世界 生成 steps.
 
 			// Most vanilla ores are generated in a 步骤 called "Shinies", so for 最大 兼容性, we will also do this.
 			// 首先, we 查找 out which 步骤 "Shinies" is.
@@ -105,17 +105,17 @@ namespace ExampleMod.Content.Tiles
 
 		protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration) {
 			// progress.消息 is the 消息 shown 到 用户 while the following code is running.
-			// Try to make your 消息 清除. You 可以 a little bit clever, but make sure it is descriptive enough for troubleshooting purposes.
+			// Try to make your 消息 清除. You 可以 一点 bit clever, but make sure it is descriptive enough for troubleshooting purposes.
 			progress.Message = ExampleOreSystem.ExampleOrePassMessage.Value;
 
 			// Ores are quite simple, we simply use a for 循环 and the WorldGen.TileRunner to place splotches 的 specified 图格 在 世界.
 			// "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.
 			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 6E-05); k++) {
 				// inside of this for 循环 corresponds to one single splotch of our Ore.
-				// 首先, we randomly choose any 坐标 在 世界 by choosing a 随机 x and y 值.
+				// 首先, we randomly choose 任何 坐标 在 世界 by choosing a 随机 x and y 值.
 				int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 
-				// WorldGen.worldSurfaceLow is actually the highest surface 图格. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
+				// WorldGen.worldSurfaceLow is actually the highest surface 图格. In practice you might 想要 use WorldGen.rockLayer or other WorldGen values.
 				int y = WorldGen.genRand.Next((int)GenVars.worldSurfaceLow, Main.maxTilesY);
 
 				// Then, we call WorldGen.TileRunner with 随机 "strength" and 随机 "steps", 以及 as the 图格 we wish to place.

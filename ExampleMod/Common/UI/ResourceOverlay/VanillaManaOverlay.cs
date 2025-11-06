@@ -51,7 +51,7 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		}
 
 		private bool CompareAssets(Asset<Texture2D> existingAsset, string compareAssetPath) {
-			// This is a helper 方法 for checking if a certain vanilla asset was drawn
+			// 这是一个 helper 方法 for checking if a certain vanilla asset was drawn
 			if (!vanillaAssetCache.TryGetValue(compareAssetPath, out var asset))
 				asset = vanillaAssetCache[compareAssetPath] = Main.Assets.Request<Texture2D>(compareAssetPath);
 
@@ -60,14 +60,14 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 
 		private void DrawClassicFancyOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Classic / 魔力 stars
-			// "context" contains information used to draw the 资源
-			// If you want to draw directly on 顶部 的 vanilla stars, just 替换 the 纹理 and have the context draw the new 纹理
+			// "context" contains information 用于 draw the 资源
+			// If you 想要 draw directly on 顶部 的 vanilla stars, just 替换 the 纹理 and have the context draw the new 纹理
 			context.texture = starTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/ClassicManaOverlay");
 			context.Draw();
 		}
 
 		// 绘制ing over the 面板 backgrounds is not required.
-		// This example just showcases changing the "inner" part 的 star panels to more closely resemble the example life fruit.
+		// 此示例 just showcases changing the "inner" part 的 star panels to more closely resemble the example life fruit.
 		private void DrawFancyPanelOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Fancy star panels
 			string fancyFolder = "Images/UI/PlayerResourceSets/FancyClassic/";
@@ -99,8 +99,8 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 				positionOffset = new Vector2(4, 0);
 			}
 
-			// "context" contains information used to draw the 资源
-			// If you want to draw directly on 顶部 的 vanilla stars, just 替换 the 纹理 and have the context draw the new 纹理
+			// "context" contains information 用于 draw the 资源
+			// If you 想要 draw directly on 顶部 的 vanilla stars, just 替换 the 纹理 and have the context draw the new 纹理
 			context.texture = fancyPanelTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/FancyManaOverlay_Panel");
 			// Due 到 replacement 纹理 and the vanilla 纹理 having different dimensions, the source needs to also be modified
 			context.source = context.texture.Frame();
@@ -110,18 +110,18 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 
 		private void DrawBarsOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Bars 魔力 bars
-			// "context" contains information used to draw the 资源
-			// If you want to draw directly on 顶部 的 vanilla bars, just 替换 the 纹理 and have the context draw the new 纹理
+			// "context" contains information 用于 draw the 资源
+			// If you 想要 draw directly on 顶部 的 vanilla bars, just 替换 the 纹理 and have the context draw the new 纹理
 			context.texture = barsFillingTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsManaOverlay_Fill");
 			context.Draw();
 		}
 
 		// 绘制ing over the 面板 backgrounds is not required.
-		// This example just showcases changing the "inner" part 的 条 panels to more closely resemble the example life fruit.
+		// 此示例 just showcases changing the "inner" part 的 条 panels to more closely resemble the example life fruit.
 		private void DrawBarsPanelOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Bars middle life panels
-			// "context" contains information used to draw the 资源
-			// If you want to draw directly on 顶部 的 vanilla 条 panels, just 替换 the 纹理 and have the context draw the new 纹理
+			// "context" contains information 用于 draw the 资源
+			// If you 想要 draw directly on 顶部 的 vanilla 条 panels, just 替换 the 纹理 and have the context draw the new 纹理
 			context.texture = barsPanelTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsManaOverlay_Panel");
 			// Due 到 replacement 纹理 and the vanilla 纹理 having different heights, the source needs to also be modified
 			context.source = context.texture.Frame();

@@ -10,11 +10,11 @@ namespace ExampleMod.Content.Items.Weapons
 	// 示例RocketLauncher will inherit the variants specified by the 火箭 Launcher 武器
 	public class ExampleRocketLauncher : ModItem {
 		public override void SetStaticDefaults() {
-			// This line lets ExampleRocketLauncher act like a normal RocketLauncher in regard to any variant projectiles
+			// This line lets ExampleRocketLauncher act like a normal RocketLauncher in regard to 任何 variant projectiles
 			// corresponding to ammo that aren't specifically populated in SpecificLauncherAmmoProjectileMatches below.
 			AmmoID.Sets.SpecificLauncherAmmoProjectileFallback[Type] = ItemID.RocketLauncher;
 
-			// SpecificLauncherAmmoProjectileMatches 可以 used to provide specific projectiles for specific ammo items.
+			// SpecificLauncherAmmoProjectileMatches 可以 用于 provide specific projectiles for specific ammo items.
 			// 此示例 dictates that when RocketIII ammo is used, this 武器 will fire the Meowmere 弹幕.
 			// 这是 purely to show off this capability, typically SpecificLauncherAmmoProjectileFallback is all
 			// 即 needed for an "升级". A completely custom 火箭 launcher would instead specify new and

@@ -10,11 +10,11 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles
 {
 	// This 图格 serves as a showcase for TileObjectData.
-	// 在 particular, this contrived example shows how styles are laid out 在 spritesheet when multiple styles, multiple alternate placements, 随机 style 范围, animations, and toggle states are all desired.
-	// 如果 you place this 图格, you'll noticed that it has both 左 and 右 variants depending 在 玩家 方向. You'll also notice th在re are 4 随机 style variations for 左 and 右. Once placed, the 图格 will animate through 3 frames of 动画. 右 clicking 在 图格 will change the 图格 to an "off" 状态, halting the 动画 and showing the 4th 帧 of 动画. There are 4 图格 styles contained in this example 以及.
+	// 在 particular, this contrived example shows how styles are laid out 在 spritesheet when 多个 styles, 多个 alternate placements, 随机 style 范围, animations, and toggle states are all desired.
+	// 如果 you place this 图格, you'll noticed that it has 两者 左 and 右 variants depending 在 玩家 方向. You'll also notice th在re are 4 随机 style variations for 左 and 右. Once placed, the 图格 will animate through 3 frames of 动画. 右 clicking 在 图格 will change the 图格 to an "off" 状态, halting the 动画 and showing the 4th 帧 of 动画. There are 4 图格 styles contained in this example 以及.
 	// StyleMultiplier section 的 图格 wiki 页面, https://github.com/tModLoader/tModLoader/wiki/Basic-图格#stylemultiplier, has a simpler visualization only showing alternate placements and 随机 style variations.
-	// Please experiment by placing this 图格 using both the "TileObjectData Showcase Style 3 - ExampleBlock" 项 and one 的 other TileObjectData Showcase items. This 图格 anchors to specific tiles 到 左 and 右, you'll need to place this 图格 between pillars of those specific tiles. By doing this you 应该 able to visualize the full potential of TileObjectData.
-	// Not many tiles will require such complicated 布局, but this serves as example of how each feature affects the resulting spritesheet.
+	// Please experiment by placing this 图格 using 两者 the "TileObjectData Showcase Style 3 - ExampleBlock" 项 and one 的 other TileObjectData Showcase items. This 图格 anchors to specific tiles 到 左 and 右, you'll 需要 place this 图格 between pillars of those specific tiles. By doing this you 应该 能够 visualize the full potential of TileObjectData.
+	// Not m任何 tiles will require such complicated 布局, but this serves as example of how each feature affects the resulting spritesheet.
 	// Since this 图格 is "StyleHorizontal = 真", styles 在 spritesheet are positioned 左 to 右. Each alternate placement and
 	// 随机 style are also placed in-line 与 styles. Toggled states and animations are placed vertically below their corresponding placement. 在 corresponding spritesheet, the styles, alternate placements, and 动画 frames are all labeled to make this 布局 clearer.
 	// 之后 reaching the wrap 限制, subsequent styles are placed 在 next 行.
@@ -32,12 +32,12 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.newTile.CoordinateHeights = [16, 16];
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.Origin = new Point16(0, 1);
-			TileObjectData.newTile.CoordinatePadding = 0; // This is used to keep the spritesheet legible for this example.
+			TileObjectData.newTile.CoordinatePadding = 0; // This is 用于 keep the spritesheet legible for this example.
 
-			// These define how multiple styles and alternate placements 将 located 在 spritesheet
+			// These define how 多个 styles and alternate placements 将 located 在 spritesheet
 			TileObjectData.newTile.StyleMultiplier = 8; // Each style will occupy 8 placement styles
-			TileObjectData.newTile.RandomStyleRange = 4; // We have a 左 and 右 placement, each has 4 随机 varieties. Look for "Alt 0", "Alt 1", "Alt 2", and "Alt 3" 在 spritesheet.
-			TileObjectData.newTile.StyleWrapLimit = 16; // We will wrap 到 next line 在 纹理 after 16 placement styles, or 2 styles.
+			TileObjectData.newTile.RandomStyleRange = 4; // 我们有 a 左 and 右 placement, each has 4 随机 varieties. Look for "Alt 0", "Alt 1", "Alt 2", and "Alt 3" 在 spritesheet.
+			TileObjectData.newTile.StyleWrapLimit = 16; // 我们将 wrap 到 next line 在 纹理 after 16 placement styles, or 2 styles.
 			TileObjectData.newTile.StyleLineSkip = 4; // This gives extra lines 在 spritesheet for 动画 or 图格 states.
 
 			// 在这里 we declare th在 图格 将 placeable when facing 左.
@@ -48,12 +48,12 @@ namespace ExampleMod.Content.Tiles
 
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(PostPlaceMethod, -1, 0, true); // Just for fun.
 
-			// Now we make a 复制 newTile to populate an alternate placement. This faces 右 instead of 左.
+			// Now we make a 复制 newTile to populate an alternate placement. This faces 右 代替 左.
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
 			TileObjectData.addAlternate(4); // This alternate starts at placement style 4 because the 左 alternate has 4 随机 placements. These alternate placements 将 "Alt 4", "Alt 5", "Alt 6", and "Alt 7" 在 spritesheet.
 
-			// These additional alternates reuse the same placement styles 的 the normal placement and alternate placements above, but have a different 原点 to make placing the 图格 easier. The 图格 placement preview will seem to "snap" to valid locations. This is completely optional and serves as an example of how multiple alternates can share placement styles. 与se additional alternates, the 玩家 can positi在 图格 by the 底部 左 or 底部 右 corner 的 图格. Try it out for yourself in-game to see. This is similar to how doors 可以 placed by placing the 鼠标 in any 的 3 tiles of a doorway.
+			// These additional alternates reuse the same placement styles 的 the normal placement and alternate placements above, but have a different 原点 to make placing the 图格 easier. The 图格 placement preview will seem to "snap" to valid locations. This is completely optional and serves as an example of how 多个 alternates can share placement styles. 与se additional alternates, the 玩家 can positi在 图格 by the 底部 左 or 底部 右 corner 的 图格. Try it out for yourself in-game to see. This is 类似于 how doors 可以 placed by placing the 鼠标 in 任何 的 3 tiles of a doorway.
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newAlternate.Origin = new Point16(1, 1);
 			TileObjectData.addAlternate(0);
@@ -87,11 +87,11 @@ namespace ExampleMod.Content.Tiles
 
 			TileObjectData.addTile(Type);
 
-			// 我们 can automatically set the 动画 帧 高度 from CoordinateFullHeight for any typical 图格 that uses the expected 布局.
+			// 我们 can automatically set the 动画 帧 高度 from CoordinateFullHeight for 任何 typical 图格 that uses the expected 布局.
 			AnimationFrameHeight = TileObjectData.GetTileData(Type, 0).CoordinateFullHeight;
 		}
 
-		// 显示s various info about the 图格 placement in chat.
+		// 显示s 各种 info about the 图格 placement in chat.
 		private int PostPlaceMethod(int x, int y, int type, int style, int direction, int alternate) {
 			// 注意 that alternate here is the alternate 索引, not the alternate placement style. We'll use some math to calculate the 随机 偏移 and placement style values
 			var tileData = TileObjectData.GetTileData(type, style, alternate);
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void AnimateTile(ref int frame, ref int frameCounter) {
-			// 循环 between frames 0, 1, and 2 every 16 ticks
+			// 循环 between frames 0, 1, and 2 每个 16 ticks
 			if (++frameCounter >= 16) {
 				frameCounter = 0;
 				frame = ++frame % 3;

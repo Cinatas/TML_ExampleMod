@@ -56,7 +56,7 @@ namespace ExampleMod.Tiles
 				bool growSucess; // A bool to see if the tree growing was sucessful.
 
 				// Style 0 is 对于 ExampleTree sapling, and style 1 is 例如PalmTree, so here we check frameX to call the correct 方法.
-				// Any pixels before 54 在 tilesheet are 例如Tree while any pixels above it are 例如PalmTree
+				// Any pixels before 54 在 tilesheet are 例如Tree while 任何 pixels above it are 例如PalmTree
 				if (tile.frameX < 54)
 					growSucess = WorldGen.GrowTree(i, j);
 				else

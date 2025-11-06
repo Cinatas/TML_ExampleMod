@@ -17,13 +17,13 @@ namespace ExampleMod.Content.Dusts
 			dust.customData = Player;
 			dust.position = Player.Center + Vector2.UnitX.RotatedBy(dust.rotation, Vector2.Zero) * dust.scale * 50;
 		*/
-		public override string Texture => null; // If we want to use vanilla 纹理
+		public override string Texture => null; // If we 想要 use vanilla 纹理
 
 		public override void OnSpawn(Dust dust) {
 			dust.noGravity = true;
 
-			// Since the vanilla dust 纹理 has all the dust in 1 文件, we'll need to do some math.
-			// 如果 you want to use a vanilla dust 纹理, you can 复制 and 粘贴 it, changing the desiredVanillaDustTexture
+			// Since the vanilla dust 纹理 has all the dust in 1 文件, we'll 需要 do some math.
+			// 如果 you 想要 use a vanilla dust 纹理, you can 复制 and 粘贴 it, changing the desiredVanillaDustTexture
 			int desiredVanillaDustTexture = 139;
 			int frameX = desiredVanillaDustTexture * 10 % 1000;
 			int frameY = desiredVanillaDustTexture * 10 / 1000 * 30 + Main.rand.Next(3) * 10;
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Dusts
 				dust.position = player.Center + Vector2.UnitX.RotatedBy(dust.rotation, Vector2.Zero) * dust.scale * 50;
 			}
 
-			// 在这里 we make sure to kill any dust that get really small.
+			// 在这里 we make sure to kill 任何 dust that get really small.
 			if (dust.scale < 0.25f)
 				dust.active = false;
 

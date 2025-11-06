@@ -60,7 +60,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// This could easily be replaced by deltaTime.ToString()
 			string text2 = string.Concat(deltaTime);
 			if (deltaTime < 10.0) {
-				// if deltaTime is eg "1" (which would cause 时间 to 显示 as HH:M instead of HH:MM)
+				// if deltaTime is eg "1" (which would cause 时间 to 显示 as HH:M 代替 HH:MM)
 				text2 = "0" + text2;
 			}
 

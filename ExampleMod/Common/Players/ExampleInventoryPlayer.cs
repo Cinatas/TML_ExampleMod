@@ -37,10 +37,10 @@ namespace ExampleMod.Common.Players
 		}
 
 		// 修改StartingItems is a more elaborate 版本 of AddStartingItems, which lets you 删除 items
-		// that either vanilla or other mods add. You can technically use it to add items 以及, but it's recommended
+		// that 任一 vanilla or other mods add. You can technically use it to add items 以及, but it's recommended
 		// to only do that in AddStartingItems.
 		// In this example, we 停止 Terraria from adding an Iron Axe 到 玩家's 库存 if it's journey 模式.
-		// (If you want to 停止 another mod from adding an 项, its entry is the mod's internal 名称, e.g itemsByMod["SomeMod"]
+		// (If you 想要 停止 another mod from adding an 项, its entry is the mod's internal 名称, e.g itemsByMod["SomeMod"]
 		// Terraria's entry is always named just "Terraria"
 		public override void ModifyStartingInventory(IReadOnlyDictionary<string, List<Item>> itemsByMod, bool mediumCoreDeath) {
 			itemsByMod["Terraria"].RemoveAll(item => item.type == ItemID.IronAxe);

@@ -33,7 +33,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		// These are 引用 properties. One, 例如, lets us write AI_State as if it's NPC.ai[0], essentially giving the 索引 zero our own 名称.
-		// 在这里 they 帮助 to keep our AI code 清除 of clutter. Without them, every 实例 of "AI_State" 在 AI code below 将 "npc.ai[0]", 即 quite hard to read.
+		// 在这里 they 帮助 to keep our AI code 清除 of clutter. Without them, 每个 实例 of "AI_State" 在 AI code below 将 "npc.ai[0]", 即 quite hard to read.
 		// 这是 all to just make beautiful, manageable, and clean code.
 		public ref float AI_State => ref NPC.ai[0];
 		public ref float AI_Timer => ref NPC.ai[1];
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.NPCs
 			NPC.lifeMax = 25; // The amount of 生命值 that this npc has
 			NPC.HitSound = SoundID.NPCHit1; // The 声音 the NPC will make when being hit.
 			NPC.DeathSound = SoundID.NPCDeath1; // The 声音 the NPC will make when it dies.
-			NPC.value = 25f; // How many 铜币 coins the NPC will 放下 when killed.
+			NPC.value = 25f; // How m任何 铜币 coins the NPC will 放下 when killed.
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
@@ -67,7 +67,7 @@ namespace ExampleMod.Content.NPCs
 			return SpawnCondition.OverworldDaySlime.Chance * 0.1f;
 		}
 
-		// Our AI here makes our NPC sit waiting for a 玩家 to enter 范围, jumps to 攻击, flutter mid-fall to stay afloat a little longer, then falls 到 ground. Note that 动画 should happen in FindFrame
+		// Our AI here makes our NPC sit waiting for a 玩家 to enter 范围, jumps to 攻击, flutter mid-fall to stay afloat 一点 longer, then falls 到 ground. Note that 动画 should happen in FindFrame
 		public override void AI() {
 			// npc starts 在 asleep 状态, waiting for a 玩家 to enter 范围
 			switch (AI_State) {
@@ -94,10 +94,10 @@ namespace ExampleMod.Content.NPCs
 			}
 		}
 
-		// 在这里 in FindFrame, we want to set the 动画 帧 our npc will use depending on what it is doing.
+		// 在这里 in FindFrame, we 想要 set the 动画 帧 our npc will use 取决于 what it is doing.
 		// 我们 set npc.帧.Y to x * frameHeight where x is the xth 帧 in our spritesheet, counting from 0. For convenience, we have defined a enum above.
 		public override void FindFrame(int frameHeight) {
-			// This makes the 精灵 flip horizontally in conjunction 与 npc.方向.
+			// 这使 the 精灵 flip horizontally in conjunction 与 npc.方向.
 			NPC.spriteDirection = NPC.direction;
 
 			// 对于 the most part, our 动画 matches up with our states.
@@ -120,7 +120,7 @@ namespace ExampleMod.Content.NPCs
 					NPC.frame.Y = (int)Frame.Falling * frameHeight;
 					break;
 				case (float)ActionState.Hover:
-					// 在这里 we have 3 frames that we want to 循环 through.
+					// 在这里 we have 3 frames that we 想要 循环 through.
 					NPC.frameCounter++;
 
 					if (NPC.frameCounter < 10) {
@@ -171,7 +171,7 @@ namespace ExampleMod.Content.NPCs
 		private void Notice() {
 			// 如果 the targeted 玩家 is in 攻击 范围 (250).
 			if (Main.player[NPC.target].Distance(NPC.Center) < 250f) {
-				// 在这里 we use our 计时器 to wait .33 seconds before actually jumping. In FindFrame you'll notice AI_Timer also being used to animate the pre-跳跃 crouch
+				// 在这里 we use our 计时器 to wait .33 seconds before actually jumping. In FindFrame you'll notice AI_Timer also being 用于 animate the pre-跳跃 crouch
 				AI_Timer++;
 
 				if (AI_Timer >= 20) {
@@ -209,7 +209,7 @@ namespace ExampleMod.Content.NPCs
 
 			// 在这里 we make a decision on how long this flutter will last. We check netmode != 1 to 防止 Multiplayer Clients from running this code. (similarly, spawning projectiles should also be wrapped like this)
 			// netMode == 0 is SP, netMode == 1 is MP 客户端, netMode == 2 is MP 服务器.
-			// Typically in MP, 客户端 and 服务器 mainta在 same 状态 by running deterministic code individually. When we want to do something 随机, we must do that 在 服务器 然后 inform MP Clients.
+			// Typically in MP, 客户端 and 服务器 mainta在 same 状态 by running deterministic code individually. When we 想要 do something 随机, we must do that 在 服务器 然后 inform MP Clients.
 			if (AI_Timer == 1 && Main.netMode != NetmodeID.MultiplayerClient) {
 				// 对于 引用: without proper syncing: https://media-1.discordapp.net/attachments/242228770855976960/1150274335269998674/FlutterSlime_Netsync_Wrong.mp4 and with proper syncing: https://media-1.discordapp.net/attachments/242228770855976960/1150274355306184804/FlutterSlime_Netsync_Correct.mp4
 				AI_FlutterTime = Main.rand.NextBool() ? 100 : 50;

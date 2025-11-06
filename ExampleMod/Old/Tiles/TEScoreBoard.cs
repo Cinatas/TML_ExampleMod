@@ -132,7 +132,7 @@ namespace ExampleMod.Tiles
 			TileID.Sets.FramesOnKillWall[Type] = true; // 必要 since we have a placement that uses AnchorWall
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-			// We set processedCoordinates to 真 so our Hook_AfterPlacement gets 顶部 左 coordinates, regardless of 原点.
+			// We set processedCoordinates to 真 so our Hook_AfterPlacement gets 顶部 左 coordinates, 无论 原点.
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(GetInstance<TEScoreBoard>().Hook_AfterPlacement, -1, 0, true);
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 5;

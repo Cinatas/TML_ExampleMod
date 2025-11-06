@@ -31,14 +31,14 @@ namespace ExampleMod.Content.BossBars
 			if (!npc.active)
 				return false;
 
-			// 我们 assign bossHeadIndex here because we need to use it in GetIconTexture
+			// 我们 assign bossHeadIndex here because we 需要 use it in GetIconTexture
 			bossHeadIndex = npc.GetBossHeadTextureIndex();
 
 			life = npc.life;
 			lifeMax = npc.lifeMax;
 
 			if (npc.ModNPC is MinionBossBody body) {
-				// 我们 did all the 计算 work on RemainingShields inside the body NPC already so we just have to fetch the 值 again
+				// 我们 did all the 计算 work on RemainingShields inside the body NPC already so we just 必须 fetch the 值 again
 				shield = body.MinionHealthTotal;
 				shieldMax = body.MinionMaxHealthTotal;
 			}

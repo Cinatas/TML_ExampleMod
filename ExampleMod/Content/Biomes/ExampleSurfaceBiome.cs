@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Biomes
 			// 其次, we will 限制 this 生物群系 到 inner horizontal third 的 地图 as our second custom 条件
 			bool b2 = Math.Abs(player.position.ToTileCoordinates().X - Main.maxTilesX / 2) < Main.maxTilesX / 6;
 
-			// 最后, we will 限制 the 高度 at which this 生物群系 可以 active to above ground (ie sky and surface). Most (if not all) surface biomes will use this 条件.
+			// 最后, we will 限制 the 高度 at which this 生物群系 可以 active to above ground (ie sky and surface). Most (如果不是 all) surface biomes will use this 条件.
 			bool b3 = player.ZoneSkyHeight || player.ZoneOverworldHeight;
 			return b1 && b2 && b3;
 		}

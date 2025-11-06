@@ -129,7 +129,7 @@ namespace ExampleMod.Common.Players
 		}
 
 		public static void SendExampleDodgeMessage(int whoAmI) {
-			// This code is called by both the initial 
+			// This code is called by 两者 the initial 
 			ModPacket packet = ModContent.GetInstance<ExampleMod>().GetPacket();
 			packet.Write((byte)ExampleMod.MessageType.ExampleDodge);
 			packet.Write((byte)whoAmI);
@@ -149,12 +149,12 @@ namespace ExampleMod.Common.Players
 			if (defendedByAbsorbTeamDamageEffect && Player != localPlayer && IsClosestShieldWearerInRange(localPlayer, Player.Center, Player.team)) {
 				// The intention of AbsorbTeamDamageAccessory is to transfer 30% of 伤害 taken by teammates 到 wearer.
 				// In ModifiedHurt, we reduce the 伤害 by 30%. The resulting reduced 伤害 is passed to OnHurt, where the 玩家 wearing AbsorbTeamDamageAccessory hurts themselves.
-				// Since OnHurt is provided 与 伤害 already reduced by 30%, we need to reverse the math to determine how much the 伤害 was originally reduced by
+				// Since OnHurt is provided 与 伤害 already reduced by 30%, we 需要 reverse the math to determine how much the 伤害 was originally reduced by
 				// Working through the math, the amount of 伤害 that was reduced is equal to: 伤害 * (percent / (1 - percent))
 				float percent = AbsorbTeamDamageAccessory.DamageAbsorptionMultiplier;
 				int damage = (int)(info.Damage * (percent / (1 - percent)));
 
-				// 不要 bother pinging the defending 玩家 and upsetting their immunity frames if the portion of 伤害 we're taking rounds down to 0
+				// 不要 两者er pinging the defending 玩家 and upsetting their immunity frames if the portion of 伤害 we're taking rounds down to 0
 				if (damage > 0) {
 					localPlayer.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
 				}

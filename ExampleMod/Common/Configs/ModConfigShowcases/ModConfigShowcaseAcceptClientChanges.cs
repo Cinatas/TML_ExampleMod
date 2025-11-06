@@ -26,9 +26,9 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref NetworkText message) {
 			// If OnlyChangeableDuringNight has changed and it is day 时间, we 拒绝 the changes.
-			// This is a toy example. A real mod might have some logic that ReloadRequired wouldn't be suitable for.
+			// 这是一个 toy example. A real mod might have some logic that ReloadRequired wouldn't be suitable for.
 			if (Main.dayTime && ((ModConfigShowcaseAcceptClientChanges)pendingConfig).OnlyChangeableDuringNight != OnlyChangeableDuringNight) {
-				// The NetworkText 类 ensures that messages are shown to clients 在 客户端's selected language. The NetworkText.FromKey and LocalizedText.ToNetworkText methods 可以 used to create a NetworkText 对象 from a 翻译 键.
+				// The NetworkText 类 ensures that messages are shown to clients 在 客户端's selected language. The NetworkText.FromKey and LocalizedText.ToNetworkText methods 可以 用于 create a NetworkText 对象 from a 翻译 键.
 				// The NetworkText.FromLiteral 方法 allows sending a 字符串 directly but is not recommended to use.
 				message = RejectChangesDaytime.ToNetworkText();
 				return false; // 返回 假 to 拒绝 the changes
@@ -40,7 +40,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 				return false;
 			}
 			// Note: The local 主机 approach is a simple, but won't work for users hosting tModLoader on a dedicated 服务器.
-			// There is currently no tModLoader provided 认证 mechanism, but some mods implement their own systems to determine
+			// 有 currently no tModLoader provided 认证 mechanism, but some mods implement their own systems to determine
 			// if a remote 客户端 应该 treated as the 主机.
 			// The Shorter 重生 mod, 例如, uses the 用户 permissions system of HEROs Mod (a mod 即 intended for
 			// multiplayer administration) to determine if a particular 用户 has 权限 to change the 配置:

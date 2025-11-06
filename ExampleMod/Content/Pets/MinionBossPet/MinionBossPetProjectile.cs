@@ -38,8 +38,8 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		public static void CharacterPreviewCustomization(Projectile proj, bool walking) {
 			// 修改d floating from DelegateMethods.CharacterPreview.Float, this is technically not representative of how the 宠物 actually looks and moves ingame, but the Suspicious Grinning Eye has that too
 
-			// 如果 you don't need to modify it, just call DelegateMethods.CharacterPreview.Float(proj, walking) directly here instead and change properties of your 宠物 after it.
-			// 你 do not need this otherwise and can use the preset directly as showcased in ExamplePetProjectile
+			// 如果 you don't 需要 modify it, just call DelegateMethods.CharacterPreview.Float(proj, walking) directly here instead and change properties of your 宠物 after it.
+			// 你 do not need this 否则 and can use the preset directly as showcased in ExamplePetProjectile
 			float half = 0.5f;
 			float timer = (float)Main.timeForVisualEffects % 60f / 60f;
 			float speed = 1f; // This is normally 2
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			Vector2 offset = new Vector2(0, Projectile.gfxOffY); // Vertical 偏移 when the 弹幕 is changing elevation on tiles (does not apply to this particular 弹幕 because it is always airborne)
 			Vector2 orbitingCenter = Projectile.Center + offset;
 
-			// 不要 need to draw the eyes if the 宠物 is fully faded in
+			// 不要 需要 draw the eyes if the 宠物 is fully faded in
 			if (AlphaForVisuals >= 1) {
 				return;
 			}
@@ -79,11 +79,11 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			int eyeCount = 10;
 			for (int i = 0; i < eyeCount; i++) {
 				Vector2 origin = Vector2.Zero; // Using 原点 as zero because the draw 位置 is the 中心
-				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // 创建 a vector of 长度 24 with a specific 旋转 based on 循环 索引
+				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // 创建 a vector of 长度 24 with a specific 旋转 基于 循环 索引
 				Vector2 drawPos = orbitingCenter - Main.screenPosition + origin + rotatedPos; // 始终 important to substract Main.screenPosition to translate it into 屏幕 coordinates
 				Color color = Color.White * (1f - AlphaForVisuals) * Projectile.Opacity; // 绘制 it in reversed alpha 到 弹幕
 
-				// 使用 this instead of Main.spriteBatch.Draw so that dyes apply to it
+				// 使用 this 代替 Main.spriteBatch.Draw 以便 dyes apply to it
 				Main.EntitySpriteDraw(eyeTexture, drawPos, eyeTexture.Bounds, color, 0f, origin, 1f, SpriteEffects.None, 0);
 			}
 		}
@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// 对于 organization, the AI is 拆分 into several methods defined below
+			// 对于 organization, the AI is 拆分 into 几个 methods defined below
 			// They are NOT part 的 ModProjectile 类!
 			CheckActive(player);
 
@@ -124,7 +124,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 
 			Vector2 desiredCenter = player.MountedCenter + desiredCenterRelative;
 			Vector2 betweenDirection = desiredCenter - Projectile.Center;
-			float betweenSQ = betweenDirection.LengthSquared(); // It is recommended to operate on squares of distances, to 保存 computing 时间 on square-rooting
+			float betweenSQ = betweenDirection.LengthSquared(); // 它是 recommended to operate on squares of distances, to 保存 computing 时间 on square-rooting
 
 			if (betweenSQ > 1000f * 1000f || betweenSQ < velDistanceChange * velDistanceChange) {
 				// 设置 位置 directly if too far away 从 玩家, or when near the desired 位置

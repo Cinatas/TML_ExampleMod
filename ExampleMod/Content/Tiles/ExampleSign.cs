@@ -29,13 +29,13 @@ namespace ExampleMod.Content.Tiles
 			// TileObjectData assignment
 			// TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will 不 copying from it in this case
 			// 使用 Style2x2 as a base, we will create a TileObjectData with 5 alternate placements, each 锚定 to a different anchor.
-			// 我们 also adjust the 原点 对于 alternates to 匹配 vanilla. Style2x2 starts with a 原点 at 0, 1 and a AnchorBottom, these will both be adjusted 在 alternates.
+			// 我们 also adjust the 原点 对于 alternates to 匹配 vanilla. Style2x2 starts with a 原点 at 0, 1 and a AnchorBottom, these will 两者 be adjusted 在 alternates.
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 5; // Since each style has 5 placement styles, we set this to 5.
-			TileObjectData.newTile.AnchorBottom = AnchorData.Empty; // 清除 out existing 底部 anchor inherited from Style2x2 temporarily so that we don't have to set it to empty in each 的 alternates. 
+			TileObjectData.newTile.AnchorBottom = AnchorData.Empty; // 清除 out existing 底部 anchor inherited from Style2x2 temporarily 以便 we don't 必须 set it to empty in each 的 alternates. 
 
-			// 要 reduce code repetition, we'll use the same AnchorData 值 multiple times. This works because the 图格 is as tall as it is wide.
+			// 要 reduce code repetition, we'll use the same AnchorData 值 多个 times. This works because the 图格 is as tall as it is wide.
 			AnchorData SolidOrSolidSideAnchor2TilesLong = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 2, 0);
 
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override bool RightClick(int i, int j) {
-			// Normal sign 右 点击 behavior happens automatically because of Main.tileSign, this code just shows how to retrieve the 文本 的 sign and 应该 removed from normal sign tiles.
+			// Normal sign 右 点击 behavior happens automatically 因为 Main.tileSign, this code just shows how to retrieve the 文本 的 sign and 应该 removed from normal sign tiles.
 			int signId = Sign.ReadSign(i, j);
 			if (signId != -1) {
 				string signText = Main.sign[signId].text;

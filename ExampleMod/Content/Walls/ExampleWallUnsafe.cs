@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Walls
 
 			AddMapEntry(new Color(150, 150, 150));
 
-			// 我们 need to manually register the 项 放下, since no 项 places this 墙. This 墙 can only be obtained by using ExampleSolution on natural spider walls.
+			// 我们 需要 manually register the 项 放下, since no 项 places this 墙. This 墙 can only be obtained by using ExampleSolution on natural spider walls.
 			RegisterItemDrop(ModContent.ItemType<Items.Placeable.ExampleWall>());
 		}
 

@@ -110,8 +110,8 @@ namespace ExampleMod.Content.NPCs
 
 			// Main.时间 is set to 0 each morning, and only for one 更新. Sundialling will never 跳过 past 时间 0 so this is the place for 'on new day' code
 			if (Main.dayTime && Main.time == 0) {
-				// insert code here to change the 生成 概率 based on other conditions (say, NPCs which have arrived, or milestones the 玩家 has passed)
-				// 你 can also add a day 计数器 here to 防止 the 商人 from possibly spawning multiple days in a 行.
+				// insert code here to change the 生成 概率 基于 other conditions (say, NPCs which have arrived, or milestones the 玩家 has passed)
+				// 你 can also add a day 计数器 here to 防止 the 商人 from possibly spawning 多个 days in a 行.
 
 				// NPC won't 生成 today if it stayed all night
 				if (!travelerIsThere && Main.rand.NextBool(4)) { // 4 = 25% 概率
@@ -158,7 +158,7 @@ namespace ExampleMod.Content.NPCs
 			int h = NPC.sHeight + NPC.safeRangeY * 2;
 			Rectangle npcScreenRect = new Rectangle((int)center.X - w / 2, (int)center.Y - h / 2, w, h);
 			foreach (Player player in Main.ActivePlayers) {
-				// 如果 any 玩家 is 关闭 enough 到 traveling 商人, it will 防止 the npc from despawning
+				// 如果 任何 玩家 is 关闭 enough 到 traveling 商人, it will 防止 the npc from despawning
 				if (player.getRect().Intersects(npcScreenRect)) {
 					return true;
 				}
@@ -226,7 +226,7 @@ namespace ExampleMod.Content.NPCs
 			// 在 multi 玩家, ensure the 商店 items are synced with clients (see TravelingMerchantSystem.cs)
 			if (Main.netMode == NetmodeID.Server) {
 				// 我们 recommend modders avoid sending WorldData too often, or filling it with too much 数据, lest too much bandwidth be consumed sending redundant 数据 repeatedly
-				// Consider sending a custom 数据包 instead of WorldData if you have a significant amount of 数据 to synchronise
+				// Consider sending a custom 数据包 代替 WorldData if you have a significant amount of 数据 to synchronise
 				NetMessage.SendData(MessageID.WorldData);
    			}
 		}
@@ -246,7 +246,7 @@ namespace ExampleMod.Content.NPCs
 			// 创建 gore when the NPC is killed.
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
 				// 检索 the gore types. This NPC has shimmer variants for head, arm, and leg gore. It also has a custom hat gore. (7 gores)
-				// This NPC will 生成 either the assigned party hat or a custom hat gore when not shimmered. When shimmered the 顶部 hat is part 的 head and no hat gore is spawned.
+				// This NPC will 生成 任一 the assigned party hat or a custom hat gore when not shimmered. When shimmered the 顶部 hat is part 的 head and no hat gore is spawned.
 				int hatGore = NPC.GetPartyHatGore();
 				// 如果 not wearing a party hat, and not shimmered, retrieve the custom hat gore 
 				if (hatGore == 0 && !NPC.IsShimmerVariant) {
@@ -279,7 +279,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs) {
-			return false; // This should always be 假, because we 生成 在 Traveling 商人 manually
+			return false; // 这应该 always be 假, because we 生成 在 Traveling 商人 manually
 		}
 
 		public override ITownNPCProfile TownNPCProfile() {
@@ -394,7 +394,7 @@ namespace ExampleMod.Content.NPCs
 
 			// Picks a 数字 of items (up to Slots) 从 entries 列表, provided conditions are met.
 			public IEnumerable<Item> PickItems() {
-				// 这是 not a fast way to pick items without replacement, but it's certainly easy. Be careful not to do this many many times per 帧, or on huge lists of items.
+				// 这是 not a fast way to pick items without replacement, but it's certainly easy. Be careful not to do this m任何 m任何 times per 帧, or on huge lists of items.
 				var list = Entries.Where(e => !e.Disabled && e.ConditionsMet()).ToList();
 				for (int i = 0; i < Slots; i++) {
 					if (list.Count == 0)
@@ -438,7 +438,7 @@ namespace ExampleMod.Content.NPCs
 		public override void FillShop(ICollection<Item> items, NPC npc) {
 			// use the items which were selected when the NPC spawned.
 			foreach (var item in ExampleTravelingMerchant.shopItems) {
-				// 使 sure to add a clone 的 项, in case any ModifyActiveShop hooks adjust the 项 when the 商店 is opened
+				// 使 sure to add a clone 的 项, in case 任何 ModifyActiveShop hooks adjust the 项 when the 商店 is opened
 				items.Add(item.Clone());
 			}
 		}
@@ -455,7 +455,7 @@ namespace ExampleMod.Content.NPCs
 					return;
 				}
 
-				// 使 sure to add a clone 的 项, in case any ModifyActiveShop hooks adjust the 项 when the 商店 is opened
+				// 使 sure to add a clone 的 项, in case 任何 ModifyActiveShop hooks adjust the 项 when the 商店 is opened
 				items[i++] = item.Clone();
 			}
 		}

@@ -20,7 +20,7 @@ namespace ExampleMod.Common.Players
 			showMinionCount = false;
 		}
 
-		// If we have another nearby 玩家 on our 团队, we want to get their info accessories working on us,
+		// If we have another nearby 玩家 on our 团队, we 想要 get their info accessories working on us,
 		// just like in vanilla. This is what this hook is for.
 		public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer) {
 			if (otherPlayer.GetModPlayer<ExampleInfoDisplayPlayer>().showMinionCount) {

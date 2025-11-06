@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Items.Armor
 		public override void SetDefaults() {
 			Item.width = 18; // 宽度 的 项
 			Item.height = 18; // 高度 的 项
-			Item.value = Item.sellPrice(gold: 1); // How many coins the 项 is worth
+			Item.value = Item.sellPrice(gold: 1); // How m任何 coins the 项 is worth
 			Item.rare = ItemRarityID.Green; // The 稀有度 的 项
 			Item.defense = 4; // The amount of 防御 the 项 will give when equipped
 		}
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Armor
 		// 更新ArmorSet allows you to give set bonuses 到 护甲.
 		public override void UpdateArmorSet(Player player) {
 			// 这是 the setbonus 工具提示:
-			//   Double tap or hold DOWN/UP to toggle various 护甲 shadow effects
+			//   Double tap or hold DOWN/UP to toggle 各种 护甲 shadow effects
 			//   10% reduced 魔力 成本
 			player.setBonus = SetBonusText.Format(Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN"));
 			player.manaCost -= ManaCostReductionPercent / 100f; // Reduces 魔力 成本 by 10%

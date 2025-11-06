@@ -19,13 +19,13 @@ namespace ExampleMod.Content.BossBars
 			}
 
 			if (currentBar is CommonBossBigProgressBar) {
-				// 如果 this is a regular 条 without any special features, we draw our own thing. Sadly, "life to 显示" is not a 变量 we can access,
+				// 如果 this is a regular 条 without 任何 special features, we draw our own thing. Sadly, "life to 显示" is not a 变量 we can access,
 				// but since we are dealing 与 very basic implementation that only tracks a single NPC, we can use "info"
 
 				NPC npc = Main.npc[info.npcIndexToAimAt];
 				float lifePercent = Utils.Clamp(npc.life / (float)npc.lifeMax, 0f, 1f);
 
-				// Unused 方法 by vanilla, which simply draws a few boxes that represent a Boss 条 (fixed 位置, colors, no 图标)
+				// Unused 方法 by vanilla, which simply draws 一些 boxes that represent a Boss 条 (fixed 位置, colors, no 图标)
 				BigProgressBarHelper.DrawBareBonesBar(spriteBatch, lifePercent);
 
 				if (info.showText && BigProgressBarSystem.ShowText) {

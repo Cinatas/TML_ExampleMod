@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Items
 				}
 			}
 
-			// Another 方法 of hiding 可以 done if you want to hide just one line.
+			// Another 方法 of hiding 可以 done if you 想要 hide just one line.
 			// tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.名称 == "Verbose:RemoveMe")?.Hide();
 		}
 

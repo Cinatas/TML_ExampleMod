@@ -39,9 +39,9 @@ namespace ExampleMod.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath2;
 			NPC.value = 60f;
 			NPC.knockBackResist = 0.5f;
-			NPC.aiStyle = 3; // Fighter AI, important to choose the aiStyle that matches the NPCID that we want to mimic
+			NPC.aiStyle = 3; // Fighter AI, important to choose the aiStyle that matches the NPCID that we 想要 mimic
 
-			AIType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing AI code. (This also means it will try to despawn during daytime)
+			AIType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing AI code. (This also means it will 尝试 despawn during daytime)
 			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's 类型 when executing 动画 code. Important to also 匹配 Main.npcFrameCount[NPC.类型] in SetStaticDefaults.
 			Banner = Item.NPCtoBanner(NPCID.Zombie); // 使 this NPC get affected by the normal zombie banner.
 			BannerItem = Item.BannerToItem(Banner); // 使 kills of this NPC go towards dropping the banner it's associated with.
@@ -49,7 +49,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
+			// 我们 can use AddRange 代替 calling Add 多个 times in 顺序 to add 多个 items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,

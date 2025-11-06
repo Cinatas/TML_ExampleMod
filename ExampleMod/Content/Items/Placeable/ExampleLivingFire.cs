@@ -7,8 +7,8 @@ namespace ExampleMod.Content.Items.Placeable
 {
 	public class ExampleLivingFire : ModItem
 	{
-		// 我们 将 using this 颜色 several times.
-		// Defining it like this means we only need to change this Vector3 if we want to change the 颜色 of everything.
+		// 我们 将 using this 颜色 几个 times.
+		// Defining it like this means we only 需要 change this Vector3 if we 想要 change the 颜色 of 每个thing.
 		public static Vector3 LightColor = new Vector3(0.7f, 0.8f, 0.8f);
 
 		public override void SetStaticDefaults() {

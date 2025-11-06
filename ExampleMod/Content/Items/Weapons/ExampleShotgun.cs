@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleShotgun : ModItem
 	{
 		public override void SetDefaults() {
-			// Modders can use 项.DefaultToRangedWeapon to quickly set many common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
+			// Modders can use 项.DefaultToRangedWeapon to quickly set m任何 common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
 
 			// 常见 Properties
 			Item.width = 44; // Hitbox 宽度 的 项.

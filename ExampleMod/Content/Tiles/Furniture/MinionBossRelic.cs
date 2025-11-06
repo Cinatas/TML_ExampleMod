@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 {
 	// 常见 code for a Master 模式 Boss relic
 	// Supports optional 项.placeStyle handling if you wish to add more relics but use the same 图格 类型 (then it 将 wise to 名称 this 类 something more generic like BossRelic)
-	// 如果 you want to add more relics but don't want to use the 项.placeStyle approach, see the inheritance example 在 底部 的 文件
+	// 如果 you 想要 add more relics but don't 想要 use the 项.placeStyle approach, see the inheritance example 在 底部 的 文件
 	public class MinionBossRelic : ModTile
 	{
 		public const int FrameWidth = 18 * 3;
@@ -24,7 +24,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public Asset<Texture2D> RelicTexture;
 
-		// Every relic has its own extra floating part, 应该 50x50. Optional: Expand this sheet if you want to add more, stacked vertically
+		// Every relic has its own extra floating part, 应该 50x50. Optional: Expand this sheet if you 想要 add more, stacked vertically
 		// 如果 you do not use the 项.placeStyle approach, and you extend from this 类, you can override this to 点 to a different 纹理
 		public virtual string RelicTextureName => "ExampleMod/Content/Tiles/Furniture/MinionBossRelic";
 
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.newTile.styleLineSkipVisualOverride = 0; // This forces the 图格 preview to draw as if drawing the 1st style.
 
 			// 注册 an alternate 图格 数据 with flipped 方向
-			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); // 复制 everything from above, saves us some code
+			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); // 复制 每个thing from above, saves us some code
 			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // 玩家 faces 到 右
 			TileObjectData.addAlternate(1);
 
@@ -73,13 +73,13 @@ namespace ExampleMod.Content.Tiles.Furniture
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
 			// This forces the 图格 to draw the pedestal even if the placeStyle differs. 
 			tileFrameX %= FrameWidth; // Clamps the frameX
-			tileFrameY %= FrameHeight * 2; // Clamps the frameY (two horizontally aligned place styles, hence * 2)
+			tileFrameY %= FrameHeight * 2; // Clamps the frameY (two horizontally aligned place styles, 因此 * 2)
 		}
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-			// Since this 图格 does not have the hovering part on its sheet, we have to animate it ourselves
+			// Since this 图格 does not have the hovering part on its sheet, we 必须 animate it ourselves
 			// Therefore we register the 顶部-左 的 图格 as a "special 点"
-			// This allows us to draw things in SpecialDraw
+			// 这允许 us to draw things in SpecialDraw
 			if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
 				Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
 			}
@@ -132,7 +132,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 	}
 
-	// 如果 you want to make more relics but do not use the 项.placeStyle approach, you can use inheritance to avoid using duplicate code:
+	// 如果 you 想要 make more relics but do not use the 项.placeStyle approach, you can use inheritance to avoid using duplicate code:
 	// Your 图格 code would then inherit 从 MinionBossRelic 类 (which you should make abstract) and should look like this:
 	/*
 	public class MyBossRelic : MinionBossRelic
@@ -146,5 +146,5 @@ namespace ExampleMod.Content.Tiles.Furniture
 	*/
 
 	// Your 项 code would then just use the MyBossRelic 图格 类型, and keep placeStyle on 0
-	// textures for MyBossRelic 项/图格 have to be supplied separately
+	// textures for MyBossRelic 项/图格 必须 be supplied separately
 }

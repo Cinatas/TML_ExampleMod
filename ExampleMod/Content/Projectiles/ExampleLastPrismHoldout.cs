@@ -16,13 +16,13 @@ namespace ExampleMod.Content.Projectiles
 		// vanilla Last Prism is an animated 项 with 5 frames of 动画. We 复制 that here.
 		private const int NumAnimationFrames = 5;
 
-		// This controls how many individual beams are fired by the Prism.
+		// This controls how m任何 individual beams are fired by the Prism.
 		public const int NumBeams = 10;
 
-		// This 值 controls how many frames it takes 对于 Prism to reach "max charge". 60 frames = 1 second.
+		// This 值 controls how m任何 frames it takes 对于 Prism to reach "max charge". 60 frames = 1 second.
 		public const float MaxCharge = 180f;
 
-		// This 值 controls how many frames it takes 对于 beams to begin dealing 伤害. Before then they can't hit anything.
+		// This 值 controls how m任何 frames it takes 对于 beams to begin dealing 伤害. Before then they can't hit 任何thing.
 		public const float DamageStart = 30f;
 
 		// This 值 controls how sluggish the Prism turns while being used. Vanilla Last Prism is 0.08f.
@@ -33,9 +33,9 @@ namespace ExampleMod.Content.Projectiles
 		private const int SoundInterval = 20;
 
 		// These values place caps 在 魔力 consumption rate 的 Prism.
-		// 当 first used, the Prism consumes 魔力 once every MaxManaConsumptionDelay frames.
+		// 当 first used, the Prism consumes 魔力 once 每个 MaxManaConsumptionDelay frames.
 		// 每次 魔力 is consumed, the pace becomes one 帧 faster, meaning 魔力 consumption smoothly increases.
-		// 当 capped out, the Prism consumes 魔力 once every MinManaConsumptionDelay frames.
+		// 当 capped out, the Prism consumes 魔力 once 每个 MinManaConsumptionDelay frames.
 		private const float MaxManaConsumptionDelay = 15f;
 		private const float MinManaConsumptionDelay = 5f;
 
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// This 属性 encloses the internal AI 变量 弹幕.localAI[0].
-		// localAI is not automatically synced over the 网络, but that does not cause any problems in this case.
+		// localAI is not automatically synced over the 网络, but that does not cause 任何 problems in this case.
 		private float ManaConsumptionRate {
 			get => Projectile.localAI[0];
 			set => Projectile.localAI[0] = value;
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Projectiles
 			Main.projFrames[Projectile.type] = NumAnimationFrames;
 
 			// Signals to Terraria that this 弹幕 requires a unique 标识符 beyond its 索引 在 弹幕 数组.
-			// This prevents the issue 与 vanilla Last Prism where the beams are invisible in multiplayer.
+			// 这防止 the issue 与 vanilla Last Prism where the beams are invisible in multiplayer.
 			ProjectileID.Sets.NeedsUUID[Projectile.type] = true;
 
 			// 防止s jitter when stepping up and down blocks and half blocks
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Projectiles
 			Player player = Main.player[Projectile.owner];
 			Vector2 rrp = player.RotatedRelativePoint(player.MountedCenter, true);
 
-			// 更新 the Prism's 伤害 every 帧 so that it is dynamically affected by 魔力 Sickness.
+			// 更新 the Prism's 伤害 每个 帧 以便 it is dynamically affected by 魔力 Sickness.
 			UpdateDamageForManaSickness(player);
 
 			// 更新 the 帧 计数器.
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// 更新 the Prism's behavior: project beams on 帧 1, consume 魔力, and despawn if out of 魔力.
 			if (Projectile.owner == Main.myPlayer) {
-				// Slightly re-aim the Prism every 帧 so that it gradually sweeps to 点 towards the 鼠标.
+				// Slightly re-aim the Prism 每个 帧 以便 it gradually sweeps to 点 towards the 鼠标.
 				UpdateAim(rrp, player.HeldItem.shootSpeed);
 
 				// 玩家.CheckMana returns 真 if the 魔力 成本 可以 paid. Since the second 参数 is 真, the 魔力 is actually consumed.
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 
-			// This ensures th在 Prism never times out while in use.
+			// 这确保 th在 Prism never times out while in use.
 			Projectile.timeLeft = 2;
 		}
 
@@ -158,7 +158,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.spriteDirection = Projectile.direction;
 
 			// Prism is a holdout 弹幕, so change the 玩家's variables to reflect that.
-			// Constantly resetting 玩家.itemTime and 玩家.itemAnimation prevents the 玩家 from switching items or doing anything else.
+			// Constantly resetting 玩家.itemTime and 玩家.itemAnimation prevents the 玩家 from switching items or doing 任何thing else.
 			player.ChangeDir(Projectile.direction);
 			player.heldProj = Projectile.whoAmI;
 			player.itemTime = 2;
@@ -180,7 +180,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// 如果 魔力 is being consumed this 帧, 更新 the rate of 魔力 consumption and write down the next 帧 魔力 将 consumed.
 			if (consume) {
-				// MathHelper.Clamp(X,A,B) guarantees that A <= X <= B. If X is outside the 范围, it 将 set to A or B accordingly.
+				// MathHelper.Clamp(X,A,B) guarantees that A <= X <= B. If X is outside the 范围, it 将 set to A or B 相应地.
 				ManaConsumptionRate = MathHelper.Clamp(ManaConsumptionRate - 1f, MinManaConsumptionDelay, MaxManaConsumptionDelay);
 				NextManaFrame += ManaConsumptionRate;
 			}
@@ -194,7 +194,7 @@ namespace ExampleMod.Content.Projectiles
 				aim = -Vector2.UnitY;
 			}
 
-			// 更改 a portion 的 Prism's current 速度 so that it points 到 鼠标. This gives smooth movement over 时间.
+			// 更改 a portion 的 Prism's current 速度 以便 it points 到 鼠标. This gives smooth movement over 时间.
 			aim = Vector2.Normalize(Vector2.Lerp(Vector2.Normalize(Projectile.velocity), aim, AimResponsiveness));
 			aim *= speed;
 
@@ -211,7 +211,7 @@ namespace ExampleMod.Content.Projectiles
 				beamVelocity = -Vector2.UnitY;
 			}
 
-			// This 通用唯一标识符 将 the same between all players in multiplayer, ensuring th在 beams are properly anchored 在 Prism on everyone's 屏幕.
+			// This 通用唯一标识符 将 the same between all players in multiplayer, ensuring th在 beams are properly anchored 在 Prism on 每个one's 屏幕.
 			int uuid = Projectile.GetByUUID(Projectile.owner, Projectile.whoAmI);
 
 			int damage = Projectile.damage;
@@ -233,7 +233,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 sheetInsertPosition = (Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition).Floor();
 
 			// Prism is always at full brightness, regardless 的 surrounding light. This is equivalent to it being its own glowmask.
-			// It is drawn in a non-white 颜色 to distinguish it 从 vanilla Last Prism.
+			// 它是 drawn in a non-white 颜色 to distinguish it 从 vanilla Last Prism.
 			Color drawColor = ExampleLastPrism.OverrideColor;
 			Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
 			return false;

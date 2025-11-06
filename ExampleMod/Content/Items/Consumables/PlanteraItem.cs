@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// 这是 the 项 used to summon a Boss, in this case the vanilla Plantera Boss.
+	// 这是 the 项 用于 summon a Boss, in this case the vanilla Plantera Boss.
 	public class PlanteraItem : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -34,7 +34,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool CanUseItem(Player player) {
-			// 如果 you decide to use the below UseItem code, you have to include !NPC.AnyNPCs(ID), as this is also the check the 服务器 does when receiving MessageID.SpawnBoss
+			// 如果 you decide to use the below UseItem code, you 必须 include !NPC.AnyNPCs(ID), as this is also the check the 服务器 does when receiving MessageID.SpawnBoss
 			return Main.hardMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && !NPC.AnyNPCs(NPCID.Plantera);
 		}
 
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Items.Consumables
 				}
 				else {
 					// 如果 the 玩家 is in multiplayer, 请求 a 生成
-					// This will only work if NPCID.Sets.MPAllowedEnemies[类型] is 真, which we set in this 类 above
+					// 这将 only work if NPCID.Sets.MPAllowedEnemies[类型] is 真, which we set in this 类 above
 					NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
 				}
 			}

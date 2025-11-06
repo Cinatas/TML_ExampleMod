@@ -10,7 +10,7 @@ using Terraria.ModLoader.Config;
 // 此文件包含展示创建配置部分的假 ModConfig 类
 // 通过使用具有定义范围的字段。
 
-// Because this 配置 was designed to show off various 用户界面 capabilities,
+// Because this 配置 was designed to show off 各种 用户界面 capabilities,
 // this 配置 have no 效果 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {

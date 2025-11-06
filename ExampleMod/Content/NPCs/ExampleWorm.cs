@@ -17,7 +17,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void SetStaticDefaults() {
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers() { // Influences how the NPC looks 在 Bestiary
-				CustomTexturePath = "ExampleMod/Content/NPCs/ExampleWorm_Bestiary", // If the NPC is multiple parts like a worm, a custom 纹理 对于 Bestiary is encouraged.
+				CustomTexturePath = "ExampleMod/Content/NPCs/ExampleWorm_Bestiary", // If the NPC is 多个 parts like a worm, a custom 纹理 对于 Bestiary is encouraged.
 				Position = new Vector2(40f, 24f),
 				PortraitPositionXOverride = 0f,
 				PortraitPositionYOverride = 12f
@@ -32,7 +32,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
+			// 我们 can use AddRange 代替 calling Add 多个 times in 顺序 to add 多个 items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,

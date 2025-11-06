@@ -14,13 +14,13 @@ namespace ExampleMod.Content.Items.Consumables
 			// 这是 to show the correct 帧 在 库存
 			// MaxValue 参数 is 对于 动画 速度, we want it to be stuck on 帧 1
 			// 设置ting it to max 值 will cause it to take 414 days to reach the next 帧
-			// No one is going to have game 打开 that long so this is fine
+			// No one is 将要 have game 打开 that long so this is fine
 			// second 参数 is the 数字 of frames, 即 3
 			// first 帧 is the 库存 纹理, the second 帧 is the holding 纹理,
 			// and the third 帧 is the placed 纹理
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
 
-			// This allows you to change the 颜色 的 crumbs that are created when you eat.
+			// 这允许 you to change the 颜色 的 crumbs that are created when you eat.
 			// numbers are RGB (Red, Green, and Blue) values which 范围 from 0 to 255.
 			// Most foods have 3 crumb colors, but you can use more or less if you desire.
 			// Depending on if you are making solid or liquid food switch out FoodParticleColors
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items.Consumables
 			Item.rare = ItemRarityID.Blue;
 		}
 
-		// 如果 you want multiple buffs, you can apply the remainder of buffs with this 方法.
+		// 如果 you want 多个 buffs, you can apply the remainder of buffs with this 方法.
 		// 确保 the primary 增益 is set in SetDefaults so th在 QuickBuff hotkey can work properly.
 		public override void OnConsumeItem(Player player) {
 			player.AddBuff(BuffID.SugarRush, 3600);

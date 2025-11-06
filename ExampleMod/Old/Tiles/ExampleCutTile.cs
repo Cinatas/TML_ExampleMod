@@ -8,8 +8,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Tiles
 {
-	// This example shows how to have a 图格 即 剪切 by weapons, like vines and grass.
-	// This example also shows how to 生成 a 弹幕 on death like Beehive and Boulder 陷阱.
+	// 此示例 shows how to have a 图格 即 剪切 by weapons, like vines and grass.
+	// 此示例 also shows how to 生成 a 弹幕 on death like Beehive and Boulder 陷阱.
 	internal class ExampleCutTileTile : ModTile
 	{
 		public override void SetDefaults() {
@@ -17,7 +17,7 @@ namespace ExampleMod.Tiles
 			Main.tileCut[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-			// We need to change the 3x3 default to 允许 only placement anchored to 顶部 rather than on 底部. Also, the 1,1 means that only the middle 图格 needs to attach
+			// 我们需要 to change the 3x3 default to 允许 only placement anchored to 顶部 rather than on 底部. Also, the 1,1 means that only the middle 图格 needs to attach
 			TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 1);
 			TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
 			// This is so we can place from above.

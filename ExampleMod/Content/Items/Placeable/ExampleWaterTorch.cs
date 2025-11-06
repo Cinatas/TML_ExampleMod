@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Placeable
 {
-	// 示例WaterTorch is very similar to ExampleTorch, except it 可以 used and placed underwater, similar to Coral Torch.
+	// 示例WaterTorch is very 类似于 ExampleTorch, except it 可以 used and placed underwater, 类似于 Coral Torch.
 	// comments in this 文件 will focus 在 differences.
 	// Both place the same 图格, but a different 图格 style. The ExampleWaterTorch 图格 style has custom code seen 在 ExampleTorch ModTile.
 	public class ExampleWaterTorch : ModItem

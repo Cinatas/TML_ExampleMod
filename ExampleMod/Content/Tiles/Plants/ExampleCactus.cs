@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Tiles
 		private Asset<Texture2D> fruitTexture;
 
 		public override void SetStaticDefaults() {
-			// 使 Example Cactus grow on ExampleSand. You will need to use ExampleSolution to convert regular sand since ExampleCactus will not grow naturally yet.
+			// 使 Example Cactus grow on ExampleSand. You will 需要 use ExampleSolution to convert regular sand since ExampleCactus will not grow naturally yet.
 			GrowsOnTileId = new int[1] { ModContent.TileType<ExampleSand>() };
 			texture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExampleCactus");
 			fruitTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExampleCactus_Fruit");

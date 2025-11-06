@@ -71,7 +71,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			resourceDrawSettings.OffsetSpriteAnchorByTexturePercentile = Vector2.Zero;
 			resourceDrawSettings.StatsSnapshot = preparedSnapshot;
 			resourceDrawSettings.DisplaySet = this;
-			resourceDrawSettings.ResourceIndexOffset = -1;  // 使 the 范围 [-1, 20] instead of [0, 21]
+			resourceDrawSettings.ResourceIndexOffset = -1;  // 使 the 范围 [-1, 20] 代替 [0, 21]
 			resourceDrawSettings.Draw(spriteBatch, ref isHovered);
 
 			// 绘制 the life 条 filling
@@ -113,7 +113,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			resourceDrawSettings.OffsetSpriteAnchorByTexturePercentile = Vector2.Zero;
 			resourceDrawSettings.StatsSnapshot = preparedSnapshot;
 			resourceDrawSettings.DisplaySet = this;
-			resourceDrawSettings.ResourceIndexOffset = -1;  // 使 the 范围 [-1, 20] instead of [0, 21]
+			resourceDrawSettings.ResourceIndexOffset = -1;  // 使 the 范围 [-1, 20] 代替 [0, 21]
 			resourceDrawSettings.Draw(spriteBatch, ref isHovered);
 
 			// 绘制 the 魔力 条 filling

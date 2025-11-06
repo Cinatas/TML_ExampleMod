@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// 这是 an example gun designed to best demonstrate the various tML hooks that 可以 used for ammo-related specifications.
+	// 这是 an example gun designed to best demonstrate the 各种 tML hooks that 可以 used for ammo-related specifications.
 	// ammo wiki guide, https://github.com/tModLoader/tModLoader/wiki/Basic-Ammo, is a good 资源 for learning how the ammo system works.
 	public class ExampleSpecificAmmoGun : ModItem
 	{
@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(FreeAmmoChance1, FreeAmmoChance2, FreeAmmoChance3, AmmoUseDamageBoost);
 
 		public override void SetDefaults() {
-			// Modders can use 项.DefaultToRangedWeapon to quickly set many common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
+			// Modders can use 项.DefaultToRangedWeapon to quickly set m任何 common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
 
 			// 常见 Properties
 			Item.width = 62; // Hitbox 宽度 的 项.
@@ -69,13 +69,13 @@ namespace ExampleMod.Content.Items.Weapons
 		public override bool? CanChooseAmmo(Item ammo, Player player) {
 			// CanChooseAmmo allows ammo to be chosen or denied independently 的 useAmmo 字段's restrictions.
 			// (Its sister hook, CanBeChosenAsAmmo, is called 在 ammo, and has the same 函数.)
-			// This returns 空 默认情况下, which simply picks the ammo based on whether or not ammo.ammo == 武器.useAmmo.
+			// This returns 空 默认情况下, which simply picks the ammo 基于 whether or not ammo.ammo == 武器.useAmmo.
 			// 返回ing 真 will forcibly 允许 an ammo to be used; returning 假 will forcibly 拒绝 it.
-			// 对于 this example, we'll forcefully 拒绝 Cursed Bullets from being used as ammunition, but otherwise make no changes 到 ammo pool.
+			// 对于 this example, we'll forcefully 拒绝 Cursed Bullets from being used as ammunition, but 否则 make no changes 到 ammo pool.
 			if (ammo.type == ItemID.CursedBullet)
 				return false;
 
-			// This code would 允许 this 武器 to use 箭 ammo. A modder making such a 武器 would want to make sure the 项 工具提示 informs the 用户 about these ammo irregularities.
+			// This code would 允许 this 武器 to use 箭 ammo. A modder making such a 武器 would 想要 make sure the 项 工具提示 informs the 用户 about these ammo irregularities.
 			//if (ammo.ammo == AmmoID.箭) {
 			//	返回 真;
 
@@ -85,9 +85,9 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool CanConsumeAmmo(Item ammo, Player player) {
-			// CanConsumeAmmo allows ammo to be conserved or consumed depending on various conditions.
+			// CanConsumeAmmo allows ammo to be conserved or consumed 取决于 各种 conditions.
 			// (Its sister hook, CanBeConsumedAsAmmo, is called 在 ammo, and has the same 函数.)
-			// This returns 真 默认情况下; returning 假 for any reason will 防止 ammo consumption.
+			// This returns 真 默认情况下; returning 假 for 任何 reason will 防止 ammo consumption.
 			// 注意 that returning 真 does NOT 允许 you to force ammo consumption; this currently requires use of IL editing or detours.
 
 			// 对于 this example, the first shot will have a 20% 概率 to conserve ammo...
@@ -107,7 +107,7 @@ namespace ExampleMod.Content.Items.Weapons
 			// OnConsumeAmmo allows you to make things happen when ammo is successfully consumed.
 			// (Its sister hook, OnConsumedAsAmmo, is called 在 ammo, and has the same 函数.)
 			// Here, we'll set a bool to 真 which dictates whether or not the next shot should receive a 伤害 奖励.
-			// This makes it so that shots which do consume ammunition gain a 伤害 奖励 in exchange for that consumption.
+			// 这使 it 以便 shots which do consume ammunition gain a 伤害 奖励 in exchange for that consumption.
 			consumptionDamageBoost = true;
 		}
 

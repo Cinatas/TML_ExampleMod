@@ -23,13 +23,13 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.friendly = true; // Can the 弹幕 deal 伤害 to enemies?
 			Projectile.hostile = false; // Can the 弹幕 deal 伤害 到 玩家?
 			Projectile.DamageType = DamageClass.Ranged; // Is the 弹幕 shoot by a ranged 武器?
-			Projectile.penetrate = 5; // How many monsters the 弹幕 can penetrate. (OnTileCollide below also decrements penetrate for bounces 以及)
+			Projectile.penetrate = 5; // How m任何 monsters the 弹幕 can penetrate. (OnTileCollide below also decrements penetrate for bounces 以及)
 			Projectile.timeLeft = 600; // The live 时间 对于 弹幕 (60 = 1 second, so 600 is 10 seconds)
 			Projectile.alpha = 255; // The transparency 的 弹幕, 255 for completely transparent. (aiStyle 1 quickly fades the 弹幕 in) Make sure to 删除 this if you aren't using an aiStyle that fades in. You'll wonder why your 弹幕 is invisible.
 			Projectile.light = 0.5f; // How much light emit around the 弹幕
 			Projectile.ignoreWater = true; // Does the 弹幕's 速度 be influenced by water?
 			Projectile.tileCollide = true; // Can the 弹幕 collide with tiles?
-			Projectile.extraUpdates = 1; // 设置 to above 0 if you want the 弹幕 to 更新 multiple 时间 in a 帧
+			Projectile.extraUpdates = 1; // 设置 to above 0 if you want the 弹幕 to 更新 多个 时间 in a 帧
 
 			AIType = ProjectileID.Bullet; // Act exactly like default 子弹
 		}

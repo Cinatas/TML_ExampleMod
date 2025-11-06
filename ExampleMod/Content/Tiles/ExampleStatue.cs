@@ -26,8 +26,8 @@ namespace ExampleMod.Content.Tiles
 			AddMapEntry(new Color(144, 148, 144), Language.GetText("MapObject.Statue"));
 		}
 
-		// This hook allows you to make anything happen when this statue is powered by wiring.
-		// 在 this example, powering the statue either spawns a 随机 硬币 with a 95% 概率, or, with a 5% 概率 - a goldfish.
+		// This hook allows you to make 任何thing happen when this statue is powered by wiring.
+		// 在 this example, powering the statue 任一 spawns a 随机 硬币 with a 95% 概率, or, with a 5% 概率 - a goldfish.
 		public override void HitWire(int i, int j) {
 			// 查找 the coordinates of 顶部 左 图格 square through math
 			int y = j - Main.tile[i, j].TileFrameY / 18;
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Tiles
 			const int TileWidth = 2;
 			const int TileHeight = 3;
 
-			// 在这里 we call SkipWire on all 图格 coordinates covered by this 图格. This ensures a wire 信号 won't run multiple times.
+			// 在这里 we call SkipWire on all 图格 coordinates covered by this 图格. This ensures a wire 信号 won't run 多个 times.
 			for (int yy = y; yy < y + TileHeight; yy++) {
 				for (int xx = x; xx < x + TileWidth; xx++) {
 					Wiring.SkipWire(xx, yy);
@@ -48,9 +48,9 @@ namespace ExampleMod.Content.Tiles
 			float spawnX = (x + TileWidth * 0.5f) * 16;
 			float spawnY = (y + TileHeight * 0.65f) * 16;
 
-			// 此示例 shows both 项 spawning code and npc spawning code, you can use whichever code suits your mod
-			// There is a 95% 概率 for 项 生成 and a 5% 概率 for npc 生成
-			// 如果 you want to make a 项 spawning statue, see below.
+			// 此示例 shows 两者 项 spawning code and npc spawning code, you can use whichever code suits your mod
+			// 有 a 95% 概率 for 项 生成 and a 5% 概率 for npc 生成
+			// 如果 you 想要 make a 项 spawning statue, see below.
 
 			var entitySource = new EntitySource_TileUpdate(x, y, context: "ExampleStatue");
 
@@ -70,10 +70,10 @@ namespace ExampleMod.Content.Tiles
 				}
 			}
 			else {
-				// 如果 you want to make an NPC spawning statue, see below.
+				// 如果 you 想要 make an NPC spawning statue, see below.
 				int npcIndex = -1;
 
-				// 30 is the 时间 before it 可以 used again. NPC.MechSpawn checks nearby for other spawns to 防止 too many spawns. 3 in immediate vicinity, 6 nearby, 10 in 世界.
+				// 30 is the 时间 before it 可以 used again. NPC.MechSpawn checks nearby for other spawns to 防止 too m任何 spawns. 3 in immediate vicinity, 6 nearby, 10 in 世界.
 				int spawnedNpcId = NPCID.Goldfish;
 
 				if (Wiring.CheckMech(x, y, 30) && NPC.MechSpawn(spawnX, spawnY, spawnedNpcId)) {

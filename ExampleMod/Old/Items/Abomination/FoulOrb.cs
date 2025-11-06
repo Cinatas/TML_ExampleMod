@@ -27,7 +27,7 @@ namespace ExampleMod.Items.Abomination
 			item.consumable = true;
 		}
 
-		// We use the CanUseItem hook to 防止 a 玩家 from using this 项 while the Boss is present 在 世界.
+		// 我们使用 the CanUseItem hook to 防止 a 玩家 from using this 项 while the Boss is present 在 世界.
 		public override bool CanUseItem(Player player) {
 			// "玩家.ZoneUnderworldHeight" could also be written as "玩家.位置.Y / 16f > Main.maxTilesY - 200"
 			return NPC.downedPlantBoss && player.ZoneUnderworldHeight && !NPC.AnyNPCs(NPCType<NPCs.Abomination.Abomination>()) && !NPC.AnyNPCs(NPCType<CaptiveElement>()) && !NPC.AnyNPCs(NPCType<CaptiveElement2>());

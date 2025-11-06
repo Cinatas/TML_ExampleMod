@@ -12,7 +12,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles.Furniture
 {
-	//Very similar to ExampleChair, but has special HitWire code and potentially additional AdjTiles
+	//Very 类似于 ExampleChair, but has special HitWire code and potentially additional AdjTiles
 	public class ExampleToilet : ModTile
 	{
 		public const int NextStyleHeight = 40; // 计算d by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all 的m + 2
@@ -56,11 +56,11 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
-			return settings.player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance); // 避免 being able to 触发器 it from long 范围
+			return settings.player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance); // 避免 being 能够 触发器 it from long 范围
 		}
 
 		public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info) {
-			// It is very important to know that this is called on both players and NPCs, so do not use Main.LocalPlayer 例如, use info.restingEntity
+			// 它是 very important to know that this is called on 两者 players and NPCs, so do not use Main.LocalPlayer 例如, use info.restingEntity
 			Tile tile = Framing.GetTileSafely(i, j);
 
 			//info.directionOffset = info.restingEntity is 玩家 ? 6 : 2; // 默认 to 6 for players, 2 for NPCs
@@ -72,8 +72,8 @@ namespace ExampleMod.Content.Tiles.Furniture
 				info.TargetDirection = 1; // Facing 右 if sat down 在 右 alternate (added through addAlternate in SetStaticDefaults earlier)
 			}
 
-			// anchor represents the 底部-most 图格 的 chair. This is used to align the entity hitbox
-			// Since i and j 可能 from any 坐标 的 chair, we need to adjust the anchor based on that
+			// anchor represents the 底部-most 图格 的 chair. This is 用于 align the entity hitbox
+			// Since i and j 可能 from 任何 坐标 的 chair, we 需要 adjust the anchor 基于 that
 			info.AnchorTilePosition.X = i; // Our chair is only 1 wide, so nothing special required
 			info.AnchorTilePosition.Y = j;
 
@@ -81,7 +81,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, we can just check if the 图格 is the 顶部-most one, then 移动 it 1 down
 			}
 
-			// 最后, since this is a toilet, it should generate Poo while any tier of Well Fed is active
+			// 最后, since this is a toilet, it should generate Poo while 任何 tier of Well Fed is active
 			info.ExtraInfo.IsAToilet = true;
 
 			// 在这里 we add a custom fun 效果 to this 图格 that vanilla toilets do not have. This shows how you can 类型 cast the restingEntity to 玩家 and use visualOffset 以及.
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		public override bool RightClick(int i, int j) {
 			Player player = Main.LocalPlayer;
 
-			if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) { // 避免 being able to 触发器 it from long 范围
+			if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) { // 避免 being 能够 触发器 it from long 范围
 				player.GamepadEnableGrappleCooldown();
 				player.sitting.SitDown(player, i, j);
 			}

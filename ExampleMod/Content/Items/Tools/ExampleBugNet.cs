@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Tools
 {
-	// 这是 an example bug net designed to demonstrate the use cases for various hooks related to catching NPCs 例如 critters with items.
+	// 这是 an example bug net designed to demonstrate the use cases for 各种 hooks 与...相关 catching NPCs 例如 critters with items.
 	public class ExampleBugNet : ModItem
 	{
 		public static readonly int LavaCatchChance = 20;
@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Tools
 
 		public override void SetStaticDefaults() {
 			// This set is needed to define an 项 as a tool for catching NPCs at all.
-			// An additional set exists called LavaproofCatchingTool which will 允许 your 项 to freely catch the Underworld's lava critters. Use it accordingly.
+			// An additional set exists called LavaproofCatchingTool which will 允许 your 项 to freely catch the Underworld's lava critters. Use it 相应地.
 			ItemID.Sets.CatchingTool[Item.type] = true;
 
 			// This 项 does not meet Terraria's automatic criteria to be filtered under the "Tools" 过滤 in Journey 模式's duplication 菜单.
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override void SetDefaults() {
-			// These are, with a few modifications, the properties applied 到 base Bug Net; they're provided here so that you can mess 与m as you please.
+			// These are, with 一些 modifications, the properties applied 到 base Bug Net; they're provided here 以便 you can mess 与m as you please.
 			// Explanations 在m 将 glossed over here, as they're not the primary 点 的 lesson.
 			// 常见 Properties
 			Item.width = 24;
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override bool? CanCatchNPC(NPC target, Player player) {
-			// This hook is used to determine whether or not your catching tool can catch a given NPC.
+			// This hook is 用于 determine whether or not your catching tool can catch a given NPC.
 			// This returns 空 默认情况下, which allows vanilla to decide whether or not the NPC 应该 caught.
 			// 返回ing 真 forces the NPC to be caught, while returning 假 forces the NPC to 不 caught.
 			// 如果 you're unsure what to 返回, 返回 空.
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Items.Tools
 				}
 			}
 
-			// 对于 all cases where 真 isn't explicitly returned, we'll 返回 空 so that vanilla catching rules and effects can take place.
+			// 对于 all cases where 真 isn't explicitly returned, we'll 返回 空 以便 vanilla catching rules and effects can take place.
 			return null;
 		}
 

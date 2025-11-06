@@ -20,8 +20,8 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		private static readonly float RangeHypotenuseSquared = RangeHypotenuse * RangeHypotenuse;
 
 		// following 2 lines of code are ref properties (learn about them in google) 到 弹幕.ai 数组 entries, which will 帮助 us make our code way more readable.
-		// We're using the ai 数组 because it's automatically synchronized by the base game in multiplayer, which saves us from writing a lot of boilerplate code.
-		// 注意 th在 弹幕.ai 数组 is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and 同步 them manually.
+		// We're using the ai 数组 because it's automatically synchronized by the base game in multiplayer, which saves us from writing 很多 boilerplate code.
+		// 注意 th在 弹幕.ai 数组 is only 3 entries big. If you need more than 3 synchronized variables - you'll 必须 use fields and 同步 them manually.
 		public ref float AIFadeProgress => ref Projectile.ai[0];
 		public ref float AIDashCharge => ref Projectile.ai[1];
 

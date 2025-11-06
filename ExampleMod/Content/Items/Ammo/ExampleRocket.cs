@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Items.Ammo
 {
 	public class ExampleRocket : ModItem
 	{
-		// 火箭 Ammo is a little weird and does not work the same as bullets or arrows.
+		// 火箭 Ammo is 一点 weird and does not work the same as bullets or arrows.
 		// Rockets I through IV have four versions: normal 火箭, 手榴弹, Proximity 地雷, and Snowman 火箭.
 		// 此示例 is a clone of 火箭 I.
 
@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Items.Ammo
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.GrenadeLauncher].Add(Type, ModContent.ProjectileType<ExampleGrenadeProjectile>());
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.ProximityMineLauncher].Add(Type, ModContent.ProjectileType<ExampleProximityMineProjectile>());
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.SnowmanCannon].Add(Type, ModContent.ProjectileType<ExampleSnowmanRocketProjectile>());
-			// 我们 also need to say which 类型 of Celebration Mk2 rockets to use.
+			// 我们 also 需要 say which 类型 of Celebration Mk2 rockets to use.
 			// Celebration Mk 2 only has four types of rockets. Change the 弹幕 to 匹配 your ammo 类型.
 			// 火箭 I like   == ProjectileID.Celeb2Rocket
 			// 火箭 II like  == ProjectileID.Celeb2RocketExplosive
@@ -41,7 +41,7 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.value = Item.buyPrice(copper: 50);
 			Item.ammo = AmmoID.Rocket; // The ammo 类型 is 火箭 Ammo
 			// 不像 other ammo, we don't set 项.shoot 到 弹幕 for 火箭 ammo due 到 logic involved.
-			// AmmoID.Sets.SpecificLauncherAmmoProjectileMatches is used to determine the 弹幕 spawned based 在 武器.
+			// AmmoID.Sets.SpecificLauncherAmmoProjectileMatches is 用于 determine the 弹幕 spawned based 在 武器.
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.

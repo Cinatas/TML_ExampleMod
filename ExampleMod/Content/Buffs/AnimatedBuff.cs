@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Buffs
 {
 	// This 增益 has an extra 动画 spritesheet, and also showcases PreDraw specifically.
-	// (We keep the autoloaded 纹理 as one 帧 in case other mods need to access the 增益 精灵 directly and aren't aware of it having special draw code).
+	// (We keep the autoloaded 纹理 as one 帧 in case other mods 需要 access the 增益 精灵 directly and aren't aware of it having special draw code).
 	public class AnimatedBuff : ModBuff
 	{
 		// Some constants we define to make our life easier.
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Buffs
 
 			// 使用 our 动画 spritesheet.
 			Texture2D ourTexture = animatedTexture.Value;
-			// Choose the 帧 to 显示, here based on constants and the game's tick 计数.
+			// Choose the 帧 to 显示, here 基于 constants and the game's tick 计数.
 			Rectangle ourSourceRectangle = ourTexture.Frame(verticalFrames: FrameCount, frameY: (int)Main.GameUpdateCount / AnimationSpeed % FrameCount);
 
 			// Other stuff you can do in this hook
@@ -46,15 +46,15 @@ namespace ExampleMod.Content.Buffs
 
 			// Be aware 的 fact that drawParams.mouseRectangle exists: it defaults 到 大小 的 autoloaded buffs' 精灵,
 			// it handles mouseovering and clicking 在 增益 图标. Since our 帧 在 动画 is 32x32 (same as the autoloaded 精灵),
-			// and we don't change drawParams.位置, we don't have to do anything. If you 偏移 the 位置, or have a non-standard 大小, change it accordingly.
+			// and we don't change drawParams.位置, we don't 必须 do 任何thing. If you 偏移 the 位置, or have a non-standard 大小, change it 相应地.
 
 			// 我们 have two options here:
 			// 选项 1 is the recommended one, as it requires less code.
 			// 选项 2 allows you to customize drawing even more, but then you are on your own.
 
-			// 对于 demonstration, both options' codes are written down, but the latter is commented out using /* and */.
+			// 对于 demonstration, 两者 options' codes are written down, but the latter is commented out using /* and */.
 
-			// 选项 1 - Let the game draw it for us. Therefore we have to assign our variables to drawParams:
+			// 选项 1 - Let the game draw it for us. Therefore we 必须 assign our variables to drawParams:
 			drawParams.Texture = ourTexture;
 			drawParams.SourceRectangle = ourSourceRectangle;
 			// 返回 真 to let the game draw the 增益 图标.

@@ -32,7 +32,7 @@ using Terraria.Utilities;
 
 namespace ExampleMod.Content.NPCs
 {
-	// [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
+	// [AutoloadHead] and NPC.townNPC are extremely important and absolutely 两者 necessary for 任何 Town NPC to work at all.
 	[AutoloadHead]
 	public class ExamplePerson : ModNPC
 	{
@@ -62,16 +62,16 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.ShimmerTownTransform[Type] = true; // 允许s for this NPC to have a different 纹理 after touching the Shimmer liquid.
 
 			// Connects this NPC with a custom emote.
-			// This makes it when the NPC is 在 世界, other NPCs will "talk about him".
-			// By 设置 this you don't have to override the PickEmote 方法 对于 emote to appear.
+			// 这使 it when the NPC is 在 世界, other NPCs will "talk about him".
+			// By 设置 this you don't 必须 override the PickEmote 方法 对于 emote to appear.
 			NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<ExamplePersonEmote>();
 
 			// Influences how the NPC looks 在 Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Velocity = 1f, // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x 方向
 				Direction = 1 // -1 is 左 and 1 is 右. NPCs are drawn facing the 左 默认情况下 but ExamplePerson 将 drawn facing the 右
-				// 旋转 = MathHelper.ToRadians(180) // You can also change the 旋转 of an NPC. 旋转 is measured in radians
-				// 如果 you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
+				// 旋转 = MathHelper.ToRadians(180) // 你可以 also change the 旋转 of an NPC. 旋转 is measured in radians
+				// 如果 you 想要 see an example of manually modifying these when the NPC is drawn, see PreDraw
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// 我们 can use AddRange instead of calling Add multiple times in 顺序 to add multiple items at once
+			// 我们 can use AddRange 代替 calling Add 多个 times in 顺序 to add 多个 items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// 设置s the preferred biomes of this town NPC listed 在 bestiary.
 				// With Town NPCs, you usually set this to what 生物群系 it likes the most in regards to NPC happiness.
@@ -121,7 +121,7 @@ namespace ExampleMod.Content.NPCs
 				// 设置s your NPC's flavor 文本 在 bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Person is here to help you understand everything about tModLoader."),
 
-				// 你 can add multiple elements if you really wanted to
+				// 你 can add 多个 elements if you really wanted to
 				// 你 can also use localization keys (see Localization/en-US.lang)
 				new FlavorTextBestiaryInfoElement("Mods.ExampleMod.Bestiary.ExamplePerson")
 			});
@@ -187,7 +187,7 @@ namespace ExampleMod.Content.NPCs
 			}
 
 			foreach (var player in Main.ActivePlayers) {
-				// 玩家 has to have either an ExampleItem or an ExampleBlock in 顺序 对于 NPC to 生成
+				// 玩家 has to have 任一 an ExampleItem or an ExampleBlock in 顺序 对于 NPC to 生成
 				if (player.inventory.Any(item => item.type == ModContent.ItemType<ExampleItem>() || item.type == ModContent.ItemType<Items.Placeable.ExampleBlock>())) {
 					return true;
 				}
@@ -263,7 +263,7 @@ namespace ExampleMod.Content.NPCs
 
 			string chosenChat = chat; // chat is implicitly cast to a 字符串. This is where the 随机 choice is made.
 
-			// 在这里 is some additional logic based 在 chosen chat line. In this case, we want to 显示 an 项 在 corner for StandardDialogue4.
+			// 在这里 is some additional logic based 在 chosen chat line. In this case, we 想要 显示 an 项 在 corner for StandardDialogue4.
 			if (chosenChat == Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue4")) {
 				// Main.npcChatCornerItem shows a single 项 在 corner, like the Angler 任务 chat.
 				Main.npcChatCornerItem = ItemID.HiveBackpack;
@@ -298,7 +298,7 @@ namespace ExampleMod.Content.NPCs
 					return;
 				}
 
-				shop = ShopName; // 名称 的 商店 选项卡 we want to 打开.
+				shop = ShopName; // 名称 的 商店 选项卡 we 想要 打开.
 			}
 		}
 
@@ -308,7 +308,7 @@ namespace ExampleMod.Content.NPCs
 				.Add<ExampleItem>()
 				//.Add<EquipMaterial>()
 				//.Add<BossItem>()
-				.Add(new Item(ModContent.ItemType<Items.Placeable.Furniture.ExampleWorkbench>()) { shopCustomPrice = Item.buyPrice(copper: 15) }) // This example sets a custom 价格, ExampleNPCShop.cs has more info on custom prices and 货币. 
+				.Add(new Item(ModContent.ItemType<Items.Placeable.Furniture.ExampleWorkbench>()) { shopCustomPrice = Item.buyPrice(copper: 15) }) // 此示例 sets a custom 价格, ExampleNPCShop.cs has more info on custom prices and 货币. 
 				.Add<Items.Placeable.Furniture.ExampleChair>()
 				.Add<Items.Placeable.Furniture.ExampleDoor>()
 				.Add<Items.Placeable.Furniture.ExampleBed>()
@@ -353,10 +353,10 @@ namespace ExampleMod.Content.NPCs
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ExampleCostume>()));
 		}
 
-		// 使 this Town NPC 传送 到 King and/or Queen statue when triggered. 返回 toKingStatue for only King Statues. 返回 !toKingStatue for only Queen Statues. 返回 真 for both.
+		// 使 this Town NPC 传送 到 King and/or Queen statue when triggered. 返回 toKingStatue for only King Statues. 返回 !toKingStatue for only Queen Statues. 返回 真 for 两者.
 		public override bool CanGoToStatue(bool toKingStatue) => true;
 
-		// 使 something happen when the npc teleports to a statue. Since this 方法 only runs 服务器 side, any visual effects like dusts or gores have to be synced across all clients manually.
+		// 使 something happen when the npc teleports to a statue. Since this 方法 only runs 服务器 side, 任何 visual effects like dusts or gores 必须 be synced across all clients manually.
 		public override void OnGoToStatue(bool toKingStatue) {
 			if (Main.netMode == NetmodeID.Server) {
 				ModPacket packet = Mod.GetPacket();
@@ -422,12 +422,12 @@ namespace ExampleMod.Content.NPCs
 				type = EmoteID.EmotionAnger;
 			}
 
-			// 使 the selection more likely by adding it 到 列表 multiple times
+			// 使 the selection more likely by adding it 到 列表 多个 times
 			for (int i = 0; i < 4; i++) {
 				emoteList.Add(type);
 			}
 
-			// 使用 this or 返回 空 if you don't want to override the emote selection totally
+			// 使用 this or 返回 空 if you don't 想要 override the emote selection totally
 			return base.PickEmote(closestPlayer, emoteList, otherAnchor);
 		}
 	}

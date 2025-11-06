@@ -11,11 +11,11 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleJoustingLanceProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			// This will cause the 玩家 to dismount if they are hit by another Jousting Lance.
+			// 这将 cause the 玩家 to dismount if they are hit by another Jousting Lance.
 			// Since no enemies use Jousting Lances, this will only cause the 玩家 to dismount in PVP.
 			ProjectileID.Sets.DismountsPlayersOnHit[Type] = true;
 
-			// This will make sure the 速度 的 弹幕 will always be the shoot 速度 set 在 项.
+			// 这将 make sure the 速度 的 弹幕 will always be the shoot 速度 set 在 项.
 			// Since the 速度 的 弹幕 affects how far out the jousting lance will 生成, we want the
 			// 速度 to always be the same even if the 玩家 has increased 攻击 速度.
 			ProjectileID.Sets.NoMeleeSpeedVelocityScaling[Type] = true;
@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Projectiles
 			// 缩放 factor (0.34f) means the last 34% 的 动画 将 used for retracting.
 			int holdOutFrame = (int)(itemAnimationMax * 0.34f);
 			if (owner.channel && owner.itemAnimation < holdOutFrame) {
-				owner.SetDummyItemTime(holdOutFrame); // This makes it so the 弹幕 never dies while we are holding it (except when we take 伤害, see ExampleJoustingLancePlayer).
+				owner.SetDummyItemTime(holdOutFrame); // 这使 it so the 弹幕 never dies while we are holding it (except when we take 伤害, see ExampleJoustingLancePlayer).
 			}
 
 			// 如果 the Jousting Lance is 不再 being used, kill the 弹幕.
@@ -74,7 +74,7 @@ namespace ExampleMod.Content.Projectiles
 			// Distances are in pixels
 			float extendDist = 24; // How far to fly out during 扩展名
 			float retractDist = extendDist / 2; // How far to fly back during retraction
-			float tipDist = 98 + extension * extendDist - retraction * retractDist; // If your Jousting Lance is larger or smaller than the standard 大小, it is recommended to change the shoot 速度 的 项 instead of this 值.
+			float tipDist = 98 + extension * extendDist - retraction * retractDist; // If your Jousting Lance is larger or smaller than the standard 大小, it is recommended to change the shoot 速度 的 项 代替 this 值.
 
 			Vector2 center = owner.RotatedRelativePoint(owner.MountedCenter); // 获取 the 中心 的 所有者. This accounts 对于 玩家 being shifted up or down while riding a 坐骑, sitting in a chair, etc.
 			Projectile.Center = center; // 设置 the 中心 的 弹幕 到 中心 的 所有者. 弹幕.中心 is now actually the 提示 的 Jousting Lance.
@@ -132,22 +132,22 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
-			// This will increase or decrease the knockback 的 Jousting Lance depending on how fast the 玩家 is moving.
+			// 这将 increase or decrease the knockback 的 Jousting Lance 取决于 how fast the 玩家 is moving.
 			modifiers.Knockback *= Main.player[Projectile.owner].velocity.Length() / 7f;
 
-			// This will increase or decrease the 伤害 的 Jousting Lance depending on how fast the 玩家 is moving.
+			// 这将 increase or decrease the 伤害 的 Jousting Lance 取决于 how fast the 玩家 is moving.
 			modifiers.SourceDamage *= 0.1f + Main.player[Projectile.owner].velocity.Length() / 7f * 0.9f;
 		}
 
 		// 这是 the custom collision that Jousting Lances uses. 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			float rotationFactor = Projectile.rotation + (float)Math.PI / 4f; // The 旋转 的 Jousting Lance.
-			float scaleFactor = 95f; // How far back the hit-line 将 从 提示 的 Jousting Lance. You will need to modify this if you have a longer or shorter Jousting Lance. Vanilla uses 95f
+			float scaleFactor = 95f; // How far back the hit-line 将 从 提示 的 Jousting Lance. You will 需要 modify this if you have a longer or shorter Jousting Lance. Vanilla uses 95f
 			float widthMultiplier = 23f; // How thick the hit-line is. Increase or decrease this 值 if your Jousting Lance is thicker or thinner. Vanilla uses 23f
 			float collisionPoint = 0f; // collisionPoint is needed for CheckAABBvLineCollision(), but it isn't used for our collision here. Keep it at 0f.
 
 			// This Rectangle is the 宽度 and 高度 的 Jousting Lance's hitbox 即 used 对于 first 步骤 of collision.
-			// 你 will need to modify the last two numbers if you have a bigger or smaller Jousting Lance.
+			// 你 will 需要 modify the last two numbers if you have a bigger or smaller Jousting Lance.
 			// Vanilla uses (0, 0, 300, 300) which 即 quite large 对于 大小 的 Jousting Lance.
 			// 大小 doesn't matter too much because this rectangle is only a basic check 对于 collision (the hit-line is much more important).
 			Rectangle lanceHitboxBounds = new Rectangle(0, 0, 300, 300);
@@ -172,7 +172,7 @@ namespace ExampleMod.Content.Projectiles
 			return false;
 		}
 
-		// 我们 need to draw the 弹幕 manually. If you don't include this, the Jousting Lance will 不 aligned 与 玩家.
+		// 我们 需要 draw the 弹幕 manually. If you don't include this, the Jousting Lance will 不 aligned 与 玩家.
 		public override bool PreDraw(ref Color lightColor) {
 
 			// SpriteEffects change which directi在 精灵 is drawn.
@@ -190,8 +190,8 @@ namespace ExampleMod.Content.Projectiles
 			// 旋转 的 弹幕.
 			float rotation = Projectile.rotation;
 
-			// 如果 the 弹幕 is facing 右, we need to 旋转 it by -90 degrees, 移动 the 原点, and flip the 精灵 horizontally.
-			// This will make it so the 底部 的 精灵 is correctly facing down when shot 到 右.
+			// 如果 the 弹幕 is facing 右, we 需要 旋转 it by -90 degrees, 移动 the 原点, and flip the 精灵 horizontally.
+			// 这将 make it so the 底部 的 精灵 is correctly facing down when shot 到 右.
 			if (Projectile.direction > 0) {
 				rotation -= (float)Math.PI / 2f;
 				origin.X += sourceRectangle.Width;
@@ -214,7 +214,7 @@ namespace ExampleMod.Content.Projectiles
 			// 	new Vector2((int)弹幕.中心.X - lanceHitboxBounds.宽度 / 2, (int)弹幕.中心.Y - lanceHitboxBounds.高度 / 2) - Main.screenPosition,
 			// 	lanceHitboxBounds, 颜色.Orange * 0.5f, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
-			// It's important to 返回 假, otherwise we also draw the original 纹理.
+			// It's important to 返回 假, 否则 we also draw the original 纹理.
 			return false;
 		}
 	}

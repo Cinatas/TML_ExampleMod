@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Items.Accessories
 				});
 			}
 			catch (Exception e) {
-				// 如果 there are any failures 与 IL editing, this 方法 will dump the IL to Logs/ILDumps/{Mod 名称}/{方法 名称}.txt
+				// 如果 there are 任何 failures 与 IL editing, this 方法 will dump the IL to Logs/ILDumps/{Mod 名称}/{方法 名称}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), il);
 
 				// 如果 the mod cannot run without the IL hook, throw an exception instead. The exception will call DumpIL internally
@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Items.Accessories
 			int realBackSlot = Item.backSlot;
 			Item.CloneDefaults(ItemID.HiveBackpack);
 			Item.value = Item.sellPrice(0, 5);
-			// CloneDefaults will 清除 out the autoloaded Back 槽位, so we need to preserve it this way.
+			// CloneDefaults will 清除 out the autoloaded Back 槽位, so we 需要 preserve it this way.
 			Item.backSlot = realBackSlot;
 		}
 

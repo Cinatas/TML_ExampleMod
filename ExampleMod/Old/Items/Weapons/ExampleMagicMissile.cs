@@ -24,7 +24,7 @@ namespace ExampleMod.Items.Weapons
 			item.useAnimation = 15;
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.noMelee = true;
-			item.channel = true; //通道 so that you can held the 武器 [Important]
+			item.channel = true; //通道 以便 you can held the 武器 [Important]
 			item.knockBack = 8;
 			item.value = Item.sellPrice(silver: 50);
 			item.rare = ItemRarityID.Orange;

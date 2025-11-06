@@ -25,7 +25,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 		// 让我们保持简单并使用 ExampleItem 的精灵。
 		private Asset<Texture2D> iconTexture = TextureAssets.Item[ModContent.ItemType<ExampleItem>()];
 
-		// The 缩放 and Opacity properties are used to 控制 the 缩放 and opacity 的 用户界面 popup,
+		// The 缩放 and Opacity properties are 用于 控制 the 缩放 and opacity 的 用户界面 popup,
 		// and are directly taken 从 vanilla 成就 popup 用户界面. This is done for consistency.
 		private float Scale {
 			get {
@@ -115,7 +115,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 
 			// In our example, we just accelerate the exiting 过程 on 点击.
 			// If you want it to 关闭 immediately, you can just set timeLeft to 0.
-			// This allows the 通知 时间 to shrink and fade away, as expected.
+			// 这允许 the 通知 时间 to shrink and fade away, as expected.
 			if (timeLeft > 30) {
 				timeLeft = 30;
 			}
@@ -123,8 +123,8 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 
 		public void PushAnchor(ref Vector2 positionAnchorBottom) {
 			// 锚定 is used for determining how much space a popup takes up, essentially.
-			// This is because notifications visually 堆叠. In our case, we want to let other notifications
-			// go in front of ours once we 开始 fading off, so we 缩放 the 偏移 based on opacity.
+			// This is because notifications visually 堆叠. In our case, we 想要 let other notifications
+			// go in front of ours once we 开始 fading off, so we 缩放 the 偏移 基于 opacity.
 			positionAnchorBottom.Y -= 50f * Opacity;
 		}
 	}

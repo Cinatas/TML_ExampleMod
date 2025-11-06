@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Accessories
 {
 	// 此示例 attempts to showcase most 的 common boot 饰品 effects.
-	// Of particular note is a showcase 的 correct approaches to various movement 速度 modifications.
+	// Of particular note is a showcase 的 correct approaches to 各种 movement 速度 modifications.
 	[AutoloadEquip(EquipType.Shoes)]
 	public class ExampleBoots : ModItem
 	{
@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Items.Accessories
 
 			// These effects are visual only. These are replicated in UpdateVanity below so they apply for vanity equipment.
 			if (!hideVisual) {
-				player.CancelAllBootRunVisualEffects(); // This ensures that boot visual effects don't overlap if multiple are equipped
+				player.CancelAllBootRunVisualEffects(); // 这确保 that boot visual effects don't overlap if 多个 are equipped
 
 				// Hellfire Treads sprint dust. F或更多 info on sprint dusts see 玩家.SpawnFastRunParticles() 方法 in 玩家.cs
 				player.hellfireTreads = true;

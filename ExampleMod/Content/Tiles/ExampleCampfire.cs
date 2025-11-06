@@ -82,7 +82,7 @@ namespace ExampleMod.Content.Tiles
 			ToggleTile(i, j);
 		}
 
-		// ToggleTile is a 方法 that contains code shared by HitWire and RightClick, since they both toggle the 状态 的 图格.
+		// ToggleTile is a 方法 that contains code shared by HitWire and RightClick, since they 两者 toggle the 状态 的 图格.
 		// 注意 that TileFrameY doesn't necessarily 匹配 up 与 图像 即 drawn, AnimateTile and AnimateIndividualTile contribute 到 drawing decisions.
 		public void ToggleTile(int i, int j) {
 			Tile tile = Main.tile[i, j];
@@ -184,7 +184,7 @@ namespace ExampleMod.Content.Tiles
 
 				Rectangle drawRectangle = new Rectangle(tile.TileFrameX, tile.TileFrameY + addFrY, 16, 16);
 
-				// flame is manually drawn 分离 从 图格 纹理 so that it 可以 drawn at full brightness.
+				// flame is manually drawn 分离 从 图格 纹理 以便 it 可以 drawn at full brightness.
 				spriteBatch.Draw(flameTexture.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + offsetY) + zero, drawRectangle, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 		}

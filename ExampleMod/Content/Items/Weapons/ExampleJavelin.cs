@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleJavelin : ModItem
 	{
 		public override void SetDefaults() {
-			// Alter any 的se values as you see fit, but you should probably keep useStyle on 1, 以及 as the noUseGraphic and noMelee bools
+			// Alter 任何 的se values as you see fit, but you should probably keep useStyle on 1, 以及 as the noUseGraphic and noMelee bools
 
 			// 常见 Properties
 			Item.rare = ItemRarityID.Pink;

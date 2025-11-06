@@ -23,20 +23,20 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 	[AutoloadBossHead] // This attribute looks for a 纹理 called "ClassName_Head_Boss" and automatically registers it as the NPC Boss head 图标
 	public class MinionBossBody : ModNPC
 	{
-		// This Boss has a second 阶段 and we want to give it a second Boss head 图标, this 变量 keeps 跟踪 的 registered 纹理 from 加载().
-		// It is applied 在 BossHeadSlot hook when the Boss is in its second 阶段
+		// This Boss has a second 阶段 and we 想要 give it a second Boss head 图标, this 变量 keeps 跟踪 的 registered 纹理 from 加载().
+		// 它是 applied 在 BossHeadSlot hook when the Boss is in its second 阶段
 		public static int secondStageHeadSlot = -1;
 
 		// This code here is called a 属性: It acts like a 变量, but can modify other things. In this case it uses the NPC.ai[] 数组 that has four entries.
 		// 我们 use properties because it makes code more readable ("if (SecondStage)" vs "if (NPC.ai[0] == 1f)").
-		// 我们 use NPC.ai[] because in combination with NPC.netUpdate we can make it multiplayer compatible. Otherwise (making our own fields) we would have to write extra code to make it work (not covered here)
+		// 我们 use NPC.ai[] because in combination with NPC.netUpdate we can make it multiplayer compatible. Otherwise (making our own fields) we would 必须 write extra code to make it work (not covered here)
 		public bool SecondStage {
 			get => NPC.ai[0] == 1f;
 			set => NPC.ai[0] = value ? 1f : 0f;
 		}
 		// 如果 your Boss has more than two stages, and since this is a 布尔值 and can only be two things (真, 假), consider using an integer or enum
 
-		// More advanced usage of a 属性, used to wrap around to floats to act as a Vector2
+		// More advanced usage of a 属性, 用于 wrap around to floats to act as a Vector2
 		public Vector2 FirstStageDestination {
 			get => new Vector2(NPC.ai[1], NPC.ai[2]);
 			set {
@@ -66,10 +66,10 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		// 这是 a 引用 属性. It lets us write FirstStageTimer as if it's NPC.localAI[1], essentially giving it our own 名称
 		public ref float FirstStageTimer => ref NPC.localAI[1];
 
-		// 我们 could also repurpose FirstStageTimer since it's unused 在 second 阶段, or write "=> ref FirstStageTimer", but then we have to 重置 the 计时器 when the 状态 switch happens
+		// 我们 could also repurpose FirstStageTimer since it's unused 在 second 阶段, or write "=> ref FirstStageTimer", but then we 必须 重置 the 计时器 when the 状态 switch happens
 		public ref float SecondStageTimer_SpawnEyes => ref NPC.localAI[3];
 
-		// Do NOT try to use NPC.ai[4]/NPC.localAI[4] or higher indexes, it only accepts 0, 1, 2 and 3!
+		// Do NOT 尝试 use NPC.ai[4]/NPC.localAI[4] or higher indexes, it only accepts 0, 1, 2 and 3!
 		// 如果 you choose to go the route of "wrapping properties" for NPC.ai[], make sure they don't overlap (two properties using the same 变量 in different ways), and that you don't accidently use NPC.ai[] directly
 
 		// Helper 方法 to determine the 仆从 类型
@@ -93,9 +93,9 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void Load() {
-			// 我们 want to give it a second Boss head 图标, so we register one
+			// 我们 想要 give it a second Boss head 图标, so we register one
 			string texture = BossHeadTexture + "_SecondStage"; // Our 纹理 is called "ClassName_Head_Boss_SecondStage"
-			secondStageHeadSlot = Mod.AddBossHeadTexture(texture, -1); // -1 because we already have one registered via the [AutoloadBossHead] attribute, it would overwrite it otherwise
+			secondStageHeadSlot = Mod.AddBossHeadTexture(texture, -1); // -1 because we already have one registered via the [AutoloadBossHead] attribute, it would overwrite it 否则
 		}
 
 		public override void BossHeadSlot(ref int index) {
@@ -169,21 +169,21 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
-			// Do NOT misuse the ModifyNPCLoot and OnKill hooks: the former is only used for registering drops, the latter for everything else
+			// Do NOT misuse the ModifyNPCLoot and OnKill hooks: the former is only used for registering drops, the latter for 每个thing else
 
 			// 顺序 in which you add loot will appear as such 在 Bestiary. To mirror vanilla Boss 顺序:
 			// 1. 奖杯
 			// 2. Classic 模式 ("not expert")
 			// 3. Expert 模式 (usually just the treasure bag)
-			// 4. Master 模式 (relic first, 宠物 last, everything else inbetween)
+			// 4. Master 模式 (relic first, 宠物 last, 每个thing else inbetween)
 
 			// Trophies are spawned with 1/10 概率
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.MinionBossTrophy>(), 10));
 
-			// All the Classic 模式 drops here are based on "not expert", meaning we use .OnSuccess() to add them in到 规则, which then gets added
+			// All the Classic 模式 drops here are 基于 "not expert", meaning we use .OnSuccess() to add them in到 规则, which then gets added
 			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 
-			// 注意 we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal 模式
+			// 注意 we use notExpertRule.OnSuccess 代替 npcLoot.Add so it only applies in normal 模式
 			// Boss masks are spawned with 1/7 概率
 			notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MinionBossMask>(), 7));
 
@@ -224,10 +224,10 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// This sets downedMinionBoss to 真, and if it was 假 before, it initiates a lantern night
 			NPC.SetEventFlagCleared(ref DownedBossSystem.downedMinionBoss, -1);
 
-			// Since this hook is only ran in singleplayer and serverside, we would have to 同步 it manually.
+			// Since this hook is only ran in singleplayer and serverside, we would 必须 同步 it manually.
 			// Thankfully, vanilla sends the MessageID.WorldData 数据包 if a Boss was killed automatically, shortly after this hook is ran
 
-			// 如果 your NPC is not a Boss and you need to 同步 the 世界 (which includes ModSystem, check DownedBossSystem), use this code:
+			// 如果 your NPC is not a Boss and you 需要 同步 the 世界 (which includes ModSystem, check DownedBossSystem), use this code:
 			/*
 			if (Main.netMode == NetmodeID.Server) {
 				NetMessage.SendData(MessageID.WorldData);
@@ -236,8 +236,8 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void BossLoot(ref string name, ref int potionType) {
-			// 在这里 you'd want to change the 药水 类型 that drops when the Boss is defeated. Because this Boss is early pre-hardmode, we keep it unchanged
-			// (Lesser Healing 药水). If you wanted to change it, simply write "potionType = ItemID.HealingPotion;" or any other 药水 类型
+			// 在这里 you'd 想要 change the 药水 类型 that drops when the Boss is defeated. Because this Boss is early pre-hardmode, we keep it unchanged
+			// (Lesser Healing 药水). If you wanted to change it, simply write "potionType = ItemID.HealingPotion;" or 任何 other 药水 类型
 		}
 
 		public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
@@ -282,7 +282,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 
 			if (NPC.life <= 0) {
-				// These gores work by simply existing as a 纹理 inside any 文件夹 which 路径 contains "Gores/"
+				// These gores work by simply existing as a 纹理 inside 任何 文件夹 which 路径 contains "Gores/"
 				int backGoreType = Mod.Find<ModGore>("MinionBossBody_Back").Type;
 				int frontGoreType = Mod.Find<ModGore>("MinionBossBody_Front").Type;
 
@@ -295,14 +295,14 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 				SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
 
-				// This adds a 屏幕 shake (screenshake) similar to Deerclops
+				// This adds a 屏幕 shake (screenshake) 类似于 Deerclops
 				PunchCameraModifier modifier = new PunchCameraModifier(NPC.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, FullName);
 				Main.instance.CameraModifiers.Add(modifier);
 			}
 		}
 
 		public override void AI() {
-			// This should almost always be the first code in AI() as it is responsible for finding the proper 玩家 目标
+			// 这应该 almost always be the first code in AI() as it is responsible for finding the proper 玩家 目标
 			if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) {
 				NPC.TargetClosest();
 			}
@@ -341,8 +341,8 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			SpawnedMinions = true;
 
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
-				// Because we want to 生成 minions, and minions are NPCs, we have to do this 在 服务器 (or singleplayer, "!= NetmodeID.MultiplayerClient" covers both)
-				// This means we also have to 同步 it after we spawned and set up the 仆从
+				// Because we 想要 生成 minions, and minions are NPCs, we 必须 do this 在 服务器 (or singleplayer, "!= NetmodeID.MultiplayerClient" covers 两者)
+				// This means we also 必须 同步 it after we spawned and set up the 仆从
 				return;
 			}
 
@@ -353,10 +353,10 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			for (int i = 0; i < count; i++) {
 				NPC minionNPC = NPC.NewNPCDirect(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<MinionBossMinion>(), NPC.whoAmI);
 				if (minionNPC.whoAmI == Main.maxNPCs)
-					continue; // 生成 failed due to 生成 cap
+					continue; // 生成 failed 由于 生成 cap
 
-				// Now th在 仆从 is spawned, we need to prepare it with 数据 即 necessary for it to work
-				// 这是 not required usually if you simply 生成 NPCs, but because the 仆从 is tied 到 body, we need to pass this information to it
+				// Now th在 仆从 is spawned, we 需要 prepare it with 数据 即 necessary for it to work
+				// 这是 not required usually if you simply 生成 NPCs, but because the 仆从 is tied 到 body, we 需要 pass this information to it
 				MinionBossMinion minion = (MinionBossMinion)minionNPC.ModNPC;
 				minion.ParentIndex = NPC.whoAmI; // Let the 仆从 know who the "parent" is
 				minion.PositionOffset = i / (float)count; // Give it a 分离 位置 偏移
@@ -452,7 +452,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 					// 对于 visuals regarding NPC 位置, netOffset has to be concidered to make visuals align properly
 					NPC.position += NPC.netOffset;
 
-					// 绘制 a line between the NPC and its destination, represented as dusts every 20 pixels
+					// 绘制 a line between the NPC and its destination, represented as dusts 每个 20 pixels
 					Dust.QuickDustLine(NPC.Center + toDestinationNormalized * NPC.width, FirstStageDestination, toDestination.Length() / 20f, Color.Yellow);
 
 					NPC.position -= NPC.netOffset;
@@ -463,7 +463,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// No 伤害 during first 阶段
 			NPC.damage = 0;
 
-			// Fade in based on remaining total 仆从 life
+			// Fade in 基于 remaining total 仆从 life
 			float remainingShields = MinionHealthTotal / (float)MinionMaxHealthTotal;
 			NPC.alpha = (int)(remainingShields * 255);
 
@@ -514,8 +514,8 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		private void DoSecondStage_SpawnEyes(Player player) {
-			// At 100% 生命值, 生成 every 90 ticks
-			// Drops down until 33% 生命值 to 生成 every 30 ticks
+			// At 100% 生命值, 生成 每个 90 ticks
+			// Drops down until 33% 生命值 to 生成 每个 30 ticks
 			float timerMax = Utils.Clamp((float)NPC.life / NPC.lifeMax, 0.33f, 1f) * 90;
 
 			SecondStageTimer_SpawnEyes++;
@@ -524,7 +524,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 
 			if (NPC.HasValidTarget && SecondStageTimer_SpawnEyes == 0 && Main.netMode != NetmodeID.MultiplayerClient) {
-				// 生成 弹幕 randomly below 玩家, based on horizontal 速度 to make kiting harder, starting 速度 1f upwards
+				// 生成 弹幕 randomly below 玩家, 基于 horizontal 速度 to make kiting harder, starting 速度 1f upwards
 				// (The projectiles accelerate 从ir initial 速度)
 
 				float kitingOffsetX = Utils.Clamp(player.velocity.X * 16, -100, 100);
@@ -544,7 +544,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 			// Halfway through 阶段 2, this Boss becomes immune 到 OnFire 增益.
 			// This code will only run once because 的 !NPC.buffImmune[BuffID.OnFire] check.
-			// 如果 you make a similar check for just a life 百分比 in a Boss, you will need to use a bool to 跟踪 if the corresponding code has run yet or not.
+			// 如果 you make a similar check for just a life 百分比 in a Boss, you will 需要 use a bool to 跟踪 if the corresponding code has run yet or not.
 			NPC.BecomeImmuneTo(BuffID.OnFire);
 
 			// 最后, this Boss will 清除 all the buffs it currently has that it is now immune to. ClearImmuneToBuffs should 不 run on multiplayer clients, the 服务器 has authority over buffs.

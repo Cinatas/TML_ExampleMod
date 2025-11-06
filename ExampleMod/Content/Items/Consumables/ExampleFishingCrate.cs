@@ -11,16 +11,16 @@ namespace ExampleMod.Content.Items.Consumables
 	public class ExampleFishingCrate : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// Disclaimer for both 的se sets (as per their docs): They are only checked for vanilla 项 IDs, but for cross-mod purposes it 将 helpful to set them for modded crates too
+			// Disclaimer for 两者 的se sets (as per their docs): They are only checked for vanilla 项 IDs, but for cross-mod purposes it 将 helpful to set them for modded crates too
 			ItemID.Sets.IsFishingCrate[Type] = true;
-			//ItemID.Sets.IsFishingCrateHardmode[类型] = 真; // This is a crate that mimics a pre-hardmode 生物群系 crate, so this is commented out
+			//ItemID.Sets.IsFishingCrateHardmode[类型] = 真; // 这是一个 crate that mimics a pre-hardmode 生物群系 crate, so this is commented out
 
 			Item.ResearchUnlockCount = 10;
 		}
 
 		public override void SetDefaults() {
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ExampleFishingCrate>());
-			Item.width = 12; //The hitbox dimensions are intentionally smaller so that it looks nicer when fished up on a bobber
+			Item.width = 12; //The hitbox dimensions are intentionally smaller 以便 it looks nicer when fished up on a bobber
 			Item.height = 12;
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.sellPrice(0, 2);

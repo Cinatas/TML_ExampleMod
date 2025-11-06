@@ -9,10 +9,10 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Weapons
 {
 	/// <summary>
-	/// This 项 can 帮助 conceptualize various 伤害 modification concepts. <br/>
+	/// This 项 can 帮助 conceptualize 各种 伤害 modification concepts. <br/>
 	/// The 项.伤害 of this 武器 is 100 so the math is easy to follow. 伤害 variation is disabled for all modes except the 1st 模式 对于 same reason. <br/>
 	/// When testing this weap在 first 时间, it is recommended to 禁用 other mods and to 删除 all 伤害 boosting accessories, as they will complicate the math being taught. <br/>
-	/// Testing against <see cref="NPCID.BlueArmoredBonesNoPants"/> is recommended as it has high 防御 (50), good knockback resistance, and enough 生命值 for a few hits. Having 50 防御 makes the math for 防御 and 护甲 penetration easy to follow.
+	/// Testing against <see cref="NPCID.BlueArmoredBonesNoPants"/> is recommended as it has high 防御 (50), good knockback resistance, and enough 生命值 for 一些 hits. Having 50 防御 makes the math for 防御 and 护甲 penetration easy to follow.
 	/// <br/>
 	/// The math taught in this example also assumes the 玩家 is in a normal 世界. <br/> 
 	/// Use 右 点击 to switch modes.<br/>
@@ -103,7 +103,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers) {
-			// These effects modify the hit itself, so they need to be in this 方法.
+			// These effects modify the hit itself, so they 需要 be in this 方法.
 			if (mode != 0) {
 				modifiers.DamageVariationScale *= 0f;
 			}
@@ -122,7 +122,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 			// Below is an example of using ModifyHitInfo to alter the final 值 of 伤害, between Modify and OnHit hooks.
 			// This 'backdoor' is a replacement 对于 old style of modifiers which allowed modifying the 伤害 via `ref`
-			// Please only use this if absolutely necessary, as multiple mods freely altering the 伤害 results will create incompatible or unintuitive 玩家 experiences.
+			// Please only use this if absolutely necessary, as 多个 mods freely altering the 伤害 results will create incompatible or unintuitive 玩家 experiences.
 			//
 			// 对于 example, the 效果 below 可能 better implemented by checking `玩家.GetWeaponDamage(项)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
 			/*
@@ -150,7 +150,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		// Due 到 differences in pvp 伤害 calculations, only some 的 effects of this 武器 work in pvp.
 		public override void ModifyHitPvp(Player player, Player target, ref Player.HurtModifiers modifiers) {
-			// 不像 the effects in OnHitPvp, these specific effects need to run on all clients to keep things in 同步, so there is no check for local 玩家.
+			// 不像 the effects in OnHitPvp, these specific effects 需要 run on all clients to keep things in 同步, so there is no check for local 玩家.
 			if (mode == 2) {
 				modifiers.Knockback += .5f;
 			}
@@ -169,7 +169,7 @@ namespace ExampleMod.Content.Items.Weapons
 			}
 
 			if (mode == 6) {
-				// This AddBuff is not quiet because it is affecting another 玩家. This allows it to broadcast to all players th在 目标 has a 增益. (Main.pvpBuff 必须 set to 真 for other players to be able to give buffs to a 玩家)
+				// This AddBuff is not quiet because it is affecting another 玩家. This allows it to broadcast to all players th在 目标 has a 增益. (Main.pvpBuff 必须 set to 真 for other players to be 能够 give buffs to a 玩家)
 				// 注意 that in PvP, it is possible to 攻击 a 玩家 and see them take 伤害, but by the 时间 the hit 消息 arrives 在 目标 客户端, they may have recharged a dodge. In this case, the 目标 will not actually take 伤害, and their 生命值 will appear to restore. Because the attacking 玩家 applies the 减益, the 目标 will receive the 减益 regardless
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600, quiet: false);
 			}

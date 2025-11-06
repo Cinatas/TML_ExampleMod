@@ -18,15 +18,15 @@ namespace ExampleMod.Content.Items.Armor
 		public override void SetDefaults() {
 			Item.width = 18; // 宽度 的 项
 			Item.height = 18; // 高度 的 项
-			Item.value = Item.sellPrice(gold: 1); // How many coins the 项 is worth
+			Item.value = Item.sellPrice(gold: 1); // How m任何 coins the 项 is worth
 			Item.rare = ItemRarityID.Green; // The 稀有度 的 项
 			Item.defense = 6; // The amount of 防御 the 项 will give when equipped
 		}
 
 		public override void UpdateEquip(Player player) {
 			player.buffImmune[BuffID.OnFire] = true; // 使 the 玩家 immune to Fire
-			player.statManaMax2 += MaxManaIncrease; // Increase how many 魔力 points the 玩家 can have by 20
-			player.maxMinions += MaxMinionIncrease; // Increase how many minions the 玩家 can have by one
+			player.statManaMax2 += MaxManaIncrease; // Increase how m任何 魔力 points the 玩家 can have by 20
+			player.maxMinions += MaxMinionIncrease; // Increase how m任何 minions the 玩家 can have by one
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.

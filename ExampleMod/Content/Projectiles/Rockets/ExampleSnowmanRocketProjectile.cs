@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						continue;
 					}
 
-					// These two variables are used to add some movement 到 dusts.
+					// These two variables are 用于 add some movement 到 dusts.
 					float velocityXAdder = 0f;
 					float velocityYAdder = 0f;
 					if (i == 1) {
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						fireDust.velocity *= 0.2f;
 						fireDust.noGravity = true;
 
-						// 使用d by the liquid rockets which leave trails 的ir liquid instead of fire.
+						// 使用d by the liquid rockets which leave trails 的ir liquid 代替 fire.
 						// if (fireDust.类型 == Dust.dustWater()) {
 						//	fireDust.缩放 *= 0.65f;
 						//	fireDust.速度 += 弹幕.速度 * 0.1f;

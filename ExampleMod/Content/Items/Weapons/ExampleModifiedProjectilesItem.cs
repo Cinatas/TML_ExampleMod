@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.width = 32;
 			Item.height = 32;
 			Item.shoot = ProjectileID.PurificationPowder;
-			// This Ammo is nonspecific. I want to modify what it shoots, however.
+			// This Ammo is nonspecific. I 想要 modify what it shoots, however.
 			Item.useAmmo = AmmoID.Bullet;
 		}
 

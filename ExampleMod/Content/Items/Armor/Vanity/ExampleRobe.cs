@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Items.Armor.Vanity
 			// We're changing the leg 槽位 so we set this to 真
 			robes = true;
 			// 在这里 we can get the equip 槽位 by 名称 since we referenced the 项 when adding the 纹理
-			// 你 can also 缓存 the equip 槽位 in a 变量 when you add it so this way you don't have to call GetEquipSlot
+			// 你 can also 缓存 the equip 槽位 in a 变量 when you add it so this way you don't 必须 call GetEquipSlot
 			equipSlot = EquipLoader.GetEquipSlot(Mod, Name, EquipType.Legs);
 		}
 	}

@@ -26,7 +26,7 @@ namespace ExampleMod.Common.Players
 		// 图标 textures. Nominal 图像 大小 is 32x32. Piggy bank is 16x24 but it still works as it's drawn centered.
 		public override string VanityTexture => "Terraria/Images/Item_" + ItemID.PiggyBank;
 
-		// We will keep it hidden most 的 时间 so that it isn't an intrusive example
+		// 我们将 keep it hidden most 的 时间 以便 it isn't an intrusive example
 		public override bool IsHidden() {
 			return IsEmpty; // 仅 show when it contains an 项, items can 结束 up in functional slots via quick swap (右 点击 饰品)
 		}
@@ -43,7 +43,7 @@ namespace ExampleMod.Common.Players
 
 		// Designates our 槽位 to be a priority for putting wings in to. NOTE: use ItemLoader.CanEquipAccessory if aiming for restricting other slots from having wings!
 		public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo) {
-			if (item.wingSlot > 0) // If is Wing, then we want to prioritize it to go in to our 槽位.
+			if (item.wingSlot > 0) // If is Wing, then we 想要 prioritize it to go in to our 槽位.
 				return true;
 
 			return false;
@@ -58,15 +58,15 @@ namespace ExampleMod.Common.Players
 
 		// 覆盖s the default behavior where a disabled 饰品 槽位 will 允许 retrieve items if it contains items
 		public override bool IsVisibleWhenNotEnabled() {
-			return false; // We set to 假 to just not 显示 if not Enabled. NOTE: this does not affect behavior when mod is unloaded!
+			return false; // We set to 假 to just not 显示 如果不是 Enabled. NOTE: this does not affect behavior when mod is unloaded!
 		}
 
 		// 图标 textures. Nominal 图像 大小 is 32x32. 将 centered 在 槽位.
 		public override string FunctionalTexture => "Terraria/Images/Item_" + ItemID.CreativeWings;
 
-		// 可以 used to modify stuff while the 鼠标 is hovering over the 槽位.
+		// 可以 用于 modify stuff while the 鼠标 is hovering over the 槽位.
 		public override void OnMouseHover(AccessorySlotType context) {
-			// We will modify the 悬停 文本 while an 项 is not 在 槽位, so that it says "Wings".
+			// 我们将 modify the 悬停 文本 while an 项 is not 在 槽位, 以便 it says "Wings".
 			switch (context) {
 				case AccessorySlotType.FunctionalSlot:
 				case AccessorySlotType.VanitySlot:

@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Tiles
 	{
 		private Asset<Texture2D> glowTexture;
 
-		// 如果 you want to know more about tiles, please follow this link
+		// 如果 you 想要 know more about tiles, please follow this link
 		// https://github.com/tModLoader/tModLoader/wiki/Basic-图格
 		public override void SetStaticDefaults() {
 			// This changes a Framed 图格 to a FrameImportant 图格

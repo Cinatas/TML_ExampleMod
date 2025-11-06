@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			Projectile.netImportant = true; // This ensures th在 弹幕 is synced when other players jo在 世界.
+			Projectile.netImportant = true; // 这确保 th在 弹幕 is synced when other players jo在 世界.
 			Projectile.width = 24; // The 宽度 of your 弹幕
 			Projectile.height = 24; // The 高度 of your 弹幕
 			Projectile.friendly = true; // Deals 伤害 to enemies
@@ -278,7 +278,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.direction = (Projectile.velocity.X > 0f).ToDirectionInt();
 			Projectile.spriteDirection = Projectile.direction;
-			Projectile.ownerHitCheck = shouldOwnerHitCheck; // This prevents attempting to 伤害 enemies without line of sight 到 玩家. The custom Colliding code for spinning makes this necessary.
+			Projectile.ownerHitCheck = shouldOwnerHitCheck; // 这防止 attempting to 伤害 enemies without line of sight 到 玩家. The custom Colliding code for spinning makes this necessary.
 
 			// This 旋转 code is unique to this flail, since the 精灵 isn't rotationally symmetric and has 提示.
 			bool freeRotation = CurrentAIState == AIState.Ricochet || CurrentAIState == AIState.Dropping;
@@ -387,7 +387,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool? CanDamage() {
-			// Flails in spin 模式 won't 伤害 enemies with在 first 12 ticks. Visually this delays the first hit until the 玩家 swings the flail around for a full spin before damaging anything.
+			// Flails in spin 模式 won't 伤害 enemies with在 first 12 ticks. Visually this delays the first hit until the 玩家 swings the flail around for a full spin before damaging 任何thing.
 			if (CurrentAIState == AIState.Spinning && SpinningStateTimer <= 12f) {
 				return false;
 			}
@@ -395,20 +395,20 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// Flails do special collision logic that serves to hit anything within an ellipse centered 在 玩家 when the flail is spinning around the 玩家. 例如, the 弹幕 rotating around the 玩家 won't actually hit a bee if it is directly 在 玩家 usually, but this code ensures th在 bee is hit. This code makes hitting enemies while spinning more consistent and not reliant 的 actual 位置 的 flail 弹幕.
+			// Flails do special collision logic that serves to hit 任何thing within an ellipse centered 在 玩家 when the flail is spinning around the 玩家. 例如, the 弹幕 rotating around the 玩家 won't actually hit a bee if it is directly 在 玩家 usually, but this code ensures th在 bee is hit. This code makes hitting enemies while spinning more consistent and not reliant 的 actual 位置 的 flail 弹幕.
 			if (CurrentAIState == AIState.Spinning) {
 				Vector2 mountedCenter = Main.player[Projectile.owner].MountedCenter;
 				Vector2 shortestVectorFromPlayerToTarget = targetHitbox.ClosestPointInRect(mountedCenter) - mountedCenter;
-				shortestVectorFromPlayerToTarget.Y /= 0.8f; // 使 the hit 区域 an ellipse. Vertical hit 距离 is smaller due to this math.
+				shortestVectorFromPlayerToTarget.Y /= 0.8f; // 使 the hit 区域 an ellipse. Vertical hit 距离 is smaller 由于 this math.
 				float hitRadius = 55f; // The 长度 的 semi-major radius 的 ellipse (the long 结束)
 				return shortestVectorFromPlayerToTarget.Length() <= hitRadius;
 			}
-			// Regular collision logic happens otherwise.
+			// Regular collision logic happens 否则.
 			return base.Colliding(projHitbox, targetHitbox);
 		}
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
-			// Flails do a few custom things, you'll want to keep these to have the same feel as vanilla flails.
+			// Flails do 一些 custom things, you'll 想要 keep these to have the same feel as vanilla flails.
 
 			// Flails do 20% more 伤害 while spinning
 			if (CurrentAIState == AIState.Spinning) {
@@ -432,11 +432,11 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// PreDraw is used to draw a chain and trail before the 弹幕 is drawn normally.
+		// PreDraw is 用于 draw a chain and trail before the 弹幕 is drawn normally.
 		public override bool PreDraw(ref Color lightColor) {
 			Vector2 playerArmPosition = Main.GetPlayerArmPosition(Projectile);
 
-			// This fixes a vanilla GetPlayerArmPosition bug causing the chain to draw incorrectly when stepping up slopes. The flail itself still draws incorrectly due to another similar bug. This 应该 removed once the vanilla bug is fixed.
+			// This fixes a vanilla GetPlayerArmPosition bug causing the chain to draw incorrectly when stepping up slopes. The flail itself still draws incorrectly 由于 another similar bug. This 应该 removed once the vanilla bug is fixed.
 			playerArmPosition.Y -= Main.player[Projectile.owner].gfxOffY;
 
 			Rectangle? chainSourceRectangle = null;
