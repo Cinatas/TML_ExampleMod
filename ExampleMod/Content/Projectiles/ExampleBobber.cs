@@ -41,7 +41,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void AI() {
-			// Always ensure that graphics-related code doesn't run on dedicated servers via this check.
+			// 始终 ensure that graphics-related code doesn't run on dedicated servers via this check.
 			if (!Main.dedServ) {
 				// Create some light based on the color of the line.
 				Lighting.AddLight(Projectile.Center, FishingLineColor.ToVector3());

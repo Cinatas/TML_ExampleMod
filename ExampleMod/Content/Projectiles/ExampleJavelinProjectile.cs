@@ -122,7 +122,7 @@ namespace ExampleMod.Content.Projectiles
 					Main.npc[npcTarget].HitEffect(0, 1.0);
 				}
 			}
-			else { // Otherwise, kill the projectile
+			else { // 否则, kill the projectile
 				Projectile.Kill();
 			}
 		}

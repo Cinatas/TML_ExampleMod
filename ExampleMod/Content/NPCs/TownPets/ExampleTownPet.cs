@@ -159,7 +159,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			// 我们 want to move the Town NPC up visually to match the height of the chair.
 			// NPC.ai[0] is set to 5f for Town NPC AI when they are sitting in a chair.
 			if (NPC.ai[0] == 5f) {
-				DrawOffsetY = -10; // Remember: Negative Y is up. So, this is moving the NPC up visually by 10 pixels.
+				DrawOffsetY = -10; // 记住: Negative Y is up. So, this is moving the NPC up visually by 10 pixels.
 			}
 			else {
 				DrawOffsetY = 0; // Reset it back to 0 when not sitting in a chair.

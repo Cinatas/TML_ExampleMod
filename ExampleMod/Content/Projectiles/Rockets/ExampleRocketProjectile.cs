@@ -73,7 +73,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 				// Increase the speed of the rocket if it is moving less than 1 block per second.
 				// It is not recommended to increase the number past 16f to increase the speed of the rocket. It could start no clipping through blocks.
-				// Instead, increase extraUpdates in SetDefaults() to make the rocket move faster.
+				// 代替, increase extraUpdates in SetDefaults() to make the rocket move faster.
 				if (Math.Abs(Projectile.velocity.X) <= 15f && Math.Abs(Projectile.velocity.Y) <= 15f) {
 					Projectile.velocity *= 1.1f;
 				}

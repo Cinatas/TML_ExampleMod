@@ -89,7 +89,7 @@ namespace ExampleMod.Content.Items.Accessories
 				Vector2 newVelocity = Player.velocity;
 
 				switch (DashDir) {
-					// Only apply the dash velocity if our current speed in the wanted direction is less than DashVelocity
+					// 仅 apply the dash velocity if our current speed in the wanted direction is less than DashVelocity
 					case DashUp when Player.velocity.Y > -DashVelocity:
 					case DashDown when Player.velocity.Y < DashVelocity: {
 							// Y-velocity is set here

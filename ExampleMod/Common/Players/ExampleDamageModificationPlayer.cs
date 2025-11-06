@@ -18,7 +18,7 @@ namespace ExampleMod.Common.Players
 
 		// 这 3 个字段与示例闪避相关。示例闪避是根据神圣套装奖励的闪避能力建模的。
 		// exampleDodge 指示玩家是否主动具有闪避下一次攻击的能力。这由 ExampleDodgeBuff 设置，在此示例中由 HitModifiersShowcase 武器应用。仅当 exampleDodgeCooldown 为 0 时才应用增益，如果闪避攻击或玩家不再持有 HitModifiersShowcase，则会自动清除。
-		public bool exampleDodge; // TODO: Example of custom player render
+		public bool exampleDodge; // 待办事项： Example of custom player render
 		// 用于在消耗示例闪避和下次可以获得闪避增益之间添加延迟。
 		public int exampleDodgeCooldown;
 		// Controls the intensity of the visual effect of the dodge.
@@ -154,7 +154,7 @@ namespace ExampleMod.Common.Players
 				float percent = AbsorbTeamDamageAccessory.DamageAbsorptionMultiplier;
 				int damage = (int)(info.Damage * (percent / (1 - percent)));
 
-				// Don't bother pinging the defending player and upsetting their immunity frames if the portion of damage we're taking rounds down to 0
+				// 不要 bother pinging the defending player and upsetting their immunity frames if the portion of damage we're taking rounds down to 0
 				if (damage > 0) {
 					localPlayer.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
 				}

@@ -25,14 +25,14 @@ namespace ExampleMod.Content.Tiles
 			// Use this to utilize an existing template
 			// names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
-			// Before adding the new tile you can make some changes to newTile like height, origin and etc.
+			// 之前 adding the new tile you can make some changes to newTile like height, origin and etc.
 			// Changing the Height because the template is for 1x2 not 1x3
 			TileObjectData.newTile.Height = 3;
 			// Modifies which part of the tile is centered on the mouse, in tile coordinates, from the top right corner
 			TileObjectData.newTile.Origin = new Point16(1, 2);
 			// Setting the height of the tiles individually for each
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 18 };
-			// Finally adding newTile
+			// 最后 adding newTile
 			TileObjectData.addTile(Type);
 
 			// AddMapEntry is for setting the color and optional text associated with the Tile when viewed on the map
@@ -64,7 +64,7 @@ namespace ExampleMod.Content.Tiles
 			// Offset along the Y axis depending on the current frame
 			int frameYOffset = Main.tileFrame[Type] * AnimationFrameHeight;
 
-			// Firstly we draw the original texture and then glow mask texture
+			// 首先ly we draw the original texture and then glow mask texture
 			spriteBatch.Draw(
 				TextureAssets.Tile[Type].Value,
 				new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero,

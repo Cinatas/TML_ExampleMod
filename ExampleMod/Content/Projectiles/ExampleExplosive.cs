@@ -184,7 +184,7 @@ namespace ExampleMod.Content.Projectiles
 			// reset size to normal width and height.
 			Projectile.Resize(DefaultWidthHeight, DefaultWidthHeight);
 
-			// Finally, actually explode the tiles and walls. Run this code only for the owner
+			// 最后, actually explode the tiles and walls. Run this code only for the owner
 			if (Projectile.owner == Main.myPlayer) {
 				int explosionRadius = 7; // Bomb: 4, Dynamite: 7, Explosives & TNT Barrel: 10
 				int minTileX = (int)(Projectile.Center.X / 16f - explosionRadius);

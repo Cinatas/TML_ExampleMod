@@ -17,14 +17,14 @@ namespace ExampleMod.Content.Tiles
 	// Not many tiles will require such complicated layout, but this serves as example of how each feature affects the resulting spritesheet.
 	// Since this tile is "StyleHorizontal = true", styles in the spritesheet are positioned left to right. Each alternate placement and
 	// random style are also placed in-line with the styles. Toggled states and animations are placed vertically below their corresponding placement. In the corresponding spritesheet, the styles, alternate placements, and animation frames are all labeled to make this layout clearer.
-	// After reaching the wrap limit, subsequent styles are placed on the next row.
+	// 之后 reaching the wrap limit, subsequent styles are placed on the next row.
 	public class TileObjectDataShowcase : ModTile
 	{
 		public override void SetStaticDefaults() {
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
 
-			// First setup a basic 2x2 tile.
+			// 首先 setup a basic 2x2 tile.
 			TileObjectData.newTile.UsesCustomCanPlace = true;
 			TileObjectData.newTile.Width = 2;
 			TileObjectData.newTile.Height = 2;

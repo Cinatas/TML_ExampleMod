@@ -196,7 +196,7 @@ namespace ExampleMod.Content.Projectiles
 			// This Vector2 stores the beam's hitbox statistics. X = beam length. Y = beam width.
 			Vector2 beamDims = new Vector2(Projectile.velocity.Length() * BeamLength, Projectile.width * Projectile.scale);
 
-			// Only produce dust and cause water ripples if the beam is above a certain charge level.
+			// 仅 produce dust and cause water ripples if the beam is above a certain charge level.
 			Color beamColor = GetOuterBeamColor();
 			if (chargeRatio >= VisualEffectThreshold) {
 				ProduceBeamDust(beamColor);
@@ -255,7 +255,7 @@ namespace ExampleMod.Content.Projectiles
 				return true;
 			}
 
-			// Otherwise, perform an AABB line collision check to check the whole beam.
+			// 否则, perform an AABB line collision check to check the whole beam.
 			float _ = float.NaN;
 			Vector2 beamEndPos = Projectile.Center + Projectile.velocity * BeamLength;
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, beamEndPos, BeamHitboxCollisionWidth * Projectile.scale, ref _);

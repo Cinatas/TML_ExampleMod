@@ -86,7 +86,7 @@ namespace ExampleMod.Content.Tiles
 			// GetTorchLuck is called when there is an ExampleTorch nearby the client player
 			// 在 most use-cases you should return 1f for a good luck torch, or -1f for a bad luck torch.
 			// 你 can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
-			// Remember that the overall torch luck is decided by every torch around the player, so it may be wise to have a smaller amount of luck impact.
+			// 记住 that the overall torch luck is decided by every torch around the player, so it may be wise to have a smaller amount of luck impact.
 			// Multiple example torches on screen will have no additional effect.
 
 			// Positive and negative luck are accumulated separately and then compared to some fixed limits in vanilla to determine overall torch luck.
@@ -151,7 +151,7 @@ namespace ExampleMod.Content.Tiles
 				zero = Vector2.Zero;
 			}
 
-			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // Don't remove any casts.
+			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 remove any casts.
 			Color color = new Color(100, 100, 100, 0);
 			int width = 20;
 			int height = 20;

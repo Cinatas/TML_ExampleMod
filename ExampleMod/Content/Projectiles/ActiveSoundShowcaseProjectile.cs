@@ -68,7 +68,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// Sounds are paused when the game loses focus (Player switches to another program). In some situations the modder might want to restart a sound when the game is focused again, in other situations that might not be desired. Some of these examples use a bool, "played", to track if the sound has been played since the projectile spawned, while others do not and will attempt to restart the sound if it is not currently playing.
 
-			// Also note that in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" by default, so if 2 projectiles attempt to play the same sound, they'll constantly interrupt each other every AI update, making a horrible sound.
+			// 另外 note that in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" by default, so if 2 projectiles attempt to play the same sound, they'll constantly interrupt each other every AI update, making a horrible sound.
 			// 在 a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. For example, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances accordingly. The modder might also decide that the sound should not restart when the game is re-focused and use logic to only attempt to play the sound once.
 			switch (Style) {
 				case ActiveSoundShowcaseStyle.FireAndForget:
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Projectiles
 					}
 
 					// SlotId can be stored as a float, such as in Projectile.localAI entries. This can be an alternative to making a SlotId field in the class.
-					// Don't use ai slots for SlotId, since those will sync and sounds and sound slots are completely local and are not synced
+					// 不要 use ai slots for SlotId, since those will sync and sounds and sound slots are completely local and are not synced
 					// SlotId soundSlot = SlotId.FromFloat(Projectile.localAI[0]);
 					// Projectile.localAI[0] = soundSlot.ToFloat();
 

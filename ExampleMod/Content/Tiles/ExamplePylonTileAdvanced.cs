@@ -148,7 +148,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) {
 			// This code is essentially identical to how it is in the basic example, but this time the crystal color is the disco (rainbow) color instead
-			// Also, since we want the pylon crystal to be drawn at the same height as vanilla (since our tile is one tile smaller), we have to move up the crystal accordingly with the crystalOffset parameter
+			// 另外, since we want the pylon crystal to be drawn at the same height as vanilla (since our tile is one tile smaller), we have to move up the crystal accordingly with the crystalOffset parameter
 			DefaultDrawPylonCrystal(spriteBatch, i, j, crystalTexture, crystalHighlightTexture, new Vector2(0f, -18f), Main.DiscoColor * 0.1f, Main.DiscoColor, 1, CrystalVerticalFrameCount);
 		}
 

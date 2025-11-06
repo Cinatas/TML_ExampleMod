@@ -150,7 +150,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		// Due to the differences in pvp damage calculations, only some of the effects of this weapon work in pvp.
 		public override void ModifyHitPvp(Player player, Player target, ref Player.HurtModifiers modifiers) {
-			// Unlike the effects in OnHitPvp, these specific effects need to run on all clients to keep things in sync, so there is no check for local player.
+			// 不像 the effects in OnHitPvp, these specific effects need to run on all clients to keep things in sync, so there is no check for local player.
 			if (mode == 2) {
 				modifiers.Knockback += .5f;
 			}

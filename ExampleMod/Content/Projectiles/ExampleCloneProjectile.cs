@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Projectiles
 			// the projectile to essentially behave the same way as the vanilla projectile.
 			AIType = ProjectileID.Meowmere;
 
-			// After CloneDefaults has been called, we can now modify the stats to our wishes, or keep them as they are.
+			// 之后 CloneDefaults has been called, we can now modify the stats to our wishes, or keep them as they are.
 			// 对于 the sake of example, lets make our projectile penetrate enemies a few more times than the vanilla projectile.
 			// This can be done by modifying projectile.penetrate
 			Projectile.penetrate += 3;

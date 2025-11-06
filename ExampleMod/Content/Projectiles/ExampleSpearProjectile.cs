@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 
-			return false; // Don't execute vanilla AI.
+			return false; // 不要 execute vanilla AI.
 		}
 	}
 }

@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Projectiles
 			// Dust.NewDustPerfect(Projectile.Center + coneRotation.ToRotationVector2() * coneLength, DustID.Pixie, Vector2.Zero);
 			// Dust.NewDustPerfect(Projectile.Center, DustID.BlueFairy, new Vector2((float)Math.Cos(maximumAngle) * Projectile.ai[0], (float)Math.Sin(maximumAngle)) * 5f); // Assumes collisionRotation was not changed
 
-			// First, we check to see if our first cone intersects the target.
+			// 首先, we check to see if our first cone intersects the target.
 			if (targetHitbox.IntersectsConeSlowMoreAccurate(Projectile.Center, coneLength, coneRotation, maximumAngle)) {
 				return true;
 			}

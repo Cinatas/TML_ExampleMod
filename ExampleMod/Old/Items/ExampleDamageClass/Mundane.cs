@@ -50,7 +50,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 
 		public override void GetWeaponCrit(Player player, ref int crit) {
 			// It is hard to hook into every place checking item's crit and fake item.ranged = true
-			// Instead, we can mimick regular ranged crit assignment
+			// 代替, we can mimick regular ranged crit assignment
 			crit = Main.LocalPlayer.rangedCrit - Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem].crit + Main.HoverItem.crit;
 			base.GetWeaponCrit(player, ref crit);
 		}

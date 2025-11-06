@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void SetDefaults() {
-			// Instead of placing style 0, style 1 is placed. The allowWaterPlacement parameter is true, which will set Item.noWet to false, allowing the item to be held underwater.
+			// 代替 of placing style 0, style 1 is placed. The allowWaterPlacement parameter is true, which will set Item.noWet to false, allowing the item to be held underwater.
 			Item.DefaultToTorch(ModContent.TileType<Tiles.ExampleTorch>(), 1, true);
 			Item.value = 50;
 		}

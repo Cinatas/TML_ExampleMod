@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Items.Weapons
 				return false;
 			}
 
-			// Don't reroll
+			// 不要 reroll
 			return true;
 		}
 

@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items.Accessories
 	[AutoloadEquip(EquipType.Back)]
 	public class WaspNest : ModItem
 	{
-		// Only gets run once per type
+		// 仅 gets run once per type
 		public override void Load() {
 			IL_Player.beeType += HookBeeType;
 		}
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player) {
-			// Don't allow Hive Pack and Wasp Nest to be equipped at the same time.
+			// 不要 allow Hive Pack and Wasp Nest to be equipped at the same time.
 			return incomingItem.type != ItemID.HiveBackpack;
 		}
 	}

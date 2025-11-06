@@ -128,7 +128,7 @@ namespace ExampleMod.Content.Tiles
 			}
 			if (!Lighting.UpdateEveryFrame || new FastRandom(Main.TileFrameSeed).WithModifier(i, j).Next(4) == 0) {
 				Tile tile = Main.tile[i, j];
-				// Only emit dust from the top tiles, and only if toggled on. This logic limits dust spawning under different conditions.
+				// 仅 emit dust from the top tiles, and only if toggled on. This logic limits dust spawning under different conditions.
 				if (tile.TileFrameY == 0 && Main.rand.NextBool(3) && ((Main.drawToScreen && Main.rand.NextBool(4)) || !Main.drawToScreen)) {
 					Dust dust = Dust.NewDustDirect(new Vector2(i * 16 + 2, j * 16 - 4), 4, 8, DustID.Smoke, 0f, 0f, 100);
 					if (tile.TileFrameX == 0)

@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.alpha = 255; // The transparency of the projectile, 255 for completely transparent. Our projectile will fade in (see the AI() below).
 			Projectile.friendly = true; // Player shot projectile. Does damage to enemies but not to friendly Town NPCs.
 			Projectile.penetrate = -1; // Infinite penetration. The projectile can hit an infinite number of enemies.
-			Projectile.tileCollide = false; // Don't kill the projectile if it hits a tile.
+			Projectile.tileCollide = false; // 不要 kill the projectile if it hits a tile.
 			Projectile.scale = 1f; // The scale of the projectile. This only effects the drawing and the width of the collision.
 			Projectile.hide = true; // We are drawing the projectile ourselves. See PreDraw() below.
 			Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Projectiles
 			owner.heldProj = Projectile.whoAmI; // Set the owner's held projectile to this projectile. heldProj is used so that the projectile will be killed when the player drops or swap items.
 
 			int itemAnimationMax = owner.itemAnimationMax;
-			// Remember, frames count down from itemAnimationMax to 0
+			// 记住, frames count down from itemAnimationMax to 0
 			// Frame at which the lance is fully extended. Hold at this frame before retracting.
 			// Scale factor (0.34f) means the last 34% of the animation will be used for retracting.
 			int holdOutFrame = (int)(itemAnimationMax * 0.34f);
@@ -95,7 +95,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// This Vector2.Dot is the dot product between the projectile's velocity and the player's velocity normalized to be between -1 and 1.
 			// What this means in this context is that the speed value will be closer to positive 1 if the player is moving in the same direction as the direction the lance was shot.
-			// Example: if the lance is shot up and to the right, the value here will be closer to 1 if the player is also moving up and to the right.
+			// 示例： if the lance is shot up and to the right, the value here will be closer to 1 if the player is also moving up and to the right.
 			float movementInLanceDirection = Vector2.Dot(Projectile.velocity.SafeNormalize(Vector2.UnitX * owner.direction), owner.velocity.SafeNormalize(Vector2.UnitX * owner.direction));
 
 			float playerVelocity = owner.velocity.Length();
@@ -163,7 +163,7 @@ namespace ExampleMod.Content.Projectiles
 			// Dust.NewDustPerfect(Projectile.Center, DustID.Pixie, Velocity: Vector2.Zero, Scale: 0.5f);
 			// Dust.NewDustPerfect(hitLineEnd, DustID.Pixie, Velocity: Vector2.Zero, Scale: 0.5f);
 
-			// First check that our large rectangle intersects with the target hitbox.
+			// 首先 check that our large rectangle intersects with the target hitbox.
 			// Then we check to see if a line from the tip of the Jousting Lance to the "end" of the lance intersects with the target hitbox.
 			if (lanceHitboxBounds.Intersects(targetHitbox)
 				&& Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, hitLineEnd, widthMultiplier * Projectile.scale, ref collisionPoint)) {

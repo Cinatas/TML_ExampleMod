@@ -49,7 +49,7 @@ namespace ExampleMod.Content.Items
 				return CreativeUI.ItemSacrificeResult.SacrificedAndDone;
 			}
 
-			// Otherwise, call the original method to run the default behavior
+			// 否则, call the original method to run the default behavior
 			return orig(ref item, out amountWeSacrificed, returnRemainderToPlayer);
 		}
 

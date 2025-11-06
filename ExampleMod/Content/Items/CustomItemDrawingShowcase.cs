@@ -164,7 +164,7 @@ namespace ExampleMod.Content.Items
 
 			if (drawMode == DrawModeGlowmask) {
 				// 对于 a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
-				// Instead of the provided lightColor, however, we use Color.White since we want to draw the glowmask texture at full brightness regardless of world lighting conditions.
+				// 代替 of the provided lightColor, however, we use Color.White since we want to draw the glowmask texture at full brightness regardless of world lighting conditions.
 				spriteBatch.Draw(frontTexture.Value, drawPosition, itemFrame, Color.White, rotation, origin, scale, SpriteEffects.None, 0);
 			}
 		}

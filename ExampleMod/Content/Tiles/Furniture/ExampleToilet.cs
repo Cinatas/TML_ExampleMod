@@ -81,7 +81,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, we can just check if the tile is the top-most one, then move it 1 down
 			}
 
-			// Finally, since this is a toilet, it should generate Poo while any tier of Well Fed is active
+			// 最后, since this is a toilet, it should generate Poo while any tier of Well Fed is active
 			info.ExtraInfo.IsAToilet = true;
 
 			// 在这里 we add a custom fun effect to this tile that vanilla toilets do not have. This shows how you can type cast the restingEntity to Player and use visualOffset as well.

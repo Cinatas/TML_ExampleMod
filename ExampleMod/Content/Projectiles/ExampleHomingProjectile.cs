@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Projectiles
 				return;
 			}
 
-			// First, we find a homing target if we don't have one
+			// 首先, we find a homing target if we don't have one
 			if (HomingTarget == null) {
 				HomingTarget = FindClosestNPC(maxDetectRadius);
 			}

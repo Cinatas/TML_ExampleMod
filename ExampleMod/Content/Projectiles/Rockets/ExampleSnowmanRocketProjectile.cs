@@ -39,12 +39,12 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			}
 			else {
 				Projectile.localAI[1]++;
-				// After 6 ticks, make the rocket completely opaque.
+				// 之后 6 ticks, make the rocket completely opaque.
 				if (Projectile.localAI[1] > 6f) {
 					Projectile.alpha = 0; // 0 Alpha is completely opaque.
 				}
 				else {
-					// Before then, fade in the rocket each tick.
+					// 之前 then, fade in the rocket each tick.
 					Projectile.alpha = (int)(255f - 42f * Projectile.localAI[1]) + 100;
 					if (Projectile.alpha > 255) {
 						Projectile.alpha = 255; // 255 Alpha is completely transparent.
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				}
 
 				for (int i = 0; i < 2; i++) {
-					// Don't start spawning dusts until after 9 ticks have passed.
+					// 不要 start spawning dusts until after 9 ticks have passed.
 					if (!(Projectile.localAI[1] > 9f)) {
 						continue;
 					}
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 					}
 				}
 
-				// First, set the destination of the rocket to its current position. This will be updated in the following section.
+				// 首先, set the destination of the rocket to its current position. This will be updated in the following section.
 				float projDestinationX = Projectile.position.X;
 				float projDestinationY = Projectile.position.Y;
 				float maxHomingDistance = 600f; // Max homing distance in pixels. 16 pixels per tile, so 600 pixels = 37.5 tiles.

@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Projectiles
 {
 	// Shortsword projectiles are handled in a special way with how they draw and damage things
 	// "hitbox" itself is closer to the player, the sprite is centered on it
-	// However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
+	// 然而 the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
 	// Values chosen mostly correspond to Iron Shortsword
 	public class ExampleShortswordProjectile : ModProjectile
 	{
@@ -55,7 +55,7 @@ namespace ExampleMod.Content.Projectiles
 			// Fade in and out
 			// GetLerpValue returns a value between 0f and 1f - if clamped is true - representing how far Timer got along the "distance" defined by the first two parameters
 			// first call handles the fade in, the second one the fade out.
-			// Notice the second call's parameters are swapped, this means the result will be reverted
+			// 注意 the second call's parameters are swapped, this means the result will be reverted
 			Projectile.Opacity = Utils.GetLerpValue(0f, FadeInDuration, Timer, clamped: true) * Utils.GetLerpValue(TotalDuration, TotalDuration - FadeOutDuration, Timer, clamped: true);
 
 			// Keep locked onto the player, but extend further based on the given velocity (Requires ShouldUpdatePosition returning false to work)
@@ -116,7 +116,7 @@ namespace ExampleMod.Content.Projectiles
 			// shootSpeed is 2.1f for reference, so this is basically plotting 12 pixels ahead from the center
 			Vector2 start = Projectile.Center;
 			Vector2 end = start + Projectile.velocity * 6f;
-			float collisionPoint = 0f; // Don't need that variable, but required as parameter
+			float collisionPoint = 0f; // 不要 need that variable, but required as parameter
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), start, end, CollisionWidth, ref collisionPoint);
 		}
 	}

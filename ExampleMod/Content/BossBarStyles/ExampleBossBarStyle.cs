@@ -15,7 +15,7 @@ namespace ExampleMod.Content.BossBars
 		public override void Draw(SpriteBatch spriteBatch, IBigProgressBar currentBar, BigProgressBarInfo info) {
 			if (currentBar == null) {
 				return;
-				// Only draw if vanilla decided to draw one (we let it update because we didn't override PreventUpdate to return true)
+				// 仅 draw if vanilla decided to draw one (we let it update because we didn't override PreventUpdate to return true)
 			}
 
 			if (currentBar is CommonBossBigProgressBar) {

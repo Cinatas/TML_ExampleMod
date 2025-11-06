@@ -183,7 +183,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// All the Classic Mode drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
 			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 
-			// Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
+			// 注意 we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
 			// Boss masks are spawned with 1/7 chance
 			notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MinionBossMask>(), 7));
 
@@ -202,7 +202,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 			notExpertRule.OnSuccess(new DropOneByOne(itemType, parameters));
 
-			// Finally add the leading rule
+			// 最后 add the leading rule
 			npcLoot.Add(notExpertRule);
 
 			// Add the treasure bag using ItemDropRule.BossBag (automatically checks for expert mode)
@@ -363,7 +363,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 				MinionMaxHealthTotal += minionNPC.lifeMax; // add the total minion life for boss bar shield text
 
-				// Finally, syncing, only sync on server and if the NPC actually exists (Main.maxNPCs is the index of a dummy NPC, there is no point syncing it)
+				// 最后, syncing, only sync on server and if the NPC actually exists (Main.maxNPCs is the index of a dummy NPC, there is no point syncing it)
 				if (Main.netMode == NetmodeID.Server) {
 					NetMessage.SendData(MessageID.SyncNPC, number: minionNPC.whoAmI);
 				}
@@ -547,7 +547,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// 如果 you make a similar check for just a life percentage in a boss, you will need to use a bool to track if the corresponding code has run yet or not.
 			NPC.BecomeImmuneTo(BuffID.OnFire);
 
-			// Finally, this boss will clear all the buffs it currently has that it is now immune to. ClearImmuneToBuffs should not be run on multiplayer clients, the server has authority over buffs.
+			// 最后, this boss will clear all the buffs it currently has that it is now immune to. ClearImmuneToBuffs should not be run on multiplayer clients, the server has authority over buffs.
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				NPC.ClearImmuneToBuffs(out bool anyBuffsCleared);
 

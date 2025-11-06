@@ -101,10 +101,10 @@ namespace ExampleMod.Projectiles
 			projectile.timeLeft = 2;
 
 			// By separating large AI into methods it becomes very easy to see the flow of the AI in a broader sense
-			// First we update player variables that are needed to channel the laser
+			// 首先 we update player variables that are needed to channel the laser
 			// Then we run our charging laser logic
 			// If we are fully charged, we proceed to update the laser's position
-			// Finally we spawn some effects like dusts and light
+			// 最后 we spawn some effects like dusts and light
 
 			UpdatePlayer(player);
 			ChargeLaser(player);

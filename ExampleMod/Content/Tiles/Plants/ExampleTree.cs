@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Tiles
 		private Asset<Texture2D> topsTexture;
 
 		// 这是 a blind copy-paste from Vanilla's PurityPalmTree settings.
-		// TODO: This needs some explanations
+		// 待办事项： This needs some explanations
 		public override TreePaintingSettings TreeShaderSettings => new TreePaintingSettings {
 			UseSpecialGroups = true,
 			SpecialGroupMinimalHueValue = 11f / 72f,

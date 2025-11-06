@@ -220,7 +220,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, beamVelocity, ModContent.ProjectileType<ExampleLastPrismBeam>(), damage, knockback, Projectile.owner, b, uuid);
 			}
 
-			// After creating the beams, mark the Prism as having an important network event. This will make Terraria sync its data to other players ASAP.
+			// 之后 creating the beams, mark the Prism as having an important network event. This will make Terraria sync its data to other players ASAP.
 			Projectile.netUpdate = true;
 		}
 

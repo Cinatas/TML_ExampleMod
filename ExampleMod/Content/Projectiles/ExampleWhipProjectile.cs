@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Projectiles
 		public override bool PreAI() {
 			Player owner = Main.player[Projectile.owner];
 
-			// Like other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
+			// 像 other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
 			if (!owner.channel || ChargeTime >= 120) {
 				return true; // Let the vanilla whip AI run.
 			}
@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Projectiles
 			//Main.DrawWhip_WhipBland(Projectile, list);
 			// code below is for custom drawing.
 			// 如果 you don't want that, you can remove it all and instead call one of vanilla's DrawWhip methods, like above.
-			// However, you must adhere to how they draw if you do.
+			// 然而, you must adhere to how they draw if you do.
 
 			SpriteEffects flip = Projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
@@ -127,12 +127,12 @@ namespace ExampleMod.Content.Projectiles
 					frame.Height = 16;
 				}
 				else if (i > 5) {
-					// Second Segment
+					// 其次 Segment
 					frame.Y = 42;
 					frame.Height = 16;
 				}
 				else if (i > 0) {
-					// First Segment
+					// 首先 Segment
 					frame.Y = 26;
 					frame.Height = 16;
 				}

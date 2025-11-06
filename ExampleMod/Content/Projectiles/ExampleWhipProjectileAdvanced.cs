@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.Center = Main.GetPlayerArmPosition(Projectile) + Projectile.velocity * Timer;
 			// Vanilla uses Vector2.Dot(Projectile.velocity, Vector2.UnitX) here. Dot Product returns the difference between two vectors, 0 meaning they are perpendicular.
-			// However, the use of UnitX basically turns it into a more complicated way of checking if the projectile's velocity is above or equal to zero on the X axis.
+			// 然而, the use of UnitX basically turns it into a more complicated way of checking if the projectile's velocity is above or equal to zero on the X axis.
 			Projectile.spriteDirection = Projectile.velocity.X >= 0f ? 1 : -1;
 
 			// remove these 3 lines if you don't want the charging mechanic
@@ -89,7 +89,7 @@ namespace ExampleMod.Content.Projectiles
 				if (Main.rand.NextBool(3))
 					dustType = DustID.TintableDustLighted;
 
-				// After choosing a randomized dust and a whip segment to spawn from, dust is spawned.
+				// 之后 choosing a randomized dust and a whip segment to spawn from, dust is spawned.
 				Dust dust = Dust.NewDustDirect(spawnArea.TopLeft(), spawnArea.Width, spawnArea.Height, dustType, 0f, 0f, 100, Color.White);
 				dust.position = points[pointIndex];
 				dust.fadeIn = 0.3f;
@@ -106,7 +106,7 @@ namespace ExampleMod.Content.Projectiles
 		// 如果 you remove this, also remove Item.channel = true from the item's SetDefaults.
 		// Returns true if fully charged
 		private bool Charge(Player owner) {
-			// Like other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
+			// 像 other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
 			if (!owner.channel || ChargeTime >= 120) {
 				return true; // finished charging
 			}
@@ -162,7 +162,7 @@ namespace ExampleMod.Content.Projectiles
 			//Main.DrawWhip_WhipBland(Projectile, list);
 			// code below is for custom drawing.
 			// 如果 you don't want that, you can remove it all and instead call one of vanilla's DrawWhip methods, like above.
-			// However, you must adhere to how they draw if you do.
+			// 然而, you must adhere to how they draw if you do.
 
 			SpriteEffects flip = Projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
@@ -195,12 +195,12 @@ namespace ExampleMod.Content.Projectiles
 					frame.Height = 16;
 				}
 				else if (i > 5) {
-					// Second Segment
+					// 其次 Segment
 					frame.Y = 42;
 					frame.Height = 16;
 				}
 				else if (i > 0) {
-					// First Segment
+					// 首先 Segment
 					frame.Y = 26;
 					frame.Height = 16;
 				}

@@ -14,7 +14,7 @@ namespace ExampleMod.Tiles
 			// Most 1x1 tiles without a TileObjectData don't set tileFrameImportant because FrameTile will reconstruct the frame automatically. 
 			// This tile is special because we need it to preserve the hidden mine tiles.
 			Main.tileFrameImportant[Type] = true;
-			Main.tileSolid[Type] = true; // TODO: tModLoader hook for allowing non solid tiles to be hammer-able.
+			Main.tileSolid[Type] = true; // 待办事项： tModLoader hook for allowing non solid tiles to be hammer-able.
 			drop = ItemType<MinesweeperItem>();
 		}
 

@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Buffs
 	public class ExampleWhipDebuffNPC : GlobalNPC
 	{
 		public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers) {
-			// Only player attacks should benefit from this buff, hence the NPC and trap checks.
+			// 仅 player attacks should benefit from this buff, hence the NPC and trap checks.
 			if (projectile.npcProj || projectile.trap || !projectile.IsMinionOrSentryRelated)
 				return;
 

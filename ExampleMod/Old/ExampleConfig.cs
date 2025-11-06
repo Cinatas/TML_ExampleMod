@@ -34,7 +34,7 @@ namespace ExampleMod
 
 		// We will use attributes to annotate our fields or properties so tModLoader can properly handle them.
 
-		// First, we will learn about DefaultValue. You might assume "public bool BoolExample = true;" to work, 
+		// 首先, we will learn about DefaultValue. You might assume "public bool BoolExample = true;" to work, 
 		// but because tModLoader is overwriting with JSON, that value will be overwritten when the mod loads.
 		// We must use the DefaultValue attribute instead of setting the value normally:
 		[DefaultValue(true)]

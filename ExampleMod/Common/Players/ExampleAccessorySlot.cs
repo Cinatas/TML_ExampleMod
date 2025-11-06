@@ -28,7 +28,7 @@ namespace ExampleMod.Common.Players
 
 		// We will keep it hidden most of the time so that it isn't an intrusive example
 		public override bool IsHidden() {
-			return IsEmpty; // Only show when it contains an item, items can end up in functional slots via quick swap (right click accessory)
+			return IsEmpty; // 仅 show when it contains an item, items can end up in functional slots via quick swap (right click accessory)
 		}
 	}
 
@@ -38,7 +38,7 @@ namespace ExampleMod.Common.Players
 			if (checkItem.wingSlot > 0) // if is Wing, then can go in slot
 				return true;
 
-			return false; // Otherwise nothing in slot
+			return false; // 否则 nothing in slot
 		}
 
 		// Designates our slot to be a priority for putting wings in to. NOTE: use ItemLoader.CanEquipAccessory if aiming for restricting other slots from having wings!
@@ -53,7 +53,7 @@ namespace ExampleMod.Common.Players
 			if (Player.armor[0].headSlot >= 0) // if player is wearing a helmet, because flight safety
 				return true; // Then can use Slot
 
-			return false; // Can't use slot
+			return false; // 不能 use slot
 		}
 
 		// Overrides the default behavior where a disabled accessory slot will allow retrieve items if it contains items

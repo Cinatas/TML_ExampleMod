@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Buffs
 {
 	/// <summary>
-	/// Only a single weapon imbue buff can apply to a player at a time, Main.meleeBuff ensures that this restriction is met.
+	/// 仅 a single weapon imbue buff can apply to a player at a time, Main.meleeBuff ensures that this restriction is met.
 	/// See also ExampleFlask and ExampleWeaponEnchantmentPlayer.
 	/// </summary>
 	public class ExampleWeaponImbue : ModBuff

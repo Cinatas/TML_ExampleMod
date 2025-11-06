@@ -156,7 +156,7 @@ namespace ExampleMod.Content.Tiles
 		public override bool IsTileSpelunkable(int i, int j) {
 			PlantStage stage = GetStage(i, j);
 
-			// Only glow if the herb is grown
+			// 仅 glow if the herb is grown
 			return stage == PlantStage.Grown;
 		}
 
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.Tiles
 			Tile tile = Framing.GetTileSafely(i, j);
 			PlantStage stage = GetStage(i, j);
 
-			// Only grow to the next stage if there is a next stage. We don't want our tile turning pink!
+			// 仅 grow to the next stage if there is a next stage. We don't want our tile turning pink!
 			if (stage != PlantStage.Grown) {
 				// Increase the x frame to change the stage
 				tile.TileFrameX += FrameWidth;

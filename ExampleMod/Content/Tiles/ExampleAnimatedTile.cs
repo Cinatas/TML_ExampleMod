@@ -27,14 +27,14 @@ namespace ExampleMod.Content.Tiles
 			// names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
 			// This last call adds a new tile
-			// Before that, you can make some changes to newTile like height, origin and etc.
+			// 之前 that, you can make some changes to newTile like height, origin and etc.
 			TileObjectData.addTile(Type);
 
 			// AddMapEntry is for setting the color and optional text associated with the Tile when viewed on the map
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(238, 145, 105), name);
 
-			// Can't use this since texture is vertical
+			// 不能 use this since texture is vertical
 			// AnimationFrameHeight = 56;
 		}
 
@@ -81,17 +81,17 @@ namespace ExampleMod.Content.Tiles
 			return base.KillSound(i, j, fail);
 		}
 
-		// TODO: It's better to have an actual class for this example, instead of comments
+		// 待办事项： It's better to have an actual class for this example, instead of comments
 
 		// Below is an example completely manually drawing a tile. It shows some interesting concepts that may be useful for more advanced things
 		/*public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-			// Instead of SetSpriteEffects
+			// 代替 of SetSpriteEffects
 			// Flips the sprite if x coord is odd. Makes the tile more interesting
 			SpriteEffects effects = SpriteEffects.None;
 			if (i % 2 == 1)
 				effects = SpriteEffects.FlipHorizontally;
 
-			// Instead of AnimateIndividualTile
+			// 代替 of AnimateIndividualTile
 			// Tweak the frame drawn by x position so tiles next to each other are off-sync and look much more interesting
 			int uniqueAnimationFrame = Main.tileFrame[Type] + i % 6;
 			if (i % 2 == 0)

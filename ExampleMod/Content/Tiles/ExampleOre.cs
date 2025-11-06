@@ -87,7 +87,7 @@ namespace ExampleMod.Content.Tiles
 			// Because world generation is like layering several images on top of each other, we need to do some steps between the original world generation steps.
 
 			// Most vanilla ores are generated in a step called "Shinies", so for maximum compatibility, we will also do this.
-			// First, we find out which step "Shinies" is.
+			// 首先, we find out which step "Shinies" is.
 			int ShiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
 
 			if (ShiniesIndex != -1) {
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.Tiles
 			// "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.
 			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 6E-05); k++) {
 				// inside of this for loop corresponds to one single splotch of our Ore.
-				// First, we randomly choose any coordinate in the world by choosing a random x and y value.
+				// 首先, we randomly choose any coordinate in the world by choosing a random x and y value.
 				int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 
 				// WorldGen.worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.

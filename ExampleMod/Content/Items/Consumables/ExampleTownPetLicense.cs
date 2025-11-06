@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool? UseItem(Player player) {
-			// Only do something if the License hasn't been used before or the Town Pet exists in the world.
+			// 仅 do something if the License hasn't been used before or the Town Pet exists in the world.
 			int npcType = ModContent.NPCType<ExampleTownPet>(); // The NPC Type for the Town Pet.
 			if (player.ItemAnimationJustStarted && (!ExampleTownPetSystem.boughtExampleTownPet || NPC.AnyNPCs(npcType))) {
 				if (player.whoAmI == Main.myPlayer) {

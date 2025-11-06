@@ -10,7 +10,7 @@ namespace ExampleMod
 	// This example will teach the most commonly sought after effect: "How to do X if the player has Y?"
 	// X in this example will be "Apply a debuff to enemies."
 	// Y in this example will be "Wearing an accessory."
-	// After studying this example, you can change X to other effects by changing the "hook" you use or the code within the hook you use. For example, you could use OnHitByNPC and call Projectile.NewProjectile within that hook to change X to "When the player is hit by NPC, spawn Projectiles".
+	// 之后 studying this example, you can change X to other effects by changing the "hook" you use or the code within the hook you use. For example, you could use OnHitByNPC and call Projectile.NewProjectile within that hook to change X to "When the player is hit by NPC, spawn Projectiles".
 	// We can change Y to other conditions as well. For example, you could give the player the effect by having a "potion" ModItem give a ModBuff that sets the ModPlayer variable in ModBuff.Update
 	// Another example would be an armor set effect. Simply use the ModItem.UpdateArmorSet hook 
 

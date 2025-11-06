@@ -111,7 +111,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override bool NeedSaving() {
-			return StolenItems >= 10; // Only save if the NPC has more than 10 stolen items, to avoid keeping the NPC in memory if it only has few
+			return StolenItems >= 10; // 仅 save if the NPC has more than 10 stolen items, to avoid keeping the NPC in memory if it only has few
 		}
 
 		public override void SaveData(TagCompound tag) {

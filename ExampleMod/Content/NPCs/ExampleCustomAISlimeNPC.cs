@@ -215,7 +215,7 @@ namespace ExampleMod.Content.NPCs
 				AI_FlutterTime = Main.rand.NextBool() ? 100 : 50;
 
 				// Informing MP Clients is done automatically by syncing the npc.ai array over the network whenever npc.netUpdate is set.
-				// Don't set netUpdate unless you do something non-deterministic ("random")
+				// 不要 set netUpdate unless you do something non-deterministic ("random")
 				NPC.netUpdate = true;
 			}
 

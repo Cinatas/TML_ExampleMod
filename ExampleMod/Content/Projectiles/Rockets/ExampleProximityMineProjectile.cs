@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						Projectile.alpha = 200; // 255 Alpha is completely transparent. So, 200 is almost completely invisible.
 					}
 				}
-				// Otherwise make it opaque and spawn a bunch of smoke dusts.
+				// 否则 make it opaque and spawn a bunch of smoke dusts.
 				else {
 					Projectile.alpha = 0; // 0 Alpha is completely opaque.
 					var smokeDust = Dust.NewDustDirect(new Vector2(Projectile.position.X + 3f, Projectile.position.Y + 3f) - Projectile.velocity * 0.5f, Projectile.width - 8, Projectile.height - 8, DustID.Smoke, 0f, 0f, 100);
@@ -79,7 +79,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			}
 			// Return false so the projectile doesn't get killed. If you do want your projectile to explode on contact with tiles, do not return true here.
 			// 如果 you return true, the projectile will die without being resized (no blast radius).
-			// Instead, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
+			// 代替, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
 			return false;
 		}
 

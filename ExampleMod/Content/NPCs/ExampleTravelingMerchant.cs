@@ -60,7 +60,7 @@ namespace ExampleMod.Content.NPCs
 		public override void AddShops() {
 			Shop = new ExampleTravelingMerchantShop(NPC.type);
 
-			// Always bring an ExampleItem
+			// 始终 bring an ExampleItem
 			Shop.Add<ExampleItem>();
 
 			// Bring 2 Tools
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.NPCs
 				.Add<ExampleShotgun>()
 				.Add<ExampleMinigun>()
 				.Add<ExampleFlail>()
-				.Add<ExampleAdvancedFlail>(Condition.Hardmode) // Only bring advanced examples in hardmode!
+				.Add<ExampleAdvancedFlail>(Condition.Hardmode) // 仅 bring advanced examples in hardmode!
 				.Add<ExampleWhip>()
 				.Add<ExampleWhipAdvanced>(Condition.Hardmode)
 				.Add<ExampleYoyo>();

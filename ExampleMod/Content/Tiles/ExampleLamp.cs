@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Tiles
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
-			TileObjectData.newTile.DrawFlipHorizontal = true; // Unlike vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs for more information.
+			TileObjectData.newTile.DrawFlipHorizontal = true; // 不像 vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs for more information.
 			TileObjectData.newTile.StyleLineSkip = 2;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.WaterDeath = true;
@@ -148,7 +148,7 @@ namespace ExampleMod.Content.Tiles
 
 			TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref frameX, ref frameY);
 
-			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // Don't remove any casts.
+			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 remove any casts.
 
 			// 我们 can support different flames for different styles here: int style = Main.tile[j, i].frameY / 54;
 			for (int c = 0; c < 7; c++) {

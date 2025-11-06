@@ -77,14 +77,14 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 			string fancyFolder = "Images/UI/PlayerResourceSets/FancyClassic/";
 
 			// The original position refers to the entire panel slice.
-			// However, since this overlay only modifies the "inner" portion of the slice (aka the part behind the heart),
+			// 然而, since this overlay only modifies the "inner" portion of the slice (aka the part behind the heart),
 			// the position should be modified to compensate for the sprite size difference
 			Vector2 positionOffset;
 
 			if (context.resourceNumber == context.snapshot.AmountOfLifeHearts - 1) {
 				// Final panel to draw has a special "Fancy" variant.  Determine whether it has panels to the left of it
 				if (CompareAssets(context.texture, fancyFolder + "Heart_Single_Fancy")) {
-					// First and only panel in this panel's row
+					// 首先 and only panel in this panel's row
 					positionOffset = new Vector2(8, 8);
 				}
 				else {
@@ -94,7 +94,7 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 				}
 			}
 			else if (CompareAssets(context.texture, fancyFolder + "Heart_Left")) {
-				// First panel in this row
+				// 首先 panel in this row
 				positionOffset = new Vector2(4, 4);
 			}
 			else if (CompareAssets(context.texture, fancyFolder + "Heart_Middle")) {
@@ -134,7 +134,7 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 			// Due to the replacement texture and the vanilla texture having different heights, the source needs to also be modified
 			context.source = context.texture.Frame();
 			// The original position refers to the entire panel slice.
-			// However, since this overlay only modifies the "inner" portion of the slice (aka the part behind the bar filling),
+			// 然而, since this overlay only modifies the "inner" portion of the slice (aka the part behind the bar filling),
 			// the position should be modified to compensate for the sprite size difference
 			context.position.Y += 6;
 			context.Draw();

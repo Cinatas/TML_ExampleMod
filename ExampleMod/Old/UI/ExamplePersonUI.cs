@@ -51,7 +51,7 @@ namespace ExampleMod.UI
 		// Update is called on a UIState while it is the active state of the UserInterface.
 		// We use Update to handle automatically closing our UI when the player is no longer talking to our Example Person NPC.
 		public override void Update(GameTime gameTime) {
-			// Don't delete this or the UIElements attached to this UIState will cease to function.
+			// 不要 delete this or the UIElements attached to this UIState will cease to function.
 			base.Update(gameTime);
 
 			// talkNPC is the index of the NPC the player is currently talking to. By checking talkNPC, we can tell when the player switches to another NPC or closes the NPC chat dialog.

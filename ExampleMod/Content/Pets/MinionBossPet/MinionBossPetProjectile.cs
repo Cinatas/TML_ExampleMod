@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			Main.projPet[Projectile.type] = true;
 
 			// Basics of CharacterPreviewAnimations explained in ExamplePetProjectile
-			// Notice we define our own method to use in .WithCode() below. This technically allows us to animate the projectile manually using frameCounter and frame as well
+			// 注意 we define our own method to use in .WithCode() below. This technically allows us to animate the projectile manually using frameCounter and frame as well
 			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
 				.WithOffset(-2, -22f)
 				.WithCode(CharacterPreviewCustomization);
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			Vector2 offset = new Vector2(0, Projectile.gfxOffY); // Vertical offset when the projectile is changing elevation on tiles (does not apply to this particular projectile because it is always airborne)
 			Vector2 orbitingCenter = Projectile.Center + offset;
 
-			// Don't need to draw the eyes if the pet is fully faded in
+			// 不要 need to draw the eyes if the pet is fully faded in
 			if (AlphaForVisuals >= 1) {
 				return;
 			}
@@ -80,7 +80,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			for (int i = 0; i < eyeCount; i++) {
 				Vector2 origin = Vector2.Zero; // Using origin as zero because the draw position is the center
 				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // Create a vector of length 24 with a specific rotation based on loop index
-				Vector2 drawPos = orbitingCenter - Main.screenPosition + origin + rotatedPos; // Always important to substract Main.screenPosition to translate it into screen coordinates
+				Vector2 drawPos = orbitingCenter - Main.screenPosition + origin + rotatedPos; // 始终 important to substract Main.screenPosition to translate it into screen coordinates
 				Color color = Color.White * (1f - AlphaForVisuals) * Projectile.Opacity; // Draw it in reversed alpha to the projectile
 
 				// Use this instead of Main.spriteBatch.Draw so that dyes apply to it

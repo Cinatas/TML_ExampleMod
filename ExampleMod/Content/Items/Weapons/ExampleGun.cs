@@ -95,7 +95,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}*/
 
 		// How can I make the shots appear out of the muzzle exactly?
-		// Also, when I do this, how do I prevent shooting through tiles?
+		// 另外, when I do this, how do I prevent shooting through tiles?
 		/*public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
 			Vector2 muzzleOffset = Vector2.Normalize(velocity) * 25f;
 

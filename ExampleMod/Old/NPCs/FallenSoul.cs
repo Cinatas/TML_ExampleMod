@@ -85,7 +85,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// Only show health bar of the NPC when close to the player
+		// 仅 show health bar of the NPC when close to the player
 		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) {
 			float distance = npc.Distance(Main.player[npc.target].Center);
 			if (distance <= 200) {

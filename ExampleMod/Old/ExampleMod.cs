@@ -67,7 +67,7 @@ namespace ExampleMod
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MarbleGallery"), ItemType("ExampleMusicBox"), TileType("ExampleMusicBox"));
 
 				// Change the vanilla loom texture
-				Main.instance.LoadTiles(TileID.Loom); // First load the tile texture
+				Main.instance.LoadTiles(TileID.Loom); // 首先 load the tile texture
 				Main.tileTexture[TileID.Loom] = GetTexture("Tiles/AnimatedLoom"); // Now we change it
 
 				//What if....Replace a vanilla item texture and equip texture.
@@ -417,7 +417,7 @@ namespace ExampleMod
 					playernumber = reader.ReadByte();
 					examplePlayer = Main.player[playernumber].GetModPlayer<ExamplePlayer>();
 					examplePlayer.nonStopParty = reader.ReadBoolean();
-					// Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
+					// 不像 SyncPlayer, here we have to relay/forward these changes to all other connected clients
 					if (Main.netMode == NetmodeID.Server) {
 						var packet = GetPacket();
 						packet.Write((byte)ExampleModMessageType.NonStopPartyChanged);

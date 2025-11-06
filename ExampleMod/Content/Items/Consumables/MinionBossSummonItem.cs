@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Consumables
 			// 如果 this would be for a vanilla boss that has no summon item, you would have to include this line here:
 			// NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = true;
 
-			// Otherwise the UseItem code to spawn it will not work in multiplayer
+			// 否则 the UseItem code to spawn it will not work in multiplayer
 		}
 
 		public override void SetDefaults() {

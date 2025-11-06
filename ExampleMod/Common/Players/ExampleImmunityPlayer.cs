@@ -22,7 +22,7 @@ namespace ExampleMod.Common.Players
 
 			// Different cooldownCounter values mean different damage types taken and different cooldown slots
 			// See ImmunityCooldownID for a list.
-			// Don't apply extra immunity time to pvp damage (like vanilla)
+			// 不要 apply extra immunity time to pvp damage (like vanilla)
 			if (!info.PvP) {
 				Player.AddImmuneTime(info.CooldownCounter, 60);
 			}

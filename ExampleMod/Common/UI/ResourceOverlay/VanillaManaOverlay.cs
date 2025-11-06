@@ -73,14 +73,14 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 			string fancyFolder = "Images/UI/PlayerResourceSets/FancyClassic/";
 
 			// The original position refers to the entire panel slice.
-			// However, since this overlay only modifies the "inner" portion of the slice (aka the part behind the star),
+			// 然而, since this overlay only modifies the "inner" portion of the slice (aka the part behind the star),
 			// the position should be modified to compensate for the sprite size difference
 			Vector2 positionOffset;
 
 			if (context.resourceNumber == context.snapshot.AmountOfManaStars - 1) {
 				// Final panel in the column.  Determine whether it has panels above it
 				if (CompareAssets(context.texture, fancyFolder + "Star_Single")) {
-					// First and only panel
+					// 首先 and only panel
 					positionOffset = new Vector2(4, 4);
 				}
 				else {
@@ -90,7 +90,7 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 				}
 			}
 			else if (CompareAssets(context.texture, fancyFolder + "Star_A")) {
-				// First panel in the column
+				// 首先 panel in the column
 				positionOffset = new Vector2(4, 4);
 			}
 			else {
@@ -126,7 +126,7 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 			// Due to the replacement texture and the vanilla texture having different heights, the source needs to also be modified
 			context.source = context.texture.Frame();
 			// The original position refers to the entire panel slice.
-			// However, since this overlay only modifies the "inner" portion of the slice (aka the part behind the bar filling),
+			// 然而, since this overlay only modifies the "inner" portion of the slice (aka the part behind the bar filling),
 			// the position should be modified to compensate for the sprite size difference
 			context.position.Y += 6;
 			context.Draw();

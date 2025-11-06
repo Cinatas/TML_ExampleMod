@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Items.Accessories
 
 			player.GetModPlayer<ExampleDamageModificationPlayer>().hasAbsorbTeamDamageEffect = true;
 
-			// Remember that UpdateAccessory runs for all players on all clients. Only check every 10 ticks
+			// 记住 that UpdateAccessory runs for all players on all clients. Only check every 10 ticks
 			if (player.whoAmI != Main.myPlayer && player.miscCounter % 10 == 0) {
 				Player localPlayer = Main.player[Main.myPlayer];
 				if (localPlayer.team == player.team && player.team != 0 && player.statLife > player.statLifeMax2 * DamageAbsorptionAbilityLifeThreshold && player.Distance(localPlayer.Center) <= DamageAbsorptionRange) {

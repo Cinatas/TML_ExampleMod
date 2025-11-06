@@ -76,7 +76,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 			// Return false so the projectile doesn't get killed. If you do want your projectile to explode on contact with tiles, do not return true here.
 			// 如果 you return true, the projectile will die without being resized (no blast radius).
-			// Instead, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
+			// 代替, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
 			return false;
 		}
 

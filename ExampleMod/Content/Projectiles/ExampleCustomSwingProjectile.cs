@@ -99,7 +99,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 			else {
 				if (Projectile.spriteDirection == 1) {
-					// However, we limit the rangle of possible directions so it does not look too ridiculous
+					// 然而, we limit the rangle of possible directions so it does not look too ridiculous
 					targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
 				}
 				else {
@@ -110,7 +110,7 @@ namespace ExampleMod.Content.Projectiles
 					targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
 				}
 
-				InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle
+				InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // 否则, we calculate the angle
 			}
 		}
 

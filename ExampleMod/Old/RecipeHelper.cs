@@ -35,7 +35,7 @@ namespace ExampleMod
 			MakeSimpleRecipe(mod, "ExampleItem", ItemID.GoldChest); // notice how we can omit the stack, it has a default value
 			MakeSimpleRecipe(mod, "ExampleItem", ItemID.MusicBoxDungeon);
 
-			// Instead of having to call AddBossRecipes from our main file, we can also call it here, as a result the method can remain private
+			// 代替 of having to call AddBossRecipes from our main file, we can also call it here, as a result the method can remain private
 			AddBossRecipes(mod);
 		}
 

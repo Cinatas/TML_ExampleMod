@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Items
 				.AddDecraftCondition(Condition.CrimsonWorld)
 				.Register();
 
-			// Finally, the ApplyConditionsAsDecraftConditions method can be used to quickly mirror any crafting conditions onto the decrafting conditions.
+			// 最后, the ApplyConditionsAsDecraftConditions method can be used to quickly mirror any crafting conditions onto the decrafting conditions.
 		}
 	}
 
