@@ -16,13 +16,13 @@ namespace ExampleMod.Common.GlobalNPCs
 
 		public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers) {
 			if (exampleDefenseDebuff) {
-				// For best results, defense debuffs should be multiplicative
+				// 为了获得最佳效果，防御减益应该是乘法的
 				modifiers.Defense *= ExampleDefenseDebuff.DefenseMultiplier;
 			}
 		}
 
 		public override void DrawEffects(NPC npc, ref Color drawColor) {
-			// This simple color effect indicates that the buff is active
+			// 这个简单的颜色效果表明增益是活动的
 			if (exampleDefenseDebuff) {
 				drawColor.G = 0;
 			}

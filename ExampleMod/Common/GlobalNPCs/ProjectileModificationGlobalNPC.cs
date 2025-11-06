@@ -2,7 +2,7 @@
 
 namespace ExampleMod.Common.GlobalNPCs
 {
-	// This is a class for functionality related to ExampleProjectileModifications.
+	// 这是一个与 ExampleProjectileModifications 相关的功能类。
 	public class ProjectileModificationGlobalNPC : GlobalNPC
 	{
 		public override bool InstancePerEntity => true;

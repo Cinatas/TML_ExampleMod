@@ -7,22 +7,22 @@ using Terraria.ModLoader.IO;
 
 namespace ExampleMod.Common.GlobalNPCs
 {
-	// Here is a class dedicated to showcasing Send/ReceiveExtraAI()
+	// 这是一个专门展示 Send/ReceiveExtraAI() 的类
 	public class ExampleNPCNetSync : GlobalNPC
 	{
 		public override bool InstancePerEntity => true;
 		private bool differentBehavior;
 
-		// This reduces how many NPCs actually have this GlobalNPC
+		// 这减少了实际拥有此 GlobalNPC 的 NPC 数量
 		public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
 			return entity.type == NPCID.Sharkron2;
 		}
 
-		// Although this runs on both client and server, only the session that spawned the NPC knows its source
-		// As such, the check demonstrated below will always be false client-side and the code will never run!
+		// 虽然这在客户端和服务器上都运行，但只有生成 NPC 的会话知道其来源
+		// 因此，下面演示的检查在客户端始终为 false，代码永远不会运行！
 		public override void OnSpawn(NPC npc, IEntitySource source) {
 
-			// When spawned by a Cthulunado during a Blood Moon
+			// 在血月期间由克苏鲁龙卷风生成时
 			if (source is EntitySource_Parent parent
 				&& parent.Entity is Projectile projectile
 				&& projectile.type == ProjectileID.Cthulunado
@@ -31,12 +31,12 @@ namespace ExampleMod.Common.GlobalNPCs
 			}
 		}
 
-		// Because this GlobalNPC only applies to Sharkrons, this data is not attached to all NPC sync packets
+		// 因为此 GlobalNPC 仅适用于鲨鱼龙，所以此数据不会附加到所有 NPC 同步数据包
 		public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
 			bitWriter.WriteBit(differentBehavior);
 		}
 
-		// Make sure you always read exactly as much data as you sent!
+		// 确保你始终读取与发送的数据完全相同的数据量！
 		public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
 			differentBehavior = bitReader.ReadBit();
 		}
