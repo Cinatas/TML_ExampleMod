@@ -7,7 +7,7 @@ namespace ExampleMod.Common.Players
 	public class ExampleArmorSetBonusPlayer : ModPlayer
 	{
 		public bool ExampleSetHood; // 指示 if the ExampleSet with ExampleHood is the active 护甲 set.
-		public int ShadowStyle = 0; // 这是 shadow to use. Note that ExampleHood.ArmorSetShadows will only be called if the full 护甲 set is visible.
+		public int ShadowStyle = 0; // 这是 shadow to use. 注意 ExampleHood.ArmorSetShadows will only be called if the full 护甲 set is visible.
 
 		public override void ResetEffects() {
 			ExampleSetHood = false;

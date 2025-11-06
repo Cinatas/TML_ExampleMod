@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Tiles
 	public class ExampleSink : ModTile
 	{
 		public override void SetStaticDefaults() {
-			// Hello! As you may have noticed, this is a sink --- and as such, it ought to be a water source, 右?
+			// Hello! As 你可以 have noticed, 这是一个 sink --- and as such, it ought to be a water source, 右?
 			// Well, let's do it one better, shall we?
 			TileID.Sets.CountsAsWaterSource[Type] = true;
 			TileID.Sets.CountsAsHoneySource[Type] = true;

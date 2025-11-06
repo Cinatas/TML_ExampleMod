@@ -19,7 +19,7 @@ namespace ExampleMod.Common.Players
 		public override bool DrawVanitySlot => !DyeItem.IsAir;
 
 		//     We will use our 'custom' textures
-		// 背景 Textures -> In general, you can use most 的 existing vanilla ones to get different colors
+		// 背景 Textures -> 一般来说, you can use most 的 existing vanilla ones to get different colors
 		public override string VanityBackgroundTexture => "Terraria/Images/Inventory_Back14"; // yellow
 		public override string FunctionalBackgroundTexture => "Terraria/Images/Inventory_Back7"; // pale blue
 

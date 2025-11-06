@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void AddRecipes() {
-			// 默认情况下, the first added 配方 将 used for shimmer decrafting. We can use DisableDecraft() to tell the game to 忽略 this 配方 and use the below 配方 instead.
+			// 默认情况下, the first added 配方 将 used for shimmer decrafting. 我们可以 use DisableDecraft() to tell 游戏 to 忽略 this 配方 and use the below 配方 instead.
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddIngredient(ItemID.PadThai)

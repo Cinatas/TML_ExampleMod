@@ -15,7 +15,7 @@ namespace ExampleMod.Common.Players
 		public const int DefaultExampleResourceMax = 100; // 默认 最大 值 of example 资源
 		public int exampleResourceMax; // 缓冲区 变量 即 用于 重置 最大 资源 to default 值 in ResetDefaults().
 		public int exampleResourceMax2; // 最大 amount of our example 资源. We will change that 变量 to increase 最大 amount of our 资源
-		public float exampleResourceRegenRate; // By changing that 变量 we can increase/decrease regeneration rate of our 资源
+		public float exampleResourceRegenRate; // By changing that 变量 我们可以 increase/decrease regeneration rate of our 资源
 		internal int exampleResourceRegenTimer = 0; // A 变量 即 required for our 计时器
 		public bool exampleResourceMagnet = false;
 		public static readonly int exampleResourceMagnetGrabRange = 300;

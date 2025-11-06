@@ -6,12 +6,12 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// 这是 the 项 用于 summon a Boss, in this case the modded 仆从 Boss from Example Mod. For vanilla Boss summons, see comments in SetStaticDefaults
+	// 这是 the 项 用于 summon a Boss, 在这种情况下 the modded 仆从 Boss from Example Mod. For vanilla Boss summons, see comments in SetStaticDefaults
 	public class MinionBossSummonItem : ModItem
 	{
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 3;
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps 排序 库存 know that this is a Boss summoning 项.
+			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps 排序 库存 know that 这是一个 Boss summoning 项.
 
 			// 如果 this 将 for a vanilla Boss that has no summon 项, you would 必须 include this line here:
 			// NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = 真;
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override bool? UseItem(Player player) {
 			if (player.whoAmI == Main.myPlayer) {
-				// 如果 the 玩家 using the 项 is the 客户端
+				// 如果 the 玩家 使用 项 is the 客户端
 				// (explicitly excluded serverside here)
 				SoundEngine.PlaySound(SoundID.Roar, player.position);
 

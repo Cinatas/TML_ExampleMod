@@ -52,10 +52,10 @@ namespace ExampleMod
 		// You'll notice this next one is a 属性 代替 a 字段. That works too.
 		// Here we see an attribute added by tModLoader: LabelAttribute. This one allows us to add a 标签 so the 用户 knows more about the 设置 they are changing. Without a 标签, the 名称 的 字段 or 属性 is displayed.
 		[Label("Disable Example Wings Item")]
-		// Similar to 标签, this sets the 工具提示. Tooltips are useful for slightly longer and more detailed explanations of 配置 options.
+		// 类似于 标签, this sets the 工具提示. Tooltips are useful for slightly longer and more detailed explanations of 配置 options.
 		[Tooltip("Prevents Loading the ExampleWings item. Requires a Reload")]
 		// ReloadRequired hints that if this 值 is changed, a 重新加载 is required 对于 mod to properly work. 
-		// Here we use it so if we 禁用 ExampleWings from being loaded, we can properly 防止 autoload in ExampleWings.cs
+		// Here 我们使用 it so if we 禁用 ExampleWings from being loaded, 我们可以 properly 防止 autoload in ExampleWings.cs
 		// Failure to properly use ReloadRequired will cause m任何, m任何 problems including ID desync.
 		[ReloadRequired]
 		public bool DisableExampleWings { get; set; }
@@ -69,7 +69,7 @@ namespace ExampleMod
 		[Tooltip("Each player can claim one free item from this list from Example Person\nSell the item back to Example Person to take a new item")]
 		public List<ItemDefinition> ExamplePersonFreeGiftList { get; set; } = new List<ItemDefinition>();
 
-		// AcceptClientChanges is called 在 服务器 when a 客户端 玩家 attempts to change ServerSide settings in-game. 默认情况下, 客户端 changes are accepted. (As long as they don't necessitate a 重新加载)
+		// AcceptClientChanges is called 在 服务器 when a 客户端 玩家 attempts to change ServerSide settings in-game. 默认情况下, 客户端 changes are accepted. (只要 they don't necessitate a 重新加载)
 		// With more effort, a mod could implement more 控制 over changing mod settings.
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message) {
 			if (Main.player[whoAmI].name == "jopojelly") {
@@ -103,7 +103,7 @@ namespace ExampleMod
 		public bool ShowModOriginTooltip;
 
 		public override void OnChanged() {
-			// Here we use the OnChanged hook to initialize ExampleUI.visible 与 new values.
+			// Here 我们使用 the OnChanged hook to initialize ExampleUI.visible 与 new values.
 			// We maintain 两者 ExampleUI.visible and ShowCoinUI as 分离 values so ShowCoinUI can act as a default while ExampleUI.visible can change within a play 会话.
 			UI.ExampleUI.Visible = ShowCoinUI;
 		}

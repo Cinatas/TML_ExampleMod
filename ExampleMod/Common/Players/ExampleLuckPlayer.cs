@@ -18,8 +18,8 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override bool PreModifyLuck(ref float luck) { // PreModifyLuck is useful if you 想要 modify 任何 vanilla luck values or 想要 防止 vanilla luck calculations from happening.
-			Terraria.GameContent.Events.LanternNight.GenuineLanterns = true; // The game now thinks its a Lantern Night all the 时间, giving you the luck 奖励.
-			Player.HasGardenGnomeNearby = true; // The game now thinks there's a garden gnome nearby all the 时间, giving you the luck 奖励.
+			Terraria.GameContent.Events.LanternNight.GenuineLanterns = true; // 游戏 now thinks its a Lantern Night all the 时间, giving you the luck 奖励.
+			Player.HasGardenGnomeNearby = true; // 游戏 now thinks there's a garden gnome nearby all the 时间, giving you the luck 奖励.
 
 			if (Player.ladyBugLuckTimeLeft < 0) { // If you have bad ladybug luck...
 				Player.ladyBugLuckTimeLeft = 0; // ...completely 取消 it out.

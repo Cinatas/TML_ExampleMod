@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			}
 
 			if (intTime > 12) {
-				// 这是 for AM/PM 时间 rather than 24hour 时间
+				// 这是 for AM/PM 时间 而不是 24hour 时间
 				intTime -= 12;
 			}
 

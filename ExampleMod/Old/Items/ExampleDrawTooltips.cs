@@ -39,7 +39,7 @@ namespace ExampleMod.Items
 			int widthForBox = texts.Max(t => (int)ChatManager.GetStringSize(Main.fontMouseText, t, Vector2.One).X) + paddingForBox * 2;
 			// 计算 our 高度 对于 box, which 将 the sum 的 文本 heights, plus some 填充
 			int heightForBox = (int)texts.ToList().Sum(z => Main.fontMouseText.MeasureString(z).Y) + paddingForBox * 2;
-			// 设置 our boxSize to our calculated 大小, now we can use this elsewhere too
+			// 设置 our boxSize to our calculated 大小, now 我们可以 use this elsewhere too
 			boxSize = new Vector2(widthForBox, heightForBox);
 
 			// 我们将 开始 drawing the box slightly 偏移 to accommodate for 填充
@@ -81,8 +81,8 @@ namespace ExampleMod.Items
 					float drawX = line.X + boxOffset - line.font.MeasureString(sepText).X / 2;
 					float drawY = line.Y + sepHeight / 2;
 
-					// Note how our line 对象 has m任何 properties we can use for drawing
-					// Here we draw the separator, note that it'd make more sense to use PostDraw for this, but 任一 will work
+					// Note how our line 对象 has m任何 properties 我们可以 use for drawing
+					// Here we draw the separator, 注意 it'd make more sense to use PostDraw for this, but 任一 will work
 					ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, line.font, sepText,
 						new Vector2(drawX, drawY), line.color, line.rotation, line.origin, line.baseScale, line.maxWidth, line.spread);
 

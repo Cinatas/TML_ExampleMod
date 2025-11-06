@@ -99,7 +99,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void OnKill() {
-			// Boss minions typically have a 概率 to 放下 an additional heart 项 in addition 到 default 概率
+			// Boss minions typically have a 概率 to 放下 an additional heart 项 另外 到 default 概率
 			Player closestPlayer = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
 
 			if (Main.rand.NextBool(2) && closestPlayer.statLife < closestPlayer.statLifeMax2) {
@@ -172,7 +172,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 				RotationTimer = 0;
 			}
 
-			// Since RotationTimer is in degrees (0..360) we can convert it to radians (0..TwoPi) easily
+			// Since RotationTimer is in degrees (0..360) 我们可以 convert it to radians (0..TwoPi) easily
 			float continuousRotation = MathHelper.ToRadians(RotationTimer);
 			rad += continuousRotation;
 			if (rad > MathHelper.TwoPi) {

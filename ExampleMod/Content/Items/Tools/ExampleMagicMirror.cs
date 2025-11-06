@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Tools
 {
-	// Magic Mirror is one 的 only vanilla items that does its action somewhere other than the 开始 of its 动画, 即 why we use code in UseStyle NOT UseItem.
+	// Magic Mirror is one 的 only vanilla items that does its action somewhere other than the 开始 of its 动画, 即 why 我们使用 code in UseStyle NOT UseItem.
 	// 它可能 prove a useful guide for ModItems with similar behaviors.
 	internal class ExampleMagicMirror : ExampleItem
 	{

@@ -24,13 +24,13 @@ namespace ExampleMod.Content.Tiles
 
 
 		public override void ModifyFrameMerge(int i, int j, ref int up, ref int down, ref int left, ref int right, ref int upLeft, ref int upRight, ref int downLeft, ref int downRight) {
-			//We use this 方法 to set the 合并 values 的 adjacent tiles to -2 if the 图格 nearby is a snow 方块
-			//-2 is what terraria uses to designate the tiles that will 合并 with ours using the custom frames
+			//我们使用 this 方法 to set the 合并 values 的 adjacent tiles to -2 if the 图格 nearby is a snow 方块
+			//-2 is what terraria uses to designate the tiles that will 合并 with ours 使用 custom frames
 			WorldGen.TileMergeAttempt(-2, TileID.SnowBlock, ref up, ref down, ref left, ref right, ref upLeft, ref upRight, ref downLeft, ref downRight);
 		}
 
 		public override void PostTileFrame(int i, int j, int up, int down, int left, int right, int upLeft, int upRight, int downLeft, int downRight) {
-			//For 每个 even Y 坐标, we will 偏移 the 图格's vertical 帧 by the 大小 的 sheet so the 图格's 帧 ends up using the alternate 版本 在 duplicated sheet below
+			//For 每个 even Y 坐标, we will 偏移 the 图格's vertical 帧 by the 大小 的 sheet so the 图格's 帧 ends up 使用 alternate 版本 在 duplicated sheet below
 			if (j % 2 == 0) {
 				Tile t = Main.tile[i, j];
 				t.TileFrameY += 270;

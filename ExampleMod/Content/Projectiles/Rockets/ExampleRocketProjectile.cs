@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 					}
 				}
 
-				// Increase the 速度 的 火箭 if it is moving less than 1 方块 per second.
+				// Increase the 速度 的 火箭 if it is moving 少于 1 方块 per second.
 				// 它是 not recommended to increase the 数字 past 16f to increase the 速度 的 火箭. It could 开始 no clipping through blocks.
 				// 代替, increase extraUpdates in SetDefaults() to make the 火箭 移动 faster.
 				if (Math.Abs(Projectile.velocity.X) <= 15f && Math.Abs(Projectile.velocity.Y) <= 15f) {

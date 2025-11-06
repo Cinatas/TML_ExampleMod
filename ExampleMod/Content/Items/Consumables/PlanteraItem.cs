@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// 这是 the 项 用于 summon a Boss, in this case the vanilla Plantera Boss.
+	// 这是 the 项 用于 summon a Boss, 在这种情况下 the vanilla Plantera Boss.
 	public class PlanteraItem : ModItem
 	{
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 3;
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps 排序 库存 know that this is a Boss summoning 项.
+			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps 排序 库存 know that 这是一个 Boss summoning 项.
 
 			// 这是 set to 真 for all NPCs that 可以 summoned via an 项 (calling NPC.SpawnOnPlayer). If this is for a modded Boss,
 			// write this 在 bosses 文件 instead
@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override bool? UseItem(Player player) {
 			if (player.whoAmI == Main.myPlayer) {
-				// 如果 the 玩家 using the 项 is the 客户端
+				// 如果 the 玩家 使用 项 is the 客户端
 				// (explicitly excluded serverside here)
 				SoundEngine.PlaySound(SoundID.Roar, player.position);
 

@@ -27,10 +27,10 @@ namespace ExampleMod
 			FrostBurnSummon = false;
 		}
 
-		// Here we use a "hook" to actually let our frostBurnSummon status take 效果. This hook is called 任何time a 玩家 owned 弹幕 hits an 敌人. 
+		// Here 我们使用 a "hook" to actually let our frostBurnSummon status take 效果. This hook is called 任何time a 玩家 owned 弹幕 hits an 敌人. 
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) {
 			// frostBurnSummon, as its 名称 suggests, applies frostBurn to 敌人 NPC but only for Summon projectiles.
-			// In this if statement we check 几个 conditions. We first check to make sure the 弹幕 that hit the NPC is 任一 a 仆从 弹幕 or a 弹幕 that minions shoot.
+			// In this if statement we check 几个 conditions. We first check to 确保 the 弹幕 that hit the NPC is 任一 a 仆从 弹幕 or a 弹幕 that minions shoot.
 			// We then check that frostBurnSummon is set to 真. The last check for not noEnchantments is because some projectiles don't 允许 enchantments and we 想要 honor that restriction.
 			if ((proj.minion || ProjectileID.Sets.MinionShot[proj.type]) && FrostBurnSummon && !proj.noEnchantments) {
 				// If all those checks pass, we apply FrostBurn for some 随机 持续时间.
@@ -43,7 +43,7 @@ namespace ExampleMod
 
 	// Below is SimpleAccessory, the ModItem that gives the 玩家 the frostBurnSummon 效果 when worn as an 饰品.
 
-	// Note that since this namespace is nested with在 outer namespace of "ExampleMod", the full namespace is ExampleMod.Items.护甲. This is important because textures are loaded 从 namespace and classname. Even though this 类 is in a .cs 文件 在 root 文件夹 的 mod, the namespace decides where to 查找 项 and 动画 textures.
+	// 注意 since this namespace is nested with在 outer namespace of "ExampleMod", the full namespace is ExampleMod.Items.护甲. This is important because textures are loaded 从 namespace and classname. 尽管 this 类 is in a .cs 文件 在 root 文件夹 的 mod, the namespace decides where to 查找 项 and 动画 textures.
 	namespace Items.Armor
 	{
 		// Assigning 多个 EquipType/动画 textures is easily done.
@@ -59,7 +59,7 @@ namespace ExampleMod
 			}
 
 			public override void UpdateAccessory(Player player, bool hideVisual) {
-				// To assign the 玩家 the frostBurnSummon 效果, we can't do 玩家.frostBurnSummon = 真 because 玩家 doesn't have frostBurnSummon. Be sure to remember to call the GetModPlayer 方法 to retrieve the ModPlayer 实例 attached 到 specified 玩家.
+				// To assign the 玩家 the frostBurnSummon 效果, 我们可以't do 玩家.frostBurnSummon = 真 because 玩家 doesn't have frostBurnSummon. Be sure to remember to call the GetModPlayer 方法 to retrieve the ModPlayer 实例 attached 到 specified 玩家.
 				player.GetModPlayer<SimpleModPlayer>().FrostBurnSummon = true;
 			}
 		}

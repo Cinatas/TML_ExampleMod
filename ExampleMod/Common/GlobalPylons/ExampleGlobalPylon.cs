@@ -67,9 +67,9 @@ namespace ExampleMod.Common.GlobalPylons
 		public override void PostValidTeleportCheck(TeleportPylonInfo destinationPylonInfo, TeleportPylonInfo nearbyPylonInfo, ref bool destinationPylonValid, ref bool validNearbyPylonFound, ref string errorKey) {
 			// Since there is not an explicit hook for it (since it's too specific), what if we wanted to nullify vanilla's check to 防止 accessing the Lihzahrd Temple early with a pylon?
 
-			// We just 需要 check that to see if the Lihzahrd Temple check is the actual 错误 we got (not some other 错误) which in this case is done by checking the 错误 键.
-			// We also do another quick check to make sure that we are still near a valid pylon.
-			// If 即 真, we can set destinationPylonValid to 真, overriding the teleportation prevention.
+			// We just 需要 check that to see if the Lihzahrd Temple check is the actual 错误 we got (not some other 错误) which 在这种情况下 is done by checking the 错误 键.
+			// We also do another quick check to 确保 that we are still near a valid pylon.
+			// If 即 真, 我们可以 set destinationPylonValid to 真, overriding the teleportation prevention.
 			if (validNearbyPylonFound && errorKey == "Net.CannotTeleportToPylonBecauseAccessingLihzahrdTempleEarly") {
 				destinationPylonValid = true;
 			}

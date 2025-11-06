@@ -18,7 +18,7 @@ namespace ExampleMod.Common.Systems
 			int[] itemsToPlaceInFrozenChests = { ModContent.ItemType<ExampleMountItem>(), ModContent.ItemType<ExampleLightPetItem>(), ItemID.PinkJellyfishJar };
 			// This 变量 will 帮助 循环 through the items 以便 different Frozen Chests get different items
 			int itemsToPlaceInFrozenChestsChoice = 0;
-			// Rather than place items in each 箱子, we'll place up to 6 items (2 of each). 
+			// 而不是 place items in each 箱子, we'll place up to 6 items (2 of each). 
 			int itemsPlaced = 0;
 			int maxItems = 6;
 			// 循环 over all the chests
@@ -32,7 +32,7 @@ namespace ExampleMod.Common.Systems
 				// If you look 在 精灵 for Chests by extracting Tiles_21.xnb, you'll see th在 12th 箱子 is the Frozen 箱子. Since we are counting from 0, this is where 11 comes from. 36 comes 从 宽度 of each 图格 including 填充. An alternate approach is to check the wiki and looking 对于 "Internal 图格 ID" section 在 infobox: https://terraria.wiki.gg/wiki/Frozen_Chest
 				if (chestTile.TileType == TileID.Containers && chestTile.TileFrameX == 11 * 36) {
 					// 我们有 found a Frozen 箱子
-					// If we don't 想要 add one 的 items to 每个 Frozen 箱子, we can randomly 跳过 this 箱子 with a 33% 概率.
+					// If we don't 想要 add one 的 items to 每个 Frozen 箱子, 我们可以 randomly 跳过 this 箱子 with a 33% 概率.
 					if (WorldGen.genRand.NextBool(3))
 						continue;
 					// Next we 需要 查找 the first empty 槽位 for our 项

@@ -34,7 +34,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DamageType = DamageClass.Melee;
 			Projectile.ownerHitCheck = true; // 防止s hits through tiles. Most melee weapons that use projectiles have this
 			Projectile.extraUpdates = 1; // 更新 1+extraUpdates times per tick
-			Projectile.timeLeft = 360; // This 值 does not matter since we manually kill it earlier, it just has to be higher than the 持续时间 we use in AI
+			Projectile.timeLeft = 360; // This 值 does not matter since we manually kill it earlier, it just has to be higher than the 持续时间 我们使用 in AI
 			Projectile.hide = true; // 重要 when used alongside 玩家.heldProj. "Hidden" projectiles have special draw conditions
 		}
 
@@ -55,7 +55,7 @@ namespace ExampleMod.Content.Projectiles
 			// Fade in and out
 			// 获取LerpValue returns a 值 between 0f and 1f - if clamped is 真 - representing how far 计时器 got along the "距离" defined by the first two parameters
 			// first call handles the fade in, the second one the fade out.
-			// 注意 the second call's parameters are swapped, this means the result 将 reverted
+			// 注意 the second call's parameters are swapped, 这意味着 the result 将 reverted
 			Projectile.Opacity = Utils.GetLerpValue(0f, FadeInDuration, Timer, clamped: true) * Utils.GetLerpValue(TotalDuration, TotalDuration - FadeOutDuration, Timer, clamped: true);
 
 			// Keep locked on到 玩家, but extend further based 在 given 速度 (Requires ShouldUpdatePosition returning 假 to work)

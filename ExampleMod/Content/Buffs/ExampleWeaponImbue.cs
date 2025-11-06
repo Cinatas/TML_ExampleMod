@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Buffs
 {
 	/// <summary>
 	/// 仅 a single 武器 imbue 增益 can apply to a 玩家 at a 时间, Main.meleeBuff ensures that this restriction is met.
-	/// See also ExampleFlask and ExampleWeaponEnchantmentPlayer.
+	/// 另请参阅 ExampleFlask and ExampleWeaponEnchantmentPlayer.
 	/// </summary>
 	public class ExampleWeaponImbue : ModBuff
 	{

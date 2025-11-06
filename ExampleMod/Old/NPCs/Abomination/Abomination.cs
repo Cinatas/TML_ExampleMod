@@ -267,7 +267,7 @@ namespace ExampleMod.NPCs.Abomination
 			}
 		}
 
-		// 我们使用 this hook to 防止 任何 loot from dropping. We do this because this is a multistage npc and it shouldn't 放下 任何thing until the final form is dead.
+		// 我们使用 this hook to 防止 任何 loot from dropping. We do this because 这是一个 multistage npc and it shouldn't 放下 任何thing until the final form is dead.
 		public override bool PreNPCLoot() {
 			return false;
 		}

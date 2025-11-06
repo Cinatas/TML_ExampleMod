@@ -28,7 +28,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public int LocalizedLabel;
 
 		// These 3 examples showcase the power of interpolating values in到 translations.
-		// Note how all 3 are using the same 标签 键, but are interpolating different values in到 标签 翻译, resulting in different 文本. The same is done for tooltips.
+		// Note how all 3 are 使用 same 标签 键, but are interpolating different values in到 标签 翻译, resulting in different 文本. The same is done for tooltips.
 		// 使用 this approach to reduce unnecessary duplication of 文本.
 		// Note: using nameof can 帮助 avoid typos and errors. That would look like: $"$Mods.ExampleMod.Items.{nameof(ExampleYoyo)}.DisplayName"
 		// Note: These examples use 颜色 and 项 chat tags. See here for 帮助 on using Tags: https://terraria.wiki.gg/wiki/Chat#Tags

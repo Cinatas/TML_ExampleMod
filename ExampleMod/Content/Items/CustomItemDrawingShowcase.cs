@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Items
 
 		public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
 			if (drawMode == DrawModeGlowmask) {
-				// 对于 a glowmask 即 the same dimensions as the 项 精灵, we can use all the provided parameters as is to draw the glowmask 纹理.
+				// 对于 a glowmask 即 the same dimensions as the 项 精灵, 我们可以 use all the provided parameters as is to draw the glowmask 纹理.
 				spriteBatch.Draw(frontTexture.Value, position, frame, drawColor, 0, origin, scale, SpriteEffects.None, 0);
 			}
 		}
@@ -163,8 +163,8 @@ namespace ExampleMod.Content.Items
 			Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, origin.Y);
 
 			if (drawMode == DrawModeGlowmask) {
-				// 对于 a glowmask 即 the same dimensions as the 项 精灵, we can use all the provided parameters as is to draw the glowmask 纹理.
-				// 代替 的 provided lightColor, however, we use 颜色.White since we 想要 draw the glowmask 纹理 at full brightness 无论 世界 lighting conditions.
+				// 对于 a glowmask 即 the same dimensions as the 项 精灵, 我们可以 use all the provided parameters as is to draw the glowmask 纹理.
+				// 代替 的 provided lightColor, however, 我们使用 颜色.White since we 想要 draw the glowmask 纹理 at full brightness 无论 世界 lighting conditions.
 				spriteBatch.Draw(frontTexture.Value, drawPosition, itemFrame, Color.White, rotation, origin, scale, SpriteEffects.None, 0);
 			}
 		}

@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.InteractibleByNPCs[Type] = true;
 
 			// TileObjectData assignment
-			// TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will 不 copying from it in this case
+			// TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will 不 copying from it 在这种情况下
 			// 使用 Style2x2 as a base, we will create a TileObjectData with 5 alternate placements, each 锚定 to a different anchor.
 			// 我们 also adjust the 原点 对于 alternates to 匹配 vanilla. Style2x2 starts with a 原点 at 0, 1 and a AnchorBottom, these will 两者 be adjusted 在 alternates.
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);

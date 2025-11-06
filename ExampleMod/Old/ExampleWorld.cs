@@ -356,7 +356,7 @@ namespace ExampleMod
 				VolcanoCountdown--;
 				if (VolcanoCountdown == 0) {
 					VolcanoTremorTime = DefaultVolcanoTremorTime;
-					// Since PostUpdate only happens in single and 服务器, we 需要 inform the clients to shake if this is a 服务器
+					// Since PostUpdate only happens in single and 服务器, we 需要 inform the clients to shake if 这是一个 服务器
 					if (Main.netMode == NetmodeID.Server) {
 						var netMessage = mod.GetPacket();
 						netMessage.Write((byte)ExampleModMessageType.SetTremorTime);
@@ -400,7 +400,7 @@ namespace ExampleMod
 			}
 		}
 
-		// In ExampleMod, we use PostDrawTiles to draw the TEScoreBoard 区域. PostDrawTiles draws before players, npc, and projectiles, so it works well.
+		// In ExampleMod, 我们使用 PostDrawTiles to draw the TEScoreBoard 区域. PostDrawTiles draws before players, npc, and projectiles, so it works well.
 		public override void PostDrawTiles() {
 			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 

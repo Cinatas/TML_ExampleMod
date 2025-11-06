@@ -201,7 +201,7 @@ namespace ExampleMod.Content.Projectiles
 			if (chargeRatio >= VisualEffectThreshold) {
 				ProduceBeamDust(beamColor);
 
-				// 如果 the game is rendering (i.e. isn't a dedicated 服务器), make the beam disturb water.
+				// 如果 游戏 is rendering (i.e. isn't a dedicated 服务器), make the beam disturb water.
 				if (Main.netMode != NetmodeID.Server) {
 					ProduceWaterRipples(beamDims);
 				}
@@ -349,7 +349,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// Automatically iterates through 每个 图格 the laser is overlapping to 剪切 grass at all those locations.
 		public override void CutTiles() {
-			// tilecut_0 is an unnamed decompiled 变量 which tells CutTiles how the tiles are being 剪切 (in this case, via a 弹幕).
+			// tilecut_0 is an unnamed decompiled 变量 which tells CutTiles how the tiles are being 剪切 (在这种情况下, via a 弹幕).
 			DelegateMethods.tilecut_0 = TileCuttingContext.AttackProjectile;
 			Utils.TileActionAttempt cut = new Utils.TileActionAttempt(DelegateMethods.CutTiles);
 			Vector2 beamStartPos = Projectile.Center;

@@ -94,7 +94,7 @@ namespace ExampleMod
 		// 例如, examplePet doesn't 需要 be synced because all clients know th在 玩家 is wearing the ExamplePet 项 in an equipment 槽位. 
 		// The examplePet bool is set for that 玩家 on 每个 clients computer independently (via the 增益.更新), keeping that 数据 in 同步.
 		// 示例LifeFruits, however might be out of 同步. 例如, when joining a 服务器, we 需要 share the exampleLifeFruits 变量 with all other clients.
-		// In addition, in ExampleUI we have a 按钮 that toggles "Non-停止 Party". We 需要 同步 this whenever it changes.
+		// 另外, in ExampleUI we have a 按钮 that toggles "Non-停止 Party". We 需要 同步 this whenever it changes.
 		public override void clientClone(ModPlayer clientClone) {
 			ExamplePlayer clone = clientClone as ExamplePlayer;
 			// Here we would make a backup clone of values that are only correct 在 local players 玩家 实例.
@@ -138,7 +138,7 @@ namespace ExampleMod
 				{"nonStopParty", nonStopParty},
 				{nameof(examplePersonGiftReceived), examplePersonGiftReceived},
 			};
-			//note that C# 6.0 supports indexer initializers
+			//注意 C# 6.0 supports indexer initializers
 			//返回 new TagCompound {
 			//	["分数"] = 分数
 			//};
@@ -709,7 +709,7 @@ namespace ExampleMod
 		}
 
 		public override void PostBuyItem(NPC vendor, Item[] shop, Item item) {
-			// Here we use PostBuyItem to 限制 the 玩家 to only buying 1 项 从 ExamplePersonFreeGiftList by removing items 从 商店.
+			// Here 我们使用 PostBuyItem to 限制 the 玩家 to only buying 1 项 从 ExamplePersonFreeGiftList by removing items 从 商店.
 			if (vendor.type == NPCType<ExamplePerson>() && item.GetGlobalItem<ExampleInstancedGlobalItem>().examplePersonFreeGift) {
 				examplePersonGiftReceived = true;
 				foreach (var shopItem in shop) {
@@ -721,7 +721,7 @@ namespace ExampleMod
 		}
 
 		public override void PostSellItem(NPC vendor, Item[] shopInventory, Item item) {
-			// Here we use PostSellItem to let the 玩家 购买 a different 项 从 ExamplePersonFreeGiftList when the 玩家 sells the 项 back.
+			// Here 我们使用 PostSellItem to let the 玩家 购买 a different 项 从 ExamplePersonFreeGiftList when the 玩家 sells the 项 back.
 			if (vendor.type == NPCType<ExamplePerson>() && (GetInstance<ExampleConfigServer>().ExamplePersonFreeGiftList?.Any(x => x.Type == item.type) ?? false)) {
 				examplePersonGiftReceived = false;
 				item.TurnToAir();

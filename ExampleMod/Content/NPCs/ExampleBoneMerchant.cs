@@ -44,7 +44,7 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y 偏移.
 			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says th在 Town NPC has a Shimmered form. Otherwise, the Town NPC 将come transparent when touching Shimmer like other enemies.
 
-			//This sets entry is the most important part of this NPC. Since it is 真, it tells the game that we want this NPC to act like a town NPC without ACTUALLY being one.
+			//This sets entry is the most important part of this NPC. Since it is 真, it tells 游戏 that we want this NPC to act like a town NPC without ACTUALLY being one.
 			//What that means is: the NPC will have the AI of a town NPC, will 攻击 like a town NPC, and have a 商店 (or 任何 other additional functionality if you wish) like a town NPC.
 			//However, the NPC will not have their head displayed 在 地图, will de-生成 when no players are nearby or the 世界 is closed, and will 生成 like 任何 other NPC.
 			NPCID.Sets.ActsLikeTownNPC[Type] = true;
@@ -52,8 +52,8 @@ namespace ExampleMod.Content.NPCs
 			// 这防止 the happiness 按钮
 			NPCID.Sets.NoTownNPCHappiness[Type] = true;
 
-			//To reiterate, since this NPC isn't technically a town NPC, we 需要 tell the game that we still want this NPC to have a custom/randomized 名称 when they 生成.
-			//In 顺序 to do this, we simply make this hook 返回 真, which will make the game call the TownNPCName 方法 when spawning the NPC to determine the NPC's 名称.
+			//To reiterate, since this NPC isn't technically a town NPC, we 需要 tell 游戏 that we still want this NPC to have a custom/randomized 名称 when they 生成.
+			//In 顺序 to do this, we simply make this hook 返回 真, which will make 游戏 call the TownNPCName 方法 when spawning the NPC to determine the NPC's 名称.
 			NPCID.Sets.SpawnsWithCustomName[Type] = true;
 
 			// Connects this NPC with a custom emote.
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.NPCs
 			AnimationType = NPCID.Guide;
 		}
 
-		//Make sure to 允许 your NPC to chat, since being "like a town NPC" doesn't automatically 允许 for chatting.
+		//确保 to 允许 your NPC to chat, since being "like a town NPC" doesn't automatically 允许 for chatting.
 		public override bool CanChat() {
 			return true;
 		}

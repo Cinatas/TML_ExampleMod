@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items.Weapons
 	{
 		public override void SetStaticDefaults() {
 			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use 动画-tied 声音 playback, 以便 we're 能够 make it be tied to use 时间 instead 在 UseItem() hook.
-			ItemID.Sets.Spears[Item.type] = true; // 这允许 the game to recognize our new 项 as a spear.
+			ItemID.Sets.Spears[Item.type] = true; // 这允许 游戏 to recognize our new 项 as a spear.
 		}
 
 		public override void SetDefaults() {
@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.knockBack = 6.5f;
 			Item.noUseGraphic = true; // When 真, the 项's 精灵 will 不 visible while the 项 is in use. This is 真 because the spear 弹幕 is what's shown so we do not 想要 show the spear 精灵 以及.
 			Item.DamageType = DamageClass.Melee;
-			Item.noMelee = true; // 允许s the 项's 动画 to do 伤害. This is important because the spear is actually a 弹幕 代替 an 项. This prevents the melee hitbox of this 项.
+			Item.noMelee = true; // 允许s the 项's 动画 to do 伤害. This is important because the spear is actually a 弹幕 代替 an 项. 这防止 the melee hitbox of this 项.
 
 			// 弹幕 Properties
 			Item.shootSpeed = 3.7f; // The 速度 的 弹幕 measured in pixels per 帧.
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool CanUseItem(Player player) {
-			// 确保s no more than one spear 可以 thrown out, use this when using autoReuse
+			// 确保s no 超过 one spear 可以 thrown out, use this when using autoReuse
 			return player.ownedProjectileCounts[Item.shoot] < 1;
 		}
 

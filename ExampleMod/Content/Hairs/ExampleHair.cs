@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Hairs
 {
 	// 基于 Player_Hair_88 and Player_Hair_98
-	// 注意 that internal hair ids are 1 less than the 纹理 filename
+	// 注意 that internal hair ids are 1 少于 the 纹理 filename
 	public class ExampleHair : ModHair
 	{
 		// This determines what gender the character 将 when randomizing during character creation.

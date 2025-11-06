@@ -24,7 +24,7 @@ namespace ExampleMod.Content
 			return Main.LocalPlayer.GetModPlayer<ExampleInfoDisplayPlayer>().showMinionCount;
 		}
 
-		// 在这里 we can change the 值 that 将 displayed 在 game
+		// 在这里 我们可以 change the 值 that 将 displayed 在 game
 		public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
 			// Counting how m任何 minions we have
 			// 这是 the 值 that will show up when viewing this 显示 in normal play, 右 next 到 图标

@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items.Tools
 
 			Item.fishingPole = 30; // 设置s the poles fishing power
 			Item.shootSpeed = 12f; // 设置s the 速度 in which the bobbers are launched. Wooden Fishing Pole is 9f and Golden Fishing Rod is 17f.
-			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBobber>(); // The bobber 弹幕. Note that this 将 overridden by Fishing Bobber accessories if present, so don't assume the bobber spawned is the specified 弹幕. https://terraria.wiki.gg/wiki/Fishing_Bobbers
+			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBobber>(); // The bobber 弹幕. 注意 this 将 overridden by Fishing Bobber accessories if present, so don't assume the bobber spawned is the specified 弹幕. https://terraria.wiki.gg/wiki/Fishing_Bobbers
 		}
 
 		// Grants the High 测试 Fishing Line bool if holding the 项.
@@ -57,13 +57,13 @@ namespace ExampleMod.Content.Items.Tools
 			// 这将 make it draw 43 pixels 右 and 30 pixels up 从 玩家's 中心, while they are looking 右 and in normal gravity.
 			lineOriginOffset = new Vector2(43, -30);
 
-			// 设置s the fishing line's 颜色. Note that this 将 overridden by the colored 字符串 accessories.
+			// 设置s the fishing line's 颜色. 注意 this 将 overridden by the colored 字符串 accessories.
 			if (bobber.ModProjectile is ExampleBobber exampleBobber) {
 				// 示例Bobber has custom code to decide on a line 颜色.
 				lineColor = exampleBobber.FishingLineColor;
 			}
 			else {
-				// 如果 the bobber isn't ExampleBobber, a Fishing Bobber 饰品 is in 效果 and we use DiscoColor instead.
+				// 如果 the bobber isn't ExampleBobber, a Fishing Bobber 饰品 is in 效果 and 我们使用 DiscoColor instead.
 				lineColor = Main.DiscoColor;
 			}
 		}

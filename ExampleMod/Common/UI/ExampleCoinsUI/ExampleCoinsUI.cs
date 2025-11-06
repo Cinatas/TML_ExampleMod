@@ -28,13 +28,13 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			CoinCounterPanel = new ExampleDraggableUIPanel();
 			CoinCounterPanel.SetPadding(0);
 			// 我们需要 to place this UIElement in 关系 to its Parent. Later we 将 calling `base.Append(coinCounterPanel);`. 
-			// This means that this 类, ExampleCoinsUI, 将 our Parent. Since ExampleCoinsUI is a UIState, the 左 and 顶部 are relative 到 顶部 左 的 屏幕.
+			// 这意味着 that this 类, ExampleCoinsUI, 将 our Parent. Since ExampleCoinsUI is a UIState, the 左 and 顶部 are relative 到 顶部 左 的 屏幕.
 			// 设置Rectangle 方法 帮助 us to set the 位置 and 大小 of UIElement
 			SetRectangle(CoinCounterPanel, left: 400f, top: 100f, width: 170f, height: 70f);
 			CoinCounterPanel.BackgroundColor = new Color(73, 94, 171);
 
 			// Next, we create another UIElement that we will place. Since we 将 calling `coinCounterPanel.Append(playButton);`, 左 and 顶部 are relative 到 顶部 左 的 coinCounterPanel UIElement. 
-			// By properly nesting UIElements, we can 位置 things relatively to each other easily.
+			// By properly nesting UIElements, 我们可以 位置 things relatively to each other easily.
 			Asset<Texture2D> buttonPlayTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/ButtonPlay");
 			ExampleUIHoverImageButton playButton = new ExampleUIHoverImageButton(buttonPlayTexture, "Reset Coins Per Minute Counter");
 			SetRectangle(playButton, left: 110f, top: 10f, width: 22f, height: 22f);
@@ -56,7 +56,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 
 			Append(CoinCounterPanel);
 			// As a recap, ExampleCoinsUI is a UIState, meaning it covers the whole 屏幕. We attach CoinCounterPanel to ExampleCoinsUI some 距离 从 顶部 左 corner.
-			// We then place playButton, closeButton, and MoneyDisplay onto CoinCounterPanel so we can easily place these UIElements relative to CoinCounterPanel.
+			// We then place playButton, closeButton, and MoneyDisplay onto CoinCounterPanel so 我们可以 easily place these UIElements relative to CoinCounterPanel.
 			// Since CoinCounterPanel will 移动, this proper organization will 移动 playButton, closeButton, and MoneyDisplay properly when CoinCounterPanel moves.
 		}
 
@@ -100,7 +100,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 				coinsTextures[j] = TextureAssets.Item[74 - j].Value;
 			}
 
-			// 这允许 clicks to "pass-through" this 元素 到 parent 元素 and 不 consumed by this 元素. This allows ExampleDraggableUIPanel to be dragged even when the 用户 is clicking 在 UIMoneyDisplay.
+			// 这允许 clicks to "pass-through" this 元素 到 parent 元素 and 不 consumed by this 元素. 这允许 ExampleDraggableUIPanel to be dragged even when the 用户 is clicking 在 UIMoneyDisplay.
 			IgnoresMouseInteraction = true;
 		}
 		public void AddCoinsPerMinute(int coins) {
@@ -115,7 +115,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			if (collectedCoins == 0)
 				return 0;
 
-			// If the 时间 has passed less than minutes, the current 数字 of coins 将 displayed
+			// If the 时间 has passed 少于 minutes, the current 数字 of coins 将 displayed
 			return (int)(collectedCoins / Math.Max(1, (DateTime.Now - startTime.Value).TotalMinutes));
 		}
 

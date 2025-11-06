@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Mounts
 	{
 		private Asset<Texture2D> balloonTexture;
 
-		// Since only a single 实例 of ModMountData ever exists, we can use 玩家.坐骑._mountSpecificData to store additional 数据 与...相关 a specific 坐骑.
+		// Since only a single 实例 of ModMountData ever exists, 我们可以 use 玩家.坐骑._mountSpecificData to store additional 数据 与...相关 a specific 坐骑.
 		// 使用 something like this for gameplay effects would require ModPlayer syncing, but this example is purely visual.
 		protected class CarSpecificData
 		{

@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.timeLeft = duration;
 			}
 
-			Projectile.velocity = Vector2.Normalize(Projectile.velocity); // 速度 isn't used in this spear implementation, but we use the 字段 to store the spear's 攻击 方向.
+			Projectile.velocity = Vector2.Normalize(Projectile.velocity); // 速度 isn't used in this spear implementation, but 我们使用 the 字段 to store the spear's 攻击 方向.
 
 			float halfDuration = duration * 0.5f;
 			float progress;

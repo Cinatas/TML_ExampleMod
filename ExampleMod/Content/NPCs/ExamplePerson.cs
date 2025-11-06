@@ -263,7 +263,7 @@ namespace ExampleMod.Content.NPCs
 
 			string chosenChat = chat; // chat is implicitly cast to a 字符串. This is where the 随机 choice is made.
 
-			// 在这里 is some additional logic based 在 chosen chat line. In this case, we 想要 显示 an 项 在 corner for StandardDialogue4.
+			// 在这里 is some additional logic based 在 chosen chat line. 在这种情况下, we 想要 显示 an 项 在 corner for StandardDialogue4.
 			if (chosenChat == Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue4")) {
 				// Main.npcChatCornerItem shows a single 项 在 corner, like the Angler 任务 chat.
 				Main.npcChatCornerItem = ItemID.HiveBackpack;
@@ -282,7 +282,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (firstButton) {
-				// 我们 want 3 different functionalities for chat buttons, so we use HasItem to change 按钮 1 between a 商店 and 升级 action.
+				// 我们 want 3 different functionalities for chat buttons, so 我们使用 HasItem to change 按钮 1 between a 商店 and 升级 action.
 
 				if (Main.LocalPlayer.HasItem(ItemID.HiveBackpack)) {
 					SoundEngine.PlaySound(SoundID.Item37); // Reforge/Anvil 声音
@@ -415,7 +415,7 @@ namespace ExampleMod.Content.NPCs
 
 		// Let the NPC "talk about" 仆从 Boss
 		public override int? PickEmote(Player closestPlayer, List<int> emoteList, WorldUIAnchor otherAnchor) {
-			// 默认情况下 this NPC will have a 概率 to use the 仆从 Boss Emote even if 仆从 Boss is not downed yet
+			// 默认情况下 this NPC will have a 概率 to use the 仆从 Boss Emote 即使 仆从 Boss is not downed yet
 			int type = ModContent.EmoteBubbleType<MinionBossEmote>();
 			// 如果 the NPC is talking 到 Demolitionist, it 将 more likely to react with angry emote
 			if (otherAnchor.entity is NPC { type: NPCID.Demolitionist }) {

@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Items.Weapons
 			// 我们 can use ModifyManaCost to dynamically adjust the 魔力 成本 of this 项, 类似于 how Space Gun works 与 Meteor 护甲 set.
 			// 参见 ExampleHood to see how accessories give the reduce 魔力 成本 效果.
 			if (player.statLife < player.statLifeMax2 / 2) {
-				mult *= 0.5f; // Half the 魔力 成本 when at low 生命值. Make sure to use multiplication 与 mult 参数.
+				mult *= 0.5f; // Half the 魔力 成本 when at low 生命值. 确保 to use multiplication 与 mult 参数.
 			}
 		}
 	}

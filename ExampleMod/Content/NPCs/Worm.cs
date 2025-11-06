@@ -162,7 +162,7 @@ namespace ExampleMod.NPCs
 		public virtual bool HasCustomBodySegments => false;
 
 		/// <summary>
-		/// If not <see langword="空"/>, this NPC will 目标 the given 世界 位置 代替 its 玩家 目标
+		/// 如果不是 <see langword="空"/>, this NPC will 目标 the given 世界 位置 代替 its 玩家 目标
 		/// </summary>
 		public Vector2? ForcedTargetPosition { get; set; }
 
@@ -214,13 +214,13 @@ namespace ExampleMod.NPCs
 		private void HeadAI_SpawnSegments() {
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				// So, we 开始 the AI off by checking if NPC.ai[0] (the following NPC's whoAmI) is 0.
-				// 这是 practically ALWAYS the case with a freshly spawned NPC, so this means this is the first 更新.
-				// Since this is the first 更新, we can safely assume we 需要 生成 the rest 的 worm (bodies + tail).
+				// 这是 practically ALWAYS the case with a freshly spawned NPC, so 这意味着 this is the first 更新.
+				// Since this is the first 更新, 我们可以 safely assume we 需要 生成 the rest 的 worm (bodies + tail).
 				bool hasFollower = NPC.ai[0] > 0;
 				if (!hasFollower) {
 					// So, here we assign the NPC.realLife 值.
 					// NPC.realLife 值 is mainly 用于 determine which NPC loses life when we hit this NPC.
-					// 我们 don't want 每个 single piece 的 worm to have its own HP pool, so this is a neat way to fix that.
+					// 我们 don't want 每个 single piece 的 worm to have its own HP pool, so 这是一个 neat way to fix that.
 					NPC.realLife = NPC.whoAmI;
 					// latestNPC is 将要 be used in SpawnSegment() and I'll explain it there.
 					int latestNPC = NPC.whoAmI;
@@ -314,7 +314,7 @@ namespace ExampleMod.NPCs
 		}
 
 		private void HeadAI_CheckTargetDistance(ref bool collision) {
-			// 如果 there is no collision with tiles, we check if the 距离 between this NPC and its 目标 is too large, 以便 we can still 触发器 "collision".
+			// 如果 there is no collision with tiles, we check if the 距离 between this NPC and its 目标 is too large, 以便 我们可以 still 触发器 "collision".
 			if (!collision) {
 				Rectangle hitbox = NPC.Hitbox;
 
@@ -355,7 +355,7 @@ namespace ExampleMod.NPCs
 			Player playerTarget = Main.player[NPC.target];
 
 			Vector2 forcedTarget = ForcedTargetPosition ?? playerTarget.Center;
-			// 使用 a ValueTuple like this allows for easy assignment of 多个 values
+			// 使用 a ValueTuple like 这允许 for easy assignment of 多个 values
 			(targetXPos, targetYPos) = (forcedTarget.X, forcedTarget.Y);
 
 			// 复制 the 值, since it 将 clobbered later

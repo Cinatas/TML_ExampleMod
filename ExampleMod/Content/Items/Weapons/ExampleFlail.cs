@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
+	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail 使用 existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
 	// 示例Flail is a 复制 的 Sunfury flail 武器.
 	internal class ExampleFlail : ModItem
 	{
@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
-			// Aside from SetDefaults, when making a 复制 of a vanilla 武器 you may 必须 hunt down other bits of code. This code makes the 项 draw in full brightness when dropped.
+			// Aside from SetDefaults, when making a 复制 of a vanilla 武器 你可以 必须 hunt down other bits of code. This code makes the 项 draw in full brightness when dropped.
 			return Color.White;
 		}
 

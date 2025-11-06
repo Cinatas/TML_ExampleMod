@@ -49,7 +49,7 @@ namespace ExampleMod.NPCs
 
 				// NPC won't 生成 today if it stayed all night
 				if (traveler == null && Main.rand.NextBool(4)) { // 4 = 25% 概率
-																// Here we can make it so the NPC doesnt 生成 在 EXACT same 时间 每次 it does 生成
+																// Here 我们可以 make it so the NPC doesnt 生成 在 EXACT same 时间 每次 it does 生成
 					spawnTime = GetRandomSpawnTime(5400, 8100); // minTime = 6:00am, maxTime = 7:30am
 				}
 				else {

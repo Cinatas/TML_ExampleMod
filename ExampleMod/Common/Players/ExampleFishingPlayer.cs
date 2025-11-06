@@ -33,7 +33,7 @@ namespace ExampleMod.Common.Players
 			bool inExampleSurfaceBiome = Player.InModBiome<ExampleSurfaceBiome>();
 			if (attempt.playerFishingConditions.PoleItemType == ModContent.ItemType<ExampleFishingRod>() && inWater && inExampleSurfaceBiome) {
 				// In this example, we will fish up an Example Person 从 water in Example Surface 生物群系,
-				// as long as there isn't one 在 世界 yet
+				// 只要 there isn't one 在 世界 yet
 				// NOTE: if a fishing rod has 多个 bobbers, then each one can 生成 the NPC
 				int npc = ModContent.NPCType<ExamplePerson>();
 				if (!NPC.AnyNPCs(npc)) {
@@ -55,7 +55,7 @@ namespace ExampleMod.Common.Players
 			}
 
 			if (inWater && inExampleSurfaceBiome && attempt.crate) {
-				// If the game rolls a crate, we 想要 give ours 到 玩家 if he is in Example Surface 生物群系
+				// If 游戏 rolls a crate, we 想要 give ours 到 玩家 if he is in Example Surface 生物群系
 
 				// We don't 想要 替换 golden/titanium crates (the highest tier crates), as they take highest priority in crate catches
 				// Their 放下 conditions are "veryrare" or "legendary"
@@ -83,7 +83,7 @@ namespace ExampleMod.Common.Players
 
 		public override bool? CanConsumeBait(Item bait) {
 			// 玩家.GetFishingConditions() returns you the best fishing pole 项, 类型 and power, the best bait 项, 类型 and Power, and the total fishing 级别, including modded values
-			// These are the same Pole and Bait the game considers when calculating the obtained fish.
+			// These are the same Pole and Bait 游戏 considers when calculating the obtained fish.
 			// during CanConsumeBait, 玩家.GetFishingConditions() == attempt.playerFishingConditions from CatchFish.
 			PlayerFishingConditions conditions = Player.GetFishingConditions();
 
@@ -97,7 +97,7 @@ namespace ExampleMod.Common.Players
 
 		// If fishing with ladybug, we will receive 多个 "fish" per bobber. Does not apply to 任务 fish
 		public override void ModifyCaughtFish(Item fish) {
-			// In this example, we make sure that we got a Ladybug as bait, and later on use that to determine what we catch
+			// In this example, we 确保 that we got a Ladybug as bait, and later on use that to determine what we catch
 			if (Player.GetFishingConditions().BaitItemType == ItemID.LadyBug && fish.rare != ItemRarityID.Quest) {
 				fish.stack += Main.rand.Next(1, 4);
 			}

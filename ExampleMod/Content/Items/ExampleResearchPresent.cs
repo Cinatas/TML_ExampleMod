@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Items
 				// Re-unlock all accessories, incase mods have changed
 				OnResearched(true);
 
-				// 我们 always lose a present when researching them, even if you already had infinite 的m. To show the 用户 something happened
+				// 我们 always lose a present when researching them, 即使 you already had infinite 的m. To show the 用户 something happened
 				item.stack -= 1;
 
 				// This code is copied 从 结束 of SacrificeItem

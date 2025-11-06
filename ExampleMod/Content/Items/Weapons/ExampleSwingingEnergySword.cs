@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.scale = 1f;
 			Item.UseSound = SoundID.Item1;
 			Item.rare = ItemRarityID.Pink;
-			Item.value = Item.buyPrice(gold: 23); // 出售 价格 is 5 times less than the 购买 价格.
+			Item.value = Item.buyPrice(gold: 23); // 出售 价格 is 5 times 少于 the 购买 价格.
 			Item.DamageType = DamageClass.Melee;
 			Item.shoot = ModContent.ProjectileType<ExampleSwingingEnergySwordProjectile>();
 			Item.noMelee = true; // This is set the sword itself doesn't deal 伤害 (only the 弹幕 does).

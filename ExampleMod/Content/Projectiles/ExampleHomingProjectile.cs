@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Projectiles
 				HomingTarget = FindClosestNPC(maxDetectRadius);
 			}
 
-			// 如果 we have a homing 目标, make sure it is still valid. If the NPC dies or moves away, we'll 想要 查找 a new 目标
+			// 如果 we have a homing 目标, 确保 it is still valid. If the NPC dies or moves away, we'll 想要 查找 a new 目标
 			if (HomingTarget != null && !IsValidTarget(HomingTarget)) {
 				HomingTarget = null;
 			}

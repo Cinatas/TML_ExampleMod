@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Weapons
 {
 	public class ExampleLastPrism : ModItem
 	{
-		// 你 can use a vanilla 纹理 for your 项 by using the 格式: "Terraria/Item_<项 ID>".
+		// 你 can use a vanilla 纹理 for your 项 by 使用 格式: "Terraria/Item_<项 ID>".
 		public override string Texture => "Terraria/Images/Item_" + ItemID.LastPrism;
 		public static Color OverrideColor = new(122, 173, 255);
 

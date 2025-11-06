@@ -94,7 +94,7 @@ namespace ExampleMod.Content.NPCs
 
 			// 放下 all the stolen items when the NPC dies
 			while (StolenItems > 0) {
-				// 循环 until all items are dropped, to avoid dropping more than maxStack items
+				// 循环 until all items are dropped, to avoid dropping 超过 maxStack items
 				int droppedAmount = Math.Min(ModContent.GetInstance<ExampleItem>().Item.maxStack, StolenItems);
 				StolenItems -= droppedAmount;
 				Item.NewItem(NPC.GetSource_Death(), NPC.Center, ModContent.ItemType<ExampleItem>(), droppedAmount, true);
@@ -111,12 +111,12 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override bool NeedSaving() {
-			return StolenItems >= 10; // 仅 保存 if the NPC has more than 10 stolen items, to avoid keeping the NPC in 内存 if it only has few
+			return StolenItems >= 10; // 仅 保存 if the NPC has 超过 10 stolen items, to avoid keeping the NPC in 内存 if it only has few
 		}
 
 		public override void SaveData(TagCompound tag) {
 			if (StolenItems > 0) {
-				// 注意 that at this 点 it may have less than 10 stolen items, if another mod or part of our decides to 保存 the NPC
+				// 注意 that at this 点 it may have 少于 10 stolen items, if another mod or part of our decides to 保存 the NPC
 				tag["StolenItems"] = StolenItems;
 			}
 		}

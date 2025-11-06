@@ -31,7 +31,7 @@ namespace ExampleMod.Projectiles
 			set => projectile.localAI[0] = value;
 		}
 
-		// Are we at max charge? With c#6 you can simply use => which indicates this is a get only 属性
+		// Are we at max charge? With c#6 you can simply use => which indicates 这是一个 get only 属性
 		public bool IsAtMaxCharge => Charge == MAX_CHARGE;
 
 		public override void SetDefaults() {
@@ -168,7 +168,7 @@ namespace ExampleMod.Projectiles
 				projectile.Kill();
 			}
 			else {
-				// Do we still have enough 魔力? If not, we kill the 弹幕 because we cannot use it 任何more
+				// Do we still have enough 魔力? 如果不是, we kill the 弹幕 because we cannot use it 任何more
 				if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true)) {
 					projectile.Kill();
 				}

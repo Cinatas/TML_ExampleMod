@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Items.Armor.Vanity
 				return;
 			}
 
-			// By passing this (the ModItem) in到 项 参数 we can 引用 it later in GetEquipSlot with just the 项's 名称
+			// By passing this (the ModItem) in到 项 参数 我们可以 引用 it later in GetEquipSlot with just the 项's 名称
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Legs}", EquipType.Legs, this);
 		}
 
@@ -34,7 +34,7 @@ namespace ExampleMod.Content.Items.Armor.Vanity
 			// By changing the equipSlot 到 leg equip 纹理 槽位, the leg 纹理 will now be drawn 在 玩家
 			// We're changing the leg 槽位 so we set this to 真
 			robes = true;
-			// 在这里 we can get the equip 槽位 by 名称 since we referenced the 项 when adding the 纹理
+			// 在这里 我们可以 get the equip 槽位 by 名称 since we referenced the 项 when adding the 纹理
 			// 你 can also 缓存 the equip 槽位 in a 变量 when you add it so this way you don't 必须 call GetEquipSlot
 			equipSlot = EquipLoader.GetEquipSlot(Mod, Name, EquipType.Legs);
 		}

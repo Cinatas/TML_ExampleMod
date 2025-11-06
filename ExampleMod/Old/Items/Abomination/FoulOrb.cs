@@ -12,7 +12,7 @@ namespace ExampleMod.Items.Abomination
 	{
 		public override void SetStaticDefaults() {
 			Tooltip.SetDefault("The underworld would like this.");
-			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 13; // This helps 排序 库存 know this is a Boss summoning 项.
+			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 13; // This helps 排序 库存 know 这是一个 Boss summoning 项.
 		}
 
 		public override void SetDefaults() {

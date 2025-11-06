@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Tiles
 				return; // 这应该 not happen, but just in case.
 			}
 
-			// Since this happens during gameplay, we 需要 run this code on another thread. If we do not, the game will 经验 lag for a brief moment. This is especially necessary for 世界 生成 tasks that would take even longer to execute.
+			// Since this happens during gameplay, we 需要 run this code on another thread. If we do not, 游戏 will 经验 lag for a brief moment. This is especially necessary for 世界 生成 tasks that would take even longer to execute.
 			// 参见 https://github.com/tModLoader/tModLoader/wiki/世界-生成/#long-running-tasks f或更多 information.
 			ThreadPool.QueueUserWorkItem(_ => {
 				// Broadcast a 消息 to notify the 用户.
@@ -105,7 +105,7 @@ namespace ExampleMod.Content.Tiles
 
 		protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration) {
 			// progress.消息 is the 消息 shown 到 用户 while the following code is running.
-			// Try to make your 消息 清除. You 可以 一点 bit clever, but make sure it is descriptive enough for troubleshooting purposes.
+			// Try to make your 消息 清除. You 可以 一点 bit clever, but 确保 it is descriptive enough for troubleshooting purposes.
 			progress.Message = ExampleOreSystem.ExampleOrePassMessage.Value;
 
 			// Ores are quite simple, we simply use a for 循环 and the WorldGen.TileRunner to place splotches 的 specified 图格 在 世界.

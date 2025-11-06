@@ -21,7 +21,7 @@ namespace ExampleMod.Common.Systems
 			gameTips[GameTipID.BloodMoonZombieDoorOpening].Hide();
 			gameTips[GameTipID.SolarEclipseCreepyMonsters].Hide();
 
-			// Now, say you 想要 modify OTHER mod's tips? You can do that too! Make sure you use the 右 mod and 键 名称.
+			// Now, say you 想要 modify OTHER mod's tips? You can do that too! 确保 you use the 右 mod and 键 名称.
 			GameTipData disabledTip = gameTips.FirstOrDefault(tip => tip.FullName == "ExampleMod/DisabledExampleTip");
 			// 可选ly, if you 想要 be a bit more specific 与 提示 名称 and mod 名称, you can also do that 与 Mod and 名称 properties, like so:
 			// GameTipData disabledTip = gameTips.FirstOrDefault(提示 => 提示.Mod is Mod { 名称: "ExampleMod" } && 提示.名称 == "DisabledExampleTip");

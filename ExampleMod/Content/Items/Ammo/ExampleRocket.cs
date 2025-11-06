@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Items.Ammo
 		public override void SetStaticDefaults() {
 			AmmoID.Sets.IsSpecialist[Type] = true; // This 项 将nefit 从 Shroomite Helmet.
 
-			// 这是 where we tell the game which 弹幕 to 生成 when using this 火箭 as ammo with certain launchers.
+			// 这是 where we tell 游戏 which 弹幕 to 生成 when using this 火箭 as ammo with certain launchers.
 			// This specific 火箭 ammo is like 火箭 I's.
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.RocketLauncher].Add(Type, ModContent.ProjectileType<ExampleRocketProjectile>());
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.GrenadeLauncher].Add(Type, ModContent.ProjectileType<ExampleGrenadeProjectile>());

@@ -15,9 +15,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.height = 30; // The 高度 of 项 hitbox
 
 			Item.autoReuse = true;  // Whether or not you can hold 点击 to automatically use it again.
-			Item.damage = 12; // 设置s the 项's 伤害. Note that projectiles shot by this 武器 will use its and the used ammunition's 伤害 added together.
+			Item.damage = 12; // 设置s the 项's 伤害. 注意 projectiles shot by this 武器 will use its and the used ammunition's 伤害 added together.
 			Item.DamageType = DamageClass.Ranged; // What 类型 of 伤害 does this 项 affect?
-			Item.knockBack = 4f; // 设置s the 项's knockback. Note that projectiles shot by this 武器 will use its and the used ammunition's knockback added together.
+			Item.knockBack = 4f; // 设置s the 项's knockback. 注意 projectiles shot by this 武器 will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the 项's 动画 doesn't do 伤害.
 			Item.rare = ItemRarityID.Yellow; // The 颜色 th在 项's 名称 将 in-game.
 			Item.shootSpeed = 10f; // The 速度 的 弹幕 (measured in pixels per 帧.)

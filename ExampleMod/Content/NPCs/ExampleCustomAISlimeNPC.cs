@@ -67,7 +67,7 @@ namespace ExampleMod.Content.NPCs
 			return SpawnCondition.OverworldDaySlime.Chance * 0.1f;
 		}
 
-		// Our AI here makes our NPC sit waiting for a 玩家 to enter 范围, jumps to 攻击, flutter mid-fall to stay afloat 一点 longer, then falls 到 ground. Note that 动画 should happen in FindFrame
+		// Our AI here makes our NPC sit waiting for a 玩家 to enter 范围, jumps to 攻击, flutter mid-fall to stay afloat 一点 longer, then falls 到 ground. 注意 动画 should happen in FindFrame
 		public override void AI() {
 			// npc starts 在 asleep 状态, waiting for a 玩家 to enter 范围
 			switch (AI_State) {
@@ -143,10 +143,10 @@ namespace ExampleMod.Content.NPCs
 			}
 		}
 
-		// Here, because we use custom AI (aiStyle not set to a suitable vanilla 值), we should manually decide when Flutter Slime can fall through platforms
+		// Here, because 我们使用 custom AI (aiStyle not set to a suitable vanilla 值), we should manually decide when Flutter Slime can fall through platforms
 		public override bool? CanFallThroughPlatforms() {
 			if (AI_State == (float)ActionState.Fall && NPC.HasValidTarget && Main.player[NPC.target].Top.Y > NPC.Bottom.Y) {
-				// 如果 Flutter Slime is currently falling, we want it to keep falling through platforms as long as it's above the 玩家
+				// 如果 Flutter Slime is currently falling, we want it to keep falling through platforms 只要 it's above the 玩家
 				return true;
 			}
 
@@ -160,7 +160,7 @@ namespace ExampleMod.Content.NPCs
 			// 这是 also automatically flipped if npc.confused.
 			NPC.TargetClosest(true);
 
-			// Now we check the make sure the 目标 is still valid and within our specified notice 范围 (500)
+			// Now we check the 确保 the 目标 is still valid and within our specified notice 范围 (500)
 			if (NPC.HasValidTarget && Main.player[NPC.target].Distance(NPC.Center) < 500f) {
 				// Since we have a 目标 in 范围, we change 到 Notice 状态. (and zero out the 计时器 for good measure)
 				AI_State = (float)ActionState.Notice;
@@ -171,7 +171,7 @@ namespace ExampleMod.Content.NPCs
 		private void Notice() {
 			// 如果 the targeted 玩家 is in 攻击 范围 (250).
 			if (Main.player[NPC.target].Distance(NPC.Center) < 250f) {
-				// 在这里 we use our 计时器 to wait .33 seconds before actually jumping. In FindFrame you'll notice AI_Timer also being 用于 animate the pre-跳跃 crouch
+				// 在这里 我们使用 our 计时器 to wait .33 seconds before actually jumping. In FindFrame you'll notice AI_Timer also being 用于 animate the pre-跳跃 crouch
 				AI_Timer++;
 
 				if (AI_Timer >= 20) {

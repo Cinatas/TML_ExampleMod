@@ -17,10 +17,10 @@ namespace ExampleMod.Tiles
 			Main.tileCut[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-			// 我们需要 to change the 3x3 default to 允许 only placement anchored to 顶部 rather than on 底部. Also, the 1,1 means that only the middle 图格 needs to attach
+			// 我们需要 to change the 3x3 default to 允许 only placement anchored to 顶部 而不是 on 底部. Also, the 1,1 means that only the middle 图格 needs to attach
 			TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 1);
 			TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
-			// This is so we can place from above.
+			// This is so 我们可以 place from above.
 			TileObjectData.newTile.Origin = new Point16(1, 0);
 			TileObjectData.addTile(Type);
 		}

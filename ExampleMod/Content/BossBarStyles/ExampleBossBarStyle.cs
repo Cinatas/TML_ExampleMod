@@ -19,8 +19,8 @@ namespace ExampleMod.Content.BossBars
 			}
 
 			if (currentBar is CommonBossBigProgressBar) {
-				// 如果 this is a regular 条 without 任何 special features, we draw our own thing. Sadly, "life to 显示" is not a 变量 we can access,
-				// but since we are dealing 与 very basic implementation that only tracks a single NPC, we can use "info"
+				// 如果 这是一个 regular 条 without 任何 special features, we draw our own thing. Sadly, "life to 显示" is not a 变量 我们可以 access,
+				// but since we are dealing 与 very basic implementation that only tracks a single NPC, 我们可以 use "info"
 
 				NPC npc = Main.npc[info.npcIndexToAimAt];
 				float lifePercent = Utils.Clamp(npc.life / (float)npc.lifeMax, 0f, 1f);

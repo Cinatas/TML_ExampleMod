@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items.Tools
 	public class ExampleDrill : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// As mentioned 在 documentation, IsDrill and IsChainsaw automatically reduce useTime and useAnimation to 60% of what is set in SetDefaults and decrease tileBoost by 1, but only for vanilla items.
+			// 如前所述 在 documentation, IsDrill and IsChainsaw automatically reduce useTime and useAnimation to 60% of what is set in SetDefaults and decrease tileBoost by 1, but only for vanilla items.
 			// 我们 set it here despite it doing nothing because it is likely to be used by other mods to provide special effects to drill or chainsaw items globally.
 			ItemID.Sets.IsDrill[Type] = true;
 		}
@@ -20,8 +20,8 @@ namespace ExampleMod.Content.Items.Tools
 			Item.DamageType = DamageClass.MeleeNoSpeed; // ignores melee 速度 bonuses. There's no need for drill animations to play faster, nor drills to dig faster with melee 速度.
 			Item.width = 20;
 			Item.height = 12;
-			// IsDrill/IsChainsaw effects 必须 applied manually, so 60% or 0.6 times the 时间 的 corresponding pickaxe. In this case, 60% of 7 is 4 and 60% of 25 is 15.
-			// 如果 you decide to 复制 values from vanilla drills or chainsaws, you should multiply each one by 0.6 to get the expected behavior.
+			// IsDrill/IsChainsaw effects 必须 applied manually, so 60% or 0.6 times the 时间 的 corresponding pickaxe. 在这种情况下, 60% of 7 is 4 and 60% of 25 is 15.
+			// 如果 you decide to 复制 values from vanilla drills or chainsaws, 你应该 multiply each one by 0.6 to get the expected behavior.
 			Item.useTime = 4;
 			Item.useAnimation = 15;
 			Item.useStyle = ItemUseStyleID.Shoot;

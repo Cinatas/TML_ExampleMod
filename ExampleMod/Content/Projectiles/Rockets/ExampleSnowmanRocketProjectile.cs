@@ -95,7 +95,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				bool isHoming = false;
 				Projectile.ai[0]++; // 计时器 for how long to wait before homing.
 
-				// Wait a short amount of 时间 before homing. 15 ticks in this case.
+				// Wait a short amount of 时间 before homing. 15 ticks 在这种情况下.
 				if (Projectile.ai[0] > 15f) {
 					Projectile.ai[0] = 15f;
 

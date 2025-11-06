@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
-			// 如果 this 箭 would have strong effects (like Holy 箭 pierce), we can make it fire fewer projectiles from Daedalus Stormbow for game balance considerations like this:
+			// 如果 this 箭 would have strong effects (like Holy 箭 pierce), 我们可以 make it fire fewer projectiles from Daedalus Stormbow for game balance considerations like this:
 			//ProjectileID.Sets.FiresFewerFromDaedalusStormbow[类型] = 真;
 		}
 
@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void AI() {
-			// code below was adapted 从 ProjAIStyleID.箭 behavior. Rather than 复制 an existing aiStyle using 弹幕.aiStyle and AIType,
+			// code below was adapted 从 ProjAIStyleID.箭 behavior. 而不是 复制 an existing aiStyle using 弹幕.aiStyle and AIType,
 			// like some examples do, this example has custom AI code 即 better suited for modifying directly.
 			// 参见 https://github.com/tModLoader/tModLoader/wiki/Basic-弹幕#what-is-ai f或更多 information on custom 弹幕 AI.
 

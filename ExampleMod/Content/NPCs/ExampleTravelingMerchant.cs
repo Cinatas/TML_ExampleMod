@@ -35,7 +35,7 @@ namespace ExampleMod.Content.NPCs
 		// 列表 of items 在 traveler's 商店. Saved 与 世界 and set when the traveler spawns. Synced by the 服务器 to clients in multi 玩家
 		public readonly static List<Item> shopItems = new();
 
-		// 一个 static 实例 的 declarative 商店, defining all the items which 可以 brought. Used to create a new 库存 when the NPC spawns
+		// 一个 static 实例 的 declarative 商店, defining all the items which 可以 brought. 用于 create a new 库存 when the NPC spawns
 		public static ExampleTravelingMerchantShop Shop;
 
 		private static int ShimmerHeadIndex;
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.NPCs
 
 				// NPC won't 生成 today if it stayed all night
 				if (!travelerIsThere && Main.rand.NextBool(4)) { // 4 = 25% 概率
-					// 在这里 we can make it so the NPC doesn't 生成 在 EXACT same 时间 每次 it does 生成
+					// 在这里 我们可以 make it so the NPC doesn't 生成 在 EXACT same 时间 每次 it does 生成
 					spawnTime = GetRandomSpawnTime(5400, 8100); // minTime = 6:00am, maxTime = 7:30am
 				}
 				else {
@@ -365,7 +365,7 @@ namespace ExampleMod.Content.NPCs
 	// 此示例 uses a 'pool' concept where items 将 randomly selected from a pool with equal weight
 	// 我们 复制 a bunch of code from NPCShop and NPCShop.Entry, allowing this 商店 to be easily adjusted by other mods.
 	// 
-	// This uses some fairly advanced C# to avoid being excessively long, so make sure you learn the language before trying to adapt it significantly
+	// This uses some fairly advanced C# to avoid being excessively long, so 确保 you learn the language before trying to adapt it significantly
 	public class ExampleTravelingMerchantShop : AbstractNPCShop
 	{
 		public new record Entry(Item Item, List<Condition> Conditions) : AbstractNPCShop.Entry

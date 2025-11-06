@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override void UseAnimation(Player player) {
-			// Randomly causes the 玩家 to use Example Pickaxe Emote when using the 项
+			// Randomly causes the 玩家 to use Example Pickaxe Emote when 使用 项
 			if (Main.myPlayer == player.whoAmI && player.ItemTimeIsZero && Main.rand.NextBool(60)) {
 				EmoteBubble.MakePlayerEmote(player, ModContent.EmoteBubbleType<ExamplePickaxeEmote>());
 			}

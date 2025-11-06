@@ -26,7 +26,7 @@ namespace ExampleMod.Content.EmoteBubbles
 			return new Rectangle(EmoteBubble.frame * 34, 28 * Row, 34, 28);
 		}
 
-		// Do note that you should never use EmoteBubble 实例 as the GetFrame() 方法 above
+		// Do 注意 你应该 never use EmoteBubble 实例 as the GetFrame() 方法 above
 		// in "Emote 菜单 Methods" (methods with -InEmoteMenu 后缀).
 		// Because in that case the 值 of EmoteBubble is always 空.
 		public override Rectangle? GetFrameInEmoteMenu(int frame, int frameCounter) {
@@ -34,7 +34,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		}
 	}
 
-	// 这是 a showcase of using the same 纹理 for different emotes.
+	// 这是 a showcase of 使用 same 纹理 for different emotes.
 	// 命令 names 的se classes are defined using .hjson files 在 Localization/ 文件夹.
 	public class ExamplePersonEmote : ModTownEmote
 	{

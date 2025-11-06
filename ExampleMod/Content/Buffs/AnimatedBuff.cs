@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Buffs
 
 			// 使用 our 动画 spritesheet.
 			Texture2D ourTexture = animatedTexture.Value;
-			// Choose the 帧 to 显示, here 基于 constants and the game's tick 计数.
+			// Choose the 帧 to 显示, here 基于 constants and 游戏's tick 计数.
 			Rectangle ourSourceRectangle = ourTexture.Frame(verticalFrames: FrameCount, frameY: (int)Main.GameUpdateCount / AnimationSpeed % FrameCount);
 
 			// Other stuff you can do in this hook
@@ -54,10 +54,10 @@ namespace ExampleMod.Content.Buffs
 
 			// 对于 demonstration, 两者 options' codes are written down, but the latter is commented out using /* and */.
 
-			// 选项 1 - Let the game draw it for us. Therefore we 必须 assign our variables to drawParams:
+			// 选项 1 - Let 游戏 draw it for us. Therefore we 必须 assign our variables to drawParams:
 			drawParams.Texture = ourTexture;
 			drawParams.SourceRectangle = ourSourceRectangle;
-			// 返回 真 to let the game draw the 增益 图标.
+			// 返回 真 to let 游戏 draw the 增益 图标.
 			return true;
 
 			/*

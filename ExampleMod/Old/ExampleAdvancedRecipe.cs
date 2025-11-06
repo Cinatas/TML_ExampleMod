@@ -20,7 +20,7 @@ namespace ExampleMod
 		}
 
 		//RecipeAvailable is our 目标 here, in here we check our custom requirements
-		//Also, RecipeAvailable is called on 客户端, so we can use here Main.LocalPlayer without problems
+		//Also, RecipeAvailable is called on 客户端, so 我们可以 use here Main.LocalPlayer without problems
 		public override bool RecipeAvailable() {
 			//We will use this bool to determine is there is needed npc nearby
 			bool foundNPC = false;

@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Projectiles
 			//Main.DrawWhip_WhipBland(弹幕, 列表);
 			// code below is for custom drawing.
 			// 如果 you don't want that, you can 删除 it all and instead call one of vanilla's DrawWhip methods, like above.
-			// 然而, you must adhere to how they draw if you do.
+			// 然而, 你必须 adhere to how they draw if you do.
 
 			SpriteEffects flip = Projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 

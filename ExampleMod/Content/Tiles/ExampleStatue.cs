@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Tiles
 			const int TileWidth = 2;
 			const int TileHeight = 3;
 
-			// 在这里 we call SkipWire on all 图格 coordinates covered by this 图格. This ensures a wire 信号 won't run 多个 times.
+			// 在这里 we call SkipWire on all 图格 coordinates covered by this 图格. 这确保 a wire 信号 won't run 多个 times.
 			for (int yy = y; yy < y + TileHeight; yy++) {
 				for (int xx = x; xx < x + TileWidth; xx++) {
 					Wiring.SkipWire(xx, yy);
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Tiles
 			}
 
 			// Calculcate the 中心 of this 图格 to use as an entity spawning 位置.
-			// 注意 that we use 0.65 for 高度 because even though the statue takes 3 blocks, its appearance is shorter.
+			// 注意 that 我们使用 0.65 for 高度 because 尽管 the statue takes 3 blocks, its appearance is shorter.
 			float spawnX = (x + TileWidth * 0.5f) * 16;
 			float spawnY = (y + TileHeight * 0.65f) * 16;
 

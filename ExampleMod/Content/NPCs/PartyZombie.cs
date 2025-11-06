@@ -44,22 +44,22 @@ namespace ExampleMod.Content.NPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
 			// Since Party Zombie is essentially just another variation of Zombie, we'd like to mimic the Zombie drops.
-			// 要 do this, we can 任一 (1) 复制 the drops 从 Zombie directly or (2) just recreate the drops in our code.
+			// 要 do this, 我们可以 任一 (1) 复制 the drops 从 Zombie directly or (2) just recreate the drops in our code.
 			// (1) Copying the drops directly means that if Terraria updates and changes the Zombie drops, your ModNPC will also inherit the changes automatically.
 			// (2) Recreating the drops can give you more 控制 if desired but requires consulting the wiki, bestiary, or source code 然后 writing 放下 code.
 
-			// (1) This example shows copying the drops directly. For consistency and mod 兼容性, we suggest using the smallest positive NPCID when dealing with npcs with m任何 variants and shared 放下 pools.
+			// (1) This example shows copying the drops directly. For consistency and mod 兼容性, we suggest 使用 smallest positive NPCID when dealing with npcs with m任何 variants and shared 放下 pools.
 			var zombieDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Zombie, false); // 假 is important here
 			foreach (var zombieDropRule in zombieDropRules) {
 				// 在 this foreach 循环, we simple add each 放下 到 PartyZombie 放下 pool. 
 				npcLoot.Add(zombieDropRule);
 			}
 
-			// (2) This example shows recreating the drops. This code is commented out because we are using the previous 方法 instead.
+			// (2) This example shows recreating the drops. This code is commented out because we are 使用 previous 方法 instead.
 			// npcLoot.Add(ItemDropRule.Common(ItemID.Shackle, 50)); // 放下 shackles with a 1 out of 50 概率.
 			// npcLoot.Add(ItemDropRule.Common(ItemID.ZombieArm, 250)); // 放下 zombie arm with a 1 out of 250 概率.
 
-			// 最后, we can add additional drops. M任何 Zombie variants have their own unique drops: https://terraria.fandom.com/wiki/Zombie
+			// 最后, 我们可以 add additional drops. M任何 Zombie variants have their own unique drops: https://terraria.fandom.com/wiki/Zombie
 			npcLoot.Add(ItemDropRule.Common(ItemID.Confetti, 100)); // 1% 概率 to 放下 Confetti
 		}
 
@@ -91,7 +91,7 @@ namespace ExampleMod.Content.NPCs
 
 				// 默认情况下 the last added IBestiaryBackgroundImagePathAndColorProvider 将 用于 show the 背景 图像.
 				// 示例SurfaceBiome ModBiomeBestiaryInfoElement is automatically populated into bestiaryEntry.Info prior to this 方法 being called
-				// so we use this line to tell the game to prioritize a specific InfoElement for sourcing the 背景 图像.
+				// so 我们使用 this line to tell 游戏 to prioritize a specific InfoElement for sourcing the 背景 图像.
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<ExampleSurfaceBiome>().ModBiomeBestiaryInfoElement),
 			});
 		}
@@ -111,7 +111,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
-			// 在这里 we can make things happen if this NPC hits a 玩家 via its hitbox (not projectiles it shoots, this is handled 在 弹幕 code usually)
+			// 在这里 我们可以 make things happen if this NPC hits a 玩家 via its hitbox (not projectiles it shoots, this is handled 在 弹幕 code usually)
 			// 常见 use is applying buffs/debuffs:
 
 			int buffType = ModContent.BuffType<AnimatedBuff>();
@@ -123,7 +123,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void ModifyIncomingHit(ref NPC.HitModifiers modifiers) {
 			if (modifiers.DamageType.CountsAsClass(DamageClass.Magic)) {
-				// 此示例 shows how PartyZombie reduces magic 伤害 by 75%. We use FinalDamage here rather than SourceDamage since we are affecting how the npc reacts 到 伤害.
+				// 此示例 shows how PartyZombie reduces magic 伤害 by 75%. 我们使用 FinalDamage here 而不是 SourceDamage since we are affecting how the npc reacts 到 伤害.
 				// Conceptually, the source dealing the 伤害 isn't interpreted as weaker, but rather this NPC has a resistance to this 伤害 source.
 				modifiers.FinalDamage *= 0.25f;
 			}

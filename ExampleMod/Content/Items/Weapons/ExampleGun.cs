@@ -34,8 +34,8 @@ namespace ExampleMod.Content.Items.Weapons
 
 			// 武器 Properties
 			Item.DamageType = DamageClass.Ranged; // 设置s the 伤害 类型 to ranged.
-			Item.damage = 20; // 设置s the 项's 伤害. Note that projectiles shot by this 武器 will use its and the used ammunition's 伤害 added together.
-			Item.knockBack = 5f; // 设置s the 项's knockback. Note that projectiles shot by this 武器 will use its and the used ammunition's knockback added together.
+			Item.damage = 20; // 设置s the 项's 伤害. 注意 projectiles shot by this 武器 will use its and the used ammunition's 伤害 added together.
+			Item.knockBack = 5f; // 设置s the 项's knockback. 注意 projectiles shot by this 武器 will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the 项's 动画 doesn't do 伤害.
 
 			// Gun Properties
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.Items.Weapons
 			float rotation = MathHelper.ToRadians(45);
 
 			position += Vector2.Normalize(velocity) * 45f;
-			velocity *= 0.2f; // Slow the 弹幕 down to 1/5th 速度 so we can see it. This is only here because this example shares ModItem.SetDefaults code with other examples. If you are making your own 武器 just change 项.shootSpeed as normal.
+			velocity *= 0.2f; // Slow the 弹幕 down to 1/5th 速度 so 我们可以 see it. This is only here because this example shares ModItem.SetDefaults code with other examples. If you are making your own 武器 just change 项.shootSpeed as normal.
 
 			for (int i = 0; i < numberProjectiles; i++) {
 				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))); // Watch out for dividing by 0 if there is only 1 弹幕.

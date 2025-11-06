@@ -29,7 +29,7 @@ namespace ExampleMod.NPCs
 			npc.noTileCollide = true;
 			npc.knockBackResist = 0f;
 
-			// Because our 宽度 and 高度 don't 匹配 the 纹理 大小, we use drawOffsetY to attempt to 中心 the drawing 的 NPC. This lets the hitbox better conform 到 shape of our NPC. Hitboxes don't 旋转, so this approach is needed to let the hitbox better represent the 位置 的 damageable portion 的 NPC.
+			// Because our 宽度 and 高度 don't 匹配 the 纹理 大小, 我们使用 drawOffsetY to attempt to 中心 the drawing 的 NPC. This lets the hitbox better conform 到 shape of our NPC. Hitboxes don't 旋转, so this approach is needed to let the hitbox better represent the 位置 的 damageable portion 的 NPC.
 			drawOffsetY = 30;
 		}
 
@@ -60,7 +60,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor) {
-			// As mentioned above, be sure not to forget this 步骤.
+			// 如前所述 above, be sure not to forget this 步骤.
 			Main.spriteBatch.End();
 			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
 		}
@@ -180,7 +180,7 @@ namespace ExampleMod.NPCs
 }
 
 /*
-// Here is an alternate approach where we manually draw the NPC rather than let vanilla do that. This might be useful if you need more logic in how the npc is drawn.
+// Here is an alternate approach where we manually draw the NPC 而不是 let vanilla do that. This might be useful if you need more logic in how the npc is drawn.
 public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 {
 	SpriteEffects spriteEffects = SpriteEffects.None;
@@ -195,7 +195,7 @@ public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 	// 检索 引用 to shader
 	var deathShader = GameShaders.Misc["ExampleMod:DeathAnimation"];
 	deathShader.UseOpacity(1f);
-	// npc.ai[3] we use as a 计数器 since the real death.
+	// npc.ai[3] 我们使用 as a 计数器 since the real death.
 	if (npc.ai[3] > 30f)
 	{
 		// Our shader uses Opacity to drive the 效果.

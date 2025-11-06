@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Tiles
 	public class ExampleLivingFireTile : ModTile
 	{
 		public override void SetStaticDefaults() {
-			Main.tileLighted[Type] = true; // This tells the game that our 图格 produces light.
+			Main.tileLighted[Type] = true; // This tells 游戏 that our 图格 produces light.
 
 			// Normally, non-solid tiles can不 placed on other non-solid tiles. This set allows that.
 			// This set includes Cobwebs, 硬币 Piles, Living Fire Blocks, Smoke Blocks, and Bubble Blocks.
@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override void AnimateTile(ref int frame, ref int frameCounter) {
 			// 在这里 is where the tiles are animated.
-			// Since we are just mimicking an existing 图格, we can just use the same 帧 值.
+			// Since we are just mimicking an existing 图格, 我们可以 just use the same 帧 值.
 			frame = Main.tileFrame[TileID.LivingFire];
 
 			/* This is how it 将 done manually, spending 5 ticks on each of 4 frames, looping.

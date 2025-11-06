@@ -54,10 +54,10 @@ namespace ExampleMod.Content.Projectiles.Minions
 			Item.height = 32;
 			Item.useTime = 36;
 			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing; // how the 玩家's arm moves when using the 项
+			Item.useStyle = ItemUseStyleID.Swing; // how the 玩家's arm moves when 使用 项
 			Item.value = Item.sellPrice(gold: 30);
 			Item.rare = ItemRarityID.Cyan;
-			Item.UseSound = SoundID.Item44; // What 声音 should play when using the 项
+			Item.UseSound = SoundID.Item44; // What 声音 should play when 使用 项
 
 			// These below are needed for a 仆从 武器
 			Item.noMelee = true; // this 项 doesn't do 任何 melee 伤害
@@ -80,7 +80,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
 			projectile.originalDamage = Item.damage;
 
-			// Since we spawned the 弹幕 manually already, we do not need the game to 生成 it for ourselves 任何more, so 返回 假
+			// Since we spawned the 弹幕 manually already, we do not need 游戏 to 生成 it for ourselves 任何more, so 返回 假
 			return false;
 		}
 
@@ -179,7 +179,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 			distanceToIdlePosition = vectorToIdlePosition.Length();
 
 			if (Main.myPlayer == owner.whoAmI && distanceToIdlePosition > 2000f) {
-				// Whenever you deal with non-regular events that change the behavior or 位置 drastically, make sure to only run the code 在 所有者 的 弹幕,
+				// Whenever you deal with non-regular events that change the behavior or 位置 drastically, 确保 to only run the code 在 所有者 的 弹幕,
 				// 然后 set netUpdate to 真
 				Projectile.position = idlePosition;
 				Projectile.velocity *= 0.1f;
@@ -288,7 +288,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 				if (distanceToIdlePosition > 20f) {
 					// immediate 范围 around the 玩家 (when it passively floats about)
 
-					// 这是 a simple movement 公式 using the two parameters and its desired 方向 to create a "homing" movement
+					// 这是 a simple movement 公式 使用 two parameters and its desired 方向 to create a "homing" movement
 					vectorToIdlePosition.Normalize();
 					vectorToIdlePosition *= speed;
 					Projectile.velocity = (Projectile.velocity * (inertia - 1) + vectorToIdlePosition) / inertia;

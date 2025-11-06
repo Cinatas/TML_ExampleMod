@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Buffs
 				modifiers.FlatBonusDamage += ExampleWhipDebuff.TagDamage * projTagMultiplier;
 			}
 
-			// if you have 很多 buffs in your mod, it might be faster to 循环 over the NPC.buffType and buffTime arrays once, and 跟踪 the buffs you 查找, rather than calling HasBuff m任何 times
+			// if you have 很多 buffs in your mod, it might be faster to 循环 over the NPC.buffType and buffTime arrays once, and 跟踪 the buffs you 查找, 而不是 calling HasBuff m任何 times
 			if (npc.HasBuff<ExampleWhipAdvancedDebuff>()) {
 				// 应用 the scaling 奖励 到 next hit, 然后 删除 the 增益, like the vanilla firecracker
 				modifiers.ScalingBonusDamage += ExampleWhipAdvancedDebuff.TagDamageMultiplier * projTagMultiplier;

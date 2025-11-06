@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
+	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail 使用 existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
 	// 示例FlailProjectile is a 复制 的 Sunfury flail 弹幕.
 	internal class ExampleFlailProjectile : ModProjectile
 	{
@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Projectiles
 			return Color.White;
 		}
 
-		// 在 PreDrawExtras, we trick the game into thinking the 弹幕 is actually a Sunfury 弹幕. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the 弹幕.类型 back to normal so we don't 中断 任何thing.  
+		// 在 PreDrawExtras, we trick 游戏 into thinking the 弹幕 is actually a Sunfury 弹幕. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the 弹幕.类型 back to normal so we don't 中断 任何thing.  
 		public override bool PreDrawExtras() {
 			Projectile.type = ProjectileID.Sunfury;
 			return base.PreDrawExtras();

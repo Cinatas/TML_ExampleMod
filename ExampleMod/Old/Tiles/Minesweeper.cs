@@ -12,7 +12,7 @@ namespace ExampleMod.Tiles
 	{
 		public override void SetDefaults() {
 			// Most 1x1 tiles without a TileObjectData don't set tileFrameImportant because FrameTile will reconstruct the 帧 automatically. 
-			// This 图格 is special because we need it to preserve the hidden 地雷 tiles.
+			// This 图格 is special because 我们需要 it to preserve the hidden 地雷 tiles.
 			Main.tileFrameImportant[Type] = true;
 			Main.tileSolid[Type] = true; // 待办事项： tModLoader hook for allowing non solid tiles to be hammer-able.
 			drop = ItemType<MinesweeperItem>();
@@ -60,7 +60,7 @@ namespace ExampleMod.Tiles
 			return false;
 		}
 
-		// By using ModTile.TileFrame, we can have tiles adapt to nearby tiles however we like.
+		// By using ModTile.TileFrame, 我们可以 have tiles adapt to nearby tiles however we like.
 		// TileFrame is called to correct the frameX and frameY values of this 图格. Usually this happens when a 图格 is placed nearby or when the 世界 is first loaded.
 		public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
 			Tile tile = Main.tile[i, j];

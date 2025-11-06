@@ -44,7 +44,7 @@ namespace ExampleMod.UI
 			// Now that we've spawned the 项 back on到 玩家, we 重置 the 项 by turning it into air.
 			_vanillaItemSlot.Item.TurnToAir();
 
-			// Note that in ExamplePerson we call .SetState(new 用户界面.ExamplePersonUI());, thereby creating a new 实例 of this UIState 每次. 
+			// 注意 in ExamplePerson we call .SetState(new 用户界面.ExamplePersonUI());, thereby creating a new 实例 of this UIState 每次. 
 			// You could go with a different design, keeping around the same UIState 实例 if you wanted. This would preserve the UIState between opening and closing. Up to you.
 		}
 
@@ -54,9 +54,9 @@ namespace ExampleMod.UI
 			// 不要 删除 this or the UIElements attached to this UIState will cease to 函数.
 			base.Update(gameTime);
 
-			// talkNPC is the 索引 的 NPC the 玩家 is currently talking to. By checking talkNPC, we can tell when the 玩家 switches to another NPC or closes the NPC chat 对话框.
+			// talkNPC is the 索引 的 NPC the 玩家 is currently talking to. By checking talkNPC, 我们可以 tell when the 玩家 switches to another NPC or closes the NPC chat 对话框.
 			if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != NPCType<ExamplePerson>()) {
-				// When that happens, we can set the 状态 of our UserInterface to 空, thereby closing this UIState. This will 触发器 OnDeactivate above.
+				// When that happens, 我们可以 set the 状态 of our UserInterface to 空, thereby closing this UIState. This will 触发器 OnDeactivate above.
 				GetInstance<ExampleMod>().ExamplePersonUserInterface.SetState(null);
 			}
 		}
@@ -72,7 +72,7 @@ namespace ExampleMod.UI
 			// Here we have 很多 code. This code is mainly adapted 从 vanilla code 对于 reforge 选项.
 			// This code draws "Place an 项 here" when no 项 is 在 槽位 and draws the reforge 成本 and a reforge 按钮 when an 项 is 在 槽位.
 			// This code could possibly be better as different UIElements that are added and removed, but that's not the main 点 of this example.
-			// If you are making a 用户界面, add UIElements in OnInitialize that act on your ItemSlot or other inputs rather than the non-UIElement approach you see below.
+			// If you are making a 用户界面, add UIElements in OnInitialize that act on your ItemSlot or other inputs 而不是 the non-UIElement approach you see below.
 
 			const int SlotX = 50;
 			const int SlotY = 270;

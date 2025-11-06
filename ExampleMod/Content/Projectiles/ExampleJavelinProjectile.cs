@@ -48,11 +48,11 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DamageType = DamageClass.Ranged; // 使 the 弹幕 deal ranged 伤害. You can set in to DamageClass.Throwing, but 即 not used by 任何 vanilla items
 			Projectile.penetrate = 2; // How m任何 monsters the 弹幕 can penetrate.
 			Projectile.timeLeft = 600; // The live 时间 对于 弹幕 (60 = 1 second, so 600 is 10 seconds)
-			Projectile.alpha = 255; // The transparency 的 弹幕, 255 for completely transparent. Our custom AI below fades our 弹幕 in. Make sure to 删除 this if you aren't using an aiStyle that fades in.
+			Projectile.alpha = 255; // The transparency 的 弹幕, 255 for completely transparent. Our custom AI below fades our 弹幕 in. 确保 to 删除 this if you aren't using an aiStyle that fades in.
 			Projectile.light = 0.5f; // How much light emit around the 弹幕
 			Projectile.ignoreWater = true; // Does the 弹幕's 速度 be influenced by water?
 			Projectile.tileCollide = true; // Can the 弹幕 collide with tiles?
-			Projectile.hide = true; // 使 the 弹幕 completely invisible. We need this to draw our 弹幕 behind enemies/tiles in DrawBehind()
+			Projectile.hide = true; // 使 the 弹幕 completely invisible. 我们需要 this to draw our 弹幕 behind enemies/tiles in DrawBehind()
 		}
 
 		private const int GravityDelay = 45;

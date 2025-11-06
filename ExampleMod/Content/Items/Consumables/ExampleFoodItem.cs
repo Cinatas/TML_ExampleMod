@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Items.Consumables
 				new Color(174, 192, 192)
 			};
 
-			ItemID.Sets.IsFood[Type] = true; //This allows it to be placed on a plate and held correctly
+			ItemID.Sets.IsFood[Type] = true; //这允许 it to be placed on a plate and held correctly
 		}
 
 		public override void SetDefaults() {

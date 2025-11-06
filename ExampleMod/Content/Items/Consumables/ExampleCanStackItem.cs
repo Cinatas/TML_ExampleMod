@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override void OnStack(Item source, int numToTransfer) {
-			// Combined with CanStack above, this ensures that empty spawned items can 组合 with bags made by the current 玩家
+			// Combined with CanStack above, 这确保 that empty spawned items can 组合 with bags made by the current 玩家
 			if (craftedPlayerName == string.Empty) {
 				craftedPlayerName = ((ExampleCanStackItem)source.ModItem).craftedPlayerName;
 			}

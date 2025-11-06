@@ -10,7 +10,7 @@ namespace ExampleMod.Items
 	public class CopperShortsword : GlobalItem
 	{
 		public override void SetDefaults(Item item) {
-			if (item.type == ItemID.CopperShortsword) { // Here we make sure to only change 铜币 Shortsword by checking 项.类型 in an if statement
+			if (item.type == ItemID.CopperShortsword) { // Here we 确保 to only change 铜币 Shortsword by checking 项.类型 in an if statement
 				item.damage = 50;	// 更改d original CopperShortsword's 伤害 to 50!
 			}
 		}

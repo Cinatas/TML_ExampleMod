@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// This 属性 encloses the internal AI 变量 弹幕.localAI[0].
-		// localAI is not automatically synced over the 网络, but that does not cause 任何 problems in this case.
+		// localAI is not automatically synced over the 网络, but that does not cause 任何 problems 在这种情况下.
 		private float ManaConsumptionRate {
 			get => Projectile.localAI[0];
 			set => Projectile.localAI[0] = value;
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Projectiles
 				// 玩家.通道 indicates whether the 玩家 is still holding down the 鼠标 按钮 to use the 项.
 				bool stillInUse = player.channel && manaIsAvailable && !player.noItems && !player.CCed;
 
-				// 生成 在 Prism's lasers 在 first 帧 if the 玩家 is capable of using the 项.
+				// 生成 在 Prism's lasers 在 first 帧 if the 玩家 is capable of 使用 项.
 				if (stillInUse && FrameCounter == 1f) {
 					FireBeams();
 				}
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void PlaySounds() {
-			// Prism makes 声音 intermittently while in use, using the vanilla 弹幕 变量 soundDelay.
+			// Prism makes 声音 intermittently while in use, 使用 vanilla 弹幕 变量 soundDelay.
 			if (Projectile.soundDelay <= 0) {
 				Projectile.soundDelay = SoundInterval;
 

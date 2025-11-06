@@ -41,7 +41,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.IgnoredByGrowingSaplings[Type] = true;
 			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // 使 this 图格 interact with golf balls 在 same way other plants do
 
-			// 我们 do not use this because our 图格 should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
+			// 我们 do not use this because our 图格 should only be spelunkable when it's fully grown. That's why 我们使用 the IsTileSpelunkable hook instead
 			//Main.tileSpelunker[类型] = 真;
 
 			// Do NOT use this, it causes m任何 unintended side effects

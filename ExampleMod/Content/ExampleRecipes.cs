@@ -11,7 +11,7 @@ namespace ExampleMod.Content
 	// Recipes are explained in detail 在 https://github.com/tModLoader/tModLoader/wiki/Basic-Recipes and https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes wiki pages. Please visit the wiki to learn more about recipes 如果有的话thing is unclear.
 	public class ExampleRecipes : ModSystem
 	{
-		// 一个 place to store the 配方 分组 so we can easily use it later
+		// 一个 place to store the 配方 分组 so 我们可以 easily use it later
 		public static RecipeGroup ExampleRecipeGroup;
 
 		public override void Unload() {
@@ -30,7 +30,7 @@ namespace ExampleMod.Content
 			// 添加 an 项 to an existing Terraria recipeGroup. ExampleCritterItem isn't 金币 but it serves as an example for this.
 			RecipeGroup.recipeGroups[RecipeGroupID.GoldenCritter].ValidItems.Add(ModContent.ItemType<ExampleCritterItem>());
 
-			// While an "IronBar" 分组 exists, "SilverBar" does not. tModLoader will 合并 配方 groups registered 与 same 名称, so if you are registering a 配方 分组 with a vanilla 项 as the 1st 项, you can register it using just the internal 项 名称 if you anticipate other mods wanting to use this 配方 分组 对于 same concept. By doing this, 多个 mods can add 到 same 分组 without extra effort. In this case we are adding a SilverBar 分组. Don't store the RecipeGroup 实例, it might 不 used, use the same nameof(ItemID.ItemName) or RecipeGroupID returned from RegisterGroup when using 配方.AddRecipeGroup instead.
+			// While an "IronBar" 分组 exists, "SilverBar" does not. tModLoader will 合并 配方 groups registered 与 same 名称, so if you are registering a 配方 分组 with a vanilla 项 as the 1st 项, you can register it using just the internal 项 名称 if you anticipate other mods wanting to use this 配方 分组 对于 same concept. By doing this, 多个 mods can add 到 same 分组 without extra effort. 在这种情况下 we are adding a SilverBar 分组. Don't store the RecipeGroup 实例, it might 不 used, use the same nameof(ItemID.ItemName) or RecipeGroupID returned from RegisterGroup when using 配方.AddRecipeGroup instead.
 			RecipeGroup SilverBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.SilverBar)}",
 			ItemID.SilverBar, ItemID.TungstenBar, ModContent.ItemType<Items.Placeable.ExampleBar>());
 			RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), SilverBarRecipeGroup);
@@ -53,7 +53,7 @@ namespace ExampleMod.Content
 
 			// reason why the said chaining works is that all methods on 配方, 与 exception of Register(), 返回 its own 实例,
 			// which lets you call subsequent methods on that 返回 值, without having to 类型 a local 变量's 名称.
-			// 当 using chaining, note that only the last line is 应该 have a semicolon (;).
+			// 当 using chaining, 注意 only the last line is 应该 have a semicolon (;).
 
 			var resultItem = ModContent.GetInstance<Items.ExampleItem>();
 
@@ -61,7 +61,7 @@ namespace ExampleMod.Content
 			resultItem.CreateRecipe()
 				// 添加s a Vanilla 成分.
 				// Look up ItemIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-Content-IDs#项-ids
-				// 要 specify more than one 成分 类型, use 多个 配方.AddIngredient() calls.
+				// 要 specify 超过 one 成分 类型, use 多个 配方.AddIngredient() calls.
 				.AddIngredient(ItemID.StoneBlock)
 				// An optional 2nd 参数 will specify a 堆叠 的 项. Any calls to 任何 AddIngredient overload without a 堆叠 值 在 结束 will have the 堆叠 default to 1.
 				.AddIngredient(ItemID.Acorn, 10)
@@ -86,7 +86,7 @@ namespace ExampleMod.Content
 				// 添加s a vanilla 图格 要求.
 				// 要 specify a 制作 station, specify a 图格. Look up TileIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-图格-IDs
 				.AddTile(TileID.WorkBenches)
-				// 添加s a mod 图格 要求. To specify more than one 制作 station, use 多个 配方.AddTile() calls.
+				// 添加s a mod 图格 要求. To specify 超过 one 制作 station, use 多个 配方.AddTile() calls.
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				// An alternate 字符串-based approach 到 above. Try to only use it for other mods' tiles, because it's slower.
 				.AddTile(Mod, "ExampleWorkbench")

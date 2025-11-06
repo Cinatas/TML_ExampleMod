@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Items.Placeable
 
 			// Mods 可以 translated to 任何 的 languages tModLoader supports. See https://github.com/tModLoader/tModLoader/wiki/Localization
 			// Translations go in localization files (.hjson files), but these are listed here as an example to 帮助 modders become aware 的 possibility that users might 想要 use your mod in other lauguages:
-			// English: "Example 方块", "This is a modded 图格."
+			// English: "Example 方块", "这是一个 modded 图格."
 			// German: "Beispielblock", "Dies ist ein modded 方块"
 			// Italian: "Blocco di esempio", "Questo è un blocco moddato"
 			// French: "Bloc d'exemple", "C'est un bloc modgé"
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Items.Placeable
 			if (Main.rand.NextBool(3)) {
 				resultType = ModContent.ItemType<ExampleOre>();  // 获取 this 从 extractinator with a 1 in 3 概率.
 				if (Main.rand.NextBool(5)) {
-					resultStack += Main.rand.Next(2); // 添加 a 概率 to get more than one of ExampleOre 从 extractinator.
+					resultStack += Main.rand.Next(2); // 添加 a 概率 to get 超过 one of ExampleOre 从 extractinator.
 				}
 			}
 		}

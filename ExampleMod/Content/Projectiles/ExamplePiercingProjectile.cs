@@ -17,7 +17,7 @@ namespace ExampleMod.Content.Projectiles
 	// 2. No code and penetrate > 1, penetrate == -1, or (appliesImmunityTimeOnSingleHits && penetrate == 1): npc.immune[所有者] 将 set to 10.
 	// 	The NPC 将 hit 如果不是 immune and 将come immune to all 伤害 for 10 ticks
 	// 	Ex: Unholy 箭
-	// 3. Override OnHitNPC: If not immune, when it hits it manually set an immune other than 10
+	// 3. Override OnHitNPC: 如果不是 immune, when it hits it manually set an immune other than 10
 	// 	Ex: Arkhalis: Sets it to 5
 	// 	Ex: Sharknado 仆从: Sets to 20
 	// 	Video: https://media-1.discordapp.net/attachments/242228770855976960/1150275205017636995/Projectile_Immunity_Sharknado_Arkhalis_Example.mp4 Notice how Sharknado 仆从 hits 防止 Arkhalis hits for a brief moment.
@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Projectiles
 	// 5. 弹幕.usesLocalNPCImmunity and 弹幕.localNPCHitCooldown: Specifies the 弹幕 manages it's own immunity timers for each npc
 	// 	Use this if you want the 多个 projectiles 的 same 类型 to have a 概率 to 攻击 rapidly, but don't want a single 弹幕 to hit rapidly. A -1 值 prevents the same 弹幕 from ever hitting the npc again.
 	// 	Ex: Lightning Aura sentries use this. (localNPCHitCooldown = 3, but other code controls how fast the 弹幕 itself hits)
-	// 		Overlapping Auras all have a 概率 to hit after each other even though they share the same ID.
+	// 		Overlapping Auras all have a 概率 to hit after each other 尽管 they share the same ID.
 	// Try the above by uncommenting out the respective bits of code 在 弹幕 below.
 
 
@@ -48,7 +48,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.timeLeft = 60; // Each 更新 timeLeft is decreased by 1. Once timeLeft hits 0, the 弹幕 will naturally despawn. (60 ticks = 1 second)
 
 			Projectile.penetrate = -1;
-			// 1: 弹幕.penetrate = 1; // Will hit even if npc is currently immune to 玩家
+			// 1: 弹幕.penetrate = 1; // Will hit 即使 npc is currently immune to 玩家
 			// 2a: 弹幕.penetrate = -1; // Will hit and unless 3 is use, set 10 ticks of immunity
 			// 2b: 弹幕.penetrate = 3; // Same, but max 3 hits before dying
 			// 5: 弹幕.usesLocalNPCImmunity = 真;

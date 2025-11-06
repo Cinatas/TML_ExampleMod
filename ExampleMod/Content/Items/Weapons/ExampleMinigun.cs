@@ -34,8 +34,8 @@ namespace ExampleMod.Content.Items.Weapons
 			return Main.rand.NextFloat() >= 0.38f;
 		}
 
-		// following 方法 allows this gun to shoot when having no ammo, as long as the 玩家 has 至少 10 example items 在ir 库存.
-		// gun will then shoot as if the default ammo for it, in this case the musket ball, is being used.
+		// following 方法 allows this gun to shoot when having no ammo, 只要 the 玩家 has 至少 10 example items 在ir 库存.
+		// gun will then shoot as if the default ammo for it, 在这种情况下 the musket ball, is being used.
 		public override bool NeedsAmmo(Player player) {
 			return player.CountItem(ModContent.ItemType<ExampleItem>(), 10) < 10;
 		}

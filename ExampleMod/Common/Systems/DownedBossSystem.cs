@@ -62,7 +62,7 @@ namespace ExampleMod.Common.Systems
 			// writer.Write(flags);
 
 			// 这是一个nother way to do the same thing, but with bitmasks and the bitwise OR assignment operator (the |=)
-			// Note that 1 and 2 here are bit masks. The next values 在 pattern are 4,8,16,32,64,128. If you require more than 8 flags, make another byte.
+			// 注意 1 and 2 here are bit masks. The next values 在 pattern are 4,8,16,32,64,128. If you require 超过 8 flags, make another byte.
 			// byte flags = 0;
 			// if (downedMinionBoss)
 			// {
@@ -74,7 +74,7 @@ namespace ExampleMod.Common.Systems
 			// }
 			// writer.Write(flags);
 
-			// If you plan on having more than 8 的se flags and don't 想要 use 多个 BitsByte, an alternative is using a System.Collections.BitArray
+			// If you plan on having 超过 8 的se flags and don't 想要 use 多个 BitsByte, an alternative is using a System.Collections.BitArray
 			/*
 			bool[] flags = new bool[] {
 				downedMinionBoss,
@@ -95,7 +95,7 @@ namespace ExampleMod.Common.Systems
 			downedMinionBoss = flags[0];
 			// downedOtherBoss = flags[1];
 
-			// As mentioned in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional 数据:
+			// 如前所述 in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional 数据:
 			// BitsByte flags2 = reader.ReadByte();
 			// downed9thBoss = flags2[0];
 

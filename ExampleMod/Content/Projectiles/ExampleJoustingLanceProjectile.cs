@@ -15,9 +15,9 @@ namespace ExampleMod.Content.Projectiles
 			// Since no enemies use Jousting Lances, this will only cause the 玩家 to dismount in PVP.
 			ProjectileID.Sets.DismountsPlayersOnHit[Type] = true;
 
-			// 这将 make sure the 速度 的 弹幕 will always be the shoot 速度 set 在 项.
+			// 这将 确保 the 速度 的 弹幕 will always be the shoot 速度 set 在 项.
 			// Since the 速度 的 弹幕 affects how far out the jousting lance will 生成, we want the
-			// 速度 to always be the same even if the 玩家 has increased 攻击 速度.
+			// 速度 to always be the same 即使 the 玩家 has increased 攻击 速度.
 			ProjectileID.Sets.NoMeleeSpeedVelocityScaling[Type] = true;
 		}
 
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.width = 25;
 			Projectile.height = 25;
 
-			// aiStyle 19 is the AI for Spears. Jousting Lances use the Spear AI. If you set the aiStyle to 19, make sure to set the AIType so it actually behaves like a Jousting Lance.
+			// aiStyle 19 is the AI for Spears. Jousting Lances use the Spear AI. If you set the aiStyle to 19, 确保 to set the AIType so it actually behaves like a Jousting Lance.
 			// Since we are using custom AI below, we set the aiStyle to -1.
 			Projectile.aiStyle = -1;
 
@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Projectiles
 			float minimumDustVelocity = 6f;
 
 			// This Vector2.Dot is the dot product between the 弹幕's 速度 and the 玩家's 速度 normalized to be between -1 and 1.
-			// What this means in this context is th在 速度 值 将 closer to positive 1 if the 玩家 is moving 在 same 方向 as the directi在 lance was shot.
+			// What 这意味着 in this context is th在 速度 值 将 closer to positive 1 if the 玩家 is moving 在 same 方向 as the directi在 lance was shot.
 			// 示例： if the lance is shot up and 到 右, the 值 here 将 closer to 1 if the 玩家 is also moving up and 到 右.
 			float movementInLanceDirection = Vector2.Dot(Projectile.velocity.SafeNormalize(Vector2.UnitX * owner.direction), owner.velocity.SafeNormalize(Vector2.UnitX * owner.direction));
 
@@ -184,7 +184,7 @@ namespace ExampleMod.Content.Projectiles
 			// 获取 the currently selected 帧 在 纹理.
 			Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Type], frameY: Projectile.frame);
 
-			// 原点 in this case is (0, 0) of our 弹幕 because 弹幕.中心 is the 提示 of our Jousting Lance.
+			// 原点 在这种情况下 is (0, 0) of our 弹幕 because 弹幕.中心 is the 提示 of our Jousting Lance.
 			Vector2 origin = Vector2.Zero;
 
 			// 旋转 的 弹幕.

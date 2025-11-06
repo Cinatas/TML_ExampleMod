@@ -9,7 +9,7 @@ namespace ExampleMod.Content.TileEntities
 {
 	/// <summary>
 	/// This TileEntity is used in direct tandem with <seealso cref="ExamplePylonTileAdvanced"/> in 顺序 to grant more 灵活性 than
-	/// vanilla's normal pylon TileEntity (AKA <seealso cref="TETeleportationPylon"/>) using the <seealso cref="TEModdedPylon"></seealso> 类
+	/// vanilla's normal pylon TileEntity (AKA <seealso cref="TETeleportationPylon"/>) 使用 <seealso cref="TEModdedPylon"></seealso> 类
 	/// 即 built into tML itself.
 	/// <para>
 	/// The main example shown here is having a Pylon 即 only active at completely 随机 intervals.
@@ -27,8 +27,8 @@ namespace ExampleMod.Content.TileEntities
 		}
 
 		public override void NetSend(BinaryWriter writer) {
-			// 我们 想要 make sure that our 数据 is synced properly across clients and 服务器.
-			// NetSend is called whenever a TileEntitySharing 消息 is sent, so the game will 处理 this automatically for us,
+			// 我们 想要 确保 that our 数据 is synced properly across clients and 服务器.
+			// NetSend is called whenever a TileEntitySharing 消息 is sent, so 游戏 will 处理 this automatically for us,
 			// granted that we send a 消息 when we 需要.
 			writer.Write(isActive);
 		}

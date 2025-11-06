@@ -11,7 +11,7 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles.Furniture
 {
 	// 你 might have noticed that ExampleDoorClosed.png has 3 copies 的 same 精灵. These 允许 for 随机 variation.
-	// 每次 a 门 is closed, the game logic randomly chooses a 随机 精灵 for each 的 3 tiles.
+	// 每次 a 门 is closed, 游戏 logic randomly chooses a 随机 精灵 for each 的 3 tiles.
 	// 随机 variation 应该 very subtle. Each 图格 is randomized independently.
 	// All doors do this, but the feature 可以 ignored by just repeating the same 精灵 3 times as this example does.
 	public class ExampleDoorClosed : ModTile

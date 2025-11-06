@@ -75,7 +75,7 @@ namespace ExampleMod.Content.NPCs
 				}
 
 				Player target = Main.player[NPC.target];
-				// 如果 the 攻击 计数器 is 0, this NPC is less than 12.5 tiles away from its 目标, and has a 路径 到 目标 unobstructed by blocks, summon a 弹幕.
+				// 如果 the 攻击 计数器 is 0, this NPC is 少于 12.5 tiles away from its 目标, and has a 路径 到 目标 unobstructed by blocks, summon a 弹幕.
 				if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1)) {
 					Vector2 direction = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
 					direction = direction.RotatedByRandom(MathHelper.ToRadians(10));

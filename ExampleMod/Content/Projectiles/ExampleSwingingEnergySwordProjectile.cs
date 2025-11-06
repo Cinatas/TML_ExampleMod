@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.ownerHitCheckDistance = 300f; // The 最大 范围 th在 弹幕 can hit a 目标. 300 pixels is 18.75 tiles.
 			Projectile.usesOwnerMeleeHitCD = true; // 这将 make the 弹幕 apply the standard 数字 of immunity frames as normal melee attacks.
 			// Normally, projectiles die after they have hit all the enemies they can.
-			// But, for this case, we want the 弹幕 to 继续 to live so we can have the visuals 的 swing.
+			// But, for this case, we want the 弹幕 to 继续 to live so 我们可以 have the visuals 的 swing.
 			Projectile.stopsDealingDamageAfterPenetrateHits = true;
 
 			// 我们 将 using custom AI for this 弹幕. The original Excalibur uses aiStyle 190.

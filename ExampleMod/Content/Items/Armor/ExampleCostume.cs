@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Armor
 {
 	// This and 几个 other classes show off using EquipTextures to do a Merfolk or Werewolf 效果.
-	// Typically 护甲 items are automatically paired with an EquipTexture, but we can manually use EquipTextures to achieve more unique effects.
+	// Typically 护甲 items are automatically paired with an EquipTexture, but 我们可以 manually use EquipTextures to achieve more unique effects.
 	// 有 code for this 效果 in m任何 places, look 在 following files 对于 full implementation:
 	// NPCs.ExamplePerson drops this 项 when killed
-	// Content.Items.护甲.ExampleCostume (below) is the 饰品 项 that sets ExampleCostumePlayer values. Note that this 项 does not have EquipTypes set. This is a vital difference and 键 to our approach.
+	// Content.Items.护甲.ExampleCostume (below) is the 饰品 项 that sets ExampleCostumePlayer values. 注意 this 项 does not have EquipTypes set. 这是一个 vital difference and 键 to our approach.
 	// Content.Items.护甲.BlockyHead (below) is an EquipTexture 类. It spawns dust when active.
 	// 示例Costume.加载() shows calling AddEquipTexture 3 times with appropriate parameters. This is how we register EquipTexture manually instead 的 automatic pairing of ModItem and EquipTexture that other equipment uses.
 	// Buffs.Blocky is the 增益 即 shown while in Blocky 模式. The 增益 is responsible 对于 actual stat effects 的 costume. It also needs to 删除 itself when not near town npcs.
@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Items.Armor
 
 		// 调用ed in SetStaticDefaults
 		private void SetupDrawing() {
-			// Since the equipment textures weren't loaded 在 服务器, we can't have this code running 服务器-side
+			// Since the equipment textures weren't loaded 在 服务器, 我们可以't have this code running 服务器-side
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Items.Armor
 
 		public override void UpdateVanitySet(Player player) {
 			if (Main.rand.NextBool(20)) {
-				// 2 分离 instances 的 BlockyHead 类 are used, we can differentiate them with 名称 如果需要.
+				// 2 分离 instances 的 BlockyHead 类 are used, 我们可以 differentiate them with 名称 如果需要.
 				if (Name == "ExampleCostume") {
 					Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<Sparkle>());
 				}

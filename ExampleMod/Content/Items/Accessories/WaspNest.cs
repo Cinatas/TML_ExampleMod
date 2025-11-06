@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Items.Accessories
 				c.Index++;
 				// Push the 玩家 实例 on到 堆叠
 				c.Emit(OpCodes.Ldarg_0);
-				// 调用 a delegate using the int and 玩家 从 堆叠.
+				// 调用 a delegate 使用 int and 玩家 从 堆叠.
 				c.EmitDelegate<Func<int, Player, int>>((returnValue, player) => {
 					// Regular c# code
 					if (player.GetModPlayer<WaspNestPlayer>().strongBeesUpgrade && Main.rand.NextBool(10) && Main.ProjectileUpdateLoopIndex == -1) {

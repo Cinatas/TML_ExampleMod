@@ -46,7 +46,7 @@ namespace ExampleMod.Content.Prefixes
 
 		// This 前缀 doesn't affect 任何 non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern 可以 followed for a 前缀 that does affect other stats.
 		public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
-			// Due to inheritance, this code runs 例如Prefix and ExampleDerivedPrefix. We add 2 工具提示 lines, the first is the typical 前缀 工具提示 line showing the stats boost, while the other is just some additional flavor 文本.
+			// 由于 inheritance, this code runs 例如Prefix and ExampleDerivedPrefix. We add 2 工具提示 lines, the first is the typical 前缀 工具提示 line showing the stats boost, while the other is just some additional flavor 文本.
 
 			// localization 键 for Mods.ExampleMod.Prefixes.PowerTooltip uses a special 格式 that will automatically 前缀 + or - 到 值.
 			// This shared localization is formatted 与 Power 值, resulting in different 文本 例如Prefix and ExampleDerivedPrefix.

@@ -586,7 +586,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 			}
 			else
 			{
-				//This is an alternate syntax you can use
+				//这是一个 alternate syntax you can use
 				//var maskChooser = new WeightedRandom<int>();
 				//maskChooser.Add(ItemType<Items.护甲.PuritySpiritMask>());
 				//maskChooser.Add(ItemType<Items.护甲.BunnyMask>());

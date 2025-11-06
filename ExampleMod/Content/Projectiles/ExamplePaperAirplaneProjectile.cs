@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Projectiles
 
 			float ySinModifier = (float)Math.Sin((float)Math.PI * 2f * (float)(Main.timeForVisualEffects % 90.0 / 90.0)) * Projectile.direction * Main.WindForVisuals; // 这将 make the 弹幕 fly in a sine wave fashion.
 
-			Vector2 newVelocity = rotationVector + new Vector2(Main.WindForVisuals, ySinModifier); // 创建 a new 速度 using the 旋转 and wind.
+			Vector2 newVelocity = rotationVector + new Vector2(Main.WindForVisuals, ySinModifier); // 创建 a new 速度 使用 旋转 and wind.
 
 			bool directionSameAsWind = Projectile.direction == Math.Sign(Main.WindForVisuals) && Projectile.velocity.Length() > 3f; // 真 if the 弹幕 is moving the same 方向 as the wind and is not moving slowly.
 			bool readyForFlip = Projectile.ai[0] >= 20f && Projectile.ai[0] <= 69f; // 真 if 弹幕.ai[0] is between 20 and 69
@@ -88,11 +88,11 @@ namespace ExampleMod.Content.Projectiles
 				}
 
 				// Cap the y 速度 so the 弹幕 falls slowly and doesn't rise too quickly.
-				// MathHelper.Clamp() allows you to set a 最小 and 最大 值. In this case, the result will always be between -2f and 2f (inclusive).
+				// MathHelper.Clamp() allows you to set a 最小 and 最大 值. 在这种情况下, the result will always be between -2f and 2f (inclusive).
 				Projectile.velocity.Y = MathHelper.Clamp(Projectile.velocity.Y, -2f, 2f);
 
 				// 设置 the x 速度.
-				// MathHelper.Clamp() allows you to set a 最小 and 最大 值. In this case, the result will always be between -6f and 6f (inclusive).
+				// MathHelper.Clamp() allows you to set a 最小 and 最大 值. 在这种情况下, the result will always be between -6f and 6f (inclusive).
 				Projectile.velocity.X = MathHelper.Clamp(Projectile.velocity.X + Main.WindForVisuals * 0.006f, -6f, 6f);
 
 				// Switch 方向 when the current 速度 and the oldVelocity have different signs.
@@ -107,7 +107,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.spriteDirection = Projectile.direction;
 
-			// Let's add some dust for special 效果. In this case, it runs 每个 other tick (30 ticks per second).
+			// Let's add some dust for special 效果. 在这种情况下, it runs 每个 other tick (30 ticks per second).
 			if (Projectile.timeLeft % 2 == 0) {
 				Dust.NewDustPerfect(new Vector2(Projectile.Center.X - (Projectile.width * Projectile.direction), Projectile.Center.Y), ModContent.DustType<Dusts.Sparkle>(), null, 0, default, 0.5f); //Here we 生成 the dust 在 back 的 弹幕 with half 缩放.
 			}
@@ -137,14 +137,14 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnKill(int timeLeft) {
-			SoundEngine.PlaySound(SoundID.Item10, Projectile.position); // Play a 声音 when the 弹幕 dies. In this case, 即 when it hits a 方块 or a liquid.
+			SoundEngine.PlaySound(SoundID.Item10, Projectile.position); // Play a 声音 when the 弹幕 dies. 在这种情况下, 即 when it hits a 方块 or a liquid.
 
 			if (Projectile.owner == Main.myPlayer && !Projectile.noDropItem) {
 				int dropItemType = ModContent.ItemType<Items.ExamplePaperAirplane>(); // This the 项 we want the paper airplane to 放下.
 				int newItem = Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.Hitbox, dropItemType); // 创建 a new 项 在 世界.
 				Main.item[newItem].noGrabDelay = 0; // 设置 the new 项 to be 能够 be picked up instantly
 
-				// 在这里 we 需要 make sure the 项 is synced in multiplayer games.
+				// 在这里 we 需要 确保 the 项 is synced in multiplayer games.
 				if (Main.netMode == NetmodeID.MultiplayerClient && newItem >= 0) {
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem, 1f);
 				}

@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Items.Placeable
 			//   When 音乐 与 given ID is playing, equipped 音乐 boxes have a 概率 to change their ID 到 given 项 类型.
 			//   When an 项 与 given 项 类型 is equipped, it will play the 音乐 that has musicSlot as its ID.
 			//   When a 图格 与 given 类型 and Y-帧 is nearby, if its X-帧 is >= 36, it will play the 音乐 that has musicSlot as its ID.
-			// 当 getting the 音乐 槽位, you should not add the 文件 extensions!
+			// 当 getting the 音乐 槽位, 你应该 not add the 文件 extensions!
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/MysteriousMystery"), ModContent.ItemType<ExampleMusicBox>(), ModContent.TileType<ExampleMusicBoxTile>());
 		}
 

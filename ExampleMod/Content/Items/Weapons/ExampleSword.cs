@@ -13,9 +13,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.height = 40; // The 项 纹理's 高度.
 
 			Item.useStyle = ItemUseStyleID.Swing; // The useStyle 的 项.
-			Item.useTime = 20; // The 时间 span of using the 武器. Remember in terraria, 60 frames is a second.
+			Item.useTime = 20; // The 时间 span of 使用 武器. Remember in terraria, 60 frames is a second.
 			Item.useAnimation = 20; // The 时间 span 的 using 动画 的 武器, suggest 设置 it the same as useTime.
-			Item.autoReuse = true; // Whether the 武器 可以 used more than once automatically by holding the use 按钮.
+			Item.autoReuse = true; // Whether the 武器 可以 used 超过 once automatically by holding the use 按钮.
 
 			Item.DamageType = DamageClass.Melee; // Whether your 项 is part 的 melee 类.
 			Item.damage = 50; // The 伤害 your 项 deals.

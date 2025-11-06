@@ -9,7 +9,7 @@ namespace ExampleMod.Common.Players
 {
 	/// <summary>
 	/// Handles the effects and 武器 visuals 的 Example 武器 Imbue.
-	/// See also ExampleFlask and ExampleWeaponImbue.
+	/// 另请参阅 ExampleFlask and ExampleWeaponImbue.
 	/// </summary>
 	public class ExampleWeaponEnchantmentPlayer :  ModPlayer
 	{

@@ -17,13 +17,13 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles
 {
 	/// <summary>
-	/// This is a more advanced variation 的 <seealso cref="ExamplePylonTile"/> implementation
+	/// 这是一个 more advanced variation 的 <seealso cref="ExamplePylonTile"/> implementation
 	/// in tandem with <seealso cref="AdvancedPylonTileEntity"/>, which shows off what advanced techniques you can apply with ModPylons.
 	/// If you 想要 use ModPylons with your own 图格 Entities or with multi-tiles that do not conform to vanilla's standards, then
 	/// this is the example for you. If you just want normal pylons that act like the ones in vanilla do, check out <seealso cref="ExamplePylonTile"/>.
 	/// </summary>
 	/// <remarks>
-	/// Note that since this is an advanced example, things that were already explained in <seealso cref="ExamplePylonTile"/> will not
+	/// 注意 since 这是一个 advanced example, things that were already explained in <seealso cref="ExamplePylonTile"/> will not
 	/// be as thoroughly explained. They will still be explained 如果需要 in context.
 	/// </remarks>
 	public class ExamplePylonTileAdvanced : ModPylon
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.StyleHorizontal = true;
-			// Since we are 将要 need more in-depth functionality, we can't use vanilla's Pylon TE's OnPlace or CanPlace:
+			// Since we are 将要 need more in-depth functionality, 我们可以't use vanilla's Pylon TE's OnPlace or CanPlace:
 			AdvancedPylonTileEntity advancedEntity = ModContent.GetInstance<AdvancedPylonTileEntity>();
 			TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(advancedEntity.PlacementPreviewHook_CheckIfCanPlace, 1, 0, true);
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(advancedEntity.Hook_AfterPlacement, -1, 0, false);
@@ -92,7 +92,7 @@ namespace ExampleMod.Content.Tiles
 			ModContent.GetInstance<AdvancedPylonTileEntity>().Kill(i, j);
 		}
 
-		// 对于 the sake of example, we will 允许 this pylon to always be teleported to as long as it is on, so we make sure these two checks 返回 真.
+		// 对于 the sake of example, we will 允许 this pylon to always be teleported to 只要 it is on, so we 确保 these two checks 返回 真.
 		public override bool ValidTeleportCheck_NPCCount(TeleportPylonInfo pylonInfo, int defaultNecessaryNPCCount) {
 			return true;
 		}

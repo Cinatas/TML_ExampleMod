@@ -27,14 +27,14 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		// 它是 applied 在 BossHeadSlot hook when the Boss is in its second 阶段
 		public static int secondStageHeadSlot = -1;
 
-		// This code here is called a 属性: It acts like a 变量, but can modify other things. In this case it uses the NPC.ai[] 数组 that has four entries.
+		// This code here is called a 属性: It acts like a 变量, but can modify other things. 在这种情况下 it uses the NPC.ai[] 数组 that has four entries.
 		// 我们 use properties because it makes code more readable ("if (SecondStage)" vs "if (NPC.ai[0] == 1f)").
-		// 我们 use NPC.ai[] because in combination with NPC.netUpdate we can make it multiplayer compatible. Otherwise (making our own fields) we would 必须 write extra code to make it work (not covered here)
+		// 我们 use NPC.ai[] because in combination with NPC.netUpdate 我们可以 make it multiplayer compatible. Otherwise (making our own fields) we would 必须 write extra code to make it work (not covered here)
 		public bool SecondStage {
 			get => NPC.ai[0] == 1f;
 			set => NPC.ai[0] = value ? 1f : 0f;
 		}
-		// 如果 your Boss has more than two stages, and since this is a 布尔值 and can only be two things (真, 假), consider using an integer or enum
+		// 如果 your Boss has 超过 two stages, and since 这是一个 布尔值 and can only be two things (真, 假), consider using an integer or enum
 
 		// More advanced usage of a 属性, 用于 wrap around to floats to act as a Vector2
 		public Vector2 FirstStageDestination {
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		public ref float SecondStageTimer_SpawnEyes => ref NPC.localAI[3];
 
 		// Do NOT 尝试 use NPC.ai[4]/NPC.localAI[4] or higher indexes, it only accepts 0, 1, 2 and 3!
-		// 如果 you choose to go the route of "wrapping properties" for NPC.ai[], make sure they don't overlap (two properties using the same 变量 in different ways), and that you don't accidently use NPC.ai[] directly
+		// 如果 you choose to go the route of "wrapping properties" for NPC.ai[], 确保 they don't overlap (two properties 使用 same 变量 in different ways), and that you don't accidently use NPC.ai[] directly
 
 		// Helper 方法 to determine the 仆从 类型
 		public static int MinionType() {
@@ -86,7 +86,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 
 			if (Main.getGoodWorld) {
-				count += 5; // Increase by 5 if using the "对于 Worthy" 种子
+				count += 5; // Increase by 5 if 使用 "对于 Worthy" 种子
 			}
 
 			return count;
@@ -180,15 +180,15 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// Trophies are spawned with 1/10 概率
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.MinionBossTrophy>(), 10));
 
-			// All the Classic 模式 drops here are 基于 "not expert", meaning we use .OnSuccess() to add them in到 规则, which then gets added
+			// All the Classic 模式 drops here are 基于 "not expert", meaning 我们使用 .OnSuccess() to add them in到 规则, which then gets added
 			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 
-			// 注意 we use notExpertRule.OnSuccess 代替 npcLoot.Add so it only applies in normal 模式
+			// 注意 我们使用 notExpertRule.OnSuccess 代替 npcLoot.Add so it only applies in normal 模式
 			// Boss masks are spawned with 1/7 概率
 			notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MinionBossMask>(), 7));
 
 			// This part is not required for a Boss and is just showcasing some advanced stuff you can do with 放下 rules to 控制 how items 生成
-			// 我们 make 12-15 ExampleItems 生成 randomly in all directions, like the lunar pillar fragments. Hereby we need the DropOneByOne 规则,
+			// 我们 make 12-15 ExampleItems 生成 randomly in all directions, like the lunar pillar fragments. Hereby 我们需要 the DropOneByOne 规则,
 			// which requires these parameters to be defined
 			int itemType = ModContent.ItemType<ExampleItem>();
 			var parameters = new DropOneByOne.Parameters() {
@@ -342,7 +342,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
 				// Because we 想要 生成 minions, and minions are NPCs, we 必须 do this 在 服务器 (or singleplayer, "!= NetmodeID.MultiplayerClient" covers 两者)
-				// This means we also 必须 同步 it after we spawned and set up the 仆从
+				// 这意味着 we also 必须 同步 it after we spawned and set up the 仆从
 				return;
 			}
 

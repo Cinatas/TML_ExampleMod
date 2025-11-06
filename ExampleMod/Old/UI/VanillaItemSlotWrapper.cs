@@ -8,7 +8,7 @@ using Terraria.UI;
 namespace ExampleMod.UI
 {
 	// This 类 wraps the vanilla ItemSlot 类 into a UIElement. The ItemSlot 类 was made before the 用户界面 system was made, so it can't be used normally with UIState. 
-	// By wrapping the vanilla ItemSlot 类, we can easily use ItemSlot.
+	// By wrapping the vanilla ItemSlot 类, 我们可以 easily use ItemSlot.
 	// ItemSlot isn't very modder friendly and operates 基于 a "Context" 数字 that dictates how the 槽位 behaves when 左, 右, or shift clicked and the 背景 used when drawn. 
 	// If you want more 控制, you might 需要 write your own UIElement.
 	// I've added basic functionality for validating the 项 attempting to be placed 在 槽位 via the validItem Func. 

@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// Style 1 is ExampleChest when locked. We want that 图格 style to 放下 the ExampleChest 项 以及. Use the 箱子 Lock 项 to lock this 箱子.
 			// No 项 places ExampleChest 在 locked style, so the automatically determined 项 放下 is unknown, this is why RegisterItemDrop is necessary in this situation. 
 			RegisterItemDrop(ModContent.ItemType<Items.Placeable.Furniture.ExampleChest>(), 1);
-			// Sometimes mods 删除 content, 例如 图格 styles, or tiles accidentally get corrupted. We can, if desired, register a fallback 项 for 任何 图格 style that doesn't have an automatically determined 项 放下. This is done by omitting the tileStyles 参数.
+			// Sometimes mods 删除 content, 例如 图格 styles, or tiles accidentally get corrupted. 我们可以, if desired, register a fallback 项 for 任何 图格 style that doesn't have an automatically determined 项 放下. This is done by omitting the tileStyles 参数.
 			RegisterItemDrop(ItemID.Chest);
 
 			// Placement
@@ -147,7 +147,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// 我们 override KillMultiTile to 处理 additional logic other than the 项 放下. In this case, unregistering the 箱子 从 世界
+			// 我们 override KillMultiTile to 处理 additional logic other than the 项 放下. 在这种情况下, unregistering the 箱子 从 世界
 			Chest.DestroyChest(i, j);
 		}
 

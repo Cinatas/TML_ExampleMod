@@ -18,7 +18,7 @@ namespace ExampleMod.Content.Projectiles
 	public class ExampleCustomSwingProjectile : ModProjectile
 	{
 		// 我们 define some constants that determine the swing 范围 的 sword
-		// Not that we use multipliers here since that simplifies the amount of tweaks 对于se interactions
+		// Not that 我们使用 multipliers here since that simplifies the amount of tweaks 对于se interactions
 		// 你 could change the values or even 替换 them entirely, but they are tweaked with looks in mind
 		private const float SWINGRANGE = 1.67f * (float)Math.PI; // The 角度 a swing 攻击 covers (300 deg)
 		private const float FIRSTHALFSWING = 0.45f; // How much 的 swing happens before it reaches the 目标 角度 (in 关系 to swingRange)
@@ -85,7 +85,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.penetrate = -1; // 弹幕 pierces infinitely
 			Projectile.tileCollide = false; // 弹幕 does not collide with tiles
 			Projectile.usesLocalNPCImmunity = true; // 使用s local immunity frames
-			Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the 弹幕 doesn't hit twice
+			Projectile.localNPCHitCooldown = -1; // We set this to -1 to 确保 the 弹幕 doesn't hit twice
 			Projectile.ownerHitCheck = true; // 使 sure the 所有者 的 弹幕 has line of sight 到 目标 (aka can't hit things through 图格).
 			Projectile.DamageType = DamageClass.Melee; // 弹幕 is a melee 弹幕
 		}

@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.newTile.LavaDeath = false; // Does not 中断 when lava touches it
 			TileObjectData.newTile.DrawYOffset = 2; // So the 图格 sinks in到 ground
 			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; // 玩家 faces 到 左
-			TileObjectData.newTile.StyleHorizontal = false; // Based on how the alternate sprites are positioned 在 精灵 (默认情况下, 真)
+			TileObjectData.newTile.StyleHorizontal = false; // 基于 how the alternate sprites are positioned 在 精灵 (默认情况下, 真)
 
 			// This controls how styles are laid out 在 纹理 文件. This 图格 is special in that all styles will use the same 纹理 section to draw the pedestal.
 			TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-			// This forces the 图格 to draw the pedestal even if the placeStyle differs. 
+			// This forces the 图格 to draw the pedestal 即使 the placeStyle differs. 
 			tileFrameX %= FrameWidth; // Clamps the frameX
 			tileFrameY %= FrameHeight * 2; // Clamps the frameY (two horizontally aligned place styles, 因此 * 2)
 		}
@@ -133,7 +133,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 	}
 
 	// 如果 you 想要 make more relics but do not use the 项.placeStyle approach, you can use inheritance to avoid using duplicate code:
-	// Your 图格 code would then inherit 从 MinionBossRelic 类 (which you should make abstract) and should look like this:
+	// Your 图格 code would then inherit 从 MinionBossRelic 类 (which 你应该 make abstract) and should look like this:
 	/*
 	public class MyBossRelic : MinionBossRelic
 	{

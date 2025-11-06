@@ -111,7 +111,7 @@ namespace ExampleMod.Content.Items.Weapons
 				modifiers.Knockback += .5f;
 			}
 			else if (mode == 3) {
-				modifiers.CritDamage += 2f; // 默认 crit is 100% more than a normal hit, so with this in 效果, crits should deal 4x 伤害
+				modifiers.CritDamage += 2f; // 默认 crit is 100% 超过 a normal hit, so with this in 效果, crits should deal 4x 伤害
 			}
 			else if (mode == 4) {
 				modifiers.ArmorPenetration += 10f;
@@ -169,8 +169,8 @@ namespace ExampleMod.Content.Items.Weapons
 			}
 
 			if (mode == 6) {
-				// This AddBuff is not quiet because it is affecting another 玩家. This allows it to broadcast to all players th在 目标 has a 增益. (Main.pvpBuff 必须 set to 真 for other players to be 能够 give buffs to a 玩家)
-				// 注意 that in PvP, it is possible to 攻击 a 玩家 and see them take 伤害, but by the 时间 the hit 消息 arrives 在 目标 客户端, they may have recharged a dodge. In this case, the 目标 will not actually take 伤害, and their 生命值 will appear to restore. Because the attacking 玩家 applies the 减益, the 目标 will receive the 减益 regardless
+				// This AddBuff is not quiet because it is affecting another 玩家. 这允许 it to broadcast to all players th在 目标 has a 增益. (Main.pvpBuff 必须 set to 真 for other players to be 能够 give buffs to a 玩家)
+				// 注意 that in PvP, it is possible to 攻击 a 玩家 and see them take 伤害, but by the 时间 the hit 消息 arrives 在 目标 客户端, they may have recharged a dodge. 在这种情况下, the 目标 will not actually take 伤害, and their 生命值 will appear to restore. Because the attacking 玩家 applies the 减益, the 目标 will receive the 减益 regardless
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600, quiet: false);
 			}
 			else if (mode == 7) {

@@ -31,7 +31,7 @@ namespace ExampleMod.NPCs
 			animationType = NPCID.Wraith;
 		}
 
-		// 允许s hitting the NPC with melee 类型 weapons, even if it's friendly.
+		// 允许s hitting the NPC with melee 类型 weapons, 即使 it's friendly.
 		public override bool? CanBeHitByItem(Player player, Item item) {
 			return true;
 		}
@@ -55,7 +55,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// 允许s the NPC to talk 与 玩家, even if it isn't a town NPC.
+		// 允许s the NPC to talk 与 玩家, 即使 it isn't a town NPC.
 		public override bool CanChat() {
 			return true;
 		}

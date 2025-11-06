@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DamageType = DamageClass.Ranged; // Is the 弹幕 shoot by a ranged 武器?
 			Projectile.penetrate = 5; // How m任何 monsters the 弹幕 can penetrate. (OnTileCollide below also decrements penetrate for bounces 以及)
 			Projectile.timeLeft = 600; // The live 时间 对于 弹幕 (60 = 1 second, so 600 is 10 seconds)
-			Projectile.alpha = 255; // The transparency 的 弹幕, 255 for completely transparent. (aiStyle 1 quickly fades the 弹幕 in) Make sure to 删除 this if you aren't using an aiStyle that fades in. You'll wonder why your 弹幕 is invisible.
+			Projectile.alpha = 255; // The transparency 的 弹幕, 255 for completely transparent. (aiStyle 1 quickly fades the 弹幕 in) 确保 to 删除 this if you aren't using an aiStyle that fades in. You'll wonder why your 弹幕 is invisible.
 			Projectile.light = 0.5f; // How much light emit around the 弹幕
 			Projectile.ignoreWater = true; // Does the 弹幕's 速度 be influenced by water?
 			Projectile.tileCollide = true; // Can the 弹幕 collide with tiles?

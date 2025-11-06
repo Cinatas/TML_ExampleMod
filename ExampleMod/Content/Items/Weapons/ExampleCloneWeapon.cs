@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 			Item.CloneDefaults(ItemID.Meowmere);
 
-			// 之后 CloneDefaults has been called, we can now modify the stats to our wishes, or keep them as they are.
+			// 之后 CloneDefaults has been called, 我们可以 now modify the stats to our wishes, or keep them as they are.
 			// 对于 the sake of example, let's swap the vanilla Meowmere 弹幕 shot from our 项 for our own 弹幕 by changing 项.shoot:
 
 			Item.shoot = ModContent.ProjectileType<ExampleCloneProjectile>(); // 记住 that we must use ProjectileType<>() since it is a modded 弹幕!

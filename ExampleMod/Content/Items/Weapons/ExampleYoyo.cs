@@ -46,14 +46,14 @@ namespace ExampleMod.Content.Items.Weapons
 		private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Shameful, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
 
 		public override bool AllowPrefix(int pre) {
-			// 返回 假 to make the game reroll the 前缀.
+			// 返回 假 to make 游戏 reroll the 前缀.
 
 			// DON'T DO THIS BY ITSELF:
 			// 返回 假;
-			// 这将 get the game stuck because it will 尝试 reroll 每次. Instead, make it have a 概率 to 返回 真.
+			// 这将 get 游戏 stuck because it will 尝试 reroll 每次. Instead, make it have a 概率 to 返回 真.
 
 			if (Array.IndexOf(unwantedPrefixes, pre) > -1) {
-				// IndexOf returns a positive 索引 的 元素 you 搜索 for. If not found, it's less than 0.
+				// IndexOf returns a positive 索引 的 元素 you 搜索 for. 如果不是 found, it's 少于 0.
 				// 在这里 we check if the selected 前缀 is positive (it was found).
 				// 如果 so, we found a 前缀 that we don't want. Reroll.
 				return false;

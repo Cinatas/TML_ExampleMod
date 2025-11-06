@@ -78,10 +78,10 @@ namespace ExampleMod.Content.Tiles.Furniture
 			info.AnchorTilePosition.Y = j;
 
 			if (tile.TileFrameY % NextStyleHeight == 0) {
-				info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, we can just check if the 图格 is the 顶部-most one, then 移动 it 1 down
+				info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, 我们可以 just check if the 图格 is the 顶部-most one, then 移动 it 1 down
 			}
 
-			// 最后, since this is a toilet, it should generate Poo while 任何 tier of Well Fed is active
+			// 最后, since 这是一个 toilet, it should generate Poo while 任何 tier of Well Fed is active
 			info.ExtraInfo.IsAToilet = true;
 
 			// 在这里 we add a custom fun 效果 to this 图格 that vanilla toilets do not have. This shows how you can 类型 cast the restingEntity to 玩家 and use visualOffset 以及.

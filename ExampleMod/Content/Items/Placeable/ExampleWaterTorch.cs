@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void PostUpdate() {
-			// 创建 a greenish (0.5, 1.5, 0.5) light when the 项 is in 世界, even if underwater.
+			// 创建 a greenish (0.5, 1.5, 0.5) light when the 项 is in 世界, 即使 underwater.
 			Lighting.AddLight(Item.Center, 0.5f, 1.5f, 0.5f);
 		}
 

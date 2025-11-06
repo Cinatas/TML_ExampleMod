@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// M任何 projectiles fade in 以便 when they 生成 they don't overlap the gun muzzle they appear from
 		public void FadeInAndOut() {
-			// 如果 last less than 50 ticks — fade in, than more — fade out
+			// 如果 last 少于 50 ticks — fade in, than more — fade out
 			if (Projectile.ai[0] <= 50f) {
 				// Fade in
 				Projectile.alpha -= 25;

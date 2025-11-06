@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			// While the 精灵 is actually bigger than 15x15, we use 15x15 since it lets the 弹幕 clip into tiles as it bounces. It looks better.
+			// While the 精灵 is actually bigger than 15x15, 我们使用 15x15 since it lets the 弹幕 clip into tiles as it bounces. It looks better.
 			Projectile.width = DefaultWidthHeight;
 			Projectile.height = DefaultWidthHeight;
 			Projectile.friendly = true;

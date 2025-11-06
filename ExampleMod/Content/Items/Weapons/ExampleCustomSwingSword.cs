@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			// 使用 the shoot 函数, we override the swing 弹幕 to set ai[0] (which 攻击 it is)
 			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, attackType);
-			attackType = (attackType + 1) % 2; // Increment attackType to make sure next swing is different
+			attackType = (attackType + 1) % 2; // Increment attackType to 确保 next swing is different
 			comboExpireTimer = 0; // 每次 the 武器 is used, we 重置 this so the combo does not expire
 			return false; // 返回 假 to 防止 original 弹幕 from being shot
 		}

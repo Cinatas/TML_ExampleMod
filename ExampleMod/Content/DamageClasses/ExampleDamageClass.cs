@@ -25,7 +25,7 @@ namespace ExampleMod.Content.DamageClasses
 			);
 			// Now, what exactly did we just do, you might ask? Well, let's see here...
 			// StatInheritanceData is a struct which you'll 需要 返回 one of for 任何 given outcome this 方法.
-			// Normally, the latter 的se two 将 written as "StatInheritanceData.None", rather than being typed out by hand...
+			// Normally, the latter 的se two 将 written as "StatInheritanceData.None", 而不是 being typed out by hand...
 			// ...but 对于 sake of clarity, we've written it out and labeled each 参数 in 顺序; they 应该 self-explanatory.
 			// 要 explain how these 返回 values work, each one behaves like a 百分比, with 0f being 0%, 1f being 100%, and so on.
 			// 返回 值 indicates how much your 类 will 缩放 off 的 stat in question for whatever 伤害 类(es) you've returned it for.
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.DamageClasses
 			// This would 允许 our custom 类 to benefit 从 following ranged stat bonuses:
 			// - 伤害, at 100% effectiveness
 			// - 攻击 速度, at 40% effectiveness
-			// - Crit 概率, at -100% effectiveness (this means 任何thing that raises ranged crit 概率 specifically will lower the crit 概率 of our custom 类 by the same amount)
+			// - Crit 概率, at -100% effectiveness (这意味着 任何thing that raises ranged crit 概率 specifically will lower the crit 概率 of our custom 类 by the same amount)
 			// - 护甲 penetration, at 250% effectiveness
 
 			// CAUTION: There is no hardcap on what you can set these to. Please be aware and advised that whatever you set them to may have unintended consequences,

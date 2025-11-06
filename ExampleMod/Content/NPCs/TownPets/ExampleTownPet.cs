@@ -49,7 +49,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPCID.Sets.ShimmerTownTransform[Type] = false; // Town Pets don't have a Shimmer variant.
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true; // But they are still immune to Shimmer.
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true; // And Confused.
-			NPCID.Sets.ExtraTextureCount[Type] = 0; // Even though we have 几个 variation textures, we don't use this set. The default for this set is 0, so it is safe to 删除 this line if you wish.
+			NPCID.Sets.ExtraTextureCount[Type] = 0; // 尽管 we have 几个 variation textures, we don't use this set. The default for this set is 0, so it is safe to 删除 this line if you wish.
 			NPCID.Sets.NPCFramingGroup[Type] = 8; // How the party hat is animated to 匹配 the walking 动画. Town Cat = 4, Town Dog = 5, Town Bunny = 6, Town Slimes = 7, No 偏移 = 8
 
 			NPCID.Sets.IsTownPet[Type] = true; // Our NPC is a Town 宠物
@@ -80,7 +80,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath6;
 			NPC.knockBackResist = 0.5f;
-			NPC.housingCategory = 1; // This means it can share a house with a normal Town NPC.
+			NPC.housingCategory = 1; // 这意味着 it can share a house with a normal Town NPC.
 			AnimationType = NPCID.TownBunny; // 此示例 matches the animations 的 Town Bunny.
 		}
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -183,7 +183,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 		/*
 		public override void EmoteBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects) {
-			// 在这里 is an example of how we can modify the emote bubble.
+			// 在这里 is an example of how 我们可以 modify the emote bubble.
 
 			// Flip the emote bubble and 移动 it.
 			spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

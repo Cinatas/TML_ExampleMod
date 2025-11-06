@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Items.Accessories
 
 		// fields related 到 dash 饰品
 		public bool DashAccessoryEquipped;
-		public int DashDelay = 0; // frames remaining till we can dash again
+		public int DashDelay = 0; // frames remaining till 我们可以 dash again
 		public int DashTimer = 0; // frames remaining 在 dash
 
 		public override void ResetEffects() {
@@ -89,7 +89,7 @@ namespace ExampleMod.Content.Items.Accessories
 				Vector2 newVelocity = Player.velocity;
 
 				switch (DashDir) {
-					// 仅 apply the dash 速度 if our current 速度 在 wanted 方向 is less than DashVelocity
+					// 仅 apply the dash 速度 if our current 速度 在 wanted 方向 is 少于 DashVelocity
 					case DashUp when Player.velocity.Y > -DashVelocity:
 					case DashDown when Player.velocity.Y < DashVelocity: {
 							// Y-速度 is set here

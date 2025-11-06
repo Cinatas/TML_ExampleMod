@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Projectiles
 			SoundUpdateCallbackApproach,
 			// LoopedSound shows using SoundUpdateCallback 再次 to adjust 声音 位置. The SoundStyle used is looped, so SoundUpdateCallback is necessary in case 弹幕.Kill doesn't get called for some exceptional reason.
 			LoopedSound,
-			// LoopedSoundAdvanced adjusts 音高 and 音量 dynamically 在 SoundUpdateCallback, in addition 到 usual 声音 位置.
+			// LoopedSoundAdvanced adjusts 音高 and 音量 dynamically 在 SoundUpdateCallback, 另外 到 usual 声音 位置.
 			LoopedSoundAdvanced,
 		}
 
@@ -66,10 +66,10 @@ namespace ExampleMod.Content.Projectiles
 		public override void AI() {
 			Projectile.frame = (int)Style;
 
-			// Sounds are paused when the game loses focus (玩家 switches to another program). In some situations the modder might 想要 restart a 声音 when the game is focused again, in other situations that might 不 desired. Some 的se examples use a bool, "played", to 跟踪 if the 声音 has been played since the 弹幕 spawned, while others do not and will attempt to restart the 声音 if it is not currently playing.
+			// Sounds are paused when 游戏 loses focus (玩家 switches to another program). In some situations the modder might 想要 restart a 声音 when 游戏 is focused again, in other situations that might 不 desired. Some 的se examples use a bool, "played", to 跟踪 if the 声音 has been played since the 弹幕 spawned, while others do not and will attempt to restart the 声音 if it is not currently playing.
 
-			// 另外 note that in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" 默认情况下, so if 2 projectiles attempt to play the same 声音, they'll constantly interrupt each other 每个 AI 更新, making a horrible 声音.
-			// 在 a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. 例如, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances 相应地. The modder might also decide th在 声音 should not restart when the game is re-focused and use logic to only attempt to play the 声音 once.
+			// 另外 注意 in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" 默认情况下, so if 2 projectiles attempt to play the same 声音, they'll constantly interrupt each other 每个 AI 更新, making a horrible 声音.
+			// 在 a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. 例如, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances 相应地. The modder might also decide th在 声音 should not restart when 游戏 is re-focused and use logic to only attempt to play the 声音 once.
 			switch (Style) {
 				case ActiveSoundShowcaseStyle.FireAndForget:
 					if (!played) {

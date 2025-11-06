@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Projectiles
 {
 	/// <summary>
 	/// This the 类 that clones the vanilla Meowmere 弹幕 using CloneDefaults().
-	/// Make sure to check out <see cref="ExampleCloneWeapon" />, which fires this 弹幕; it itself is a cloned 版本 的 Meowmere.
+	/// 确保 to check out <see cref="ExampleCloneWeapon" />, which fires this 弹幕; it itself is a cloned 版本 的 Meowmere.
 	/// </summary>
 	public class ExampleCloneProjectile : ModProjectile
 	{
@@ -21,11 +21,11 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.CloneDefaults(ProjectileID.Meowmere);
 
-			// 要 further the Cloning 过程, we can also 复制 the ai of 任何 given 弹幕 using AIType, since we want
+			// 要 further the Cloning 过程, 我们可以 also 复制 the ai of 任何 given 弹幕 using AIType, since we want
 			// the 弹幕 to essentially behave the same way as the vanilla 弹幕.
 			AIType = ProjectileID.Meowmere;
 
-			// 之后 CloneDefaults has been called, we can now modify the stats to our wishes, or keep them as they are.
+			// 之后 CloneDefaults has been called, 我们可以 now modify the stats to our wishes, or keep them as they are.
 			// 对于 the sake of example, lets make our 弹幕 penetrate enemies 一些 more times than the vanilla 弹幕.
 			// This 可以 done by modifying 弹幕.penetrate
 			Projectile.penetrate += 3;
@@ -49,7 +49,7 @@ namespace ExampleMod.Content.Projectiles
 		// are 用于 generate different effects that aren't included in AI. 对于 case 的 Meowmere 弹幕, since the
 		// ricochet 声音 is not included 在 AI, we must add it ourselves:
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-			// Since there are two ricochet sounds 对于 Meowmere, we can randomly choose between them like this:
+			// Since there are two ricochet sounds 对于 Meowmere, 我们可以 randomly choose between them like this:
 
 			SoundEngine.PlaySound(Main.rand.NextBool() ? SoundID.Item57 : SoundID.Item58, Projectile.position);
 

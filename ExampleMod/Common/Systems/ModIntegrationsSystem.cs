@@ -14,14 +14,14 @@ namespace ExampleMod.Common.Systems
 	// 这可以是他们的主页、创意工坊页面、wiki、GitHub、Discord、其他联系方式等。
 	// If the mod is 打开 source, you can visit its code distribution platform (usually GitHub) and look for "Call" in its Mod 类
 
-	// In addition 到 examples shown here, ExampleMod also integrates 与 Census Mod (https://steamcommunity.com/sharedfiles/filedetails/?ID=2687866031)
+	// 另外 到 examples shown here, ExampleMod also integrates 与 Census Mod (https://steamcommunity.com/sharedfiles/filedetails/?ID=2687866031)
 	// That integration is done solely through localization files, look for "Census.SpawnCondition" 在 .hjson files. 
 	public class ModIntegrationsSystem : ModSystem
 	{
 		public override void PostSetupContent() {
 			// Most often, mods require you to use the PostSetupContent hook to call their methods. This guarantees 各种 数据 is initialized and set up properly
 
-			// Boss Checklist shows comprehensive information about bosses in its own 用户界面. We can customize it:
+			// Boss Checklist shows comprehensive information about bosses in its own 用户界面. 我们可以 customize it:
 			// https://forums.terraria.org/索引.php?threads/.50668/
 			DoBossChecklistIntegration();
 
@@ -30,14 +30,14 @@ namespace ExampleMod.Common.Systems
 
 		private void DoBossChecklistIntegration() {
 			// The mods homepage links to its own wiki where the calls are explained: https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-日志-Entry-Mod-Call
-			// If we navigate the wiki, we can 查找 the "LogBoss" 方法, which we want in this case
-			// A feature 的 call is that it will create an entry 在 localization 文件 的 specified NPC 类型 for its 生成 info, so make sure to visit the localization 文件 after your mod runs once to edit it
+			// If we navigate the wiki, 我们可以 查找 the "LogBoss" 方法, which we want 在这种情况下
+			// A feature 的 call is that it will create an entry 在 localization 文件 的 specified NPC 类型 for its 生成 info, so 确保 to visit the localization 文件 after your mod runs once to edit it
 
 			if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod)) {
 				return;
 			}
 
-			// For some messages, mods might not have them at release, so we 需要 验证 when the last 迭代 的 方法 variation was first added 到 mod, in this case 1.6
+			// For some messages, mods might not have them at release, so we 需要 验证 when the last 迭代 的 方法 variation was first added 到 mod, 在这种情况下 1.6
 			// Usually mods 任一 provide that informati在mselves in some way, or it's found 在 GitHub through commit history/blame
 			if (bossChecklistMod.Version < new Version(1, 6)) {
 				return;

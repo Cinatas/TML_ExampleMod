@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Tiles
 			// AnimationFrameHeight = 56;
 		}
 
-		// Our textures 动画 frames are arranged horizontally, 即n't typical, so here we specify animationFrameWidth which we use later in AnimateIndividualTile
+		// Our textures 动画 frames are arranged horizontally, 即n't typical, so here we specify animationFrameWidth which 我们使用 later in AnimateIndividualTile
 		private readonly int animationFrameWidth = 18;
 
 		// 此方法 allows you to determine how much light this 方块 emits
@@ -67,7 +67,7 @@ namespace ExampleMod.Content.Tiles
 			uniqueAnimationFrame %= 6;
 
 			// frameYOffset = modTile.AnimationFrameHeight * Main.tileFrame[类型] will already be set before this hook is called
-			// But we have a horizontal animated 纹理, so we use frameXOffset 代替 frameYOffset
+			// But we have a horizontal animated 纹理, so 我们使用 frameXOffset 代替 frameYOffset
 			frameXOffset = uniqueAnimationFrame * animationFrameWidth;
 		}
 
@@ -109,7 +109,7 @@ namespace ExampleMod.Content.Tiles
 			Texture2D texture = TextureAssets.Tile[Type].Value;
 
 			// 如果 you are using ModTile.SpecialDraw or PostDraw or PreDraw, use this snippet and add zero to all calls to spriteBatch.Draw
-			// reason for this is to accommodate the shift in drawing coordinates that occurs when using the different Lighting 模式
+			// reason for this is to accommodate the shift in drawing coordinates that occurs when 使用 different Lighting 模式
 			// Press Shift+F9 to change lighting modes quickly to 验证 your code works for all lighting modes
 			Vector2 zero = Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);
 
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Tiles
 				frame = ++frame % 6;
 			}*/
 
-			// Above code works, but since we are just mimicking another 图格, we can just use the same 值
+			// Above code works, but since we are just mimicking another 图格, 我们可以 just use the same 值
 			frame = Main.tileFrame[TileID.FireflyinaBottle];
 		}
 	}

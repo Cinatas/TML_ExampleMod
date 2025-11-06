@@ -20,8 +20,8 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		private static readonly float RangeHypotenuseSquared = RangeHypotenuse * RangeHypotenuse;
 
 		// following 2 lines of code are ref properties (learn about them in google) 到 弹幕.ai 数组 entries, which will 帮助 us make our code way more readable.
-		// We're using the ai 数组 because it's automatically synchronized by the base game in multiplayer, which saves us from writing 很多 boilerplate code.
-		// 注意 th在 弹幕.ai 数组 is only 3 entries big. If you need more than 3 synchronized variables - you'll 必须 use fields and 同步 them manually.
+		// We're 使用 ai 数组 because it's automatically synchronized by the base game in multiplayer, which saves us from writing 很多 boilerplate code.
+		// 注意 th在 弹幕.ai 数组 is only 3 entries big. If you need 超过 3 synchronized variables - you'll 必须 use fields and 同步 them manually.
 		public ref float AIFadeProgress => ref Projectile.ai[0];
 		public ref float AIDashCharge => ref Projectile.ai[1];
 
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 				return;
 			}
 
-			// Keep the 弹幕 disappearing as long as the 玩家 isn't dead and has the 宠物 增益.
+			// Keep the 弹幕 disappearing 只要 the 玩家 isn't dead and has the 宠物 增益.
 			if (!player.dead && player.HasBuff(ModContent.BuffType<ExampleLightPetBuff>())) {
 				Projectile.timeLeft = 2;
 			}
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 					continue;
 				}
 
-				// 忽略 this npc if it's too far away. Note that we're using squared values for our checks, to avoid square root calculations as a small, but effective optimization.
+				// 忽略 this npc if it's too far away. 注意 we're using squared values for our checks, to avoid square root calculations as a small, but effective optimization.
 				if (player.DistanceSQ(npc.Center) >= RangeHypotenuseSquared) {
 					continue;
 				}
@@ -146,7 +146,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		}
 
 		private void UpdateExtraMovement() {
-			// 添加s some friction 到 宠物's movement as long as its 速度 is above 1
+			// 添加s some friction 到 宠物's movement 只要 its 速度 is above 1
 			if (Projectile.velocity.Length() > 1f) {
 				Projectile.velocity *= 0.98f;
 			}

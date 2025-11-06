@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Buffs
 {
 	/// <summary>
 	/// This 减益 reduces 敌人 护甲 by 25%. Use <see cref="Content.Items.Weapons.HitModifiersShowcase"/> or <see cref="Items.Consumables.ExampleFlask"/> to apply.
-	/// By using a 增益 we can apply to 两者 players and NPCs, and also rely on vanilla to 同步 the AddBuff calls so we don't 需要 write our own netcode
+	/// By using a 增益 我们可以 apply to 两者 players and NPCs, and also rely on vanilla to 同步 the AddBuff calls so we don't 需要 write our own netcode
 	/// </summary>
 	public class ExampleDefenseDebuff : ModBuff
 	{
@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Buffs
 		public static float DefenseMultiplier = 1 - DefenseReductionPercent / 100f;
 
 		public override void SetStaticDefaults() {
-			Main.pvpBuff[Type] = true; // This 增益 可以 applied by other players in Pvp, so we need this to be 真.
+			Main.pvpBuff[Type] = true; // This 增益 可以 applied by other players in Pvp, so 我们需要 this to be 真.
 
 			// Our BuffImmuneGlobalNPC 类 changes some 增益 immunity logic. NPCs immune to Ichor will automatically be immune to this 增益.
 			BuffImmuneGlobalNPC.SetDefenseDebuffStaticDefaults(Type);

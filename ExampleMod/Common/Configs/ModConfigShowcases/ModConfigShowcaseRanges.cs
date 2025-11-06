@@ -43,7 +43,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[Increment(5)]
 		[Range(60, 250)]
 		[DefaultValue(100)]
-		[Slider] // The 滑块 attribute makes this 字段 be presented with a 滑块 rather than a 文本 输入. The default ticks is 1.
+		[Slider] // The 滑块 attribute makes this 字段 be presented with a 滑块 而不是 a 文本 输入. The default ticks is 1.
 		public int RangedInteger;
 
 		// 我们可以注释 列表<int>，列表的所有元素将使用范围、刻度、增量和滑块属性。

@@ -31,7 +31,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override bool IsTileDangerous(int i, int j, Player player) => true;
 
-		// Because this 图格 does not use a TileObjectData, and 因此 does not have "real" 图格 styles, the correct 图格 style 值 can't be determined automatically. This means th在 correct 项 won't automatically 放下, so we must use GetItemDrops to calculate the 图格 style to determine the 项 放下. 
+		// Because this 图格 does not use a TileObjectData, and 因此 does not have "real" 图格 styles, the correct 图格 style 值 can't be determined automatically. 这意味着 th在 correct 项 won't automatically 放下, so we must use GetItemDrops to calculate the 图格 style to determine the 项 放下. 
 		public override IEnumerable<Item> GetItemDrops(int i, int j) {
 			Tile t = Main.tile[i, j];
 			int style = t.TileFrameY / 18;

@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Pets.ExamplePet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// Keep the 弹幕 from disappearing as long as the 玩家 isn't dead and has the 宠物 增益.
+			// Keep the 弹幕 from disappearing 只要 the 玩家 isn't dead and has the 宠物 增益.
 			if (!player.dead && player.HasBuff(ModContent.BuffType<ExamplePetBuff>())) {
 				Projectile.timeLeft = 2;
 			}

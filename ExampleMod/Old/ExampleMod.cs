@@ -135,7 +135,7 @@ namespace ExampleMod
 
 			// Unload static references
 			// 你需要 to 清除 static references to assets (Texture2D, SoundEffects, Effects). 
-			// In addition to that, if you want your mod to completely unload during unload, you 需要 清除 static references to 任何thing referencing your Mod 类
+			// 另外 to that, if you want your mod to completely unload during unload, you 需要 清除 static references to 任何thing referencing your Mod 类
 			NPCs.ExampleTravelingMerchant.shopItems.Clear();
 		}
 
@@ -181,7 +181,7 @@ namespace ExampleMod
 			// 注册 the new 配方 分组 与 specified 名称
 			RecipeGroup.RegisterGroup("ExampleMod:ExampleItem", group);
 
-			// 修改ing a vanilla 配方 分组. Now we can use Lava Snail to craft Snail Statue
+			// 修改ing a vanilla 配方 分组. Now 我们可以 use Lava Snail to craft Snail Statue
 			RecipeGroup snailGroup = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Snails"]];
 			snailGroup.ValidItems.Add(ModContent.ItemType<NPCs.ExampleCritterItem>());
 

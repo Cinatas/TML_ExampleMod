@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items.Placeable.Furniture
 	{
 		public override void SetDefaults() {
 			// Vanilla has m任何 useful methods like these, use them! This substitutes 设置 项.createTile and 项.placeStyle 以及 as 设置 一些 values that are common across all placeable items
-			// place style (here 默认情况下 0) is important if you decide to have more than one relic share the same 图格 类型 (more on that 在 tiles' code)
+			// place style (here 默认情况下 0) is important if you decide to have 超过 one relic share the same 图格 类型 (more on that 在 tiles' code)
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.MinionBossRelic>(), 0);
 
 			Item.width = 30;

@@ -24,7 +24,7 @@ namespace ExampleMod.Content.BossBars
 		}
 
 		public override bool? ModifyInfo(ref BigProgressBarInfo info, ref float life, ref float lifeMax, ref float shield, ref float shieldMax) {
-			// 在这里 the game wants to know if to draw the Boss 条 or not. 返回 假 whenever the conditions don't apply.
+			// 在这里 游戏 wants to know if to draw the Boss 条 or not. 返回 假 whenever the conditions don't apply.
 			// 如果 there is no possibility of returning 假 (or 空) the 条 will get drawn at times when it shouldn't, so write defensive code!
 
 			NPC npc = Main.npc[info.npcIndexToAimAt];

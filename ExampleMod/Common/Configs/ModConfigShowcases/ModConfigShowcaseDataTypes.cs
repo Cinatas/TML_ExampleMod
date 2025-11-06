@@ -71,7 +71,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 			},
 			new Color(1, 2, 3, 4));
 
-			itemDefinitionExample = new ItemDefinition("Terraria/GoldOre"); // EntityDefinition uses ItemID 字段 names rather than the numbers themselves for readability.
+			itemDefinitionExample = new ItemDefinition("Terraria/GoldOre"); // EntityDefinition uses ItemID 字段 names 而不是 the numbers themselves for readability.
 		}
 	}
 }

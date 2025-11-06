@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items.Tools
 			Item.shootSpeed = 18f; // This defines how quickly the hook is shot.
 			Item.shoot = ModContent.ProjectileType<ExampleHookProjectile>(); // 使 the 项 shoot the hook's 弹幕 when used.
 
-			// 如果 you do not use 项.CloneDefaults(), you must set the following values 对于 hook to work properly:
+			// 如果 you do not use 项.CloneDefaults(), 你必须 set the following values 对于 hook to work properly:
 			// 项.useStyle = ItemUseStyleID.None;
 			// 项.useTime = 0;
 			// 项.useAnimation = 0;
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Items.Tools
 		private static Asset<Texture2D> chainTexture;
 
 		public override void Load() { // This is called once on mod (re)加载 when this piece of content is being loaded.
-			// 这是 the 路径 到 纹理 that we'll use 对于 hook's chain. Make sure to 更新 it.
+			// 这是 the 路径 到 纹理 that we'll use 对于 hook's chain. 确保 to 更新 it.
 			chainTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Items/Tools/ExampleHookChain");
 		}
 
@@ -111,7 +111,7 @@ namespace ExampleMod.Content.Items.Tools
 		// Can customize what tiles this hook can latch onto, or force/防止 latching altogether, like Squirrel Hook also latching to trees
 		public override bool? GrappleCanLatchOnTo(Player player, int x, int y) {
 			// 默认情况下, the hook returns 空 to apply the vanilla conditions 对于 given 图格 位置 (this 图格 位置 可能 air or an actuated 图格!)
-			// 如果 you 想要 返回 真 here, make sure to check for Main.图格[x, y].HasUnactuatedTile (and Main.tileSolid[Main.图格[x, y].TileType] and/or Main.图格[x, y].HasTile 如果需要)
+			// 如果 you 想要 返回 真 here, 确保 to check for Main.图格[x, y].HasUnactuatedTile (and Main.tileSolid[Main.图格[x, y].TileType] and/or Main.图格[x, y].HasTile 如果需要)
 
 			// 我们 make this hook latch onto trees just like Squirrel Hook
 

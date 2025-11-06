@@ -17,7 +17,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
 		// Private and Internal fields and properties will 不 shown.
-		// Note that private and internal values will 不 replaced by the 反序列化, so initializer and ctor work.
+		// 注意 private and internal values will 不 replaced by the 反序列化, so initializer and ctor work.
 		// 你应该 avoid private and internal values in
 #pragma warning disable CS0414
 		private float Private = 144;
@@ -27,7 +27,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		// Public fields are most common. Use public for most items.
 		public float Public;
 
-		// Will not show. Avoid static. Due to how ModConfig works, static fields will not work correctly. Use a static 字段 named 实例 在 manner used in ExampleConfigServer for accessing ModConfig fields 在 rest of your mod.
+		// Will not show. Avoid static. 由于 how ModConfig works, static fields will not work correctly. Use a static 字段 named 实例 在 manner used in ExampleConfigServer for accessing ModConfig fields 在 rest of your mod.
 		public static float Static;
 
 		// 获取 only properties will show up, but 将 grayed out to show th在y can't be changed.

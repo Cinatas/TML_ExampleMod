@@ -7,17 +7,17 @@ using Terraria.ModLoader.IO;
 
 /// <summary>
 /// This Example illustrates a solution for storing Small-Sparse-Simple 数据 at locations. The definitions of those are as follows:
-/// Small/Large - < 10 locations are actively using the 数据 per 帧 is small, > 10 is large. Use UNRELEASEDSYSTEM1 to do large-X-simple 数据.
-/// Sparse/Filled - Sparse is that not all locations will have 数据, typically less than 60% 在 世界 will have 数据. Use UNRELEASEDSYSTEM1 to do large-X-simple 数据.
+/// Small/Large - < 10 locations are actively 使用 数据 per 帧 is small, > 10 is large. Use UNRELEASEDSYSTEM1 to do large-X-simple 数据.
+/// Sparse/Filled - Sparse is that not all locations will have 数据, typically 少于 60% 在 世界 will have 数据. Use UNRELEASEDSYSTEM1 to do large-X-simple 数据.
 /// Simple/Complex - Sorta arbitrary. Simple 数据 will not contain methods, nor complicated functionality, and typically is just basic 数据 types. Use TileEntities if working with complex 数据.
 /// </summary>
 
 ///			Some other common use cases not exampled:
 /// Getting 数据 for a particular 图格 类型 your mod added, that was placed in 世界:
 ///		触发器 fetch of 数据 using adjTiles[类型]. If 数据 is ordered, use appropriate 版本 of PosData.Lookup. If 数据 is not ordered, you will likely 需要 查找 via enumeration.
-///		If it is unordered additions, you may elect to build myMap yourself OR attempt to insert the 数据 so it remains ordered. The latter will lead to better post-事件 性能.
+///		If it is unordered additions, 你可以 elect to build myMap yourself OR attempt to insert the 数据 so it remains ordered. The latter will lead to better post-事件 性能.
 ///	Clustering 数据 to achieve sparsity:
-///		If your application has 多个 repeat static 数据 in a 行, you should elect to use Clustered 模式 在 builder to compress it. Note that you should NOT use PosData.LookupExact in this case.
+///		If your application has 多个 repeat static 数据 in a 行, 你应该 elect to use Clustered 模式 在 builder to compress it. 注意 你应该 NOT use PosData.LookupExact 在这种情况下.
 
 
 // 未来待办事项：改进文档。
@@ -45,7 +45,7 @@ namespace ExampleMod.Common.Systems
 			}
 		}
 
-		// We 加载 our 数据 sets using the provided TagCompound. Should mirror SaveWorldData()
+		// We 加载 our 数据 sets 使用 provided TagCompound. Should mirror SaveWorldData()
 		public override void LoadWorldData(TagCompound tag) {
 
 			List<PosData<byte>> list = new List<PosData<byte>>();
@@ -75,7 +75,7 @@ namespace ExampleMod.Common.Systems
 			myMap = builder.Build();
 		}
 
-		// We call our custom 方法 after testing that our 地图 isn't empty - this ensures safe-loading on previous generated worlds!
+		// We call our custom 方法 after testing that our 地图 isn't empty - 这确保 safe-loading on previous generated worlds!
 		public override void PreUpdateWorld() {
 			if (myMap.Length == 0) {
 				return;
@@ -86,7 +86,7 @@ namespace ExampleMod.Common.Systems
 		}
 
 		// 我们使用 the 列 at 世界 中心 to paint nearby tiles based 在 玩家's proximity 到 nearest entry 在 地图.
-		// In this case, the nearest entry should correspond 到 玩家's depth.
+		// 在这种情况下, the nearest entry should correspond 到 玩家's depth.
 		public void UpdateFromNearestInMap(Player player) {
 			// 获取 玩家 位置 in 图格 coordinates
 			Point z = player.position.ToTileCoordinates();

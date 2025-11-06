@@ -25,8 +25,8 @@ namespace ExampleMod.Content.Items.Weapons
 
 			// 武器 Properties
 			Item.DamageType = DamageClass.Ranged; // 设置s the 伤害 类型 to ranged.
-			Item.damage = 10; // 设置s the 项's 伤害. Note that projectiles shot by this 武器 will use its and the used ammunition's 伤害 added together.
-			Item.knockBack = 6f; // 设置s the 项's knockback. Note that projectiles shot by this 武器 will use its and the used ammunition's knockback added together.
+			Item.damage = 10; // 设置s the 项's 伤害. 注意 projectiles shot by this 武器 will use its and the used ammunition's 伤害 added together.
+			Item.knockBack = 6f; // 设置s the 项's knockback. 注意 projectiles shot by this 武器 will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the 项's 动画 doesn't do 伤害.
 
 			// Gun Properties

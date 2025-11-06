@@ -21,7 +21,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		// Using DefaultValue, we can specify a default 值.
+		// Using DefaultValue, 我们可以 specify a default 值.
 		[DefaultValue(99)]
 		public int SimpleDefaultInt;
 
@@ -35,11 +35,11 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[DrawTicks]
 		public SampleEnum EnumExample2;
 
-		// Using StringEnumConverter, Enums are read and written as strings rather than the numerical 值 的 Enum. This makes the 配置 文件 more readable, but prone to errors if a 玩家 manually modifies the 配置 文件.
+		// Using StringEnumConverter, Enums are read and written as strings 而不是 the numerical 值 的 Enum. This makes the 配置 文件 more readable, but prone to errors if a 玩家 manually modifies the 配置 文件.
 		[JsonConverter(typeof(StringEnumConverter))]
 		public SampleEnum EnumExample1 { get; set; }
 
-		// OptionStrings makes a 字符串 appear as a choice rather than an 输入 字段. Remember that users can manually edit json files, so be aware that a 值 other than the Options in OptionStrings might populate the 字段.
+		// OptionStrings makes a 字符串 appear as a choice 而不是 an 输入 字段. Remember that users can manually edit json files, so be aware that a 值 other than the Options in OptionStrings might populate the 字段.
 		// 待办事项： Not working. Won't restore defaults
 		[OptionStrings(new string[] { "Win", "Lose", "Give Up" })]
 		[DefaultValue(new string[] { "Give Up", "Give Up" })]

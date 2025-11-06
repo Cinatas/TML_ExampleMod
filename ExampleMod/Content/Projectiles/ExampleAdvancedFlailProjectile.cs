@@ -419,7 +419,7 @@ namespace ExampleMod.Content.Projectiles
 				modifiers.SourceDamage *= 2f;
 			}
 
-			// hitDirection is always set to hit away 从 玩家, even if the flail damages the npc while returning
+			// hitDirection is always set to hit away 从 玩家, 即使 the flail damages the npc while returning
 			modifiers.HitDirectionOverride = (Main.player[Projectile.owner].Center.X < target.Center.X).ToDirectionInt();
 
 			// Knockback is only 25% as powerful when in spin 模式

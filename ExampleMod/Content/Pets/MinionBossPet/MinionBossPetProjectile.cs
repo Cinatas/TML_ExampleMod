@@ -48,7 +48,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			// 我们 are only using this 方法 for one specific 弹幕, so it's fine to cast the ModProjectile directly like this
 			MinionBossPetProjectile minion = (MinionBossPetProjectile)proj.ModProjectile;
 
-			// Need to set the alpha to 1f to hide the eyes that would normally draw and show the actual 宠物
+			// 需要 set the alpha to 1f to hide the eyes that would normally draw and show the actual 宠物
 			minion.AlphaForVisuals = 1f;
 
 			// 你 can use 弹幕.isAPreviewDummy 在 draw code instead, it depends if you prefer changing the conditions leading up 到 drawing, or the drawing itself
@@ -103,7 +103,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		}
 
 		private void CheckActive(Player player) {
-			// Keep the 弹幕 from disappearing as long as the 玩家 isn't dead and has the 宠物 增益
+			// Keep the 弹幕 from disappearing 只要 the 玩家 isn't dead and has the 宠物 增益
 			if (!player.dead && player.HasBuff(ModContent.BuffType<MinionBossPetBuff>())) {
 				Projectile.timeLeft = 2;
 			}

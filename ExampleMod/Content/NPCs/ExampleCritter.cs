@@ -44,13 +44,13 @@ namespace ExampleMod.Content.NPCs
 				ILCursor ilCursor = new ILCursor(ilContext);
 
 				// exact 位置 for this hook is very complex to 搜索 for due 到 hook instructions 不ing unique and buried deep in 控制 flow. Switch statements are sometimes compiled to if-else chains, and 调试 builds litter the code with no-ops and redundant locals.
-				// 在 general you 想要 搜索 using structure and 函数 rather than numerical constants which may change across different versions or compile settings. Using local 变量 indices is almost always a bad idea.
+				// 在 general you 想要 搜索 using structure and 函数 而不是 numerical constants which may change across different versions or compile settings. Using local 变量 indices is almost always a bad idea.
 				// 我们 can 搜索 for
 				// switch (*)
 				//   case 61:
 				//     num115 = 361;
 
-				// 在 general you'd 想要 look for a specific switch 变量, or perhaps the containing switch (类型) { case 105: but the generated IL is really 变量 and hard to 匹配 in this case.
+				// 在 general you'd 想要 look for a specific switch 变量, or perhaps the containing switch (类型) { case 105: but the generated IL is really 变量 and hard to 匹配 在这种情况下.
 				// We'll just use the fact th在re are no other switch statements with case 61
 
 				ILLabel[] targets = null;
@@ -74,7 +74,7 @@ namespace ExampleMod.Content.NPCs
 					ilCursor.GotoLabel(target);
 					// 移动 the cursor after 361 is pushed on到 堆叠
 					ilCursor.Index++;
-					// 有 lots of extra checks we could add here to make sure we're 在 右 spot, 例如 not encountering 任何 branching instructions
+					// 有 lots of extra checks we could add here to 确保 we're 在 右 spot, 例如 not encountering 任何 branching instructions
 
 					// Now we add additional code to modify the current 值 that 将 assigned to num115
 					ilCursor.EmitDelegate((int originalAssign) => Main.rand.NextBool() ? originalAssign : NPC.type);
@@ -217,7 +217,7 @@ namespace ExampleMod.Content.NPCs
 			// Cloning ItemID.Frog sets the preceding values
 			Item.CloneDefaults(ItemID.Frog);
 			Item.makeNPC = ModContent.NPCType<ExampleCritterNPC>();
-			Item.value += Item.buyPrice(0, 0, 30, 0); // 使 this critter worth slightly more than the frog
+			Item.value += Item.buyPrice(0, 0, 30, 0); // 使 this critter worth slightly 超过 the frog
 			Item.rare = ItemRarityID.Blue;
 		}
 	}

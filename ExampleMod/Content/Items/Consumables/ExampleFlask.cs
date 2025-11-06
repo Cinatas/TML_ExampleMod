@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Consumables
 {
 	/// <summary>
 	/// A 药水 that applies the ExampleWeaponImbue 增益 到 玩家.
-	/// See also ExampleWeaponImbue and ExampleWeaponEnchantmentPlayer.
+	/// 另请参阅 ExampleWeaponImbue and ExampleWeaponEnchantmentPlayer.
 	/// </summary>
 	public class ExampleFlask : ModItem
 	{

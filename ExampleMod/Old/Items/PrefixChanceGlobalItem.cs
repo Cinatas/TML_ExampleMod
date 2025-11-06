@@ -7,7 +7,7 @@ namespace ExampleMod.Items
 {
 	/// <summary>
 	/// This 类 demonstrates how to manipulate the chances of prefixes given to items.
-	/// For other 前缀 related hooks and their usage, see also:
+	/// For other 前缀 related hooks and their usage, 另请参阅:
 	/// <seealso cref="Accessories.ManaHeart"/>
 	/// <seealso cref="Weapons.ExampleYoyo"/>
 	/// </summary>
@@ -50,7 +50,7 @@ namespace ExampleMod.Items
 				// Force rolling
 				// 返回 真;
 
-				// When using 随机 numbers, make sure to use the rand 对象 passed into this 方法, and not Main.rand.
+				// When using 随机 numbers, 确保 to use the rand 对象 passed into this 方法, and not Main.rand.
 				// 这将 make it consistent with worldgen should this 项 be spawned in a 箱子
 				if (rand.NextFloat() < 0.5f) {
 					// Increase the 概率 of not receiving 任何 前缀 on 生成 by 50%

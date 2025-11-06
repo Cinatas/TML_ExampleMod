@@ -7,7 +7,7 @@ namespace ExampleMod.Common.Configs.CustomDataTypes
 	public class Gradient
 	{
 		[DefaultValue(typeof(Color), "0, 0, 255, 255")]
-		public Color start = Color.Blue; // For sub-objects, you'll 想要 make sure to set defaults in constructor or 字段 initializer.
+		public Color start = Color.Blue; // For sub-objects, you'll 想要 确保 to set defaults in constructor or 字段 initializer.
 		[DefaultValue(typeof(Color), "255, 0, 0, 255")]
 		public Color end = Color.Red;
 

@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Tiles
 			// or TileObjectData.newTile.CopyFrom(TileObjectData.StyleSmallCage);
 			TileObjectData.addTile(Type);
 
-			// Since this 图格 is only used for a single 项, we can reuse the 项 localization 对于 地图 entry.
+			// Since this 图格 is only used for a single 项, 我们可以 reuse the 项 localization 对于 地图 entry.
 			AddMapEntry(new Color(122, 217, 232), ModContent.GetInstance<ExampleCritterCageItem>().DisplayName);
 		}
 

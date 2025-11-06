@@ -38,13 +38,13 @@ namespace ExampleMod.Content.Dusts
 			dust.rotation += 0.1f * (dust.dustIndex % 2 == 0 ? -1 : 1);
 			dust.scale -= 0.05f;
 
-			// 在这里 we use the customData 字段. If customData is the 类型 we expect, 玩家, we do some special movement.
+			// 在这里 我们使用 the customData 字段. If customData is the 类型 we expect, 玩家, we do some special movement.
 			if (dust.customData != null && dust.customData is Player player) {
 				// 在这里 we assign 位置 to some 偏移 从 玩家 that was assigned. This 偏移 scales with dust.缩放. The 缩放 and 旋转 cause the spiral movement we desired.
 				dust.position = player.Center + Vector2.UnitX.RotatedBy(dust.rotation, Vector2.Zero) * dust.scale * 50;
 			}
 
-			// 在这里 we make sure to kill 任何 dust that get really small.
+			// 在这里 we 确保 to kill 任何 dust that get really small.
 			if (dust.scale < 0.25f)
 				dust.active = false;
 

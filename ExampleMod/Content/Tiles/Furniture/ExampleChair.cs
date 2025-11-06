@@ -76,7 +76,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			info.AnchorTilePosition.Y = j;
 
 			if (tile.TileFrameY % NextStyleHeight == 0) {
-				info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, we can just check if the 图格 is the 顶部-most one, then 移动 it 1 down
+				info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, 我们可以 just check if the 图格 is the 顶部-most one, then 移动 it 1 down
 			}
 		}
 

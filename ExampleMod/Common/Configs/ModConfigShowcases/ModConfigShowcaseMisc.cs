@@ -37,7 +37,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public List<Gradient> gradients = new List<Gradient>();
 		*/
 
-		// In this case, CustomModConfigItem is annotating the Enum instead 的 字段. Either is acceptable and 可以 used for different situations.
+		// 在这种情况下, CustomModConfigItem is annotating the Enum instead 的 字段. Either is acceptable and 可以 used for different situations.
 		public Corner corner;
 
 		// 你可以 put 多个 attributes 在 same [] if you like.
@@ -68,7 +68,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[Expand(false)]
 		public SimpleData simpleDataExample; // 你可以 also initialize 在 constructor, see initialization in public ModConfigShowcaseMisc() below.
 
-		// This annotation allows the 用户界面 to 空 out this 类. You 需要 make sure to initialize fields without the NullAllowed annotation in constructor or initializer or you might have issues. Of course, if you 允许 nulls, you'll 需要 make sure the rest of your mod will 处理 them correctly. Try to avoid 空 unless you have a good reason to use them, as 空 objects will only complicate the rest of your code.
+		// This annotation allows the 用户界面 to 空 out this 类. You 需要 确保 to initialize fields without the NullAllowed annotation in constructor or initializer or you might have issues. Of course, if you 允许 nulls, you'll 需要 确保 the rest of your mod will 处理 them correctly. Try to avoid 空 unless you have a good reason to use them, as 空 objects will only complicate the rest of your code.
 		[NullAllowed]
 		[JsonDefaultValue("{\"boost\": 777}")] // With NullAllowed, you can specify a default 值 like this.
 		public SimpleData simpleDataExample2;
