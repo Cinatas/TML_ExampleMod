@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.GlobalBuffs
 {
-	// Showcases how to work with all buffs
+	// 展示如何使用所有增益效果
 	public class ExampleGlobalBuff : GlobalBuff
 	{
 		public static LocalizedText RemainingTimeText { get; private set; }
@@ -19,7 +19,7 @@ namespace ExampleMod.Common.GlobalBuffs
 		}
 
 		public override void Update(int type, Player player, ref int buffIndex) {
-			// If the player gets the Chilled debuff while he already has more than 5 other buffs/debuffs, limit the max duration to 3 seconds
+			// 如果玩家在已有超过 5 个其他增益/减益效果时获得冰冻减益，则将最大持续时间限制为 3 秒
 			if (type == BuffID.Chilled && buffIndex >= 5) {
 				int limit = 3 * 60;
 				if (player.buffTime[buffIndex] > limit) {
@@ -29,7 +29,7 @@ namespace ExampleMod.Common.GlobalBuffs
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, int type, int buffIndex, ref BuffDrawParams drawParams) {
-			// Make the campfire buff have a different color and shake slightly
+			// 使篝火增益具有不同的颜色并轻微抖动
 			if (type == BuffID.Campfire) {
 				drawParams.DrawColor = Main.DiscoColor * Main.buffAlpha[buffIndex];
 
@@ -39,19 +39,19 @@ namespace ExampleMod.Common.GlobalBuffs
 				drawParams.TextPosition += shake;
 			}
 
-			// If the buff is not drawn in the hook/mount/pet equip page, and the buff is one of the three specified:
+			// 如果增益不在钩爪/坐骑/宠物装备页面中绘制，并且增益是三个指定的之一：
 			if (Main.EquipPage != 2 && (type == BuffID.Regeneration || type == BuffID.Ironskin || type == BuffID.Swiftness)) {
-				// Make text go up and down 6 pixels on each buff, offset by 4 ticks for each
+				// 使每个增益的文本上下移动 6 像素，每个偏移 4 个刻度
 				int interval = 60;
 				float time = ((int)Main.GameUpdateCount + 4 * buffIndex) % interval / (float)interval;
 
 				int offset = (int)(6 * time);
 
-				ref Vector2 textPos = ref drawParams.TextPosition; // You can use ref locals to keep modifying the same variable
+				ref Vector2 textPos = ref drawParams.TextPosition; // 你可以使用 ref 局部变量来持续修改同一变量
 				textPos.Y += offset;
 			}
 
-			// Return true to let the game draw the buff icon.
+			// 返回 true 以让游戏绘制增益图标。
 			return true;
 		}
 
@@ -59,7 +59,7 @@ namespace ExampleMod.Common.GlobalBuffs
 		private static int randomBuffTypeCache;
 
 		public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare) {
-			// This code adds a more extensible remaining time tooltip for suitable buffs
+			// 此代码为合适的增益添加更可扩展的剩余时间工具提示
 			Player player = Main.LocalPlayer;
 
 			int buffIndex = player.FindBuffIndex(type);
@@ -72,7 +72,7 @@ namespace ExampleMod.Common.GlobalBuffs
 				tip += "\n" + RemainingTimeText.Format(text);
 			}
 
-			// This code showcases adjusting buffName. Try it out by activating a Slice of Cake block
+			// 此代码展示了调整 buffName。通过激活蛋糕片方块来试试
 			if (player.HasBuff(BuffID.SugarRush) && buffName.Length > 2) {
 				if (Main.GameUpdateCount % 10 == 0 || randomBuffTypeCache != type) {
 					if (randomBuffTypeCache != type) {
@@ -95,7 +95,7 @@ namespace ExampleMod.Common.GlobalBuffs
 		}
 
 		public override bool RightClick(int type, int buffIndex) {
-			// This code makes it so while the player is standing still, he cannot remove the "ExampleDefenseBuff" by right clicking the icon
+			// 此代码使玩家在静止时无法通过右键单击图标移除 "ExampleDefenseBuff"
 			if (type == ModContent.BuffType<ExampleDefenseBuff>() && Main.LocalPlayer.velocity == Vector2.Zero) {
 				Main.NewText("Cannot cancel this buff while stationary!");
 				return false;
