@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Items.Ammo
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 12; // The damage for projectiles isn't actually 12, it actually is the damage combined with the projectile and the item together.
+			Item.damage = 12; // The damage for projectiles isn't actually 12, it actually is the damage combined 与 projectile and the item together.
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 8;
 			Item.height = 8;
@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.value = 10;
 			Item.rare = ItemRarityID.Green;
 			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBullet>(); // The projectile that weapons fire when using this item as ammunition.
-			Item.shootSpeed = 16f; // The speed of the projectile.
+			Item.shootSpeed = 16f; // The speed 的 projectile.
 			Item.ammo = AmmoID.Bullet; // The ammo class this ammo belongs to.
 		}
 

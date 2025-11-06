@@ -19,10 +19,10 @@ namespace ExampleMod.Content.Projectiles
 		// This controls how many individual beams are fired by the Prism.
 		public const int NumBeams = 10;
 
-		// This value controls how many frames it takes for the Prism to reach "max charge". 60 frames = 1 second.
+		// This value controls how many frames it takes 对于 Prism to reach "max charge". 60 frames = 1 second.
 		public const float MaxCharge = 180f;
 
-		// This value controls how many frames it takes for the beams to begin dealing damage. Before then they can't hit anything.
+		// This value controls how many frames it takes 对于 beams to begin dealing damage. Before then they can't hit anything.
 		public const float DamageStart = 30f;
 
 		// This value controls how sluggish the Prism turns while being used. Vanilla Last Prism is 0.08f.
@@ -32,9 +32,9 @@ namespace ExampleMod.Content.Projectiles
 		// This value controls how frequently the Prism emits sound once it's firing.
 		private const int SoundInterval = 20;
 
-		// These values place caps on the mana consumption rate of the Prism.
+		// These values place caps 在 mana consumption rate 的 Prism.
 		// 当 first used, the Prism consumes mana once every MaxManaConsumptionDelay frames.
-		// Every time mana is consumed, the pace becomes one frame faster, meaning mana consumption smoothly increases.
+		// 每次 mana is consumed, the pace becomes one frame faster, meaning mana consumption smoothly increases.
 		// 当 capped out, the Prism consumes mana once every MinManaConsumptionDelay frames.
 		private const float MaxManaConsumptionDelay = 15f;
 		private const float MinManaConsumptionDelay = 5f;
@@ -61,8 +61,8 @@ namespace ExampleMod.Content.Projectiles
 		public override void SetStaticDefaults() {
 			Main.projFrames[Projectile.type] = NumAnimationFrames;
 
-			// Signals to Terraria that this Projectile requires a unique identifier beyond its index in the Projectile array.
-			// This prevents the issue with the vanilla Last Prism where the beams are invisible in multiplayer.
+			// Signals to Terraria that this Projectile requires a unique identifier beyond its index 在 Projectile array.
+			// This prevents the issue 与 vanilla Last Prism where the beams are invisible in multiplayer.
 			ProjectileID.Sets.NeedsUUID[Projectile.type] = true;
 
 			// 防止s jitter when stepping up and down blocks and half blocks
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			// 使用 CloneDefaults to clone all basic Projectile statistics from the vanilla Last Prism.
+			// 使用 CloneDefaults to clone all basic Projectile statistics 从 vanilla Last Prism.
 			Projectile.CloneDefaults(ProjectileID.LastPrism);
 		}
 
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Projectiles
 			UpdateAnimation();
 			PlaySounds();
 
-			// 更新 the Prism's position in the world and relevant variables of the player holding it.
+			// 更新 the Prism's position 在 world and relevant variables 的 player holding it.
 			UpdatePlayerVisuals(player, rrp);
 
 			// 更新 the Prism's behavior: project beams on frame 1, consume mana, and despawn if out of mana.
@@ -96,7 +96,7 @@ namespace ExampleMod.Content.Projectiles
 				// Slightly re-aim the Prism every frame so that it gradually sweeps to point towards the mouse.
 				UpdateAim(rrp, player.HeldItem.shootSpeed);
 
-				// player.CheckMana returns true if the mana cost can be paid. Since the second argument is true, the mana is actually consumed.
+				// player.CheckMana returns true if the mana cost 可以 paid. Since the second argument is true, the mana is actually consumed.
 				// 如果 mana shouldn't consumed this frame, the || operator short-circuits its evaluation player.CheckMana never executes.
 				bool manaIsAvailable = !ShouldConsumeMana() || player.CheckMana(player.HeldItem.mana, true, false);
 
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Projectiles
 				// player.channel indicates whether the player is still holding down the mouse button to use the item.
 				bool stillInUse = player.channel && manaIsAvailable && !player.noItems && !player.CCed;
 
-				// 生成 in the Prism's lasers on the first frame if the player is capable of using the item.
+				// 生成 在 Prism's lasers 在 first frame if the player is capable of using the item.
 				if (stillInUse && FrameCounter == 1f) {
 					FireBeams();
 				}
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 
-			// This ensures that the Prism never times out while in use.
+			// This ensures th在 Prism never times out while in use.
 			Projectile.timeLeft = 2;
 		}
 
@@ -129,7 +129,7 @@ namespace ExampleMod.Content.Projectiles
 			// As the Prism charges up and focuses the beams, its animation plays faster.
 			int framesPerAnimationUpdate = FrameCounter >= MaxCharge ? 2 : FrameCounter >= (MaxCharge * 0.66f) ? 3 : 4;
 
-			// 如果 necessary, change which specific frame of the animation is displayed.
+			// 如果 necessary, change which specific frame 的 animation is displayed.
 			if (Projectile.frameCounter >= framesPerAnimationUpdate) {
 				Projectile.frameCounter = 0;
 				if (++Projectile.frame >= NumAnimationFrames) {
@@ -143,7 +143,7 @@ namespace ExampleMod.Content.Projectiles
 			if (Projectile.soundDelay <= 0) {
 				Projectile.soundDelay = SoundInterval;
 
-				// On the very first frame, the sound playing is skipped. This way it doesn't overlap the starting hiss sound.
+				// 在 very first frame, the sound playing is skipped. This way it doesn't overlap the starting hiss sound.
 				if (FrameCounter > 1f) {
 					SoundEngine.PlaySound(SoundID.Item15, Projectile.position);
 				}
@@ -151,9 +151,9 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void UpdatePlayerVisuals(Player player, Vector2 playerHandPos) {
-			// Place the Prism directly into the player's hand at all times.
+			// Place the Prism directly in到 player's hand at all times.
 			Projectile.Center = playerHandPos;
-			// beams emit from the tip of the Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
+			// beams emit 从 tip 的 Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 			Projectile.spriteDirection = Projectile.direction;
 
@@ -178,9 +178,9 @@ namespace ExampleMod.Content.Projectiles
 			// Should mana be consumed this frame?
 			bool consume = FrameCounter == NextManaFrame;
 
-			// 如果 mana is being consumed this frame, update the rate of mana consumption and write down the next frame mana will be consumed.
+			// 如果 mana is being consumed this frame, update the rate of mana consumption and write down the next frame mana 将 consumed.
 			if (consume) {
-				// MathHelper.Clamp(X,A,B) guarantees that A <= X <= B. If X is outside the range, it will be set to A or B accordingly.
+				// MathHelper.Clamp(X,A,B) guarantees that A <= X <= B. If X is outside the range, it 将 set to A or B accordingly.
 				ManaConsumptionRate = MathHelper.Clamp(ManaConsumptionRate - 1f, MinManaConsumptionDelay, MaxManaConsumptionDelay);
 				NextManaFrame += ManaConsumptionRate;
 			}
@@ -194,7 +194,7 @@ namespace ExampleMod.Content.Projectiles
 				aim = -Vector2.UnitY;
 			}
 
-			// 更改 a portion of the Prism's current velocity so that it points to the mouse. This gives smooth movement over time.
+			// 更改 a portion 的 Prism's current velocity so that it points 到 mouse. This gives smooth movement over time.
 			aim = Vector2.Normalize(Vector2.Lerp(Vector2.Normalize(Projectile.velocity), aim, AimResponsiveness));
 			aim *= speed;
 
@@ -205,13 +205,13 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void FireBeams() {
-			// 如果 for some reason the beam velocity can't be correctly normalized, set it to a default value.
+			// 如果 for some reas在 beam velocity can't be correctly normalized, set it to a default value.
 			Vector2 beamVelocity = Vector2.Normalize(Projectile.velocity);
 			if (beamVelocity.HasNaNs()) {
 				beamVelocity = -Vector2.UnitY;
 			}
 
-			// This UUID will be the same between all players in multiplayer, ensuring that the beams are properly anchored on the Prism on everyone's screen.
+			// This UUID 将 the same between all players in multiplayer, ensuring th在 beams are properly anchored 在 Prism on everyone's screen.
 			int uuid = Projectile.GetByUUID(Projectile.owner, Projectile.whoAmI);
 
 			int damage = Projectile.damage;
@@ -232,8 +232,8 @@ namespace ExampleMod.Content.Projectiles
 			int spriteSheetOffset = frameHeight * Projectile.frame;
 			Vector2 sheetInsertPosition = (Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition).Floor();
 
-			// Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
-			// It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
+			// Prism is always at full brightness, regardless 的 surrounding light. This is equivalent to it being its own glowmask.
+			// It is drawn in a non-white color to distinguish it 从 vanilla Last Prism.
 			Color drawColor = ExampleLastPrism.OverrideColor;
 			Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
 			return false;

@@ -20,13 +20,13 @@ namespace ExampleMod.Content.Mounts
 				MountData.frontTexture
 			);
 
-			// 更改 properties on MountData here further, for example:
+			// 更改 properties on MountData here further, 例如:
 			MountData.spawnDust = 21;
 			MountData.delegations.MinecartDust = DelegateMethods.Minecart.SparksMeow;
 			MountData.delegations.MinecartLandingSound = DelegateMethods.Minecart.LandingSoundFart;
 			MountData.delegations.MinecartBumperSound = DelegateMethods.Minecart.BumperSoundFart;
 
-			// Important to note is that runSpeed, dashSpeed, and acceleration will get overridden when the player has used the Minecart Upgrade Kit. Keep that in mind when changing the values yourself
+			// 重要 to note is that runSpeed, dashSpeed, and acceleration will get overridden when the player has used the Minecart Upgrade Kit. Keep that in mind when changing the values yourself
 		}
 
 		public override void UpdateEffects(Player player) {

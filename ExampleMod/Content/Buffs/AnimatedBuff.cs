@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Buffs
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams) {
-			// 你 can use this hook to make something special happen when the buff icon is drawn (such as reposition it, pick a different texture, etc.).
+			// 你 can use this hook to make something special happen when the buff icon is drawn (例如 reposition it, pick a different texture, etc.).
 
 			// 我们 draw our special texture here with a specific animation.
 
@@ -44,8 +44,8 @@ namespace ExampleMod.Content.Buffs
 			drawParams.drawColor = Color.LimeGreen * Main.buffAlpha[buffIndex];
 			*/
 
-			// Be aware of the fact that drawParams.mouseRectangle exists: it defaults to the size of the autoloaded buffs' sprite,
-			// it handles mouseovering and clicking on the buff icon. Since our frame in the animation is 32x32 (same as the autoloaded sprite),
+			// Be aware 的 fact that drawParams.mouseRectangle exists: it defaults 到 size 的 autoloaded buffs' sprite,
+			// it handles mouseovering and clicking 在 buff icon. Since our frame 在 animation is 32x32 (same as the autoloaded sprite),
 			// and we don't change drawParams.position, we don't have to do anything. If you offset the position, or have a non-standard size, change it accordingly.
 
 			// 我们 have two options here:

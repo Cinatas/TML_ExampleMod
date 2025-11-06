@@ -43,7 +43,7 @@ namespace ExampleMod.Common.Systems
 					int x = WorldGen.genRand.Next(Main.maxTilesX / 2 - 40, Main.maxTilesX / 2 + 40);
 					int y = WorldGen.genRand.Next((int)GenVars.worldSurfaceLow, (int)GenVars.worldSurfaceHigh);
 					int tileType = WorldGen.genRand.Next(tileTypes);
-					int placeStyle = WorldGen.genRand.Next(6); // Each of these tiles have 6 place styles
+					int placeStyle = WorldGen.genRand.Next(6); // Each 的se tiles have 6 place styles
 					if (Main.tile[x, y].TileType == tileType) {
 						continue;
 					}

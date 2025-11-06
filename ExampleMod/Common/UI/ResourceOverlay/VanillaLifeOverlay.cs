@@ -65,24 +65,24 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		private void DrawClassicFancyOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Classic / Fancy hearts
 			// "context" contains information used to draw the resource
-			// If you want to draw directly on top of the vanilla hearts, just replace the texture and have the context draw the new texture
+			// If you want to draw directly on top 的 vanilla hearts, just replace the texture and have the context draw the new texture
 			context.texture = heartTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/ClassicLifeOverlay");
 			context.Draw();
 		}
 
 		// 绘制ing over the panel backgrounds is not required.
-		// This example just showcases changing the "inner" part of the heart panels to more closely resemble the example life fruit.
+		// This example just showcases changing the "inner" part 的 heart panels to more closely resemble the example life fruit.
 		private void DrawFancyPanelOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Fancy heart panels
 			string fancyFolder = "Images/UI/PlayerResourceSets/FancyClassic/";
 
-			// The original position refers to the entire panel slice.
-			// 然而, since this overlay only modifies the "inner" portion of the slice (aka the part behind the heart),
-			// the position should be modified to compensate for the sprite size difference
+			// The original position refers 到 entire panel slice.
+			// 然而, since this overlay only modifies the "inner" portion 的 slice (aka the part behind the heart),
+			// the position 应该 modified to compensate 对于 sprite size difference
 			Vector2 positionOffset;
 
 			if (context.resourceNumber == context.snapshot.AmountOfLifeHearts - 1) {
-				// Final panel to draw has a special "Fancy" variant.  Determine whether it has panels to the left of it
+				// Final panel to draw has a special "Fancy" variant.  Determine whether it has panels 到 left of it
 				if (CompareAssets(context.texture, fancyFolder + "Heart_Single_Fancy")) {
 					// 首先 and only panel in this panel's row
 					positionOffset = new Vector2(8, 8);
@@ -102,15 +102,15 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 				positionOffset = new Vector2(0, 4);
 			}
 			else {
-				// Final panel in the first row
+				// Final panel 在 first row
 				// Vanilla texture is "Heart_Right"
 				positionOffset = new Vector2(0, 4);
 			}
 
 			// "context" contains information used to draw the resource
-			// If you want to draw directly on top of the vanilla hearts, just replace the texture and have the context draw the new texture
+			// If you want to draw directly on top 的 vanilla hearts, just replace the texture and have the context draw the new texture
 			context.texture = fancyPanelTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/FancyLifeOverlay_Panel");
-			// Due to the replacement texture and the vanilla texture having different dimensions, the source needs to also be modified
+			// Due 到 replacement texture and the vanilla texture having different dimensions, the source needs to also be modified
 			context.source = context.texture.Frame();
 			context.position += positionOffset;
 			context.Draw();
@@ -119,23 +119,23 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		private void DrawBarsOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Bars life bars
 			// "context" contains information used to draw the resource
-			// If you want to draw directly on top of the vanilla bars, just replace the texture and have the context draw the new texture
+			// If you want to draw directly on top 的 vanilla bars, just replace the texture and have the context draw the new texture
 			context.texture = barsFillingTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsLifeOverlay_Fill");
 			context.Draw();
 		}
 
 		// 绘制ing over the panel backgrounds is not required.
-		// This example just showcases changing the "inner" part of the bar panels to more closely resemble the example life fruit.
+		// This example just showcases changing the "inner" part 的 bar panels to more closely resemble the example life fruit.
 		private void DrawBarsPanelOverlay(ResourceOverlayDrawContext context) {
 			// 绘制 over the Bars middle life panels
 			// "context" contains information used to draw the resource
-			// If you want to draw directly on top of the vanilla bar panels, just replace the texture and have the context draw the new texture
+			// If you want to draw directly on top 的 vanilla bar panels, just replace the texture and have the context draw the new texture
 			context.texture = barsPanelTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsLifeOverlay_Panel");
-			// Due to the replacement texture and the vanilla texture having different heights, the source needs to also be modified
+			// Due 到 replacement texture and the vanilla texture having different heights, the source needs to also be modified
 			context.source = context.texture.Frame();
-			// The original position refers to the entire panel slice.
-			// 然而, since this overlay only modifies the "inner" portion of the slice (aka the part behind the bar filling),
-			// the position should be modified to compensate for the sprite size difference
+			// The original position refers 到 entire panel slice.
+			// 然而, since this overlay only modifies the "inner" portion 的 slice (aka the part behind the bar filling),
+			// the position 应该 modified to compensate 对于 sprite size difference
 			context.position.Y += 6;
 			context.Draw();
 		}

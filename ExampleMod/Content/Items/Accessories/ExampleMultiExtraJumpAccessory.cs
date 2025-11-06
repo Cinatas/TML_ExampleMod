@@ -30,10 +30,10 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// Find the line that contains the dummy string from the localization text
+			// Find the line that contains the dummy string 从 localization text
 			int index = tooltips.FindIndex(static line => line.Text.Contains("<JUMPS>"));
 			if (index >= 0) {
-				// ... and then replace it
+				// ... 然后 replace it
 				ref string text = ref tooltips[index].Text;
 				text = text.Replace("<JUMPS>", $"{Main.LocalPlayer.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining}");
 			}

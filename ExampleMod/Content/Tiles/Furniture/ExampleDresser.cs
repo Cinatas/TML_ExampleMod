@@ -149,7 +149,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				player.cursorItemIconText = Language.GetTextValue("LegacyDresserType.0");
 			}
 			else {
-				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
+				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text 对于 currently selected language
 
 				if (Main.chest[chestIndex].name != "") {
 					player.cursorItemIconText = Main.chest[chestIndex].name;

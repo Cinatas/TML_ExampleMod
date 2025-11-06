@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Tiles
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.Torches, 0));
-			/*  This is what is copied from the Torches tile
+			/*  This is what is copied 从 Torches tile
 			TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.addAlternate(0);
 			*/
 
-			// This code adds style-specific properties to style 1. Style 1 is used by ExampleWaterTorch. This code allows the tile to be placed in liquids. More info can be found in the guide: https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#newsubtile-and-newalternate
+			// This code adds style-specific properties to style 1. Style 1 is used by ExampleWaterTorch. This code allows the tile to be placed in liquids. More info 可以 found 在 guide: https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#newsubtile-and-newalternate
 			TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newSubTile.LinkedAlternates = true;
 			TileObjectData.newSubTile.WaterDeath = false;
@@ -77,7 +77,7 @@ namespace ExampleMod.Content.Tiles
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 
-			// 我们 can determine the item to show on the cursor by getting the tile style and looking up the corresponding item drop.
+			// 我们 can determine the item to show 在 cursor by getting the tile style and looking up the corresponding item drop.
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
 		}
@@ -86,17 +86,17 @@ namespace ExampleMod.Content.Tiles
 			// 获取TorchLuck is called when there is an ExampleTorch nearby the client player
 			// 在 most use-cases you should return 1f for a good luck torch, or -1f for a bad luck torch.
 			// 你 can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
-			// 记住 that the overall torch luck is decided by every torch around the player, so it may be wise to have a smaller amount of luck impact.
+			// 记住 th在 overall torch luck is decided by every torch around the player, so it 可能 wise to have a smaller amount of luck impact.
 			// Multiple example torches on screen will have no additional effect.
 
-			// Positive and negative luck are accumulated separately and then compared to some fixed limits in vanilla to determine overall torch luck.
+			// Positive and negative luck are accumulated separately 然后 compared to some fixed limits in vanilla to determine overall torch luck.
 			// Positive luck is capped at 1, any value higher won't make any difference and negative luck is capped at 2.
 			// 一个 negative luck of 2 will cancel out all torch luck bonuses.
 
 			// influence positive torch luck can have overall is 0.1 (if positive luck is any number less than 1) or 0.2 (if positive luck is greater than or equal to 1)
 
 			bool inExampleUndergroundBiome = player.InModBiome<ExampleUndergroundBiome>();
-			return inExampleUndergroundBiome ? 1f : -0.1f; // ExampleTorch gives maximum positive luck when in example biome, otherwise a small negative luck
+			return inExampleUndergroundBiome ? 1f : -0.1f; // 示例Torch gives maximum positive luck when in example biome, otherwise a small negative luck
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = Main.rand.Next(1, 3);
@@ -107,7 +107,7 @@ namespace ExampleMod.Content.Tiles
 			// 如果 the torch is on
 			if (tile.TileFrameX < 66) {
 				int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
-				// Make it emit the following light.
+				// 使 it emit the following light.
 				if (style == 0) {
 					r = 0.9f;
 					g = 0.9f;
@@ -159,7 +159,7 @@ namespace ExampleMod.Content.Tiles
 			int frameY = tile.TileFrameY;
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 			if (style == 1) {
-				// ExampleWaterTorch should be a bit greener.
+				// 示例WaterTorch 应该 a bit greener.
 				color.G = 255;
 			}
 

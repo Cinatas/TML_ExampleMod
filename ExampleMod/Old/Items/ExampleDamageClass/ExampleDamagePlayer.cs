@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Items.ExampleDamageClass
 {
-	// This class stores necessary player info for our custom damage class, such as damage multipliers, additions to knockback and crit, and our custom resource that governs the usage of the weapons of this damage class.
+	// This class stores necessary player info for our custom damage class, 例如 damage multipliers, additions to knockback and crit, and our custom resource that governs the usage 的 weapons of this damage class.
 	public class ExampleDamagePlayer : ModPlayer
 	{
 		public static ExampleDamagePlayer ModPlayer(Player player) {

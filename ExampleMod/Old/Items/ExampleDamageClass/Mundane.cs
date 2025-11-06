@@ -9,7 +9,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 	{
 		public override string Texture => "Terraria/Item_" + ItemID.HellwingBow;
 
-		// 调用ed when the mod loads, so our changes are added to the game
+		// 调用ed when the mod loads, so our changes are added 到 game
 		public static void AddHacks() {
 			// 设置 ourselves to be ranged temporarily to benefit from ranged bonuses
 			// This is needed because terraria changes the variables before calling tML's method

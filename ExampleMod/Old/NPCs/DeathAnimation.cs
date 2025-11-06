@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.NPCs
 {
-	// This example is very advanced. It shows how to use shaders, manual NPC drawing, CheckDead usage, and making a death animation. It also has a fairly basic custom AI that acts fairly similar to the Dungeon Guardian.
-	// Watch this for a quick demonstration of the death animation and shader: https://gfycat.com/SlowUnimportantFlea
+	// This example is very advanced. It shows how to use shaders, manual NPC drawing, CheckDead usage, and making a death animation. It also has a fairly basic custom AI that acts fairly similar 到 Dungeon Guardian.
+	// Watch this for a quick demonstration 的 death animation and shader: https://gfycat.com/SlowUnimportantFlea
 	public class DeathAnimation : ModNPC
 	{
 		public override void SetStaticDefaults() {
@@ -29,7 +29,7 @@ namespace ExampleMod.NPCs
 			npc.noTileCollide = true;
 			npc.knockBackResist = 0f;
 
-			// Because our width and height don't match the texture size, we use drawOffsetY to attempt to center the drawing of the NPC. This lets the hitbox better conform to the shape of our NPC. Hitboxes don't rotate, so this approach is needed to let the hitbox better represent the position of the damageable portion of the NPC.
+			// Because our width and height don't match the texture size, we use drawOffsetY to attempt to center the drawing 的 NPC. This lets the hitbox better conform 到 shape of our NPC. Hitboxes don't rotate, so this approach is needed to let the hitbox better represent the position 的 damageable portion 的 NPC.
 			drawOffsetY = 30;
 		}
 
@@ -38,23 +38,23 @@ namespace ExampleMod.NPCs
 			return 0f;
 		}
 
-		// PreDraw and PostDraw are responsible for applying and then removing the shader. If you omit PostDraw, the following NPC to be drawn will inherit the shader, so don't do that.
-		// Basically, we need to End the previous spriteBatch, start it again, apply our shader, draw the NPC, and finally End and Start a fresh spriteBatch.
+		// PreDraw and PostDraw are responsible for applying 然后 removing the shader. If you omit PostDraw, the following NPC to be drawn will inherit the shader, so don't do that.
+		// 基本ally, we need to End the previous spriteBatch, start it again, apply our shader, draw the NPC, and finally End and Start a fresh spriteBatch.
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor) {
 			Main.spriteBatch.End();
 			Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
 
-			// Retrieve reference to shader
+			// 检索 reference to shader
 			var deathShader = GameShaders.Misc["ExampleMod:DeathAnimation"];
 
 			// 重置 back to default value.
 			deathShader.UseOpacity(1f);
 			// We use npc.ai[3] as a counter since the real death.
 			if (npc.ai[3] > 30f) {
-				// Our shader uses the Opacity register to drive the effect. See ExampleEffectDeath.fx to see how the Opacity parameter factors into the shader math. 
+				// Our shader uses the Opacity register to drive the effect. See ExampleEffectDeath.fx to see how the Opacity parameter factors in到 shader math. 
 				deathShader.UseOpacity(1f - (npc.ai[3] - 30f) / 150f);
 			}
-			// 调用 Apply to apply the shader to the SpriteBatch. Only 1 shader can be active at a time.
+			// 调用 Apply to apply the shader 到 SpriteBatch. Only 1 shader 可以 active at a time.
 			deathShader.Apply(null);
 			return true;
 		}
@@ -80,12 +80,12 @@ namespace ExampleMod.NPCs
 
 		public override void FindFrame(int frameHeight) {
 			if (npc.ai[3] > 0f) {
-				// If our ModNPC is currently dying, show the sad face part of the sprite.
+				// If our ModNPC is currently dying, show the sad face part 的 sprite.
 				npc.frame.Y = frameHeight;
 			}
 		}
 
-		// This AI was adapted from the Dungeon Guardian AI and then modified. Below are some notes I used while figuring out what each ai value represented. It is a good skill to develop if you wish to make AI.
+		// This AI was adapted 从 Dungeon Guardian AI 然后 modified. Below are some notes I used while figuring out what each ai value represented. It is a good skill to develop if you wish to make AI.
 		// npc.ai[0]: Just Spawned
 		//		0: just spawned, needs target
 		//		1: has target
@@ -114,7 +114,7 @@ namespace ExampleMod.NPCs
 					//		npc.Opacity = 1f - (npc.ai[3] - 120f) / 60f;
 				}
 				if (Main.rand.NextBool(5) && npc.ai[3] < 120f) {
-					// This dust spawn adapted from the Pillar death code in vanilla.
+					// This dust spawn adapted 从 Pillar death code in vanilla.
 					for (int dustNumber = 0; dustNumber < 3; dustNumber++) {
 						Dust dust = Main.dust[Dust.NewDust(npc.Left, npc.width, npc.height / 2, 242, 0f, 0f, 0, default(Color), 1f)];
 						dust.position = npc.Center + Vector2.UnitY.RotatedByRandom(4.1887903213500977) * new Vector2(npc.width * 1.5f, npc.height * 1.1f) * 0.8f * (0.8f + Main.rand.NextFloat() * 0.2f);
@@ -192,7 +192,7 @@ public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 	Main.spriteBatch.End();
 	Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
 
-	// Retrieve reference to shader
+	// 检索 reference to shader
 	var deathShader = GameShaders.Misc["ExampleMod:DeathAnimation"];
 	deathShader.UseOpacity(1f);
 	// npc.ai[3] we use as a counter since the real death.

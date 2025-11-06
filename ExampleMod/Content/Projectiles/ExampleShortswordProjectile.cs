@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// Shortsword projectiles are handled in a special way with how they draw and damage things
-	// "hitbox" itself is closer to the player, the sprite is centered on it
-	// 然而 the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
+	// "hitbox" itself is closer 到 player, the sprite is centered on it
+	// 然而 the interactions 与 world will occur offset from this hitbox, closer 到 sword's tip (CutTiles, Colliding)
 	// Values chosen mostly correspond to Iron Shortsword
 	public class ExampleShortswordProjectile : ModProjectile
 	{
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public const int TotalDuration = 16;
 
-		// "width" of the blade
+		// "width" 的 blade
 		public float CollisionWidth => 10f * Projectile.scale;
 
 		public int Timer {
@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			Projectile.Size = new Vector2(18); // This sets width and height to the same value (important when projectiles can rotate)
+			Projectile.Size = new Vector2(18); // This sets width and height 到 same value (important when projectiles can rotate)
 			Projectile.aiStyle = -1; // 使用 our own AI to customize how it behaves, if you don't want that, keep this at ProjAIStyleID.ShortSword. You would still need to use the code in SetVisualOffsets() though
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.ownerHitCheck = true; // 防止s hits through tiles. Most melee weapons that use projectiles have this
 			Projectile.extraUpdates = 1; // 更新 1+extraUpdates times per tick
 			Projectile.timeLeft = 360; // This value does not matter since we manually kill it earlier, it just has to be higher than the duration we use in AI
-			Projectile.hide = true; // Important when used alongside player.heldProj. "Hidden" projectiles have special draw conditions
+			Projectile.hide = true; // 重要 when used alongside player.heldProj. "Hidden" projectiles have special draw conditions
 		}
 
 		public override void AI() {
@@ -48,27 +48,27 @@ namespace ExampleMod.Content.Projectiles
 				return;
 			}
 			else {
-				// Important so that the sprite draws "in" the player's hand and not fully in front or behind the player
+				// 重要 so th在 sprite draws "in" the player's hand and not fully in front or behind the player
 				player.heldProj = Projectile.whoAmI;
 			}
 
 			// Fade in and out
 			// 获取LerpValue returns a value between 0f and 1f - if clamped is true - representing how far Timer got along the "distance" defined by the first two parameters
 			// first call handles the fade in, the second one the fade out.
-			// 注意 the second call's parameters are swapped, this means the result will be reverted
+			// 注意 the second call's parameters are swapped, this means the result 将 reverted
 			Projectile.Opacity = Utils.GetLerpValue(0f, FadeInDuration, Timer, clamped: true) * Utils.GetLerpValue(TotalDuration, TotalDuration - FadeOutDuration, Timer, clamped: true);
 
-			// Keep locked onto the player, but extend further based on the given velocity (Requires ShouldUpdatePosition returning false to work)
+			// Keep locked on到 player, but extend further based 在 given velocity (Requires ShouldUpdatePosition returning false to work)
 			Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false);
 			Projectile.Center = playerCenter + Projectile.velocity * (Timer - 1f);
 
 			// 设置 spriteDirection based on moving left or right. Left -1, right 1
 			Projectile.spriteDirection = (Vector2.Dot(Projectile.velocity, Vector2.UnitX) >= 0f).ToDirectionInt();
 
-			// Point towards where it is moving, applied offset for top right of the sprite respecting spriteDirection
+			// Point towards where it is moving, applied offset for top right 的 sprite respecting spriteDirection
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2 - MathHelper.PiOver4 * Projectile.spriteDirection;
 
-			// code in this method is important to align the sprite with the hitbox how we want it to
+			// code in this method is important to align the sprite 与 hitbox how we want it to
 			SetVisualOffsets();
 		}
 
@@ -112,8 +112,8 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// "Hit anything between the player and the tip of the sword"
-			// shootSpeed is 2.1f for reference, so this is basically plotting 12 pixels ahead from the center
+			// "Hit anything between the player and the tip 的 sword"
+			// shootSpeed is 2.1f for reference, so this is basically plotting 12 pixels ahead 从 center
 			Vector2 start = Projectile.Center;
 			Vector2 end = start + Projectile.velocity * 6f;
 			float collisionPoint = 0f; // 不要 need that variable, but required as parameter

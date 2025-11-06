@@ -12,17 +12,17 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.width = 40; // The item texture's width.
 			Item.height = 40; // The item texture's height.
 
-			Item.useStyle = ItemUseStyleID.Swing; // The useStyle of the Item.
+			Item.useStyle = ItemUseStyleID.Swing; // The useStyle 的 Item.
 			Item.useTime = 20; // The time span of using the weapon. Remember in terraria, 60 frames is a second.
-			Item.useAnimation = 20; // The time span of the using animation of the weapon, suggest setting it the same as useTime.
-			Item.autoReuse = true; // Whether the weapon can be used more than once automatically by holding the use button.
+			Item.useAnimation = 20; // The time span 的 using animation 的 weapon, suggest setting it the same as useTime.
+			Item.autoReuse = true; // Whether the weapon 可以 used more than once automatically by holding the use button.
 
-			Item.DamageType = DamageClass.Melee; // Whether your item is part of the melee class.
+			Item.DamageType = DamageClass.Melee; // Whether your item is part 的 melee class.
 			Item.damage = 50; // The damage your item deals.
-			Item.knockBack = 6; // The force of knockback of the weapon. Maximum is 20
-			Item.crit = 6; // The critical strike chance the weapon has. The player, by default, has a 4% critical strike chance.
+			Item.knockBack = 6; // The force of knockback 的 weapon. Maximum is 20
+			Item.crit = 6; // The critical strike chance the weapon has. The player, 默认情况下, has a 4% critical strike chance.
 
-			Item.value = Item.buyPrice(gold: 1); // The value of the weapon in copper coins.
+			Item.value = Item.buyPrice(gold: 1); // The value 的 weapon in copper coins.
 			Item.rare = ModContent.RarityType<ExampleModRarity>(); // Give this item our custom rarity.
 			Item.UseSound = SoundID.Item1; // The sound when the weapon is being used.
 		}

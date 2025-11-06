@@ -11,7 +11,7 @@ namespace ExampleMod.UI
 	// By wrapping the vanilla ItemSlot class, we can easily use ItemSlot.
 	// ItemSlot isn't very modder friendly and operates based on a "Context" number that dictates how the slot behaves when left, right, or shift clicked and the background used when drawn. 
 	// If you want more control, you might need to write your own UIElement.
-	// I've added basic functionality for validating the item attempting to be placed in the slot via the validItem Func. 
+	// I've added basic functionality for validating the item attempting to be placed 在 slot via the validItem Func. 
 	// See ExamplePersonUI for usage and use the Awesomify chat option of Example Person to see in action.
 	internal class VanillaItemSlotWrapper : UIElement
 	{
@@ -38,7 +38,7 @@ namespace ExampleMod.UI
 			if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface) {
 				Main.LocalPlayer.mouseInterface = true;
 				if (ValidItemFunc == null || ValidItemFunc(Main.mouseItem)) {
-					// 处理 handles all the click and hover actions based on the context.
+					// 处理 handles all the click and hover actions based 在 context.
 					ItemSlot.Handle(ref Item, _context);
 				}
 			}

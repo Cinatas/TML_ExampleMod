@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Buffs
 	public class ExampleCrateBuff : ModBuff
 	{
 		public override void Update(Player player, ref int buffIndex) {
-			// 使用 a ModPlayer to keep track of the buff being active
+			// 使用 a ModPlayer to keep track 的 buff being active
 			player.GetModPlayer<ExampleFishingPlayer>().hasExampleCrateBuff = true;
 		}
 	}

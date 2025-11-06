@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items
 
 		public override ModItem Clone(Item item) {
 			ExampleInstancedItem clone = (ExampleInstancedItem)base.Clone(item);
-			clone.colors = (Color[])colors?.Clone(); // note the ? here is important, colors may be null if spawned from other mods which don't call OnCreate
+			clone.colors = (Color[])colors?.Clone(); // note the ? here is important, colors 可能 null if spawned from other mods which don't call OnCreate
 			return clone;
 		}
 
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			if (colors == null) //colors may be null if spawned from other mods which don't call OnCreate
+			if (colors == null) //colors 可能 null if spawned from other mods which don't call OnCreate
 				return;
 
 			for (int i = 0; i < colors.Length; i++) {
@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Items
 			}
 		}
 
-		// NOTE: The tag instance provided here is always empty by default.
+		// NOTE: The tag instance provided here is always empty 默认情况下.
 		// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
 		public override void SaveData(TagCompound tag) {
 			tag["Colors"] = colors;

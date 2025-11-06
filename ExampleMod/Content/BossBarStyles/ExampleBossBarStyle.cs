@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.BossBars
 {
-	// 展示 very basic code for a custom boss bar style that is selectable in the menu in "Interface"
-	// 如果 you want custom NPC selection code for which boss bars to display, return true for PreventUpdate, and implement your own code in the Update hook
+	// 展示 very basic code for a custom boss bar style 即 selectable 在 menu in "Interface"
+	// 如果 you want custom NPC selection code for which boss bars to display, return true for PreventUpdate, and implement your own code 在 Update hook
 	public class ExampleBossBarStyle : ModBossBarStyle
 	{
 		public override bool PreventDraw => true; // 防止s the default drawing code
@@ -20,7 +20,7 @@ namespace ExampleMod.Content.BossBars
 
 			if (currentBar is CommonBossBigProgressBar) {
 				// 如果 this is a regular bar without any special features, we draw our own thing. Sadly, "life to display" is not a variable we can access,
-				// but since we are dealing with the very basic implementation that only tracks a single NPC, we can use "info"
+				// but since we are dealing 与 very basic implementation that only tracks a single NPC, we can use "info"
 
 				NPC npc = Main.npc[info.npcIndexToAimAt];
 				float lifePercent = Utils.Clamp(npc.life / (float)npc.lifeMax, 0f, 1f);
@@ -29,7 +29,7 @@ namespace ExampleMod.Content.BossBars
 				BigProgressBarHelper.DrawBareBonesBar(spriteBatch, lifePercent);
 
 				if (info.showText && BigProgressBarSystem.ShowText) {
-					// 如果 the bar can currently draw text and the setting for it is enabled, draw the "life/lifeMax" text in the center of the bar (position code taken from DrawBareBonesBar)
+					// 如果 the bar can currently draw text and the setting for it is enabled, draw the "life/lifeMax" text 在 center 的 bar (position code taken from DrawBareBonesBar)
 					Rectangle barDimensions = Utils.CenteredRectangle(Main.ScreenSize.ToVector2() * new Vector2(0.5f, 1f) + new Vector2(0f, -50f), new Vector2(400f, 20f));
 					BigProgressBarHelper.DrawHealthText(spriteBatch, barDimensions, 2 * Vector2.UnitY, npc.life, npc.lifeMax);
 				}

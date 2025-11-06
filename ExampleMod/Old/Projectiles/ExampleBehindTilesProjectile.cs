@@ -13,7 +13,7 @@ namespace ExampleMod.Projectiles
 
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Ghost Shuriken");
-			ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; // projectiles with hide but without this will draw in the lighting values of the owner player.
+			ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; // projectiles with hide but without this will draw 在 lighting values 的 owner player.
 		}
 
 		public override void SetDefaults() {
@@ -26,15 +26,15 @@ namespace ExampleMod.Projectiles
 		}
 
 		public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI) {
-			// 添加 this projectile to the list of projectiles that will be drawn BEFORE tiles and NPC are drawn. This makes the projectile appear to be BEHIND the tiles and NPC.
+			// 添加 this projectile 到 list of projectiles that 将 drawn BEFORE tiles and NPC are drawn. This makes the projectile appear to be BEHIND the tiles and NPC.
 			drawCacheProjsBehindNPCsAndTiles.Add(index);
 		}
 	}
-	// This .cs file has 2 classes in it, which is totally fine. (What is important is that namespace+classname is unique. Remember that autoloaded textures follow the namespace+classname convention as well.)
+	// This .cs file has 2 classes in it, 即 totally fine. (What is important is that namespace+classname is unique. Remember that autoloaded textures follow the namespace+classname convention 以及.)
 	// This is an approach you can take to fit your organization style.
 	public class ExampleBehindTilesProjectileItem : ModItem
 	{
-		// 使用 this to use Vanilla textures. The number corresponds to the ItemID of the vanilla item.
+		// 使用 this to use Vanilla textures. The number corresponds 到 ItemID 的 vanilla item.
 		public override string Texture => "Terraria/Item_42";
 
 		public override void SetStaticDefaults() {

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Tools
 {
-	// 这是 an example bug net designed to demonstrate the use cases for various hooks related to catching NPCs such as critters with items.
+	// 这是 an example bug net designed to demonstrate the use cases for various hooks related to catching NPCs 例如 critters with items.
 	public class ExampleBugNet : ModItem
 	{
 		public static readonly int LavaCatchChance = 20;
@@ -28,9 +28,9 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override void SetDefaults() {
-			// These are, with a few modifications, the properties applied to the base Bug Net; they're provided here so that you can mess with them as you please.
-			// Explanations on them will be glossed over here, as they're not the primary point of the lesson.
-			// Common Properties
+			// These are, with a few modifications, the properties applied 到 base Bug Net; they're provided here so that you can mess 与m as you please.
+			// Explanations 在m 将 glossed over here, as they're not the primary point 的 lesson.
+			// 常见 Properties
 			Item.width = 24;
 			Item.height = 28;
 			Item.rare = ItemRarityID.Blue;
@@ -46,8 +46,8 @@ namespace ExampleMod.Content.Items.Tools
 
 		public override bool? CanCatchNPC(NPC target, Player player) {
 			// This hook is used to determine whether or not your catching tool can catch a given NPC.
-			// This returns null by default, which allows vanilla to decide whether or not the NPC should be caught.
-			// 返回ing true forces the NPC to be caught, while returning false forces the NPC to not be caught.
+			// This returns null 默认情况下, which allows vanilla to decide whether or not the NPC 应该 caught.
+			// 返回ing true forces the NPC to be caught, while returning false forces the NPC to 不 caught.
 			// 如果 you're unsure what to return, return null.
 			// 对于 this example, we'll give our example bug net a 20% chance to catch lava critters successfully (50% with a Warmth Potion buff active).
 			if (ItemID.Sets.IsLavaBait[target.catchItem]) {
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Items.Tools
 			}
 
 			if (catchEntity.Entity is Player player) {
-				// Gives a 5% chance for the Example Bug Net to duplicate caught NPCs.
+				// Gives a 5% chance 对于 Example Bug Net to duplicate caught NPCs.
 				if (player.HeldItem.type == ModContent.ItemType<ExampleBugNet>() && Main.rand.NextBool(ExampleBugNet.BonusCritterChance, 100)) {
 					item.stack *= 2;
 				}

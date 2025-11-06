@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Tiles
 {
-	// This class replicates the behavior of the game Minesweeper within a ModTile.
+	// This class replicates the behavior 的 game Minesweeper within a ModTile.
 	// This contrived example serves to teach modders about what TileFrame is capable of. Usually ModTiles are "framed" according to vanilla patterns. We override this behavior as a teaching example.
 	public class Minesweeper : ModTile
 	{
@@ -22,11 +22,11 @@ namespace ExampleMod.Tiles
 
 		public override void PlaceInWorld(int i, int j, Item item) {
 			Tile tile = Main.tile[i, j];
-			if (Main.rand.NextBool(4)) // 1 in 4 placed Tiles will be a Mine
+			if (Main.rand.NextBool(4)) // 1 in 4 placed Tiles 将 a Mine
 			{
 				tile.frameX = 18;
 				TileFrame8Neighbors(i, j);
-				if (Main.netMode == NetmodeID.MultiplayerClient) // If we are a multiplayer client, we need to inform the server of the changes we've made to the Tile.
+				if (Main.netMode == NetmodeID.MultiplayerClient) // If we are a multiplayer client, we need to inform the server 的 changes we've made 到 Tile.
 					NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
 			}
 		}
@@ -65,7 +65,7 @@ namespace ExampleMod.Tiles
 		public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
 			Tile tile = Main.tile[i, j];
 			bool changed = false;
-			// frameX and frameY correspond to the top left corner of the sprite in the tile spritesheet.
+			// frameX and frameY correspond 到 top left corner 的 sprite 在 tile spritesheet.
 			bool revealed = !((tile.frameX == 18 || tile.frameX == 0) && tile.frameY == 0);
 			bool revealedBomb = tile.frameX == 5 * 18 && tile.frameY == 0;
 			if (revealed && !revealedBomb) {

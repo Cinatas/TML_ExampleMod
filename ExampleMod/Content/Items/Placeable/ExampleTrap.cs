@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items.Placeable
 	public class ExampleTrap : ModItem
 	{
 		// This inner class is an ILoadable, the game will automatically call the Load method when loading this mod.
-		// 使用 this class, we manually call AddContent with 2 instances of the ExampleTrap class. This adds them to the game.
+		// 使用 this class, we manually call AddContent with 2 instances 的 ExampleTrap class. This adds them 到 game.
 		public class ExampleTrapLoader : ILoadable
 		{
 			public void Load(Mod mod) {
@@ -23,21 +23,21 @@ namespace ExampleMod.Content.Items.Placeable
 			}
 		}
 
-		// CloneNewInstances is needed so that fields in this class are Cloned onto new instances, such as when this item is crafted or hovered over.
-		// By default, the game creates new instances rather than clone. By forcing Clone, we can preserve fields per Item added by the mod while sharing the same class.
+		// CloneNewInstances is needed so that fields in this class are Cloned onto new instances, 例如 when this item is crafted or hovered over.
+		// 默认情况下, the game creates new instances rather than clone. By forcing Clone, we can preserve fields per Item added by the mod while sharing the same class.
 		protected override bool CloneNewInstances => true;
 		private readonly int placeStyle;
 
-		// internal name of each ModItem must be unique. This code ensures that each of the 2 ExampleTrap instances added have a unique name.
+		// internal name of each ModItem 必须 unique. This code ensures that each 的 2 ExampleTrap instances added have a unique name.
 		// 在 the localization files, these internal names are used as keys for DisplayName and Tooltip, rather than the classname.
 		public override string Name => GetInternalNameFromStyle(placeStyle);
 
-		// This helper method converts from the custom instanced data to the internal name. In this example the placeStyle value is the only custom data.
+		// This helper method converts 从 custom instanced data 到 internal name. In this example the placeStyle value is the only custom data.
 		// 此方法 is called by the Name property and 
 		public static string GetInternalNameFromStyle(int style) {
-			// 在这里 we define some strings that will be used as the ModItem.Name, the internal name of the ModItem.
+			// 在这里 we define some strings that 将 used as the ModItem.Name, the internal name 的 ModItem.
 			// Every ModItem must have a unique internal name, so this step is necessary.
-			// 我们 use these in the ExampleMod.Content.Tiles.ExampleTrap.GetItemDrops rather than ModContent.ItemType<Items.Placeable.ExampleTrap>() to retrieve the correct ItemID.
+			// 我们 use these 在 ExampleMod.Content.Tiles.ExampleTrap.GetItemDrops rather than ModContent.ItemType<Items.Placeable.ExampleTrap>() to retrieve the correct ItemID.
 			if (style == 0) {
 				return "ExampleTrapIchorBullet";
 			}
@@ -47,13 +47,13 @@ namespace ExampleMod.Content.Items.Placeable
 			throw new Exception("Invalid style");
 		}
 
-		// Content loaded multiple times must have a non-default constructor. This is where unique data is passed in to be used later. This also prevents the game from attempting to add this ModItem to the game automatically.
+		// Content loaded multiple times must have a non-default constructor. This is where unique data is passed in to be used later. This also prevents the game from attempting to add this ModItem 到 game automatically.
 		public ExampleTrap(int placeStyle) {
 			this.placeStyle = placeStyle;
 		}
 
 		public override void SetDefaults() {
-			// With all the setup above, placeStyle will be either 0 or 1 for the 2 ExampleTrap instances we've loaded.
+			// With all the setup above, placeStyle 将 either 0 or 1 对于 2 ExampleTrap instances we've loaded.
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ExampleTrap>(), placeStyle);
 
 			Item.width = 12;

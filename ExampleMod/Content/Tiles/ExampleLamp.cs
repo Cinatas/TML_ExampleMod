@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Tiles
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
-			TileObjectData.newTile.DrawFlipHorizontal = true; // 不像 vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs for more information.
+			TileObjectData.newTile.DrawFlipHorizontal = true; // 不像 vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs f或更多 information.
 			TileObjectData.newTile.StyleLineSkip = 2;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.WaterDeath = true;

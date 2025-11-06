@@ -7,9 +7,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Tools
 {
-	// ExampleFishingRod is a fishing rod item.
-	// code in SetDefaults and the code setting lineOriginOffset in ModifyFishingLine is all the would be needed for a typical working fishing rod item.
-	// All of the rest of the code showcases other additional capabilities, such as multiple bobbers, custom line colors, and fishing in lava.
+	// 示例FishingRod is a fishing rod item.
+	// code in SetDefaults and the code setting lineOriginOffset in ModifyFishingLine is all the 将 needed for a typical working fishing rod item.
+	// All 的 rest 的 code showcases other additional capabilities, 例如 multiple bobbers, custom line colors, and fishing in lava.
 	public class ExampleFishingRod : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -28,17 +28,17 @@ namespace ExampleMod.Content.Items.Tools
 
 			Item.fishingPole = 30; // 设置s the poles fishing power
 			Item.shootSpeed = 12f; // 设置s the speed in which the bobbers are launched. Wooden Fishing Pole is 9f and Golden Fishing Rod is 17f.
-			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBobber>(); // The bobber projectile. Note that this will be overridden by Fishing Bobber accessories if present, so don't assume the bobber spawned is the specified projectile. https://terraria.wiki.gg/wiki/Fishing_Bobbers
+			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBobber>(); // The bobber projectile. Note that this 将 overridden by Fishing Bobber accessories if present, so don't assume the bobber spawned is the specified projectile. https://terraria.wiki.gg/wiki/Fishing_Bobbers
 		}
 
 		// Grants the High Test Fishing Line bool if holding the item.
-		// NOTE: Only triggers through the hotbar, not if you hold the item by hand outside of the inventory.
+		// NOTE: Only triggers through the hotbar, not if you hold the item by hand outside 的 inventory.
 		public override void HoldItem(Player player) {
 			player.accFishingLine = true;
 		}
 
 		// 覆盖s the default shooting method to fire multiple bobbers.
-		// NOTE: This will allow the fishing rod to summon multiple Duke Fishrons with multiple Truffle Worms in the inventory.
+		// NOTE: This will allow the fishing rod to summon multiple Duke Fishrons with multiple Truffle Worms 在 inventory.
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			int bobberAmount = Main.rand.Next(3, 6); // 3 to 5 bobbers
 			float spreadAmount = 75f; // how much the different bobbers are spread out.
@@ -54,12 +54,12 @@ namespace ExampleMod.Content.Items.Tools
 
 		public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor) {
 			// 更改 these two values in order to change the origin of where the line is being drawn.
-			// This will make it draw 43 pixels right and 30 pixels up from the player's center, while they are looking right and in normal gravity.
+			// This will make it draw 43 pixels right and 30 pixels up 从 player's center, while they are looking right and in normal gravity.
 			lineOriginOffset = new Vector2(43, -30);
 
-			// 设置s the fishing line's color. Note that this will be overridden by the colored string accessories.
+			// 设置s the fishing line's color. Note that this 将 overridden by the colored string accessories.
 			if (bobber.ModProjectile is ExampleBobber exampleBobber) {
-				// ExampleBobber has custom code to decide on a line color.
+				// 示例Bobber has custom code to decide on a line color.
 				lineColor = exampleBobber.FishingLineColor;
 			}
 			else {

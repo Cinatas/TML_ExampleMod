@@ -12,8 +12,8 @@ namespace ExampleMod.Content.BuilderToggles;
 
 // 此示例 shows almost all BuilderToggle hooks.
 // As it is just an example, it behaves more like a "button" than a "toggle".
-// Left clicking allows you to select bait type and right clicking gives you 10 free bait of the selected type.
-// Custom drawing is showcased in this example to handle frame changes.
+// Left clicking allows you to select bait type and right clicking gives you 10 free bait 的 selected type.
+// 自定义 drawing is showcased in this example to handle frame changes.
 public class FreeBaitBuilderToggle : BuilderToggle
 {
 	public static LocalizedText NameText { get; private set; }
@@ -24,7 +24,7 @@ public class FreeBaitBuilderToggle : BuilderToggle
 
 	public override int NumberOfStates => 4;
 
-	// Sorted after Torch God toggle because that would be cool.
+	// Sorted after Torch God toggle because that 将 cool.
 	public override Position OrderPosition => new After(TorchBiome);
 
 	public override bool OnLeftClick(ref SoundStyle? sound) {

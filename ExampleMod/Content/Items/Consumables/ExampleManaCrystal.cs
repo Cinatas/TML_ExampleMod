@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items.Consumables
 {
 	// 此文件 showcases how to create an item that increases the player's maximum mana on use.
 	// Within your ModPlayer, you need to save/load a count of usages. You also need to sync the data to other players.
-	// overlay used to display the custom mana crystals can be found in Common/UI/ResourceDisplay/VanillaManaOverlay.cs
+	// overlay used to display the custom mana crystals 可以 found in Common/UI/ResourceDisplay/VanillaManaOverlay.cs
 	internal class ExampleManaCrystal : ModItem
 	{
 		public static readonly int MaxExampleManaCrystals = 10;
@@ -30,17 +30,17 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool? UseItem(Player player) {
-			// Moving the exampleManaCrystals check from CanUseItem to here allows this example crystal to still "be used" like Mana Crystals can be
-			// when at the max allowed, but it will just play the animation and not affect the player's max mana
+			// Moving the exampleManaCrystals check from CanUseItem to here allows this example crystal to still "be used" like Mana Crystals 可以
+			// when 在 max allowed, but it will just play the animation and not affect the player's max mana
 			if (player.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals >= MaxExampleManaCrystals) {
-				// 返回ing null will make the item not be consumed
+				// 返回ing null will make the item 不 consumed
 				return null;
 			}
 
 			// 此方法 handles permanently increasing the player's max mana and displaying the blue mana text
 			player.UseManaMaxIncreasingItem(ManaPerCrystal);
 
-			// This field tracks how many of the example crystals have been consumed
+			// This field tracks how many 的 example crystals have been consumed
 			player.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals++;
 
 			return true;

@@ -12,8 +12,8 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleCoinsUI
 {
-	// ExampleUI 的可见性通过在聊天中输入"/coins"来切换（参见 CoinCommand.cs）
-	// ExampleCoinsUI 是一个简单的 UI 示例，展示如何使用 UIPanel、UIImageButton，甚至自定义 UIElement
+	// 示例UI 的可见性通过在聊天中输入"/coins"来切换（参见 CoinCommand.cs）
+	// 示例CoinsUI 是一个简单的 UI 示例，展示如何使用 UIPanel、UIImageButton，甚至自定义 UIElement
 	// 有关 UI 的更多信息，你可以查看 https://github.com/tModLoader/tModLoader/wiki/Basic-UI-Element 和 https://github.com/tModLoader/tModLoader/wiki/Advanced-guide-to-custom-UI 
 	internal class ExampleCoinsUIState : UIState
 	{
@@ -22,18 +22,18 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 
 		// 在 OnInitialize 中，我们将各种 UIElement 放置到我们的 UIState（此类）上。
 		// UIState 类的宽度和高度等于全屏，因此，通常我们首先定义一个 UIElement，它将充当我们的 UI 的容器。
-		// We then place various other UIElement onto that container UIElement positioned relative to the container UIElement.
+		// We then place various other UIElement onto that container UIElement positioned relative 到 container UIElement.
 		public override void OnInitialize() {
 			// Here we define our container UIElement. In DraggableUIPanel.cs, you can see that DraggableUIPanel is a UIPanel with a couple added features.
 			CoinCounterPanel = new ExampleDraggableUIPanel();
 			CoinCounterPanel.SetPadding(0);
-			// We need to place this UIElement in relation to its Parent. Later we will be calling `base.Append(coinCounterPanel);`. 
-			// This means that this class, ExampleCoinsUI, will be our Parent. Since ExampleCoinsUI is a UIState, the Left and Top are relative to the top left of the screen.
+			// We need to place this UIElement in relation to its Parent. Later we 将 calling `base.Append(coinCounterPanel);`. 
+			// This means that this class, ExampleCoinsUI, 将 our Parent. Since ExampleCoinsUI is a UIState, the Left and Top are relative 到 top left 的 screen.
 			// 设置Rectangle method help us to set the position and size of UIElement
 			SetRectangle(CoinCounterPanel, left: 400f, top: 100f, width: 170f, height: 70f);
 			CoinCounterPanel.BackgroundColor = new Color(73, 94, 171);
 
-			// Next, we create another UIElement that we will place. Since we will be calling `coinCounterPanel.Append(playButton);`, Left and Top are relative to the top left of the coinCounterPanel UIElement. 
+			// Next, we create another UIElement that we will place. Since we 将 calling `coinCounterPanel.Append(playButton);`, Left and Top are relative 到 top left 的 coinCounterPanel UIElement. 
 			// By properly nesting UIElements, we can position things relatively to each other easily.
 			Asset<Texture2D> buttonPlayTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/ButtonPlay");
 			ExampleUIHoverImageButton playButton = new ExampleUIHoverImageButton(buttonPlayTexture, "Reset Coins Per Minute Counter");
@@ -55,7 +55,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			CoinCounterPanel.Append(MoneyDisplay);
 
 			Append(CoinCounterPanel);
-			// As a recap, ExampleCoinsUI is a UIState, meaning it covers the whole screen. We attach CoinCounterPanel to ExampleCoinsUI some distance from the top left corner.
+			// As a recap, ExampleCoinsUI is a UIState, meaning it covers the whole screen. We attach CoinCounterPanel to ExampleCoinsUI some distance 从 top left corner.
 			// We then place playButton, closeButton, and MoneyDisplay onto CoinCounterPanel so we can easily place these UIElements relative to CoinCounterPanel.
 			// Since CoinCounterPanel will move, this proper organization will move playButton, closeButton, and MoneyDisplay properly when CoinCounterPanel moves.
 		}
@@ -95,18 +95,18 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			startTime = null;
 
 			for (int j = 0; j < 4; j++) {
-				// Textures may not be loaded without it
+				// Textures may 不 loaded without it
 				Main.instance.LoadItem(74 - j);
 				coinsTextures[j] = TextureAssets.Item[74 - j].Value;
 			}
 
-			// This allows clicks to "pass-through" this element to the parent element and not be consumed by this element. This allows ExampleDraggableUIPanel to be dragged even when the user is clicking on the UIMoneyDisplay.
+			// This allows clicks to "pass-through" this element 到 parent element and 不 consumed by this element. This allows ExampleDraggableUIPanel to be dragged even when the user is clicking 在 UIMoneyDisplay.
 			IgnoresMouseInteraction = true;
 		}
 		public void AddCoinsPerMinute(int coins) {
 			collectedCoins += coins;
 
-			// We begin to remember the time only after at least one coin has been collected
+			// We begin to remember the time only after 至少 one coin has been collected
 			if (startTime == null)
 				startTime = DateTime.Now;
 		}
@@ -115,7 +115,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			if (collectedCoins == 0)
 				return 0;
 
-			// If the time has passed less than minutes, the current number of coins will be displayed
+			// If the time has passed less than minutes, the current number of coins 将 displayed
 			return (int)(collectedCoins / Math.Max(1, (DateTime.Now - startTime.Value).TotalMinutes));
 		}
 

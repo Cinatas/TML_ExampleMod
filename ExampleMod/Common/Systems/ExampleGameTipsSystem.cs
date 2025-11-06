@@ -23,7 +23,7 @@ namespace ExampleMod.Common.Systems
 
 			// Now, say you want to modify OTHER mod's tips? You can do that too! Make sure you use the right mod and key name.
 			GameTipData disabledTip = gameTips.FirstOrDefault(tip => tip.FullName == "ExampleMod/DisabledExampleTip");
-			// Optionally, if you want to be a bit more specific with the tip name and mod name, you can also do that with the Mod and Name properties, like so:
+			// 可选ly, if you want to be a bit more specific 与 tip name and mod name, you can also do that 与 Mod and Name properties, like so:
 			// GameTipData disabledTip = gameTips.FirstOrDefault(tip => tip.Mod is Mod { Name: "ExampleMod" } && tip.Name == "DisabledExampleTip");
 
 			// If you haven't seen null propagation before, in short, the question mark checks if the value is null, and if it is,

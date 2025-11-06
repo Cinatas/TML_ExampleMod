@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Items
 {
-	// This file shows a very simple example of a GlobalItem class. GlobalItem hooks are called on all items in the game and are suitable for sweeping changes like 
-	// adding additional data to all items in the game. Here we simply adjust the damage of the Copper Shortsword item, as it is simple to understand. 
-	// See other GlobalItem classes in ExampleMod to see other ways that GlobalItem can be used.
+	// This file shows a very simple example of a GlobalItem class. GlobalItem hooks are called on all items 在 game and are suitable for sweeping changes like 
+	// 添加ing additional data to all items 在 game. Here we simply adjust the damage 的 Copper Shortsword item, as it is simple to understand. 
+	// See other GlobalItem classes in ExampleMod to see other ways that GlobalItem 可以 used.
 	public class CopperShortsword : GlobalItem
 	{
 		public override void SetDefaults(Item item) {

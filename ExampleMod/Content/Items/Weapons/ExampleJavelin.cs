@@ -7,9 +7,9 @@ namespace ExampleMod.Content.Items.Weapons
 	public class ExampleJavelin : ModItem
 	{
 		public override void SetDefaults() {
-			// Alter any of these values as you see fit, but you should probably keep useStyle on 1, as well as the noUseGraphic and noMelee bools
+			// Alter any 的se values as you see fit, but you should probably keep useStyle on 1, 以及 as the noUseGraphic and noMelee bools
 
-			// Common Properties
+			// 常见 Properties
 			Item.rare = ItemRarityID.Pink;
 			Item.value = Item.sellPrice(silver: 5);
 			Item.maxStack = 999;
@@ -25,13 +25,13 @@ namespace ExampleMod.Content.Items.Weapons
 			// Weapon Properties			
 			Item.damage = 33;
 			Item.knockBack = 5f;
-			Item.noUseGraphic = true; // The item should not be visible when used
+			Item.noUseGraphic = true; // The item should 不 visible when used
 			Item.noMelee = true; // The projectile will do the damage and not the item
 			Item.DamageType = DamageClass.Ranged;
 
 			// Projectile Properties
 			Item.shootSpeed = 12f;
-			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleJavelinProjectile>(); // The projectile that will be thrown
+			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleJavelinProjectile>(); // The projectile that 将 thrown
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

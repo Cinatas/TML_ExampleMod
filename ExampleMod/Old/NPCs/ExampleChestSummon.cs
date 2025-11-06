@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.NPCs
 {
-	// Example Soul of Light/Soul of Night style NPC summon
+	// 示例 Soul of Light/Soul of Night style NPC summon
 	public class ExampleChestSummon : ModPlayer
 	{
 		public int LastChest;

@@ -7,7 +7,7 @@ namespace ExampleMod.Common.Players
 {
 	/// <summary>
 	/// ModPlayer class coupled with <seealso cref="ExampleInfoDisplay"/> and <seealso cref="ExampleInfoAccessory"/> to show off how to properly add a
-	/// new info accessory (such as a Radar, Lifeform Analyzer, etc.)
+	/// new info accessory (例如 a Radar, Lifeform Analyzer, etc.)
 	/// </summary>
 	public class ExampleInfoDisplayPlayer : ModPlayer
 	{

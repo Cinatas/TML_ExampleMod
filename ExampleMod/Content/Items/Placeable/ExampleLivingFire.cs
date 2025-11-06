@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Items.Placeable
 {
 	public class ExampleLivingFire : ModItem
 	{
-		// 我们 will be using this color several times.
+		// 我们 将 using this color several times.
 		// Defining it like this means we only need to change this Vector3 if we want to change the color of everything.
 		public static Vector3 LightColor = new Vector3(0.7f, 0.8f, 0.8f);
 
@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void PostUpdate() {
-			// 添加 some lighting when the item is dropped in the world.
+			// 添加 some lighting when the item is dropped 在 world.
 			// Curiously, only the regular Living Fire Block creates light.
 			Lighting.AddLight(Item.Center, LightColor);
 		}

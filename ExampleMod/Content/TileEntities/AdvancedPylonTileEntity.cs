@@ -10,9 +10,9 @@ namespace ExampleMod.Content.TileEntities
 	/// <summary>
 	/// This TileEntity is used in direct tandem with <seealso cref="ExamplePylonTileAdvanced"/> in order to grant more flexibility than
 	/// vanilla's normal pylon TileEntity (AKA <seealso cref="TETeleportationPylon"/>) using the <seealso cref="TEModdedPylon"></seealso> class
-	/// that is built into tML itself.
+	/// 即 built into tML itself.
 	/// <para>
-	/// The main example shown here is having a Pylon that is only active at completely random intervals.
+	/// The main example shown here is having a Pylon 即 only active at completely random intervals.
 	/// </para>
 	/// </summary>
 	public class AdvancedPylonTileEntity : TEModdedPylon
@@ -21,7 +21,7 @@ namespace ExampleMod.Content.TileEntities
 		public bool isActive;
 
 		public override void OnNetPlace() {
-			// This hook is only ever called on the server; its purpose is to give more freedom in terms of syncing FROM the server to clients, which we take advantage of
+			// This hook is only ever called 在 server; its purpose is to give more freedom in terms of syncing 从 server to clients, which we take advantage of
 			// by making sure to sync whenever this hook is called:
 			NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
 		}
@@ -38,13 +38,13 @@ namespace ExampleMod.Content.TileEntities
 		}
 
 		public override void Update() {
-			// 更新 is only ever called on the Server or in SinglePlayer, so our randomness will be in that frame of reference
-			// Every tick, there will be a 1/180 chance that the active state of this pylon will swap (ON to OFF or vice versa)
+			// 更新 is only ever called 在 Server or in SinglePlayer, so our randomness 将 in that frame of reference
+			// Every tick, there 将 a 1/180 chance th在 active state of this pylon will swap (ON to OFF or vice versa)
 			if (!Main.rand.NextBool(180)) {
 				return;
 			}
 
-			// Granted that the check passes, we change the active state, and if this is on the server, we sync it with the server:
+			// Granted th在 check passes, we change the active state, and if this is 在 server, we sync it 与 server:
 			isActive = !isActive;
 			if (Main.netMode == NetmodeID.Server) {
 				NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);

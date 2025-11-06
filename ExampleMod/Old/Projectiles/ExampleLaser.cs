@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Projectiles
 {
-	// The following laser shows a channeled ability, after charging up the laser will be fired
+	// The following laser shows a channeled ability, after charging up the laser 将 fired
 	// Using custom drawing, dust effects, and custom collision checks for tiles
 	public class ExampleLaser : ModProjectile
 	{
@@ -15,17 +15,17 @@ namespace ExampleMod.Projectiles
 
 		// The maximum charge value
 		private const float MAX_CHARGE = 50f;
-		//The distance charge particle from the player center
+		//The distance charge particle 从 player center
 		private const float MOVE_DISTANCE = 60f;
 
-		// The actual distance is stored in the ai0 field
+		// The actual distance is stored 在 ai0 field
 		// By making a property to handle this it makes our life easier, and the accessibility more readable
 		public float Distance {
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
 		}
 
-		// The actual charge value is stored in the localAI0 field
+		// The actual charge value is stored 在 localAI0 field
 		public float Charge {
 			get => projectile.localAI[0];
 			set => projectile.localAI[0] = value;
@@ -75,16 +75,16 @@ namespace ExampleMod.Projectiles
 				new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
 		}
 
-		// 更改 the way of collision check of the projectile
+		// 更改 the way of collision check 的 projectile
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// We can only collide if we are at max charge, which is when the laser is actually fired
+			// We can only collide if we are at max charge, 即 when the laser is actually fired
 			if (!IsAtMaxCharge) return false;
 
 			Player player = Main.player[projectile.owner];
 			Vector2 unit = projectile.velocity;
 			float point = 0f;
-			// Run an AABB versus Line check to look for collisions, look up AABB collision first to see how it works
-			// It will look for collisions on the given line using AABB
+			// 运行 an AABB versus Line check to look for collisions, look up AABB collision first to see how it works
+			// It will look for collisions 在 given line using AABB
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center,
 				player.Center + unit * Distance, 22, ref point);
 		}
@@ -94,13 +94,13 @@ namespace ExampleMod.Projectiles
 			target.immune[projectile.owner] = 5;
 		}
 
-		// The AI of the projectile
+		// The AI 的 projectile
 		public override void AI() {
 			Player player = Main.player[projectile.owner];
 			projectile.position = player.Center + projectile.velocity * MOVE_DISTANCE;
 			projectile.timeLeft = 2;
 
-			// By separating large AI into methods it becomes very easy to see the flow of the AI in a broader sense
+			// By separating large AI into methods it becomes very easy to see the flow 的 AI in a broader sense
 			// 首先 we update player variables that are needed to channel the laser
 			// Then we run our charging laser logic
 			// If we are fully charged, we proceed to update the laser's position
@@ -150,7 +150,7 @@ namespace ExampleMod.Projectiles
 		}
 
 		/*
-		* Sets the end of the laser position based on where it collides with something
+		* Sets the end 的 laser position based on where it collides with something
 		*/
 		private void SetLaserPosition(Player player) {
 			for (Distance = MOVE_DISTANCE; Distance <= 2200f; Distance += 5f) {
@@ -193,7 +193,7 @@ namespace ExampleMod.Projectiles
 		}
 
 		private void UpdatePlayer(Player player) {
-			// Multiplayer support here, only run this code if the client running it is the owner of the projectile
+			// Multiplayer support here, only run this code if the client running it is the owner 的 projectile
 			if (projectile.owner == Main.myPlayer) {
 				Vector2 diff = Main.MouseWorld - player.Center;
 				diff.Normalize();
@@ -210,7 +210,7 @@ namespace ExampleMod.Projectiles
 		}
 
 		private void CastLights() {
-			// Cast a light along the line of the laser
+			// Cast a light along the line 的 laser
 			DelegateMethods.v3_1 = new Vector3(0.8f, 0.8f, 1f);
 			Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * (Distance - MOVE_DISTANCE), 26, DelegateMethods.CastLight);
 		}

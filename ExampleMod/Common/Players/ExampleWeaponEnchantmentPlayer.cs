@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Common.Players
 {
 	/// <summary>
-	/// Handles the effects and weapon visuals of the Example Weapon Imbue.
+	/// Handles the effects and weapon visuals 的 Example Weapon Imbue.
 	/// See also ExampleFlask and ExampleWeaponImbue.
 	/// </summary>
 	public class ExampleWeaponEnchantmentPlayer :  ModPlayer

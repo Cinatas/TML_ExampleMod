@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Items.Weapons
 				.Register();
 		}
 
-		// Makes the whip receive melee prefixes
+		// 使 the whip receive melee prefixes
 		public override bool MeleePrefix() {
 			return true;
 		}

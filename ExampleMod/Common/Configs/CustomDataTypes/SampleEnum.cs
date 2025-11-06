@@ -1,4 +1,4 @@
-﻿// This file defines an enum data type that can be used in ModConfig classes.
+﻿// This file defines an enum data type that 可以 used in ModConfig classes.
 namespace ExampleMod.Common.Configs.CustomDataTypes
 {
 	public enum SampleEnum

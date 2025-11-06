@@ -22,14 +22,14 @@ namespace ExampleMod.Content.Items.Tools
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true; // Automatically re-swing/re-use this item after its swinging animation is over.
 
-			Item.axe = 30; // How much axe power the weapon has, note that the axe power displayed in-game is this value multiplied by 5
+			Item.axe = 30; // How much axe power the weapon has, note th在 axe power displayed in-game is this value multiplied by 5
 			Item.hammer = 100; // How much hammer power the weapon has
 			Item.attackSpeedOnlyAffectsWeaponAnimation = true; // Melee speed affects how fast the tool swings for damage purposes, but not how fast it can dig
 		}
 
 		public override void MeleeEffects(Player player, Rectangle hitbox) {
 			if (Main.rand.NextBool(10)) { // This creates a 1/10 chance that a dust will spawn every frame that this item is in its 'Swinging' animation.
-				// 创建s a dust at the hitbox rectangle, following the rules of our 'if' conditional.
+				// 创建s a dust 在 hitbox rectangle, following the rules of our 'if' conditional.
 				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ModContent.DustType<Sparkle>());
 			}
 		}

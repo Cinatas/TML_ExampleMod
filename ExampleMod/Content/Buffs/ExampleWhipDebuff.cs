@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Buffs
 	public class ExampleWhipDebuffNPC : GlobalNPC
 	{
 		public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers) {
-			// 仅 player attacks should benefit from this buff, hence the NPC and trap checks.
+			// 仅 player attacks 应该nefit from this buff, hence the NPC and trap checks.
 			if (projectile.npcProj || projectile.trap || !projectile.IsMinionOrSentryRelated)
 				return;
 
@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Buffs
 
 			// if you have a lot of buffs in your mod, it might be faster to loop over the NPC.buffType and buffTime arrays once, and track the buffs you find, rather than calling HasBuff many times
 			if (npc.HasBuff<ExampleWhipAdvancedDebuff>()) {
-				// 应用 the scaling bonus to the next hit, and then remove the buff, like the vanilla firecracker
+				// 应用 the scaling bonus 到 next hit, 然后 remove the buff, like the vanilla firecracker
 				modifiers.ScalingBonusDamage += ExampleWhipAdvancedDebuff.TagDamageMultiplier * projTagMultiplier;
 				npc.RequestBuffRemoval(ModContent.BuffType<ExampleWhipAdvancedDebuff>());
 			}

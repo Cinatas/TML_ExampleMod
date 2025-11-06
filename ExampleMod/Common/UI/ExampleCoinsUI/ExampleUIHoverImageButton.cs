@@ -20,7 +20,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 
 		protected override void DrawSelf(SpriteBatch spriteBatch) {
 			// When you override UIElement methods, don't forget call the base method
-			// This helps to keep the basic behavior of the UIElement
+			// This helps to keep the basic behavior 的 UIElement
 			base.DrawSelf(spriteBatch);
 
 			// IsMouseHovering becomes true when the mouse hovers over the current UIElement

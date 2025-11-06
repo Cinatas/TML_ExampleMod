@@ -47,16 +47,16 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void AI() {
 			Player owner = Main.player[Projectile.owner];
-			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2; // Without PiOver2, the rotation would be off by 90 degrees counterclockwise.
+			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2; // Without PiOver2, the rotation 将 off by 90 degrees counterclockwise.
 
 			Projectile.Center = Main.GetPlayerArmPosition(Projectile) + Projectile.velocity * Timer;
 			// Vanilla uses Vector2.Dot(Projectile.velocity, Vector2.UnitX) here. Dot Product returns the difference between two vectors, 0 meaning they are perpendicular.
-			// 然而, the use of UnitX basically turns it into a more complicated way of checking if the projectile's velocity is above or equal to zero on the X axis.
+			// 然而, the use of UnitX basically turns it into a more complicated way of checking if the projectile's velocity is above or equal to zero 在 X axis.
 			Projectile.spriteDirection = Projectile.velocity.X >= 0f ? 1 : -1;
 
-			// remove these 3 lines if you don't want the charging mechanic
+			// 删除 these 3 lines if you don't want the charging mechanic
 			if (!Charge(owner)) {
-				return; // timer doesn't update while charging, freezing the animation at the start.
+				return; // timer doesn't update while charging, freezing the animation 在 start.
 			}
 
 			Timer++;
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Projectiles
 
 			owner.heldProj = Projectile.whoAmI;
 			if (Timer == swingTime / 2) {
-				// Plays a whipcrack sound at the tip of the whip.
+				// Plays a whipcrack sound 在 tip 的 whip.
 				List<Vector2> points = Projectile.WhipPointsForCollision;
 				Projectile.FillWhipControlPoints(Projectile, points);
 				SoundEngine.PlaySound(SoundID.Item153, points[points.Count - 1]);
@@ -96,14 +96,14 @@ namespace ExampleMod.Content.Projectiles
 				Vector2 spinningPoint = points[pointIndex] - points[pointIndex - 1];
 				dust.noGravity = true;
 				dust.velocity *= 0.5f;
-				// This math causes these dust to spawn with a velocity perpendicular to the direction of the whip segments, giving the impression of the dust flying off like sparks.
+				// This math causes these dust to spawn with a velocity perpendicular 到 direction 的 whip segments, giving the impression 的 dust flying off like sparks.
 				dust.velocity += spinningPoint.RotatedBy(owner.direction * ((float)Math.PI / 2f));
 				dust.velocity *= 0.5f;
 			}
 		}
 
 		// 此方法 handles a charging mechanic.
-		// 如果 you remove this, also remove Item.channel = true from the item's SetDefaults.
+		// 如果 you remove this, also remove Item.channel = true 从 item's SetDefaults.
 		// 返回s true if fully charged
 		private bool Charge(Player owner) {
 			// 像 other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
@@ -132,7 +132,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.damage = (int)(Projectile.damage * 0.7f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
 		}
 
-		// 此方法 draws a line between all points of the whip, in case there's empty space between the sprites.
+		// 此方法 draws a line between all points 的 whip, in case there's empty space between the sprites.
 		private void DrawLine(List<Vector2> list) {
 			Texture2D texture = TextureAssets.FishingLine.Value;
 			Rectangle frame = texture.Frame();
@@ -173,18 +173,18 @@ namespace ExampleMod.Content.Projectiles
 			for (int i = 0; i < list.Count - 1; i++) {
 				// These two values are set to suit this projectile's sprite, but won't necessarily work for your own.
 				// 你 can change them if they don't!
-				Rectangle frame = new Rectangle(0, 0, 10, 26); // The size of the Handle (measured in pixels)
-				Vector2 origin = new Vector2(5, 8); // Offset for where the player's hand will start measured from the top left of the image.
+				Rectangle frame = new Rectangle(0, 0, 10, 26); // The size 的 Handle (measured in pixels)
+				Vector2 origin = new Vector2(5, 8); // Offset for where the player's hand will start measured 从 top left 的 image.
 				float scale = 1;
 
-				// These statements determine what part of the spritesheet to draw for the current segment.
+				// These statements determine what part 的 spritesheet to draw 对于 current segment.
 				// They can also be changed to suit your sprite.
 				if (i == list.Count - 2) {
-					// 这是 the head of the whip. You need to measure the sprite to figure out these values.
-					frame.Y = 74; // Distance from the top of the sprite to the start of the frame.
-					frame.Height = 18; // Height of the frame.
+					// 这是 the head 的 whip. You need to measure the sprite to figure out these values.
+					frame.Y = 74; // Distance 从 top 的 sprite 到 start 的 frame.
+					frame.Height = 18; // Height 的 frame.
 
-					// 对于 a more impactful look, this scales the tip of the whip up when fully extended, and down when curled up.
+					// 对于 a more impactful look, this scales the tip 的 whip up when fully extended, and down when curled up.
 					Projectile.GetWhipSettings(Projectile, out float timeToFlyOut, out int _, out float _);
 					float t = Timer / timeToFlyOut;
 					scale = MathHelper.Lerp(0.5f, 1.5f, Utils.GetLerpValue(0.1f, 0.7f, t, true) * Utils.GetLerpValue(0.9f, 0.7f, t, true));

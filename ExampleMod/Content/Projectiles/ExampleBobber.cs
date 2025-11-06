@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// ExampleBobber is a fishing bobber spawned by ExampleFishingRod.
-	// Aside from the code in SetDefaults, everything else should be ignored when making a typical bobber projectile.
+	// 示例Bobber is a fishing bobber spawned by ExampleFishingRod.
+	// Aside 从 code in SetDefaults, everything else 应该 ignored when making a typical bobber projectile.
 	// Typically the fishing rod item decides the line color, but this bobber decides its own line color and serves as an example of using OnSpawn, SendExtraAI, and ReceiveExtraAI to sync a random value determined when spawned.
 	public class ExampleBobber : ModProjectile
 	{
@@ -17,7 +17,7 @@ namespace ExampleMod.Content.Projectiles
 			new Color(0, 191, 255) // A blue color
 		};
 
-		// This holds the index of the fishing line color in the PossibleLineColors array.
+		// This holds the index 的 fishing line color 在 PossibleLineColors array.
 		private int fishingLineColorIndex;
 
 		public Color FishingLineColor => PossibleLineColors[fishingLineColorIndex];
@@ -36,14 +36,14 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnSpawn(IEntitySource source) {
-			// Decide color of the pole by getting the index of a random entry from the PossibleLineColors array.
+			// Decide color 的 pole by getting the index of a random entry 从 PossibleLineColors array.
 			fishingLineColorIndex = (byte)Main.rand.Next(PossibleLineColors.Length);
 		}
 
 		public override void AI() {
 			// 始终 ensure that graphics-related code doesn't run on dedicated servers via this check.
 			if (!Main.dedServ) {
-				// 创建 some light based on the color of the line.
+				// 创建 some light based 在 color 的 line.
 				Lighting.AddLight(Projectile.Center, FishingLineColor.ToVector3());
 			}
 		}

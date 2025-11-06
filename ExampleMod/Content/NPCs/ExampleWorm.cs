@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.NPCs
 {
-	// These three class showcase usage of the WormHead, WormBody and WormTail classes from Worm.cs
+	// These three class showcase usage 的 WormHead, WormBody and WormTail classes from Worm.cs
 	internal class ExampleWormHead : WormHead
 	{
 		public override int BodyType => ModContent.NPCType<ExampleWormBody>();
@@ -16,8 +16,8 @@ namespace ExampleMod.Content.NPCs
 		public override int TailType => ModContent.NPCType<ExampleWormTail>();
 
 		public override void SetStaticDefaults() {
-			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers() { // Influences how the NPC looks in the Bestiary
-				CustomTexturePath = "ExampleMod/Content/NPCs/ExampleWorm_Bestiary", // If the NPC is multiple parts like a worm, a custom texture for the Bestiary is encouraged.
+			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers() { // Influences how the NPC looks 在 Bestiary
+				CustomTexturePath = "ExampleMod/Content/NPCs/ExampleWorm_Bestiary", // If the NPC is multiple parts like a worm, a custom texture 对于 Bestiary is encouraged.
 				Position = new Vector2(40f, 24f),
 				PortraitPositionXOverride = 0f,
 				PortraitPositionYOverride = 12f
@@ -34,18 +34,18 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// 设置s the spawning conditions of this NPC that is listed in the bestiary.
+				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
 
-				// 设置s the description of this NPC that is listed in the bestiary.
+				// 设置s the description of this NPC 即 listed 在 bestiary.
 				new FlavorTextBestiaryInfoElement("Looks like a Digger fell into some aqua-colored paint. Oh well.")
 			});
 		}
 
 		public override void Init() {
 			// 设置 the segment variance
-			// 如果 you want the segment length to be constant, set these two properties to the same value
+			// 如果 you want the segment length to be constant, set these two properties 到 same value
 			MinSegmentLength = 6;
 			MaxSegmentLength = 12;
 
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.NPCs
 
 		// 此方法 is invoked from ExampleWormHead, ExampleWormBody and ExampleWormTail
 		internal static void CommonWormInit(Worm worm) {
-			// These two properties handle the movement of the worm
+			// These two properties handle the movement 的 worm
 			worm.MoveSpeed = 5.5f;
 			worm.Acceleration = 0.045f;
 		}
@@ -75,7 +75,7 @@ namespace ExampleMod.Content.NPCs
 				}
 
 				Player target = Main.player[NPC.target];
-				// 如果 the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path to the target unobstructed by blocks, summon a projectile.
+				// 如果 the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path 到 target unobstructed by blocks, summon a projectile.
 				if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1)) {
 					Vector2 direction = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
 					direction = direction.RotatedByRandom(MathHelper.ToRadians(10));
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.NPCs
 	{
 		public override void SetStaticDefaults() {
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Hide = true // 隐藏s this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+				Hide = true // 隐藏s this NPC 从 Bestiary, useful for multi-part NPCs whom you only want one entry.
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 		}
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.NPCs
 	{
 		public override void SetStaticDefaults() {
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Hide = true // 隐藏s this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+				Hide = true // 隐藏s this NPC 从 Bestiary, useful for multi-part NPCs whom you only want one entry.
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 		}

@@ -29,7 +29,7 @@ namespace ExampleMod.Content
 
 		/*
 		In ExampleMod we preload all "extra" textures, as recommended in https://github.com/tModLoader/tModLoader/wiki/Assets#asset-loading-timing.
-		It is possible to load textures on demand instead, which might be useful in rare situations such as rarely used large textures. That would look like this:
+		It is possible to load textures on demand instead, which might be useful in rare situations 例如 rarely used large textures. That would look like this:
 		private Asset<Texture2D> moonTexture;
 		public override Asset<Texture2D> MoonTexture => moonTexture ??= ModContent.Request<Texture2D>($"{menuAssetPath}/ExampliumMoon");
 		*/
@@ -45,7 +45,7 @@ namespace ExampleMod.Content
 		}
 
 		public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
-			drawColor = Main.DiscoColor; // 更改s the draw color of the logo
+			drawColor = Main.DiscoColor; // 更改s the draw color 的 logo
 			return true;
 		}
 	}

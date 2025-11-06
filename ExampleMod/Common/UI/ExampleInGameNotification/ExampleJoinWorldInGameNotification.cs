@@ -25,8 +25,8 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 		// 让我们保持简单并使用 ExampleItem 的精灵。
 		private Asset<Texture2D> iconTexture = TextureAssets.Item[ModContent.ItemType<ExampleItem>()];
 
-		// The Scale and Opacity properties are used to control the scale and opacity of the UI popup,
-		// and are directly taken from the vanilla achievement popup UI. This is done for consistency.
+		// The Scale and Opacity properties are used to control the scale and opacity 的 UI popup,
+		// and are directly taken 从 vanilla achievement popup UI. This is done for consistency.
 		private float Scale {
 			get {
 				if (timeLeft < 30) {
@@ -63,7 +63,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 		}
 
 		public void DrawInGame(SpriteBatch spriteBatch, Vector2 bottomAnchorPosition) {
-			// No reason to continue drawing if the notification is no longer visible.
+			// No reason to continue drawing if the notification is 不再 visible.
 
 			if (Opacity <= 0f) {
 				return;
@@ -74,7 +74,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 			// Below is draw-code directly from vanilla with some tweaks to suit our needs.
 			// 更改s are minimal; important things to note:
 			// - we draw the panel with Utils.DrawInvBG,
-			// - we calculate the panel size based on the title size,
+			// - we calculate the panel size based 在 title size,
 			// - we draw the title and icon after the panel,
 			// - we utilize the calculated opacity and scale values.
 

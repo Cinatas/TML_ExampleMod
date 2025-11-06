@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Dusts
 	{
 		/*
 			Spawning this dust is a little more involved because we need to assign a rotation, customData, and fix the position.
-			Position must be fixed here because otherwise the first time the dust is drawn it'll draw in the incorrect place.
+			Position 必须 fixed here because otherwise the first time the dust is drawn it'll draw 在 incorrect place.
 			This dust is not used in ExampleMod yet, so you'll have to add some code somewhere. Try ExamplePlayer.DrawEffects.
 
 			Dust dust = Dust.NewDustDirect(Player.Center, 0, 0, ModContent.DustType<Content.Dusts.AdvancedDust>(), Scale: 2);
@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Dusts
 
 			// 在这里 we use the customData field. If customData is the type we expect, Player, we do some special movement.
 			if (dust.customData != null && dust.customData is Player player) {
-				// 在这里 we assign position to some offset from the player that was assigned. This offset scales with dust.scale. The scale and rotation cause the spiral movement we desired.
+				// 在这里 we assign position to some offset 从 player that was assigned. This offset scales with dust.scale. The scale and rotation cause the spiral movement we desired.
 				dust.position = player.Center + Vector2.UnitX.RotatedBy(dust.rotation, Vector2.Zero) * dust.scale * 50;
 			}
 

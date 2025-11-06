@@ -17,14 +17,14 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles
 {
 	/// <summary>
-	/// This is a more advanced variation of the <seealso cref="ExamplePylonTile"/> implementation
+	/// This is a more advanced variation 的 <seealso cref="ExamplePylonTile"/> implementation
 	/// in tandem with <seealso cref="AdvancedPylonTileEntity"/>, which shows off what advanced techniques you can apply with ModPylons.
 	/// If you want to use ModPylons with your own Tile Entities or with multi-tiles that do not conform to vanilla's standards, then
 	/// this is the example for you. If you just want normal pylons that act like the ones in vanilla do, check out <seealso cref="ExamplePylonTile"/>.
 	/// </summary>
 	/// <remarks>
 	/// Note that since this is an advanced example, things that were already explained in <seealso cref="ExamplePylonTile"/> will not
-	/// be as thoroughly explained. They will still be explained if needed in context.
+	/// be as thoroughly explained. They will still be explained 如果需要 in context.
 	/// </remarks>
 	public class ExamplePylonTileAdvanced : ModPylon
 	{
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Tiles
 			Main.tileLighted[Type] = true;
 			Main.tileFrameImportant[Type] = true;
 
-			// This time around, we'll have a tile that is 2x3 instead of 3x4.
+			// This time around, we'll have a tile 即 2x3 instead of 3x4.
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.newTile.Height = 3;
 			TileObjectData.newTile.Origin = new Point16(0, 2);
@@ -101,16 +101,16 @@ namespace ExampleMod.Content.Tiles
 			return true;
 		}
 
-		// These two steps below are simply determining whether or not either side of the coin is valid, which is to say:
-		// Is the destination pylon (the pylon clicked on the map) a valid pylon, and is the pylon the player standing near (the nearby pylon)
-		// a valid pylon? If either one of these checks fail, a errorKey wil be set to a custom localization key and a message will go to the player with
+		// These two steps below are simply determining whether or not either side 的 coin is valid, 即 to say:
+		// Is the destination pylon (the pylon clicked 在 map) a valid pylon, and is the pyl在 player standing near (the nearby pylon)
+		// a valid pylon? If either one 的se checks fail, a errorKey wil be set to a custom localization key and a message will go 到 player with
 		// said text (after its been localized, of course).
 		public override void ValidTeleportCheck_DestinationPostCheck(TeleportPylonInfo destinationPylonInfo, ref bool destinationPylonValid, ref string errorKey) {
 			// 如果 you are unfamiliar with pattern matching notation, all this is asking is:
-			// 1) The Tile Entity at the given position is an AdvancedPylonTileEntity (AKA not null or something else)
+			// 1) The Tile Entity 在 given position is an AdvancedPylonTileEntity (AKA not null or something else)
 			// 2) The Tile Entity's isActive value is false
 			if (TileEntity.ByPosition[destinationPylonInfo.PositionInTiles] is AdvancedPylonTileEntity { isActive: false }) {
-				//Given that both of these things are true, set the error key to our own special message (check the localization file), and make the destination value invalid (false)
+				//Given that both 的se things are true, set the error key to our own special message (check the localization file), and make the destination value invalid (false)
 				destinationPylonValid = false;
 				errorKey = "Mods.ExampleMod.MessageInfo.UnstablePylonIsOff";
 			}
@@ -125,12 +125,12 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void ModifyTeleportationPosition(TeleportPylonInfo destinationPylonInfo, ref Vector2 teleportationPosition) {
-			// Now, for the fun of it and for the showcase of this hook, let's put a player a bit into the air above the pylon when they teleport.
+			// Now, 对于 fun of it and 对于 showcase of this hook, let's put a player a bit in到 air above the pylon when they teleport.
 			teleportationPosition = destinationPylonInfo.PositionInTiles.ToWorldCoordinates(8f, -32f);
 		}
 
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-			// Same as the basic example, but our light will be the disco color like the crystal
+			// Same as the basic example, but our light 将 the disco color like the crystal
 			r = Main.DiscoColor.R / 255f * 0.75f;
 			g = Main.DiscoColor.G / 255f * 0.75f;
 			b = Main.DiscoColor.B / 255f * 0.75f;
@@ -138,17 +138,17 @@ namespace ExampleMod.Content.Tiles
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
 			// This time, we'll ONLY draw the crystal if the pylon is active
-			// 我们 need to check the framing here in order to guarantee we that we are trying to grab the TE ONLY when in the top left corner, where it is
-			// located. If we don't do this check, we will be attempting to grab the TE in position where it doesn't exist, throwing errors and causing
-			// loads of visual bugs.
+			// 我们 need to check the framing here in order to guarantee we that we are trying to grab the TE ONLY when 在 top left corner, where it is
+			// located. If we don't do this check, we 将 attempting to grab the TE in position where it doesn't exist, throwing errors and causing
+			// 加载 of visual bugs.
 			if (drawData.tileFrameX % 36 == 0 && drawData.tileFrameY == 0 && TileEntity.ByPosition.TryGetValue(new Point16(i, j), out TileEntity entity) && entity is AdvancedPylonTileEntity { isActive: true }) {
 				Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
 			}
 		}
 
 		public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) {
-			// This code is essentially identical to how it is in the basic example, but this time the crystal color is the disco (rainbow) color instead
-			// 另外, since we want the pylon crystal to be drawn at the same height as vanilla (since our tile is one tile smaller), we have to move up the crystal accordingly with the crystalOffset parameter
+			// This code is essentially identical to how it is 在 basic example, but this time the crystal color is the disco (rainbow) color instead
+			// 另外, since we want the pylon crystal to be drawn 在 same height as vanilla (since our tile is one tile smaller), we have to move up the crystal accordingly 与 crystalOffset parameter
 			DefaultDrawPylonCrystal(spriteBatch, i, j, crystalTexture, crystalHighlightTexture, new Vector2(0f, -18f), Main.DiscoColor * 0.1f, Main.DiscoColor, 1, CrystalVerticalFrameCount);
 		}
 
@@ -158,7 +158,7 @@ namespace ExampleMod.Content.Tiles
 				return;
 			}
 
-			// Depending on the whether or not the pylon is active, the color of the icon will change;
+			// Depending 在 whether or not the pylon is active, the color 的 icon will change;
 			// otherwise, it acts as normal.
 			drawColor = !entity.isActive ? Color.Gray * 0.5f : drawColor;
 			bool mouseOver = DefaultDrawMapIcon(ref context, mapIcon, pylonInfo.PositionInTiles.ToVector2() + new Vector2(1, 1.5f), drawColor, deselectedScale, selectedScale);

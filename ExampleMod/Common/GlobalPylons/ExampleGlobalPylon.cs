@@ -41,10 +41,10 @@ namespace ExampleMod.Common.GlobalPylons
 			if (pylonType == TeleportPylonType.Victory) {
 				return true;
 			}
-			// What if we wanted to change something for a modded type? If you have strong reference to the modded pylon in question,
+			// What if we wanted to change something for a modded type? If you have strong reference 到 modded pylon in question,
 			// you can simply use the class:
 			if (pylonType == ModContent.PylonType<ExamplePylonTileAdvanced>()) {
-				return null; //We don't want to *actually* change any functionality of the advanced pylon, so we return null.
+				return null; //We don't want to *actually* change any functionality 的 advanced pylon, so we return null.
 				//Obviously, if you wanted to actually change something about the modded pylon, you'd return something other than null here.
 			}
 
@@ -52,11 +52,11 @@ namespace ExampleMod.Common.GlobalPylons
 		}
 
 		public override bool? ValidTeleportCheck_PreBiomeRequirements(TeleportPylonInfo pylonInfo, SceneMetrics sceneData) {
-			// What if we want to do something based on the type of pylon in particular? Well all we have to do is check the pylon's type!
-			// Let's allow the Jungle Pylon to work in the snow, for example:
+			// What if we want to do something based 在 type of pylon in particular? Well all we have to do is check the pylon's type!
+			// Let's allow the Jungle Pylon to work 在 snow, 例如:
 			if (pylonInfo.TypeOfPylon == TeleportPylonType.Jungle) {
 				// If another mod tries to mess with Jungle pylons, we don't want to return a forceful false, if applicable. If Jungle AND snow
-				// are both false, we will return null to allow for other mods to try and change things based on the Jungle pylon.
+				// are both false, we will return null to allow for other mods to try and change things based 在 Jungle pylon.
 				// Granted that no other mod does anything to change the null value, the teleportation process will fail, under the above circumstances.
 				return sceneData.EnoughTilesForJungle || sceneData.EnoughTilesForSnow ? true : null;
 			}
@@ -69,7 +69,7 @@ namespace ExampleMod.Common.GlobalPylons
 
 			// We just need to check that to see if the Lihzahrd Temple check is the actual error we got (not some other error) which in this case is done by checking the error key.
 			// We also do another quick check to make sure that we are still near a valid pylon.
-			// If that is true, we can set destinationPylonValid to true, overriding the teleportation prevention.
+			// If 即 true, we can set destinationPylonValid to true, overriding the teleportation prevention.
 			if (validNearbyPylonFound && errorKey == "Net.CannotTeleportToPylonBecauseAccessingLihzahrdTempleEarly") {
 				destinationPylonValid = true;
 			}

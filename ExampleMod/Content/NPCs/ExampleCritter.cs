@@ -35,15 +35,15 @@ namespace ExampleMod.Content.NPCs
 		///case 61:
 		///num115 = Main.rand.NextBool() ? 361 : NPC.type
 		/// </code>
-		/// This causes the frog statue to spawn this NPC 50% of the time
+		/// This causes the frog statue to spawn this NPC 50% 的 time
 		/// </summary>
 		/// <param name="ilContext"> </param>
 		private void HookFrogStatue(ILContext ilContext) {
 			try {
-				// Obtain a cursor positioned before the first instruction of the method the cursor is used for navigating and modifying the il
+				// Obtain a cursor positioned before the first instruction 的 method the cursor is used for navigating and modifying the il
 				ILCursor ilCursor = new ILCursor(ilContext);
 
-				// exact location for this hook is very complex to search for due to the hook instructions not being unique and buried deep in control flow. Switch statements are sometimes compiled to if-else chains, and debug builds litter the code with no-ops and redundant locals.
+				// exact location for this hook is very complex to search for due 到 hook instructions 不ing unique and buried deep in control flow. Switch statements are sometimes compiled to if-else chains, and debug builds litter the code with no-ops and redundant locals.
 				// 在 general you want to search using structure and function rather than numerical constants which may change across different versions or compile settings. Using local variable indices is almost always a bad idea.
 				// 我们 can search for
 				// switch (*)
@@ -51,7 +51,7 @@ namespace ExampleMod.Content.NPCs
 				//     num115 = 361;
 
 				// 在 general you'd want to look for a specific switch variable, or perhaps the containing switch (type) { case 105: but the generated IL is really variable and hard to match in this case.
-				// We'll just use the fact that there are no other switch statements with case 61
+				// We'll just use the fact th在re are no other switch statements with case 61
 
 				ILLabel[] targets = null;
 				while (ilCursor.TryGotoNext(i => i.MatchSwitch(out targets))) {
@@ -72,11 +72,11 @@ namespace ExampleMod.Content.NPCs
 
 					// Move the cursor to case 61:
 					ilCursor.GotoLabel(target);
-					// Move the cursor after 361 is pushed onto the stack
+					// Move the cursor after 361 is pushed on到 stack
 					ilCursor.Index++;
-					// There are lots of extra checks we could add here to make sure we're at the right spot, such as not encountering any branching instructions
+					// There are lots of extra checks we could add here to make sure we're 在 right spot, 例如 not encountering any branching instructions
 
-					// Now we add additional code to modify the current value that will be assigned to num115
+					// Now we add additional code to modify the current value that 将 assigned to num115
 					ilCursor.EmitDelegate((int originalAssign) => Main.rand.NextBool() ? originalAssign : NPC.type);
 
 					// Hook applied successfully
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.NPCs
 				throw new Exception("Hook location not found, switch(*) { case 61: ...");
 			}
 			catch {
-				// 如果 there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
+				// 如果 there are any failures 与 IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), ilContext);
 			}
 		}
@@ -166,7 +166,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override bool PreAI() {
 			// Kills the NPC if it hits water, honey or shimmer
-			if (NPC.wet && !Collision.LavaCollision(NPC.position, NPC.width, NPC.height)) { // NPC.lavawet not 100% accurate for the frog
+			if (NPC.wet && !Collision.LavaCollision(NPC.position, NPC.width, NPC.height)) { // NPC.lavawet not 100% accurate 对于 frog
 				// These 3 lines instantly kill the npc without showing damage numbers, dropping loot, or playing DeathSound. Use this for instant deaths
 				NPC.life = 0;
 				NPC.HitEffect();
@@ -190,7 +190,7 @@ namespace ExampleMod.Content.NPCs
 					Math.Max((byte)Main.rand.Next(50, 150), tile.LiquidAmount) // If it does, then top up the amount
 					: (byte)Main.rand.Next(50, 150); // If it doesn't, then overwrite the amount. Technically this distinction should never be needed bc it will burn but to be safe it's here
 				tile.LiquidType = LiquidID.Lava; // 设置 the liquid type to lava
-				WorldGen.SquareTileFrame(npcTile.X, npcTile.Y, true); // 更新 the surrounding area in the tilemap
+				WorldGen.SquareTileFrame(npcTile.X, npcTile.Y, true); // 更新 the surrounding area 在 tilemap
 			}
 		}
 	}
@@ -211,13 +211,13 @@ namespace ExampleMod.Content.NPCs
 			// consumable = true;
 			// width = 12;
 			// height = 12;
-			// makeNPC = 361;
+			// 使NPC = 361;
 			// noUseGraphic = true;
 
 			// Cloning ItemID.Frog sets the preceding values
 			Item.CloneDefaults(ItemID.Frog);
 			Item.makeNPC = ModContent.NPCType<ExampleCritterNPC>();
-			Item.value += Item.buyPrice(0, 0, 30, 0); // Make this critter worth slightly more than the frog
+			Item.value += Item.buyPrice(0, 0, 30, 0); // 使 this critter worth slightly more than the frog
 			Item.rare = ItemRarityID.Blue;
 		}
 	}

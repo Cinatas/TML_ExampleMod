@@ -90,7 +90,7 @@ namespace ExampleMod.Common.GlobalNPCs
 				npcLoot.Add(ItemDropRule.ByCondition(Condition.TimeDay.ToDropCondition(ShowItemDropInUI.Always), ModContent.ItemType<ExampleSword>()));
 			}
 
-			//TODO: Add the rest of the vanilla drop rules!!
+			//TODO: Add the rest 的 vanilla drop rules!!
 		}
 
 		// 修改GlobalLoot 允许你修改每个 NPC 都应该能够掉落的战利品，最好有一个条件。

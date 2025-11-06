@@ -17,8 +17,8 @@ namespace ExampleMod.Content.NPCs
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Skeleton;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() { // Influences how the NPC looks in the Bestiary
-				Velocity = 1f // 绘制s the NPC in the bestiary as if its walking +1 tiles in the x direction
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() { // Influences how the NPC looks 在 Bestiary
+				Velocity = 1f // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x direction
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
@@ -37,21 +37,21 @@ namespace ExampleMod.Content.NPCs
 
 			AIType = NPCID.Zombie; // 使用 vanilla zombie's type when executing AI code. (This also means it will try to despawn during daytime)
 			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's type when executing animation code. Important to also match Main.npcFrameCount[NPC.type] in SetStaticDefaults.
-			Banner = Item.NPCtoBanner(NPCID.Zombie); // Makes this NPC get affected by the normal zombie banner.
-			BannerItem = Item.BannerToItem(Banner); // Makes kills of this NPC go towards dropping the banner it's associated with.
-			SpawnModBiomes = new int[1] { ModContent.GetInstance<ExampleSurfaceBiome>().Type }; // Associates this NPC with the ExampleSurfaceBiome in Bestiary
+			Banner = Item.NPCtoBanner(NPCID.Zombie); // 使 this NPC get affected by the normal zombie banner.
+			BannerItem = Item.BannerToItem(Banner); // 使 kills of this NPC go towards dropping the banner it's associated with.
+			SpawnModBiomes = new int[1] { ModContent.GetInstance<ExampleSurfaceBiome>().Type }; // Associates this NPC 与 ExampleSurfaceBiome in Bestiary
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
 			// Since Party Zombie is essentially just another variation of Zombie, we'd like to mimic the Zombie drops.
-			// 要 do this, we can either (1) copy the drops from the Zombie directly or (2) just recreate the drops in our code.
+			// 要 do this, we can either (1) copy the drops 从 Zombie directly or (2) just recreate the drops in our code.
 			// (1) Copying the drops directly means that if Terraria updates and changes the Zombie drops, your ModNPC will also inherit the changes automatically.
-			// (2) Recreating the drops can give you more control if desired but requires consulting the wiki, bestiary, or source code and then writing drop code.
+			// (2) Recreating the drops can give you more control if desired but requires consulting the wiki, bestiary, or source code 然后 writing drop code.
 
 			// (1) This example shows copying the drops directly. For consistency and mod compatibility, we suggest using the smallest positive NPCID when dealing with npcs with many variants and shared drop pools.
 			var zombieDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Zombie, false); // false is important here
 			foreach (var zombieDropRule in zombieDropRules) {
-				// 在 this foreach loop, we simple add each drop to the PartyZombie drop pool. 
+				// 在 this foreach loop, we simple add each drop 到 PartyZombie drop pool. 
 				npcLoot.Add(zombieDropRule);
 			}
 
@@ -73,7 +73,7 @@ namespace ExampleMod.Content.NPCs
 					NPC.GravityMultiplier /= NPC.GravityWetMultipliers[LiquidID.Honey];
 					NPC.MaxFallSpeedMultiplier /= NPC.MaxFallSpeedWetMultipliers[LiquidID.Honey];
 				}
-				else if (!NPC.lavaWet && !NPC.shimmerWet) { // 删除s water falls speed effects, then adds honey falls speed effects, making the NPC fall at the honey rate in water
+				else if (!NPC.lavaWet && !NPC.shimmerWet) { // 删除s water falls speed effects, then adds honey falls speed effects, making the NPC fall 在 honey rate in water
 					NPC.GravityMultiplier *= NPC.GravityWetMultipliers[LiquidID.Honey] / NPC.GravityWetMultipliers[LiquidID.Water];
 					NPC.MaxFallSpeedMultiplier *= NPC.MaxFallSpeedWetMultipliers[LiquidID.Honey] / NPC.MaxFallSpeedWetMultipliers[LiquidID.Water];
 				}
@@ -83,14 +83,14 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// 设置s the spawning conditions of this NPC that is listed in the bestiary.
+				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
-				// 设置s the description of this NPC that is listed in the bestiary.
+				// 设置s the description of this NPC 即 listed 在 bestiary.
 				new FlavorTextBestiaryInfoElement("This type of zombie for some reason really likes to spread confetti around. Otherwise, it behaves just like a normal zombie."),
 
-				// By default the last added IBestiaryBackgroundImagePathAndColorProvider will be used to show the background image.
-				// ExampleSurfaceBiome ModBiomeBestiaryInfoElement is automatically populated into bestiaryEntry.Info prior to this method being called
+				// 默认情况下 the last added IBestiaryBackgroundImagePathAndColorProvider 将 used to show the background image.
+				// 示例SurfaceBiome ModBiomeBestiaryInfoElement is automatically populated into bestiaryEntry.Info prior to this method being called
 				// so we use this line to tell the game to prioritize a specific InfoElement for sourcing the background image.
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<ExampleSurfaceBiome>().ModBiomeBestiaryInfoElement),
 			});
@@ -111,8 +111,8 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
-			// 在这里 we can make things happen if this NPC hits a player via its hitbox (not projectiles it shoots, this is handled in the projectile code usually)
-			// Common use is applying buffs/debuffs:
+			// 在这里 we can make things happen if this NPC hits a player via its hitbox (not projectiles it shoots, this is handled 在 projectile code usually)
+			// 常见 use is applying buffs/debuffs:
 
 			int buffType = ModContent.BuffType<AnimatedBuff>();
 			// Alternatively, you can use a vanilla buff: int buffType = BuffID.Slow;
@@ -123,7 +123,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void ModifyIncomingHit(ref NPC.HitModifiers modifiers) {
 			if (modifiers.DamageType.CountsAsClass(DamageClass.Magic)) {
-				// 此示例 shows how PartyZombie reduces magic damage by 75%. We use FinalDamage here rather than SourceDamage since we are affecting how the npc reacts to the damage.
+				// 此示例 shows how PartyZombie reduces magic damage by 75%. We use FinalDamage here rather than SourceDamage since we are affecting how the npc reacts 到 damage.
 				// Conceptually, the source dealing the damage isn't interpreted as weaker, but rather this NPC has a resistance to this damage source.
 				modifiers.FinalDamage *= 0.25f;
 			}

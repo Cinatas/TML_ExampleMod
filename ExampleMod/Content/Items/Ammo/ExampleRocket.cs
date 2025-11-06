@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Items.Ammo
 		// 此示例 is a clone of Rocket I.
 
 		public override void SetStaticDefaults() {
-			AmmoID.Sets.IsSpecialist[Type] = true; // This item will benefit from the Shroomite Helmet.
+			AmmoID.Sets.IsSpecialist[Type] = true; // This item 将nefit 从 Shroomite Helmet.
 
 			// 这是 where we tell the game which projectile to spawn when using this rocket as ammo with certain launchers.
 			// This specific rocket ammo is like Rocket I's.
@@ -40,8 +40,8 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.maxStack = Item.CommonMaxStack;
 			Item.value = Item.buyPrice(copper: 50);
 			Item.ammo = AmmoID.Rocket; // The ammo type is Rocket Ammo
-			// 不像 other ammo, we don't set Item.shoot to the projectile for rocket ammo due to the logic involved.
-			// AmmoID.Sets.SpecificLauncherAmmoProjectileMatches is used to determine the projectile spawned based on the weapon.
+			// 不像 other ammo, we don't set Item.shoot 到 projectile for rocket ammo due 到 logic involved.
+			// AmmoID.Sets.SpecificLauncherAmmoProjectileMatches is used to determine the projectile spawned based 在 weapon.
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

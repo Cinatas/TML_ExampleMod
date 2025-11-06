@@ -9,14 +9,14 @@ using System.Runtime.Serialization;
 using Terraria.ModLoader.Config;
 
 // This file contains fake ModConfig class that showcase various attributes
-// that can be used to customize behavior config fields.
+// that 可以 used to customize behavior config fields.
 
 // Because this config was designed to show off various UI capabilities,
-// this config have no effect on the mod and provides purely teaching example.
+// this config have no effect 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
 	/// <summary>
-	/// This config is just a showcase of various attributes and their effects in the UI window.
+	/// This config is just a showcase of various attributes and their effects 在 UI window.
 	/// </summary>
 	public class ModConfigShowcaseMisc : ModConfig
 	{
@@ -26,7 +26,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public Gradient gradient = new Gradient();
 
 		/*
-		// Here are some more examples, showing a complex JsonDefaultListValue and a initializer overriding the defaults of the constructor.
+		// Here are some more examples, showing a complex JsonDefaultListValue and a initializer overriding the defaults 的 constructor.
 		[CustomModConfigItem(typeof(GradientElement))]
 		public Gradient gradient2 = new Gradient() {
 			start = Color.AliceBlue,
@@ -37,10 +37,10 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public List<Gradient> gradients = new List<Gradient>();
 		*/
 
-		// In this case, CustomModConfigItem is annotating the Enum instead of the Field. Either is acceptable and can be used for different situations.
+		// In this case, CustomModConfigItem is annotating the Enum instead 的 Field. Either is acceptable and 可以 used for different situations.
 		public Corner corner;
 
-		// You can put multiple attributes in the same [] if you like.
+		// You can put multiple attributes 在 same [] if you like.
 		// ColorHueSliderAttribute displays Hue Saturation Lightness. Passing in false means only Hue is shown.
 		[DefaultValue(typeof(Color), "255, 0, 0, 255"), ColorHSLSlider(false), ColorNoAlpha]
 		public Color hsl;
@@ -61,12 +61,12 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[Expand(false)]
 		public List<string> collapsedList = new List<string>() { "1", "2", "3", "4", "5" };
 
-		// This example collapses the list elements as well as the list itself.
+		// This example collapses the list elements 以及 as the list itself.
 		[Expand(false, false)]
 		public List<Pair> collapsedListOfCollapsedObjects = new List<Pair>() { new Pair() { enabled = true, boost = 3 }, new Pair { enabled = true, boost = 6 } };
 
 		[Expand(false)]
-		public SimpleData simpleDataExample; // you can also initialize in the constructor, see initialization in public ModConfigShowcaseMisc() below.
+		public SimpleData simpleDataExample; // you can also initialize 在 constructor, see initialization in public ModConfigShowcaseMisc() below.
 
 		// This annotation allows the UI to null out this class. You need to make sure to initialize fields without the NullAllowed annotation in constructor or initializer or you might have issues. Of course, if you allow nulls, you'll need to make sure the rest of your mod will handle them correctly. Try to avoid null unless you have a good reason to use them, as null objects will only complicate the rest of your code.
 		[NullAllowed]
@@ -78,7 +78,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[JsonExtensionData]
 		private IDictionary<string, JToken> _additionalData = new Dictionary<string, JToken>();
 
-		// See _additionalData usage in OnDeserializedMethod to see how this ListOfInts can be populated from old versions of this mod.
+		// See _additionalData usage in OnDeserializedMethod to see how this ListOfInts 可以 populated from old versions of this mod.
 		public List<int> ListOfInts = new List<int>();
 
 		public ModConfigShowcaseMisc() {
@@ -97,7 +97,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 				var OldListOfInts = token.ToObject<List<int>>();
 				ListOfInts.AddRange(OldListOfInts);
 			}
-			_additionalData.Clear(); // make sure to clear this or it'll crash.
+			_additionalData.Clear(); // 使 sure to clear this or it'll crash.
 		}
 	}
 }

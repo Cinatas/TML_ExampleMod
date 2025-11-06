@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	// 此示例 attempts to showcase most of the common boot accessory effects.
-	// Of particular note is a showcase of the correct approaches to various movement speed modifications.
+	// 此示例 attempts to showcase most 的 common boot accessory effects.
+	// Of particular note is a showcase 的 correct approaches to various movement speed modifications.
 	[AutoloadEquip(EquipType.Shoes)]
 	public class ExampleBoots : ModItem
 	{
@@ -25,18 +25,18 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			// These 2 stat changes are equal to the Lightning Boots
-			player.moveSpeed += MoveSpeedBonus / 100f; // Modifies the player movement speed bonus.
+			// These 2 stat changes are equal 到 Lightning Boots
+			player.moveSpeed += MoveSpeedBonus / 100f; // 修改 the player movement speed bonus.
 			player.accRunSpeed = 6.75f; // 设置s the players sprint speed in boots.
 
-			// player.maxRunSpeed and player.runAcceleration are usually not set by boots and should not be changed in UpdateAccessory due to the logic order. See ExampleStatBonusAccessoryPlayer.PostUpdateRunSpeeds for an example of adjusting those speed stats.
+			// player.maxRunSpeed and player.runAcceleration are usually not set by boots and should 不 changed in UpdateAccessory due 到 logic order. See ExampleStatBonusAccessoryPlayer.PostUpdateRunSpeeds for an example of adjusting those speed stats.
 
 			// 确定s whether the boots count as rocket boots
 			// 0 - These are not rocket boots
 			// Anything else - These are rocket boots
 			player.rocketBoots = 2;
 
-			// 设置s which dust and sound to use for the rocket flight
+			// 设置s which dust and sound to use 对于 rocket flight
 			// 1 - Rocket Boots
 			// 2 - Fairy Boots, Spectre Boots, Lightning Boots
 			// 3 - Frostspark Boots
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Items.Accessories
 			if (!hideVisual) {
 				player.CancelAllBootRunVisualEffects(); // This ensures that boot visual effects don't overlap if multiple are equipped
 
-				// Hellfire Treads sprint dust. For more info on sprint dusts see Player.SpawnFastRunParticles() method in Player.cs
+				// Hellfire Treads sprint dust. F或更多 info on sprint dusts see Player.SpawnFastRunParticles() method in Player.cs
 				player.hellfireTreads = true;
 				// Other boot run visual effects include: sailDash, coldDash, desertDash, fairyBoots
 
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void UpdateVanity(Player player) {
-			// This code is a copy of the visual effects code in UpdateAccessory above
+			// This code is a copy 的 visual effects code in UpdateAccessory above
 			player.CancelAllBootRunVisualEffects();
 			player.vanityRocketBoots = 2;
 			player.hellfireTreads = true;

@@ -12,7 +12,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// An enum for the 3 stages of herb growth
+	// An enum 对于 3 stages of herb growth
 	public enum PlantStage : byte
 	{
 		Planted,
@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.ReplaceTileBreakUp[Type] = true;
 			TileID.Sets.IgnoredInHouseScore[Type] = true;
 			TileID.Sets.IgnoredByGrowingSaplings[Type] = true;
-			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // Make this tile interact with golf balls in the same way other plants do
+			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // 使 this tile interact with golf balls 在 same way other plants do
 
 			// 我们 do not use this because our tile should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
 			//Main.tileSpelunker[Type] = true;
@@ -72,9 +72,9 @@ namespace ExampleMod.Content.Tiles
 			if (tile.HasTile) {
 				int tileType = tile.TileType;
 				if (tileType == Type) {
-					PlantStage stage = GetStage(i, j); // The current stage of the herb
+					PlantStage stage = GetStage(i, j); // The current stage 的 herb
 
-					// Can only place on the same herb again if it's grown already
+					// Can only place 在 same herb again if it's grown already
 					return stage == PlantStage.Grown;
 				}
 				else {
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Tiles
 				seedItemStack = Main.rand.Next(1, 6);
 			}
 			else if (stage == PlantStage.Grown) {
-				// Default yields, only when fully grown
+				// 默认 yields, only when fully grown
 				herbItemStack = 1;
 				seedItemStack = Main.rand.Next(1, 4);
 			}
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.Tiles
 			Tile tile = Framing.GetTileSafely(i, j);
 			PlantStage stage = GetStage(i, j);
 
-			// 仅 grow to the next stage if there is a next stage. We don't want our tile turning pink!
+			// 仅 grow 到 next stage if there is a next stage. We don't want our tile turning pink!
 			if (stage != PlantStage.Grown) {
 				// Increase the x frame to change the stage
 				tile.TileFrameX += FrameWidth;
@@ -176,7 +176,7 @@ namespace ExampleMod.Content.Tiles
 			}
 		}
 
-		// 一个 helper method to quickly get the current stage of the herb (assuming the tile at the coordinates is our herb)
+		// 一个 helper method to quickly get the current stage 的 herb (assuming the tile 在 coordinates is our herb)
 		private static PlantStage GetStage(int i, int j) {
 			Tile tile = Framing.GetTileSafely(i, j);
 			return (PlantStage)(tile.TileFrameX / FrameWidth);

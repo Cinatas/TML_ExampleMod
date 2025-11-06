@@ -7,8 +7,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.NPCs
 {
-	// This NPC inherits from the Hover abstract class included in ExampleMod, which is a more customizable copy of the vanilla Hovering AI.
-	// It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, as well as the `acceleration` and `accelerationY` field being set in the class constructor.
+	// This NPC inherits 从 Hover abstract class included in ExampleMod, 即 a more customizable copy 的 vanilla Hovering AI.
+	// It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, 以及 as the `acceleration` and `accelerationY` field being set 在 class constructor.
 	public class FallenSoul : Hover
 	{
 		public FallenSoul() {
@@ -55,7 +55,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// 允许s the NPC to talk with the player, even if it isn't a town NPC.
+		// 允许s the NPC to talk 与 player, even if it isn't a town NPC.
 		public override bool CanChat() {
 			return true;
 		}
@@ -85,12 +85,12 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// 仅 show health bar of the NPC when close to the player
+		// 仅 show health bar 的 NPC when close 到 player
 		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) {
 			float distance = npc.Distance(Main.player[npc.target].Center);
 			if (distance <= 200) {
 				if (distance > 100) {
-					// Make the health bar become smaller the farther away the NPC is.
+					// 使 the health bar become smaller the farther away the NPC is.
 					scale *= (100 - (distance - 100)) / 100;
 				}
 				return null;
@@ -98,13 +98,13 @@ namespace ExampleMod.NPCs
 			return false;
 		}
 
-		// Make the NPC invisible when far away from the player.
+		// 使 the NPC invisible when far away 从 player.
 		public override void CustomBehavior(ref float ai) {
 			float distance = npc.Distance(Main.player[npc.target].Center);
 			if (distance <= 250) {
 				npc.alpha = 100;
 				if (distance > 100) {
-					// Make the NPC fade out the farther away the NPC is.
+					// 使 the NPC fade out the farther away the NPC is.
 					npc.alpha += (int)(155 * ((distance - 100) / 150));
 				}
 				return;
@@ -112,7 +112,7 @@ namespace ExampleMod.NPCs
 			npc.alpha = 255;
 		}
 
-		// Make the NPC stop moving if it is close to the player.
+		// 使 the NPC stop moving if it is close 到 player.
 		public override bool ShouldMove(float ai) {
 			npc.ai[2] = 0; // 防止s the NPC from stopping following their target.
 			if (npc.Distance(Main.player[npc.target].Center) < 150f) {
@@ -129,7 +129,7 @@ namespace ExampleMod.NPCs
 
 	public class PurificationPowder : GlobalProjectile
 	{
-		// Make purification powder transform wraiths into purified ghosts.
+		// 使 purification powder transform wraiths into purified ghosts.
 		public override void PostAI(Projectile projectile) {
 			if (projectile.type != ProjectileID.PurificationPowder || Main.netMode == NetmodeID.MultiplayerClient) {
 				return;

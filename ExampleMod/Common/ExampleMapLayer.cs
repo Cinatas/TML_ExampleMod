@@ -33,7 +33,7 @@ namespace ExampleMod.Common
 	}
 
 	// The game doesn't send Main.dungeonX or Main.dungeonY to multiplayer clients.
-	// This ModSystem will ensure that they are synced allowing ExampleMapLayer to work in multiplayer.
+	// This ModSystem will ensure th在y are synced allowing ExampleMapLayer to work in multiplayer.
 	public class ExampleMapLayerSystem : ModSystem
 	{
 		public override void NetSend(BinaryWriter writer) {

@@ -52,11 +52,11 @@ namespace ExampleMod.Tiles
 		public override void RandomUpdate(int i, int j) {
 			// A random chance to slow down growth
 			if (WorldGen.genRand.Next(20) == 0) {
-				Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile at the given coordinates
+				Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile 在 given coordinates
 				bool growSucess; // A bool to see if the tree growing was sucessful.
 
-				// Style 0 is for the ExampleTree sapling, and style 1 is for ExamplePalmTree, so here we check frameX to call the correct method.
-				// Any pixels before 54 on the tilesheet are for ExampleTree while any pixels above it are for ExamplePalmTree
+				// Style 0 is 对于 ExampleTree sapling, and style 1 is 例如PalmTree, so here we check frameX to call the correct method.
+				// Any pixels before 54 在 tilesheet are 例如Tree while any pixels above it are 例如PalmTree
 				if (tile.frameX < 54)
 					growSucess = WorldGen.GrowTree(i, j);
 				else

@@ -34,10 +34,10 @@ namespace ExampleMod.Content.Biomes
 			// 首先, we will use the exampleBlockCount from our added ModSystem for our first custom condition
 			bool b1 = ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount >= 40;
 
-			// 其次, we will limit this biome to the inner horizontal third of the map as our second custom condition
+			// 其次, we will limit this biome 到 inner horizontal third 的 map as our second custom condition
 			bool b2 = Math.Abs(player.position.ToTileCoordinates().X - Main.maxTilesX / 2) < Main.maxTilesX / 6;
 
-			// 最后, we will limit the height at which this biome can be active to above ground (ie sky and surface). Most (if not all) surface biomes will use this condition.
+			// 最后, we will limit the height at which this biome 可以 active to above ground (ie sky and surface). Most (if not all) surface biomes will use this condition.
 			bool b3 = player.ZoneSkyHeight || player.ZoneOverworldHeight;
 			return b1 && b2 && b3;
 		}

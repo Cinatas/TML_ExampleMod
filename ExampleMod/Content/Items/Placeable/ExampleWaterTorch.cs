@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Placeable
 {
-	// ExampleWaterTorch is very similar to ExampleTorch, except it can be used and placed underwater, similar to Coral Torch.
-	// comments in this file will focus on the differences.
-	// Both place the same tile, but a different tile style. The ExampleWaterTorch tile style has custom code seen in the ExampleTorch ModTile.
+	// 示例WaterTorch is very similar to ExampleTorch, except it 可以 used and placed underwater, similar to Coral Torch.
+	// comments in this file will focus 在 differences.
+	// Both place the same tile, but a different tile style. The ExampleWaterTorch tile style has custom code seen 在 ExampleTorch ModTile.
 	public class ExampleWaterTorch : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -17,7 +17,7 @@ namespace ExampleMod.Content.Items.Placeable
 			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.ShimmerTorch;
 			ItemID.Sets.SingleUseInGamepad[Type] = true;
 			ItemID.Sets.Torches[Type] = true;
-			ItemID.Sets.WaterTorches[Type] = true; // The TileObjectData.newSubTile code in the ExampleTorch ModTile is required as well to make a water torch.
+			ItemID.Sets.WaterTorches[Type] = true; // The TileObjectData.newSubTile code 在 ExampleTorch ModTile is required 以及 to make a water torch.
 		}
 
 		public override void SetDefaults() {
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Items.Placeable
 				dust.position = player.RotatedRelativePoint(dust.position);
 			}
 
-			// 创建 a greenish (0.5, 1.5, 0.5) light at the torch's approximate position, when the item is held.
+			// 创建 a greenish (0.5, 1.5, 0.5) light 在 torch's approximate position, when the item is held.
 			Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
 
 			Lighting.AddLight(position, 0.5f, 1.5f, 0.5f);

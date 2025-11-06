@@ -11,8 +11,8 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void SetDefaults() {
-			// ModContent.WallType<Walls.ExampleWall>() retrieves the id of the wall that this item should place when used.
-			// DefaultToPlaceableWall handles setting various Item values that placeable wall items use.
+			// ModContent.WallType<Walls.ExampleWall>() retrieves the id 的 wall that this item should place when used.
+			// 默认ToPlaceableWall handles setting various Item values that placeable wall items use.
 			// Hover over DefaultToPlaceableWall in Visual Studio to read the documentation!
 			Item.DefaultToPlaceableWall(ModContent.WallType<Walls.ExampleWall>());
 		}

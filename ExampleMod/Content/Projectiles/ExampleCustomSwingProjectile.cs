@@ -11,17 +11,17 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// ExampleCustomSwingSword is an example of a sword with a custom swing using a held projectile
+	// 示例CustomSwingSword is an example of a sword with a custom swing using a held projectile
 	// 这是 great if you want to make melee weapons with complex swing behavior
 	// 注意 that this projectile only covers 2 relatively simple swings, everything else is up to you
-	// Aside from the custom animation, the custom collision code in Colliding is very important to this weapon
+	// Aside 从 custom animation, the custom collision code in Colliding is very important to this weapon
 	public class ExampleCustomSwingProjectile : ModProjectile
 	{
-		// 我们 define some constants that determine the swing range of the sword
-		// Not that we use multipliers here since that simplifies the amount of tweaks for these interactions
+		// 我们 define some constants that determine the swing range 的 sword
+		// Not that we use multipliers here since that simplifies the amount of tweaks 对于se interactions
 		// 你 could change the values or even replace them entirely, but they are tweaked with looks in mind
 		private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
-		private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
+		private const float FIRSTHALFSWING = 0.45f; // How much 的 swing happens before it reaches the target angle (in relation to swingRange)
 		private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
 		private const float WINDUP = 0.15f; // How far back the player's hand goes when winding their attack (in relation to swingRange)
 		private const float UNWIND = 0.4f; // When should the sword start disappearing
@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Projectiles
 
 		private enum AttackType // Which attack is being performed
 		{
-			// Swings are normal sword swings that can be slightly aimed
+			// Swings are normal sword swings that 可以 slightly aimed
 			// Swings goes through the full cycle of animations
 			Swing,
 			// Spins are swings that go full circle
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Projectiles
 			Spin,
 		}
 
-		private enum AttackStage // What stage of the attack is being executed, see functions found in AI for description
+		private enum AttackStage // What stage 的 attack is being executed, see functions found in AI for description
 		{
 			Prepare,
 			Execute,
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Projectiles
 			get => (AttackStage)Projectile.localAI[0];
 			set {
 				Projectile.localAI[0] = (float)value;
-				Timer = 0; // reset the timer when the projectile switches states
+				Timer = 0; // 重置 the timer when the projectile switches states
 			}
 		}
 
@@ -86,7 +86,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.tileCollide = false; // Projectile does not collide with tiles
 			Projectile.usesLocalNPCImmunity = true; // 使用s local immunity frames
 			Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the projectile doesn't hit twice
-			Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
+			Projectile.ownerHitCheck = true; // 使 sure the owner 的 projectile has line of sight 到 target (aka can't hit things through tile).
 			Projectile.DamageType = DamageClass.Melee; // Projectile is a melee projectile
 		}
 
@@ -95,7 +95,7 @@ namespace ExampleMod.Content.Projectiles
 			float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
 
 			if (CurrentAttack == AttackType.Spin) {
-				InitialAngle = (float)(-Math.PI / 2 - Math.PI * 1 / 3 * Projectile.spriteDirection); // For the spin, starting angle is designated based on direction of hit
+				InitialAngle = (float)(-Math.PI / 2 - Math.PI * 1 / 3 * Projectile.spriteDirection); // 对于 spin, starting angle is designated based on direction of hit
 			}
 			else {
 				if (Projectile.spriteDirection == 1) {
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SendExtraAI(BinaryWriter writer) {
-			// Projectile.spriteDirection for this projectile is derived from the mouse position of the owner in OnSpawn, as such it needs to be synced. spriteDirection is not one of the fields automatically synced over the network. All Projectile.ai slots are used already, so we will sync it manually. 
+			// Projectile.spriteDirection for this projectile is derived 从 mouse position 的 owner in OnSpawn, as such it needs to be synced. spriteDirection is not one 的 fields automatically synced over the network. All Projectile.ai slots are used already, so we will sync it manually. 
 			writer.Write((sbyte)Projectile.spriteDirection);
 		}
 
@@ -135,7 +135,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			// AI depends on stage and attack
-			// 注意 that these stages are to facilitate the scaling effect at the beginning and end
+			// 注意 th在se stages are to facilitate the scaling effect 在 beginning and end
 			// 如果 this is not desirable for you, feel free to simplify
 			switch (CurrentStage) {
 				case AttackStage.Prepare:
@@ -178,7 +178,7 @@ namespace ExampleMod.Content.Projectiles
 			return false;
 		}
 
-		// Find the start and end of the sword and use a line collider to check for collision with enemies
+		// Find the start and end 的 sword and use a line collider to check for collision with enemies
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			Vector2 start = Owner.MountedCenter;
 			Vector2 end = start + Projectile.rotation.ToRotationVector2() * ((Projectile.Size.Length()) * Projectile.scale);
@@ -193,7 +193,7 @@ namespace ExampleMod.Content.Projectiles
 			Utils.PlotTileLine(start, end, 15 * Projectile.scale, DelegateMethods.CutTiles);
 		}
 
-		// 我们 make it so that the projectile can only do damage in its release and unwind phases
+		// 我们 make it so th在 projectile can only do damage in its release and unwind phases
 		public override bool? CanDamage() {
 			if (CurrentStage == AttackStage.Prepare)
 				return false;
@@ -201,7 +201,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
-			// Make knockback go away from player
+			// 使 knockback go away from player
 			modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
 
 			// 如果 the NPC is hit by the spin attack, increase knockback slightly
@@ -213,21 +213,21 @@ namespace ExampleMod.Content.Projectiles
 		public void SetSwordPosition() {
 			Projectile.rotation = InitialAngle + Projectile.spriteDirection * Progress; // 设置 projectile rotation
 
-			// 设置 composite arm allows you to set the rotation of the arm and stretch of the front and back arms independently
-			Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f)); // set arm position (90 degree offset since arm starts lowered)
-			Vector2 armPosition = Owner.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, Projectile.rotation - (float)Math.PI / 2); // get position of hand
+			// 设置 composite arm allows you to set the rotation 的 arm and stretch 的 front and back arms independently
+			Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f)); // 设置 arm position (90 degree offset since arm starts lowered)
+			Vector2 armPosition = Owner.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, Projectile.rotation - (float)Math.PI / 2); // 获取 position of hand
 
 			armPosition.Y += Owner.gfxOffY;
 			Projectile.Center = armPosition; // 设置 projectile to arm position
 			Projectile.scale = Size * 1.2f * Owner.GetAdjustedItemScale(Owner.HeldItem); // Slightly scale up the projectile and also take into account melee size modifiers
 
-			Owner.heldProj = Projectile.whoAmI; // set held projectile to this projectile
+			Owner.heldProj = Projectile.whoAmI; // 设置 held projectile to this projectile
 		}
 
-		// Function facilitating the taking out of the sword
+		// Function facilitating the taking out 的 sword
 		private void PrepareStrike() {
 			Progress = WINDUP * SWINGRANGE * (1f - Timer / prepTime); // 计算s rotation from initial angle
-			Size = MathHelper.SmoothStep(0, 1, Timer / prepTime); // Make sword slowly increase in size as we prepare to strike until it reaches max
+			Size = MathHelper.SmoothStep(0, 1, Timer / prepTime); // 使 sword slowly increase in size as we prepare to strike until it reaches max
 
 			if (Timer >= prepTime) {
 				SoundEngine.PlaySound(SoundID.Item1); // Play sword sound here since playing it on spawn is too early
@@ -235,7 +235,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// Function facilitating the first half of the swing
+		// Function facilitating the first half 的 swing
 		private void ExecuteStrike() {
 			if (CurrentAttack == AttackType.Swing) {
 				Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) * Timer / execTime);
@@ -258,11 +258,11 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// Function facilitating the latter half of the swing where the sword disappears
+		// Function facilitating the latter half 的 swing where the sword disappears
 		private void UnwindStrike() {
 			if (CurrentAttack == AttackType.Swing) {
 				Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) + UNWIND * Timer / hideTime);
-				Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // Make sword slowly decrease in size as we end the swing to make a smooth hiding animation
+				Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // 使 sword slowly decrease in size as we end the swing to make a smooth hiding animation
 
 				if (Timer >= hideTime) {
 					Projectile.Kill();

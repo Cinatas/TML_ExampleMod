@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items
 	{
 		public override void SetStaticDefaults() {
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 4));
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true; // Makes the item have an animation while in world (not held.). Use in combination with RegisterItemAnimation
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true; // 使 the item have an animation while in world (not held.). Use in combination with RegisterItemAnimation
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
@@ -45,14 +45,14 @@ namespace ExampleMod.Content.Items
 			}
 
 			// 在这里 we will hide all tooltips whose title end with ':RemoveMe'
-			// One like that is added at the start of this method
+			// One like 即 added 在 start of this method
 			foreach (var l in tooltips) {
 				if (l.Name.EndsWith(":RemoveMe")) {
 					l.Hide();
 				}
 			}
 
-			// Another method of hiding can be done if you want to hide just one line.
+			// Another method of hiding 可以 done if you want to hide just one line.
 			// tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
 		}
 

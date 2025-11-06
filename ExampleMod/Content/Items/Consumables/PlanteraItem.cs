@@ -12,8 +12,8 @@ namespace ExampleMod.Content.Items.Consumables
 			Item.ResearchUnlockCount = 3;
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps sort inventory know that this is a boss summoning Item.
 
-			// 这是 set to true for all NPCs that can be summoned via an Item (calling NPC.SpawnOnPlayer). If this is for a modded boss,
-			// write this in the bosses file instead
+			// 这是 set to true for all NPCs that 可以 summoned via an Item (calling NPC.SpawnOnPlayer). If this is for a modded boss,
+			// write this 在 bosses file instead
 			NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = true;
 		}
 

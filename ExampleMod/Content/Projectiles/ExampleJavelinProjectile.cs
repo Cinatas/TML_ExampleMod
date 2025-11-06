@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// This projectile showcases advanced AI code. Of particular note is a showcase on how projectiles can stick to NPCs in a manner similar to the behavior of vanilla weapons such as Bone Javelin, Daybreak, Blood Butcherer, Stardust Cell Minion, and Tentacle Spike. This code is modeled closely after Bone Javelin.
+	// This projectile showcases advanced AI code. Of particular note is a showcase on how projectiles can stick to NPCs in a manner similar 到 behavior of vanilla weapons 例如 Bone Javelin, Daybreak, Blood Butcherer, Stardust Cell Minion, and Tentacle Spike. This code is modeled closely after Bone Javelin.
 	public class ExampleJavelinProjectile : ModProjectile
 	{
 		// These properties wrap the usual ai arrays for cleaner and easier to understand code.
@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Projectiles
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
-		// Index of the current target
+		// Index 的 current target
 		public int TargetWhoAmI {
 			get => (int)Projectile.ai[1];
 			set => Projectile.ai[1] = value;
@@ -42,24 +42,24 @@ namespace ExampleMod.Content.Projectiles
 		public override void SetDefaults() {
 			Projectile.width = 16; // The width of projectile hitbox
 			Projectile.height = 16; // The height of projectile hitbox
-			Projectile.aiStyle = 0; // The ai style of the projectile (0 means custom AI). For more please reference the source code of Terraria
+			Projectile.aiStyle = 0; // The ai style 的 projectile (0 means custom AI). F或更多 please reference the source code of Terraria
 			Projectile.friendly = true; // Can the projectile deal damage to enemies?
-			Projectile.hostile = false; // Can the projectile deal damage to the player?
-			Projectile.DamageType = DamageClass.Ranged; // Makes the projectile deal ranged damage. You can set in to DamageClass.Throwing, but that is not used by any vanilla items
+			Projectile.hostile = false; // Can the projectile deal damage 到 player?
+			Projectile.DamageType = DamageClass.Ranged; // 使 the projectile deal ranged damage. You can set in to DamageClass.Throwing, but 即 not used by any vanilla items
 			Projectile.penetrate = 2; // How many monsters the projectile can penetrate.
-			Projectile.timeLeft = 600; // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
-			Projectile.alpha = 255; // The transparency of the projectile, 255 for completely transparent. Our custom AI below fades our projectile in. Make sure to delete this if you aren't using an aiStyle that fades in.
+			Projectile.timeLeft = 600; // The live time 对于 projectile (60 = 1 second, so 600 is 10 seconds)
+			Projectile.alpha = 255; // The transparency 的 projectile, 255 for completely transparent. Our custom AI below fades our projectile in. Make sure to delete this if you aren't using an aiStyle that fades in.
 			Projectile.light = 0.5f; // How much light emit around the projectile
 			Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
 			Projectile.tileCollide = true; // Can the projectile collide with tiles?
-			Projectile.hide = true; // Makes the projectile completely invisible. We need this to draw our projectile behind enemies/tiles in DrawBehind()
+			Projectile.hide = true; // 使 the projectile completely invisible. We need this to draw our projectile behind enemies/tiles in DrawBehind()
 		}
 
 		private const int GravityDelay = 45;
 
 		public override void AI() {
 			UpdateAlpha();
-			// Run either the Sticky AI or Normal AI
+			// 运行 either the Sticky AI or Normal AI
 			// Separating into different methods helps keeps your AI clean
 			if (IsStickingToTarget) {
 				StickyAI();
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Projectiles
 		private void NormalAI() {
 			GravityDelayTimer++; // doesn't make sense.
 
-			// 对于 a little while, the javelin will travel with the same speed, but after this, the javelin drops velocity very quickly.
+			// 对于 a little while, the javelin will travel 与 same speed, but after this, the javelin drops velocity very quickly.
 			if (GravityDelayTimer >= GravityDelay) {
 				GravityDelayTimer = GravityDelay;
 
@@ -113,7 +113,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 			else if (Main.npc[npcTarget].active && !Main.npc[npcTarget].dontTakeDamage) {
 				// 如果 the target is active and can take damage
-				// 设置 the projectile's position relative to the target's center
+				// 设置 the projectile's position relative 到 target's center
 				Projectile.Center = Main.npc[npcTarget].Center - Projectile.velocity * 2f;
 				Projectile.gfxOffY = Main.npc[npcTarget].gfxOffY;
 				if (hitEffect) {
@@ -172,25 +172,25 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.velocity = (target.Center - Projectile.Center) *
 				0.75f; // 更改 velocity based on delta center of targets (difference between entity centers)
 			Projectile.netUpdate = true; // netUpdate this javelin
-			Projectile.damage = 0; // Makes sure the sticking javelins do not deal damage anymore
+			Projectile.damage = 0; // 使 sure the sticking javelins do not deal damage anymore
 
-			// ExampleJavelinBuff handles the damage over time (DoT)
+			// 示例JavelinBuff handles the damage over time (DoT)
 			target.AddBuff(ModContent.BuffType<Buffs.ExampleJavelinDebuff>(), 900);
 
-			// KillOldestJavelin will kill the oldest projectile stuck to the specified npc.
-			// It only works if ai[0] is 1 when sticking and ai[1] is the target npc index, which is what IsStickingToTarget and TargetWhoAmI correspond to.
+			// KillOldestJavelin will kill the oldest projectile stuck 到 specified npc.
+			// It only works if ai[0] is 1 when sticking and ai[1] is the target npc index, 即 what IsStickingToTarget and TargetWhoAmI correspond to.
 			Projectile.KillOldestJavelin(Projectile.whoAmI, Type, target.whoAmI, stickingJavelins);
 		}
 
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
 			// 对于 going through platforms and such, javelins use a tad smaller size
-			width = height = 10; // notice we set the width to the height, the height to 10. so both are 10
+			width = height = 10; // notice we set the width 到 height, the height to 10. so both are 10
 			return true;
 		}
 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			// By shrinking target hitboxes by a small amount, this projectile only hits if it more directly hits the target.
-			// This helps the javelin stick in a visually appealing place within the target sprite.
+			// This helps the javelin stick in a visually appealing place with在 target sprite.
 			if (targetHitbox.Width > 8 && targetHitbox.Height > 8) {
 				targetHitbox.Inflate(-targetHitbox.Width / 8, -targetHitbox.Height / 8);
 			}

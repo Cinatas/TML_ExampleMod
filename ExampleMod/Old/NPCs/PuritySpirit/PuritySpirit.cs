@@ -51,7 +51,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 				npc.buffImmune[k] = true;
 			}
 			music = MusicID.Title;
-			musicPriority = MusicPriority.BossMedium; // By default, musicPriority is BossLow
+			musicPriority = MusicPriority.BossMedium; // 默认情况下, musicPriority is BossLow
 			bossBag = ItemType<PuritySpiritBag>();
 		}
 
@@ -264,7 +264,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 		public void RunAway() {
 			attackProgress++;
 			if (attackProgress == 180) {
-				Talk("Hmph. Was that the extent of your power?");
+				Talk("Hmph. Was th在 extent of your power?");
 			}
 			if (attackProgress >= 360) {
 				npc.active = false;

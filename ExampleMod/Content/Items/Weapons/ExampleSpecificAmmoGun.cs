@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// 这是 an example gun designed to best demonstrate the various tML hooks that can be used for ammo-related specifications.
+	// 这是 an example gun designed to best demonstrate the various tML hooks that 可以 used for ammo-related specifications.
 	// ammo wiki guide, https://github.com/tModLoader/tModLoader/wiki/Basic-Ammo, is a good resource for learning how the ammo system works.
 	public class ExampleSpecificAmmoGun : ModItem
 	{
@@ -22,17 +22,17 @@ namespace ExampleMod.Content.Items.Weapons
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(FreeAmmoChance1, FreeAmmoChance2, FreeAmmoChance3, AmmoUseDamageBoost);
 
 		public override void SetDefaults() {
-			// Modders can use Item.DefaultToRangedWeapon to quickly set many common properties, such as: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
+			// Modders can use Item.DefaultToRangedWeapon to quickly set many common properties, 例如: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
 
-			// Common Properties
-			Item.width = 62; // Hitbox width of the item.
-			Item.height = 32; // Hitbox height of the item.
+			// 常见 Properties
+			Item.width = 62; // Hitbox width 的 item.
+			Item.height = 32; // Hitbox height 的 item.
 			Item.scale = 0.75f;
-			Item.rare = ItemRarityID.Green; // The color that the item's name will be in-game.
+			Item.rare = ItemRarityID.Green; // The color th在 item's name 将 in-game.
 
 			// 使用 Properties
 			Item.useTime = 5; // The item's use time in ticks (60 ticks == 1 second.)
-			Item.useAnimation = 15; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+			Item.useAnimation = 15; // The length 的 item's use animation in ticks (60 ticks == 1 second.)
 			Item.reuseDelay = 5; // The amount of time the item waits between use animations (60 ticks == 1 second.)
 			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
 			Item.autoReuse = true; // Whether or not you can hold click to automatically use it again.
@@ -45,9 +45,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
 			// Gun Properties
-			Item.shoot = ProjectileID.PurificationPowder; // For some reason, all the guns in the vanilla source have this.
-			Item.shootSpeed = 16f; // The speed of the projectile (measured in pixels per frame.)
-			Item.useAmmo = AmmoID.Bullet; // The "ammo Id" of the ammo item that this weapon uses. Ammo IDs are magic numbers that usually correspond to the item id of one item that most commonly represent the ammo type.
+			Item.shoot = ProjectileID.PurificationPowder; // For some reason, all the guns 在 vanilla source have this.
+			Item.shootSpeed = 16f; // The speed 的 projectile (measured in pixels per frame.)
+			Item.useAmmo = AmmoID.Bullet; // The "ammo Id" 的 ammo item that this weapon uses. Ammo IDs are magic numbers that usually correspond 到 item id of one item th至多 commonly represent the ammo type.
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
@@ -67,11 +67,11 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool? CanChooseAmmo(Item ammo, Player player) {
-			// CanChooseAmmo allows ammo to be chosen or denied independently of the useAmmo field's restrictions.
-			// (Its sister hook, CanBeChosenAsAmmo, is called on the ammo, and has the same function.)
-			// This returns null by default, which simply picks the ammo based on whether or not ammo.ammo == weapon.useAmmo.
+			// CanChooseAmmo allows ammo to be chosen or denied independently 的 useAmmo field's restrictions.
+			// (Its sister hook, CanBeChosenAsAmmo, is called 在 ammo, and has the same function.)
+			// This returns null 默认情况下, which simply picks the ammo based on whether or not ammo.ammo == weapon.useAmmo.
 			// 返回ing true will forcibly allow an ammo to be used; returning false will forcibly deny it.
-			// 对于 this example, we'll forcefully deny Cursed Bullets from being used as ammunition, but otherwise make no changes to the ammo pool.
+			// 对于 this example, we'll forcefully deny Cursed Bullets from being used as ammunition, but otherwise make no changes 到 ammo pool.
 			if (ammo.type == ItemID.CursedBullet)
 				return false;
 
@@ -80,14 +80,14 @@ namespace ExampleMod.Content.Items.Weapons
 			//	return true;
 
 			// Oh, and a word of advice: always default to returning null, as per the above.
-			// Defaulting to returning true or false may have unintended consequences on what you can or can't use as ammo.
+			// 默认ing to returning true or false may have unintended consequences on what you can or can't use as ammo.
 			return null;
 		}
 
 		public override bool CanConsumeAmmo(Item ammo, Player player) {
 			// CanConsumeAmmo allows ammo to be conserved or consumed depending on various conditions.
-			// (Its sister hook, CanBeConsumedAsAmmo, is called on the ammo, and has the same function.)
-			// This returns true by default; returning false for any reason will prevent ammo consumption.
+			// (Its sister hook, CanBeConsumedAsAmmo, is called 在 ammo, and has the same function.)
+			// This returns true 默认情况下; returning false for any reason will prevent ammo consumption.
 			// 注意 that returning true does NOT allow you to force ammo consumption; this currently requires use of IL editing or detours.
 
 			// 对于 this example, the first shot will have a 20% chance to conserve ammo...
@@ -105,7 +105,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		public override void OnConsumeAmmo(Item ammo, Player player) {
 			// OnConsumeAmmo allows you to make things happen when ammo is successfully consumed.
-			// (Its sister hook, OnConsumedAsAmmo, is called on the ammo, and has the same function.)
+			// (Its sister hook, OnConsumedAsAmmo, is called 在 ammo, and has the same function.)
 			// Here, we'll set a bool to true which dictates whether or not the next shot should receive a damage bonus.
 			// This makes it so that shots which do consume ammunition gain a damage bonus in exchange for that consumption.
 			consumptionDamageBoost = true;

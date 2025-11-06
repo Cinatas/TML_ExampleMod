@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Projectiles
 {
 	public class ExampleSpearProjectile : ModProjectile
 	{
-		// Define the range of the Spear Projectile. These are overridable properties, in case you'll want to make a class inheriting from this one.
+		// 定义 the range 的 Spear Projectile. These are overridable properties, in case you'll want to make a class inheriting from this one.
 		protected virtual float HoldoutRangeMin => 24f;
 		protected virtual float HoldoutRangeMax => 96f;
 
@@ -18,11 +18,11 @@ namespace ExampleMod.Content.Projectiles
 
 		public override bool PreAI() {
 			Player player = Main.player[Projectile.owner]; // Since we access the owner player instance so much, it's useful to create a helper local variable for this
-			int duration = player.itemAnimationMax; // Define the duration the projectile will exist in frames
+			int duration = player.itemAnimationMax; // 定义 the durati在 projectile will exist in frames
 
 			player.heldProj = Projectile.whoAmI; // 更新 the player's held projectile id
 
-			// 重置 projectile time left if necessary
+			// 重置 projectile time left 如有必要
 			if (Projectile.timeLeft > duration) {
 				Projectile.timeLeft = duration;
 			}
@@ -40,10 +40,10 @@ namespace ExampleMod.Content.Projectiles
 				progress = (duration - Projectile.timeLeft) / halfDuration;
 			}
 
-			// Move the projectile from the HoldoutRangeMin to the HoldoutRangeMax and back, using SmoothStep for easing the movement
+			// Move the projectile 从 HoldoutRangeMin 到 HoldoutRangeMax and back, using SmoothStep for easing the movement
 			Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
 
-			// 应用 proper rotation to the sprite.
+			// 应用 proper rotation 到 sprite.
 			if (Projectile.spriteDirection == -1) {
 				// 如果 sprite is facing left, rotate 45 degrees
 				Projectile.rotation += MathHelper.ToRadians(45f);
@@ -55,7 +55,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// 避免 spawning dusts on dedicated servers
 			if (!Main.dedServ) {
-				// These dusts are added later, for the 'ExampleMod' effect
+				// These dusts are added later, 对于 'ExampleMod' effect
 				if (Main.rand.NextBool(3)) {
 					Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Sparkle>(), Projectile.velocity.X * 2f, Projectile.velocity.Y * 2f, Alpha: 128, Scale: 1.2f);
 				}

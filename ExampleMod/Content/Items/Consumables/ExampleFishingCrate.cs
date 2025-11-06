@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// Basic code for a fishing crate
+	// 基本 code for a fishing crate
 	// catch code is in a separate ModPlayer class (ExampleFishingPlayer)
 	// placed tile is in a separate ModTile class
 	public class ExampleFishingCrate : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// Disclaimer for both of these sets (as per their docs): They are only checked for vanilla item IDs, but for cross-mod purposes it would be helpful to set them for modded crates too
+			// Disclaimer for both 的se sets (as per their docs): They are only checked for vanilla item IDs, but for cross-mod purposes it 将 helpful to set them for modded crates too
 			ItemID.Sets.IsFishingCrate[Type] = true;
 			//ItemID.Sets.IsFishingCrateHardmode[Type] = true; // This is a crate that mimics a pre-hardmode biome crate, so this is commented out
 
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Items.Consumables
 			// Drop coins
 			itemLoot.Add(ItemDropRule.Common(ItemID.GoldCoin, 4, 5, 13));
 
-			// Drop pre-hm ores, with the addition of one from ExampleMod
+			// Drop pre-hm ores, 与 addition of one from ExampleMod
 			IItemDropRule[] oreTypes = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.CopperOre, 1, 30, 50),
 				ItemDropRule.Common(ItemID.TinOre, 1, 30, 50),
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Items.Consumables
 			};
 			itemLoot.Add(new OneFromRulesRule(7, oreTypes));
 
-			// Drop pre-hm bars (except copper/tin), with the addition of one from ExampleMod
+			// Drop pre-hm bars (except copper/tin), 与 addition of one from ExampleMod
 			IItemDropRule[] oreBars = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.IronBar, 1, 10, 21),
 				ItemDropRule.Common(ItemID.LeadBar, 1, 10, 21),
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Items.Consumables
 			};
 			itemLoot.Add(new OneFromRulesRule(4, oreBars));
 
-			// Drop an "exploration utility" potion, with the addition of one from ExampleMod
+			// Drop an "exploration utility" potion, 与 addition of one from ExampleMod
 			IItemDropRule[] explorationPotions = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.ObsidianSkinPotion, 1, 2, 5),
 				ItemDropRule.Common(ItemID.SpelunkerPotion, 1, 2, 5),

@@ -12,19 +12,19 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles.Furniture
 {
-	// Common code for a Master Mode boss relic
-	// Supports optional Item.placeStyle handling if you wish to add more relics but use the same tile type (then it would be wise to name this class something more generic like BossRelic)
-	// 如果 you want to add more relics but don't want to use the Item.placeStyle approach, see the inheritance example at the bottom of the file
+	// 常见 code for a Master Mode boss relic
+	// Supports optional Item.placeStyle handling if you wish to add more relics but use the same tile type (then it 将 wise to name this class something more generic like BossRelic)
+	// 如果 you want to add more relics but don't want to use the Item.placeStyle approach, see the inheritance example 在 bottom 的 file
 	public class MinionBossRelic : ModTile
 	{
 		public const int FrameWidth = 18 * 3;
 		public const int FrameHeight = 18 * 4;
 		public const int HorizontalFrames = 1;
-		public const int VerticalFrames = 1; // Optional: Increase this number to match the amount of relics you have on your extra sheet, if you choose to use the Item.placeStyle approach
+		public const int VerticalFrames = 1; // 可选: Increase this number to match the amount of relics you have on your extra sheet, if you choose to use the Item.placeStyle approach
 
 		public Asset<Texture2D> RelicTexture;
 
-		// Every relic has its own extra floating part, should be 50x50. Optional: Expand this sheet if you want to add more, stacked vertically
+		// Every relic has its own extra floating part, 应该 50x50. Optional: Expand this sheet if you want to add more, stacked vertically
 		// 如果 you do not use the Item.placeStyle approach, and you extend from this class, you can override this to point to a different texture
 		public virtual string RelicTextureName => "ExampleMod/Content/Tiles/Furniture/MinionBossRelic";
 
@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		public override string Texture => "ExampleMod/Content/Tiles/Furniture/RelicPedestal";
 
 		public override void Load() {
-			// Cache the extra texture displayed on the pedestal
+			// Cache the extra texture displayed 在 pedestal
 			RelicTexture = ModContent.Request<Texture2D>(RelicTextureName);
 		}
 
@@ -43,26 +43,26 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4); // Relics are 3x4
 			TileObjectData.newTile.LavaDeath = false; // Does not break when lava touches it
-			TileObjectData.newTile.DrawYOffset = 2; // So the tile sinks into the ground
-			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; // Player faces to the left
-			TileObjectData.newTile.StyleHorizontal = false; // Based on how the alternate sprites are positioned on the sprite (by default, true)
+			TileObjectData.newTile.DrawYOffset = 2; // So the tile sinks in到 ground
+			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; // Player faces 到 left
+			TileObjectData.newTile.StyleHorizontal = false; // Based on how the alternate sprites are positioned 在 sprite (默认情况下, true)
 
-			// This controls how styles are laid out in the texture file. This tile is special in that all styles will use the same texture section to draw the pedestal.
+			// This controls how styles are laid out 在 texture file. This tile is special in that all styles will use the same texture section to draw the pedestal.
 			TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
 			TileObjectData.newTile.StyleMultiplier = 2;
 			TileObjectData.newTile.StyleWrapLimit = 2;
 			TileObjectData.newTile.styleLineSkipVisualOverride = 0; // This forces the tile preview to draw as if drawing the 1st style.
 
-			// Register an alternate tile data with flipped direction
+			// 注册 an alternate tile data with flipped direction
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); // Copy everything from above, saves us some code
-			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // Player faces to the right
+			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // Player faces 到 right
 			TileObjectData.addAlternate(1);
 
-			// Register the tile data itself
+			// 注册 the tile data itself
 			TileObjectData.addTile(Type);
 
-			// Register map name and color
-			// "MapObject.Relic" refers to the translation key for the vanilla "Relic" text
+			// 注册 map name and color
+			// "MapObject.Relic" refers 到 translation key 对于 vanilla "Relic" text
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
 		}
 
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
 			// Since this tile does not have the hovering part on its sheet, we have to animate it ourselves
-			// Therefore we register the top-left of the tile as a "special point"
+			// Therefore we register the top-left 的 tile as a "special point"
 			// This allows us to draw things in SpecialDraw
 			if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
 				Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
@@ -102,7 +102,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// 获取 the initial draw parameters
 			Texture2D texture = RelicTexture.Value;
 
-			int frameY = tile.TileFrameX / FrameWidth; // Picks the frame on the sheet based on the placeStyle of the item
+			int frameY = tile.TileFrameX / FrameWidth; // Picks the frame 在 sheet based 在 placeStyle 的 item
 			Rectangle frame = texture.Frame(HorizontalFrames, VerticalFrames, 0, frameY);
 
 			Vector2 origin = frame.Size() / 2f;
@@ -110,7 +110,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 			Color color = Lighting.GetColor(p.X, p.Y);
 
-			bool direction = tile.TileFrameY / FrameHeight != 0; // This is related to the alternate tile data we registered before
+			bool direction = tile.TileFrameY / FrameHeight != 0; // This is related 到 alternate tile data we registered before
 			SpriteEffects effects = direction ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
 			// Some math magic to make it smoothly move up and down over time
@@ -133,7 +133,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 	}
 
 	// 如果 you want to make more relics but do not use the Item.placeStyle approach, you can use inheritance to avoid using duplicate code:
-	// Your tile code would then inherit from the MinionBossRelic class (which you should make abstract) and should look like this:
+	// Your tile code would then inherit 从 MinionBossRelic class (which you should make abstract) and should look like this:
 	/*
 	public class MyBossRelic : MinionBossRelic
 	{

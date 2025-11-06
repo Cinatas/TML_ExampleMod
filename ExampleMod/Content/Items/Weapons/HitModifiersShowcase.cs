@@ -10,13 +10,13 @@ namespace ExampleMod.Content.Items.Weapons
 {
 	/// <summary>
 	/// This item can help conceptualize various damage modification concepts. <br/>
-	/// The Item.damage of this weapon is 100 so the math is easy to follow. Damage variation is disabled for all modes except the 1st mode for the same reason. <br/>
-	/// When testing this weapon the first time, it is recommended to disable other mods and to remove all damage boosting accessories, as they will complicate the math being taught. <br/>
+	/// The Item.damage of this weapon is 100 so the math is easy to follow. Damage variation is disabled for all modes except the 1st mode 对于 same reason. <br/>
+	/// When testing this weap在 first time, it is recommended to disable other mods and to remove all damage boosting accessories, as they will complicate the math being taught. <br/>
 	/// Testing against <see cref="NPCID.BlueArmoredBonesNoPants"/> is recommended as it has high defense (50), good knockback resistance, and enough health for a few hits. Having 50 defense makes the math for defense and armor penetration easy to follow.
 	/// <br/>
 	/// The math taught in this example also assumes the player is in a normal world. <br/> 
 	/// Use right click to switch modes.<br/>
-	/// This example is purely for demonstration purposes only, it will not work in multiplayer. This should also not be considered correct code for a working dual-use weapon. <br/>
+	/// This example is purely for demonstration purposes only, it will not work in multiplayer. This should also 不 considered correct code for a working dual-use weapon. <br/>
 	/// </summary>
 	public class HitModifiersShowcase : ModItem
 	{
@@ -63,7 +63,7 @@ namespace ExampleMod.Content.Items.Weapons
 					mode = 0;
 				}
 				Main.NewText($"Switching to mode #{mode}: {GetMessageForMode()}");
-				// This line will trigger NetSend to be called at the end of this game update, allowing the changes to useStyle to be in sync. 
+				// This line will trigger NetSend to be called 在 end of this game update, allowing the changes to useStyle to be in sync. 
 				Item.NetStateChanged();
 			}
 			else {
@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Items.Weapons
 				case 4:
 					return "10 extra armor penetration. Test against high defense enemy";
 				case 5:
-					// 这是 similar to the Lightning Aura and Flymeal weapon effects
+					// 这是 similar 到 Lightning Aura and Flymeal weapon effects
 					return "50% extra armor penetration. Ignores 50% of enemy defense";
 				case 6:
 					return "Will apply ExampleDefenseDebuff, reducing defense by 25%";
@@ -111,7 +111,7 @@ namespace ExampleMod.Content.Items.Weapons
 				modifiers.Knockback += .5f;
 			}
 			else if (mode == 3) {
-				modifiers.CritDamage += 2f; // Default crit is 100% more than a normal hit, so with this in effect, crits should deal 4x damage
+				modifiers.CritDamage += 2f; // 默认 crit is 100% more than a normal hit, so with this in effect, crits should deal 4x damage
 			}
 			else if (mode == 4) {
 				modifiers.ArmorPenetration += 10f;
@@ -121,10 +121,10 @@ namespace ExampleMod.Content.Items.Weapons
 			}
 
 			// Below is an example of using ModifyHitInfo to alter the final value of damage, between Modify and OnHit hooks.
-			// This 'backdoor' is a replacement for the old style of modifiers which allowed modifying the damage via `ref`
+			// This 'backdoor' is a replacement 对于 old style of modifiers which allowed modifying the damage via `ref`
 			// Please only use this if absolutely necessary, as multiple mods freely altering the damage results will create incompatible or unintuitive player experiences.
 			//
-			// 对于 example, the effect below could be better implemented by checking `player.GetWeaponDamage(Item)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
+			// 对于 example, the effect below 可能 better implemented by checking `player.GetWeaponDamage(Item)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
 			/*
 			modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
 				if (hitInfo.Damage > 10) {
@@ -136,7 +136,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) {
 			// These effects act on a hit happening, so they should go here.
-			// Buffs added locally are automatically synced to the server and other players in multiplayer
+			// Buffs added locally are automatically synced 到 server and other players in multiplayer
 			if (mode == 6) {
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600);
 			}
@@ -148,7 +148,7 @@ namespace ExampleMod.Content.Items.Weapons
 			}
 		}
 
-		// Due to the differences in pvp damage calculations, only some of the effects of this weapon work in pvp.
+		// Due 到 differences in pvp damage calculations, only some 的 effects of this weapon work in pvp.
 		public override void ModifyHitPvp(Player player, Player target, ref Player.HurtModifiers modifiers) {
 			// 不像 the effects in OnHitPvp, these specific effects need to run on all clients to keep things in sync, so there is no check for local player.
 			if (mode == 2) {
@@ -163,14 +163,14 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo) {
-			// These effects of this weapon should only run on the player damaging another, this check does that.
+			// These effects of this weapon should only run 在 player damaging another, this check does that.
 			if (player != Main.LocalPlayer) {
 				return;
 			}
 
 			if (mode == 6) {
-				// This AddBuff is not quiet because it is affecting another player. This allows it to broadcast to all players that the target has a buff. (Main.pvpBuff must be set to true for other players to be able to give buffs to a player)
-				// 注意 that in PvP, it is possible to attack a player and see them take damage, but by the time the hit message arrives on the target client, they may have recharged a dodge. In this case, the target will not actually take damage, and their health will appear to restore. Because the attacking player applies the debuff, the target will receive the debuff regardless
+				// This AddBuff is not quiet because it is affecting another player. This allows it to broadcast to all players th在 target has a buff. (Main.pvpBuff 必须 set to true for other players to be able to give buffs to a player)
+				// 注意 that in PvP, it is possible to attack a player and see them take damage, but by the time the hit message arrives 在 target client, they may have recharged a dodge. In this case, the target will not actually take damage, and their health will appear to restore. Because the attacking player applies the debuff, the target will receive the debuff regardless
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600, quiet: false);
 			}
 			else if (mode == 7) {

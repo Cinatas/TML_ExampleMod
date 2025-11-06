@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Items
 	public class ExampleStackableDurabilityItem : ModItem
 	{
 		// 0 to 1
-		// All items in the stack have the same durability
+		// All items 在 stack have the same durability
 		// Durability is combined and averaged when stacking
 		public float durability;
 
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Items
 			durability = WeightedAverage(durability, Item.stack, incomingDurability, numToTransfer);
 		}
 
-		//SplitStack:  This example does not need to use SplitStack because durability will be the intended value from being cloned.
+		//SplitStack:  This example does not need to use SplitStack because durability 将 the intended value from being cloned.
 
 		public override void OnCreated(ItemCreationContext context) {
 			if (context is RecipeItemCreationContext) {

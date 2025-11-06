@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Consumables
 {
 	// This item showcases some advanced capabilities of healing potions. It heals a dynamic amount and adjusts its tooltip accordingly.
-	// 一个 typical healing potion can get rid of the ModifyTooltips and GetHealLife methods and just assign Item.healLife.
-	// 一个 mana potion is exactly the same, except Item.healMana is used instead. (Also GetHealMana would be used for dynamic mana recovery values)
+	// 一个 typical healing potion can get rid 的 ModifyTooltips and GetHealLife methods and just assign Item.healLife.
+	// 一个 mana potion is exactly the same, except Item.healMana is used instead. (Also GetHealMana 将 used for dynamic mana recovery values)
 	public class ExampleHealingPotion : ModItem
 	{
 		public static LocalizedText RestoreLifeText { get; private set; }
@@ -33,8 +33,8 @@ namespace ExampleMod.Content.Items.Consumables
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.buyPrice(gold: 1);
 
-			Item.healLife = 100; // While we change the actual healing value in GetHealLife, Item.healLife still needs to be higher than 0 for the item to be considered a healing item
-			Item.potion = true; // Makes it so this item applies potion sickness on use and allows it to be used with quick heal
+			Item.healLife = 100; // While we change the actual healing value in GetHealLife, Item.healLife still needs to be higher than 0 对于 item to be considered a healing item
+			Item.potion = true; // 使 it so this item applies potion sickness on use and allows it to be used with quick heal
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
@@ -49,7 +49,7 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override void GetHealLife(Player player, bool quickHeal, ref int healValue) {
-			// Make the item heal half the player's max health normally, or one fourth if used with quick heal
+			// 使 the item heal half the player's max health normally, or one fourth if used with quick heal
 			healValue = player.statLifeMax2 / (quickHeal ? 4 : 2);
 		}
 

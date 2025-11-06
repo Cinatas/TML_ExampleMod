@@ -8,7 +8,7 @@ using Terraria.ModLoader.IO;
 /// <summary>
 /// This Example illustrates a solution for storing Small-Sparse-Simple data at locations. The definitions of those are as follows:
 /// Small/Large - < 10 locations are actively using the data per frame is small, > 10 is large. Use UNRELEASEDSYSTEM1 to do large-X-simple data.
-/// Sparse/Filled - Sparse is that not all locations will have data, typically less than 60% in the world will have data. Use UNRELEASEDSYSTEM1 to do large-X-simple data.
+/// Sparse/Filled - Sparse is that not all locations will have data, typically less than 60% 在 world will have data. Use UNRELEASEDSYSTEM1 to do large-X-simple data.
 /// Simple/Complex - Sorta arbitrary. Simple data will not contain methods, nor complicated functionality, and typically is just basic data types. Use TileEntities if working with complex data.
 /// </summary>
 
@@ -17,7 +17,7 @@ using Terraria.ModLoader.IO;
 ///		Trigger fetch of data using adjTiles[type]. If data is ordered, use appropriate version of PosData.Lookup. If data is not ordered, you will likely need to find via enumeration.
 ///		If it is unordered additions, you may elect to build myMap yourself OR attempt to insert the data so it remains ordered. The latter will lead to better post-event performance.
 ///	Clustering data to achieve sparsity:
-///		If your application has multiple repeat static data in a row, you should elect to use Clustered mode in the builder to compress it. Note that you should NOT use PosData.LookupExact in this case.
+///		If your application has multiple repeat static data in a row, you should elect to use Clustered mode 在 builder to compress it. Note that you should NOT use PosData.LookupExact in this case.
 
 
 // 未来待办事项：改进文档。
@@ -35,7 +35,7 @@ namespace ExampleMod.Common.Systems
 		}
 
 		// 我们使用 TagCompounds 保存数据集。
-		// NOTE: The tag instance provided here is always empty by default.
+		// NOTE: The tag instance provided here is always empty 默认情况下.
 		public override void SaveWorldData(TagCompound tag) {
 			if (myMap.Length != 0) {
 				tag["myMap"] = myMap.Select(info => new TagCompound {
@@ -59,7 +59,7 @@ namespace ExampleMod.Common.Systems
 		}
 
 		// We define what we want to generate as additional location data, for this example, in PostWorldGen.
-		// We will create a simple column of byte data going down the horizontal center of the world that we will later use in PreUpdateWorld.
+		// We will create a simple column of byte data going down the horizontal center 的 world that we will later use in PreUpdateWorld.
 		public override void PostWorldGen() {
 			var builder = new PosData<byte>.OrderedSparseLookupBuilder(compressEqualValues: false);
 
@@ -68,7 +68,7 @@ namespace ExampleMod.Common.Systems
 			for (int y = 0; y < Main.maxTilesY; y++) {
 				builder.Add(
 					xCenter, y, // The locations
-					(byte)(y % 255) // The data we want to store at the location
+					(byte)(y % 255) // The data we want to store 在 location
 				);
 			}
 
@@ -85,14 +85,14 @@ namespace ExampleMod.Common.Systems
 			}
 		}
 
-		// We use the column at world center to paint nearby tiles based on the player's proximity to the nearest entry in the map.
-		// In this case, the nearest entry should correspond to the player's depth.
+		// We use the column at world center to paint nearby tiles based 在 player's proximity 到 nearest entry 在 map.
+		// In this case, the nearest entry should correspond 到 player's depth.
 		public void UpdateFromNearestInMap(Player player) {
 			// 获取 player position in tile coordinates
 			Point z = player.position.ToTileCoordinates();
 			// Search for an entry within 32 tiles of our player
 			if (PosData.NearbySearchOrderedPosMap(myMap, z, 32, out var entry)) {
-				// If found, we grab the data from the corresponding output index
+				// If found, we grab the data 从 corresponding output index
 				var data = entry.value;
 
 				// We then proceed to paint a 5x2 area around the player position with our locational custom values.

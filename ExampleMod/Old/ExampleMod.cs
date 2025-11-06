@@ -23,7 +23,7 @@ namespace ExampleMod
 {
 	public class ExampleMod : Mod
 	{
-		// With the new fonts in 1.3.5, font files are pretty big now so you need to generate the font file before building the mod.
+		// 与 new fonts in 1.3.5, font files are pretty big now so you need to generate the font file before building the mod.
 		// You can use https://forums.terraria.org/index.php?threads/dynamicspritefontgenerator-0-4-generate-fonts-without-xna-game-studio.57127/ to make dynamicspritefonts
 		public static DynamicSpriteFont exampleFont;
 
@@ -34,13 +34,13 @@ namespace ExampleMod
 		internal ExampleResourceBar ExampleResourceBar;
 
 		// Your mod instance has a Logger field, use it.
-		// OPTIONAL: You can create your own logger this way, recommended is a custom logging class if you do a lot of logging
-		// You need to reference the log4net library to do this, this can be found in the tModLoader repository
+		// 可选: You can create your own logger this way, recommended is a custom logging class if you do a lot of logging
+		// You need to reference the log4net library to do this, this 可以 found 在 tModLoader repository
 		// inside the references folder. You do not have to add this to build.txt as tML has it natively.
 		// internal ILog Logging = LogManager.GetLogger("ExampleMod");
 
 		public ExampleMod() {
-			// By default, all Autoload properties are True. You only need to change this if you know what you are doing.
+			// 默认情况下, all Autoload properties are True. You only need to change this if you know what you are doing.
 			//Properties = new ModProperties()
 			//{
 			//	Autoload = true,
@@ -63,7 +63,7 @@ namespace ExampleMod
 				// 添加 certain equip textures
 				AddEquipTexture(null, EquipType.Legs, "ExampleRobe_Legs", "ExampleMod/Items/Armor/ExampleRobe_Legs");
 
-				// Register a new music box
+				// 注册 a new music box
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MarbleGallery"), ItemType("ExampleMusicBox"), TileType("ExampleMusicBox"));
 
 				// 更改 the vanilla loom texture
@@ -89,20 +89,20 @@ namespace ExampleMod
 				if (FontExists("Fonts/ExampleFont"))
 					exampleFont = GetFont("Fonts/ExampleFont");
 
-				// Custom UI
+				// 自定义 UI
 				ExampleUI = new ExampleUI();
 				ExampleUI.Activate();
 				_exampleUserInterface = new UserInterface();
 				_exampleUserInterface.SetState(ExampleUI);
 
-				// 使用rInterface can only show 1 UIState at a time. If you want different "pages" for a UI, switch between UIStates on the same UserInterface instance. 
-				// We want both the Coin counter and the Example Person UI to be independent and coexist simultaneously, so we have them each in their own UserInterface.
+				// 使用rInterface can only show 1 UIState at a time. If you want different "pages" for a UI, switch between UIStates 在 same UserInterface instance. 
+				// We want both the Coin counter and the Example Person UI to be independent and coexist simultaneously, so we have them each 在ir own UserInterface.
 				ExamplePersonUserInterface = new UserInterface();
 				// We will call .SetState later in ExamplePerson.OnChatButtonClicked
 			}
 
-			// Register custom mod translations, lives left is for Spirit of Purity
-			// See the .lang files in the Localization folder for an easier to manage approach to translations. These few examples are here just to illustrate the concept.
+			// 注册 custom mod translations, lives left is for Spirit of Purity
+			// See the .lang files 在 Localization folder for an easier to manage approach to translations. These few examples are here just to illustrate the concept.
 			ModTranslation text = CreateTranslation("LivesLeft");
 			text.SetDefault("{0} has {1} lives left!");
 			AddTranslation(text);
@@ -117,10 +117,10 @@ namespace ExampleMod
 			AddTranslation(text);
 
 			text = CreateTranslation("BossSpawnInfo.Abomination");
-			text.SetDefault("Use a [i:" + ModContent.ItemType<Items.Abomination.FoulOrb>() + "] in the underworld after Plantera has been defeated");
+			text.SetDefault("Use a [i:" + ModContent.ItemType<Items.Abomination.FoulOrb>() + "] 在 underworld after Plantera has been defeated");
 			AddTranslation(text);
 
-			// Volcano warning is for the random volcano tremor
+			// Volcano warning is 对于 random volcano tremor
 			text = CreateTranslation("VolcanoWarning");
 			text.SetDefault("Did you hear something....A Volcano! Find Cover!");
 			AddTranslation(text);
@@ -129,7 +129,7 @@ namespace ExampleMod
 		public override void Unload() {
 			// All code below runs only if we're not loading on a server
 			if (!Main.dedServ) {
-				Main.tileFrame[TileID.Loom] = 0; // 重置 the frame of the loom tile
+				Main.tileFrame[TileID.Loom] = 0; // 重置 the frame 的 loom tile
 				Main.tileSetsLoaded[TileID.Loom] = false; // Causes the loom tile to reload its vanilla texture
 			}
 
@@ -178,14 +178,14 @@ namespace ExampleMod
 				ItemType("EquipMaterial"),
 				ItemType("BossItem")
 			});
-			// Registers the new recipe group with the specified name
+			// 注册 the new recipe group 与 specified name
 			RecipeGroup.RegisterGroup("ExampleMod:ExampleItem", group);
 
 			// 修改ing a vanilla recipe group. Now we can use Lava Snail to craft Snail Statue
 			RecipeGroup snailGroup = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Snails"]];
 			snailGroup.ValidItems.Add(ModContent.ItemType<NPCs.ExampleCritterItem>());
 
-			// We also add ExampleSand to the Sand group, which is used in the Magic Sand Dropper recipe
+			// We also add ExampleSand 到 Sand group, 即 used 在 Magic Sand Dropper recipe
 			RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Sand"]].ValidItems.Add(ModContent.ItemType<Items.Placeable.ExampleSand>());
 		}
 
@@ -197,7 +197,7 @@ namespace ExampleMod
 			recipe.SetResult(ItemID.Wood, 999);
 			recipe.AddRecipe();
 
-			// To make ExampleMod more organized, the rest of the recipes are added elsewhere, see the method calls below.
+			// To make ExampleMod more organized, the rest 的 recipes are added elsewhere, see the method calls below.
 			// See RecipeHelper.cs
 			RecipeHelper.AddExampleRecipes(this);
 			RecipeHelper.ExampleRecipeEditing(this);
@@ -207,7 +207,7 @@ namespace ExampleMod
 			if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active) {
 				return;
 			}
-			// Make sure your logic here goes from lowest priority to highest so your intended priority is maintained.
+			// 使 sure your logic here goes from lowest priority to highest so your intended priority is maintained.
 			if (Main.LocalPlayer.GetModPlayer<ExamplePlayer>().ZoneExample) {
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/MarbleGallery");
 				priority = MusicPriority.BiomeLow;
@@ -328,7 +328,7 @@ namespace ExampleMod
 				layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
 					"ExampleMod: Example Person UI",
 					delegate {
-						// If the current UIState of the UserInterface is null, nothing will draw. We don't need to track a separate .visible value.
+						// If the current UIState 的 UserInterface is null, nothing will draw. We don't need to track a separate .visible value.
 						ExamplePersonUserInterface.Draw(Main.spriteBatch, new GameTime());
 						return true;
 					},
@@ -411,7 +411,7 @@ namespace ExampleMod
 					int exampleLifeFruits = reader.ReadInt32();
 					examplePlayer.exampleLifeFruits = exampleLifeFruits;
 					examplePlayer.nonStopParty = reader.ReadBoolean();
-					// SyncPlayer will be called automatically, so there is no need to forward this data to other clients.
+					// SyncPlayer 将 called automatically, so there is no need to forward this data to other clients.
 					break;
 				case ExampleModMessageType.NonStopPartyChanged:
 					playernumber = reader.ReadByte();

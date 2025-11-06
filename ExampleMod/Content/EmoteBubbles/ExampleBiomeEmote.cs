@@ -22,7 +22,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		public override bool PreDraw(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle frame, Vector2 origin, SpriteEffects spriteEffects) {
 			// Extra_48 is the texture of all vanilla emotes.
 			Texture2D bubbleTexture = TextureAssets.Extra[ExtrasID.EmoteBubble].Value;
-			// 这是 the frame rectangle for the bubble in emotes texture.
+			// 这是 the frame rectangle 对于 bubble in emotes texture.
 			Rectangle bubbleFrame = bubbleTexture.Frame(8, 39, EmoteBubble.IsFullyDisplayed ? 1 : 0);
 
 			// 绘制 the bubble background.
@@ -40,14 +40,14 @@ namespace ExampleMod.Content.EmoteBubbles
 			return false; // Stop vanilla drawing code.
 		}
 
-		// 此方法 is for drawing emote in the emotes menu.
+		// 此方法 is for drawing emote 在 emotes menu.
 		public override bool PreDrawInEmoteMenu(SpriteBatch spriteBatch, EmoteButton uiEmoteButton, Vector2 position, Rectangle frame, Vector2 origin) {
 			// This color is used for border that becomes yellow (or blue) when you hover your cursor over it.
 			Color borderColor = Color.Black;
 			if (uiEmoteButton.Hovered) {
 				borderColor = Main.OurFavoriteColor;
 			}
-			// 这是 the frame rectangle for the bubble in emotes texture.
+			// 这是 the frame rectangle 对于 bubble in emotes texture.
 			Rectangle bubbleFrame = uiEmoteButton.BubbleTexture.Frame(8, 39, 1, 0);
 
 			// 绘制 everything

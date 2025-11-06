@@ -8,7 +8,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Projectiles
 {
-	// Code adapted from the vanilla's magic missile.
+	// Code adapted 从 vanilla's magic missile.
 	public class MagicMissile : ModProjectile
 	{
 		public override void SetDefaults() {
@@ -35,17 +35,17 @@ namespace ExampleMod.Projectiles
 			dust.velocity *= 0.3f;
 			dust.noGravity = true;
 
-			// In Multi Player (MP) This code only runs on the client of the projectile's owner, this is because it relies on mouse position, which isn't the same across all clients.
+			// In Multi Player (MP) This code only runs 在 client 的 projectile's owner, this is because it relies on mouse position, 即n't the same across all clients.
 			if (Main.myPlayer == projectile.owner && projectile.ai[0] == 0f) {
 
 				Player player = Main.player[projectile.owner];
-				// If the player channels the weapon, do something. This check only works if item.channel is true for the weapon.
+				// If the player channels the weapon, do something. This check only works if item.channel is true 对于 weapon.
 				if (player.channel) {
 					float maxDistance = 18f; // This also sets the maximun speed the projectile can reach while following the cursor.
 					Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
 					float distanceToCursor = vectorToCursor.Length();
 
-					// Here we can see that the speed of the projectile depends on the distance to the cursor.
+					// Here we can see th在 speed 的 projectile depends 在 distance 到 cursor.
 					if (distanceToCursor > maxDistance) {
 						distanceToCursor = maxDistance / distanceToCursor;
 						vectorToCursor *= distanceToCursor;
@@ -56,7 +56,7 @@ namespace ExampleMod.Projectiles
 					int velocityYBy1000 = (int)(vectorToCursor.Y * 1000f);
 					int oldVelocityYBy1000 = (int)(projectile.velocity.Y * 1000f);
 
-					// This code checks if the precious velocity of the projectile is different enough from its new velocity, and if it is, syncs it with the server and the other clients in MP.
+					// This code checks if the precious velocity 的 projectile is different enough from its new velocity, and if it is, syncs it 与 server and the other clients in MP.
 					// We previously multiplied the speed by 1000, then casted it to int, this is to reduce its precision and prevent the speed from being synced too much.
 					if (velocityXBy1000 != oldVelocityXBy1000 || velocityYBy1000 != oldVelocityYBy1000) {
 						projectile.netUpdate = true;
@@ -68,14 +68,14 @@ namespace ExampleMod.Projectiles
 				// If the player stops channeling, do something else.
 				else if (projectile.ai[0] == 0f) {
 
-					// This code block is very similar to the previous one, but only runs once after the player stops channeling their weapon.
+					// This code block is very similar 到 previous one, but only runs once after the player stops channeling their weapon.
 					projectile.netUpdate = true;
 
 					float maxDistance = 14f; // This also sets the maximun speed the projectile can reach after it stops following the cursor.
 					Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
 					float distanceToCursor = vectorToCursor.Length();
 
-					//If the projectile was at the cursor's position, set it to move in the oposite direction from the player.
+					//If the projectile was 在 cursor's position, set it to move 在 oposite direction 从 player.
 					if (distanceToCursor == 0f) {
 						vectorToCursor = projectile.Center - player.Center;
 						distanceToCursor = vectorToCursor.Length();
@@ -101,9 +101,9 @@ namespace ExampleMod.Projectiles
 		}
 
 		public override void Kill(int timeLeft) {
-			// If the projectile dies without hitting an enemy, crate a small explosion that hits all enemies in the area.
+			// If the projectile dies without hitting an enemy, crate a small explosion that hits all enemies 在 area.
 			if (projectile.penetrate == 1) {
-				// Makes the projectile hit all enemies as it circunvents the penetrate limit.
+				// 使 the projectile hit all enemies as it circunvents the penetrate limit.
 				projectile.maxPenetrate = -1;
 				projectile.penetrate = -1;
 

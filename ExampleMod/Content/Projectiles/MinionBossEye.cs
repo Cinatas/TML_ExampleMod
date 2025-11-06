@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 			else if (FadedIn && Projectile.timeLeft < 255f / fadeSpeed) {
-				// Fade out so it aligns with the projectile despawning
+				// Fade out so it aligns 与 projectile despawning
 				Projectile.alpha += fadeSpeed;
 				if (Projectile.alpha > 255) {
 					Projectile.alpha = 255;
@@ -68,7 +68,7 @@ namespace ExampleMod.Content.Projectiles
 			if (!PlayedSpawnSound) {
 				PlayedSpawnSound = true;
 
-				// Common practice regarding spawn sounds for projectiles is to put them into AI, playing sounds in the same place where they are spawned
+				// 常见 practice regarding spawn sounds for projectiles is to put them into AI, playing sounds 在 same place where they are spawned
 				// is not multiplayer compatible (either no one will hear it, or only you and not others)
 				SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
 			}

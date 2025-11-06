@@ -16,12 +16,12 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		private const int FadeOutTicks = 30;
 		private const float Range = 500f;
 
-		private static readonly float RangeHypotenuse = (float)(Math.Sqrt(2.0) * Range); // This comes from the formula for calculating the diagonal of a square (a * √2)
+		private static readonly float RangeHypotenuse = (float)(Math.Sqrt(2.0) * Range); // This comes 从 formula for calculating the diagonal of a square (a * √2)
 		private static readonly float RangeHypotenuseSquared = RangeHypotenuse * RangeHypotenuse;
 
-		// following 2 lines of code are ref properties (learn about them in google) to the Projectile.ai array entries, which will help us make our code way more readable.
+		// following 2 lines of code are ref properties (learn about them in google) 到 Projectile.ai array entries, which will help us make our code way more readable.
 		// We're using the ai array because it's automatically synchronized by the base game in multiplayer, which saves us from writing a lot of boilerplate code.
-		// 注意 that the Projectile.ai array is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and sync them manually.
+		// 注意 th在 Projectile.ai array is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and sync them manually.
 		public ref float AIFadeProgress => ref Projectile.ai[0];
 		public ref float AIDashCharge => ref Projectile.ai[1];
 
@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// 如果 the player is no longer active (online) - deactivate (remove) the projectile.
+			// 如果 the player is 不再 active (online) - deactivate (remove) the projectile.
 			if (!player.active) {
 				Projectile.active = false;
 				return;
@@ -146,7 +146,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		}
 
 		private void UpdateExtraMovement() {
-			// 添加s some friction to the pet's movement as long as its speed is above 1
+			// 添加s some friction 到 pet's movement as long as its speed is above 1
 			if (Projectile.velocity.Length() > 1f) {
 				Projectile.velocity *= 0.98f;
 			}

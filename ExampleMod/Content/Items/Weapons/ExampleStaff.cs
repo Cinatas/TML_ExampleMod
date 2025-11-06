@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// ExampleStaff is a typical staff. Staffs and other shooting weapons are very similar, this example serves mainly to show what makes staffs unique from other items.
-	// Staff sprites, by convention, are angled to point up and to the right. "Item.staff[Type] = true;" is essential for correctly drawing staffs.
+	// 示例Staff is a typical staff. Staffs and other shooting weapons are very similar, this example serves mainly to show what makes staffs unique from other items.
+	// Staff sprites, by convention, are angled to point up and 到 right. "Item.staff[Type] = true;" is essential for correctly drawing staffs.
 	// Staffs use mana and shoot a specific projectile instead of using ammo. Item.DefaultToStaff takes care of that.
 	public class ExampleStaff : ModItem
 	{
@@ -17,11 +17,11 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void SetDefaults() {
-			// DefaultToStaff handles setting various Item values that magic staff weapons use.
+			// 默认ToStaff handles setting various Item values that magic staff weapons use.
 			// Hover over DefaultToStaff in Visual Studio to read the documentation!
 			Item.DefaultToStaff(ModContent.ProjectileType<SparklingBall>(), 16, 25, 12);
 
-			// Customize the UseSound. DefaultToStaff sets UseSound to SoundID.Item43, but we want SoundID.Item20
+			// 自定义ize the UseSound. DefaultToStaff sets UseSound to SoundID.Item43, but we want SoundID.Item20
 			Item.UseSound = SoundID.Item20;
 
 			// 设置 damage and knockBack

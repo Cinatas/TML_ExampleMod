@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.CountsAsHoneySource[Type] = true;
 			TileID.Sets.CountsAsLavaSource[Type] = true;
 			// By using these three sets, we've registered our sink as counting as a water, lava, and honey source for crafting purposes! The future is now.
-			// Each one works individually and independently of the other two, so feel free to make your sink a source for whatever you'd like it to be!
+			// Each one works individually and independently 的 other two, so feel free to make your sink a source for whatever you'd like it to be!
 
 			// ...modded liquids sold separately.
 

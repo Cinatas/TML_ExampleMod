@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 	//Very similar to ExampleChair, but has special HitWire code and potentially additional AdjTiles
 	public class ExampleToilet : ModTile
 	{
-		public const int NextStyleHeight = 40; // 计算d by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all of them + 2
+		public const int NextStyleHeight = 40; // 计算d by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all 的m + 2
 
 		public override void SetStaticDefaults() {
 			// Properties
@@ -60,20 +60,20 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info) {
-			// It is very important to know that this is called on both players and NPCs, so do not use Main.LocalPlayer for example, use info.restingEntity
+			// It is very important to know that this is called on both players and NPCs, so do not use Main.LocalPlayer 例如, use info.restingEntity
 			Tile tile = Framing.GetTileSafely(i, j);
 
-			//info.directionOffset = info.restingEntity is Player ? 6 : 2; // Default to 6 for players, 2 for NPCs
-			//info.visualOffset = Vector2.Zero; // Defaults to (0,0)
+			//info.directionOffset = info.restingEntity is Player ? 6 : 2; // 默认 to 6 for players, 2 for NPCs
+			//info.visualOffset = Vector2.Zero; // 默认s to (0,0)
 
 			info.TargetDirection = -1;
 
 			if (tile.TileFrameX != 0) {
-				info.TargetDirection = 1; // Facing right if sat down on the right alternate (added through addAlternate in SetStaticDefaults earlier)
+				info.TargetDirection = 1; // Facing right if sat down 在 right alternate (added through addAlternate in SetStaticDefaults earlier)
 			}
 
-			// anchor represents the bottom-most tile of the chair. This is used to align the entity hitbox
-			// Since i and j may be from any coordinate of the chair, we need to adjust the anchor based on that
+			// anchor represents the bottom-most tile 的 chair. This is used to align the entity hitbox
+			// Since i and j 可能 from any coordinate 的 chair, we need to adjust the anchor based on that
 			info.AnchorTilePosition.X = i; // Our chair is only 1 wide, so nothing special required
 			info.AnchorTilePosition.Y = j;
 
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// 最后, since this is a toilet, it should generate Poo while any tier of Well Fed is active
 			info.ExtraInfo.IsAToilet = true;
 
-			// 在这里 we add a custom fun effect to this tile that vanilla toilets do not have. This shows how you can type cast the restingEntity to Player and use visualOffset as well.
+			// 在这里 we add a custom fun effect to this tile that vanilla toilets do not have. This shows how you can type cast the restingEntity to Player and use visualOffset 以及.
 			if (info.RestingEntity is Player player && player.HasBuff(BuffID.Stinky)) {
 				info.VisualOffset = Main.rand.NextVector2Circular(2, 2);
 			}

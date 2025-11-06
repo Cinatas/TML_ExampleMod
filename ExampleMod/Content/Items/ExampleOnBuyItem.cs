@@ -7,14 +7,14 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items
 {
 	/// <summary>
-	/// This item showcases one of the ways for you to do something when an item is bought from an NPC with a shop.
+	/// This item showcases one 的 ways for you to do something when an item is bought from an NPC with a shop.
 	/// </summary>
 	public class ExampleOnBuyItem : ModItem
 	{
 		public static LocalizedText DeathMessage { get; private set; }
 
 		public override void SetStaticDefaults() {
-			// 参见 the localization files for more info! (Localization/en-US.hjson)
+			// 参见 the localization files f或更多 info! (Localization/en-US.hjson)
 			DeathMessage = this.GetLocalization(nameof(DeathMessage));
 		}
 
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items
 				return;
 			}
 
-			// 这是 only ever called on the local client, so the local player will do.
+			// 这是 only ever called 在 local client, so the local player will do.
 			Player player = Main.LocalPlayer;
 			player.KillMe(PlayerDeathReason.ByCustomReason(DeathMessage.Format(player.name)), 9999, 0);
 		}

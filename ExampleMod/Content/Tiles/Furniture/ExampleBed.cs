@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 {
 	public class ExampleBed : ModTile
 	{
-		public const int NextStyleHeight = 38; //Calculated by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all of them + 2
+		public const int NextStyleHeight = 38; //Calculated by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all 的m + 2
 
 		public override void SetStaticDefaults() {
 			// Properties
@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileID.Sets.IsValidSpawnPoint[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair); // Beds count as chairs for the purpose of suitable room creation
+			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair); // Beds count as chairs 对于 purpose of suitable room creation
 
 			DustType = ModContent.DustType<Sparkle>();
 			AdjTiles = new int[] { TileID.Beds };
@@ -45,15 +45,15 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void ModifySmartInteractCoords(ref int width, ref int height, ref int frameWidth, ref int frameHeight, ref int extraY) {
-			// Because beds have special smart interaction, this splits up the left and right side into the necessary 2x2 sections
-			width = 2; // Default to the Width defined for TileObjectData.newTile
-			height = 2; // Default to the Height defined for TileObjectData.newTile
+			// Because beds have special smart interaction, this splits up the left and right side in到 necessary 2x2 sections
+			width = 2; // 默认 到 Width defined for TileObjectData.newTile
+			height = 2; // 默认 到 Height defined for TileObjectData.newTile
 			//extraY = 0; // Depends on how you set up frameHeight and CoordinateHeights and CoordinatePaddingFix.Y
 		}
 
 		public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info) {
-			// Default values match the regular vanilla bed
-			// 你 might need to mess with the info here if your bed is not a typical 4x2 tile
+			// 默认 values match the regular vanilla bed
+			// 你 might need to mess 与 info here if your bed is not a typical 4x2 tile
 			info.VisualOffset.Y += 4f; // Move player down a notch because the bed is not as high as a regular bed
 		}
 

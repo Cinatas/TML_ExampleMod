@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles.Rockets
 {
-	// This grenade is for the grenades shot by the Grenade Launcher, not the grenades that you can throw.
+	// This grenade is 对于 grenades shot by the Grenade Launcher, not the grenades that you can throw.
 	public class ExampleGrenadeProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
@@ -15,14 +15,14 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 			// This set handles some things for us already:
 			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
+			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
 		public override void SetDefaults() {
 			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.friendly = true;
-			Projectile.penetrate = -1; // Infinite penetration so that the blast can hit all enemies within its radius.
+			Projectile.penetrate = -1; // Infinite penetration so th在 blast can hit all enemies within its radius.
 			Projectile.DamageType = DamageClass.Ranged;
 			// usesLocalNPCImmunity and localNPCHitCooldown of -1 mean the projectile can only hit the same target once.
 			Projectile.usesLocalNPCImmunity = true;
@@ -30,8 +30,8 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 			Projectile.timeLeft = 180;
 
-			// Grenades use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here with the correct AIType.
-			// But, using our own AI allows us to customize things like the dusts that the grenade creates.
+			// Grenades use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here 与 correct AIType.
+			// But, using our own AI allows us to customize things like the dusts th在 grenade creates.
 			// Projectile.aiStyle = ProjAIStyleID.Explosive;
 			// AIType = ProjectileID.GrenadeI;
 		}
@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			Projectile.ai[0] += 1f;
 			// Wait 15 ticks until applying friction and gravity.
 			if (Projectile.ai[0] > 15f) {
-				// Slow down if on the ground.
+				// Slow down if 在 ground.
 				if (Projectile.velocity.Y == 0f) {
 					Projectile.velocity.X *= 0.95f;
 				}
@@ -60,7 +60,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				Projectile.velocity.Y += 0.2f;
 			}
 
-			// Rotate the grenade in the direction it is moving.
+			// Rotate the grenade 在 direction it is moving.
 			Projectile.rotation += Projectile.velocity.X * 0.1f;
 		}
 
@@ -81,14 +81,14 @@ namespace ExampleMod.Content.Projectiles.Rockets
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion will be in the wrong place if the grenade explodes on slopes.
-			Projectile.alpha = 255; // Make the grenade invisible.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the grenade explodes on slopes.
+			Projectile.alpha = 255; // 使 the grenade invisible.
 
-			// Resize the hitbox of the projectile for the blast "radius".
+			// Resize the hitbox 的 projectile 对于 blast "radius".
 			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
-			// 设置 the knockback of the blast.
+			// 设置 the knockback 的 blast.
 			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
 			Projectile.knockBack = 8f;
 		}
@@ -97,7 +97,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// Play an exploding sound.
 			SoundEngine.PlaySound(SoundID.Item62, Projectile.position);
 
-			// Resize the projectile again so the explosion dust and gore spawn from the middle.
+			// Resize the projectile again so the explosion dust and gore spawn 从 middle.
 			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
 			Projectile.Resize(22, 22);
 
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// 要 make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look 在 commented out code in Example Rocket Projectile.
 		}
 	}
 }

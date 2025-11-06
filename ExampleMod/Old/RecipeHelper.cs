@@ -11,22 +11,22 @@ namespace ExampleMod
 		// Here we've made a helper method we can use to shorten our code.
 		// This is because many of our recipes follow the same terminology: one ingredient, one result, one possible required tile
 		private static void MakeSimpleRecipe(Mod mod, string modIngredient, short resultType, int ingredientStack = 1, int resultStack = 1, string reqTile = null)
-		// notice the last parameters can be made optional by specifying a default value
+		// notice the last parameters 可以 made optional by specifying a default value
 		{
-			ModRecipe recipe = new ModRecipe(mod); // make a new recipe for our mod
-			recipe.AddIngredient(null, modIngredient, ingredientStack); // add the ingredient, passing null for the mod means it will use our mod, we could also pass mod from the arguments
+			ModRecipe recipe = new ModRecipe(mod); // 使 a new recipe for our mod
+			recipe.AddIngredient(null, modIngredient, ingredientStack); // 添加 the ingredient, passing null 对于 mod means it will use our mod, we could also pass mod 从 arguments
 			if (reqTile != null) { // when a required tile is specified
 				recipe.AddTile(null, reqTile); // we add it 
 			}
 
-			recipe.SetResult(resultType, resultStack); // set the result to the specified type and with the specified stack.
+			recipe.SetResult(resultType, resultStack); // 设置 the result 到 specified type and 与 specified stack.
 			recipe.AddRecipe(); // finally, add the recipe
 		}
 
 		// 添加 recipes
 		public static void AddExampleRecipes(Mod mod) {
-			// ExampleItem crafts into the following items
-			// 检查 the method signature of MakeSimpleRecipes for the arguments, this is a method signature:
+			// 示例Item crafts in到 following items
+			// 检查 the method signature of MakeSimpleRecipes 对于 arguments, this is a method signature:
 			// private static void MakeSimpleRecipe(Mod mod, string modIngredient, short resultType, int ingredientStack = 1, int resultStack = 1, string reqTile = null) 
 
 			MakeSimpleRecipe(mod, "ExampleItem", ItemID.Silk, 999);
@@ -41,8 +41,8 @@ namespace ExampleMod
 
 		// 添加 boss related recipes
 		private static void AddBossRecipes(Mod mod) {
-			// BossItem crafts into the following items
-			// We are using the same helper method here, and we are making use of the reqTile parameter
+			// BossItem crafts in到 following items
+			// We are using the same helper method here, and we are making use 的 reqTile parameter
 			MakeSimpleRecipe(mod, "BossItem", ItemID.SuspiciousLookingEye, 10, 20, "ExampleWorkbench");
 			MakeSimpleRecipe(mod, "BossItem", ItemID.BloodySpine, 10, 20, "ExampleWorkbench");
 			MakeSimpleRecipe(mod, "BossItem", ItemID.Abeemination, 10, 20, "ExampleWorkbench");
@@ -52,9 +52,9 @@ namespace ExampleMod
 			MakeSimpleRecipe(mod, "BossItem", ItemID.MechanicalWorm, 10, 20, "ExampleWorkbench");
 			MakeSimpleRecipe(mod, "BossItem", ItemID.MechanicalSkull, 10, 20, "ExampleWorkbench");
 			// Here we see another way to retrieve type ids from classnames, using generic calls
-			// This way you don't have to specify the mod, because you simply pass the ID of the item as you would for vanilla items.
+			// This way you don't have to specify the mod, because you simply pass the ID 的 item as you would for vanilla items.
 			// 使用ful for those who program in an IDE who wish to avoid spelling mistakes.
-			// What's also neat is that the references to classes can be automatically included in refactors, string literals cannot. (unless you have ReSharper)
+			// What's also neat is th在 references to classes 可以 automatically included in refactors, string literals cannot. (unless you have ReSharper)
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemType<Items.BossItem>(), 10); // Items is our namespace (ExampleMod.Items), BossItem our class
 			recipe.AddTile(TileType<Tiles.ExampleWorkbench>()); // Tiles is our namespace (ExampleMod.Tiles), ExampleWorkbench our class
@@ -63,23 +63,23 @@ namespace ExampleMod
 		}
 
 		// 显示case RecipeFinder and RecipeEditor
-		// With these classes, you can find and edit recipes
+		// 与se classes, you can find and edit recipes
 		public static void ExampleRecipeEditing(Mod mod) {
-			// In the following example, we find recipes that uses a chain as ingredient and then we remove that ingredient from the recipe.
-			RecipeFinder finder = new RecipeFinder(); // make a new RecipeFinder
-			finder.AddIngredient(ItemID.Chain); // add Chain (with a stack of 1) to the finder
+			// 在 following example, we find recipes that uses a chain as ingredient 然后 we remove that ingredient 从 recipe.
+			RecipeFinder finder = new RecipeFinder(); // 使 a new RecipeFinder
+			finder.AddIngredient(ItemID.Chain); // 添加 Chain (with a stack of 1) 到 finder
 
 			foreach (Recipe recipe in finder.SearchRecipes()) // loop every recipe found by the finder
 			{
-				RecipeEditor editor = new RecipeEditor(recipe); // for the currently looped recipe, make a new RecipeEditor
+				RecipeEditor editor = new RecipeEditor(recipe); // 对于 currently looped recipe, make a new RecipeEditor
 				editor.DeleteIngredient(ItemID.Chain); // delete the Chain ingredient.
 			}
 
 			// The following is a more precise example, finding an exact recipe and deleting it if possible.
-			finder = new RecipeFinder(); // make a new RecipeFinder
-			finder.AddRecipeGroup("IronBar"); // add a new recipe group, in this case the vanilla one for iron or lead bars.
-			finder.AddTile(TileID.Anvils); // add a required tile, any anvil
-			finder.SetResult(ItemID.Chain, 10); // set the result to be 10 chains
+			finder = new RecipeFinder(); // 使 a new RecipeFinder
+			finder.AddRecipeGroup("IronBar"); // 添加 a new recipe group, in this case the vanilla one for iron or lead bars.
+			finder.AddTile(TileID.Anvils); // 添加 a required tile, any anvil
+			finder.SetResult(ItemID.Chain, 10); // 设置 the result to be 10 chains
 			Recipe exactRecipe = finder.FindExactRecipe(); // try to find the exact recipe matching our criteria
 
 			bool isRecipeFound = exactRecipe != null; // if our recipe is not null, it means we found the exact recipe

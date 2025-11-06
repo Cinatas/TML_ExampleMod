@@ -33,14 +33,14 @@ namespace ExampleMod.Content.Items.Accessories
 		public override Position GetDefaultPosition() => new After(BlizzardInABottle);
 
 		public override IEnumerable<Position> GetModdedConstraints() {
-			// By default, modded extra jumps set to be between two vanilla extra jumps (via After and Before) are ordered in load order.
+			// 默认情况下, modded extra jumps set to be between two vanilla extra jumps (via After and Before) are ordered in load order.
 			// This hook allows you to organize where this extra jump is located relative to other modded extra jumps that are also
 			// placed between the same two vanilla extra jumps.
 			yield return new Before(ModContent.GetInstance<MultipleUseExtraJump>());
 		}
 
 		public override float GetDurationMultiplier(Player player) {
-			// 使用 this hook to set the duration of the extra jump
+			// 使用 this hook to set the duration 的 extra jump
 			// XML summary for this hook mentions the values used by the vanilla extra jumps
 			return 2.25f;
 		}
@@ -53,8 +53,8 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void OnStarted(Player player, ref bool playSound) {
-			// 使用 this hook to trigger effects that should appear at the start of the extra jump
-			// 此示例 mimics the logic for spawning the puff of smoke from the Cloud in a Bottle
+			// 使用 this hook to trigger effects that should appear 在 start 的 extra jump
+			// 此示例 mimics the logic for spawning the puff of smoke 从 Cloud in a Bottle
 			int offsetY = player.height;
 			if (player.gravDir == -1f)
 				offsetY = 0;
@@ -78,8 +78,8 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void ShowVisuals(Player player) {
-			// 使用 this hook to trigger effects that should appear throughout the duration of the extra jump
-			// 此示例 mimics the logic for spawning the dust from the Blizzard in a Bottle
+			// 使用 this hook to trigger effects that should appear throughout the duration 的 extra jump
+			// 此示例 mimics the logic for spawning the dust 从 Blizzard in a Bottle
 			int offsetY = player.height - 6;
 			if (player.gravDir == -1f)
 				offsetY = 6;

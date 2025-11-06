@@ -26,8 +26,8 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			// NewProjectile returns the index of the projectile it creates in the NewProjectile array.
-			// 在这里 we are using it to gain access to the projectile object.
+			// NewProjectile returns the index 的 projectile it creates 在 NewProjectile array.
+			// 在这里 we are using it to gain access 到 projectile object.
 			int projectileID = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 			Projectile projectile = Main.projectile[projectileID];
 

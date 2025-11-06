@@ -18,8 +18,8 @@ using Terraria.Utilities;
 namespace ExampleMod.Content.NPCs
 {
 	/// <summary>
-	/// The main focus of this NPC is to show how to make something similar to the vanilla bone merchant;
-	/// which means that the NPC will act like any other town NPC but won't have a happiness button, won't appear on the minimap,
+	/// The main focus of this NPC is to show how to make something similar 到 vanilla bone merchant;
+	/// which means th在 NPC will act like any other town NPC but won't have a happiness button, won't appear 在 minimap,
 	/// and will spawn like an enemy NPC. If you want a traditional town NPC instead, see <see cref="ExamplePerson"/>.
 	/// </summary>
 	public class ExampleBoneMerchant : ModNPC
@@ -34,19 +34,19 @@ namespace ExampleMod.Content.NPCs
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 25; // The amount of frames the NPC has
 
-			NPCID.Sets.ExtraFramesCount[Type] = 9; // Generally for Town NPCs, but this is how the NPC does extra things such as sitting in a chair and talking to other NPCs.
+			NPCID.Sets.ExtraFramesCount[Type] = 9; // Generally for Town NPCs, but this is how the NPC does extra things 例如 sitting in a chair and talking to other NPCs.
 			NPCID.Sets.AttackFrameCount[Type] = 4;
-			NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the npc that it tries to attack enemies.
+			NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away 从 center 的 npc that it tries to attack enemies.
 			NPCID.Sets.PrettySafe[Type] = 300;
 			NPCID.Sets.AttackType[Type] = 1; // Shoots a weapon.
-			NPCID.Sets.AttackTime[Type] = 60; // The amount of time it takes for the NPC's attack animation to be over once it starts.
+			NPCID.Sets.AttackTime[Type] = 60; // The amount of time it takes 对于 NPC's attack animation to be over once it starts.
 			NPCID.Sets.AttackAverageChance[Type] = 30;
 			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
-			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says that the Town NPC has a Shimmered form. Otherwise, the Town NPC will become transparent when touching Shimmer like other enemies.
+			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says th在 Town NPC has a Shimmered form. Otherwise, the Town NPC 将come transparent when touching Shimmer like other enemies.
 
 			//This sets entry is the most important part of this NPC. Since it is true, it tells the game that we want this NPC to act like a town NPC without ACTUALLY being one.
 			//What that means is: the NPC will have the AI of a town NPC, will attack like a town NPC, and have a shop (or any other additional functionality if you wish) like a town NPC.
-			//However, the NPC will not have their head displayed on the map, will de-spawn when no players are nearby or the world is closed, and will spawn like any other NPC.
+			//However, the NPC will not have their head displayed 在 map, will de-spawn when no players are nearby or the world is closed, and will spawn like any other NPC.
 			NPCID.Sets.ActsLikeTownNPC[Type] = true;
 
 			// This prevents the happiness button
@@ -57,17 +57,17 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.SpawnsWithCustomName[Type] = true;
 
 			// Connects this NPC with a custom emote.
-			// This makes it when the NPC is in the world, other NPCs will "talk about him".
+			// This makes it when the NPC is 在 world, other NPCs will "talk about him".
 			NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<ExampleBoneMerchantEmote>();
 
-			//The vanilla Bone Merchant cannot interact with doors (open or close them, specifically), but if you want your NPC to be able to interact with them despite this,
+			//The vanilla Bone Merchant cannot interact with doors (open or close them, specifically), but if you want your NPC to be able to interact 与m despite this,
 			//uncomment this line below.
 			//NPCID.Sets.AllowDoorInteraction[Type] = true;
 
-			// Influences how the NPC looks in the Bestiary
+			// Influences how the NPC looks 在 Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 1f, // 绘制s the NPC in the bestiary as if its walking +1 tiles in the x direction
-				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
+				Velocity = 1f, // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x direction
+				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left 默认情况下 but ExamplePerson 将 drawn facing the right
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -101,11 +101,11 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// 设置s the preferred biomes of this town NPC listed in the bestiary.
+				// 设置s the preferred biomes of this town NPC listed 在 bestiary.
 				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
-				// 设置s your NPC's flavor text in the bestiary.
+				// 设置s your NPC's flavor text 在 bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Bone Merchant will show you how to make a mysterious merchant underground with tModLoader."),
 
 				// 你 can add multiple elements if you really wanted to
@@ -124,14 +124,14 @@ namespace ExampleMod.Content.NPCs
 
 			// 创建 gore when the NPC is killed.
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
-				// Retrieve the gore types. This NPC only has shimmer variants. (6 total gores)
+				// 检索 the gore types. This NPC only has shimmer variants. (6 total gores)
 				string variant = "";
 				if (NPC.IsShimmerVariant) variant += "_Shimmer";
 				int headGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Head").Type;
 				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
 				int legGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Leg").Type;
 
-				// 生成 the gores. The positions of the arms and legs are lowered for a more natural look.
+				// 生成 the gores. The positions 的 arms and legs are lowered for a more natural look.
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, headGore, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-			//If any player is underground and has an example item in their inventory, the example bone merchant will have a slight chance to spawn.
+			//如果有的话 player is underground and has an example item 在ir inventory, the example bone merchant will have a slight chance to spawn.
 			if (spawnInfo.Player.ZoneDirtLayerHeight && spawnInfo.Player.inventory.Any(item => item.type == ModContent.ItemType<ExampleItem>())) {
 				return 0.34f;
 			}
@@ -166,15 +166,15 @@ namespace ExampleMod.Content.NPCs
 		public override string GetChat() {
 			WeightedRandom<string> chat = new WeightedRandom<string>();
 
-			// These are things that the NPC has a chance of telling you when you talk to it.
+			// These are things th在 NPC has a chance of telling you when you talk to it.
 			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExampleBoneMerchant.StandardDialogue1"));
 			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExampleBoneMerchant.StandardDialogue2"));
 			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExampleBoneMerchant.StandardDialogue3"));
 			return chat; // chat is implicitly cast to a string.
 		}
 
-		public override void SetChatButtons(ref string button, ref string button2) { // What the chat buttons are when you open up the chat UI
-			button = Language.GetTextValue("LegacyInterface.28"); //This is the key to the word "Shop"
+		public override void SetChatButtons(ref string button, ref string button2) { // Wh在 chat buttons are when you open up the chat UI
+			button = Language.GetTextValue("LegacyInterface.28"); //This is the key 到 word "Shop"
 		}
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {

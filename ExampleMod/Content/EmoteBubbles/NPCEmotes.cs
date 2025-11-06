@@ -16,7 +16,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		}
 
 		/// <summary>
-		/// Which row of the sprite sheet is this NPC emote in?
+		/// Which row 的 sprite sheet is this NPC emote in?
 		/// This is used to help get the correct frame rectangle for different emotes.
 		/// </summary>
 		public virtual int Row => 0;
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.EmoteBubbles
 	}
 
 	// 这是 a showcase of using the same texture for different emotes.
-	// Command names of these classes are defined using .hjson files in the Localization/ folder.
+	// Command names 的se classes are defined using .hjson files 在 Localization/ folder.
 	public class ExamplePersonEmote : ModTownEmote
 	{
 		public override void OnSpawn() {

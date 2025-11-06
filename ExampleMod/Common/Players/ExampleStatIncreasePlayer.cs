@@ -48,7 +48,7 @@ namespace ExampleMod.Common.Players
 				SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
 		}
 
-		// NOTE: The tag instance provided here is always empty by default.
+		// NOTE: The tag instance provided here is always empty 默认情况下.
 		// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
 		public override void SaveData(TagCompound tag) {
 			tag["exampleLifeFruits"] = exampleLifeFruits;

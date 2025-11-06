@@ -26,18 +26,18 @@ namespace ExampleMod.Content.Projectiles
 		// Beams reduce their spread to zero as the Prism charges up. This controls the maximum spread.
 		private const float MaxBeamSpread = 2f;
 
-		// maximum possible range of the beam. Don't set this too high or it will cause significant lag.
+		// maximum possible range 的 beam. Don't set this too high or it will cause significant lag.
 		private const float MaxBeamLength = 2400f;
 
-		// width of the beam in pixels for the purposes of tile collision.
+		// width 的 beam in pixels 对于 purposes of tile collision.
 		// This should generally be left at 1, otherwise the beam tends to stop early when touching tiles.
 		private const float BeamTileCollisionWidth = 1f;
 
-		// width of the beam in pixels for the purposes of entity hitbox collision.
-		// This gets scaled with the beam's scale value, so as the beam visually grows its hitbox gets wider as well.
+		// width 的 beam in pixels 对于 purposes of entity hitbox collision.
+		// This gets scaled 与 beam's scale value, so as the beam visually grows its hitbox gets wider 以及.
 		private const float BeamHitboxCollisionWidth = 22f;
 
-		// number of sample points to use when performing a collision hitscan for the beam.
+		// number of sample points to use when performing a collision hitscan 对于 beam.
 		// More points theoretically leads to a higher quality result, but can cause more lag. 3 tends to be enough.
 		private const int NumSamplePoints = 3;
 
@@ -47,14 +47,14 @@ namespace ExampleMod.Content.Projectiles
 		// 设置ting it too low will make the beam lazily pass through walls before being blocked by them.
 		private const float BeamLengthChangeFactor = 0.75f;
 
-		// charge percentage required on the host prism for the beam to begin visual effects (e.g. impact dust).
+		// charge percentage required 在 host prism 对于 beam to begin visual effects (e.g. impact dust).
 		private const float VisualEffectThreshold = 0.1f;
 
 		// Each Last Prism beam draws two lasers separately: an inner beam and an outer beam. This controls their opacity.
 		private const float OuterBeamOpacityMultiplier = 0.75f;
 		private const float InnerBeamOpacityMultiplier = 0.1f;
 
-		// maximum brightness of the light emitted by the beams. Brightness scales from 0 to this value as the Prism's charge increases.
+		// maximum brightness 的 light emitted by the beams. Brightness scales from 0 to this value as the Prism's charge increases.
 		private const float BeamLightBrightness = 0.75f;
 
 		// These variables control the beam's potential coloration.
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.Projectiles
 				return;
 			}
 
-			// Grab some variables from the host Prism.
+			// Grab some variables 从 host Prism.
 			Vector2 hostPrismDir = Vector2.Normalize(hostPrism.velocity);
 			float chargeRatio = MathHelper.Clamp(hostPrism.ai[0] / ExampleLastPrismHoldout.MaxCharge, 0f, 1f);
 
@@ -163,7 +163,7 @@ namespace ExampleMod.Content.Projectiles
 				beamStartForwardsOffset = -17f;
 			}
 
-			// amount to which the angle changes reduces over time so that the beams look like they are focusing.
+			// amount to which the angle changes reduces over time so th在 beams look like they are focusing.
 			float deviationAngle = (hostPrism.ai[0] + beamIdOffset * spinRate) / (spinRate * ExampleLastPrismHoldout.NumBeams) * MathHelper.TwoPi;
 
 			// This trigonometry calculates where the beam is supposed to be pointing.
@@ -173,13 +173,13 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 beamSpanVector = (unitRot * yVec).RotatedBy(hostPrismAngle);
 			float sinusoidYOffset = unitRot.Y * PiBeamDivisor * beamSpread;
 
-			// 计算 the beam's emanating position. Start with the Prism's center.
+			// 计算 the beam's emanating position. Start 与 Prism's center.
 			Projectile.Center = hostPrism.Center;
-			// 添加 a fixed offset to align with the Prism's sprite sheet.
+			// 添加 a fixed offset to align 与 Prism's sprite sheet.
 			Projectile.position += hostPrismDir * 16f + new Vector2(0f, -hostPrism.gfxOffY);
 			// 添加 the forwards offset, measured in pixels.
 			Projectile.position += hostPrismDir * beamStartForwardsOffset;
-			// 添加 the sideways offset vector, which is calculated for the current angle of the beam and scales with the beam's sideways offset.
+			// 添加 the sideways offset vector, 即 calculated 对于 current angle 的 beam and scales 与 beam's sideways offset.
 			Projectile.position += beamSpanVector;
 
 			// 设置 the beam's velocity to point towards its current spread direction and sanity check it. It should have magnitude 1.
@@ -207,36 +207,36 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 
-			// Make the beam cast light along its length. The brightness of the light scales with the charge.
-			// v3_1 is an unnamed decompiled variable which is the color of the light cast by DelegateMethods.CastLight.
+			// 使 the beam cast light along its length. The brightness 的 light scales 与 charge.
+			// v3_1 is an unnamed decompiled variable 即 the color 的 light cast by DelegateMethods.CastLight.
 			DelegateMethods.v3_1 = beamColor.ToVector3() * BeamLightBrightness * chargeRatio;
 			Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * BeamLength, beamDims.Y, new Utils.TileActionAttempt(DelegateMethods.CastLight));
 		}
 
-		// 使用s a simple polynomial (x^3) to get sudden but smooth damage increase near the end of the charge-up period.
+		// 使用s a simple polynomial (x^3) to get sudden but smooth damage increase near the end 的 charge-up period.
 		private float GetDamageMultiplier(float chargeRatio) {
 			float f = chargeRatio * chargeRatio * chargeRatio;
 			return MathHelper.Lerp(1f, MaxDamageMultiplier, f);
 		}
 
 		private float PerformBeamHitscan(Projectile prism, bool fullCharge) {
-			// By default, the hitscan interpolation starts at the Projectile's center.
-			// 如果 the host Prism is fully charged, the interpolation starts at the Prism's center instead.
+			// 默认情况下, the hitscan interpolation starts 在 Projectile's center.
+			// 如果 the host Prism is fully charged, the interpolation starts 在 Prism's center instead.
 			Vector2 samplingPoint = Projectile.Center;
 			if (fullCharge) {
 				samplingPoint = prism.Center;
 			}
 
-			// Overriding that, if the player shoves the Prism into or through a wall, the interpolation starts at the player's center.
+			// Overriding that, if the player shoves the Prism into or through a wall, the interpolation starts 在 player's center.
 			// This last part prevents the player from projecting beams through walls under any circumstances.
 			Player player = Main.player[Projectile.owner];
 			if (!Collision.CanHitLine(player.Center, 0, 0, prism.Center, 0, 0)) {
 				samplingPoint = player.Center;
 			}
 
-			// Perform a laser scan to calculate the correct length of the beam.
-			// Alternatively, if you want the beam to ignore tiles, just set it to be the max beam length with the following line.
-			// return MaxBeamLength;
+			// Perform a laser scan to calculate the correct length 的 beam.
+			// Alternatively, if you want the beam to ignore tiles, just set it to be the max beam length 与 following line.
+			// 返回 MaxBeamLength;
 			float[] laserScanResults = new float[NumSamplePoints];
 			Collision.LaserScan(samplingPoint, Projectile.velocity, 0 * Projectile.scale, MaxBeamLength, laserScanResults);
 			float averageLengthSample = 0f;
@@ -248,9 +248,9 @@ namespace ExampleMod.Content.Projectiles
 			return averageLengthSample;
 		}
 
-		// 确定s whether the specified target hitbox is intersecting with the beam.
+		// 确定s whether the specified target hitbox is intersecting 与 beam.
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// 如果 the target is touching the beam's hitbox (which is a small rectangle vaguely overlapping the host Prism), that's good enough.
+			// 如果 the target is touching the beam's hitbox (即 a small rectangle vaguely overlapping the host Prism), that's good enough.
 			if (projHitbox.Intersects(targetHitbox)) {
 				return true;
 			}
@@ -281,7 +281,7 @@ namespace ExampleMod.Content.Projectiles
 			// 绘制 the outer beam.
 			DrawBeam(Main.spriteBatch, texture, startPosition, endPosition, drawScale, GetOuterBeamColor() * OuterBeamOpacityMultiplier * Projectile.Opacity);
 
-			// 绘制 the inner beam, which is half size.
+			// 绘制 the inner beam, 即 half size.
 			drawScale *= 0.5f;
 			DrawBeam(Main.spriteBatch, texture, startPosition, endPosition, drawScale, GetInnerBeamColor() * InnerBeamOpacityMultiplier * Projectile.Opacity);
 
@@ -292,7 +292,7 @@ namespace ExampleMod.Content.Projectiles
 		private void DrawBeam(SpriteBatch spriteBatch, Texture2D texture, Vector2 startPosition, Vector2 endPosition, Vector2 drawScale, Color beamColor) {
 			Utils.LaserLineFraming lineFraming = new Utils.LaserLineFraming(DelegateMethods.RainbowLaserDraw);
 
-			// c_1 is an unnamed decompiled variable which is the render color of the beam drawn by DelegateMethods.RainbowLaserDraw.
+			// c_1 is an unnamed decompiled variable 即 the render color 的 beam drawn by DelegateMethods.RainbowLaserDraw.
 			DelegateMethods.c_1 = beamColor;
 			Utils.DrawLaser(spriteBatch, texture, startPosition, endPosition, drawScale, lineFraming);
 		}
@@ -304,12 +304,12 @@ namespace ExampleMod.Content.Projectiles
 			// Main.hslToRgb converts Hue, Saturation, Lightness into a Color for general purpose use.
 			Color c = Main.hslToRgb(hue, BeamColorSaturation, BeamColorLightness);
 
-			// Manually reduce the opacity of the color so beams can overlap without completely overwriting each other.
+			// Manually reduce the opacity 的 color so beams can overlap without completely overwriting each other.
 			c.A = 64;
 			return c;
 		}
 
-		// Inner beams are always pure white so that they act as a "blindingly bright" center to each laser.
+		// Inner beams are always pure white so th在y act as a "blindingly bright" center to each laser.
 		private Color GetInnerBeamColor() => Color.White;
 
 		private void ProduceBeamDust(Color beamColor) {
@@ -317,8 +317,8 @@ namespace ExampleMod.Content.Projectiles
 			const int type = 15;
 			Vector2 endPosition = Projectile.Center + Projectile.velocity * (BeamLength - 14.5f * Projectile.scale);
 
-			// Main.rand.NextBool is used to give a 50/50 chance for the angle to point to the left or right.
-			// This gives the dust a 50/50 chance to fly off on either side of the beam.
+			// Main.rand.NextBool is used to give a 50/50 chance 对于 angle to point 到 left or right.
+			// This gives the dust a 50/50 chance to fly off on either side 的 beam.
 			float angle = Projectile.rotation + (Main.rand.NextBool() ? 1f : -1f) * MathHelper.PiOver2;
 			float startDistance = Main.rand.NextFloat(1f, 1.8f);
 			float scale = Main.rand.NextFloat(0.7f, 1.1f);
@@ -356,7 +356,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 beamEndPos = beamStartPos + Projectile.velocity * BeamLength;
 
 			// PlotTileLine is a function which performs the specified action to all tiles along a drawn line, with a specified width.
-			// 在 this case, it is cutting all tiles which can be destroyed by Projectiles, for example grass or pots.
+			// 在 this case, it is cutting all tiles which 可以 destroyed by Projectiles, 例如 grass or pots.
 			Utils.PlotTileLine(beamStartPos, beamEndPos, Projectile.width * Projectile.scale, cut);
 		}
 	}

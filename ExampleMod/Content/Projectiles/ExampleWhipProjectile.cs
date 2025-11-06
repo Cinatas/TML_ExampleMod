@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Projectiles
 			// 此方法 quickly sets the whip's properties.
 			Projectile.DefaultToWhip();
 
-			// use these to change from the vanilla defaults
+			// use these to change 从 vanilla defaults
 			// Projectile.WhipSettings.Segments = 20;
 			// Projectile.WhipSettings.RangeMultiplier = 1f;
 		}
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// 此示例 uses PreAI to implement a charging mechanic.
-		// 如果 you remove this, also remove Item.channel = true from the item's SetDefaults.
+		// 如果 you remove this, also remove Item.channel = true 从 item's SetDefaults.
 		public override bool PreAI() {
 			Player owner = Main.player[Projectile.owner];
 
@@ -64,7 +64,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.damage = (int)(Projectile.damage * 0.5f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
 		}
 
-		// 此方法 draws a line between all points of the whip, in case there's empty space between the sprites.
+		// 此方法 draws a line between all points 的 whip, in case there's empty space between the sprites.
 		private void DrawLine(List<Vector2> list) {
 			Texture2D texture = TextureAssets.FishingLine.Value;
 			Rectangle frame = texture.Frame();
@@ -105,18 +105,18 @@ namespace ExampleMod.Content.Projectiles
 			for (int i = 0; i < list.Count - 1; i++) {
 				// These two values are set to suit this projectile's sprite, but won't necessarily work for your own.
 				// 你 can change them if they don't!
-				Rectangle frame = new Rectangle(0, 0, 10, 26); // The size of the Handle (measured in pixels)
-				Vector2 origin = new Vector2(5, 8); // Offset for where the player's hand will start measured from the top left of the image.
+				Rectangle frame = new Rectangle(0, 0, 10, 26); // The size 的 Handle (measured in pixels)
+				Vector2 origin = new Vector2(5, 8); // Offset for where the player's hand will start measured 从 top left 的 image.
 				float scale = 1;
 
-				// These statements determine what part of the spritesheet to draw for the current segment.
+				// These statements determine what part 的 spritesheet to draw 对于 current segment.
 				// They can also be changed to suit your sprite.
 				if (i == list.Count - 2) {
-					// 这是 the head of the whip. You need to measure the sprite to figure out these values.
-					frame.Y = 74; // Distance from the top of the sprite to the start of the frame.
-					frame.Height = 18; // Height of the frame.
+					// 这是 the head 的 whip. You need to measure the sprite to figure out these values.
+					frame.Y = 74; // Distance 从 top 的 sprite 到 start 的 frame.
+					frame.Height = 18; // Height 的 frame.
 
-					// 对于 a more impactful look, this scales the tip of the whip up when fully extended, and down when curled up.
+					// 对于 a more impactful look, this scales the tip 的 whip up when fully extended, and down when curled up.
 					Projectile.GetWhipSettings(Projectile, out float timeToFlyOut, out int _, out float _);
 					float t = Timer / timeToFlyOut;
 					scale = MathHelper.Lerp(0.5f, 1.5f, Utils.GetLerpValue(0.1f, 0.7f, t, true) * Utils.GetLerpValue(0.9f, 0.7f, t, true));

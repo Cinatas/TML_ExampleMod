@@ -32,17 +32,17 @@ namespace ExampleMod.Content.Projectiles
 
 		// 允许s you to determine the color and transparency in which a projectile is drawn
 		// 返回 null to use the default color (normally light and buff color)
-		// 返回s null by default.
+		// 返回s null 默认情况下.
 		public override Color? GetAlpha(Color lightColor) {
-			// return Color.White;
+			// 返回 Color.White;
 			return new Color(255, 255, 255, 0) * Projectile.Opacity;
 		}
 
 		public override void AI() {
 			// All projectiles have timers that help to delay certain events
-			// Projectile.ai[0], Projectile.ai[1] — timers that are automatically synchronized on the client and server
-			// Projectile.localAI[0], Projectile.localAI[0] — only on the client
-			// 在 this example, a timer is used to control the fade in / out and despawn of the projectile
+			// Projectile.ai[0], Projectile.ai[1] — timers that are automatically synchronized 在 client and server
+			// Projectile.localAI[0], Projectile.localAI[0] — only 在 client
+			// 在 this example, a timer is used to control the fade in / out and despawn 的 projectile
 			Projectile.ai[0] += 1f;
 
 			FadeInAndOut();
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Projectiles
 			// Projectile.frame — index of current frame
 			if (++Projectile.frameCounter >= 5) {
 				Projectile.frameCounter = 0;
-				// Or more compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
+				// 或更多 compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
 				if (++Projectile.frame >= Main.projFrames[Projectile.type])
 					Projectile.frame = 0;
 			}
@@ -65,11 +65,11 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.Kill();
 
 			// 设置 both direction and spriteDirection to 1 or -1 (right and left respectively)
-			// Projectile.direction is automatically set correctly in Projectile.Update, but we need to set it here or the textures will draw incorrectly on the 1st frame.
+			// Projectile.direction is automatically set correctly in Projectile.Update, but we need to set it here or the textures will draw incorrectly 在 1st frame.
 			Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f) ? 1 : -1;
 
 			Projectile.rotation = Projectile.velocity.ToRotation();
-			// Since our sprite has an orientation, we need to adjust rotation to compensate for the draw flipping
+			// Since our sprite has an orientation, we need to adjust rotation to compensate 对于 draw flipping
 			if (Projectile.spriteDirection == -1) {
 				Projectile.rotation += MathHelper.Pi;
 				// 对于 vertical sprites use MathHelper.PiOver2
@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// Fade out
 			Projectile.alpha += 25;
-			// Cal alpha to the maximum 255(complete transparent)
+			// Cal alpha 到 maximum 255(complete transparent)
 			if (Projectile.alpha > 255)
 				Projectile.alpha = 255;
 		}
@@ -121,8 +121,8 @@ namespace ExampleMod.Content.Projectiles
 
 			Vector2 origin = sourceRectangle.Size() / 2f;
 
-			// 如果 image isn't centered or symmetrical you can specify origin of the sprite
-			// (0,0) for the upper-left corner
+			// 如果 image isn't centered or symmetrical you can specify origin 的 sprite
+			// (0,0) 对于 upper-left corner
 			float offsetX = 20f;
 			origin.X = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX);
 
@@ -142,7 +142,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 	}
 
-	// 这是 a simple item that is based on the NebulaBlaze and shoots ExampleAdvancedAnimatedProjectile to showcase it.
+	// 这是 a simple item 即 based 在 NebulaBlaze and shoots ExampleAdvancedAnimatedProjectile to showcase it.
 	internal class ExampleAdvancedAnimatedProjectileItem : ModItem
 	{
 		public override string Texture => $"Terraria/Images/Item_{ItemID.NebulaBlaze}";

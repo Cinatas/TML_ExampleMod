@@ -20,10 +20,10 @@ namespace ExampleMod.Items.ExampleDamageClass
 			item.damage = 32;
 			item.knockBack = 3;
 			item.rare = ItemRarityID.Red;
-			item.mana = 0; // Make sure to nullify the mana usage of the staff here, as it still copies the setdefaults of the amethyst staff.
+			item.mana = 0; // 使 sure to nullify the mana usage 的 staff here, as it still copies the setdefaults 的 amethyst staff.
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			// exampleResourceCost is a field in the base class ExampleDamageItem. This item consumes 10 Example Resource to use.
+			// 示例ResourceCost is a field 在 base class ExampleDamageItem. This item consumes 10 Example Resource to use.
 			exampleResourceCost = 10;
 		}
 	}

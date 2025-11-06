@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// ExampleFlail and ExampleFlailProjectile show the minimum amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile need to be consulted if more advanced customization is desired, or if you want to learn more advanced modding techniques.
-	// ExampleFlailProjectile is a copy of the Sunfury flail projectile.
+	// 示例Flail and ExampleFlailProjectile show the minimum amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile need to be consulted if more advanced customization is desired, or if you want to learn more advanced modding techniques.
+	// 示例FlailProjectile is a copy 的 Sunfury flail projectile.
 	internal class ExampleFlailProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
@@ -16,17 +16,17 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			Projectile.netImportant = true; // This ensures that the projectile is synced when other players join the world.
+			Projectile.netImportant = true; // This ensures th在 projectile is synced when other players jo在 world.
 			Projectile.width = 22; // The width of your projectile
 			Projectile.height = 22; // The height of your projectile
 			Projectile.friendly = true; // Deals damage to enemies
 			Projectile.penetrate = -1; // Infinite pierce
 			Projectile.DamageType = DamageClass.Melee; // Deals melee damage
 			Projectile.scale = 0.8f;
-			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes in the ai hook
+			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes 在 ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
-			// 在这里 we reuse the flail projectile aistyle and set the aitype to the Sunfury. These lines will get our projectile to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code for the other behaviors you wish to use.
+			// 在这里 we reuse the flail projectile aistyle and set the aitype 到 Sunfury. These lines will get our projectile to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code 对于 other behaviors you wish to use.
 			Projectile.aiStyle = ProjAIStyleID.Flail;
 			AIType = ProjectileID.Sunfury;
 
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Projectiles
 			DrawOriginOffsetY = -6;
 		}
 
-		// All of the following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of Projectile.aiStyle and AIType. You'll need to find corresponding code in the decompiled source code if you wish to clone a different vanilla projectile as a starting point.
+		// All 的 following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of Projectile.aiStyle and AIType. You'll need to find corresponding code 在 decompiled source code if you wish to clone a different vanilla projectile as a starting point.
 
 		// 绘制 the projectile in full brightness, ignoring lighting conditions.
 		public override Color? GetAlpha(Color lightColor) {

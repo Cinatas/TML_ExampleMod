@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	[AutoloadEquip(EquipType.Shield)] // 加载 the spritesheet you create as a shield for the player when it is equipped.
+	[AutoloadEquip(EquipType.Shield)] // 加载 the spritesheet you create as a shield 对于 player when it is equipped.
 	public class ExampleShield : ModItem
 	{
 		public override void SetDefaults() {
@@ -37,28 +37,28 @@ namespace ExampleMod.Content.Items.Accessories
 
 	public class ExampleDashPlayer : ModPlayer
 	{
-		// These indicate what direction is what in the timer arrays used
+		// These indicate what direction is what 在 timer arrays used
 		public const int DashDown = 0;
 		public const int DashUp = 1;
 		public const int DashRight = 2;
 		public const int DashLeft = 3;
 
 		public const int DashCooldown = 50; // Time (frames) between starting dashes. If this is shorter than DashDuration you can start a new dash before an old one has finished
-		public const int DashDuration = 35; // Duration of the dash afterimage effect in frames
+		public const int DashDuration = 35; // Duration 的 dash afterimage effect in frames
 
 		// initial velocity.  10 velocity is about 37.5 tiles/second or 50 mph
 		public const float DashVelocity = 10f;
 
-		// direction the player has double tapped.  Defaults to -1 for no dash double tap
+		// directi在 player has double tapped.  Defaults to -1 for no dash double tap
 		public int DashDir = -1;
 
-		// fields related to the dash accessory
+		// fields related 到 dash accessory
 		public bool DashAccessoryEquipped;
 		public int DashDelay = 0; // frames remaining till we can dash again
-		public int DashTimer = 0; // frames remaining in the dash
+		public int DashTimer = 0; // frames remaining 在 dash
 
 		public override void ResetEffects() {
-			// 重置 our equipped flag. If the accessory is equipped somewhere, ExampleShield.UpdateAccessory will be called and set the flag before PreUpdateMovement
+			// 重置 our equipped flag. If the accessory is equipped somewhere, ExampleShield.UpdateAccessory 将 called and set the flag before PreUpdateMovement
 			DashAccessoryEquipped = false;
 
 			// 重置Effects is called not long after player.doubleTapCardinalTimer's values have been set
@@ -89,7 +89,7 @@ namespace ExampleMod.Content.Items.Accessories
 				Vector2 newVelocity = Player.velocity;
 
 				switch (DashDir) {
-					// 仅 apply the dash velocity if our current speed in the wanted direction is less than DashVelocity
+					// 仅 apply the dash velocity if our current speed 在 wanted direction is less than DashVelocity
 					case DashUp when Player.velocity.Y > -DashVelocity:
 					case DashDown when Player.velocity.Y < DashVelocity: {
 							// Y-velocity is set here
@@ -116,7 +116,7 @@ namespace ExampleMod.Content.Items.Accessories
 				Player.velocity = newVelocity;
 
 				// 在这里 you'd be able to set an effect that happens when the dash first activates
-				// Some examples include:  the larger smoke effect from the Master Ninja Gear and Tabi
+				// Some examples include:  the larger smoke effect 从 Master Ninja Gear and Tabi
 			}
 
 			if (DashDelay > 0)

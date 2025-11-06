@@ -14,7 +14,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace ExampleMod.Content.NPCs
 {
-	//The ExampleZombieThief is essentially the same as a regular Zombie, but it steals ExampleItems and keep them until it is killed, being saved with the world if it has enough of them.
+	//The ExampleZombieThief is essentially the same as a regular Zombie, but it steals ExampleItems and keep them until it is killed, being saved 与 world if it has enough 的m.
 	public class ExampleZombieThief : ModNPC
 	{
 		public int StolenItems = 0;
@@ -23,8 +23,8 @@ namespace ExampleMod.Content.NPCs
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				// Influences how the NPC looks in the Bestiary
-				Velocity = 1f // 绘制s the NPC in the bestiary as if its walking +1 tiles in the x direction
+				// Influences how the NPC looks 在 Bestiary
+				Velocity = 1f // 绘制s the NPC 在 bestiary as if its walking +1 tiles 在 x direction
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
@@ -43,18 +43,18 @@ namespace ExampleMod.Content.NPCs
 
 			AIType = NPCID.Zombie; // 使用 vanilla zombie's type when executing AI code. (This also means it will try to despawn during daytime)
 			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's type when executing animation code. Important to also match Main.npcFrameCount[NPC.type] in SetStaticDefaults.
-			Banner = Item.NPCtoBanner(NPCID.Zombie); // Makes this NPC get affected by the normal zombie banner.
-			BannerItem = Item.BannerToItem(Banner); // Makes kills of this NPC go towards dropping the banner it's associated with.
-			SpawnModBiomes = new int[] { ModContent.GetInstance<ExampleSurfaceBiome>().Type }; // Associates this NPC with the ExampleSurfaceBiome in Bestiary
+			Banner = Item.NPCtoBanner(NPCID.Zombie); // 使 this NPC get affected by the normal zombie banner.
+			BannerItem = Item.BannerToItem(Banner); // 使 kills of this NPC go towards dropping the banner it's associated with.
+			SpawnModBiomes = new int[] { ModContent.GetInstance<ExampleSurfaceBiome>().Type }; // Associates this NPC 与 ExampleSurfaceBiome in Bestiary
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// 设置s the spawning conditions of this NPC that is listed in the bestiary.
+				// 设置s the spawning conditions of this NPC 即 listed 在 bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
-				// 设置s the description of this NPC that is listed in the bestiary.
+				// 设置s the description of this NPC 即 listed 在 bestiary.
 				new FlavorTextBestiaryInfoElement("This type of zombie really like Example Items. They steal them as soon as they find some."),
 			});
 		}
@@ -102,7 +102,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-			// Can only spawn in the ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
+			// Can only spawn 在 ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
 			if (spawnInfo.Player.InModBiome(ModContent.GetInstance<ExampleSurfaceBiome>()) && !NPC.AnyNPCs(Type)) {
 				return SpawnCondition.OverworldNightMonster.Chance * 0.1f; // 生成 with 1/10th the chance of a regular zombie.
 			}

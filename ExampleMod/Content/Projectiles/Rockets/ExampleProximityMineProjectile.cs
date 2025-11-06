@@ -15,18 +15,18 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 			// This set handles some things for us already:
 			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
+			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
 		public override void SetDefaults() {
 			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.friendly = true;
-			Projectile.penetrate = -1; // Infinite penetration so that the blast can hit all enemies within its radius.
+			Projectile.penetrate = -1; // Infinite penetration so th在 blast can hit all enemies within its radius.
 			Projectile.DamageType = DamageClass.Ranged;
 
-			// Proximity Mines use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here with the correct AIType.
-			// But, using our own AI allows us to customize things like the dusts that the mine creates.
+			// Proximity Mines use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here 与 correct AIType.
+			// But, using our own AI allows us to customize things like the dusts th在 mine creates.
 			// Projectile.aiStyle = ProjAIStyleID.Explosive;
 			// AIType = ProjectileID.ProximityMineI;
 		}
@@ -53,8 +53,8 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				}
 			}
 
-			Projectile.velocity.Y += 0.2f; // Make it fall down. Remember, positive Y is down.
-			Projectile.velocity *= 0.97f; // Make it slow down.
+			Projectile.velocity.Y += 0.2f; // 使 it fall down. Remember, positive Y is down.
+			Projectile.velocity *= 0.97f; // 使 it slow down.
 
 			// 如果 the mine is moving very slowly, just make it stop entirely.
 			if (Projectile.velocity.X > -0.1f && Projectile.velocity.X < 0.1f) {
@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				Projectile.velocity.Y = 0f;
 			}
 
-			Projectile.rotation += Projectile.velocity.X * 0.1f; // Rotate the mine based on the direction it is moving.
+			Projectile.rotation += Projectile.velocity.X * 0.1f; // Rotate the mine based 在 direction it is moving.
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
@@ -84,14 +84,14 @@ namespace ExampleMod.Content.Projectiles.Rockets
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion will be in the wrong place if the mine explodes on slopes.
-			Projectile.alpha = 255; // Make the mine invisible.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the mine explodes on slopes.
+			Projectile.alpha = 255; // 使 the mine invisible.
 
-			// Resize the hitbox of the projectile for the blast "radius".
+			// Resize the hitbox 的 projectile 对于 blast "radius".
 			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
-			// 设置 the knockback of the blast.
+			// 设置 the knockback 的 blast.
 			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
 			Projectile.knockBack = 8f;
 		}
@@ -100,7 +100,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// Play an exploding sound.
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-			// Resize the projectile again so the explosion dust and gore spawn from the middle.
+			// Resize the projectile again so the explosion dust and gore spawn 从 middle.
 			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
 			Projectile.Resize(22, 22);
 
@@ -142,7 +142,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// 要 make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look 在 commented out code in Example Rocket Projectile.
 		}
 	}
 }

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Accessories
 {
 	/// <summary>
-	/// AbsorbTeamDamageAccessory mimics the unique effect of the Paladin's Shield item.
+	/// AbsorbTeamDamageAccessory mimics the unique effect 的 Paladin's Shield item.
 	/// This example showcases some advanced interplay between accessories, buffs, and ModPlayer hooks.
 	/// Of particular note is how this accessory gives other players a buff and how a player might act on another player being hit.
 	/// </summary>
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			// player.noKnockback = true; could be used here if this accessory prevented knockback.
+			// player.noKnockback = true; 可能 used here if this accessory prevented knockback.
 
 			player.GetModPlayer<ExampleDamageModificationPlayer>().hasAbsorbTeamDamageEffect = true;
 
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items.Accessories
 			if (player.whoAmI != Main.myPlayer && player.miscCounter % 10 == 0) {
 				Player localPlayer = Main.player[Main.myPlayer];
 				if (localPlayer.team == player.team && player.team != 0 && player.statLife > player.statLifeMax2 * DamageAbsorptionAbilityLifeThreshold && player.Distance(localPlayer.Center) <= DamageAbsorptionRange) {
-					// buff is used to visually indicate to the player that they are defended, and is also synchronized automatically to other players, letting them know that we were defended at the time we took the hit
+					// buff is used to visually indicate 到 player th在y are defended, and is also synchronized automatically to other players, letting them know that we were defended 在 time we took the hit
 					localPlayer.AddBuff(ModContent.BuffType<AbsorbTeamDamageBuff>(), 20);
 				}
 			}

@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExampleWhipAdvancedDebuff.TagDamagePercent);
 
 		public override void SetDefaults() {
-			// 调用 this method to quickly set some of the properties below.
+			// 调用 this method to quickly set some 的 properties below.
 			//Item.DefaultToWhip(ModContent.ProjectileType<ExampleWhipProjectileAdvanced>(), 20, 2, 4);
 
 			Item.DamageType = DamageClass.SummonMeleeSpeed;
@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.useTime = 30;
 			Item.useAnimation = 30;
 			Item.UseSound = SoundID.Item152;
-			Item.channel = true; // This is used for the charging functionality. Remove it if your whip shouldn't be chargeable.
+			Item.channel = true; // This is used 对于 charging functionality. Remove it if your whip shouldn't be chargeable.
 			Item.noMelee = true;
 			Item.noUseGraphic = true;
 		}
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Weapons
 				.Register();
 		}
 
-		// Makes the whip receive melee prefixes
+		// 使 the whip receive melee prefixes
 		public override bool MeleePrefix() {
 			return true;
 		}

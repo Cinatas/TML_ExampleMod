@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// 这是 a copy of the Excalibur's projectile
+	// 这是 a copy 的 Excalibur's projectile
 	public class ExampleSwingingEnergySwordProjectile : ModProjectile
 	{
 
@@ -18,7 +18,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void SetStaticDefaults() {
 			// 如果 a Jellyfish is zapping and we attack it with this projectile, it will deal damage to us.
-			// This set has the projectiles for the Night's Edge, Excalibur, Terra Blade (close range), and The Horseman's Blade (close range).
+			// This set has the projectiles 对于 Night's Edge, Excalibur, Terra Blade (close range), and The Horseman's Blade (close range).
 			// This set does not have the True Night's Edge, True Excalibur, or the long range Terra Beam projectiles.
 			ProjectileID.Sets.AllowsContactDamageFromJellyfish[Type] = true;
 			Main.projFrames[Type] = 4; // This projectile has 4 frames.
@@ -36,24 +36,24 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.tileCollide = false;
 			Projectile.ignoreWater = true;
 			Projectile.ownerHitCheck = true; // A line of sight check so the projectile can't deal damage through tiles.
-			Projectile.ownerHitCheckDistance = 300f; // The maximum range that the projectile can hit a target. 300 pixels is 18.75 tiles.
+			Projectile.ownerHitCheckDistance = 300f; // The maximum range th在 projectile can hit a target. 300 pixels is 18.75 tiles.
 			Projectile.usesOwnerMeleeHitCD = true; // This will make the projectile apply the standard number of immunity frames as normal melee attacks.
 			// Normally, projectiles die after they have hit all the enemies they can.
-			// But, for this case, we want the projectile to continue to live so we can have the visuals of the swing.
+			// But, for this case, we want the projectile to continue to live so we can have the visuals 的 swing.
 			Projectile.stopsDealingDamageAfterPenetrateHits = true;
 
-			// 我们 will be using custom AI for this projectile. The original Excalibur uses aiStyle 190.
+			// 我们 将 using custom AI for this projectile. The original Excalibur uses aiStyle 190.
 			Projectile.aiStyle = -1;
 			// Projectile.aiStyle = ProjAIStyleID.NightsEdge; // 190
 			// AIType = ProjectileID.Excalibur;
 
-			// 如果 you are using custom AI, add this line. Otherwise, visuals from Flasks will spawn at the center of the projectile instead of around the arc.
-			// 我们 will spawn the visuals around the arc ourselves in the AI().
+			// 如果 you are using custom AI, add this line. Otherwise, visuals from Flasks will spawn 在 center 的 projectile instead of around the arc.
+			// 我们 will spawn the visuals around the arc ourselves 在 AI().
 			Projectile.noEnchantmentVisuals = true;
 		}
 
 		public override void AI() {
-			// 在 our item, we spawn the projectile with the direction, max time, and scale
+			// 在 our item, we spawn the projectile 与 direction, max time, and scale
 			// Projectile.ai[0] == direction
 			// Projectile.ai[1] == max time
 			// Projectile.ai[2] == scale
@@ -64,13 +64,13 @@ namespace ExampleMod.Content.Projectiles
 			// 	SoundEngine.PlaySound(SoundID.Item60 with { Volume = 0.65f }, Projectile.position);
 			// }
 
-			Projectile.localAI[0]++; // Current time that the projectile has been alive.
+			Projectile.localAI[0]++; // Current time th在 projectile has been alive.
 			Player player = Main.player[Projectile.owner];
 			float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1]; // The current time over the max time.
 			float direction = Projectile.ai[0];
 			float velocityRotation = Projectile.velocity.ToRotation();
 			float adjustedRotation = MathHelper.Pi * direction * percentageOfLife + velocityRotation + direction * MathHelper.Pi + player.fullRotation;
-			Projectile.rotation = adjustedRotation; // 设置 the rotation to our to the new rotation we calculated.
+			Projectile.rotation = adjustedRotation; // 设置 the rotation to our 到 new rotation we calculated.
 
 			float scaleMulti = 0.6f; // Excalibur, Terra Blade, and The Horseman's Blade is 0.6f; True Excalibur is 1f; default is 0.2f 
 			float scaleAdder = 1f; // Excalibur, Terra Blade, and The Horseman's Blade is 1f; True Excalibur is 1.2f; default is 1f 
@@ -80,9 +80,9 @@ namespace ExampleMod.Content.Projectiles
 
 			// other sword projectiles that use AI Style 190 have different effects.
 			// 此示例 only includes the Excalibur.
-			// Look at AI_190_NightsEdge() in Projectile.cs for the others.
+			// Look at AI_190_NightsEdge() in Projectile.cs 对于 others.
 
-			// 在这里 we spawn some dust inside the arc of the swing.
+			// 在这里 we spawn some dust inside the arc 的 swing.
 			float dustRotation = Projectile.rotation + Main.rand.NextFloatDirection() * MathHelper.PiOver2 * 0.7f;
 			Vector2 dustPosition = Projectile.Center + dustRotation.ToRotationVector2() * 84f * Projectile.scale;
 			Vector2 dustVelocity = (dustRotation + Projectile.ai[0] * MathHelper.PiOver2).ToRotationVector2();
@@ -99,7 +99,7 @@ namespace ExampleMod.Content.Projectiles
 				Dust.NewDustPerfect(dustPosition, DustID.TintableDustLighted, dustVelocity, 100, Color.SkyBlue * Projectile.Opacity, 1.2f * Projectile.Opacity);
 			}
 
-			Projectile.scale *= Projectile.ai[2]; // 设置 the scale of the projectile to the scale of the item.
+			Projectile.scale *= Projectile.ai[2]; // 设置 the scale 的 projectile 到 scale 的 item.
 
 			// 如果 the projectile is as old as the max animation time, kill the projectile.
 			if (Projectile.localAI[0] >= Projectile.ai[1]) {
@@ -114,12 +114,12 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// 在这里 is where we have our custom collision.
-		// This collision will only run if the projectile is within range of target with the range being Projectile.ownerHitCheckDistance
-		// Or if the projectile hasn't already hit all of the targets it can with Projectile.penetrate
+		// This collision will only run if the projectile is within range of target 与 range being Projectile.ownerHitCheckDistance
+		// Or if the projectile hasn't already hit all 的 targets it can with Projectile.penetrate
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// 这是 how large the circumference is, aka how big the range is. Vanilla uses 94f to match it to the size of the texture.
+			// 这是 how large the circumference is, aka how big the range is. Vanilla uses 94f to match it 到 size 的 texture.
 			float coneLength = 94f * Projectile.scale;
-			// This number affects how much the start and end of the collision will be rotated.
+			// This number affects how much the start and end 的 collision 将 rotated.
 			// Bigger Pi numbers will rotate the collision counter clockwise.
 			// Smaller Pi numbers will rotate the collision clockwise.
 			// (Projectile.ai[0] is the direction)
@@ -127,7 +127,7 @@ namespace ExampleMod.Content.Projectiles
 			float maximumAngle = MathHelper.PiOver4; // The maximumAngle is used to limit the rotation to create a dead zone.
 			float coneRotation = Projectile.rotation + collisionRotation;
 
-			// Uncomment this line for a visual representation of the cone. The dusts are not perfect, but it gives a general idea.
+			// Uncomment this line for a visual representation 的 cone. The dusts are not perfect, but it gives a general idea.
 			// Dust.NewDustPerfect(Projectile.Center + coneRotation.ToRotationVector2() * coneLength, DustID.Pixie, Vector2.Zero);
 			// Dust.NewDustPerfect(Projectile.Center, DustID.BlueFairy, new Vector2((float)Math.Cos(maximumAngle) * Projectile.ai[0], (float)Math.Sin(maximumAngle)) * 5f); // Assumes collisionRotation was not changed
 
@@ -136,12 +136,12 @@ namespace ExampleMod.Content.Projectiles
 				return true;
 			}
 
-			// first cone isn't the entire swinging arc, though, so we need to check a second cone for the back of the arc.
+			// first cone isn't the entire swinging arc, though, so we need to check a second cone 对于 back 的 arc.
 			float backOfTheSwing = Utils.Remap(Projectile.localAI[0], Projectile.ai[1] * 0.3f, Projectile.ai[1] * 0.5f, 1f, 0f);
 			if (backOfTheSwing > 0f) {
 				float coneRotation2 = coneRotation - MathHelper.PiOver4 * Projectile.ai[0] * backOfTheSwing;
 
-				// Uncomment this line for a visual representation of the cone. The dusts are not perfect, but it gives a general idea.
+				// Uncomment this line for a visual representation 的 cone. The dusts are not perfect, but it gives a general idea.
 				// Dust.NewDustPerfect(Projectile.Center + coneRotation2.ToRotationVector2() * coneLength, DustID.Enchanted_Pink, Vector2.Zero);
 				// Dust.NewDustPerfect(Projectile.Center, DustID.BlueFairy, new Vector2((float)Math.Cos(backOfTheSwing) * -Projectile.ai[0], (float)Math.Sin(backOfTheSwing)) * 5f); // Assumes collisionRotation was not changed
 
@@ -163,17 +163,17 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			// Vanilla has several particles that can easily be used anywhere.
-			// particles from the Particle Orchestra are predefined by vanilla and most can not be customized that much.
+			// particles 从 Particle Orchestra are predefined by vanilla and most can 不 customized that much.
 			// 使用 auto complete to see the other ParticleOrchestraType types there are.
-			// 在这里 we are spawning the Excalibur particle randomly inside of the target's hitbox.
+			// 在这里 we are spawning the Excalibur particle randomly inside 的 target's hitbox.
 			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.Excalibur,
 				new ParticleOrchestraSettings { PositionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox) },
 				Projectile.owner);
 
-			// 你 could also spawn dusts at the enemy position. Here is simple an example:
+			// 你 could also spawn dusts 在 enemy position. Here is simple an example:
 			// Dust.NewDust(Main.rand.NextVector2FromRectangle(target.Hitbox), 0, 0, ModContent.DustType<Content.Dusts.Sparkle>());
 
-			// 设置 the target's hit direction to away from the player so the knockback is in the correct direction.
+			// 设置 the target's hit direction to away 从 player so the knockback is 在 correct direction.
 			hit.HitDirection = (Main.player[Projectile.owner].Center.X < target.Center.X) ? 1 : (-1);
 		}
 
@@ -186,14 +186,14 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// Taken from Main.DrawProj_Excalibur()
-		// Look at the source code for the other sword types.
+		// Look 在 source code 对于 other sword types.
 		public override bool PreDraw(ref Color lightColor) {
 			Vector2 position = Projectile.Center - Main.screenPosition;
 			Texture2D texture = TextureAssets.Projectile[Type].Value;
 			Rectangle sourceRectangle = texture.Frame(1, 4); // The sourceRectangle says which frame to use.
 			Vector2 origin = sourceRectangle.Size() / 2f;
 			float scale = Projectile.scale * 1.1f;
-			SpriteEffects spriteEffects = ((!(Projectile.ai[0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None); // Flip the sprite based on the direction it is facing.
+			SpriteEffects spriteEffects = ((!(Projectile.ai[0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None); // Flip the sprite based 在 direction it is facing.
 			float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1]; // The current time over the max time.
 			float lerpTime = Utils.Remap(percentageOfLife, 0f, 0.6f, 0f, 1f) * Utils.Remap(percentageOfLife, 0.6f, 1f, 1f, 0f);
 			float lightingColor = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float)Math.Sqrt(3.0);
@@ -224,24 +224,24 @@ namespace ExampleMod.Content.Projectiles
 			// Thin bottom line (final frame)
 			Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.4f * lerpTime, Projectile.rotation + Projectile.ai[0] * -0.1f, origin, scale * 0.6f, spriteEffects, 0f);
 
-			// This draws some sparkles around the circumference of the swing.
+			// This draws some sparkles around the circumference 的 swing.
 			for (float i = 0f; i < 8f; i += 1f) {
 				float edgeRotation = Projectile.rotation + Projectile.ai[0] * i * (MathHelper.Pi * -2f) * 0.025f + Utils.Remap(percentageOfLife, 0f, 1f, 0f, MathHelper.PiOver4) * Projectile.ai[0];
 				Vector2 drawPos = position + edgeRotation.ToRotationVector2() * ((float)texture.Width * 0.5f - 6f) * scale;
 				DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawPos, new Color(255, 255, 255, 0) * lerpTime * (i / 9f), middleMediumColor, percentageOfLife, 0f, 0.5f, 0.5f, 1f, edgeRotation, new Vector2(0f, Utils.Remap(percentageOfLife, 0f, 1f, 3f, 0f)) * scale, Vector2.One * scale);
 			}
 
-			// This draws a large star sparkle at the front of the projectile.
+			// This draws a large star sparkle 在 front 的 projectile.
 			Vector2 drawPos2 = position + (Projectile.rotation + Utils.Remap(percentageOfLife, 0f, 1f, 0f, MathHelper.PiOver4) * Projectile.ai[0]).ToRotationVector2() * ((float)texture.Width * 0.5f - 4f) * scale;
 			DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawPos2, new Color(255, 255, 255, 0) * lerpTime * 0.5f, middleMediumColor, percentageOfLife, 0f, 0.5f, 0.5f, 1f, 0f, new Vector2(2f, Utils.Remap(percentageOfLife, 0f, 1f, 4f, 1f)) * scale, Vector2.One * scale);
 
-			// Uncomment this line for a visual representation of the projectile's size.
+			// Uncomment this line for a visual representation 的 projectile's size.
 			// Main.EntitySpriteDraw(TextureAssets.MagicPixel.Value, position, sourceRectangle, Color.Orange * 0.75f, 0f, origin, scale, spriteEffects);
 
 			return false;
 		}
 
-		// Copied from Main.DrawPrettyStarSparkle() which is private
+		// Copied from Main.DrawPrettyStarSparkle() 即 private
 		private static void DrawPrettyStarSparkle(float opacity, SpriteEffects dir, Vector2 drawPos, Color drawColor, Color shineColor, float flareCounter, float fadeInStart, float fadeInEnd, float fadeOutStart, float fadeOutEnd, float rotation, Vector2 scale, Vector2 fatness) {
 			Texture2D sparkleTexture = TextureAssets.Extra[98].Value;
 			Color bigColor = shineColor * opacity * 0.5f;

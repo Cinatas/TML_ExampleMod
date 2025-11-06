@@ -8,8 +8,8 @@ namespace ExampleMod.Content.Items
 	public class ExampleResearchPresent : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// Must be researched as many times as there are items in the game.
-			// 如果 fully researched, and a new mod is added, it will become un-researched and require that much more
+			// 必须 researched as many times as there are items 在 game.
+			// 如果 fully researched, and a new mod is added, it 将come un-researched and require that much more
 			// Research amount will never go down or over the max limit of 9999.
 			Item.ResearchUnlockCount = Utils.Clamp(ItemLoader.ItemCount, 1, 9999);
 
@@ -21,8 +21,8 @@ namespace ExampleMod.Content.Items
 			Item.CloneDefaults(ItemID.GoodieBag);
 		}
 
-		// This allows for the present to be researched even when you already have infinite of them.
-		// 这是 not a standard use of the research system, but allows for re-running a 'research complete' effect
+		// This allows 对于 present to be researched even when you already have infinite 的m.
+		// 这是 not a standard use 的 research system, but allows for re-running a 'research complete' effect
 		private CreativeUI.ItemSacrificeResult OnSacrificeItem(On_CreativeUI.orig_SacrificeItem_refItem_refInt32_bool orig,
 				ref Item item, out int amountWeSacrificed, bool returnRemainderToPlayer) {
 
@@ -32,10 +32,10 @@ namespace ExampleMod.Content.Items
 				// Re-unlock all accessories, incase mods have changed
 				OnResearched(true);
 
-				// 我们 always lose a present when researching them, even if you already had infinite of them. To show the user something happened
+				// 我们 always lose a present when researching them, even if you already had infinite 的m. To show the user something happened
 				item.stack -= 1;
 
-				// This code is copied from the end of SacrificeItem
+				// This code is copied 从 end of SacrificeItem
 				if (item.stack > 0 && returnRemainderToPlayer) {
 					item.position.X = Main.player[Main.myPlayer].Center.X - item.width / 2;
 					item.position.Y = Main.player[Main.myPlayer].Center.Y - item.height / 2;

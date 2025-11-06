@@ -16,19 +16,19 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 			// This set handles some things for us already:
 			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
+			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
 		public override void SetDefaults() {
 			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.friendly = true;
-			Projectile.penetrate = -1; // Infinite penetration so that the blast can hit all enemies within its radius.
+			Projectile.penetrate = -1; // Infinite penetration so th在 blast can hit all enemies within its radius.
 			Projectile.DamageType = DamageClass.Ranged;
 			Projectile.scale = 0.9f; // All snowmen rockets are 0.9f scale.
 
-			// Rockets use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here with the correct AIType.
-			// But, using our own AI allows us to customize things like the dusts that the rocket creates.
+			// Rockets use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here 与 correct AIType.
+			// But, using our own AI allows us to customize things like the dusts th在 rocket creates.
 			// Projectile.aiStyle = ProjAIStyleID.Explosive;
 			// AIType = ProjectileID.RocketSnowmanI;
 		}
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 					Projectile.alpha = 0; // 0 Alpha is completely opaque.
 				}
 				else {
-					// 之前 then, fade in the rocket each tick.
+					// 之前 then, fade 在 rocket each tick.
 					Projectile.alpha = (int)(255f - 42f * Projectile.localAI[1]) + 100;
 					if (Projectile.alpha > 255) {
 						Projectile.alpha = 255; // 255 Alpha is completely transparent.
@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						continue;
 					}
 
-					// These two variables are used to add some movement to the dusts.
+					// These two variables are used to add some movement 到 dusts.
 					float velocityXAdder = 0f;
 					float velocityYAdder = 0f;
 					if (i == 1) {
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						fireDust.velocity *= 0.2f;
 						fireDust.noGravity = true;
 
-						// 使用d by the liquid rockets which leave trails of their liquid instead of fire.
+						// 使用d by the liquid rockets which leave trails 的ir liquid instead of fire.
 						// if (fireDust.type == Dust.dustWater()) {
 						//	fireDust.scale *= 0.65f;
 						//	fireDust.velocity += Projectile.velocity * 0.1f;
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 					}
 				}
 
-				// 首先, set the destination of the rocket to its current position. This will be updated in the following section.
+				// 首先, set the destination 的 rocket to its current position. This 将 updated 在 following section.
 				float projDestinationX = Projectile.position.X;
 				float projDestinationY = Projectile.position.Y;
 				float maxHomingDistance = 600f; // Max homing distance in pixels. 16 pixels per tile, so 600 pixels = 37.5 tiles.
@@ -99,17 +99,17 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				if (Projectile.ai[0] > 15f) {
 					Projectile.ai[0] = 15f;
 
-					// Search through all of the NPCs to find a target.
+					// Search through all 的 NPCs to find a target.
 					for (int i = 0; i < Main.maxNPCs; i++) {
 						NPC searchNPC = Main.npc[i];
-						// 如果 the target can be homed on to.
+						// 如果 the target 可以 homed on to.
 						if (searchNPC.CanBeChasedBy(this)) {
 							// 获取 the target's position.
 							float targetPosX = searchNPC.position.X + (searchNPC.width / 2);
 							float targetPosY = searchNPC.position.Y + (searchNPC.height / 2);
-							// Find the distance from the projectile to the target.
+							// Find the distance 从 projectile 到 target.
 							float distanceFromProjToTarget = Math.Abs(Projectile.position.X + (Projectile.width / 2) - targetPosX) + Math.Abs(Projectile.position.Y + (Projectile.height / 2) - targetPosY);
-							// 如果 the distance is within the max homing distance and the projectile has line of sight.
+							// 如果 the distance is with在 max homing distance and the projectile has line of sight.
 							if (distanceFromProjToTarget < maxHomingDistance && Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, searchNPC.position, searchNPC.width, searchNPC.height)) {
 								maxHomingDistance = distanceFromProjToTarget;
 								projDestinationX = targetPosX;
@@ -130,12 +130,12 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				// 要 increase the speed even more, increase extraUpdates in SetDefaults().
 				float speed = 16f;
 
-				// Travel to the position set above. Either it will be to the target's position or just ahead of itself.
+				// Travel 到 position set above. Either it 将 到 target's position or just ahead of itself.
 				Vector2 finalVelocity = (new Vector2(projDestinationX, projDestinationY) - Projectile.Center).SafeNormalize(-Vector2.UnitY) * speed;
 				Projectile.velocity = Vector2.Lerp(Projectile.velocity, finalVelocity, 1f / 12f);
 
-				// Rotate the rocket in the direction that it is moving and keep the sprite facing the correct direction.
-				// This way the face on the sprite will always be right side up.
+				// Rotate the rocket 在 direction that it is moving and keep the sprite facing the correct direction.
+				// This way the face 在 sprite will always be right side up.
 				if (Projectile.velocity.X < 0f) {
 					Projectile.spriteDirection = -1;
 					Projectile.rotation = (float)Math.Atan2(0f - Projectile.velocity.Y, 0f - Projectile.velocity.X) - MathHelper.PiOver2;
@@ -154,14 +154,14 @@ namespace ExampleMod.Content.Projectiles.Rockets
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion will be in the wrong place if the rocket explodes on slopes.
-			Projectile.alpha = 255; // Make the rocket invisible.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the rocket explodes on slopes.
+			Projectile.alpha = 255; // 使 the rocket invisible.
 
-			// Resize the hitbox of the projectile for the blast "radius".
+			// Resize the hitbox 的 projectile 对于 blast "radius".
 			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
-			// 设置 the knockback of the blast.
+			// 设置 the knockback 的 blast.
 			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
 			Projectile.knockBack = 8f;
 		}
@@ -170,7 +170,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// Play an exploding sound.
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-			// Resize the projectile again so the explosion dust and gore spawn from the middle.
+			// Resize the projectile again so the explosion dust and gore spawn 从 middle.
 			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
 			Projectile.Resize(22, 22);
 
@@ -212,7 +212,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// 要 make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look 在 commented out code in Example Rocket Projectile.
 		}
 	}
 }

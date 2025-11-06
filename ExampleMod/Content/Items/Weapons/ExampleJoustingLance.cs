@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override void SetDefaults() {
 			// 一个 special method that sets a variety of item parameters that make the item act like a spear weapon.
 			// 要 see everything DefaultToSpear() does, right click the method in Visual Studios and choose "Go To Definition" (or press F12). You can also hover over DefaultToSpear to see the documentation.
-			// shoot speed will affect how far away the projectile spawns from the player's hand.
+			// shoot speed will affect how far away the projectile spawns 从 player's hand.
 			// 如果 you are using the custom AI in your projectile (and not aiStyle 19 and AIType = ProjectileID.JoustingLance), the standard value is 1f.
 			// 如果 you are using aiStyle 19 and AIType = ProjectileID.JoustingLance, then multiply the value by about 3.5f.
 			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.ExampleJoustingLanceProjectile>(), 1f, 24);

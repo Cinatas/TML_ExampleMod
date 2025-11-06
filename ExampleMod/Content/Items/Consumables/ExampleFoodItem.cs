@@ -11,16 +11,16 @@ namespace ExampleMod.Content.Items.Consumables
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 5;
 
-			// 这是 to show the correct frame in the inventory
-			// MaxValue argument is for the animation speed, we want it to be stuck on frame 1
+			// 这是 to show the correct frame 在 inventory
+			// MaxValue argument is 对于 animation speed, we want it to be stuck on frame 1
 			// 设置ting it to max value will cause it to take 414 days to reach the next frame
 			// No one is going to have game open that long so this is fine
-			// second argument is the number of frames, which is 3
+			// second argument is the number of frames, 即 3
 			// first frame is the inventory texture, the second frame is the holding texture,
 			// and the third frame is the placed texture
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
 
-			// This allows you to change the color of the crumbs that are created when you eat.
+			// This allows you to change the color 的 crumbs that are created when you eat.
 			// numbers are RGB (Red, Green, and Blue) values which range from 0 to 255.
 			// Most foods have 3 crumb colors, but you can use more or less if you desire.
 			// Depending on if you are making solid or liquid food switch out FoodParticleColors
@@ -38,14 +38,14 @@ namespace ExampleMod.Content.Items.Consumables
 		public override void SetDefaults() {
 			// This code matches the ApplePie code.
 
-			// DefaultToFood sets all of the food related item defaults such as the buff type, buff duration, use sound, and animation time.
+			// 默认ToFood sets all 的 food related item defaults 例如 the buff type, buff duration, use sound, and animation time.
 			Item.DefaultToFood(22, 22, BuffID.WellFed3, 57600); // 57600 is 16 minutes: 16 * 60 * 60
 			Item.value = Item.buyPrice(0, 3);
 			Item.rare = ItemRarityID.Blue;
 		}
 
 		// 如果 you want multiple buffs, you can apply the remainder of buffs with this method.
-		// 确保 the primary buff is set in SetDefaults so that the QuickBuff hotkey can work properly.
+		// 确保 the primary buff is set in SetDefaults so th在 QuickBuff hotkey can work properly.
 		public override void OnConsumeItem(Player player) {
 			player.AddBuff(BuffID.SugarRush, 3600);
 		}

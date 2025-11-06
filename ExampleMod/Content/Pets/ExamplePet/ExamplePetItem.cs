@@ -8,12 +8,12 @@ namespace ExampleMod.Content.Pets.ExamplePet
 {
 	public class ExamplePetItem : ModItem
 	{
-		// Names and descriptions of all ExamplePetX classes are defined using .hjson files in the Localization folder
+		// Names and descriptions of all ExamplePetX classes are defined using .hjson files 在 Localization folder
 		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.ZephyrFish); // Copy the Defaults of the Zephyr Fish Item.
+			Item.CloneDefaults(ItemID.ZephyrFish); // Copy the Defaults 的 Zephyr Fish Item.
 
 			Item.shoot = ModContent.ProjectileType<ExamplePetProjectile>(); // "Shoot" your pet projectile.
-			Item.buffType = ModContent.BuffType<ExamplePetBuff>(); // 应用 buff upon usage of the Item.
+			Item.buffType = ModContent.BuffType<ExamplePetBuff>(); // 应用 buff upon usage 的 Item.
 		}
 
         public override bool? UseItem(Player player)

@@ -30,7 +30,7 @@ namespace ExampleMod.Common.Commands
 		public override void Action(CommandCaller caller, string input, string[] args) {
 			// 检查输入参数
 			if (args.Length == 0) {
-				throw new UsageException("At least one argument was expected.");
+				throw new UsageException("至少 one argument was expected.");
 			}
 			if (!int.TryParse(args[0], out int type)) {
 				throw new UsageException(args[0] + " is not a correct integer value.");
@@ -53,7 +53,7 @@ namespace ExampleMod.Common.Commands
 				}
 				// 解析 X 位置
 				if (!int.TryParse(args[1], out xSpawnPosition)) {
-					throw new UsageException(args[1] + " is not a correct X position (must be valid integer value).");
+					throw new UsageException(args[1] + " is not a correct X position (必须 valid integer value).");
 				}
 			}
 
@@ -66,7 +66,7 @@ namespace ExampleMod.Common.Commands
 				}
 				// 解析 Y 位置
 				if (!int.TryParse(args[2], out ySpawnPosition)) {
-					throw new UsageException(args[2] + " is not a correct Y position (must be valid integer value).");
+					throw new UsageException(args[2] + " is not a correct Y position (必须 valid integer value).");
 				}
 			}
 
@@ -81,7 +81,7 @@ namespace ExampleMod.Common.Commands
 			// 如果命令有数量参数
 			if (args.Length > 3) {
 				if (!int.TryParse(args[3], out numToSpawn)) {
-					throw new UsageException(args[3] + " is not a correct number (must be valid integer value).");
+					throw new UsageException(args[3] + " is not a correct number (必须 valid integer value).");
 				}
 			}
 

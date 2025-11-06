@@ -15,19 +15,19 @@ namespace ExampleMod.Content.Items.Accessories
 			IL_Player.beeType += HookBeeType;
 		}
 
-		// This IL editing (Intermediate Language editing) example is walked through in the guide: https://github.com/tModLoader/tModLoader/wiki/Expert-IL-Editing#example---hive-pack-upgrade
+		// This IL editing (Intermediate Language editing) example is walked through 在 guide: https://github.com/tModLoader/tModLoader/wiki/Expert-IL-Editing#example---hive-pack-upgrade
 		private static void HookBeeType(ILContext il) {
 			try {
 				ILCursor c = new ILCursor(il);
 
-				// Try to find where 566 is placed onto the stack
+				// Try to find where 566 is placed on到 stack
 				c.GotoNext(i => i.MatchLdcI4(566));
 
-				// Move the cursor after 566 and onto the ret op.
+				// Move the cursor after 566 and on到 ret op.
 				c.Index++;
-				// Push the Player instance onto the stack
+				// Push the Player instance on到 stack
 				c.Emit(OpCodes.Ldarg_0);
-				// 调用 a delegate using the int and Player from the stack.
+				// 调用 a delegate using the int and Player 从 stack.
 				c.EmitDelegate<Func<int, Player, int>>((returnValue, player) => {
 					// Regular c# code
 					if (player.GetModPlayer<WaspNestPlayer>().strongBeesUpgrade && Main.rand.NextBool(10) && Main.ProjectileUpdateLoopIndex == -1) {
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Items.Accessories
 				});
 			}
 			catch (Exception e) {
-				// 如果 there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
+				// 如果 there are any failures 与 IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), il);
 
 				// 如果 the mod cannot run without the IL hook, throw an exception instead. The exception will call DumpIL internally
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player) {
-			// 不要 allow Hive Pack and Wasp Nest to be equipped at the same time.
+			// 不要 allow Hive Pack and Wasp Nest to be equipped 在 same time.
 			return incomingItem.type != ItemID.HiveBackpack;
 		}
 	}

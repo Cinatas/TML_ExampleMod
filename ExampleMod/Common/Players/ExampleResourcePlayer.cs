@@ -12,18 +12,18 @@ namespace ExampleMod.Common.Players
 		// 在这里我们创建一个自定义资源，类似于魔力或生命值。
 		// 创建一些变量来定义我们的示例资源的当前值以及当前最大值。我们还包括一个临时最大值，以及一些变量来处理此资源的自然再生。
 		public int exampleResourceCurrent; // Current value of our example resource
-		public const int DefaultExampleResourceMax = 100; // Default maximum value of example resource
-		public int exampleResourceMax; // Buffer variable that is used to reset maximum resource to default value in ResetDefaults().
+		public const int DefaultExampleResourceMax = 100; // 默认 maximum value of example resource
+		public int exampleResourceMax; // Buffer variable 即 used to reset maximum resource to default value in ResetDefaults().
 		public int exampleResourceMax2; // Maximum amount of our example resource. We will change that variable to increase maximum amount of our resource
 		public float exampleResourceRegenRate; // By changing that variable we can increase/decrease regeneration rate of our resource
-		internal int exampleResourceRegenTimer = 0; // A variable that is required for our timer
+		internal int exampleResourceRegenTimer = 0; // A variable 即 required for our timer
 		public bool exampleResourceMagnet = false;
 		public static readonly int exampleResourceMagnetGrabRange = 300;
 		public static readonly Color HealExampleResourceColor = new(187, 91, 201); // The color to use with CombatText when replenishing exampleResourceCurrent
 
 		// 为了使示例资源示例简单明了，已省略了类似于魔力和生命值的完全功能资源所需的几件事。 
 		// Here are additional things you might need to implement if you intend to make a custom resource:
-		// - Multiplayer Syncing: The current example doesn't require MP code, but pretty much any additional functionality will require this. ModPlayer.SendClientChanges and CopyClientState will be necessary, as well as SyncPlayer if you allow the user to increase exampleResourceMax.
+		// - Multiplayer Syncing: The current example doesn't require MP code, but pretty much any additional functionality will require this. ModPlayer.SendClientChanges and CopyClientState 将 necessary, 以及 as SyncPlayer if you allow the user to increase exampleResourceMax.
 		// - Save/Load permanent changes to max resource: You'll need to implement Save/Load to remember increases to your exampleResourceMax cap.
 
 		public override void Initialize() {
@@ -38,7 +38,7 @@ namespace ExampleMod.Common.Players
 			ResetVariables();
 		}
 
-		// We need this to ensure that regeneration rate and maximum amount are reset to default values after increasing when conditions are no longer satisfied (e.g. we unequip an accessory that increases our resource)
+		// We need this to ensure that regeneration rate and maximum amount are reset to default values after increasing when conditions are 不再 satisfied (e.g. we unequip an accessory that increases our resource)
 		private void ResetVariables() {
 			exampleResourceRegenRate = 1f;
 			exampleResourceMax2 = exampleResourceMax;
@@ -53,12 +53,12 @@ namespace ExampleMod.Common.Players
 			CapResourceGodMode();
 		}
 
-		// Lets do all our logic for the custom resource here, such as limiting it, increasing it and so on.
+		// Lets do all our logic 对于 custom resource here, 例如 limiting it, increasing it and so on.
 		private void UpdateResource() {
 			// For our resource lets make it regen slowly over time to keep it simple, let's use exampleResourceRegenTimer to count up to whatever value we want, then increase currentResource.
 			exampleResourceRegenTimer++; // Increase it by 60 per second, or 1 per tick.
 
-			// A simple timer that goes up to 1 second, increases the exampleResourceCurrent by 1 and then resets back to 0.
+			// A simple timer that goes up to 1 second, increases the exampleResourceCurrent by 1 然后 resets back to 0.
 			if (exampleResourceRegenTimer > 60 / exampleResourceRegenRate) {
 				exampleResourceCurrent += 1;
 				exampleResourceRegenTimer = 0;
@@ -90,7 +90,7 @@ namespace ExampleMod.Common.Players
 			}
 		}
 
-		// These methods handle syncing the CombatText that indicates that the player has healed some amount of ExampleResource
+		// These methods handle syncing the CombatText that indicates th在 player has healed some amount of ExampleResource
 		public static void HandleExampleResourceEffectMessage(BinaryReader reader, int whoAmI) {
 			int player = reader.ReadByte();
 			if (Main.netMode == NetmodeID.Server) {

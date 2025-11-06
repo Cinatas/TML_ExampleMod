@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Accessories
 		public static readonly int ExampleKnockback = 100;
 		public static readonly int AdditiveCritDamageBonus = 20;
 
-		// Insert the modifier values into the tooltip localization. More info on this approach can be found on the wiki: https://github.com/tModLoader/tModLoader/wiki/Localization#binding-values-to-localizations
+		// Insert the modifier values in到 tooltip localization. More info on this approach 可以 found 在 wiki: https://github.com/tModLoader/tModLoader/wiki/Localization#binding-values-to-localizations
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AdditiveDamageBonus, MultiplicativeDamageBonus, BaseDamageBonus, FlatDamageBonus, MeleeCritBonus, RangedAttackSpeedBonus, MagicArmorPenetration, ExampleKnockback, AdditiveCritDamageBonus);
 
 		public override void SetDefaults() {
@@ -29,11 +29,11 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			// 获取Damage returns a reference to the specified damage class' damage StatModifier.
+			// 获取Damage returns a reference 到 specified damage class' damage StatModifier.
 			// Since it doesn't return a value, but a reference to it, you can freely modify it with mathematics operators (+, -, *, /, etc.).
-			// StatModifier is a structure that separately holds float additive and multiplicative modifiers, as well as base damage and flat damage.
+			// StatModifier is a structure that separately holds float additive and multiplicative modifiers, 以及 as base damage and flat damage.
 			// 当 StatModifier is applied to a value, its additive modifiers are applied before multiplicative ones.
-			// Base damage is added directly to the weapon's base damage and is affected by damage bonuses, while flat damage is applied after all other calculations.
+			// Base damage is added directly 到 weapon's base damage and is affected by damage bonuses, while flat damage is applied after all other calculations.
 			// 在 this case, we're doing a number of things:
 			// - Adding 25% damage, additively. This is the typical "X% damage increase" that accessories use, use this one.
 			// - Adding 12% damage, multiplicatively. This effect is almost never used in Terraria, typically you want to use the additive multiplier above. It is extremely hard to correctly balance the game with multiplicative bonuses.
@@ -45,22 +45,22 @@ namespace ExampleMod.Content.Items.Accessories
 			player.GetDamage(DamageClass.Generic).Base += BaseDamageBonus;
 			player.GetDamage(DamageClass.Generic).Flat += FlatDamageBonus;
 
-			// 获取Crit, similarly to GetDamage, returns a reference to the specified damage class' crit chance.
-			// 在 this case, we're adding 10% crit chance, but only for the melee DamageClass (as such, only melee weapons will receive this bonus).
+			// 获取Crit, similarly to GetDamage, returns a reference 到 specified damage class' crit chance.
+			// 在 this case, we're adding 10% crit chance, but only 对于 melee DamageClass (as such, only melee weapons will receive this bonus).
 			// NOTE: Once all crit calculations are complete, a weapon or class' total crit chance is typically cast to an int. Plan accordingly.
 			player.GetCritChance(DamageClass.Melee) += MeleeCritBonus;
 
 			// 获取AttackSpeed is functionally identical to GetDamage and GetKnockback; it's for attack speed.
 			// 在 this case, we'll make ranged weapons 15% faster to use overall.
-			// NOTE: Zero or a negative value as the result of these calculations will throw an exception. Plan accordingly.
+			// NOTE: Zero or a negative value as the result 的se calculations will throw an exception. Plan accordingly.
 			player.GetAttackSpeed(DamageClass.Ranged) += RangedAttackSpeedBonus / 100f;
 
-			// 获取ArmorPenetration is functionally identical to GetCritChance, but for the armor penetration stat instead.
+			// 获取ArmorPenetration is functionally identical to GetCritChance, but 对于 armor penetration stat instead.
 			// 在 this case, we'll add 5 armor penetration to magic weapons.
 			// NOTE: Once all armor pen calculations are complete, the final armor pen amount is cast to an int. Plan accordingly.
 			player.GetArmorPenetration(DamageClass.Magic) += MagicArmorPenetration;
 
-			// 获取Knockback is functionally identical to GetDamage, but for the knockback stat instead.
+			// 获取Knockback is functionally identical to GetDamage, but 对于 knockback stat instead.
 			// 在 this case, we're adding 100% knockback additively, but only for our custom example DamageClass (as such, only our example class weapons will receive this bonus).
 			player.GetKnockback<ExampleDamageClass>() += ExampleKnockback / 100f;
 
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Items.Accessories
 	}
 
 	// Some movement effects are not suitable to be modified in ModItem.UpdateAccessory due to how the math is done.
-	// ModPlayer.PostUpdateRunSpeeds is suitable for these modifications.
+	// ModPlayer.PostUpdateRunSpeeds is suitable 对于se modifications.
 	public class ExampleStatBonusAccessoryPlayer : ModPlayer {
 		public bool exampleStatBonusAccessory = false;
 
@@ -86,7 +86,7 @@ namespace ExampleMod.Content.Items.Accessories
 			}
 
 			// following modifications are similar to Shadow Armor set bonus
-			Player.runAcceleration *= 1.75f; // Modifies player run acceleration
+			Player.runAcceleration *= 1.75f; // 修改 player run acceleration
 			Player.maxRunSpeed *= 1.15f;
 			Player.accRunSpeed *= 1.15f;
 			Player.runSlowdown *= 1.75f;

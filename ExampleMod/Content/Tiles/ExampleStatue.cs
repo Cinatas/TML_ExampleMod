@@ -8,7 +8,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// ExampleStatue shows off correctly using wiring to spawn items and NPC.
+	// 示例Statue shows off correctly using wiring to spawn items and NPC.
 	// 参见 StatueWorldGen to see how ExampleStatue is added as an option for naturally spawning statues during worldgen.
 	public class ExampleStatue : ModTile
 	{
@@ -73,7 +73,7 @@ namespace ExampleMod.Content.Tiles
 				// 如果 you want to make an NPC spawning statue, see below.
 				int npcIndex = -1;
 
-				// 30 is the time before it can be used again. NPC.MechSpawn checks nearby for other spawns to prevent too many spawns. 3 in immediate vicinity, 6 nearby, 10 in world.
+				// 30 is the time before it 可以 used again. NPC.MechSpawn checks nearby for other spawns to prevent too many spawns. 3 in immediate vicinity, 6 nearby, 10 in world.
 				int spawnedNpcId = NPCID.Goldfish;
 
 				if (Wiring.CheckMech(x, y, 30) && NPC.MechSpawn(spawnX, spawnY, spawnedNpcId)) {

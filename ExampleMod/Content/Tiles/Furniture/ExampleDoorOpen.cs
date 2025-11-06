@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.Door"));
 
 			// Placement
-			// TileID.OpenDoor TileObjectData has incorrect anchor and StyleMultiplier values, so we will not be copying from it in this case
+			// TileID.OpenDoor TileObjectData has incorrect anchor and StyleMultiplier values, so we will 不 copying from it in this case
 			// TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.OpenDoor, 0));
 			TileObjectData.newTile.Width = 2;
 			TileObjectData.newTile.Height = 3;
@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.newTile.CoordinatePadding = 2;
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 2;
-			TileObjectData.newTile.StyleWrapLimit = 2; // Since the wrap limit is 2, a 2nd style will be below the first on the spritesheet even though this is StyleHorizontal = true
+			TileObjectData.newTile.StyleWrapLimit = 2; // Since the wrap limit is 2, a 2nd style 将 below the first 在 spritesheet even though this is StyleHorizontal = true
 			TileObjectData.newTile.Direction = TileObjectDirection.PlaceRight;
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newAlternate.Origin = new Point16(0, 1);

@@ -16,7 +16,7 @@ namespace ExampleMod.Common.Players
 		// Nearby chest finding
 		public override void PostUpdateMiscEffects() {
 			if (Main.netMode == NetmodeID.Server) {
-				// We don't need to do any recipe stuff on the server
+				// We don't need to do any recipe stuff 在 server
 				return;
 			}
 
@@ -41,7 +41,7 @@ namespace ExampleMod.Common.Players
 					continue;
 				}
 
-				// 获取s the left-top position for the chest
+				// 获取s the left-top position 对于 chest
 				if (tile.TileFrameX % 36 != 0) {
 					pos.X--;
 				}
@@ -53,7 +53,7 @@ namespace ExampleMod.Common.Players
 				int chestIndex = Chest.FindChest(pos.X, pos.Y);
 				if (chestIndex > -1 && !Chest.IsLocked(pos.X, pos.Y)) {
 					Chest chest = Main.chest[chestIndex];
-					// Unopened chests in multiplayer have not initialized the items inside of them, so we check for safety if the first item is not null (assuming that all others won't be null either)
+					// Unopened chests in multiplayer have not initialized the items inside 的m, so we check for safety if the first item is not null (assuming that all others won't be null either)
 					// Ideally, we would want to write custom netcode to request chest contents, see how a mod like Recipe Browser handles this: https://github.com/JavidPack/RecipeBrowser/blob/1.4/RecipeBrowser.cs, look for usage of packets
 					if (chest.item[0] != null) {
 						_chestIndexNearby = chestIndex;
@@ -69,13 +69,13 @@ namespace ExampleMod.Common.Players
 			}
 		}
 
-		// 使用 items in the chest for crafting
+		// 使用 items 在 chest for crafting
 		public override IEnumerable<Item> AddMaterialsForCrafting(out ItemConsumedCallback itemConsumedCallback) {
-			// 确保 there is a chest nearby that is not opened by the player, and wasn't destroyed last tick
+			// 确保 there is a chest nearby 即 not opened by the player, and wasn't destroyed last tick
 			if (_chestIndexNearby is -1 || Player.chest == _chestIndexNearby || Main.chest[_chestIndexNearby] is not Chest chest)
 				return base.AddMaterialsForCrafting(out itemConsumedCallback);
 
-			// onUsedForCrafting invokes when the item is consumed, can be used to send packets in multiplayer mode
+			// onUsedForCrafting invokes when the item is consumed, 可以 used to send packets in multiplayer mode
 			// If there is no need for this, just set it to null
 			itemConsumedCallback = (_, index) => {
 				if (Main.netMode is NetmodeID.MultiplayerClient) {
@@ -84,8 +84,8 @@ namespace ExampleMod.Common.Players
 				}
 			};
 
-			// 返回s the items in the chest to use them for crafting
-			// The returned list should not be a cloned version of items otherwise items will not be consumed
+			// 返回s the items 在 chest to use them for crafting
+			// The returned list should 不 a cloned version of items otherwise items will 不 consumed
 			return chest.item;
 		}
 	}

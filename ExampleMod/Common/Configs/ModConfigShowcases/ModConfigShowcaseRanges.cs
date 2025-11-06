@@ -11,7 +11,7 @@ using Terraria.ModLoader.Config;
 // 通过使用具有定义范围的字段。
 
 // Because this config was designed to show off various UI capabilities,
-// this config have no effect on the mod and provides purely teaching example.
+// this config have no effect 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
 	[BackgroundColor(99, 180, 209)]

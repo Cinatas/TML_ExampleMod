@@ -9,13 +9,13 @@ using Terraria.ModLoader.IO;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This showcases how the CanStack hook can be used in conjunction with custom data
-	// Custom data is also shown in ExampleDataItem, but here we need to use more hooks
+	// This showcases how the CanStack hook 可以 used in conjunction with custom data
+	// 自定义 data is also shown in ExampleDataItem, but here we need to use more hooks
 
-	// This item, when crafted, stores the players name, and only lets other players open it. Bags with the same stored name aren't stackable
+	// This item, when crafted, stores the players name, and only lets other players open it. Bags 与 same stored name aren't stackable
 	public class ExampleCanStackItem : ModItem
 	{
-		// 我们 set this when the item is crafted. In other contexts, this will be an empty string
+		// 我们 set this when the item is crafted. In other contexts, this 将 an empty string
 		public string craftedPlayerName = string.Empty;
 
 		public override void SetDefaults() {
@@ -39,12 +39,12 @@ namespace ExampleMod.Content.Items.Consumables
 		public override bool CanStack(Item source) {
 			// bag can only be stacked with other bags if the names match
 
-			// 我们 have to cast the second item to the class (This is safe to do as the hook is only called on items of the same type)
+			// 我们 have to cast the second item 到 class (This is safe to do as the hook is only called on items 的 same type)
 			var name1 = craftedPlayerName;
 			var name2 = ((ExampleCanStackItem)source.ModItem).craftedPlayerName;
 
 			// let items which have been spawned in and not assigned to a player, to stack with other bags the the current player owns
-			// This lets you craft multiple items into the mouse-held stack
+			// This lets you craft multiple items in到 mouse-held stack
 			if (name1 == string.Empty) {
 				name1 = Main.LocalPlayer.name;
 			}
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Items.Consumables
 			itemLoot.Add(hardmodeCondition);
 		}
 
-		// following 4 hooks are needed if your item data should be persistent between saves, and work in multiplayer
+		// following 4 hooks are needed if your item data 应该 persistent between saves, and work in multiplayer
 		public override void SaveData(TagCompound tag) {
 			tag.Add("craftedPlayerName", craftedPlayerName);
 		}
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
 			if (craftedPlayerName != string.Empty) {
-				// 在这里 we make a distinction to disclose that the bag can't be opened by the player who crafted it
+				// 在这里 we make a distinction to disclose th在 bag can't be opened by the player who crafted it
 				if (Main.LocalPlayer.name == craftedPlayerName) {
 					tooltips.Add(new TooltipLine(Mod, "CraftedPlayerNameCannotOpen", $"You crafted this bag and cannot open it!"));
 				}

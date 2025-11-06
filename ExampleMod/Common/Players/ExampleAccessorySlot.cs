@@ -19,14 +19,14 @@ namespace ExampleMod.Common.Players
 		public override bool DrawVanitySlot => !DyeItem.IsAir;
 
 		//     We will use our 'custom' textures
-		// Background Textures -> In general, you can use most of the existing vanilla ones to get different colors
+		// Background Textures -> In general, you can use most 的 existing vanilla ones to get different colors
 		public override string VanityBackgroundTexture => "Terraria/Images/Inventory_Back14"; // yellow
 		public override string FunctionalBackgroundTexture => "Terraria/Images/Inventory_Back7"; // pale blue
 
 		// Icon textures. Nominal image size is 32x32. Piggy bank is 16x24 but it still works as it's drawn centered.
 		public override string VanityTexture => "Terraria/Images/Item_" + ItemID.PiggyBank;
 
-		// We will keep it hidden most of the time so that it isn't an intrusive example
+		// We will keep it hidden most 的 time so that it isn't an intrusive example
 		public override bool IsHidden() {
 			return IsEmpty; // 仅 show when it contains an item, items can end up in functional slots via quick swap (right click accessory)
 		}
@@ -61,12 +61,12 @@ namespace ExampleMod.Common.Players
 			return false; // We set to false to just not display if not Enabled. NOTE: this does not affect behavior when mod is unloaded!
 		}
 
-		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
+		// Icon textures. Nominal image size is 32x32. 将 centered 在 slot.
 		public override string FunctionalTexture => "Terraria/Images/Item_" + ItemID.CreativeWings;
 
-		// Can be used to modify stuff while the Mouse is hovering over the slot.
+		// 可以 used to modify stuff while the Mouse is hovering over the slot.
 		public override void OnMouseHover(AccessorySlotType context) {
-			// We will modify the hover text while an item is not in the slot, so that it says "Wings".
+			// We will modify the hover text while an item is not 在 slot, so that it says "Wings".
 			switch (context) {
 				case AccessorySlotType.FunctionalSlot:
 				case AccessorySlotType.VanitySlot:

@@ -25,14 +25,14 @@ namespace ExampleMod.Content.Tiles
 		};
 
 		public override void SetStaticDefaults() {
-			// Makes Example Tree grow on ExampleBlock
+			// 使 Example Tree grow on ExampleBlock
 			GrowsOnTileId = new int[1] { ModContent.TileType<ExampleBlock>() };
 			texture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExampleTree");
 			branchesTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExampleTree_Branches");
 			topsTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExampleTree_Tops");
 		}
 
-		// 这是 the primary texture for the trunk. Branches and foliage use different settings.
+		// 这是 the primary texture 对于 trunk. Branches and foliage use different settings.
 		public override Asset<Texture2D> GetTexture() {
 			return texture;
 		}

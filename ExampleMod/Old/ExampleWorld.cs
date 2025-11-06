@@ -28,7 +28,7 @@ namespace ExampleMod
 		public const float VolcanoAngleSpread = 170;
 		public const int DefaultVolcanoTremorTime = 200; // ~ 3 seconds
 		public const int DefaultVolcanoCountdown = 300; // 5 seconds
-		public const int DefaultVolcanoCooldown = 10000; // At least 3 min of daytime between volcanoes
+		public const int DefaultVolcanoCooldown = 10000; // 至少 3 min of daytime between volcanoes
 		public const int VolcanoChance = 10000; // Chance each tick of Volcano if cooldown exhausted.
 		public int VolcanoCountdown;
 		public int VolcanoCooldown = DefaultVolcanoCooldown;
@@ -117,7 +117,7 @@ namespace ExampleMod
 			progress.Message = "Example Mod Traps";
 
 			// Computers are fast, so WorldGen code sometimes looks stupid.
-			// Here, we want to place a bunch of tiles in the world, so we just repeat until success. It might be useful to keep track of attempts and check for attempts > maxattempts so you don't have infinite loops. 
+			// Here, we want to place a bunch of tiles 在 world, so we just repeat until success. It might be useful to keep track of attempts and check for attempts > maxattempts so you don't have infinite loops. 
 			// The WorldGen.PlaceTile method returns a bool, but it is useless. Instead, we check the tile after calling it and if it is the desired tile, we know we succeeded.
 			for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++) {
 				bool placeSuccessful = false;
@@ -323,12 +323,12 @@ namespace ExampleMod
 			// Here we count various tiles towards ZoneExample
 			exampleTiles = tileCounts[TileType<ExampleBlock>()] + tileCounts[TileType<ExampleSand>()];
 
-			// We can also add to vanilla biome counts if appropriate. Here we are adding to the ZoneDesert since we have a sand tile in the mod.
+			// We can also add to vanilla biome counts if appropriate. Here we are adding 到 ZoneDesert since we have a sand tile 在 mod.
 			SceneMetrics.DesertTileThreshold += tileCounts[TileType<ExampleSand>()];
 		}
 
 		public override void PreUpdate() {
-			// 更新 everything about spawning the traveling merchant from the methods we have in the Traveling Merchant's class
+			// 更新 everything about spawning the traveling merchant 从 methods we have 在 Traveling Merchant's class
 			ExampleTravelingMerchant.UpdateTravelingMerchant();
 		}
 

@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Tiles
 	/// extension of <seealso cref="ModTile"/> that has additional functionality for Pylon specific tiles.
 	/// <br>
 	/// If you are going to make multiple pylons that all act the same (like in Vanilla), it is recommended you make a base class
-	/// with override functionality in order to prevent writing boilerplate. (For example, making a "CrystalTexture" property that you can
+	/// with override functionality in order to prevent writing boilerplate. (例如, making a "CrystalTexture" property that you can
 	/// override in order to streamline that process.)
 	/// </br>
 	/// </summary>
@@ -61,19 +61,19 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.PreventsSandfall[Type] = true;
 			TileID.Sets.AvoidedByMeteorLanding[Type] = true;
 
-			// 添加s functionality for proximity of pylons; if this is true, then being near this tile will count as being near a pylon for the teleportation process.
+			// 添加s functionality for proximity of pylons; if this is true, then being near this tile will count as being near a pylon 对于 teleportation process.
 			AddToArray(ref TileID.Sets.CountsAsPylon);
 
-			LocalizedText pylonName = CreateMapEntryName(); //Name is in the localization file
+			LocalizedText pylonName = CreateMapEntryName(); //Name is 在 localization file
 			AddMapEntry(Color.White, pylonName);
 		}
 
 		public override NPCShop.Entry GetNPCShopEntry() {
-			// 在 this method we can customize the shop entry for the pylon item.
-			// default method, base.GetNPCShopEntry(), generates a shop entry for the pylon item with the typical pylon conditions: Condition.HappyEnoughToSellPylons, Condition.AnotherTownNPCNearby, and Condition.NotInEvilBiome
+			// 在 this method we can customize the shop entry 对于 pylon item.
+			// 默认 method, base.GetNPCShopEntry(), generates a shop entry 对于 pylon item 与 typical pylon conditions: Condition.HappyEnoughToSellPylons, Condition.AnotherTownNPCNearby, and Condition.NotInEvilBiome
 			NPCShop.Entry shopEntry = base.GetNPCShopEntry();
 
-			// 我们 will take that shop entry and add an additional condition to check for ExampleBiome, as this is typical for biome pylons
+			// 我们 will take that shop entry and add an additional condition to check 例如Biome, as this is typical for biome pylons
 			// This does not affect the teleport conditions, only the sale conditions
 			shopEntry.AddCondition(ExampleConditions.InExampleBiome);
 
@@ -82,7 +82,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void MouseOver(int i, int j) {
-			// 显示 a little pylon icon on the mouse indicating we are hovering over it.
+			// 显示 a little pylon icon 在 mouse indicating we are hovering over it.
 			Main.LocalPlayer.cursorItemIconEnabled = true;
 			Main.LocalPlayer.cursorItemIconID = ModContent.ItemType<ExamplePylonItem>();
 		}
@@ -101,14 +101,14 @@ namespace ExampleMod.Content.Tiles
 		public override bool ValidTeleportCheck_BiomeRequirements(TeleportPylonInfo pylonInfo, SceneMetrics sceneData) {
 			// Right before this hook is called, the sceneData parameter exports its information based on wherever the destination pylon is,
 			// and by extension, it will call ALL ModSystems that use the TileCountsAvailable method. This means, that if you determine biomes
-			// based off of tile count, when this hook is called, you can simply check the tile threshold, like we do here. In the context of ExampleMod,
-			// something is considered within the Example Surface/Underground biome if there are 40 or more example blocks at that location.
+			// based off of tile count, when this hook is called, you can simply check the tile threshold, like we do here. 在 context of ExampleMod,
+			// something is considered with在 Example Surface/Underground biome if there are 40 或更多 example blocks at that location.
 
 			return ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount >= 40;
 		}
 
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-			// Pylons in vanilla light up, which is just a simple functionality we add using ModTile's ModifyLight.
+			// Pylons in vanilla light up, 即 just a simple functionality we add using ModTile's ModifyLight.
 			// Let's just add a simple white light for our pylon:
 			r = g = b = 0.75f;
 		}

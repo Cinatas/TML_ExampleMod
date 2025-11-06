@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Buffs
 	{
 		// 使用 the vanilla DisplayName ("Minecart")
 		//public override LocalizedText DisplayName => Language.GetText("BuffName.MinecartLeft");
-		// But for the sake of example, we want to reuse the item name
+		// But 对于 sake of example, we want to reuse the item name
 		public override LocalizedText DisplayName => ModContent.GetInstance<ExampleMinecart>().DisplayName;
 
 		// 使用 the vanilla Description

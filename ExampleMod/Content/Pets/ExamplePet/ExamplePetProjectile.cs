@@ -10,12 +10,12 @@ namespace ExampleMod.Content.Pets.ExamplePet
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
-			// This code is needed to customize the vanity pet display in the player select screen. Quick explanation:
+			// This code is needed to customize the vanity pet display 在 player select screen. Quick explanation:
 			// * It uses fluent API syntax, just like Recipe
-			// * You start with ProjectileID.Sets.SimpleLoop, specifying the start and end frames as well as the speed, and optionally if it should animate from the end after reaching the end, effectively "bouncing"
+			// * You start with ProjectileID.Sets.SimpleLoop, specifying the start and end frames 以及 as the speed, and optionally if it should animate 从 end after reaching the end, effectively "bouncing"
 			// * To stop the animation if the player is not highlighted/is standing, as done by most grounded pets, add a .WhenNotSelected(0, 0) (you can customize it just like SimpleLoop)
 			// * To set offset and direction, use .WithOffset(x, y) and .WithSpriteDirection(-1)
-			// * To further customize the behavior and animation of the pet (as its AI does not run), you have access to a few vanilla presets in DelegateMethods.CharacterPreview to use via .WithCode(). You can also make your own, showcased in MinionBossPetProjectile
+			// * To further customize the behavior and animation 的 pet (as its AI does not run), you have access to a few vanilla presets in DelegateMethods.CharacterPreview to use via .WithCode(). You can also make your own, showcased in MinionBossPetProjectile
 			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
 				.WithOffset(-10, -20f)
 				.WithSpriteDirection(-1)
@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Pets.ExamplePet
 		}
 
 		public override void SetDefaults() {
-			Projectile.CloneDefaults(ProjectileID.ZephyrFish); // Copy the stats of the Zephyr Fish
+			Projectile.CloneDefaults(ProjectileID.ZephyrFish); // Copy the stats 的 Zephyr Fish
 
 			AIType = ProjectileID.ZephyrFish; // Mimic as the Zephyr Fish during AI.
 		}

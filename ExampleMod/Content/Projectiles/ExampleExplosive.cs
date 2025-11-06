@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// This set handles some things for us already:
 			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
+			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
 
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Projectiles
 			// 5 second fuse.
 			Projectile.timeLeft = 300;
 
-			// These help the projectile hitbox be centered on the projectile sprite.
+			// These help the projectile hitbox be centered 在 projectile sprite.
 			DrawOffsetX = -2;
 			DrawOriginOffsetY = -5;
 		}
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// projectile is very bouncy, but the spawned children projectiles shouldn't bounce at all.
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-			// Die immediately if IsChild is true (We set this to true for the 5 extra explosives we spawn in OnKill)
+			// Die immediately if IsChild is true (We set this to true 对于 5 extra explosives we spawn in OnKill)
 			if (IsChild) {
 				// These two are so the bomb will damage the player correctly.
 				Projectile.timeLeft = 0;
@@ -82,12 +82,12 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void AI() {
-			// projectile is in the midst of exploding during the last 3 updates.
+			// projectile is 在 midst of exploding during the last 3 updates.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow(); // 获取 ready to explode.
 			}
 			else {
-				// Smoke and fuse dust spawn. The position is calculated to spawn the dust directly on the fuse.
+				// Smoke and fuse dust spawn. The position is calculated to spawn the dust directly 在 fuse.
 				if (Main.rand.NextBool()) {
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default, 1f);
 					dust.scale = 0.1f + Main.rand.Next(5) * 0.1f;
@@ -121,7 +121,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion will be in the wrong place if the bomb explodes on slopes.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the bomb explodes on slopes.
 			Projectile.alpha = 255; // 设置 to transparent. This projectile technically lives as transparent for about 3 frames
 
 			// 更改 the hitbox size, centered about the original projectile center. This makes the projectile damage enemies during the explosion.
@@ -132,15 +132,15 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnKill(int timeLeft) {
-			// 如果 we are the original projectile running on the owner, spawn the 5 child projectiles.
+			// 如果 we are the original projectile running 在 owner, spawn the 5 child projectiles.
 			if (Projectile.owner == Main.myPlayer && !IsChild) {
 				for (int i = 0; i < 5; i++) {
 					// Random upward vector.
 					Vector2 launchVelocity = new Vector2(Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-10, -8));
-					// Importantly, IsChild is set to true here. This is checked in OnTileCollide to prevent bouncing and here in OnKill to prevent an infinite chain of splitting projectiles.
+					// 重要ly, IsChild is set to true here. This is checked in OnTileCollide to prevent bouncing and here in OnKill to prevent an infinite chain of splitting projectiles.
 					Projectile child = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, launchVelocity, Projectile.type, Projectile.damage, Projectile.knockBack, Main.myPlayer, 0, 1);
 					(child.ModProjectile as ExampleExplosive).IsChild = true;
-					// Usually editing a projectile after NewProjectile would require sending MessageID.SyncProjectile, but IsChild only affects logic running for the owner so it is not necessary here.
+					// Usually editing a projectile after NewProjectile would require sending MessageID.SyncProjectile, but IsChild only affects logic running 对于 owner so it is not necessary here.
 				}
 			}
 
@@ -181,10 +181,10 @@ namespace ExampleMod.Content.Projectiles
 				gore.velocity.X -= 1.5f;
 				gore.velocity.Y -= 1.5f;
 			}
-			// reset size to normal width and height.
+			// 重置 size to normal width and height.
 			Projectile.Resize(DefaultWidthHeight, DefaultWidthHeight);
 
-			// 最后, actually explode the tiles and walls. Run this code only for the owner
+			// 最后, actually explode the tiles and walls. Run this code only 对于 owner
 			if (Projectile.owner == Main.myPlayer) {
 				int explosionRadius = 7; // Bomb: 4, Dynamite: 7, Explosives & TNT Barrel: 10
 				int minTileX = (int)(Projectile.Center.X / 16f - explosionRadius);
@@ -192,7 +192,7 @@ namespace ExampleMod.Content.Projectiles
 				int minTileY = (int)(Projectile.Center.Y / 16f - explosionRadius);
 				int maxTileY = (int)(Projectile.Center.Y / 16f + explosionRadius);
 
-				// 确保 that all tile coordinates are within the world bounds
+				// 确保 that all tile coordinates are with在 world bounds
 				Utils.ClampWithinWorld(ref minTileX, ref minTileY, ref maxTileX, ref maxTileY);
 
 				// These 2 methods handle actually mining the tiles and walls while honoring tile explosion conditions

@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 			// This set handles some things for us already:
 			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
+			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 
 			// This set makes it so the rocket doesn't deal damage to players. Only used for vanilla rockets.
@@ -27,11 +27,11 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.friendly = true;
-			Projectile.penetrate = -1; // Infinite penetration so that the blast can hit all enemies within its radius.
+			Projectile.penetrate = -1; // Infinite penetration so th在 blast can hit all enemies within its radius.
 			Projectile.DamageType = DamageClass.Ranged;
 
-			// Rockets use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here with the correct AIType.
-			// But, using our own AI allows us to customize things like the dusts that the rocket creates.
+			// Rockets use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here 与 correct AIType.
+			// But, using our own AI allows us to customize things like the dusts th在 rocket creates.
 			// Projectile.aiStyle = ProjAIStyleID.Explosive;
 			// AIType = ProjectileID.RocketI;
 		}
@@ -51,35 +51,35 @@ namespace ExampleMod.Content.Projectiles.Rockets
 							posOffsetY = Projectile.velocity.Y * 0.5f;
 						}
 
-						// 生成 fire dusts at the back of the rocket.
+						// 生成 fire dusts 在 back 的 rocket.
 						Dust fireDust = Dust.NewDustDirect(new Vector2(Projectile.position.X + 3f + posOffsetX, Projectile.position.Y + 3f + posOffsetY) - Projectile.velocity * 0.5f,
 							Projectile.width - 8, Projectile.height - 8, DustID.Torch, 0f, 0f, 100);
 						fireDust.scale *= 2f + Main.rand.Next(10) * 0.1f;
 						fireDust.velocity *= 0.2f;
 						fireDust.noGravity = true;
 
-						// 使用d by the liquid rockets which leave trails of their liquid instead of fire.
+						// 使用d by the liquid rockets which leave trails 的ir liquid instead of fire.
 						// if (fireDust.type == Dust.dustWater()) {
 						//	fireDust.scale *= 0.65f;
 						//	fireDust.velocity += Projectile.velocity * 0.1f;
 						// }
 
-						// 生成 smoke dusts at the back of the rocket.
+						// 生成 smoke dusts 在 back 的 rocket.
 						Dust smokeDust = Dust.NewDustDirect(new Vector2(Projectile.position.X + 3f + posOffsetX, Projectile.position.Y + 3f + posOffsetY) - Projectile.velocity * 0.5f, Projectile.width - 8, Projectile.height - 8, DustID.Smoke, 0f, 0f, 100, default, 0.5f);
 						smokeDust.fadeIn = 1f + Main.rand.Next(5) * 0.1f;
 						smokeDust.velocity *= 0.05f;
 					}
 				}
 
-				// Increase the speed of the rocket if it is moving less than 1 block per second.
-				// It is not recommended to increase the number past 16f to increase the speed of the rocket. It could start no clipping through blocks.
+				// Increase the speed 的 rocket if it is moving less than 1 block per second.
+				// It is not recommended to increase the number past 16f to increase the speed 的 rocket. It could start no clipping through blocks.
 				// 代替, increase extraUpdates in SetDefaults() to make the rocket move faster.
 				if (Math.Abs(Projectile.velocity.X) <= 15f && Math.Abs(Projectile.velocity.Y) <= 15f) {
 					Projectile.velocity *= 1.1f;
 				}
 			}
 
-			// Rotate the rocket in the direction that it is moving.
+			// Rotate the rocket 在 direction that it is moving.
 			if (Projectile.velocity != Vector2.Zero) {
 				Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + MathHelper.PiOver2;
 			}
@@ -93,27 +93,27 @@ namespace ExampleMod.Content.Projectiles.Rockets
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion will be in the wrong place if the rocket explodes on slopes.
-			Projectile.alpha = 255; // Make the rocket invisible.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the rocket explodes on slopes.
+			Projectile.alpha = 255; // 使 the rocket invisible.
 
-			// Resize the hitbox of the projectile for the blast "radius".
+			// Resize the hitbox 的 projectile 对于 blast "radius".
 			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
-			// 设置 the knockback of the blast.
+			// 设置 the knockback 的 blast.
 			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
 			Projectile.knockBack = 8f;
 		}
 
 		public override void OnKill(int timeLeft) {
-			// Vanilla code takes care ensuring that in For the Worthy or Get Fixed Boi worlds the blast can damage other players because
+			// Vanilla code takes care ensuring that in 对于 Worthy or Get Fixed Boi worlds the blast can damage other players because
 			// this projectile is ProjectileID.Sets.Explosive[Type] = true;. It also takes care of hurting the owner. The Projectile.PrepareBombToBlow
-			// and Projectile.HurtPlayer methods can be used directly if needed for a projectile not using ProjectileID.Sets.Explosive
+			// and Projectile.HurtPlayer methods 可以 used directly 如果需要 for a projectile not using ProjectileID.Sets.Explosive
 
 			// Play an exploding sound.
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-			// Resize the projectile again so the explosion dust and gore spawn from the middle.
+			// Resize the projectile again so the explosion dust and gore spawn 从 middle.
 			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
 			Projectile.Resize(22, 22);
 
@@ -167,7 +167,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				// 确保 the tiles are inside the world.
 			// Utils.ClampWithinWorld(ref minTileX, ref maxTileX, ref minTileY, ref maxTileY);
 
-			// 检查 to see if the walls should be destroyed, too.
+			// 检查 to see if the walls 应该 destroyed, too.
 			//	bool wallSplode = Projectile.ShouldWallExplode(Projectile.position, blastRadius, minTileX, maxTileX, minTileY, maxTileY);
 			// Do the damage.
 			//	Projectile.ExplodeTiles(Projectile.position, blastRadius, minTileX, maxTileX, minTileY, maxTileY, wallSplode);

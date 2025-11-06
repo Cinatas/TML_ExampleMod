@@ -9,10 +9,10 @@ namespace ExampleMod.Content.Tiles
 {
 	// 此文件 contains 3 classes and shows off using inheritance to share code between classes.
 	// Terraria has many tiles that are purely decorative and do not drop items when broken.
-	// These tiles go by many names, such as ambient tiles, background tiles, piles, detritus, and rubble. We will use the term rubble because of the recently added Rubblemaker item. 
+	// These tiles go by many names, 例如 ambient tiles, background tiles, piles, detritus, and rubble. We will use the term rubble because 的 recently added Rubblemaker item. 
 	// Rubblemaker (https://terraria.wiki.gg/wiki/Rubblemaker) is a special item that can place these decorative tiles. The tile placed by the Rubblemaker looks the same as the original rubble tile but behaves slightly differently.
 
-	// Example3x2RubbleBase is an abstract class, it is not an actual tile, but the other 2 classes in this file will reuse the Texture and SetStaticDefaults code shown here because they inherit from it. 
+	// 示例3x2RubbleBase is an abstract class, it is not an actual tile, but the other 2 classes in this file will reuse the Texture and SetStaticDefaults code shown here because they inherit from it. 
 	public abstract class Example3x2RubbleBase : ModTile
 	{
 		// 我们 want both tiles to use the same texture
@@ -33,7 +33,7 @@ namespace ExampleMod.Content.Tiles
 		}
 	}
 
-	// 这是 the fake tile that will be placed by the Rubblemaker.
+	// 这是 the fake tile that 将 placed by the Rubblemaker.
 	public class Example3x2RubbleFake : Example3x2RubbleBase
 	{
 		public override void SetStaticDefaults() {
@@ -48,13 +48,13 @@ namespace ExampleMod.Content.Tiles
 		}
 	}
 
-	// 这是 the natural tile, this version is placed during world generation in the RubbleWorldGen class.
+	// 这是 the natural tile, this version is placed during world generation 在 RubbleWorldGen class.
 	public class Example3x2RubbleNatural : Example3x2RubbleBase
 	{
 		public override void SetStaticDefaults() {
 			base.SetStaticDefaults();
 
-			// By default, the TileObjectData.Style3x2 tile we copied in Example3x2RubbleBase has LavaDeath = true. Natural rubble tiles don't have this behavior, so we want to be immune to lava.
+			// 默认情况下, the TileObjectData.Style3x2 tile we copied in Example3x2RubbleBase has LavaDeath = true. Natural rubble tiles don't have this behavior, so we want to be immune to lava.
 			TileObjectData.GetTileData(Type, 0).LavaDeath = false;
 		}
 

@@ -18,7 +18,7 @@ namespace ExampleMod.Common.Players
 			if (KeybindSystem.RandomBuffKeybind.JustPressed) {
 				int buff = Main.rand.Next(BuffID.Count);
 				Player.AddBuff(buff, 600);
-				Main.NewText($"ExampleMod's ModKeybind was just pressed. The {Lang.GetBuffName(buff)} buff was given to the player.");
+				Main.NewText($"ExampleMod's ModKeybind was just pressed. The {Lang.GetBuffName(buff)} buff was given 到 player.");
 			}
 
 			// 这些示例展示了按键绑定的其他潜在行为，例如双击和按住。
@@ -34,14 +34,14 @@ namespace ExampleMod.Common.Players
 				LearningExampleKeybindHeldTimer = 0;
 			}
 
-			// We can use JustPressed and a timer to implement a double tap behavior as well.
+			// We can use JustPressed and a timer to implement a double tap behavior 以及.
 			LearningExampleKeybindDoubleTapTimer = Math.Max(0, LearningExampleKeybindDoubleTapTimer - 1);
 			if (KeybindSystem.LearningExampleKeybind.JustPressed) {
 				if (LearningExampleKeybindDoubleTapTimer > 0) {
 					Main.NewText("LearningExampleKeybind double tapped within a quarter of a a second");
 				}
 				else {
-					// On 1st press, set timer for 15, if a 2nd press happens before it reaches 0, it will be a double tap.
+					// On 1st press, set timer for 15, if a 2nd press happens before it reaches 0, it 将 a double tap.
 					LearningExampleKeybindDoubleTapTimer = 15;
 				}
 			}

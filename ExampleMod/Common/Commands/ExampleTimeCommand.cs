@@ -28,7 +28,7 @@ namespace ExampleMod.Common.Commands
 			const double cycleLength = Main.dayLength + Main.nightLength;
 			// 检查输入参数
 			if (args.Length == 0) {
-				throw new UsageException("At least one argument was expected.");
+				throw new UsageException("至少 one argument was expected.");
 			}
 			if (!int.TryParse(args[0], out int extraTime)) {
 				throw new UsageException(args[0] + " is not a correct integer value.");

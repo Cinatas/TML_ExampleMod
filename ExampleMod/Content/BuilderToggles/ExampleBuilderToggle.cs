@@ -9,8 +9,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.BuilderToggles
 {
-	// examples in this file don't actually affect anything, they just show typical approaches for the BuilderToggle half of the effect.
-	// 一个 full example would have code doing something, such as drawing an overlay, after checking ModContent.GetInstance<YourBuilderToggle>().Active() and ModContent.GetInstance<YourBuilderToggle>().CurrentState.
+	// 示例s in this file don't actually affect anything, they just show typical approaches 对于 BuilderToggle half 的 effect.
+	// 一个 full example would have code doing something, 例如 drawing an overlay, after checking ModContent.GetInstance<YourBuilderToggle>().Active() and ModContent.GetInstance<YourBuilderToggle>().CurrentState.
 	// That code is highly dependent on what you want to accomplish.
 
 	public class ExampleBuilderToggle : BuilderToggle

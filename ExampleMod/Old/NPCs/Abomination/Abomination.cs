@@ -272,7 +272,7 @@ namespace ExampleMod.NPCs.Abomination
 			return false;
 		}
 
-		// We use this method to inflict a debuff on a player on contact. OnFire is inflicted 100% of the time in expert, and 50% of the time on non-expert mode.
+		// We use this method to inflict a debuff on a player on contact. OnFire is inflicted 100% 的 time in expert, and 50% 的 time on non-expert mode.
 		public override void OnHitPlayer(Player player, int damage, bool crit) {
 			if (Main.expertMode || Main.rand.NextBool()) {
 				player.AddBuff(BuffID.OnFire, 600, true);

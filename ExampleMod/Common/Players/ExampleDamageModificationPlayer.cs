@@ -17,11 +17,11 @@ namespace ExampleMod.Common.Players
 		public float AdditiveCritDamageBonus;
 
 		// 这 3 个字段与示例闪避相关。示例闪避是根据神圣套装奖励的闪避能力建模的。
-		// exampleDodge 指示玩家是否主动具有闪避下一次攻击的能力。这由 ExampleDodgeBuff 设置，在此示例中由 HitModifiersShowcase 武器应用。仅当 exampleDodgeCooldown 为 0 时才应用增益，如果闪避攻击或玩家不再持有 HitModifiersShowcase，则会自动清除。
+		// 示例Dodge 指示玩家是否主动具有闪避下一次攻击的能力。这由 ExampleDodgeBuff 设置，在此示例中由 HitModifiersShowcase 武器应用。仅当 exampleDodgeCooldown 为 0 时才应用增益，如果闪避攻击或玩家不再持有 HitModifiersShowcase，则会自动清除。
 		public bool exampleDodge; // 待办事项： Example of custom player render
 		// 用于在消耗示例闪避和下次可以获得闪避增益之间添加延迟。
 		public int exampleDodgeCooldown;
-		// Controls the intensity of the visual effect of the dodge.
+		// Controls the intensity 的 visual effect 的 dodge.
 		public int exampleDodgeVisualCounter;
 
 		// If this player has an accessory which gives this effect
@@ -32,7 +32,7 @@ namespace ExampleMod.Common.Players
 		public bool exampleDefenseDebuff;
 
 		public override void PreUpdate() {
-			// Timers and cooldowns should be adjusted in PreUpdate
+			// Timers and cooldowns 应该 adjusted in PreUpdate
 			if (exampleDodgeCooldown > 0) {
 				exampleDodgeCooldown--;
 			}
@@ -56,18 +56,18 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override void PostUpdateEquips() {
-			// If the conditions for the player having the buff are no longer true, remove the buff.
+			// If the conditions 对于 player having the buff are 不再 true, remove the buff.
 			// This could could technically go in ExampleDodgeBuff.Update, but typically these effects are given by armor or accessories, so showing this example here is more useful.
 			if (exampleDodge && Player.HeldItem.type != ModContent.ItemType<HitModifiersShowcase>()) {
 				Player.ClearBuff(ModContent.BuffType<ExampleDodgeBuff>());
 			}
 
-			// exampleDodgeVisualCounter should be updated here, not in DrawEffects, to work properly
+			// 示例DodgeVisualCounter 应该 updated here, not in DrawEffects, to work properly
 			exampleDodgeVisualCounter = Math.Clamp(exampleDodgeVisualCounter + (exampleDodge ? 1 : -1), 0, 30);
 		}
 
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright) {
-			// exampleDodgeVisualCounter helps fade the color effect in and out.
+			// 示例DodgeVisualCounter helps fade the color effect in and out.
 			if (exampleDodgeVisualCounter > 0) {
 				g = Math.Max(0, g - exampleDodgeVisualCounter * 0.03f);
 			}
@@ -88,7 +88,7 @@ namespace ExampleMod.Common.Players
 			return false;
 		}
 
-		// ExampleDodgeEffects() will be called from ConsumableDodge and HandleExampleDodgeMessage to sync the effect.
+		// 示例DodgeEffects() 将 called from ConsumableDodge and HandleExampleDodgeMessage to sync the effect.
 		public void ExampleDodgeEffects() {
 			Player.SetImmuneTimeForAllTypes(Player.longInvince ? 120 : 80);
 
@@ -100,14 +100,14 @@ namespace ExampleMod.Common.Players
 			}
 			SoundEngine.PlaySound(SoundID.Shatter with { Pitch = 0.5f });
 
-			// The visual and sound effects happen on all clients, but the code below only runs for the dodging player 
+			// The visual and sound effects happen on all clients, but the code below only runs 对于 dodging player 
 			if (Player.whoAmI != Main.myPlayer) {
 				return;
 			}
 
-			// Clearing the buff and assigning the cooldown time
+			// 清除ing the buff and assigning the cooldown time
 			Player.ClearBuff(ModContent.BuffType<ExampleDodgeBuff>());
-			exampleDodgeCooldown = 180; // 3 second cooldown before the buff can be given again.
+			exampleDodgeCooldown = 180; // 3 second cooldown before the buff 可以 given again.
 
 			if (Main.netMode != NetmodeID.SinglePlayer) {
 				SendExampleDodgeMessage(Player.whoAmI);
@@ -144,12 +144,12 @@ namespace ExampleMod.Common.Players
 
 		public override void OnHurt(Player.HurtInfo info) {
 			// On Hurt is used in this example to act upon another player being hurt.
-			// If the player who was hurt was defended, check if the local player should take the remaining damage for them
+			// If the player who was hurt was defended, check if the local player should take the remaining damage 对于m
 			Player localPlayer = Main.LocalPlayer;
 			if (defendedByAbsorbTeamDamageEffect && Player != localPlayer && IsClosestShieldWearerInRange(localPlayer, Player.Center, Player.team)) {
-				// The intention of AbsorbTeamDamageAccessory is to transfer 30% of damage taken by teammates to the wearer.
+				// The intention of AbsorbTeamDamageAccessory is to transfer 30% of damage taken by teammates 到 wearer.
 				// In ModifiedHurt, we reduce the damage by 30%. The resulting reduced damage is passed to OnHurt, where the player wearing AbsorbTeamDamageAccessory hurts themselves.
-				// Since OnHurt is provided with the damage already reduced by 30%, we need to reverse the math to determine how much the damage was originally reduced by
+				// Since OnHurt is provided 与 damage already reduced by 30%, we need to reverse the math to determine how much the damage was originally reduced by
 				// Working through the math, the amount of damage that was reduced is equal to: damage * (percent / (1 - percent))
 				float percent = AbsorbTeamDamageAccessory.DamageAbsorptionMultiplier;
 				int damage = (int)(info.Damage * (percent / (1 - percent)));
@@ -173,7 +173,7 @@ namespace ExampleMod.Common.Players
 		private static bool IsAbleToAbsorbDamageForTeammate(Player player, int team) {
 			return player.active
 				&& !player.dead
-				&& !player.immune // This check can be removed, allowing players to take hits for team-mates in quick succession. Removing it can also help with de-syncs where the player getting hurt thinks there is no-one to tank the damage, but by the time the hit arrives on the player with the shield, they take extra damage
+				&& !player.immune // This check 可以 removed, allowing players to take hits for team-mates in quick succession. Removing it can also help with de-syncs where the player getting hurt thinks there is no-one to tank the damage, but by the time the hit arrives 在 player 与 shield, they take extra damage
 				&& player.GetModPlayer<ExampleDamageModificationPlayer>().hasAbsorbTeamDamageEffect
 				&& player.team == team
 				&& player.statLife > player.statLifeMax2 * AbsorbTeamDamageAccessory.DamageAbsorptionAbilityLifeThreshold;

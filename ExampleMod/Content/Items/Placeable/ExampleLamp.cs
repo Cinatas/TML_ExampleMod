@@ -6,7 +6,7 @@ namespace ExampleMod.Content.Items.Placeable
 {
 	internal class ExampleLamp : ModItem
 	{
-		// 此示例 uses LocalizedText.Empty to prevent any translation key from being generated. This can be used for items that definitely won't have a tooltip, keeping the localization file cleaner.
+		// 此示例 uses LocalizedText.Empty to prevent any translation key from being generated. This 可以 used for items that definitely won't have a tooltip, keeping the localization file cleaner.
 		public override LocalizedText Tooltip => LocalizedText.Empty;
 
 		public override void SetDefaults() {

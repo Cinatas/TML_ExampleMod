@@ -9,12 +9,12 @@ namespace ExampleMod.Common.Players
 			// 总运气在原版中有一个软上限为 1。你技术上可以超过该值，但使用原版运气计算没有好处。
 			// 但是，模组作者可以按照他们想要的方式使用运气值，因此超过 1 可能是有益的。不过，仍然建议使用十进制值。
 			if (Main.hardMode) { // If it is currently hardmode...
-				luck += 0.5f; // ...add 0.5 luck to the total luck count!
+				luck += 0.5f; // ...add 0.5 luck 到 total luck count!
 			}
 			// 当然，你也可以使运气为负，在这种情况下，软上限为 -1。
 
-			// As the above code runs every time luck is calculated, and `hardMode` is accessible on both client and server, we don't need to worry about multiplayer syncing.
-			// If you have some code which relies on client side calculations, you will need to sync the variables to calculate luck correctly on the server.
+			// As the above code runs 每次 luck is calculated, and `hardMode` is accessible on both client and server, we don't need to worry about multiplayer syncing.
+			// If you have some code which relies on client side calculations, you will need to sync the variables to calculate luck correctly 在 server.
 		}
 
 		public override bool PreModifyLuck(ref float luck) { // PreModifyLuck is useful if you want to modify any vanilla luck values or want to prevent vanilla luck calculations from happening.
@@ -25,7 +25,7 @@ namespace ExampleMod.Common.Players
 				Player.ladyBugLuckTimeLeft = 0; // ...completely cancel it out.
 			}
 
-			return true; // PreModifyLuck returns true by default, but you can also return false if you want to prevent vanilla luck calculations from happening at all.
+			return true; // PreModifyLuck returns true 默认情况下, but you can also return false if you want to prevent vanilla luck calculations from happening at all.
 		}
 	}
 }

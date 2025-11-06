@@ -11,12 +11,12 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// Example Advanced Flail is a complete adaption of Ball O' Hurt projectile. The code has been rewritten a bit to make it easier to follow. Compare this code against the decompiled Terraria code for an example of adapting vanilla code. A few comments and extra code snippets show features from other vanilla flails as well.
-	// Example Advanced Flail shows a plethora of advanced AI and collision topics.
+	// 示例 Advanced Flail is a complete adaption of Ball O' Hurt projectile. The code has been rewritten a bit to make it easier to follow. Compare this code against the decompiled Terraria code for an example of adapting vanilla code. A few comments and extra code snippets show features from other vanilla flails 以及.
+	// 示例 Advanced Flail shows a plethora of advanced AI and collision topics.
 	// 参见 ExampleFlail for a simpler but less customizable flail projectile example.
 	public class ExampleAdvancedFlailProjectile : ModProjectile
 	{
-		private const string ChainTexturePath = "ExampleMod/Content/Projectiles/ExampleAdvancedFlailProjectileChain"; // The folder path to the flail chain sprite
+		private const string ChainTexturePath = "ExampleMod/Content/Projectiles/ExampleAdvancedFlailProjectileChain"; // The folder path 到 flail chain sprite
 		private const string ChainTextureExtraPath = "ExampleMod/Content/Projectiles/ExampleAdvancedFlailProjectileChainExtra";  // This texture and related code is optional and used for a unique effect
 
 		private static Asset<Texture2D> chainTexture;
@@ -56,16 +56,16 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			Projectile.netImportant = true; // This ensures that the projectile is synced when other players join the world.
+			Projectile.netImportant = true; // This ensures th在 projectile is synced when other players jo在 world.
 			Projectile.width = 24; // The width of your projectile
 			Projectile.height = 24; // The height of your projectile
 			Projectile.friendly = true; // Deals damage to enemies
 			Projectile.penetrate = -1; // Infinite pierce
 			Projectile.DamageType = DamageClass.Melee; // Deals melee damage
-			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes in the ai hook
+			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes 在 ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
-			// Vanilla flails all use aiStyle 15, but the code isn't customizable so an adaption of that aiStyle is used in the AI method
+			// Vanilla flails all use aiStyle 15, but the code isn't customizable so an adaption of that aiStyle is used 在 AI method
 		}
 
 		// This AI code was adapted from vanilla code: Terraria.Projectile.AI_015_Flails() 
@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Projectiles
 			float unusedRetractAcceleration = 1f;
 			float unusedMaxRetractSpeed = 14f;
 			int unusedChainLength = 60;
-			int defaultHitCooldown = 10; // How often your flail hits when resting on the ground, or retracting
+			int defaultHitCooldown = 10; // How often your flail hits when resting 在 ground, or retracting
 			int spinHitCooldown = 20; // How often your flail hits when spinning
 			int movingHitCooldown = 10; // How often your flail hits when moving
 			int ricochetTimeLimit = launchTimeLimit + 5;
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Projectiles
 							}
 						}
 						SpinningStateTimer += 1f;
-						// This line creates a unit vector that is constantly rotated around the player. 10f controls how fast the projectile visually spins around the player
+						// This line creates a unit vector 即 constantly rotated around the player. 10f controls how fast the projectile visually spins around the player
 						Vector2 offsetFromPlayer = new Vector2(player.direction).RotatedBy((float)Math.PI * 10f * (SpinningStateTimer / 60f) * player.direction);
 
 						offsetFromPlayer.Y *= 0.8f;
@@ -140,14 +140,14 @@ namespace ExampleMod.Content.Projectiles
 						}
 						Projectile.Center = mountedCenter + offsetFromPlayer * 30f + new Vector2(0, player.gfxOffY);
 						Projectile.velocity = Vector2.Zero;
-						Projectile.localNPCHitCooldown = spinHitCooldown; // set the hit speed to the spinning hit speed
+						Projectile.localNPCHitCooldown = spinHitCooldown; // 设置 the hit speed 到 spinning hit speed
 						break;
 					}
 				case AIState.LaunchingForward: {
 						doFastThrowDust = true;
 						bool shouldSwitchToRetracting = StateTimer++ >= launchTimeLimit;
 						shouldSwitchToRetracting |= Projectile.Distance(mountedCenter) >= maxLaunchLength;
-						if (player.controlUseItem) // If the player clicks, transition to the Dropping state
+						if (player.controlUseItem) // If the player clicks, transition 到 Dropping state
 						{
 							CurrentAIState = AIState.Dropping;
 							StateTimer = 0f;
@@ -174,10 +174,10 @@ namespace ExampleMod.Content.Projectiles
 				case AIState.Retracting: {
 						Vector2 unitVectorTowardsPlayer = Projectile.DirectionTo(mountedCenter).SafeNormalize(Vector2.Zero);
 						if (Projectile.Distance(mountedCenter) <= maxRetractSpeed) {
-							Projectile.Kill(); // Kill the projectile once it is close enough to the player
+							Projectile.Kill(); // Kill the projectile once it is close enough 到 player
 							return;
 						}
-						if (player.controlUseItem) // If the player clicks, transition to the Dropping state
+						if (player.controlUseItem) // If the player clicks, transition 到 Dropping state
 						{
 							CurrentAIState = AIState.Dropping;
 							StateTimer = 0f;
@@ -233,7 +233,7 @@ namespace ExampleMod.Content.Projectiles
 						Projectile.tileCollide = false;
 						Vector2 unitVectorTowardsPlayer = Projectile.DirectionTo(mountedCenter).SafeNormalize(Vector2.Zero);
 						if (Projectile.Distance(mountedCenter) <= maxForcedRetractSpeed) {
-							Projectile.Kill(); // Kill the projectile once it is close enough to the player
+							Projectile.Kill(); // Kill the projectile once it is close enough 到 player
 							return;
 						}
 						Projectile.velocity *= 0.98f;
@@ -278,7 +278,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.direction = (Projectile.velocity.X > 0f).ToDirectionInt();
 			Projectile.spriteDirection = Projectile.direction;
-			Projectile.ownerHitCheck = shouldOwnerHitCheck; // This prevents attempting to damage enemies without line of sight to the player. The custom Colliding code for spinning makes this necessary.
+			Projectile.ownerHitCheck = shouldOwnerHitCheck; // This prevents attempting to damage enemies without line of sight 到 player. The custom Colliding code for spinning makes this necessary.
 
 			// This rotation code is unique to this flail, since the sprite isn't rotationally symmetric and has tip.
 			bool freeRotation = CurrentAIState == AIState.Ricochet || CurrentAIState == AIState.Dropping;
@@ -301,7 +301,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.rotation += Projectile.velocity.X * 0.1f; // roll
 			*/
 
-			Projectile.timeLeft = 2; // Makes sure the flail doesn't die (good when the flail is resting on the ground)
+			Projectile.timeLeft = 2; // 使 sure the flail doesn't die (good when the flail is resting 在 ground)
 			player.heldProj = Projectile.whoAmI;
 			player.SetDummyItemTime(2); //Add a delay so the player can't button mash the flail
 			player.itemRotation = Projectile.DirectionFrom(mountedCenter).ToRotation();
@@ -310,7 +310,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 			player.itemRotation = MathHelper.WrapAngle(player.itemRotation);
 
-			// 生成ing dust. We spawn dust more often when in the LaunchingForward state
+			// 生成ing dust. We spawn dust more often when 在 LaunchingForward state
 			int dustRate = 15;
 			if (doFastThrowDust)
 				dustRate = 1;
@@ -350,7 +350,7 @@ namespace ExampleMod.Content.Projectiles
 				CollisionCounter += 1f;
 			}
 
-			// 如果 in the Launched state, spawn sparks
+			// 如果 在 Launched state, spawn sparks
 			if (CurrentAIState == AIState.LaunchingForward) {
 				CurrentAIState = AIState.Ricochet;
 				Projectile.localNPCHitCooldown = defaultLocalNPCHitCooldown;
@@ -387,7 +387,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool? CanDamage() {
-			// Flails in spin mode won't damage enemies within the first 12 ticks. Visually this delays the first hit until the player swings the flail around for a full spin before damaging anything.
+			// Flails in spin mode won't damage enemies with在 first 12 ticks. Visually this delays the first hit until the player swings the flail around for a full spin before damaging anything.
 			if (CurrentAIState == AIState.Spinning && SpinningStateTimer <= 12f) {
 				return false;
 			}
@@ -395,12 +395,12 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// Flails do special collision logic that serves to hit anything within an ellipse centered on the player when the flail is spinning around the player. For example, the projectile rotating around the player won't actually hit a bee if it is directly on the player usually, but this code ensures that the bee is hit. This code makes hitting enemies while spinning more consistent and not reliant of the actual position of the flail projectile.
+			// Flails do special collision logic that serves to hit anything within an ellipse centered 在 player when the flail is spinning around the player. 例如, the projectile rotating around the player won't actually hit a bee if it is directly 在 player usually, but this code ensures th在 bee is hit. This code makes hitting enemies while spinning more consistent and not reliant 的 actual position 的 flail projectile.
 			if (CurrentAIState == AIState.Spinning) {
 				Vector2 mountedCenter = Main.player[Projectile.owner].MountedCenter;
 				Vector2 shortestVectorFromPlayerToTarget = targetHitbox.ClosestPointInRect(mountedCenter) - mountedCenter;
-				shortestVectorFromPlayerToTarget.Y /= 0.8f; // Makes the hit area an ellipse. Vertical hit distance is smaller due to this math.
-				float hitRadius = 55f; // The length of the semi-major radius of the ellipse (the long end)
+				shortestVectorFromPlayerToTarget.Y /= 0.8f; // 使 the hit area an ellipse. Vertical hit distance is smaller due to this math.
+				float hitRadius = 55f; // The length 的 semi-major radius 的 ellipse (the long end)
 				return shortestVectorFromPlayerToTarget.Length() <= hitRadius;
 			}
 			// Regular collision logic happens otherwise.
@@ -419,7 +419,7 @@ namespace ExampleMod.Content.Projectiles
 				modifiers.SourceDamage *= 2f;
 			}
 
-			// hitDirection is always set to hit away from the player, even if the flail damages the npc while returning
+			// hitDirection is always set to hit away 从 player, even if the flail damages the npc while returning
 			modifiers.HitDirectionOverride = (Main.player[Projectile.owner].Center.X < target.Center.X).ToDirectionInt();
 
 			// Knockback is only 25% as powerful when in spin mode
@@ -436,7 +436,7 @@ namespace ExampleMod.Content.Projectiles
 		public override bool PreDraw(ref Color lightColor) {
 			Vector2 playerArmPosition = Main.GetPlayerArmPosition(Projectile);
 
-			// This fixes a vanilla GetPlayerArmPosition bug causing the chain to draw incorrectly when stepping up slopes. The flail itself still draws incorrectly due to another similar bug. This should be removed once the vanilla bug is fixed.
+			// This fixes a vanilla GetPlayerArmPosition bug causing the chain to draw incorrectly when stepping up slopes. The flail itself still draws incorrectly due to another similar bug. This 应该 removed once the vanilla bug is fixed.
 			playerArmPosition.Y -= Main.player[Projectile.owner].gfxOffY;
 
 			Rectangle? chainSourceRectangle = null;
@@ -455,9 +455,9 @@ namespace ExampleMod.Content.Projectiles
 			int chainCount = 0;
 			float chainLengthRemainingToDraw = vectorFromProjectileToPlayerArms.Length() + chainSegmentLength / 2f;
 
-			// This while loop draws the chain texture from the projectile to the player, looping to draw the chain texture along the path
+			// This while loop draws the chain texture 从 projectile 到 player, looping to draw the chain texture along the path
 			while (chainLengthRemainingToDraw > 0f) {
-				// This code gets the lighting at the current tile coordinates
+				// This code gets the lighting 在 current tile coordinates
 				Color chainDrawColor = Lighting.GetColor((int)chainDrawPosition.X / 16, (int)(chainDrawPosition.Y / 16f));
 
 				// Flaming Mace and Drippler Crippler use code here to draw custom sprite frames with custom lighting.
@@ -469,7 +469,7 @@ namespace ExampleMod.Content.Projectiles
 					// 使用 normal chainTexture and lighting, no changes
 				}
 				else if (chainCount >= 2) {
-					// Near to the ball, we draw a custom chain texture and slightly make it glow if unlit.
+					// Near 到 ball, we draw a custom chain texture and slightly make it glow if unlit.
 					chainTextureToDraw = chainTextureExtra;
 					byte minValue = 140;
 					if (chainDrawColor.R < minValue)
@@ -482,15 +482,15 @@ namespace ExampleMod.Content.Projectiles
 						chainDrawColor.B = minValue;
 				}
 				else {
-					// Close to the ball, we draw a custom chain texture and draw it at full brightness glow.
+					// Close 到 ball, we draw a custom chain texture and draw it at full brightness glow.
 					chainTextureToDraw = chainTextureExtra;
 					chainDrawColor = Color.White;
 				}
 
-				// Here, we draw the chain texture at the coordinates
+				// Here, we draw the chain texture 在 coordinates
 				Main.spriteBatch.Draw(chainTextureToDraw.Value, chainDrawPosition - Main.screenPosition, chainSourceRectangle, chainDrawColor, chainRotation, chainOrigin, 1f, SpriteEffects.None, 0f);
 
-				// chainDrawPosition is advanced along the vector back to the player by the chainSegmentLength
+				// chainDrawPosition is advanced along the vector back 到 player by the chainSegmentLength
 				chainDrawPosition += unitVectorFromProjectileToPlayerArms * chainSegmentLength;
 				chainCount++;
 				chainLengthRemainingToDraw -= chainSegmentLength;

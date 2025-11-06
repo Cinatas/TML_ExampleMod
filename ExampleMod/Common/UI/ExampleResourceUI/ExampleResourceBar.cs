@@ -27,9 +27,9 @@ namespace ExampleMod.Common.UI.ExampleResourceUI
 			// 创建一个 UIElement 供所有元素位于其上，这简化了数字，因为嵌套元素可以相对于此元素的左上角定位。 
 			// UIElement 是不可见的，没有填充。
 			area = new UIElement();
-			area.Left.Set(-area.Width.Pixels - 600, 1f); // Place the resource bar to the left of the hearts.
-			area.Top.Set(30, 0f); // Placing it just a bit below the top of the screen.
-			area.Width.Set(182, 0f); // We will be placing the following 2 UIElements within this 182x60 area.
+			area.Left.Set(-area.Width.Pixels - 600, 1f); // Place the resource bar 到 left 的 hearts.
+			area.Top.Set(30, 0f); // Placing it just a bit below the top 的 screen.
+			area.Width.Set(182, 0f); // We 将 placing the following 2 UIElements within this 182x60 area.
 			area.Height.Set(60, 0f);
 
 			barFrame = new UIImage(ModContent.Request<Texture2D>("ExampleMod/Common/UI/ExampleResourceUI/ExampleResourceFrame")); // Frame of our resource bar
@@ -69,7 +69,7 @@ namespace ExampleMod.Common.UI.ExampleResourceUI
 			float quotient = (float)modPlayer.exampleResourceCurrent / modPlayer.exampleResourceMax2; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
 			quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
 
-			// Here we get the screen dimensions of the barFrame element, then tweak the resulting rectangle to arrive at a rectangle within the barFrame texture that we will draw the gradient. These values were measured in a drawing program.
+			// Here we get the screen dimensions 的 barFrame element, then tweak the resulting rectangle to arrive at a rectangle with在 barFrame texture that we will draw the gradient. These values were measured in a drawing program.
 			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
 			hitbox.X += 12;
 			hitbox.Width -= 24;

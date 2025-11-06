@@ -89,16 +89,16 @@ namespace ExampleMod
 
 		// In MP, other clients need accurate information about your player or else bugs happen.
 		// clientClone, SyncPlayer, and SendClientChanges, ensure that information is correct.
-		// We only need to do this for data that is changed by code not executed by all clients, 
+		// We only need to do this for data 即 changed by code not executed by all clients, 
 		// or data that needs to be shared while joining a world.
-		// For example, examplePet doesn't need to be synced because all clients know that the player is wearing the ExamplePet item in an equipment slot. 
+		// 例如, examplePet doesn't need to be synced because all clients know th在 player is wearing the ExamplePet item in an equipment slot. 
 		// The examplePet bool is set for that player on every clients computer independently (via the Buff.Update), keeping that data in sync.
-		// ExampleLifeFruits, however might be out of sync. For example, when joining a server, we need to share the exampleLifeFruits variable with all other clients.
+		// 示例LifeFruits, however might be out of sync. 例如, when joining a server, we need to share the exampleLifeFruits variable with all other clients.
 		// In addition, in ExampleUI we have a button that toggles "Non-Stop Party". We need to sync this whenever it changes.
 		public override void clientClone(ModPlayer clientClone) {
 			ExamplePlayer clone = clientClone as ExamplePlayer;
-			// Here we would make a backup clone of values that are only correct on the local players Player instance.
-			// Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
+			// Here we would make a backup clone of values that are only correct 在 local players Player instance.
+			// Some examples 将 RPG stats from a GUI, Hotkey states, and Extra Item Slots
 			clone.nonStopParty = nonStopParty;
 		}
 
@@ -107,7 +107,7 @@ namespace ExampleMod
 			packet.Write((byte)ExampleModMessageType.ExamplePlayerSyncPlayer);
 			packet.Write((byte)player.whoAmI);
 			packet.Write(exampleLifeFruits);
-			packet.Write(nonStopParty); // While we sync nonStopParty in SendClientChanges, we still need to send it here as well so newly joining players will receive the correct value.
+			packet.Write(nonStopParty); // While we sync nonStopParty in SendClientChanges, we still need to send it here 以及 so newly joining players will receive the correct value.
 			packet.Send(toWho, fromWho);
 		}
 
@@ -115,7 +115,7 @@ namespace ExampleMod
 			// Here we would sync something like an RPG stat whenever the player changes it.
 			ExamplePlayer clone = clientPlayer as ExamplePlayer;
 			if (clone.nonStopParty != nonStopParty) {
-				// Send a Mod Packet with the changes.
+				// Send a Mod Packet 与 changes.
 				var packet = mod.GetPacket();
 				packet.Write((byte)ExampleModMessageType.NonStopPartyChanged);
 				packet.Write((byte)player.whoAmI);
@@ -175,9 +175,9 @@ namespace ExampleMod
 			// bool allMatch = true;
 			// allMatch &= ZoneExample == modOther.ZoneExample;
 			// allMatch &= ZoneModel == modOther.ZoneModel;
-			// return allMatch;
+			// 返回 allMatch;
 			// Here is an example just using && chained together in one statemeny 
-			// return ZoneExample == modOther.ZoneExample && ZoneModel == modOther.ZoneModel;
+			// 返回 ZoneExample == modOther.ZoneExample && ZoneModel == modOther.ZoneModel;
 		}
 
 		public override void CopyCustomBiomesTo(Player other) {
@@ -609,7 +609,7 @@ namespace ExampleMod
 				fullBright = true;
 			}
 
-			if (nonStopParty && drawInfo.shadow == 0f && Main.rand.NextBool(6)) { // checking shadow == 0 helps avoid spawning extra dust because of extra shadow draws.
+			if (nonStopParty && drawInfo.shadow == 0f && Main.rand.NextBool(6)) { // 检查ing shadow == 0 helps avoid spawning extra dust because of extra shadow draws.
 				int dustIndex = Dust.NewDust(drawInfo.position + new Vector2(drawInfo.drawPlayer.width / 2 - 2, -30), 4, 4, 219, 0f, 0f, 100, default(Color), 1f);
 				
 				Dust dust = Main.dust[dustIndex];
@@ -709,7 +709,7 @@ namespace ExampleMod
 		}
 
 		public override void PostBuyItem(NPC vendor, Item[] shop, Item item) {
-			// Here we use PostBuyItem to limit the player to only buying 1 item from the ExamplePersonFreeGiftList by removing items from the shop.
+			// Here we use PostBuyItem to limit the player to only buying 1 item 从 ExamplePersonFreeGiftList by removing items 从 shop.
 			if (vendor.type == NPCType<ExamplePerson>() && item.GetGlobalItem<ExampleInstancedGlobalItem>().examplePersonFreeGift) {
 				examplePersonGiftReceived = true;
 				foreach (var shopItem in shop) {
@@ -721,7 +721,7 @@ namespace ExampleMod
 		}
 
 		public override void PostSellItem(NPC vendor, Item[] shopInventory, Item item) {
-			// Here we use PostSellItem to let the player buy a different item from the ExamplePersonFreeGiftList when the player sells the item back.
+			// Here we use PostSellItem to let the player buy a different item 从 ExamplePersonFreeGiftList when the player sells the item back.
 			if (vendor.type == NPCType<ExamplePerson>() && (GetInstance<ExampleConfigServer>().ExamplePersonFreeGiftList?.Any(x => x.Type == item.type) ?? false)) {
 				examplePersonGiftReceived = false;
 				item.TurnToAir();

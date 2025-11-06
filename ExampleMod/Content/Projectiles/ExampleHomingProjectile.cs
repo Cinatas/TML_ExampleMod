@@ -6,10 +6,10 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// This Example show how to implement simple homing projectile
-	// Can be tested with ExampleCustomAmmoGun
+	// 可以 tested with ExampleCustomAmmoGun
 	public class ExampleHomingProjectile : ModProjectile
 	{
-		// Store the target NPC using Projectile.ai[0]
+		// 存储 the target NPC using Projectile.ai[0]
 		private NPC HomingTarget {
 			get => Projectile.ai[0] == 0 ? null : Main.npc[(int)Projectile.ai[0] - 1];
 			set {
@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Projectiles
 		public ref float DelayTimer => ref Projectile.ai[1];
 
 		public override void SetStaticDefaults() {
-			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
+			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // 使 the cultist resistant to this projectile, as it's resistant to all homing projectiles.
 		}
 
 		public override void SetDefaults() {
@@ -29,13 +29,13 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.DamageType = DamageClass.Ranged; // What type of damage does this projectile affect?
 			Projectile.friendly = true; // Can the projectile deal damage to enemies?
-			Projectile.hostile = false; // Can the projectile deal damage to the player?
+			Projectile.hostile = false; // Can the projectile deal damage 到 player?
 			Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
 			Projectile.light = 1f; // How much light emit around the projectile
-			Projectile.timeLeft = 600; // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
+			Projectile.timeLeft = 600; // The live time 对于 projectile (60 = 1 second, so 600 is 10 seconds)
 		}
 
-		// Custom AI
+		// 自定义 AI
 		public override void AI() {
 			float maxDetectRadius = 400f; // The maximum radius at which a projectile can detect a target
 
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Projectiles
 			if (HomingTarget == null)
 				return;
 
-			// 如果 found, we rotate the projectile velocity in the direction of the target.
+			// 如果 found, we rotate the projectile velocity 在 direction 的 target.
 			// 我们 only rotate by 3 degrees an update to give it a smooth trajectory. Increase the rotation speed here to make tighter turns
 			float length = Projectile.velocity.Length();
 			float targetAngle = Projectile.AngleTo(HomingTarget.Center);
@@ -82,7 +82,7 @@ namespace ExampleMod.Content.Projectiles
 					// DistanceSquared function returns a squared distance between 2 points, skipping relatively expensive square root calculations
 					float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
 
-					// 检查 if it is within the radius
+					// 检查 if it is with在 radius
 					if (sqrDistanceToTarget < sqrMaxDetectDistance) {
 						sqrMaxDetectDistance = sqrDistanceToTarget;
 						closestNPC = target;
@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public bool IsValidTarget(NPC target) {
-			// 此方法 checks that the NPC is:
+			// 此方法 checks th在 NPC is:
 			// 1. active (alive)
 			// 2. chaseable (e.g. not a cultist archer)
 			// 3. max life bigger than 5 (e.g. not a critter)

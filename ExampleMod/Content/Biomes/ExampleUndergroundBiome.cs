@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Biomes
 		// Select Music
 		public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/MysteriousMystery");
 
-		// 设置s how the Scene Effect associated with this biome will be displayed with respect to vanilla Scene Effects. For more information see SceneEffectPriority & its values.
+		// 设置s how the Scene Effect associated with this biome 将 displayed with respect to vanilla Scene Effects. F或更多 information see SceneEffectPriority & its values.
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow; // We have set the SceneEffectPriority to be BiomeLow for purpose of example, however default behavior is BiomeLow.
 
 		// Populate the Bestiary Filter
@@ -27,20 +27,20 @@ namespace ExampleMod.Content.Biomes
 		public override bool IsBiomeActive(Player player) {
 			// Limit the biome height to be underground in either rock layer or dirt layer
 			return (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) &&
-				// 检查 how many tiles of our biome are present, such that biome should be active
+				// 检查 how many tiles of our biome are present, such that biome 应该 active
 				ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount >= 40 &&
-				// Limit our biome to be in only the horizontal center third of the world.
+				// Limit our biome to be in only the horizontal center third 的 world.
 				Math.Abs(player.position.ToTileCoordinates().X - Main.maxTilesX / 2) < Main.maxTilesX / 6;
 		}
 
-		// 在 the event that both our biome AND one or more modded SceneEffect layers are active with the same SceneEffect Priority, this can decide which one.
-		// It's uncommon that need to assign a weight - you'd have to specifically believe that you don't need higher SceneEffectPriority, but do need to be the active SceneEffect within the priority you designated
+		// 在 the event that both our biome AND one 或更多 modded SceneEffect layers are active 与 same SceneEffect Priority, this can decide which one.
+		// It's uncommon that need to assign a weight - you'd have to specifically believe that you don't need higher SceneEffectPriority, but do need to be the active SceneEffect with在 priority you designated
 		// 在 this case, we don't need it, so this inclusion is purely to demonstrate this is available.
-		// 参见 the GetWeight documentation for more information.
+		// 参见 the GetWeight documentation f或更多 information.
 		/*
 		public override float GetWeight(Player player) {
 			int distanceToCenter = Math.Abs(player.position.ToTileCoordinates().X - Main.maxTilesX / 2);
-			// 我们 declare that our biome should have be more likely than not to be active if in center 1/6 of the world, and decreases in need to be active as player gets further away to the 1/3 mark.
+			// 我们 declare that our biome should have be more likely than not to be active if in center 1/6 的 world, and decreases in need to be active as player gets further away 到 1/3 mark.
 			if (distanceToCenter <= Main.maxTilesX / 12) {
 				return 1f;
 			}

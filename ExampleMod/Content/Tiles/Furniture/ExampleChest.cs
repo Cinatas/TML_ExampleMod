@@ -41,10 +41,10 @@ namespace ExampleMod.Content.Tiles.Furniture
 			AddMapEntry(new Color(200, 200, 200), this.GetLocalization("MapEntry0"), MapChestName);
 			AddMapEntry(new Color(0, 141, 63), this.GetLocalization("MapEntry1"), MapChestName);
 
-			// Style 1 is ExampleChest when locked. We want that tile style to drop the ExampleChest item as well. Use the Chest Lock item to lock this chest.
-			// No item places ExampleChest in the locked style, so the automatically determined item drop is unknown, this is why RegisterItemDrop is necessary in this situation. 
+			// Style 1 is ExampleChest when locked. We want that tile style to drop the ExampleChest item 以及. Use the Chest Lock item to lock this chest.
+			// No item places ExampleChest 在 locked style, so the automatically determined item drop is unknown, this is why RegisterItemDrop is necessary in this situation. 
 			RegisterItemDrop(ModContent.ItemType<Items.Placeable.Furniture.ExampleChest>(), 1);
-			// Sometimes mods remove content, such as tile styles, or tiles accidentally get corrupted. We can, if desired, register a fallback item for any tile style that doesn't have an automatically determined item drop. This is done by omitting the tileStyles parameter.
+			// Sometimes mods remove content, 例如 tile styles, or tiles accidentally get corrupted. We can, if desired, register a fallback item for any tile style that doesn't have an automatically determined item drop. This is done by omitting the tileStyles parameter.
 			RegisterItemDrop(ItemID.Chest);
 
 			// Placement
@@ -100,7 +100,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override bool UnlockChest(int i, int j, ref short frameXAdjustment, ref int dustType, ref bool manual) {
 			if (Main.dayTime) {
-				Main.NewText("The chest stubbornly refuses to open in the light of the day. Try again at night.", Color.Orange);
+				Main.NewText("The chest stubbornly refuses to open 在 light 的 day. Try again at night.", Color.Orange);
 				return false;
 			}
 
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 			// 我们 need to return true only if the tile style is the unlocked variant of a chest that supports locking. 
 			if (style == 0) {
-				// 我们 can check other conditions as well, such as how biome chests can't be locked until Plantera is defeated
+				// 我们 can check other conditions 以及, 例如 how biome chests can't be locked until Plantera is defeated
 				return true;
 			}
 			return false;
@@ -147,7 +147,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// 我们 override KillMultiTile to handle additional logic other than the item drop. In this case, unregistering the Chest from the world
+			// 我们 override KillMultiTile to handle additional logic other than the item drop. In this case, unregistering the Chest 从 world
 			Chest.DestroyChest(i, j);
 		}
 
@@ -242,7 +242,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				player.cursorItemIconText = Language.GetTextValue("LegacyChestType.0");
 			}
 			else {
-				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
+				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text 对于 currently selected language
 				player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
 				if (player.cursorItemIconText == defaultName) {
 					player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Furniture.ExampleChest>();

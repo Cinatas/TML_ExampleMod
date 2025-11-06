@@ -6,16 +6,16 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// 此文件 showcases the concept of piercing.
-	// code of the item that spawns it is located at the bottom.
+	// code 的 item that spawns it is located 在 bottom.
 
-	// NPC.immune determines if an npc can be hit by a item or projectile owned by a particular player (it is an array, each slot corresponds to different players (whoAmI))
+	// NPC.immune determines if an npc 可以 hit by a item or projectile owned by a particular player (it is an array, each slot corresponds to different players (whoAmI))
 	// NPC.immune is decremented towards 0 every update
 	// Melee items set NPC.immune to player.itemAnimation, which starts at item.useAnimation and decrements towards 0
 	// Projectiles, however, provide mechanisms for custom immunity.
-	// 1. penetrate == 1: A projectile with penetrate set to 1 in SetDefaults will hit regardless of the NPC's immunity counters (The penetrate from SetDefaults is remembered in maxPenetrate)
+	// 1. penetrate == 1: A projectile with penetrate set to 1 in SetDefaults will hit regardless 的 NPC's immunity counters (The penetrate from SetDefaults is remembered in maxPenetrate)
 	//	Ex: Wooden Arrow.
-	// 2. No code and penetrate > 1, penetrate == -1, or (appliesImmunityTimeOnSingleHits && penetrate == 1): npc.immune[owner] will be set to 10.
-	// 	The NPC will be hit if not immune and will become immune to all damage for 10 ticks
+	// 2. No code and penetrate > 1, penetrate == -1, or (appliesImmunityTimeOnSingleHits && penetrate == 1): npc.immune[owner] 将 set to 10.
+	// 	The NPC 将 hit if not immune and 将come immune to all damage for 10 ticks
 	// 	Ex: Unholy Arrow
 	// 3. Override OnHitNPC: If not immune, when it hits it manually set an immune other than 10
 	// 	Ex: Arkhalis: Sets it to 5
@@ -25,10 +25,10 @@ namespace ExampleMod.Content.Projectiles
 	// 	Use this if you want other projectiles a chance to damage, but don't want the same projectile type to hit an npc rapidly.
 	// 	Ex: Ghastly Glaive is the only one who uses this.
 	// 5. Projectile.usesLocalNPCImmunity and Projectile.localNPCHitCooldown: Specifies the projectile manages it's own immunity timers for each npc
-	// 	Use this if you want the multiple projectiles of the same type to have a chance to attack rapidly, but don't want a single projectile to hit rapidly. A -1 value prevents the same projectile from ever hitting the npc again.
+	// 	Use this if you want the multiple projectiles 的 same type to have a chance to attack rapidly, but don't want a single projectile to hit rapidly. A -1 value prevents the same projectile from ever hitting the npc again.
 	// 	Ex: Lightning Aura sentries use this. (localNPCHitCooldown = 3, but other code controls how fast the projectile itself hits)
 	// 		Overlapping Auras all have a chance to hit after each other even though they share the same ID.
-	// Try the above by uncommenting out the respective bits of code in the projectile below.
+	// Try the above by uncommenting out the respective bits of code 在 projectile below.
 
 
 	public class ExamplePiercingProjectile : ModProjectile
@@ -53,17 +53,17 @@ namespace ExampleMod.Content.Projectiles
 			// 2b: Projectile.penetrate = 3; // Same, but max 3 hits before dying
 			// 5: Projectile.usesLocalNPCImmunity = true;
 			// 5a: Projectile.localNPCHitCooldown = -1; // 1 hit per npc max
-			// 5b: Projectile.localNPCHitCooldown = 20; // 20 ticks before the same npc can be hit again
+			// 5b: Projectile.localNPCHitCooldown = 20; // 20 ticks before the same npc 可以 hit again
 		}
 
-		// 参见 comments at the beginning of the class
+		// 参见 comments 在 beginning 的 class
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			// 3a: target.immune[Projectile.owner] = 20;
 			// 3b: target.immune[Projectile.owner] = 5;
 		}
 	}
 
-	// 这是 a simple item that is based on the FlintlockPistol and shoots ExamplePiercingProjectile to showcase it.
+	// 这是 a simple item 即 based 在 FlintlockPistol and shoots ExamplePiercingProjectile to showcase it.
 	internal class ExamplePiercingProjectileItem : ModItem
 	{
 		public override string Texture => $"Terraria/Images/Item_{ItemID.FlintlockPistol}";

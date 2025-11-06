@@ -21,7 +21,7 @@ namespace ExampleMod.NPCs.Abomination
 		public const string CaptiveElement2Head = "ExampleMod/NPCs/Abomination/CaptiveElement2_Head_Boss_";
 
 		public override bool Autoload(ref string name) {
-			// 添加s boss head textures for the Abomination boss
+			// 添加s boss head textures 对于 Abomination boss
 			for (int k = 1; k <= 4; k++) {
 				mod.AddBossHeadTexture(CaptiveElement2Head + k);
 			}

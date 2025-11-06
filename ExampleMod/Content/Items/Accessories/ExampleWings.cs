@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items.Accessories
 	public class ExampleWings : ModItem
 	{
 		// 要 see how this config option was added, see ExampleModConfig.cs
-		// This code allows users to toggle loading this content via a config. Another common usage of IsLoadingEnabled would be to use ModLoader.HasMod to check if another mod is enabled or not.
+		// This code allows users to toggle loading this content via a config. Another common usage of IsLoadingEnabled 将 to use ModLoader.HasMod to check if another mod is enabled or not.
 		// Feel free to remove this method in your own Wings if using this as a template, it is superfluous.
 		public override bool IsLoadingEnabled(Mod mod) {
 			return ModContent.GetInstance<ExampleModConfig>().ExampleWingsToggle;
@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Items.Accessories
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
-				.SortBefore(Main.recipe.First(recipe => recipe.createItem.wingSlot != -1)) // Places this recipe before any wing so every wing stays together in the crafting menu.
+				.SortBefore(Main.recipe.First(recipe => recipe.createItem.wingSlot != -1)) // Places this recipe before any wing so every wing stays together 在 crafting menu.
 				.Register();
 		}
 	}

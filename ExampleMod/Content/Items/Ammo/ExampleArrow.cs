@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Ammo
 {
-	// 此示例 is similar to the Wooden Arrow item
+	// 此示例 is similar 到 Wooden Arrow item
 	public class ExampleArrow : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.width = 14;
 			Item.height = 36;
 
-			Item.damage = 6; // Keep in mind that the arrow's final damage is combined with the bow weapon damage.
+			Item.damage = 6; // Keep in mind th在 arrow's final damage is combined 与 bow weapon damage.
 			Item.DamageType = DamageClass.Ranged;
 
 			Item.maxStack = Item.CommonMaxStack;
@@ -24,7 +24,7 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.knockBack = 1.5f;
 			Item.value = Item.sellPrice(copper: 16);
 			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleArrowProjectile>(); // The projectile that weapons fire when using this item as ammunition.
-			Item.shootSpeed = 3f; // The speed of the projectile.
+			Item.shootSpeed = 3f; // The speed 的 projectile.
 			Item.ammo = AmmoID.Arrow; // The ammo class this ammo belongs to.
 		}
 

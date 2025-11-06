@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Dusts
 {
-	// This dust shows off custom drawing. By default, the dust sprite is drawn once. This example uses custom drawing to draw a trail, it is an exact clone of DustID.Electric, aside from some code cleanup. One place Terraria uses DustID.Electric is when a player is suffering from BuffID.Electrified.
+	// This dust shows off custom drawing. 默认情况下, the dust sprite is drawn once. This example uses custom drawing to draw a trail, it is an exact clone of DustID.Electric, aside from some code cleanup. One place Terraria uses DustID.Electric is when a player is suffering from BuffID.Electrified.
 	public class ExampleCustomDrawDust : ModDust
 	{
 		public override string Texture => null;

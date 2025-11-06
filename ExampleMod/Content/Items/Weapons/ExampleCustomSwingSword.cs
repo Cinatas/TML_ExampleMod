@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// ExampleCustomSwingSword is an example of a sword with a custom swing using a held projectile
+	// 示例CustomSwingSword is an example of a sword with a custom swing using a held projectile
 	// 这是 great if you want to make melee weapons with complex swing behavior
 	public class ExampleCustomSwingSword : ModItem
 	{
@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public int comboExpireTimer = 0; // we want the attack pattern to reset if the weapon is not used for certain period of time
 
 		public override void SetDefaults() {
-			// Common Properties
+			// 常见 Properties
 			Item.width = 46;
 			Item.height = 48;
 			Item.value = Item.sellPrice(gold: 2, silver: 50);
@@ -24,18 +24,18 @@ namespace ExampleMod.Content.Items.Weapons
 			// 使用 Properties
 			// 注意 that useTime and useAnimation for this item don't actually affect the behavior because the held projectile handles that. 
 			// Each attack takes a different amount of time to execute
-			// Conforming to the item useTime and useAnimation makes it much harder to design
+			// Conforming 到 item useTime and useAnimation makes it much harder to design
 			// It does, however, affect the item tooltip, so don't leave it out.
 			Item.useTime = 40;
 			Item.useAnimation = 40;
 			Item.useStyle = ItemUseStyleID.Shoot;
 
 			// Weapon Properties
-			Item.knockBack = 7;  // The knockback of your sword, this is dynamically adjusted in the projectile code.
+			Item.knockBack = 7;  // The knockback of your sword, this is dynamically adjusted 在 projectile code.
 			Item.autoReuse = true; // This determines whether the weapon has autoswing
-			Item.damage = 62; // The damage of your sword, this is dynamically adjusted in the projectile code.
+			Item.damage = 62; // The damage of your sword, this is dynamically adjusted 在 projectile code.
 			Item.DamageType = DamageClass.Melee; // Deals melee damage
-			Item.noMelee = true;  // This makes sure the item does not deal damage from the swinging animation
+			Item.noMelee = true;  // This makes sure the item does not deal damage 从 swinging animation
 			Item.noUseGraphic = true; // This makes sure the item does not get shown when the player swings his hand
 
 			// Projectile Properties
@@ -46,8 +46,8 @@ namespace ExampleMod.Content.Items.Weapons
 			// 使用 the shoot function, we override the swing projectile to set ai[0] (which attack it is)
 			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, attackType);
 			attackType = (attackType + 1) % 2; // Increment attackType to make sure next swing is different
-			comboExpireTimer = 0; // Every time the weapon is used, we reset this so the combo does not expire
-			return false; // return false to prevent original projectile from being shot
+			comboExpireTimer = 0; // 每次 the weapon is used, we reset this so the combo does not expire
+			return false; // 返回 false to prevent original projectile from being shot
 		}
 
 		public override void UpdateInventory(Player player) {
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool MeleePrefix() {
-			return true; // return true to allow weapon to have melee prefixes (e.g. Legendary)
+			return true; // 返回 true to allow weapon to have melee prefixes (e.g. Legendary)
 		}
 
 		public override void AddRecipes() {

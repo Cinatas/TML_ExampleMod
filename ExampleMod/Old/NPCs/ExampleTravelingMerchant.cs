@@ -21,19 +21,19 @@ namespace ExampleMod.NPCs
 		public const double despawnTime = 48600.0;
 
 		// the time of day the traveler will spawn (double.MaxValue for no spawn)
-		// saved and loaded with the world in ExampleWorld
+		// 保存d and loaded 与 world in ExampleWorld
 		public static double spawnTime = double.MaxValue;
 
-		// The list of items in the traveler's shop. Saved with the world and reset when a new traveler spawns
+		// The list of items 在 traveler's shop. Saved 与 world and reset when a new traveler spawns
 		public static List<Item> shopItems = new List<Item>();
 
 		public static NPC FindNPC(int npcType) => Main.npc.FirstOrDefault(npc => npc.type == npcType && npc.active);
 
 		public static void UpdateTravelingMerchant() {
-			NPC traveler = FindNPC(NPCType<ExampleTravelingMerchant>()); // Find an Explorer if there's one spawned in the world
+			NPC traveler = FindNPC(NPCType<ExampleTravelingMerchant>()); // Find an Explorer if there's one spawned 在 world
 			if (traveler != null && (!Main.dayTime || Main.time >= despawnTime) && !IsNpcOnscreen(traveler.Center)) // If it's past the despawn time and the NPC isn't onscreen
 			{
-				// Here we despawn the NPC and send a message stating that the NPC has despawned
+				// Here we despawn the NPC and send a message stating th在 NPC has despawned
 				if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(traveler.FullName + " has departed!", 50, 125, 255);
 				else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(traveler.FullName + " has departed!"), new Color(50, 125, 255));
 				traveler.active = false;
@@ -49,7 +49,7 @@ namespace ExampleMod.NPCs
 
 				// NPC won't spawn today if it stayed all night
 				if (traveler == null && Main.rand.NextBool(4)) { // 4 = 25% Chance
-																// Here we can make it so the NPC doesnt spawn at the EXACT same time every time it does spawn
+																// Here we can make it so the NPC doesnt spawn 在 EXACT same time 每次 it does spawn
 					spawnTime = GetRandomSpawnTime(5400, 8100); // minTime = 6:00am, maxTime = 7:30am
 				}
 				else {
@@ -59,24 +59,24 @@ namespace ExampleMod.NPCs
 
 			// 生成 the traveler if the spawn conditions are met (time of day, no events, no sundial)
 			if (traveler == null && CanSpawnNow()) {
-				int newTraveler = NPC.NewNPC(Main.spawnTileX * 16, Main.spawnTileY * 16, NPCType<ExampleTravelingMerchant>(), 1); // 生成ing at the world spawn
+				int newTraveler = NPC.NewNPC(Main.spawnTileX * 16, Main.spawnTileY * 16, NPCType<ExampleTravelingMerchant>(), 1); // 生成ing 在 world spawn
 				traveler = Main.npc[newTraveler];
 				traveler.homeless = true;
 				traveler.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
 				traveler.netUpdate = true;
 				shopItems = CreateNewShop();
 
-				// 防止s the traveler from spawning again the same day
+				// 防止s the traveler from spawning aga在 same day
 				spawnTime = double.MaxValue;
 
-				// Annouce that the traveler has spawned in!
+				// Annouce th在 traveler has spawned in!
 				if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("Announcement.HasArrived", traveler.FullName), 50, 125, 255);
 				else NetMessage.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasArrived", traveler.GetFullNetName()), new Color(50, 125, 255));
 			}
 		}
 
 		private static bool CanSpawnNow() {
-			// can't spawn if any events are running
+			// can't spawn 如果有的话 events are running
 			if (Main.eclipse || Main.invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0)
 				return false;
 
@@ -93,7 +93,7 @@ namespace ExampleMod.NPCs
 			int h = NPC.sHeight + NPC.safeRangeY * 2;
 			Rectangle npcScreenRect = new Rectangle((int)center.X - w / 2, (int)center.Y - h / 2, w, h);
 			foreach (Player player in Main.player) {
-				// If any player is close enough to the traveling merchant, it will prevent the npc from despawning
+				// 如果有的话 player is close enough 到 traveling merchant, it will prevent the npc from despawning
 				if (player.active && player.getRect().Intersects(npcScreenRect)) return true;
 			}
 			return false;
@@ -105,7 +105,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public static List<Item> CreateNewShop() {
-			// create a list of item ids
+			// 创建 a list of item ids
 			var itemIds = new List<int>();
 
 			// For each slot we add a switch case to determine what should go in that slot
@@ -168,7 +168,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public override void SetDefaults() {
-			npc.townNPC = true; // This will be changed once the NPC is spawned
+			npc.townNPC = true; // This 将 changed once the NPC is spawned
 			npc.friendly = true;
 			npc.width = 18;
 			npc.height = 40;
@@ -202,7 +202,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
-			return false; // This should always be false, because we spawn in the Travleing Merchant manually
+			return false; // This should always be false, because we spawn 在 Travleing Merchant manually
 		}
 
 		public override string TownNPCName() {
@@ -229,7 +229,7 @@ namespace ExampleMod.NPCs
 				case 1:
 					return "What's your favorite color? My cousin's favorite colors are white and black.";
 				case 2: {
-						// Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
+						// Main.npcChatCornerItem shows a single item 在 corner, like the Angler Quest chat.
 						Main.npcChatCornerItem = ItemID.HiveBackpack;
 						return $"Hey, if you find a [i:{ItemID.HiveBackpack}], my cousin can upgrade it for you.";
 					}
@@ -260,7 +260,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public override void AI() {
-			npc.homeless = true; // Make sure it stays homeless
+			npc.homeless = true; // 使 sure it stays homeless
 		}
 
 		public override void NPCLoot() {

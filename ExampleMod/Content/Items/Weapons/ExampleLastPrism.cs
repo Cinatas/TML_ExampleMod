@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public static Color OverrideColor = new(122, 173, 255);
 
 		public override void SetDefaults() {
-			// Start by using CloneDefaults to clone all the basic item properties from the vanilla Last Prism.
+			// Start by using CloneDefaults to clone all the basic item properties 从 vanilla Last Prism.
 			// 对于 example, this copies sprite size, use style, sell price, and the item being a magic weapon.
 			Item.CloneDefaults(ItemID.LastPrism);
 			Item.mana = 4;
@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.shoot = ModContent.ProjectileType<ExampleLastPrismHoldout>();
 			Item.shootSpeed = 30f;
 
-			// 更改 the item's draw color so that it is visually distinct from the vanilla Last Prism.
+			// 更改 the item's draw color so that it is visually distinct 从 vanilla Last Prism.
 			Item.color = OverrideColor;
 		}
 

@@ -10,14 +10,14 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles
 {
 	// This tile serves as a showcase for TileObjectData.
-	// 在 particular, this contrived example shows how styles are laid out in the spritesheet when multiple styles, multiple alternate placements, random style range, animations, and toggle states are all desired.
-	// 如果 you place this tile, you'll noticed that it has both left and right variants depending on the player direction. You'll also notice that there are 4 random style variations for left and right. Once placed, the tile will animate through 3 frames of animation. Right clicking on the tile will change the tile to an "off" state, halting the animation and showing the 4th frame of animation. There are 4 tile styles contained in this example as well.
-	// StyleMultiplier section of the Tile wiki page, https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#stylemultiplier, has a simpler visualization only showing alternate placements and random style variations.
-	// Please experiment by placing this tile using both the "TileObjectData Showcase Style 3 - ExampleBlock" item and one of the other TileObjectData Showcase items. This tile anchors to specific tiles to the left and right, you'll need to place this tile between pillars of those specific tiles. By doing this you should be able to visualize the full potential of TileObjectData.
+	// 在 particular, this contrived example shows how styles are laid out 在 spritesheet when multiple styles, multiple alternate placements, random style range, animations, and toggle states are all desired.
+	// 如果 you place this tile, you'll noticed that it has both left and right variants depending 在 player direction. You'll also notice th在re are 4 random style variations for left and right. Once placed, the tile will animate through 3 frames of animation. Right clicking 在 tile will change the tile to an "off" state, halting the animation and showing the 4th frame of animation. There are 4 tile styles contained in this example 以及.
+	// StyleMultiplier section 的 Tile wiki page, https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#stylemultiplier, has a simpler visualization only showing alternate placements and random style variations.
+	// Please experiment by placing this tile using both the "TileObjectData Showcase Style 3 - ExampleBlock" item and one 的 other TileObjectData Showcase items. This tile anchors to specific tiles 到 left and right, you'll need to place this tile between pillars of those specific tiles. By doing this you 应该 able to visualize the full potential of TileObjectData.
 	// Not many tiles will require such complicated layout, but this serves as example of how each feature affects the resulting spritesheet.
-	// Since this tile is "StyleHorizontal = true", styles in the spritesheet are positioned left to right. Each alternate placement and
-	// random style are also placed in-line with the styles. Toggled states and animations are placed vertically below their corresponding placement. In the corresponding spritesheet, the styles, alternate placements, and animation frames are all labeled to make this layout clearer.
-	// 之后 reaching the wrap limit, subsequent styles are placed on the next row.
+	// Since this tile is "StyleHorizontal = true", styles 在 spritesheet are positioned left to right. Each alternate placement and
+	// random style are also placed in-line 与 styles. Toggled states and animations are placed vertically below their corresponding placement. 在 corresponding spritesheet, the styles, alternate placements, and animation frames are all labeled to make this layout clearer.
+	// 之后 reaching the wrap limit, subsequent styles are placed 在 next row.
 	public class TileObjectDataShowcase : ModTile
 	{
 		public override void SetStaticDefaults() {
@@ -34,15 +34,15 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.newTile.Origin = new Point16(0, 1);
 			TileObjectData.newTile.CoordinatePadding = 0; // This is used to keep the spritesheet legible for this example.
 
-			// These define how multiple styles and alternate placements will be located in the spritesheet
+			// These define how multiple styles and alternate placements 将 located 在 spritesheet
 			TileObjectData.newTile.StyleMultiplier = 8; // Each style will occupy 8 placement styles
-			TileObjectData.newTile.RandomStyleRange = 4; // We have a left and right placement, each has 4 random varieties. Look for "Alt 0", "Alt 1", "Alt 2", and "Alt 3" in the spritesheet.
-			TileObjectData.newTile.StyleWrapLimit = 16; // We will wrap to the next line in the texture after 16 placement styles, or 2 styles.
-			TileObjectData.newTile.StyleLineSkip = 4; // This gives extra lines in the spritesheet for animation or tile states.
+			TileObjectData.newTile.RandomStyleRange = 4; // We have a left and right placement, each has 4 random varieties. Look for "Alt 0", "Alt 1", "Alt 2", and "Alt 3" 在 spritesheet.
+			TileObjectData.newTile.StyleWrapLimit = 16; // We will wrap 到 next line 在 texture after 16 placement styles, or 2 styles.
+			TileObjectData.newTile.StyleLineSkip = 4; // This gives extra lines 在 spritesheet for animation or tile states.
 
-			// 在这里 we declare that the tile will be placeable when facing left.
+			// 在这里 we declare th在 tile 将 placeable when facing left.
 			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
-			// tile only anchors between specific tiles to the left and right. These are defined in each Subtile below.
+			// tile only anchors between specific tiles 到 left and right. These are defined in each Subtile below.
 			TileObjectData.newTile.AnchorLeft = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
 			TileObjectData.newTile.AnchorRight = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
 
@@ -51,9 +51,9 @@ namespace ExampleMod.Content.Tiles
 			// Now we make a copy newTile to populate an alternate placement. This faces right instead of left.
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
-			TileObjectData.addAlternate(4); // This alternate starts at placement style 4 because the left alternate has 4 random placements. These alternate placements will be "Alt 4", "Alt 5", "Alt 6", and "Alt 7" in the spritesheet.
+			TileObjectData.addAlternate(4); // This alternate starts at placement style 4 because the left alternate has 4 random placements. These alternate placements 将 "Alt 4", "Alt 5", "Alt 6", and "Alt 7" 在 spritesheet.
 
-			// These additional alternates reuse the same placement styles of the the normal placement and alternate placements above, but have a different Origin to make placing the tile easier. The tile placement preview will seem to "snap" to valid locations. This is completely optional and serves as an example of how multiple alternates can share placement styles. With these additional alternates, the player can position the tile by the bottom left or bottom right corner of the tile. Try it out for yourself in-game to see. This is similar to how doors can be placed by placing the mouse in any of the 3 tiles of a doorway.
+			// These additional alternates reuse the same placement styles 的 the normal placement and alternate placements above, but have a different Origin to make placing the tile easier. The tile placement preview will seem to "snap" to valid locations. This is completely optional and serves as an example of how multiple alternates can share placement styles. 与se additional alternates, the player can positi在 tile by the bottom left or bottom right corner 的 tile. Try it out for yourself in-game to see. This is similar to how doors 可以 placed by placing the mouse in any 的 3 tiles of a doorway.
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newAlternate.Origin = new Point16(1, 1);
 			TileObjectData.addAlternate(0);
@@ -63,8 +63,8 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.addAlternate(4);
 
 			// Next, we initialize subtiles. These are tile style specific tile properties.
-			// Each of these subtiles define their own AnchorAlternateTiles array to showcase this capability, but subtiles are typically just used for water and lava behaviors. This tile anchors to these specific tiles to the left and right, meaning that pillars of those tiles are needed to place this tile into the world.
-			// Look for "Sty 0", "Sty 1", and "Sty 2" in the spritesheet.
+			// Each 的se subtiles define their own AnchorAlternateTiles array to showcase this capability, but subtiles are typically just used for water and lava behaviors. This tile anchors 到se specific tiles 到 left and right, meaning that pillars of those tiles are needed to place this tile in到 world.
+			// Look for "Sty 0", "Sty 1", and "Sty 2" 在 spritesheet.
 			TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newSubTile.LinkedAlternates = true;
 			TileObjectData.newSubTile.AnchorAlternateTiles = [TileID.Gold];
@@ -105,16 +105,16 @@ namespace ExampleMod.Content.Tiles
 			return 0;
 		}
 
-		// 当 this tile is right clicked, it changes to a new state by changing TileFrameY. This "off" state is the "Fra 3" sprites in the spritesheet.
+		// 当 this tile is right clicked, it changes to a new state by changing TileFrameY. This "off" state is the "Fra 3" sprites 在 spritesheet.
 		public override bool RightClick(int i, int j) {
 			SoundEngine.PlaySound(SoundID.Mech, new Vector2(i * 16, j * 16));
 
-			// This math finds the top left corner of the tile.
+			// This math finds the top left corner 的 tile.
 			Tile tile = Main.tile[i, j];
 			int topX = i - (tile.TileFrameX % 256) % 32 / 16;
 			int topY = j - (tile.TileFrameY % 128) % 32 / 16;
 
-			// 96 is the Y position of the "Fra 3" sprites in the spritesheet. (32 * 3)
+			// 96 is the Y position 的 "Fra 3" sprites 在 spritesheet. (32 * 3)
 			short frameAdjustment = (short)(tile.TileFrameY % 128 >= 96 ? -96 : 96);
 
 			for (int x = topX; x < topX + 2; x++) {
@@ -142,7 +142,7 @@ namespace ExampleMod.Content.Tiles
 			var tile = Main.tile[i, j];
 			// 如果 the tile is "on", then the tile will animate between the "Fra 0", "Fra 1", and "Fra 2" sprites. This is already applied because we set AnimationFrameHeight in SetStaticDefaults and adjust frame in AnimateTile.
 
-			// 如果 the tile is "off", however, then we set frameYOffset to 0 to disable the automatic animation for this specific tile. 96 is the Y position of the "Fra 3" sprites in the spritesheet. (32 * 3)
+			// 如果 the tile is "off", however, then we set frameYOffset to 0 to disable the automatic animation for this specific tile. 96 is the Y position 的 "Fra 3" sprites 在 spritesheet. (32 * 3)
 			if (tile.TileFrameY % 128 >= 96) {
 				frameYOffset = 0;
 			}

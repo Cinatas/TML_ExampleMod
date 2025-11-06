@@ -23,23 +23,23 @@ namespace ExampleMod.Content.Tiles
 			// Or basically all tiles that aren't like dirt, ores, or other basic building tiles
 			Main.tileFrameImportant[Type] = true;
 			// 使用 this to utilize an existing template
-			// names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
+			// names of styles are self explanatory usually (you can see all existing templates 在 link mentioned earlier)
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			// 之前 adding the new tile you can make some changes to newTile like height, origin and etc.
 			// Changing the Height because the template is for 1x2 not 1x3
 			TileObjectData.newTile.Height = 3;
-			// Modifies which part of the tile is centered on the mouse, in tile coordinates, from the top right corner
+			// 修改 which part 的 tile is centered 在 mouse, in tile coordinates, 从 top right corner
 			TileObjectData.newTile.Origin = new Point16(1, 2);
-			// 设置ting the height of the tiles individually for each
+			// 设置ting the height 的 tiles individually for each
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 18 };
 			// 最后 adding newTile
 			TileObjectData.addTile(Type);
 
-			// 添加MapEntry is for setting the color and optional text associated with the Tile when viewed on the map
+			// 添加MapEntry is for setting the color and optional text associated 与 Tile when viewed 在 map
 			AddMapEntry(new Color(75, 139, 166));
 
 			// height of a group of animation frames for this tile
-			// Defaults to 0, which disables animations
+			// 默认s to 0, which disables animations
 			AnimationFrameHeight = 56;
 
 			glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
@@ -61,16 +61,16 @@ namespace ExampleMod.Content.Tiles
 			// Because height of third tile is different we change it
 			int height = tile.TileFrameY % AnimationFrameHeight == 36 ? 18 : 16;
 
-			// Offset along the Y axis depending on the current frame
+			// Offset along the Y axis depending 在 current frame
 			int frameYOffset = Main.tileFrame[Type] * AnimationFrameHeight;
 
-			// 首先ly we draw the original texture and then glow mask texture
+			// 首先ly we draw the original texture 然后 glow mask texture
 			spriteBatch.Draw(
 				TextureAssets.Tile[Type].Value,
 				new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero,
 				new Rectangle(tile.TileFrameX, tile.TileFrameY + frameYOffset, 16, height),
 				Lighting.GetColor(i, j), 0f, default, 1f, SpriteEffects.None, 0f);
-			// 确保 to draw with Color.White or at least a color that is fully opaque
+			// 确保 to draw with Color.White or 至少 a color 即 fully opaque
 			// Achieve opaqueness by increasing the alpha channel closer to 255. (lowering closer to 0 will achieve transparency)
 			spriteBatch.Draw(
 				glowTexture.Value,

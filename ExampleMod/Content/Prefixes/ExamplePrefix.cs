@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Prefixes
 		public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 
 		// 参见 documentation for vanilla weights and more information.
-		// 在 case of multiple prefixes with similar functions this can be used with a switch/case to provide different chances for different prefixes
+		// 在 case of multiple prefixes with similar functions this 可以 used with a switch/case to provide different chances for different prefixes
 		// Note: a weight of 0f might still be rolled. See CanRoll to exclude prefixes.
 		// Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
 		public override float RollChance(Item item) {
@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Prefixes
 		}
 
 		// 确定s if it can roll at all.
-		// 使用 this to control if a prefix can be rolled or not.
+		// 使用 this to control if a prefix 可以 rolled or not.
 		public override bool CanRoll(Item item) {
 			return true;
 		}
@@ -44,22 +44,22 @@ namespace ExampleMod.Content.Prefixes
 			//
 		}
 
-		// This prefix doesn't affect any non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern can be followed for a prefix that does affect other stats.
+		// This prefix doesn't affect any non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern 可以 followed for a prefix that does affect other stats.
 		public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
-			// Due to inheritance, this code runs for ExamplePrefix and ExampleDerivedPrefix. We add 2 tooltip lines, the first is the typical prefix tooltip line showing the stats boost, while the other is just some additional flavor text.
+			// Due to inheritance, this code runs 例如Prefix and ExampleDerivedPrefix. We add 2 tooltip lines, the first is the typical prefix tooltip line showing the stats boost, while the other is just some additional flavor text.
 
-			// localization key for Mods.ExampleMod.Prefixes.PowerTooltip uses a special format that will automatically prefix + or - to the value.
-			// This shared localization is formatted with the Power value, resulting in different text for ExamplePrefix and ExampleDerivedPrefix.
-			// This results in "+1 Power" for ExamplePrefix and "+2 Power" for ExampleDerivedPrefix.
-			// Power isn't an actual stat, the effects of Power are already shown in the "+X% damage" tooltip, so this example is purely educational.
+			// localization key for Mods.ExampleMod.Prefixes.PowerTooltip uses a special format that will automatically prefix + or - 到 value.
+			// This shared localization is formatted 与 Power value, resulting in different text 例如Prefix and ExampleDerivedPrefix.
+			// This results in "+1 Power" 例如Prefix and "+2 Power" 例如DerivedPrefix.
+			// Power isn't an actual stat, the effects of Power are already shown 在 "+X% damage" tooltip, so this example is purely educational.
 			yield return new TooltipLine(Mod, "PrefixWeaponAwesome", PowerTooltip.Format(Power)) {
-				IsModifier = true, // 设置s the color to the positive modifier color.
+				IsModifier = true, // 设置s the color 到 positive modifier color.
 			};
-			// This localization is not shared with the inherited classes. ExamplePrefix and ExampleDerivedPrefix have their own translations for this line.
+			// This localization is not shared 与 inherited classes. ExamplePrefix and ExampleDerivedPrefix have their own translations for this line.
 			yield return new TooltipLine(Mod, "PrefixWeaponAwesomeDescription", AdditionalTooltip.Value) {
 				IsModifier = true,
 			};
-			// 如果 possible and suitable, try to reuse the name identifier and translation value of Terraria prefixes. For example, this code uses the vanilla translation for the word defense, resulting in "-5 defense". Note that IsModifierBad is used for this bad modifier.
+			// 如果 possible and suitable, try to reuse the name identifier and translation value of Terraria prefixes. 例如, this code uses the vanilla translation 对于 word defense, resulting in "-5 defense". Note 即ModifierBad is used for this bad modifier.
 			/*yield return new TooltipLine(Mod, "PrefixAccDefense", "-5" + Lang.tip[25].Value) {
 				IsModifier = true,
 				IsModifierBad = true,

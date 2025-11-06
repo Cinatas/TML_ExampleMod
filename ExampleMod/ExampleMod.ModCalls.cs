@@ -46,7 +46,7 @@ namespace ExampleMod
 
 						// 我们将值设置为参数提供的值。
 						// 可选地，您可以返回一个值，指示赋值成功。
-						// return true;
+						// 返回 true;
 						Main.LocalPlayer.GetModPlayer<ExampleInfoDisplayPlayer>().showMinionCount = minionSet;
 
 						// 返回一个 'true' 布尔值，作为操作成功的多种方式之一。

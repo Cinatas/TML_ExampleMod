@@ -14,7 +14,7 @@ namespace ExampleMod.Content.BossBars
 
 	// 请记住 that if the NPC has a boss head icon, it will automatically have the common boss health bar from vanilla. A ModBossBar is not mandatory for a boss.
 
-	// 你 can make it so your NPC never shows a boss bar, such as Dungeon Guardian or Lunatic Cultist Clone:
+	// 你 can make it so your NPC never shows a boss bar, 例如 Dungeon Guardian or Lunatic Cultist Clone:
 	//  NPC.BossBar = Main.BigBossProgressBar.NeverValid;
 	public class ExampleBossBar : ModBossBar
 	{
@@ -23,7 +23,7 @@ namespace ExampleMod.Content.BossBars
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, NPC npc, ref BossBarDrawParams drawParams) {
-			// Make the bar shake the less health the NPC has
+			// 使 the bar shake the less health the NPC has
 			float lifePercent = drawParams.Life / drawParams.LifeMax;
 			float shakeIntensity = Utils.Clamp(1f - lifePercent - 0.2f, 0f, 1f);
 			drawParams.BarCenter.Y -= 20f;

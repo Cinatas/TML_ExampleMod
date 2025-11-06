@@ -31,10 +31,10 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.rare = ItemRarityID.Pink;
 			Item.UseSound = SoundID.Item1;
 
-			Item.shoot = ProjectileID.StarWrath; // ID of the projectiles the sword will shoot
-			Item.shootSpeed = 8f; // Speed of the projectiles the sword will shoot
+			Item.shoot = ProjectileID.StarWrath; // ID 的 projectiles the sword will shoot
+			Item.shootSpeed = 8f; // Speed 的 projectiles the sword will shoot
 
-			// 如果 you want melee speed to only affect the swing speed of the weapon and not the shoot speed (not recommended)
+			// 如果 you want melee speed to only affect the swing speed 的 weapon and not the shoot speed (not recommended)
 			// Item.attackSpeedOnlyAffectsWeaponAnimation = true;
 
 			// Normally shooting a projectile makes the player face the projectile, but if you don't want that (like the beam sword) use this line of code

@@ -41,7 +41,7 @@ namespace ExampleMod.Items.Abomination
 			{
 				int maxAccessoryIndex = 5 + player.extraAccessorySlots;
 				for (int i = 3; i < 3 + maxAccessoryIndex; i++) {
-					// We need "slot != i" because we don't care what is currently in the slot we will be replacing.
+					// We need "slot != i" because we don't care what is currently 在 slot we 将 replacing.
 					if (slot != i && player.armor[i].type == ItemID.AnkhShield) {
 						return false;
 					}
@@ -51,7 +51,7 @@ namespace ExampleMod.Items.Abomination
 		}
 	}
 
-	// We need to do the same for the AnkhShield so our restriction is enforced both ways.
+	// We need to do the same 对于 AnkhShield so our restriction is enforced both ways.
 	public class AnkhShield : GlobalItem
 	{
 		public override bool CanEquipAccessory(Item item, Player player, int slot) {
@@ -60,7 +60,7 @@ namespace ExampleMod.Items.Abomination
 				{
 					int maxAccessoryIndex = 5 + player.extraAccessorySlots;
 					for (int i = 3; i < 3 + maxAccessoryIndex; i++) {
-						// We need "slot != i" because we don't care what is currently in the slot we will be replacing.
+						// We need "slot != i" because we don't care what is currently 在 slot we 将 replacing.
 						if (slot != i && player.armor[i].type == ItemType<SixColorShield>()) {
 							return false;
 						}

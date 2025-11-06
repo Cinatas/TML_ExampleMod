@@ -22,11 +22,11 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void SetDefaults() {
-			// Item.dye will already be assigned to this item prior to SetDefaults because of the above GameShaders.Armor.BindShader code in Load().
+			// Item.dye will already be assigned to this item prior to SetDefaults because 的 above GameShaders.Armor.BindShader code in Load().
 			// This code here remembers Item.dye so that information isn't lost during CloneDefaults.
 			int dye = Item.dye;
 
-			Item.CloneDefaults(ItemID.GelDye); // Makes the item copy the attributes of the item "Gel Dye" Change "GelDye" to whatever dye type you want.
+			Item.CloneDefaults(ItemID.GelDye); // 使 the item copy the attributes 的 item "Gel Dye" Change "GelDye" to whatever dye type you want.
 
 			Item.dye = dye;
 		}

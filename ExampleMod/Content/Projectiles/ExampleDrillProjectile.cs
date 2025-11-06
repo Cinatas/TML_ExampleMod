@@ -23,11 +23,11 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DamageType = DamageClass.Melee;
 			Projectile.ownerHitCheck = true;
 			Projectile.aiStyle = -1; // Replace with 20 if you do not want custom code
-			Projectile.hide = true; // 隐藏s the projectile, so it will draw in the player's hand when we set the player's heldProj to this one.
+			Projectile.hide = true; // 隐藏s the projectile, so it will draw 在 player's hand when we set the player's heldProj to this one.
 		}
 
 		// This code is adapted and simplified from aiStyle 20 to use a different dust and more noises. If you want to use aiStyle 20, you do not need to do any of this.
-		// It should be noted that this projectile has no effect on mining and is mostly visual.
+		// It 应该 noted that this projectile has no effect on mining and is mostly visual.
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter);
 			if (Main.myPlayer == Projectile.owner) {
-				// This code must only be ran on the client of the projectile owner
+				// This code must only be ran 在 client 的 projectile owner
 				if (player.channel) {
 					float holdoutDistance = player.HeldItem.shootSpeed * Projectile.scale;
 					// 计算 a normalized vector from player to mouse and multiply by holdoutDistance to determine resulting holdoutOffset
@@ -69,10 +69,10 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			Projectile.spriteDirection = Projectile.direction;
-			player.ChangeDir(Projectile.direction); // 更改 the player's direction based on the projectile's own
-			player.heldProj = Projectile.whoAmI; // We tell the player that the drill is the held projectile, so it will draw in their hand
-			player.SetDummyItemTime(2); // Make sure the player's item time does not change while the projectile is out
-			Projectile.Center = playerCenter; // Centers the projectile on the player. Projectile.velocity will be added to this in later Terraria code causing the projectile to be held away from the player at a set distance.
+			player.ChangeDir(Projectile.direction); // 更改 the player's direction based 在 projectile's own
+			player.heldProj = Projectile.whoAmI; // We tell the player th在 drill is the held projectile, so it will draw 在ir hand
+			player.SetDummyItemTime(2); // 使 sure the player's item time does not change while the projectile is out
+			Projectile.Center = playerCenter; // Centers the projectile 在 player. Projectile.velocity 将 added to this in later Terraria code causing the projectile to be held away 从 player at a set distance.
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 			player.itemRotation = (Projectile.velocity * Projectile.direction).ToRotation();
 

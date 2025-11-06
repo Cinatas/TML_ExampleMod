@@ -27,7 +27,7 @@ namespace ExampleMod.Common.Systems
 		public override void LoadWorldData(TagCompound tag) {
 			unlockedExamplePersonSpawn = tag.GetBool(nameof(unlockedExamplePersonSpawn));
 
-			// This line sets unlockedExamplePersonSpawn to true if an ExamplePerson is already in the world. This is only needed because unlockedExamplePersonSpawn was added in an update to this mod, meaning that existing users might have unlockedExamplePersonSpawn incorrectly set to false.
+			// This line sets unlockedExamplePersonSpawn to true if an ExamplePerson is already 在 world. This is only needed because unlockedExamplePersonSpawn was added in an update to this mod, meaning that existing users might have unlockedExamplePersonSpawn incorrectly set to false.
 			// If you are tracking Town NPC unlocks from your initial mod release, then this isn't necessary.
 			unlockedExamplePersonSpawn |= NPC.AnyNPCs(ModContent.NPCType<ExamplePerson>());
 		}

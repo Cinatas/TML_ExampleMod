@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override void SetDefaults() {
 			Item.damage = 8;
 			Item.knockBack = 4f;
-			Item.useStyle = ItemUseStyleID.Rapier; // Makes the player do the proper arm motion
+			Item.useStyle = ItemUseStyleID.Rapier; // 使 the player do the proper arm motion
 			Item.useAnimation = 12;
 			Item.useTime = 12;
 			Item.width = 32;
@@ -18,14 +18,14 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.UseSound = SoundID.Item1;
 			Item.DamageType = DamageClass.MeleeNoSpeed;
 			Item.autoReuse = false;
-			Item.noUseGraphic = true; // The sword is actually a "projectile", so the item should not be visible when used
+			Item.noUseGraphic = true; // The sword is actually a "projectile", so the item should 不 visible when used
 			Item.noMelee = true; // The projectile will do the damage and not the item
 
 			Item.rare = ItemRarityID.White;
 			Item.value = Item.sellPrice(0, 0, 0, 10);
 
 			Item.shoot = ModContent.ProjectileType<ExampleShortswordProjectile>(); // The projectile is what makes a shortsword work
-			Item.shootSpeed = 2.1f; // This value bleeds into the behavior of the projectile as velocity, keep that in mind when tweaking values
+			Item.shootSpeed = 2.1f; // This value bleeds in到 behavior 的 projectile as velocity, keep that in mind when tweaking values
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

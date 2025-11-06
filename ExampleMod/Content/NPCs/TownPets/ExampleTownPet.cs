@@ -17,7 +17,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 	[AutoloadHead]
 	public class ExampleTownPet : ModNPC
 	{
-		// Where our additional head sprites will be stored.
+		// Where our additional head sprites 将 stored.
 		internal static int HeadIndex1;
 		internal static int HeadIndex2;
 		internal static int HeadIndex3;
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		private static ITownNPCProfile NPCProfile;
 
 		public override void Load() {
-			// 添加s our variant heads to the NPCHeadLoader.
+			// 添加s our variant heads 到 NPCHeadLoader.
 			HeadIndex1 = Mod.AddNPCHeadTexture(Type, $"{Texture}_1_Head");
 			HeadIndex2 = Mod.AddNPCHeadTexture(Type, $"{Texture}_2_Head");
 			HeadIndex3 = Mod.AddNPCHeadTexture(Type, $"{Texture}_3_Head");
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPCID.Sets.AttackType[Type] = -1; // Town Pets do not attack. The default for this set is -1, so it is safe to remove this line if you wish.
 			NPCID.Sets.AttackTime[Type] = -1; // Town Pets do not attack. The default for this set is -1, so it is safe to remove this line if you wish.
 			NPCID.Sets.AttackAverageChance[Type] = 1;  // Town Pets do not attack. The default for this set is 1, so it is safe to remove this line if you wish.
-			NPCID.Sets.HatOffsetY[Type] = -2; // An offset for where the party hat sits on the sprite.
+			NPCID.Sets.HatOffsetY[Type] = -2; // An offset for where the party hat sits 在 sprite.
 			NPCID.Sets.ShimmerTownTransform[Type] = false; // Town Pets don't have a Shimmer variant.
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true; // But they are still immune to Shimmer.
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true; // And Confused.
@@ -53,14 +53,14 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPCID.Sets.NPCFramingGroup[Type] = 8; // How the party hat is animated to match the walking animation. Town Cat = 4, Town Dog = 5, Town Bunny = 6, Town Slimes = 7, No offset = 8
 
 			NPCID.Sets.IsTownPet[Type] = true; // Our NPC is a Town Pet
-			NPCID.Sets.CannotSitOnFurniture[Type] = false; // True by default which means they cannot sit in chairs. True means they can sit on furniture like the Town Cat.
-			NPCID.Sets.TownNPCBestiaryPriority.Add(Type); // Puts our NPC with all of the other Town NPCs.
-			NPCID.Sets.PlayerDistanceWhilePetting[Type] = 32; // Distance the player stands from the Town Pet to pet.
-			NPCID.Sets.IsPetSmallForPetting[Type] = true; // If set to true, the player's arm will be angled down while petting.
+			NPCID.Sets.CannotSitOnFurniture[Type] = false; // True 默认情况下 which means they cannot sit in chairs. True means they can sit on furniture like the Town Cat.
+			NPCID.Sets.TownNPCBestiaryPriority.Add(Type); // Puts our NPC with all 的 other Town NPCs.
+			NPCID.Sets.PlayerDistanceWhilePetting[Type] = 32; // Distance the player stands 从 Town Pet to pet.
+			NPCID.Sets.IsPetSmallForPetting[Type] = true; // If set to true, the player's arm 将 angled down while petting.
 
-			// Influences how the NPC looks in the Bestiary
+			// Influences how the NPC looks 在 Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new() {
-				Velocity = 0.25f, // 绘制s the NPC in the bestiary as if its walking +0.25 tiles in the x direction
+				Velocity = 0.25f, // 绘制s the NPC 在 bestiary as if its walking +0.25 tiles 在 x direction
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -81,7 +81,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			NPC.DeathSound = SoundID.NPCDeath6;
 			NPC.knockBackResist = 0.5f;
 			NPC.housingCategory = 1; // This means it can share a house with a normal Town NPC.
-			AnimationType = NPCID.TownBunny; // This example matches the animations of the Town Bunny.
+			AnimationType = NPCID.TownBunny; // This example matches the animations 的 Town Bunny.
 		}
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
@@ -128,9 +128,9 @@ namespace ExampleMod.Content.NPCs.TownPets
 		};
 
 		public override List<string> SetNPCNameList() {
-			return NPC.townNpcVariationIndex switch { // 更改 the name based on the variation.
+			return NPC.townNpcVariationIndex switch { // 更改 the name based 在 variation.
 				0 => NameList0,
-				1 => NameList1, // Variant 1 will be the Shimmered variant if your NPC has a shimmer variant.
+				1 => NameList1, // Variant 1 将 the Shimmered variant if your NPC has a shimmer variant.
 				// Green (2) variant shows one approach to localizing Town NPC names.
 				// One additional benefit of this approach is a separate mod can add a Mods.ExampleMod.NPCs.ExampleTownPet.Names.Green.Emerald key and it will automatically be used as an name option.
 				2 => Language.FindAll(Lang.CreateDialogFilter(this.GetLocalizationKey("Names.Green"))).Select(x => x.Value).ToList(),
@@ -156,7 +156,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 		public override bool PreAI() {
 			// 如果 your Town Pet can sit in chairs with NPCID.Sets.CannotSitOnFurniture[Type] = false
-			// 我们 want to move the Town NPC up visually to match the height of the chair.
+			// 我们 want to move the Town NPC up visually to match the height 的 chair.
 			// NPC.ai[0] is set to 5f for Town NPC AI when they are sitting in a chair.
 			if (NPC.ai[0] == 5f) {
 				DrawOffsetY = -10; // 记住: Negative Y is up. So, this is moving the NPC up visually by 10 pixels.
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			else {
 				DrawOffsetY = 0; // 重置 it back to 0 when not sitting in a chair.
 			}
-			// Do not try to add or subtract from the DrawOffsetY. It'll cause the sprite to change its height every frame which will make it go off of the screen.
+			// Do not try to add or subtract 从 DrawOffsetY. It'll cause the sprite to change its height every frame which will make it go off 的 screen.
 
 			// 如果 your Town Pet doesn't sit in furniture, you can remove this entire PreAI() method.
 
@@ -173,9 +173,9 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 		public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects) {
 			// 如果 your Town Pet can sit in chairs with NPCID.Sets.CannotSitOnFurniture[Type] = false
-			// and you've done the above DrawOffsetY to raise it up to the chair's height,
+			// and you've done the above DrawOffsetY to raise it up 到 chair's height,
 			// you'll notice the chat bubble that appears when hovering over them doesn't get raised up.
-			// So, let's move it up as well.
+			// So, let's move it up 以及.
 			if (NPC.ai[0] == 5f) { // (Sitting in a chair.)
 				position.Y -= 18f; // Move upwards.
 			}
@@ -195,16 +195,16 @@ namespace ExampleMod.Content.NPCs.TownPets
 		*/
 
 		public override void PartyHatPosition(ref Vector2 position, ref SpriteEffects spriteEffects) {
-			// With this hook, we have full control over the position of the party hat.
+			// With this hook, we have full control over the position 的 party hat.
 			// 我们 have already set NPCID.Sets.HatOffsetY[Type] = -2 in SetStaticDefaults which will move the party hat up 2 pixels at all times.
 			// 我们 also set PCID.Sets.NPCFramingGroup[Type] = 8 in SetStaticDefaults.
-			// NPCFramingGroup is used vertically offset the party hat to match the animations of the NPC.
-			// Group 8 has no inherit offsets for the party hat.
+			// NPCFramingGroup is used vertically offset the party hat to match the animations 的 NPC.
+			// Group 8 has no inherit offsets 对于 party hat.
 
 			int frame = NPC.frame.Y / NPC.frame.Height; // The current frame.
-			int xOffset = 8; // Move the party hat forward so it is actually on the Town Pet's head.
-			// Then move the party hat left/right depending on the frame.
-			// These numbers were achieved by measuring the sprite relative to the "normal" position of the party hat.
+			int xOffset = 8; // Move the party hat forward so it is actually 在 Town Pet's head.
+			// Then move the party hat left/right depending 在 frame.
+			// These numbers were achieved by measuring the sprite relative 到 "normal" position 的 party hat.
 			switch (frame) {
 				case 1:
 				case 2:
@@ -245,8 +245,8 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 			// 我们 set NPCID.Sets.HatOffsetY[Type] = -2 so that means every frame is moved up 2 additional units.
 			int yOffset = 0;
-			// Then move the party hat up/down depending on the frame.
-			// These numbers were achieved by measuring the sprite relative to the "normal" position of the party hat.
+			// Then move the party hat up/down depending 在 frame.
+			// These numbers were achieved by measuring the sprite relative 到 "normal" position 的 party hat.
 			switch (frame) {
 				case 3:
 				case 4:
@@ -290,7 +290,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			}
 			position.Y += yOffset;
 
-			// Move it up to match the location of the head when sitting in a chair.
+			// Move it up to match the location 的 head when sitting in a chair.
 			if (NPC.ai[0] == 5f) {
 				position.Y += -10;
 			}
@@ -323,12 +323,12 @@ namespace ExampleMod.Content.NPCs.TownPets
 			return random;
 		}
 
-		public string GetNameForVariant(NPC npc) => npc.getNewNPCName(); // Reroll the name each time the Town Pet spawns or changes variant.
+		public string GetNameForVariant(NPC npc) => npc.getNewNPCName(); // Reroll the name 每次 the Town Pet spawns or changes variant.
 
 		public Asset<Texture2D> GetTextureNPCShouldUse(NPC npc) {
 			return npc.townNpcVariationIndex switch {
 				0 => variant0,
-				1 => variant1, // Variant 1 will be the Shimmered variant if your NPC has a shimmer variant.
+				1 => variant1, // Variant 1 将 the Shimmered variant if your NPC has a shimmer variant.
 				2 => variant2,
 				3 => variant3,
 				4 => variant4,
@@ -341,7 +341,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		public int GetHeadTextureIndex(NPC npc) {
 			return npc.townNpcVariationIndex switch {
 				0 => headIndex0,
-				1 => ExampleTownPet.HeadIndex1, // Variant 1 will be the Shimmered variant if your NPC has a shimmer variant.
+				1 => ExampleTownPet.HeadIndex1, // Variant 1 将 the Shimmered variant if your NPC has a shimmer variant.
 				2 => ExampleTownPet.HeadIndex2,
 				3 => ExampleTownPet.HeadIndex3,
 				4 => ExampleTownPet.HeadIndex4,

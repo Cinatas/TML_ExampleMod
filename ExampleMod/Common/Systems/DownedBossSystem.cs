@@ -21,7 +21,7 @@ namespace ExampleMod.Common.Systems
 		}
 
 		// We save our data sets using TagCompounds.
-		// NOTE: The tag instance provided here is always empty by default.
+		// NOTE: The tag instance provided here is always empty 默认情况下.
 		public override void SaveWorldData(TagCompound tag) {
 			if (downedMinionBoss) {
 				tag["downedMinionBoss"] = true;
@@ -51,18 +51,18 @@ namespace ExampleMod.Common.Systems
 				This is correct:
 			flags[7] = downed8thBoss;
 			writer.Write(flags);
-			BitsByte flags2 = new BitsByte(); // create another BitsByte
+			BitsByte flags2 = new BitsByte(); // 创建 another BitsByte
 			flags2[0] = downed9thBoss; // start again from 0
 			// up to 7 more flags here
 			writer.Write(flags2); // write this byte
 			*/
 
-			// If you prefer, you can use the BitsByte constructor approach as well.
+			// If you prefer, you can use the BitsByte constructor approach 以及.
 			// BitsByte flags = new BitsByte(downedMinionBoss, downedOtherBoss);
 			// writer.Write(flags);
 
 			// This is another way to do the same thing, but with bitmasks and the bitwise OR assignment operator (the |=)
-			// Note that 1 and 2 here are bit masks. The next values in the pattern are 4,8,16,32,64,128. If you require more than 8 flags, make another byte.
+			// Note that 1 and 2 here are bit masks. The next values 在 pattern are 4,8,16,32,64,128. If you require more than 8 flags, make another byte.
 			// byte flags = 0;
 			// if (downedMinionBoss)
 			// {
@@ -74,14 +74,14 @@ namespace ExampleMod.Common.Systems
 			// }
 			// writer.Write(flags);
 
-			// If you plan on having more than 8 of these flags and don't want to use multiple BitsByte, an alternative is using a System.Collections.BitArray
+			// If you plan on having more than 8 的se flags and don't want to use multiple BitsByte, an alternative is using a System.Collections.BitArray
 			/*
 			bool[] flags = new bool[] {
 				downedMinionBoss,
 				downedOtherBoss,
 			};
 			BitArray bitArray = new BitArray(flags);
-			byte[] bytes = new byte[(bitArray.Length - 1) / 8 + 1]; // Calculation for correct length of the byte array
+			byte[] bytes = new byte[(bitArray.Length - 1) / 8 + 1]; // Calculation for correct length 的 byte array
 			bitArray.CopyTo(bytes, 0);
 
 			writer.Write(bytes.Length);

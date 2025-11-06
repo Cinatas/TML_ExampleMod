@@ -7,8 +7,8 @@ namespace ExampleMod.Content.EmoteBubbles
 	public class MinionBossEmote : ModEmoteBubble
 	{
 		public override void SetStaticDefaults() {
-			// default emote command name will be a lowercase version of the classname to match other vanilla commands.
-			// This can be changed in the localization files.
+			// 默认 emote command name 将 a lowercase version 的 classname to match other vanilla commands.
+			// This 可以 changed 在 localization files.
 
 			// 添加 the emote to "bosses" category
 			AddToCategory(EmoteID.Category.Dangers);

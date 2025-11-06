@@ -12,8 +12,8 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 	public class MinionBossMinion : ModNPC
 	{
 		// 这是 a neat trick that uses the fact that NPCs have all NPC.ai[] values set to 0f on spawn (if not otherwise changed).
-		// 我们 set ParentIndex to a number in the body after spawning it. If we set ParentIndex to 3, NPC.ai[0] will be 4. If NPC.ai[0] is 0, ParentIndex will be -1.
-		// Now combine both facts, and the conclusion is that if this NPC spawns by other means (not from the body), ParentIndex will be -1, allowing us to distinguish
+		// 我们 set ParentIndex to a number 在 body after spawning it. If we set ParentIndex to 3, NPC.ai[0] 将 4. If NPC.ai[0] is 0, ParentIndex 将 -1.
+		// Now combine both facts, and the conclusion is that if this NPC spawns by other means (not 从 body), ParentIndex 将 -1, allowing us to distinguish
 		// between a proper spawn and an invalid/"cheated" spawn
 		public int ParentIndex {
 			get => (int)NPC.ai[0] - 1;
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 1;
 
-			// By default enemies gain health and attack if hardmode is reached. this NPC should not be affected by that
+			// 默认情况下 enemies gain health and attack if hardmode is reached. this NPC should 不 affected by that
 			NPCID.Sets.DontDoHardmodeScaling[Type] = true;
 			// Enemies can pick up coins, let's prevent it for this NPC
 			NPCID.Sets.CantTakeLunchMoney[Type] = true;
@@ -49,10 +49,10 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
-			// Optional: If you don't want this NPC to show on the bestiary (if there is no reason to show a boss minion separately)
-			// 确保 to remove SetBestiary code as well
+			// 可选: If you don't want this NPC to show 在 bestiary (if there is no reason to show a boss minion separately)
+			// 确保 to remove SetBestiary code 以及
 			// NPCID.Sets.NPCBestiaryDrawModifiers bestiaryData = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-			//	Hide = true // 隐藏s this NPC from the bestiary
+			//	Hide = true // 隐藏s this NPC 从 bestiary
 			// };
 			// NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, bestiaryData);
 		}
@@ -75,7 +75,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+			// 使 it so whenever you be在 boss associated with it, it will also get unlocked immediately
 			int associatedNPCType = BodyType();
 			bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 		public override Color? GetAlpha(Color drawColor) {
 			if (NPC.IsABestiaryIconDummy) {
-				// 这是 required because we have NPC.alpha = 255, in the bestiary it would look transparent
+				// 这是 required because we have NPC.alpha = 255, 在 bestiary it would look transparent
 				return NPC.GetBestiaryEntryColor();
 			}
 			return Color.White * NPC.Opacity;
@@ -99,7 +99,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void OnKill() {
-			// Boss minions typically have a chance to drop an additional heart item in addition to the default chance
+			// Boss minions typically have a chance to drop an additional heart item in addition 到 default chance
 			Player closestPlayer = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
 
 			if (Main.rand.NextBool(2) && closestPlayer.statLife < closestPlayer.statLifeMax2) {
@@ -111,7 +111,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			if (NPC.life <= 0) {
 				// 如果 this NPC dies, spawn some visuals
 
-				int dustType = 59; // Some blue dust, read the dust guide on the wiki for how to find the perfect dust
+				int dustType = 59; // Some blue dust, read the dust guide 在 wiki for how to find the perfect dust
 
 				for (int i = 0; i < 20; i++) {
 					Vector2 velocity = NPC.velocity + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
@@ -184,7 +184,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 			float distanceFromBody = parentNPC.width + NPC.width;
 
-			// offset is now a vector that will determine the position of the NPC based on its index
+			// offset is now a vector that will determine the position 的 NPC based on its index
 			Vector2 offset = Vector2.One.RotatedBy(rad) * distanceFromBody;
 
 			Vector2 destination = parentNPC.Center + offset;

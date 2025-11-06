@@ -24,13 +24,13 @@ namespace ExampleMod.Content.Tiles
 			// 设置 to True if you'd like your tile to die if hit by lava
 			Main.tileLavaDeath[Type] = true;
 			// 使用 this to utilize an existing template
-			// names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
+			// names of styles are self explanatory usually (you can see all existing templates 在 link mentioned earlier)
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
 			// This last call adds a new tile
 			// 之前 that, you can make some changes to newTile like height, origin and etc.
 			TileObjectData.addTile(Type);
 
-			// 添加MapEntry is for setting the color and optional text associated with the Tile when viewed on the map
+			// 添加MapEntry is for setting the color and optional text associated 与 Tile when viewed 在 map
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(238, 145, 105), name);
 
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Tiles
 			// AnimationFrameHeight = 56;
 		}
 
-		// Our textures animation frames are arranged horizontally, which isn't typical, so here we specify animationFrameWidth which we use later in AnimateIndividualTile
+		// Our textures animation frames are arranged horizontally, 即n't typical, so here we specify animationFrameWidth which we use later in AnimateIndividualTile
 		private readonly int animationFrameWidth = 18;
 
 		// 此方法 allows you to determine how much light this block emits
@@ -48,7 +48,7 @@ namespace ExampleMod.Content.Tiles
 			b = 0.12f;
 		}
 
-		// 此方法 allows you to determine whether or not the tile will draw itself flipped in the world
+		// 此方法 allows you to determine whether or not the tile will draw itself flipped 在 world
 		public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
 			// Flips the sprite if x coord is odd. Makes the tile more interesting
 			if (i % 2 == 1)
@@ -73,7 +73,7 @@ namespace ExampleMod.Content.Tiles
 
 		// 此方法 allows you to change the sound a tile makes when hit
 		public override bool KillSound(int i, int j, bool fail) {
-			// Play the glass shattering sound instead of the normal digging sound if the tile is destroyed on this hit
+			// Play the glass shattering sound instead 的 normal digging sound if the tile is destroyed on this hit
 			if (!fail) {
 				SoundEngine.PlaySound(SoundID.Shatter, new Vector2(i, j).ToWorldCoordinates());
 				return false;
@@ -83,7 +83,7 @@ namespace ExampleMod.Content.Tiles
 
 		// 待办事项： It's better to have an actual class for this example, instead of comments
 
-		// Below is an example completely manually drawing a tile. It shows some interesting concepts that may be useful for more advanced things
+		// Below is an example completely manually drawing a tile. It shows some interesting concepts that 可能 useful f或更多 advanced things
 		/*public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
 			// 代替 of SetSpriteEffects
 			// Flips the sprite if x coord is odd. Makes the tile more interesting
@@ -119,7 +119,7 @@ namespace ExampleMod.Content.Tiles
 				new Rectangle(tile.frameX + frameXOffset, tile.frameY, 16, 16),
 				Lighting.GetColor(i, j), 0f, default, 1f, effects, 0f);
 
-			return false; // return false to stop vanilla draw
+			return false; // 返回 false to stop vanilla draw
 		}*/
 
 		public override void AnimateTile(ref int frame, ref int frameCounter) {

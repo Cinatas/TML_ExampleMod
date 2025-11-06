@@ -11,7 +11,7 @@ namespace ExampleMod.NPCs
 	public enum WormSegmentType
 	{
 		/// <summary>
-		/// The head segment for the worm.  Only one "head" is considered to be active for any given worm
+		/// The head segment 对于 worm.  Only one "head" is considered to be active for any given worm
 		/// </summary>
 		Head,
 		/// <summary>
@@ -44,7 +44,7 @@ namespace ExampleMod.NPCs
 		public abstract WormSegmentType SegmentType { get; }
 
 		/// <summary>
-		/// The maximum velocity for the NPC
+		/// The maximum velocity 对于 NPC
 		/// </summary>
 		public float MoveSpeed { get; set; }
 
@@ -54,17 +54,17 @@ namespace ExampleMod.NPCs
 		public float Acceleration { get; set; }
 
 		/// <summary>
-		/// The NPC instance of the head segment for this worm.
+		/// The NPC instance 的 head segment for this worm.
 		/// </summary>
 		public NPC HeadSegment => Main.npc[NPC.realLife];
 
 		/// <summary>
-		/// The NPC instance of the segment that this segment is following (ai[1]).  For head segments, this property always returns <see langword="null"/>.
+		/// The NPC instance 的 segment that this segment is following (ai[1]).  For head segments, this property always returns <see langword="null"/>.
 		/// </summary>
 		public NPC FollowingNPC => SegmentType == WormSegmentType.Head ? null : Main.npc[(int)NPC.ai[1]];
 
 		/// <summary>
-		/// The NPC instance of the segment that is following this segment (ai[0]).  For tail segment, this property always returns <see langword="null"/>.
+		/// The NPC instance 的 segment 即 following this segment (ai[0]).  For tail segment, this property always returns <see langword="null"/>.
 		/// </summary>
 		public NPC FollowerNPC => SegmentType == WormSegmentType.Tail ? null : Main.npc[(int)NPC.ai[0]];
 
@@ -86,7 +86,7 @@ namespace ExampleMod.NPCs
 				if (!NPC.HasValidTarget) {
 					NPC.TargetClosest(true);
 
-					// 如果 the NPC is a boss and it has no target, force it to fall to the underworld quickly
+					// 如果 the NPC is a boss and it has no target, force it to fall 到 underworld quickly
 					if (!NPC.HasValidTarget && NPC.boss) {
 						NPC.velocity.Y += 8f;
 
@@ -124,13 +124,13 @@ namespace ExampleMod.NPCs
 		public sealed override WormSegmentType SegmentType => WormSegmentType.Head;
 
 		/// <summary>
-		/// The NPCID or ModContent.NPCType for the body segment NPCs.<br/>
+		/// The NPCID or ModContent.NPCType 对于 body segment NPCs.<br/>
 		/// This property is only used if <see cref="HasCustomBodySegments"/> returns <see langword="false"/>.
 		/// </summary>
 		public abstract int BodyType { get; }
 
 		/// <summary>
-		/// The NPCID or ModContent.NPCType for the tail segment NPC.<br/>
+		/// The NPCID or ModContent.NPCType 对于 tail segment NPC.<br/>
 		/// This property is only used if <see cref="HasCustomBodySegments"/> returns <see langword="false"/>.
 		/// </summary>
 		public abstract int TailType { get; }
@@ -152,7 +152,7 @@ namespace ExampleMod.NPCs
 
 		/// <summary>
 		/// The maximum distance in <b>pixels</b> within which the NPC will use tile collision, if <see cref="CanFly"/> returns <see langword="false"/>.<br/>
-		/// Defaults to 1000 pixels, which is equivalent to 62.5 tiles.
+		/// Defaults to 1000 pixels, 即 equivalent to 62.5 tiles.
 		/// </summary>
 		public virtual int MaxDistanceForUsingTileCollision => 1000;
 
@@ -171,31 +171,31 @@ namespace ExampleMod.NPCs
 		/// This method only runs if <see cref="HasCustomBodySegments"/> returns <see langword="true"/>.
 		/// </summary>
 		/// <param name="segmentCount">How many body segments are expected to be spawned</param>
-		/// <returns>The whoAmI of the most-recently spawned NPC, which is the result of calling <see cref="NPC.NewNPC(Terraria.DataStructures.IEntitySource, int, int, int, int, float, float, float, float, int)"/></returns>
+		/// <returns>The whoAmI 的 most-recently spawned NPC, 即 the result of calling <see cref="NPC.NewNPC(Terraria.DataStructures.IEntitySource, int, int, int, int, float, float, float, float, int)"/></returns>
 		public virtual int SpawnBodySegments(int segmentCount) {
-			// Defaults to just returning this NPC's whoAmI, since the tail segment uses the return value as its "following" NPC index
+			// 默认s to just returning this NPC's whoAmI, since the tail segment uses the return value as its "following" NPC index
 			return NPC.whoAmI;
 		}
 
 		/// <summary>
-		/// Spawns a body or tail segment of the worm.
+		/// Spawns a body or tail segment 的 worm.
 		/// </summary>
 		/// <param name="source">The spawn source</param>
-		/// <param name="type">The ID of the segment NPC to spawn</param>
-		/// <param name="latestNPC">The whoAmI of the most-recently spawned segment NPC in the worm, including the head</param>
+		/// <param name="type">The ID 的 segment NPC to spawn</param>
+		/// <param name="latestNPC">The whoAmI 的 most-recently spawned segment NPC 在 worm, including the head</param>
 		/// <returns></returns>
 		protected int SpawnSegment(IEntitySource source, int type, int latestNPC) {
-			// 我们 spawn a new NPC, setting latestNPC to the newer NPC, whilst also using that same variable
-			// to set the parent of this new NPC. The parent of the new NPC (may it be a tail or body part)
+			// 我们 spawn a new NPC, setting latestNPC 到 newer NPC, whilst also using that same variable
+			// to set the parent of this new NPC. The parent 的 new NPC (may it be a tail or body part)
 			// will determine the movement of this new NPC.
-			// Under there, we also set the realLife value of the new NPC, because of what is explained above.
+			// Under there, we also set the realLife value 的 new NPC, because of what is explained above.
 			int oldLatest = latestNPC;
 			latestNPC = NPC.NewNPC(source, (int)NPC.Center.X, (int)NPC.Center.Y, type, NPC.whoAmI, 0, latestNPC);
 
 			Main.npc[oldLatest].ai[0] = latestNPC;
 
 			NPC latest = Main.npc[latestNPC];
-			// NPC.realLife is the whoAmI of the NPC that the spawned NPC will share its health with
+			// NPC.realLife is the whoAmI 的 NPC th在 spawned NPC will share its health with
 			latest.realLife = NPC.whoAmI;
 
 			return latestNPC;
@@ -215,17 +215,17 @@ namespace ExampleMod.NPCs
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				// So, we start the AI off by checking if NPC.ai[0] (the following NPC's whoAmI) is 0.
 				// 这是 practically ALWAYS the case with a freshly spawned NPC, so this means this is the first update.
-				// Since this is the first update, we can safely assume we need to spawn the rest of the worm (bodies + tail).
+				// Since this is the first update, we can safely assume we need to spawn the rest 的 worm (bodies + tail).
 				bool hasFollower = NPC.ai[0] > 0;
 				if (!hasFollower) {
 					// So, here we assign the NPC.realLife value.
 					// NPC.realLife value is mainly used to determine which NPC loses life when we hit this NPC.
-					// 我们 don't want every single piece of the worm to have its own HP pool, so this is a neat way to fix that.
+					// 我们 don't want every single piece 的 worm to have its own HP pool, so this is a neat way to fix that.
 					NPC.realLife = NPC.whoAmI;
 					// latestNPC is going to be used in SpawnSegment() and I'll explain it there.
 					int latestNPC = NPC.whoAmI;
 
-					// 在这里 we determine the length of the worm.
+					// 在这里 we determine the length 的 worm.
 					int randomWormLength = Main.rand.Next(MinSegmentLength, MaxSegmentLength + 1);
 
 					int distance = randomWormLength - 2;
@@ -249,7 +249,7 @@ namespace ExampleMod.NPCs
 
 					NPC.netUpdate = true;
 
-					// 确保 that all of the segments could spawn.  If they could not, despawn the worm entirely
+					// 确保 that all 的 segments could spawn.  If they could not, despawn the worm entirely
 					int count = 0;
 					foreach (var n in Main.ActiveNPCs) {
 						if ((n.type == Type || n.type == BodyType || n.type == TailType) && n.realLife == NPC.whoAmI)
@@ -257,7 +257,7 @@ namespace ExampleMod.NPCs
 					}
 
 					if (count != randomWormLength) {
-						// Unable to spawn all of the segments... kill the worm
+						// Unable to spawn all 的 segments... kill the worm
 						foreach (var n in Main.ActiveNPCs) {
 							if ((n.type == Type || n.type == BodyType || n.type == TailType) && n.realLife == NPC.whoAmI) {
 								n.active = false;
@@ -278,7 +278,7 @@ namespace ExampleMod.NPCs
 			int minTilePosY = (int)(NPC.Top.Y / 16) - 1;
 			int maxTilePosY = (int)(NPC.Bottom.Y / 16) + 2;
 
-			// 确保 that the tile range is within the world bounds
+			// 确保 th在 tile range is with在 world bounds
 			if (minTilePosX < 0)
 				minTilePosX = 0;
 			if (maxTilePosX > Main.maxTilesX)
@@ -358,7 +358,7 @@ namespace ExampleMod.NPCs
 			// 使用 a ValueTuple like this allows for easy assignment of multiple values
 			(targetXPos, targetYPos) = (forcedTarget.X, forcedTarget.Y);
 
-			// Copy the value, since it will be clobbered later
+			// Copy the value, since it 将 clobbered later
 			Vector2 npcCenter = NPC.Center;
 
 			float targetRoundedPosX = (float)((int)(targetXPos / 16f) * 16);
@@ -390,7 +390,7 @@ namespace ExampleMod.NPCs
 			// Constant gravity of 0.11 pixels/tick
 			NPC.velocity.Y += 0.11f;
 
-			// 确保 that the NPC does not fall too quickly
+			// 确保 th在 NPC does not fall too quickly
 			if (NPC.velocity.Y > speed)
 				NPC.velocity.Y = speed;
 
@@ -419,7 +419,7 @@ namespace ExampleMod.NPCs
 
 		private void HeadAI_Movement_PlayDigSounds(float length) {
 			if (NPC.soundDelay == 0) {
-				// Play sounds quicker the closer the NPC is to the target location
+				// Play sounds quicker the closer the NPC is 到 target location
 				float num1 = length / 40f;
 
 				if (num1 < 10)
@@ -453,7 +453,7 @@ namespace ExampleMod.NPCs
 				else if (NPC.velocity.Y > dirY)
 					NPC.velocity.Y -= acceleration;
 
-				// intended Y-velocity is small AND the NPC is moving to the left and the target is to the right of the NPC or vice versa
+				// intended Y-velocity is small AND the NPC is moving 到 left and the target is 到 right 的 NPC or vice versa
 				if (Math.Abs(dirY) < speed * 0.2 && ((NPC.velocity.X > 0 && dirX < 0) || (NPC.velocity.X < 0 && dirX > 0))) {
 					if (NPC.velocity.Y > 0)
 						NPC.velocity.Y += acceleration * 2f;
@@ -501,7 +501,7 @@ namespace ExampleMod.NPCs
 
 		private void HeadAI_Movement_SetRotation(bool collision) {
 			// 设置 the correct rotation for this NPC.
-			// Assumes the sprite for the NPC points upward.  You might have to modify this line to properly account for your NPC's orientation
+			// Assumes the sprite 对于 NPC points upward.  You might have to modify this line to properly account for your NPC's orientation
 			NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
 
 			// Some netupdate stuff (multiplayer compatibility).
@@ -541,8 +541,8 @@ namespace ExampleMod.NPCs
 
 			NPC following = worm.NPC.ai[1] >= Main.maxNPCs ? null : worm.FollowingNPC;
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
-				// Some of these conditions are possible if the body/tail segment was spawned individually
-				// Kill the segment if the segment NPC it's following is no longer valid
+				// Some 的se conditions are possible if the body/tail segment was spawned individually
+				// Kill the segment if the segment NPC it's following is 不再 valid
 				if (following is null || !following.active || following.friendly || following.townNPC || following.lifeMax <= 5) {
 					worm.NPC.life = 0;
 					worm.NPC.HitEffect(0, 10);
@@ -556,9 +556,9 @@ namespace ExampleMod.NPCs
 				float dirX = following.Center.X - worm.NPC.Center.X;
 				float dirY = following.Center.Y - worm.NPC.Center.Y;
 				// 我们 then use Atan2 to get a correct rotation towards that parent NPC.
-				// Assumes the sprite for the NPC points upward.  You might have to modify this line to properly account for your NPC's orientation
+				// Assumes the sprite 对于 NPC points upward.  You might have to modify this line to properly account for your NPC's orientation
 				worm.NPC.rotation = (float)Math.Atan2(dirY, dirX) + MathHelper.PiOver2;
-				// 我们 also get the length of the direction vector.
+				// 我们 also get the length 的 direction vector.
 				float length = (float)Math.Sqrt(dirX * dirX + dirY * dirY);
 				// 我们 calculate a new, correct distance.
 				float dist = (length - worm.NPC.width) / length;

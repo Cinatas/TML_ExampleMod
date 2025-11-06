@@ -12,14 +12,14 @@ namespace ExampleMod.Content.Tiles
 		public override void SetStaticDefaults() {
 			Main.tileLighted[Type] = true; // This tells the game that our tile produces light.
 
-			// Normally, non-solid tiles cannot be placed on other non-solid tiles. This set allows that.
+			// Normally, non-solid tiles can不 placed on other non-solid tiles. This set allows that.
 			// This set includes Cobwebs, Coin Piles, Living Fire Blocks, Smoke Blocks, and Bubble Blocks.
 			TileID.Sets.CanPlaceNextToNonSolidTile[Type] = true;
 
 			DustType = ModContent.DustType<Sparkle>(); // 设置 the dust type.
 
-			// 在这里 we set the map color to the same color as the light color.
-			// 我们 are accessing a variable that we defined inside of the item so we don't have to repeat entering the values.
+			// 在这里 we set the map color 到 same color as the light color.
+			// 我们 are accessing a variable that we defined inside 的 item so we don't have to repeat entering the values.
 			AddMapEntry(new Color(ExampleLivingFire.LightColor));
 
 			// There are 4 frames of animation for our texture.
@@ -27,14 +27,14 @@ namespace ExampleMod.Content.Tiles
 			AnimationFrameHeight = 90;
 		}
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-			// 在这里 we set the strength of the light that the tile produces.
-			// 我们 are accessing a variable that we defined inside of the item so we don't have to repeat entering the values.
+			// 在这里 we set the strength 的 light th在 tile produces.
+			// 我们 are accessing a variable that we defined inside 的 item so we don't have to repeat entering the values.
 			r = ExampleLivingFire.LightColor.X;
 			g = ExampleLivingFire.LightColor.Y;
 			b = ExampleLivingFire.LightColor.Z;
 		}
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-			// Living Fire Blocks are drawn 2 pixels lower so that they sink into the tile below it.
+			// Living Fire Blocks are drawn 2 pixels lower so th在y sink in到 tile below it.
 			offsetY = 2;
 		}
 
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Tiles
 			// Since we are just mimicking an existing tile, we can just use the same frame value.
 			frame = Main.tileFrame[TileID.LivingFire];
 
-			/* This is how it would be done manually, spending 5 ticks on each of 4 frames, looping.
+			/* This is how it 将 done manually, spending 5 ticks on each of 4 frames, looping.
 			if (++frameCounter >= 5) {
 				frameCounter = 0;
 				frame = ++frame % 4;

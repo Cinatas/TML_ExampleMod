@@ -11,15 +11,15 @@ namespace ExampleMod.Items.ExampleDamageClass
 	{
 		public override bool CloneNewInstances => true;
 
-		// Custom items should override this to set their defaults
+		// 自定义 items should override this to set their defaults
 		public virtual void SafeSetDefaults() {
 		}
 
 		// By making the override sealed, we prevent derived classes from further overriding the method and enforcing the use of SafeSetDefaults()
-		// We do this to ensure that the vanilla damage types are always set to false, which makes the custom damage type work
+		// We do this to ensure th在 vanilla damage types are always set to false, which makes the custom damage type work
 		public sealed override void SetDefaults() {
 			SafeSetDefaults();
-			// all vanilla damage types must be false for custom damage types to work
+			// all vanilla damage types 必须 false for custom damage types to work
 			item.melee = false;
 			item.ranged = false;
 			item.magic = false;
@@ -27,7 +27,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 			item.summon = false;
 		}
 
-		// As a modder, you could also opt to make these overrides also sealed. Up to the modder
+		// As a modder, you could also opt to make these overrides also sealed. Up 到 modder
 		public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat) {
 			add += ExampleDamagePlayer.ModPlayer(player).exampleDamageAdd;
 			mult *= ExampleDamagePlayer.ModPlayer(player).exampleDamageMult;
@@ -48,8 +48,8 @@ namespace ExampleMod.Items.ExampleDamageClass
 			// 获取 the vanilla damage tooltip
 			TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
 			if (tt != null) {
-				// We want to grab the last word of the tooltip, which is the translated word for 'damage' (depending on what language the player is using)
-				// So we split the string by whitespace, and grab the last word from the returned arrays to get the damage word, and the first to get the damage shown in the tooltip
+				// We want to grab the last word 的 tooltip, 即 the translated word for 'damage' (depending on what language the player is using)
+				// So we split the string by whitespace, and grab the last word 从 returned arrays to get the damage word, and the first to get the damage shown 在 tooltip
 				string[] splitText = tt.text.Split(' ');
 				string damageValue = splitText.First();
 				string damageWord = splitText.Last();

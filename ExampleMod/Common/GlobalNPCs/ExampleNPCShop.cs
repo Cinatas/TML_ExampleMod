@@ -23,7 +23,7 @@ namespace ExampleMod.Common.GlobalNPCs
 				// 此商店条目以 2 个防御者奖章的价格出售。
 				shop.Add(new Item(ModContent.ItemType<ExampleMountItem>()) {
 					shopCustomPrice = 2,
-					shopSpecialCurrency = CustomCurrencyID.DefenderMedals // omit this line if shopCustomPrice should be in regular coins.
+					shopSpecialCurrency = CustomCurrencyID.DefenderMedals // omit this line if shopCustomPrice 应该 in regular coins.
 				});
 
 				// 此商店条目以我们模组中添加的 3 个自定义货币的价格出售。
@@ -79,7 +79,7 @@ namespace ExampleMod.Common.GlobalNPCs
 
 			// 自定义条件，与上面 ExampleItem 的条件相反。
 			var redPotCondition = new Condition("Mods.ExampleMod.Conditions.NotSellingExampleItem", () => !Condition.HappyWindyDay.IsMet() || !Condition.HappyEnough.IsMet());
-			// 否则，如果不满足条件，那么让我们检查它是否是 For The Worthy 世界，然后出售红色药水。
+			// 否则，如果不满足条件，那么让我们检查它是否是 对于 Worthy 世界，然后出售红色药水。
 			shop.Add(ItemID.RedPotion, redPotCondition, Condition.ForTheWorthyWorld);
 		}
 	}

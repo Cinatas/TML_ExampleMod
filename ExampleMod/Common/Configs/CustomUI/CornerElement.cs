@@ -14,7 +14,7 @@ using Terraria.UI;
 // 如果你使用这些，你需要非常积极地更新你的模组，因为它们可能在任何更新中中断。
 
 // 此文件定义基于 Corner 枚举的自定义 ConfigElement
-// with custom drawing implemented that can be used in ModConfig classes.
+// with custom drawing implemented that 可以 used in ModConfig classes.
 namespace ExampleMod.Common.Configs.CustomUI
 {
 	// 此自定义配置 UI 元素展示了一个完全自定义的配置元素，除了自定义绘制外，还处理设置和获取值。

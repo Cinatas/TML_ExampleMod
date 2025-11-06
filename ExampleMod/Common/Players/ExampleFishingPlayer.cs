@@ -32,12 +32,12 @@ namespace ExampleMod.Common.Players
 			bool inWater = !attempt.inLava && !attempt.inHoney;
 			bool inExampleSurfaceBiome = Player.InModBiome<ExampleSurfaceBiome>();
 			if (attempt.playerFishingConditions.PoleItemType == ModContent.ItemType<ExampleFishingRod>() && inWater && inExampleSurfaceBiome) {
-				// In this example, we will fish up an Example Person from the water in Example Surface Biome,
-				// as long as there isn't one in the world yet
+				// In this example, we will fish up an Example Person 从 water in Example Surface Biome,
+				// as long as there isn't one 在 world yet
 				// NOTE: if a fishing rod has multiple bobbers, then each one can spawn the NPC
 				int npc = ModContent.NPCType<ExamplePerson>();
 				if (!NPC.AnyNPCs(npc)) {
-					// Make sure itemDrop = -1 when summoning an NPC, as otherwise terraria will only spawn the item
+					// 使 sure itemDrop = -1 when summoning an NPC, as otherwise terraria will only spawn the item
 					npcSpawn = npc;
 					itemDrop = -1;
 
@@ -47,7 +47,7 @@ namespace ExampleMod.Common.Players
 					sonar.Velocity = Vector2.Zero;
 					sonar.DurationInFrames = 300;
 
-					// And that text shows up on the player's head, not on the bobber location.
+					// And that text shows up 在 player's head, not 在 bobber location.
 					sonarPosition = new Vector2(Player.position.X, Player.position.Y - 64);
 
 					return; // This is important so your code after this that rolls items will not run
@@ -55,12 +55,12 @@ namespace ExampleMod.Common.Players
 			}
 
 			if (inWater && inExampleSurfaceBiome && attempt.crate) {
-				// If the game rolls a crate, we want to give ours to the player if he is in Example Surface Biome
+				// If the game rolls a crate, we want to give ours 到 player if he is in Example Surface Biome
 
 				// We don't want to replace golden/titanium crates (the highest tier crates), as they take highest priority in crate catches
 				// Their drop conditions are "veryrare" or "legendary"
-				// (After that come biome crates ("rare"), then iron/mythril ("uncommon"), then wood/pearl (none of the previous))
-				// Let's replace biome crates 50% of the time (player could be in multiple (modded) biomes, we should respect that)
+				// (After that come biome crates ("rare"), then iron/mythril ("uncommon"), then wood/pearl (none 的 previous))
+				// Let's replace biome crates 50% 的 time (player 可能 in multiple (modded) biomes, we should respect that)
 				if (!attempt.veryrare && !attempt.legendary && attempt.rare && Main.rand.NextBool()) {
 					itemDrop = ModContent.ItemType<Content.Items.Consumables.ExampleFishingCrate>();
 					return; // This is important so your code after this that rolls items will not run
@@ -76,7 +76,7 @@ namespace ExampleMod.Common.Players
 				// 最后, most vanilla quest fish only appear on an uncommon roll, so we'll do the same
 				if (Player.gravDir < 0f && attempt.uncommon) {
 					itemDrop = exampleQuestFish;
-					return; // While there is no more code that could roll a fish after this, we might add some in the future so it's best to return here
+					return; // While there is no more code that could roll a fish after this, we might add some 在 future so it's best to return here
 				}
 			}
 		}

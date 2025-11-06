@@ -10,8 +10,8 @@ namespace ExampleMod.Content.Tiles
 	public class ExampleCritterCage : ModTile
 	{
 		public override void SetStaticDefaults() {
-			// 在这里 we just copy a bunch of values from the frog cage tile
-			TileID.Sets.CritterCageLidStyle[Type] = TileID.Sets.CritterCageLidStyle[TileID.FrogCage]; // This is how vanilla draws the roof of the cage
+			// 在这里 we just copy a bunch of values 从 frog cage tile
+			TileID.Sets.CritterCageLidStyle[Type] = TileID.Sets.CritterCageLidStyle[TileID.FrogCage]; // This is how vanilla draws the roof 的 cage
 			Main.tileFrameImportant[Type] = Main.tileFrameImportant[TileID.FrogCage];
 			Main.tileLavaDeath[Type] = Main.tileLavaDeath[TileID.FrogCage];
 			Main.tileSolidTop[Type] = Main.tileSolidTop[TileID.FrogCage];
@@ -19,13 +19,13 @@ namespace ExampleMod.Content.Tiles
 			AdjTiles = new int[] { TileID.FrogCage, TileID.GoldFrogCage }; // Just in case another mod uses the frog cage to craft
 			AnimationFrameHeight = 36;
 
-			// 我们 can copy the TileObjectData directly from an existing tile to copy changes, if any, made to the TileObjectData template the original tile copied from.
+			// 我们 can copy the TileObjectData directly from an existing tile to copy changes, 如果有的话, made 到 TileObjectData template the original tile copied from.
 			// 在 this case, the original FrogCage tile is an exact copy of TileObjectData.StyleSmallCage, so either approach works here.
 			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.FrogCage, 0));
 			// or TileObjectData.newTile.CopyFrom(TileObjectData.StyleSmallCage);
 			TileObjectData.addTile(Type);
 
-			// Since this tile is only used for a single item, we can reuse the item localization for the map entry.
+			// Since this tile is only used for a single item, we can reuse the item localization 对于 map entry.
 			AddMapEntry(new Color(122, 217, 232), ModContent.GetInstance<ExampleCritterCageItem>().DisplayName);
 		}
 

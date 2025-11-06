@@ -46,7 +46,7 @@ namespace ExampleMod.Content.Tiles.Plants
 			TileID.Sets.TreeSapling[Type] = true;
 			TileID.Sets.CommonSapling[Type] = true;
 			TileID.Sets.SwaysInWindBasic[Type] = true;
-			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // Make this tile interact with golf balls in the same way other plants do
+			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // 使 this tile interact with golf balls 在 same way other plants do
 
 			DustType = ModContent.DustType<Sparkle>();
 
@@ -63,11 +63,11 @@ namespace ExampleMod.Content.Tiles.Plants
 				return;
 			}
 
-			Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile at the given coordinates
+			Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile 在 given coordinates
 			bool growSuccess; // A bool to see if the tree growing was successful.
 
-			// Style 0 is for the ExampleTree sapling, and style 1 is for ExamplePalmTree, so here we check frameX to call the correct method.
-			// Any pixels before 54 on the tilesheet are for ExampleTree while any pixels above it are for ExamplePalmTree
+			// Style 0 is 对于 ExampleTree sapling, and style 1 is 例如PalmTree, so here we check frameX to call the correct method.
+			// Any pixels before 54 在 tilesheet are 例如Tree while any pixels above it are 例如PalmTree
 			if (tile.TileFrameX < 54) {
 				growSuccess = WorldGen.GrowTree(i, j);
 			}

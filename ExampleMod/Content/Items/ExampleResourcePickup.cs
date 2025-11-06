@@ -9,9 +9,9 @@ namespace ExampleMod.Content.Items
 {
 	// 此类 showcases a "pickup". Also known as a power-up.
 	// Pickup refers to items that don't enter then inventory when picked up, but rather have some other effect when obtained.
-	// Pickups usually provide resources to the player, such as hearts providing life or stars providing mana. Nebula armor boosters are another example.
+	// Pickups usually provide resources 到 player, 例如 hearts providing life or stars providing mana. Nebula armor boosters are another example.
 	// 此示例 drops from enemies when Example Resource is low, similar to how hearts and stars only drop if the player is lacking health or mana.
-	// 参见 ExampleResourcePickupGlobalNPC for the item drop code.
+	// 参见 ExampleResourcePickupGlobalNPC 对于 item drop code.
 	public class ExampleResourcePickup : ModItem {
 		public static readonly int ExampleResourceHealAmount = 50;
 
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items
 			// 我们 need to play this ourselves since we are returning false meaning it won't play automatically.
 			SoundEngine.PlaySound(SoundID.Grab, player.Center);
 
-			// 我们 return false to prevent the item from going into the players inventory.
+			// 我们 return false to prevent the item from going in到 players inventory.
 			return false;
 		}
 
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items
 
 		// 我们 can override CanPickup to prevent attempting to pick up this item when at max ExampleResource, but hearts and stars do not do this so we won't either.
 
-		// GrabRange can be used to implement effects similar to Heartreach potion or Celestial Magnet.
+		// GrabRange 可以 used to implement effects similar to Heartreach potion or Celestial Magnet.
 		public override void GrabRange(Player player, ref int grabRange) {
 			if (player.GetModPlayer<ExampleResourcePlayer>().exampleResourceMagnet) {
 				grabRange += ExampleResourcePlayer.exampleResourceMagnetGrabRange;

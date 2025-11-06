@@ -8,7 +8,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Tiles
 {
-	// This example shows how to have a tile that is cut by weapons, like vines and grass.
+	// This example shows how to have a tile 即 cut by weapons, like vines and grass.
 	// This example also shows how to spawn a projectile on death like Beehive and Boulder trap.
 	internal class ExampleCutTileTile : ModTile
 	{

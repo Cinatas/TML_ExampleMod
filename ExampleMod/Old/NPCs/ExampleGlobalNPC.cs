@@ -58,7 +58,7 @@ namespace ExampleMod.NPCs
 					Item.NewItem(npc.getRect(), mod.ItemType(type), stack);
 				}
 			}
-			// See BossBags.OpenVanillaBag to see how to handle adding items to the boss bags used in expert mode. You'll want to do both for most items added to boss drops.
+			// See BossBags.OpenVanillaBag to see how to handle adding items 到 boss bags used in expert mode. You'll want to do both for most items added to boss drops.
 			if (npc.type == NPCID.DukeFishron && !Main.expertMode) {
 				Item.NewItem(npc.getRect(), ItemType<Items.Abomination.Bubble>(), Main.rand.Next(5, 8));
 			}
@@ -119,7 +119,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// Make any NPC with a chat complain to the player if they have the stinky debuff.
+		// 使 any NPC with a chat complain 到 player if they have the stinky debuff.
 		public override void GetChat(NPC npc, ref string chat) {
 			if (Main.LocalPlayer.HasBuff(BuffID.Stinky)) {
 				switch (Main.rand.Next(3)) {

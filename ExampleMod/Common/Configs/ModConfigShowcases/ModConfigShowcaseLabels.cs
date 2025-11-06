@@ -7,7 +7,7 @@ using Terraria.ModLoader.Config;
 // with use of labels, headers and tooltips.
 
 // Because this config was designed to show off various UI capabilities,
-// this config have no effect on the mod and provides purely teaching example.
+// this config have no effect 在 mod and provides purely teaching example.
 namespace ExampleMod.Common.Configs.ModConfigShowcases
 {
 	[BackgroundColor(154, 152, 181)]
@@ -15,20 +15,20 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 	{
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		// By default, all ModConfig fields and properties will have an automatically assigned Label and Tooltip translation key. You'll find these translation keys in your translation files. All of the English translations for the configs in ExampleMod are found in ExampleMod/Localization/en-US_Mods.ExampleMod.Configs.hjson
+		// 默认情况下, all ModConfig fields and properties will have an automatically assigned Label and Tooltip translation key. You'll find these translation keys in your translation files. All 的 English translations 对于 configs in ExampleMod are found in ExampleMod/Localization/en-US_Mods.ExampleMod.Configs.hjson
 
 		// 使用 Tooltip to convey additional information about the config item.
 		// This example shows additional text when hovered.
 		[SliderColor(255, 0, 127)]
 		public float SomeFloat;
 
-		// Modders can pass in custom localization keys. This can be useful for reusing translations.
+		// Modders can pass in custom localization keys. This 可以 useful for reusing translations.
 		[LabelKey("$Mods.ExampleMod.Configs.Common.LocalizedLabel")]
 		[TooltipKey("$Mods.ExampleMod.Configs.Common.LocalizedTooltip")]
 		public int LocalizedLabel;
 
-		// These 3 examples showcase the power of interpolating values into the translations.
-		// Note how all 3 are using the same label key, but are interpolating different values into the label translation, resulting in different text. The same is done for tooltips.
+		// These 3 examples showcase the power of interpolating values in到 translations.
+		// Note how all 3 are using the same label key, but are interpolating different values in到 label translation, resulting in different text. The same is done for tooltips.
 		// 使用 this approach to reduce unnecessary duplication of text.
 		// Note: using nameof can help avoid typos and errors. That would look like: $"$Mods.ExampleMod.Items.{nameof(ExampleYoyo)}.DisplayName"
 		// Note: These examples use color and item chat tags. See here for help on using Tags: https://terraria.wiki.gg/wiki/Chat#Tags
@@ -41,7 +41,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public bool InterpolatedTextA;
 
 		[LabelKey(InterpolatedLabel), TooltipKey(InterpolatedTooltip)]
-		[LabelArgs("ExampleMod/ExampleSword", 2, "=>", "$Items.ExampleSword.DisplayName")] // due to scope simplification, "Mods.ExampleMod." can be omitted. (https://github.com/tModLoader/tModLoader/wiki/Localization#scope-simplification)
+		[LabelArgs("ExampleMod/ExampleSword", 2, "=>", "$Items.ExampleSword.DisplayName")] // due to scope simplification, "Mods.ExampleMod." 可以 omitted. (https://github.com/tModLoader/tModLoader/wiki/Localization#scope-simplification)
 		[TooltipArgs("$Mods.ExampleMod.Items.ExampleSword.DisplayName", "77bd8e", "88AADD")]
 		public bool InterpolatedTextB;
 
@@ -50,14 +50,14 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		[TooltipArgs($"$ItemName.{nameof(ItemID.Meowmere)}", "c441c6", "deeb55")]
 		public bool InterpolatedTextC;
 
-		// This example shows advanced capabilities of string formatting. Values can be formatted to appear as percentages, with language appropriate thousandths separators, and with specific padding or precision.
+		// This example shows advanced capabilities of string formatting. Values 可以 formatted to appear as percentages, with language appropriate thousandths separators, and with specific padding or precision.
 		// The c# documentation has more information: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings
 		[LabelArgs(.15753f, 1234567890, 12, 1.77777f)]
 		public bool StringFormatting;
 
-		// The color of the config entry can be customized. R, G, B
+		// The color 的 config entry 可以 customized. R, G, B
 		[BackgroundColor(255, 0, 255)]
-		// The corresponding tooltip translation for this entry is empty, so the tooltip shown will be from the Pair class.
+		// The corresponding tooltip translation for this entry is empty, so the tooltip shown 将 从 Pair class.
 		// If the Pair class tooltip had entries for arguments, we could use [TooltipArgs] here to customize it.
 		public Pair pairExample = new Pair();
 
@@ -66,16 +66,16 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public List<Pair> ListOfPair = new List<Pair>();
 
 		// We can also add section headers, separating fields for organization
-		// Using [Header("HeaderIdentifier")], Mods.ExampleMod.Configs.ModConfigShowcaseLabels.Headers.HeaderIdentifier will automatically appear in localization files. We have populated the English entry with the value "Headers Section".
+		// Using [Header("HeaderIdentifier")], Mods.ExampleMod.Configs.ModConfigShowcaseLabels.Headers.HeaderIdentifier will automatically appear in localization files. We have populated the English entry 与 value "Headers Section".
 		[Header("HeaderIdentifier")]
 		public int TypicalHeader;
 
 		// We can also specify a specific translation key, if desired.
-		// The "$" character before a name means it should interpret the value as a translation key and use the loaded translation with the same key.
+		// The "$" character before a name means it should interpret the value as a translation key and use the loaded translation 与 same key.
 		[Header("$Mods.ExampleMod.Configs.Common.LocalizedHeader")]
 		public int LocalizedHeader;
 
-		// Chat tags such as colored text or item icons can help users find config sections quickly
+		// Chat tags 例如 colored text or item icons can help users find config sections quickly
 		[Header("ChatTagExample")]
 		public int CoolHeader;
 

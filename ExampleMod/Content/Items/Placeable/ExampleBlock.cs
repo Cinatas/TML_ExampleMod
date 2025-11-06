@@ -11,8 +11,8 @@ namespace ExampleMod.Content.Items.Placeable
 			Item.ResearchUnlockCount = 100;
 			ItemID.Sets.ExtractinatorMode[Item.type] = Item.type;
 
-			// Mods can be translated to any of the languages tModLoader supports. See https://github.com/tModLoader/tModLoader/wiki/Localization
-			// Translations go in localization files (.hjson files), but these are listed here as an example to help modders become aware of the possibility that users might want to use your mod in other lauguages:
+			// Mods 可以 translated to any 的 languages tModLoader supports. See https://github.com/tModLoader/tModLoader/wiki/Localization
+			// Translations go in localization files (.hjson files), but these are listed here as an example to help modders become aware 的 possibility that users might want to use your mod in other lauguages:
 			// English: "Example Block", "This is a modded tile."
 			// German: "Beispielblock", "Dies ist ein modded Block"
 			// Italian: "Blocco di esempio", "Questo è un blocco moddato"
@@ -48,11 +48,11 @@ namespace ExampleMod.Content.Items.Placeable
 				.Register();
 		}
 
-		public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack) { // 调用s upon use of an extractinator. Below is the chance you will get ExampleOre from the extractinator.
+		public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack) { // 调用s upon use of an extractinator. Below is the chance you will get ExampleOre 从 extractinator.
 			if (Main.rand.NextBool(3)) {
-				resultType = ModContent.ItemType<ExampleOre>();  // 获取 this from the extractinator with a 1 in 3 chance.
+				resultType = ModContent.ItemType<ExampleOre>();  // 获取 this 从 extractinator with a 1 in 3 chance.
 				if (Main.rand.NextBool(5)) {
-					resultStack += Main.rand.Next(2); // 添加 a chance to get more than one of ExampleOre from the extractinator.
+					resultStack += Main.rand.Next(2); // 添加 a chance to get more than one of ExampleOre 从 extractinator.
 				}
 			}
 		}
