@@ -14,10 +14,10 @@ namespace ExampleMod.Common.Players
 		public override void ModifyMaxStats(out StatModifier health, out StatModifier mana) {
 			health = StatModifier.Default;
 			health.Base = exampleLifeFruits * ExampleLifeFruit.LifePerFruit;
-			// Alternatively:  health = StatModifier.Default with { Base = exampleLifeFruits * ExampleLifeFruit.LifePerFruit };
+			// 或者：生命值 = StatModifier.Default with { Base = exampleLifeFruits * ExampleLifeFruit.LifePerFruit };
 			mana = StatModifier.Default;
 			mana.Base = exampleManaCrystals * ExampleManaCrystal.ManaPerCrystal;
-			// Alternatively:  mana = StatModifier.Default with { Base = exampleManaCrystals * ExampleManaCrystal.ManaPerCrystal };
+			// 或者：魔力 = StatModifier.Default with { Base = exampleManaCrystals * ExampleManaCrystal.ManaPerCrystal };
 		}
 
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
@@ -29,7 +29,7 @@ namespace ExampleMod.Common.Players
 			packet.Send(toWho, fromWho);
 		}
 
-		// Called in ExampleMod.Networking.cs
+		// 在 ExampleMod.Networking.cs 中调用
 		public void ReceivePlayerSync(BinaryReader reader) {
 			exampleLifeFruits = reader.ReadByte();
 			exampleManaCrystals = reader.ReadByte();
@@ -48,8 +48,8 @@ namespace ExampleMod.Common.Players
 				SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
 		}
 
-		// NOTE: The tag instance provided here is always empty by default.
-		// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
+		// NOTE: The tag 实例 provided here is always empty 默认情况下.
+		// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading 数据.
 		public override void SaveData(TagCompound tag) {
 			tag["exampleLifeFruits"] = exampleLifeFruits;
 			tag["exampleManaCrystals"] = exampleManaCrystals;

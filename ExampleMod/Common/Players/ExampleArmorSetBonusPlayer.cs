@@ -3,11 +3,11 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.Players
 {
-	// This ModPlayer facilitates a set bonus effect. This example shows how either ArmorSetBonusActivated or ArmorSetBonusHeld can be used depending on how you want the player to interact with the set bonus effect. 
+	// 此 ModPlayer 促进套装奖励效果。此示例展示了如何根据你希望玩家与套装奖励效果交互的方式使用 ArmorSetBonusActivated 或 ArmorSetBonusHeld。 
 	public class ExampleArmorSetBonusPlayer : ModPlayer
 	{
-		public bool ExampleSetHood; // Indicates if the ExampleSet with ExampleHood is the active armor set.
-		public int ShadowStyle = 0; // This is the shadow to use. Note that ExampleHood.ArmorSetShadows will only be called if the full armor set is visible.
+		public bool ExampleSetHood; // 指示 if the ExampleSet with ExampleHood is the active 护甲 set.
+		public int ShadowStyle = 0; // 这是 shadow to use. 注意 ExampleHood.ArmorSetShadows will only be called if the full 护甲 set is visible.
 
 		public override void ResetEffects() {
 			ExampleSetHood = false;

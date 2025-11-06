@@ -13,7 +13,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	//// Torches are special tiles that support the block swap feature and the biome torch feature. ExampleSurfaceBiome shows how the biome torch is assigned.
+	//// Torches are special tiles that support the 方块 swap feature and the 生物群系 torch feature. ExampleSurfaceBiome shows how the 生物群系 torch is assigned.
 	public class ExampleTorch : ModTile
 	{
 		private Asset<Texture2D> flameTexture;
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Tiles
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.Torches, 0));
-			/*  This is what is copied from the Torches tile
+			/*  This is what is copied 从 Torches tile
 			TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.addAlternate(0);
 			*/
 
-			// This code adds style-specific properties to style 1. Style 1 is used by ExampleWaterTorch. This code allows the tile to be placed in liquids. More info can be found in the guide: https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#newsubtile-and-newalternate
+			// This code adds style-specific properties to style 1. Style 1 is used by ExampleWaterTorch. This code allows the 图格 to be placed in liquids. More info 可以 found 在 guide: https://github.com/tModLoader/tModLoader/wiki/Basic-图格#newsubtile-and-newalternate
 			TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
 			TileObjectData.newSubTile.LinkedAlternates = true;
 			TileObjectData.newSubTile.WaterDeath = false;
@@ -77,26 +77,26 @@ namespace ExampleMod.Content.Tiles
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 
-			// We can determine the item to show on the cursor by getting the tile style and looking up the corresponding item drop.
+			// 我们 can determine the 项 to show 在 cursor by getting the 图格 style and looking up the corresponding 项 放下.
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
 		}
 
 		public override float GetTorchLuck(Player player) {
-			// GetTorchLuck is called when there is an ExampleTorch nearby the client player
-			// In most use-cases you should return 1f for a good luck torch, or -1f for a bad luck torch.
-			// You can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
-			// Remember that the overall torch luck is decided by every torch around the player, so it may be wise to have a smaller amount of luck impact.
-			// Multiple example torches on screen will have no additional effect.
+			// 获取TorchLuck is called when there is an ExampleTorch nearby the 客户端 玩家
+			// 在 most use-cases 你应该 返回 1f for a good luck torch, or -1f for a bad luck torch.
+			// 你 can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
+			// 记住 th在 overall torch luck is decided by 每个 torch around the 玩家, so it 可能 wise to have a smaller amount of luck impact.
+			// Multiple example torches on 屏幕 will have no additional 效果.
 
-			// Positive and negative luck are accumulated separately and then compared to some fixed limits in vanilla to determine overall torch luck.
-			// Positive luck is capped at 1, any value higher won't make any difference and negative luck is capped at 2.
-			// A negative luck of 2 will cancel out all torch luck bonuses.
+			// Positive and negative luck are accumulated separately 然后 与...相比 some fixed limits in vanilla to determine overall torch luck.
+			// Positive luck is capped at 1, 任何 值 higher won't make 任何 difference and negative luck is capped at 2.
+			// 一个 negative luck of 2 will 取消 out all torch luck bonuses.
 
-			// The influence positive torch luck can have overall is 0.1 (if positive luck is any number less than 1) or 0.2 (if positive luck is greater than or equal to 1)
+			// influence positive torch luck can have overall is 0.1 (if positive luck is 任何 数字 少于 1) or 0.2 (if positive luck is greater than or equal to 1)
 
 			bool inExampleUndergroundBiome = player.InModBiome<ExampleUndergroundBiome>();
-			return inExampleUndergroundBiome ? 1f : -0.1f; // ExampleTorch gives maximum positive luck when in example biome, otherwise a small negative luck
+			return inExampleUndergroundBiome ? 1f : -0.1f; // 示例Torch gives 最大 positive luck when in example 生物群系, 否则 a small negative luck
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = Main.rand.Next(1, 3);
@@ -104,10 +104,10 @@ namespace ExampleMod.Content.Tiles
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
 			Tile tile = Main.tile[i, j];
 
-			// If the torch is on
+			// 如果 the torch is on
 			if (tile.TileFrameX < 66) {
 				int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
-				// Make it emit the following light.
+				// 使 it emit the following light.
 				if (style == 0) {
 					r = 0.9f;
 					g = 0.9f;
@@ -122,7 +122,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-			// This code slightly lowers the draw position if there is a solid tile above, so the flame doesn't overlap that tile. Terraria torches do this same logic.
+			// This code slightly lowers the draw 位置 if there is a solid 图格 above, so the flame doesn't overlap that 图格. Terraria torches do this same logic.
 			offsetY = 0;
 
 			if (WorldGen.SolidTile(i, j - 1)) {
@@ -137,7 +137,7 @@ namespace ExampleMod.Content.Tiles
 				return;
 			}
 
-			// The following code draws multiple flames on top our placed torch.
+			// following code draws 多个 flames on 顶部 our placed torch.
 
 			int offsetY = 0;
 
@@ -151,7 +151,7 @@ namespace ExampleMod.Content.Tiles
 				zero = Vector2.Zero;
 			}
 
-			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // Don't remove any casts.
+			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // 不要 删除 任何 casts.
 			Color color = new Color(100, 100, 100, 0);
 			int width = 20;
 			int height = 20;
@@ -159,7 +159,7 @@ namespace ExampleMod.Content.Tiles
 			int frameY = tile.TileFrameY;
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 			if (style == 1) {
-				// ExampleWaterTorch should be a bit greener.
+				// 示例WaterTorch 应该 a bit greener.
 				color.G = 255;
 			}
 

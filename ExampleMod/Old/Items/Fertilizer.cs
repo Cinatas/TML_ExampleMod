@@ -28,7 +28,7 @@ namespace ExampleMod.Items
 			return TileLoader.IsSapling(Main.tile[Player.tileTargetX, Player.tileTargetY].type);
 		}
 
-		// Note that this item does not work in Multiplayer, but serves as a learning tool for other things.
+		// 注意 this 项 does not work in Multiplayer, but serves as a learning tool for other things.
 		public override bool UseItem(Player player) {
 			if (WorldGen.GrowTree(Player.tileTargetX, Player.tileTargetY)) {
 				WorldGen.TreeGrowFXCheck(Player.tileTargetX, Player.tileTargetY);

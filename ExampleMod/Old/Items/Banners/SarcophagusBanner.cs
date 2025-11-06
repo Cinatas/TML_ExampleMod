@@ -8,7 +8,7 @@ namespace ExampleMod.Items.Banners
 {
 	public class SarcophagusBanner : ModItem
 	{
-		// The tooltip for this item is automatically assigned from .lang files
+		// The 工具提示 for this 项 is automatically assigned from .lang files
 		public override void SetDefaults() {
 			item.width = 10;
 			item.height = 24;

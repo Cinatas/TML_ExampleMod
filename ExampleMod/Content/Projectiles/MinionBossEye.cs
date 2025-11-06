@@ -34,17 +34,17 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.ignoreWater = true;
 			Projectile.netImportant = true;
 			Projectile.aiStyle = -1;
-			CooldownSlot = ImmunityCooldownID.Bosses; // use the boss immunity cooldown counter, to prevent ignoring boss attacks by taking damage from other sources
+			CooldownSlot = ImmunityCooldownID.Bosses; // use the Boss immunity cooldown 计数器, to 防止 ignoring Boss attacks by taking 伤害 from other sources
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
-			// When overriding GetAlpha, you usually want to take the projectiles alpha into account. As it is a value between 0 and 255,
-			// it's annoying to convert it into a float to multiply. Luckily the Opacity property handles that for us (0f transparent, 1f opaque)
+			// 当 overriding GetAlpha, you usually 想要 take the projectiles alpha into account. As it is a 值 between 0 and 255,
+			// it's annoying to convert it into a float to multiply. Luckily the Opacity 属性 handles that for us (0f transparent, 1f opaque)
 			return Color.White * Projectile.Opacity;
 		}
 
 		private void FadeInAndOut() {
-			// Fade in (we have Projectile.alpha = 255 in SetDefaults which means it spawns transparent)
+			// Fade in (we have 弹幕.alpha = 255 in SetDefaults which means it spawns transparent)
 			int fadeSpeed = 10;
 			if (!FadedIn && Projectile.alpha > 0) {
 				Projectile.alpha -= fadeSpeed;
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 			else if (FadedIn && Projectile.timeLeft < 255f / fadeSpeed) {
-				// Fade out so it aligns with the projectile despawning
+				// Fade out so it aligns 与 弹幕 despawning
 				Projectile.alpha += fadeSpeed;
 				if (Projectile.alpha > 255) {
 					Projectile.alpha = 255;
@@ -68,15 +68,15 @@ namespace ExampleMod.Content.Projectiles
 			if (!PlayedSpawnSound) {
 				PlayedSpawnSound = true;
 
-				// Common practice regarding spawn sounds for projectiles is to put them into AI, playing sounds in the same place where they are spawned
-				// is not multiplayer compatible (either no one will hear it, or only you and not others)
+				// 常见 practice regarding 生成 sounds for projectiles is to put them into AI, playing sounds 在 same place where they are spawned
+				// is not multiplayer compatible (任一 no one will hear it, or only you and not others)
 				SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
 			}
 
 			// Accelerate
 			Projectile.velocity *= 1.01f;
 
-			// If the sprite points upwards, this will make it point towards the move direction (for other sprite orientations, change MathHelper.PiOver2)
+			// 如果 the 精灵 points upwards, this will make it 点 towards the 移动 方向 (for other 精灵 orientations, change MathHelper.PiOver2)
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 		}
 	}

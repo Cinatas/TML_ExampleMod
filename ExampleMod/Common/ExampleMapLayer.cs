@@ -10,30 +10,30 @@ using Terraria.UI;
 
 namespace ExampleMod.Common
 {
-	// ModMapLayers are used to draw icons and other things over the map. Pylons and spawn/bed icons are examples of vanilla map layers. This example adds an icon over the dungeon.
+	// ModMapLayers 用于在地图上绘制图标和其他内容。晶塔和出生点/床位图标是原版地图层的示例。此示例在地牢上添加一个图标。
 	public class ExampleMapLayer : ModMapLayer
 	{
-		// In the Draw method, we draw everything. Consulting vanilla examples in the source code is a good resource for properly using this Draw method.
+		// 在 Draw 方法中，我们绘制所有内容。查阅源代码中的原版示例是正确使用此 Draw 方法的好资源。
 		public override void Draw(ref MapOverlayDrawContext context, ref string text) {
-			// Here we define the scale that we wish to draw the icon when hovered and not hovered.
+			// 在这里，我们定义当图标被悬停和未被悬停时绘制图标的比例。
 			const float scaleIfNotSelected = 1f;
 			const float scaleIfSelected = scaleIfNotSelected * 2f;
 
-			// Here we retrieve the texture of the Skeletron boss head so that we can draw it. Remember that not all textures are loaded by default, so you might need to do something like `Main.instance.LoadItem(ItemID.BoneKey);` in your code to ensure the texture is loaded.
+			// 在这里，我们检索骷髅王 Boss 头部的纹理以便我们可以绘制它。请记住，并非所有纹理默认都会加载，因此你可能需要在代码中执行类似 `Main.实例.LoadItem(ItemID.BoneKey);` 的操作以确保纹理已加载。
 			var dungeonTexture = TextureAssets.NpcHeadBoss[19].Value;
 
-			// The MapOverlayDrawContext.Draw method used here handles many of the small details for drawing an icon and should be used if possible. It'll handle scaling, alignment, culling, framing, and accounting for map zoom. Handling these manually is a lot of work.
-			// Note that the `position` argument expects tile coordinates expressed as a Vector2. Don't scale tile coordinates to world coordinates by multiplying by 16.
-			// The return of MapOverlayDrawContext.Draw has a field that indicates if the mouse is currently over our icon.
+			// 此处使用的 MapOverlayDrawContext.Draw 方法处理绘制图标的许多小细节，应尽可能使用。它将处理缩放、对齐、剔除、帧和地图缩放。手动处理这些是很多工作。
+			// 请注意，`位置` 参数期望以 Vector2 表示的图格坐标。不要通过乘以 16 将图格坐标缩放到世界坐标。
+			// MapOverlayDrawContext.Draw 的返回值有一个字段，指示鼠标当前是否在我们的图标上。
 			if (context.Draw(dungeonTexture, new Vector2(Main.dungeonX, Main.dungeonY), Color.White, new SpriteFrame(1, 1, 0, 0), scaleIfNotSelected, scaleIfSelected, Alignment.Center).IsMouseOver) {
-				// When the icon is being hovered by the users mouse, we set the mouse text to the localized text for "The Dungeon"
+				// 当图标被用户鼠标悬停时，我们将鼠标文本设置为"The Dungeon"的本地化文本
 				text = Language.GetTextValue("Bestiary_Biomes.TheDungeon");
 			}
 		}
 	}
 
-	// The game doesn't send Main.dungeonX or Main.dungeonY to multiplayer clients.
-	// This ModSystem will ensure that they are synced allowing ExampleMapLayer to work in multiplayer.
+	// 游戏 doesn't send Main.dungeonX or Main.dungeonY to multiplayer clients.
+	// This ModSystem will ensure th在y are synced allowing ExampleMapLayer to work in multiplayer.
 	public class ExampleMapLayerSystem : ModSystem
 	{
 		public override void NetSend(BinaryWriter writer) {

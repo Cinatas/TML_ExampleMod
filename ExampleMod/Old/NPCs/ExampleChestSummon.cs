@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.NPCs
 {
-	// Example Soul of Light/Soul of Night style NPC summon
+	// 示例 Soul of Light/Soul of Night style NPC summon
 	public class ExampleChestSummon : ModPlayer
 	{
 		public int LastChest;
@@ -23,7 +23,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// Allows mimic spawning in single player with autopause on
+		// 允许s mimic spawning in single 玩家 with autopause on
 		public override void UpdateAutopause() {
 			LastChest = player.chest;
 		}

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Commands
 {
-	//note this command is effectively broken in multiplayer due to the lack of netcode around ExamplePlayer.score
+	//note this 命令 is effectively broken in multiplayer due 到 lack of netcode around ExamplePlayer.分数
 	public class ScoreCommand : ModCommand
 	{
 		public override CommandType Type

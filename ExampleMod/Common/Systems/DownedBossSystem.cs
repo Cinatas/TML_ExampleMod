@@ -5,30 +5,30 @@ using Terraria.ModLoader.IO;
 
 namespace ExampleMod.Common.Systems
 {
-	// Acts as a container for "downed boss" flags.
-	// Set a flag like this in your bosses OnKill hook:
+	// 充当"已击败的 Boss"标志的容器。
+	// 在你的 Boss 的 OnKill 钩子中像这样设置标志：
 	//    NPC.SetEventFlagCleared(ref DownedBossSystem.downedMinionBoss, -1);
 
-	// Saving and loading these flags requires TagCompounds, a guide exists on the wiki: https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
+	// 保存和加载这些标志需要 TagCompounds，wiki 上有指南：https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
 	public class DownedBossSystem : ModSystem
 	{
 		public static bool downedMinionBoss = false;
-		// public static bool downedOtherBoss = false;
+		// public static bool downedOtherBoss = 假;
 
 		public override void ClearWorld() {
 			downedMinionBoss = false;
-			// downedOtherBoss = false;
+			// downedOtherBoss = 假;
 		}
 
-		// We save our data sets using TagCompounds.
-		// NOTE: The tag instance provided here is always empty by default.
+		// We 保存 our 数据 sets using TagCompounds.
+		// NOTE: The tag 实例 provided here is always empty 默认情况下.
 		public override void SaveWorldData(TagCompound tag) {
 			if (downedMinionBoss) {
 				tag["downedMinionBoss"] = true;
 			}
 
 			// if (downedOtherBoss) {
-			//	tag["downedOtherBoss"] = true;
+			//	tag["downedOtherBoss"] = 真;
 			// }
 		}
 
@@ -38,7 +38,7 @@ namespace ExampleMod.Common.Systems
 		}
 
 		public override void NetSend(BinaryWriter writer) {
-			// Order of operations is important and has to match that of NetReceive
+			// 顺序 of operations is important and has to 匹配 that of NetReceive
 			var flags = new BitsByte();
 			flags[0] = downedMinionBoss;
 			// flags[1] = downedOtherBoss;
@@ -47,22 +47,22 @@ namespace ExampleMod.Common.Systems
 			/*
 			Remember that Bytes/BitsByte only have up to 8 entries. If you have more than 8 flags you want to sync, use multiple BitsByte:
 				This is wrong:
-			flags[8] = downed9thBoss; // an index of 8 is nonsense.
+			flags[8] = downed9thBoss; // an 索引 of 8 is nonsense.
 				This is correct:
 			flags[7] = downed8thBoss;
 			writer.Write(flags);
-			BitsByte flags2 = new BitsByte(); // create another BitsByte
-			flags2[0] = downed9thBoss; // start again from 0
+			BitsByte flags2 = new BitsByte(); // 创建 another BitsByte
+			flags2[0] = downed9thBoss; // 开始 again from 0
 			// up to 7 more flags here
 			writer.Write(flags2); // write this byte
 			*/
 
-			// If you prefer, you can use the BitsByte constructor approach as well.
+			// If you prefer, you can use the BitsByte constructor approach 以及.
 			// BitsByte flags = new BitsByte(downedMinionBoss, downedOtherBoss);
 			// writer.Write(flags);
 
-			// This is another way to do the same thing, but with bitmasks and the bitwise OR assignment operator (the |=)
-			// Note that 1 and 2 here are bit masks. The next values in the pattern are 4,8,16,32,64,128. If you require more than 8 flags, make another byte.
+			// 这是一个nother way to do the same thing, but with bitmasks and the bitwise OR assignment operator (the |=)
+			// 注意 1 and 2 here are bit masks. The next values 在 pattern are 4,8,16,32,64,128. If you require 超过 8 flags, make another byte.
 			// byte flags = 0;
 			// if (downedMinionBoss)
 			// {
@@ -74,14 +74,14 @@ namespace ExampleMod.Common.Systems
 			// }
 			// writer.Write(flags);
 
-			// If you plan on having more than 8 of these flags and don't want to use multiple BitsByte, an alternative is using a System.Collections.BitArray
+			// If you plan on having 超过 8 的se flags and don't 想要 use 多个 BitsByte, an alternative is using a System.Collections.BitArray
 			/*
 			bool[] flags = new bool[] {
 				downedMinionBoss,
 				downedOtherBoss,
 			};
 			BitArray bitArray = new BitArray(flags);
-			byte[] bytes = new byte[(bitArray.Length - 1) / 8 + 1]; // Calculation for correct length of the byte array
+			byte[] bytes = new byte[(bitArray.Length - 1) / 8 + 1]; // 计算 for correct 长度 的 byte 数组
 			bitArray.CopyTo(bytes, 0);
 
 			writer.Write(bytes.Length);
@@ -90,12 +90,12 @@ namespace ExampleMod.Common.Systems
 		}
 
 		public override void NetReceive(BinaryReader reader) {
-			// Order of operations is important and has to match that of NetSend
+			// 顺序 of operations is important and has to 匹配 that of NetSend
 			BitsByte flags = reader.ReadByte();
 			downedMinionBoss = flags[0];
 			// downedOtherBoss = flags[1];
 
-			// As mentioned in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional data:
+			// 如前所述 in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional 数据:
 			// BitsByte flags2 = reader.ReadByte();
 			// downed9thBoss = flags2[0];
 

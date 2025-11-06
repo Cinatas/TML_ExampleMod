@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This file showcases how to create an item that increases the player's maximum mana on use.
-	// Within your ModPlayer, you need to save/load a count of usages. You also need to sync the data to other players.
-	// The overlay used to display the custom mana crystals can be found in Common/UI/ResourceDisplay/VanillaManaOverlay.cs
+	// 此文件 showcases how to create an 项 that increases the 玩家's 最大 魔力 on use.
+	// Within your ModPlayer, you 需要 保存/加载 a 计数 of usages. You also 需要 同步 the 数据 to other players.
+	// overlay 用于 显示 the custom 魔力 crystals 可以 found in Common/用户界面/ResourceDisplay/VanillaManaOverlay.cs
 	internal class ExampleManaCrystal : ModItem
 	{
 		public static readonly int MaxExampleManaCrystals = 10;
@@ -25,28 +25,28 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool CanUseItem(Player player) {
-			// This check prevents this item from being used before vanilla mana upgrades are maxed out.
+			// This check prevents this 项 from being used before vanilla 魔力 upgrades are maxed out.
 			return player.ConsumedManaCrystals == Player.ManaCrystalMax;
 		}
 
 		public override bool? UseItem(Player player) {
-			// Moving the exampleManaCrystals check from CanUseItem to here allows this example crystal to still "be used" like Mana Crystals can be
-			// when at the max allowed, but it will just play the animation and not affect the player's max mana
+			// Moving the exampleManaCrystals check from CanUseItem to here allows this example crystal to still "be used" like 魔力 Crystals 可以
+			// when 在 max allowed, but it will just play the 动画 and not affect the 玩家's max 魔力
 			if (player.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals >= MaxExampleManaCrystals) {
-				// Returning null will make the item not be consumed
+				// 返回ing 空 will make the 项 不 consumed
 				return null;
 			}
 
-			// This method handles permanently increasing the player's max mana and displaying the blue mana text
+			// 此方法 handles permanently increasing the 玩家's max 魔力 and displaying the blue 魔力 文本
 			player.UseManaMaxIncreasingItem(ManaPerCrystal);
 
-			// This field tracks how many of the example crystals have been consumed
+			// This 字段 tracks how m任何 的 example crystals have been consumed
 			player.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals++;
 
 			return true;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

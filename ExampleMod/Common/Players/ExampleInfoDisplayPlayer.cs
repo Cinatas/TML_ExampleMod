@@ -6,21 +6,21 @@ using Terraria.ModLoader;
 namespace ExampleMod.Common.Players
 {
 	/// <summary>
-	/// ModPlayer class coupled with <seealso cref="ExampleInfoDisplay"/> and <seealso cref="ExampleInfoAccessory"/> to show off how to properly add a
-	/// new info accessory (such as a Radar, Lifeform Analyzer, etc.)
+	/// ModPlayer 类 coupled with <seealso cref="ExampleInfoDisplay"/> and <seealso cref="ExampleInfoAccessory"/> to show off how to properly add a
+	/// new info 饰品 (例如 a Radar, Lifeform Analyzer, etc.)
 	/// </summary>
 	public class ExampleInfoDisplayPlayer : ModPlayer
 	{
-		// Flag checking when information display should be activated
+		// 标志检查信息显示何时应该被激活
 		public bool showMinionCount;
 
-		// Make sure to use the right Reset hook. This one is unique, as it will still be
-		// called when the game is paused; this allows for info accessories to keep updating properly.
+		// 确保使用正确的 重置 钩子。这个是独特的，因为它仍然会
+		// 在游戏暂停时调用；这允许信息饰品继续正确更新。
 		public override void ResetInfoAccessories() {
 			showMinionCount = false;
 		}
 
-		// If we have another nearby player on our team, we want to get their info accessories working on us,
+		// If we have another nearby 玩家 on our 团队, we 想要 get their info accessories working on us,
 		// just like in vanilla. This is what this hook is for.
 		public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer) {
 			if (otherPlayer.GetModPlayer<ExampleInfoDisplayPlayer>().showMinionCount) {

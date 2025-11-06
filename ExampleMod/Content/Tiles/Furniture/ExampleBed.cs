@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 {
 	public class ExampleBed : ModTile
 	{
-		public const int NextStyleHeight = 38; //Calculated by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all of them + 2
+		public const int NextStyleHeight = 38; //Calculated by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all 的m + 2
 
 		public override void SetStaticDefaults() {
 			// Properties
@@ -21,17 +21,17 @@ namespace ExampleMod.Content.Tiles.Furniture
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.CanBeSleptIn[Type] = true; // Facilitates calling ModifySleepingTargetInfo
-			TileID.Sets.InteractibleByNPCs[Type] = true; // Town NPCs will palm their hand at this tile
+			TileID.Sets.InteractibleByNPCs[Type] = true; // Town NPCs will palm their hand at this 图格
 			TileID.Sets.IsValidSpawnPoint[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair); // Beds count as chairs for the purpose of suitable room creation
+			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair); // Beds 计数 as chairs 对于 purpose of suitable room creation
 
 			DustType = ModContent.DustType<Sparkle>();
 			AdjTiles = new int[] { TileID.Beds };
 
 			// Placement
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2); // this style already takes care of direction for us
+			TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2); // this style already takes care of 方向 for us
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
 			TileObjectData.newTile.CoordinatePaddingFix = new Point16(0, -2);
 			TileObjectData.addTile(Type);
@@ -45,16 +45,16 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void ModifySmartInteractCoords(ref int width, ref int height, ref int frameWidth, ref int frameHeight, ref int extraY) {
-			// Because beds have special smart interaction, this splits up the left and right side into the necessary 2x2 sections
-			width = 2; // Default to the Width defined for TileObjectData.newTile
-			height = 2; // Default to the Height defined for TileObjectData.newTile
+			// Because beds have special smart interaction, this splits up the 左 and 右 side in到 necessary 2x2 sections
+			width = 2; // 默认 到 宽度 defined for TileObjectData.newTile
+			height = 2; // 默认 到 高度 defined for TileObjectData.newTile
 			//extraY = 0; // Depends on how you set up frameHeight and CoordinateHeights and CoordinatePaddingFix.Y
 		}
 
 		public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info) {
-			// Default values match the regular vanilla bed
-			// You might need to mess with the info here if your bed is not a typical 4x2 tile
-			info.VisualOffset.Y += 4f; // Move player down a notch because the bed is not as high as a regular bed
+			// 默认 values 匹配 the regular vanilla bed
+			// 你 might 需要 mess 与 info here if your bed is not a typical 4x2 图格
+			info.VisualOffset.Y += 4f; // 移动 玩家 down a notch because the bed is not as high as a regular bed
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) {
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				spawnY--;
 			}
 
-			if (!Player.IsHoveringOverABottomSideOfABed(i, j)) { // This assumes your bed is 4x2 with 2x2 sections. You have to write your own code here otherwise
+			if (!Player.IsHoveringOverABottomSideOfABed(i, j)) { // This assumes your bed is 4x2 with 2x2 sections. You 必须 write your own code here 否则
 				if (player.IsWithinSnappngRangeToTile(i, j, PlayerSleepingHelper.BedSleepingMaxDistance)) {
 					player.GamepadEnableGrappleCooldown();
 					player.sleeping.StartSleeping(player, i, j);
@@ -97,7 +97,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			Player player = Main.LocalPlayer;
 
 			if (!Player.IsHoveringOverABottomSideOfABed(i, j)) {
-				if (player.IsWithinSnappngRangeToTile(i, j, PlayerSleepingHelper.BedSleepingMaxDistance)) { // Match condition in RightClick. Interaction should only show if clicking it does something
+				if (player.IsWithinSnappngRangeToTile(i, j, PlayerSleepingHelper.BedSleepingMaxDistance)) { // 匹配 条件 in RightClick. Interaction should only show if clicking it does something
 					player.noThrow = 2;
 					player.cursorItemIconEnabled = true;
 					player.cursorItemIconID = ItemID.SleepingIcon;

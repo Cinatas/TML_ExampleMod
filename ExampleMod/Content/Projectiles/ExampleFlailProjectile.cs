@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// ExampleFlail and ExampleFlailProjectile show the minimum amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile need to be consulted if more advanced customization is desired, or if you want to learn more advanced modding techniques.
-	// ExampleFlailProjectile is a copy of the Sunfury flail projectile.
+	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail 使用 existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
+	// 示例FlailProjectile is a 复制 的 Sunfury flail 弹幕.
 	internal class ExampleFlailProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
@@ -16,33 +16,33 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			Projectile.netImportant = true; // This ensures that the projectile is synced when other players join the world.
-			Projectile.width = 22; // The width of your projectile
-			Projectile.height = 22; // The height of your projectile
-			Projectile.friendly = true; // Deals damage to enemies
+			Projectile.netImportant = true; // 这确保 th在 弹幕 is synced when other players jo在 世界.
+			Projectile.width = 22; // The 宽度 of your 弹幕
+			Projectile.height = 22; // The 高度 of your 弹幕
+			Projectile.friendly = true; // Deals 伤害 to enemies
 			Projectile.penetrate = -1; // Infinite pierce
-			Projectile.DamageType = DamageClass.Melee; // Deals melee damage
+			Projectile.DamageType = DamageClass.Melee; // Deals melee 伤害
 			Projectile.scale = 0.8f;
-			Projectile.usesLocalNPCImmunity = true; // Used for hit cooldown changes in the ai hook
+			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes 在 ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
-			// Here we reuse the flail projectile aistyle and set the aitype to the Sunfury. These lines will get our projectile to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code for the other behaviors you wish to use.
+			// 在这里 we reuse the flail 弹幕 aistyle and set the aitype 到 Sunfury. These lines will get our 弹幕 to behave exactly like Sunfury would. This only affects the AI code, you'll 需要 adapt other code 对于 other behaviors you wish to use.
 			Projectile.aiStyle = ProjAIStyleID.Flail;
 			AIType = ProjectileID.Sunfury;
 
-			// These help center the projectile as it rotates since its hitbox and scale doesn't match the actual texture size
+			// These 帮助 中心 the 弹幕 as it rotates since its hitbox and 缩放 doesn't 匹配 the actual 纹理 大小
 			DrawOffsetX = -6;
 			DrawOriginOffsetY = -6;
 		}
 
-		// All of the following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of Projectile.aiStyle and AIType. You'll need to find corresponding code in the decompiled source code if you wish to clone a different vanilla projectile as a starting point.
+		// All 的 following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of 弹幕.aiStyle and AIType. You'll 需要 查找 corresponding code 在 decompiled source code if you wish to clone a different vanilla 弹幕 as a starting 点.
 
-		// Draw the projectile in full brightness, ignoring lighting conditions.
+		// 绘制 the 弹幕 in full brightness, ignoring lighting conditions.
 		public override Color? GetAlpha(Color lightColor) {
 			return Color.White;
 		}
 
-		// In PreDrawExtras, we trick the game into thinking the projectile is actually a Sunfury projectile. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the Projectile.type back to normal so we don't break anything.  
+		// 在 PreDrawExtras, we trick 游戏 into thinking the 弹幕 is actually a Sunfury 弹幕. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the 弹幕.类型 back to normal so we don't 中断 任何thing.  
 		public override bool PreDrawExtras() {
 			Projectile.type = ProjectileID.Sunfury;
 			return base.PreDrawExtras();
@@ -75,7 +75,7 @@ namespace ExampleMod.Content.Projectiles
 			return base.PreDraw(ref lightColor);
 		}
 
-		// Another thing that won't automatically be inherited by using Projectile.aiStyle and AIType are effects that happen when the projectile hits something. Here we see the code responsible for applying the OnFire debuff to players and enemies.
+		// Another thing that won't automatically be inherited by using 弹幕.aiStyle and AIType are effects that happen when the 弹幕 hits something. Here we see the code responsible for applying the OnFire 减益 to players and enemies.
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			if (Main.rand.NextBool(2)) {
 				target.AddBuff(BuffID.OnFire, 300);
@@ -88,9 +88,9 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// Finally, you can slightly customize the AI if you read and understand the vanilla aiStyle source code. You can't customize the range, retract speeds, or anything else. If you need to customize those things, you'll need to follow ExampleAdvancedFlailProjectile. This example spawns a Grenade right when the flail starts to retract. 
+		// 最后, you can slightly customize the AI if you read and understand the vanilla aiStyle source code. You can't customize the 范围, retract speeds, or 任何thing else. If you 需要 customize those things, you'll 需要 follow ExampleAdvancedFlailProjectile. This example spawns a 手榴弹 右 when the flail starts to retract. 
 		public override void AI() {
-			// The only reason this code works is because the author read the vanilla code and comprehended it well enough to tack on additional logic.
+			// only reason this code works is because the 作者 read the vanilla code and comprehended it well enough to tack on additional logic.
 			if (Main.myPlayer == Projectile.owner && Projectile.ai[0] == 2f && Projectile.ai[1] == 0f) {
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.velocity, ProjectileID.Grenade, Projectile.damage, Projectile.knockBack, Main.myPlayer);
 				Projectile.ai[1]++;

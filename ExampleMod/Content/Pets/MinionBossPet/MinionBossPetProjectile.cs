@@ -8,19 +8,19 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Pets.MinionBossPet
 {
-	// You can find a simple pet example in ExampleMod\Content\Pets\ExamplePet
-	// This pet uses custom AI and drawing to make it more special (It's a Master Mode boss pet after all)
-	// It behaves similarly to the Creeper Egg or Suspicious Grinning Eye pets, but takes some visual properties from ExampleMod's Minion Boss
+	// 你 can 查找 a simple 宠物 example in ExampleMod\Content\Pets\ExamplePet
+	// This 宠物 uses custom AI and drawing to make it more special (It's a Master 模式 Boss 宠物 after all)
+	// It behaves similarly 到 Creeper Egg or Suspicious Grinning Eye pets, but takes some visual properties from ExampleMod's 仆从 Boss
 	public class MinionBossPetProjectile : ModProjectile
 	{
-		// This is a ref property, lets us write Projectile.ai[0] as whatever name we want
+		// 这是 a ref 属性, lets us write 弹幕.ai[0] as whatever 名称 we want
 		public ref float AlphaForVisuals => ref Projectile.ai[0];
 
-		// This projectile uses an additional texture for drawing
+		// This 弹幕 uses an additional 纹理 for drawing
 		public static Asset<Texture2D> EyeAsset;
 
 		public override void Load() {
-			// load/cache the additional texture
+			// 加载/缓存 the additional 纹理
 			EyeAsset = ModContent.Request<Texture2D>(Texture + "_Eye");
 		}
 
@@ -28,36 +28,36 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 
-			// Basics of CharacterPreviewAnimations explained in ExamplePetProjectile
-			// Notice we define our own method to use in .WithCode() below. This technically allows us to animate the projectile manually using frameCounter and frame as well
+			// 基本s of CharacterPreviewAnimations explained in ExamplePetProjectile
+			// 注意 we define our own 方法 to use in .WithCode() below. This technically allows us to animate the 弹幕 manually using frameCounter and 帧 以及
 			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
 				.WithOffset(-2, -22f)
 				.WithCode(CharacterPreviewCustomization);
 		}
 
 		public static void CharacterPreviewCustomization(Projectile proj, bool walking) {
-			// Modified floating from DelegateMethods.CharacterPreview.Float, this is technically not representative of how the pet actually looks and moves ingame, but the Suspicious Grinning Eye has that too
+			// 修改d floating from DelegateMethods.CharacterPreview.Float, this is technically not representative of how the 宠物 actually looks and moves ingame, but the Suspicious Grinning Eye has that too
 
-			// If you don't need to modify it, just call DelegateMethods.CharacterPreview.Float(proj, walking) directly here instead and change properties of your pet after it.
-			// You do not need this otherwise and can use the preset directly as showcased in ExamplePetProjectile
+			// 如果 you don't 需要 modify it, just call DelegateMethods.CharacterPreview.Float(proj, walking) directly here instead and change properties of your 宠物 after it.
+			// 你 do not need this 否则 and can use the preset directly as showcased in ExamplePetProjectile
 			float half = 0.5f;
 			float timer = (float)Main.timeForVisualEffects % 60f / 60f;
 			float speed = 1f; // This is normally 2
 			proj.position.Y += 0f - half + (float)(Math.Cos(timer * MathHelper.TwoPi * speed) * half * 2f);
 
-			// We are only using this method for one specific projectile, so it's fine to cast the ModProjectile directly like this
+			// 我们 are only using this 方法 for one specific 弹幕, so it's fine to cast the ModProjectile directly like this
 			MinionBossPetProjectile minion = (MinionBossPetProjectile)proj.ModProjectile;
 
-			// Need to set the alpha to 1f to hide the eyes that would normally draw and show the actual pet
+			// 需要 set the alpha to 1f to hide the eyes that would normally draw and show the actual 宠物
 			minion.AlphaForVisuals = 1f;
 
-			// You can use Projectile.isAPreviewDummy in the draw code instead, it depends if you prefer changing the conditions leading up to the drawing, or the drawing itself
+			// 你 can use 弹幕.isAPreviewDummy 在 draw code instead, it depends if you prefer changing the conditions leading up 到 drawing, or the drawing itself
 		}
 
 		public override void SetDefaults() {
-			Projectile.CloneDefaults(ProjectileID.EyeOfCthulhuPet); // Copy the stats of the Suspicious Grinning Eye projectile
+			Projectile.CloneDefaults(ProjectileID.EyeOfCthulhuPet); // 复制 the stats 的 Suspicious Grinning Eye 弹幕
 
-			Projectile.aiStyle = -1; // Use custom AI
+			Projectile.aiStyle = -1; // 使用 custom AI
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
@@ -65,25 +65,25 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		}
 
 		public override void PostDraw(Color lightColor) {
-			// Draw surrounding eyes to mimic the boss
+			// 绘制 surrounding eyes to mimic the Boss
 			Texture2D eyeTexture = EyeAsset.Value;
 
-			Vector2 offset = new Vector2(0, Projectile.gfxOffY); // Vertical offset when the projectile is changing elevation on tiles (does not apply to this particular projectile because it is always airborne)
+			Vector2 offset = new Vector2(0, Projectile.gfxOffY); // Vertical 偏移 when the 弹幕 is changing elevation on tiles (does not apply to this particular 弹幕 because it is always airborne)
 			Vector2 orbitingCenter = Projectile.Center + offset;
 
-			// Don't need to draw the eyes if the pet is fully faded in
+			// 不要 需要 draw the eyes if the 宠物 is fully faded in
 			if (AlphaForVisuals >= 1) {
 				return;
 			}
 
 			int eyeCount = 10;
 			for (int i = 0; i < eyeCount; i++) {
-				Vector2 origin = Vector2.Zero; // Using origin as zero because the draw position is the center
-				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // Create a vector of length 24 with a specific rotation based on loop index
-				Vector2 drawPos = orbitingCenter - Main.screenPosition + origin + rotatedPos; // Always important to substract Main.screenPosition to translate it into screen coordinates
-				Color color = Color.White * (1f - AlphaForVisuals) * Projectile.Opacity; // Draw it in reversed alpha to the projectile
+				Vector2 origin = Vector2.Zero; // Using 原点 as zero because the draw 位置 is the 中心
+				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // 创建 a vector of 长度 24 with a specific 旋转 基于 循环 索引
+				Vector2 drawPos = orbitingCenter - Main.screenPosition + origin + rotatedPos; // 始终 important to substract Main.screenPosition to translate it into 屏幕 coordinates
+				Color color = Color.White * (1f - AlphaForVisuals) * Projectile.Opacity; // 绘制 it in reversed alpha 到 弹幕
 
-				// Use this instead of Main.spriteBatch.Draw so that dyes apply to it
+				// 使用 this 代替 Main.spriteBatch.Draw 以便 dyes apply to it
 				Main.EntitySpriteDraw(eyeTexture, drawPos, eyeTexture.Bounds, color, 0f, origin, 1f, SpriteEffects.None, 0);
 			}
 		}
@@ -91,8 +91,8 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// For organization, the AI is split into several methods defined below
-			// They are NOT part of the ModProjectile class!
+			// 对于 organization, the AI is 拆分 into 几个 methods defined below
+			// They are NOT part 的 ModProjectile 类!
 			CheckActive(player);
 
 			bool movesFast = Movement(player);
@@ -103,31 +103,31 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		}
 
 		private void CheckActive(Player player) {
-			// Keep the projectile from disappearing as long as the player isn't dead and has the pet buff
+			// Keep the 弹幕 from disappearing 只要 the 玩家 isn't dead and has the 宠物 增益
 			if (!player.dead && player.HasBuff(ModContent.BuffType<MinionBossPetBuff>())) {
 				Projectile.timeLeft = 2;
 			}
 		}
 
 		private bool Movement(Player player) {
-			// Handles movement, returns true if moving fast (used for animation)
+			// 处理s movement, returns 真 if moving fast (used for 动画)
 			float velDistanceChange = 2f;
 
-			// Calculates the desired resting position, as well as some vectors used in velocity/rotation calculations
+			// 计算s the desired resting 位置, 以及 as some vectors used in 速度/旋转 calculations
 			int dir = player.direction;
 			Projectile.direction = Projectile.spriteDirection = dir;
 
 			Vector2 desiredCenterRelative = new Vector2(dir * 30, -30f);
 
-			// Add some sine motion
+			// 添加 some sine motion
 			desiredCenterRelative.Y += (float)Math.Sin(Main.GameUpdateCount / 120f * MathHelper.TwoPi) * 5;
 
 			Vector2 desiredCenter = player.MountedCenter + desiredCenterRelative;
 			Vector2 betweenDirection = desiredCenter - Projectile.Center;
-			float betweenSQ = betweenDirection.LengthSquared(); // It is recommended to operate on squares of distances, to save computing time on square-rooting
+			float betweenSQ = betweenDirection.LengthSquared(); // 它是 recommended to operate on squares of distances, to 保存 computing 时间 on square-rooting
 
 			if (betweenSQ > 1000f * 1000f || betweenSQ < velDistanceChange * velDistanceChange) {
-				// Set position directly if too far away from the player, or when near the desired location
+				// 设置 位置 directly if too far away 从 玩家, or when near the desired 位置
 				Projectile.Center = desiredCenter;
 				Projectile.velocity = Vector2.Zero;
 			}
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			bool movesFast = Projectile.velocity.LengthSquared() > 6f * 6f;
 
 			if (movesFast) {
-				// If moving very fast, rotate the projectile towards it smoothly
+				// 如果 moving very fast, 旋转 the 弹幕 towards it smoothly
 				float rotationVel = Projectile.velocity.X * 0.08f + Projectile.velocity.Y * Projectile.spriteDirection * 0.02f;
 				if (Math.Abs(Projectile.rotation - rotationVel) >= MathHelper.Pi) {
 					if (rotationVel < Projectile.rotation) {
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 				Projectile.rotation = (Projectile.rotation * (rotationInertia - 1f) + rotationVel) / rotationInertia;
 			}
 			else {
-				// If moving at regular speeds, rotate the projectile towards its default rotation (0) smoothly if necessary
+				// 如果 moving at regular speeds, 旋转 the 弹幕 towards its default 旋转 (0) smoothly 如有必要
 				if (Projectile.rotation > MathHelper.Pi) {
 					Projectile.rotation -= MathHelper.TwoPi;
 				}
@@ -174,11 +174,11 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			int animationSpeed = 7;
 
 			if (movesFast) {
-				// Increase animation speed if projectile moves fast (less is faster)
+				// Increase 动画 速度 if 弹幕 moves fast (less is faster)
 				animationSpeed = 4;
 			}
 
-			// Animate all frames from top to bottom, going back to the first
+			// Animate all frames from 顶部 to 底部, going back 到 first
 			Projectile.frameCounter++;
 			if (Projectile.frameCounter > animationSpeed) {
 				Projectile.frameCounter = 0;

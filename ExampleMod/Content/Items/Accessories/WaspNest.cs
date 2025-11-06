@@ -10,24 +10,24 @@ namespace ExampleMod.Content.Items.Accessories
 	[AutoloadEquip(EquipType.Back)]
 	public class WaspNest : ModItem
 	{
-		// Only gets run once per type
+		// 仅 gets run once per 类型
 		public override void Load() {
 			IL_Player.beeType += HookBeeType;
 		}
 
-		// This IL editing (Intermediate Language editing) example is walked through in the guide: https://github.com/tModLoader/tModLoader/wiki/Expert-IL-Editing#example---hive-pack-upgrade
+		// This IL editing (Intermediate Language editing) example is walked through 在 guide: https://github.com/tModLoader/tModLoader/wiki/Expert-IL-Editing#example---hive-pack-升级
 		private static void HookBeeType(ILContext il) {
 			try {
 				ILCursor c = new ILCursor(il);
 
-				// Try to find where 566 is placed onto the stack
+				// Try to 查找 where 566 is placed on到 堆叠
 				c.GotoNext(i => i.MatchLdcI4(566));
 
-				// Move the cursor after 566 and onto the ret op.
+				// 移动 the cursor after 566 and on到 ret op.
 				c.Index++;
-				// Push the Player instance onto the stack
+				// Push the 玩家 实例 on到 堆叠
 				c.Emit(OpCodes.Ldarg_0);
-				// Call a delegate using the int and Player from the stack.
+				// 调用 a delegate 使用 int and 玩家 从 堆叠.
 				c.EmitDelegate<Func<int, Player, int>>((returnValue, player) => {
 					// Regular c# code
 					if (player.GetModPlayer<WaspNestPlayer>().strongBeesUpgrade && Main.rand.NextBool(10) && Main.ProjectileUpdateLoopIndex == -1) {
@@ -38,10 +38,10 @@ namespace ExampleMod.Content.Items.Accessories
 				});
 			}
 			catch (Exception e) {
-				// If there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
+				// 如果 there are 任何 failures 与 IL editing, this 方法 will dump the IL to Logs/ILDumps/{Mod 名称}/{方法 名称}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), il);
 
-				// If the mod cannot run without the IL hook, throw an exception instead. The exception will call DumpIL internally
+				// 如果 the mod cannot run without the IL hook, throw an exception instead. The exception will call DumpIL internally
 				// throw new ILPatchFailureException(ModContent.GetInstance<ExampleMod>(), il, e);
 			}
 		}
@@ -50,19 +50,19 @@ namespace ExampleMod.Content.Items.Accessories
 			int realBackSlot = Item.backSlot;
 			Item.CloneDefaults(ItemID.HiveBackpack);
 			Item.value = Item.sellPrice(0, 5);
-			// CloneDefaults will clear out the autoloaded Back slot, so we need to preserve it this way.
+			// CloneDefaults will 清除 out the autoloaded Back 槽位, so we 需要 preserve it this way.
 			Item.backSlot = realBackSlot;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			// The original Hive Pack sets strongBees.
+			// original Hive Pack sets strongBees.
 			player.strongBees = true;
-			// Here we add an additional effect
+			// 在这里 we add an additional 效果
 			player.GetModPlayer<WaspNestPlayer>().strongBeesUpgrade = true;
 		}
 
 		public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player) {
-			// Don't allow Hive Pack and Wasp Nest to be equipped at the same time.
+			// 不要 允许 Hive Pack and Wasp Nest to be equipped 在 same 时间.
 			return incomingItem.type != ItemID.HiveBackpack;
 		}
 	}

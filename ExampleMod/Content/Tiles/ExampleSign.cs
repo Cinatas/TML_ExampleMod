@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Tiles
 		public static LocalizedText DefaultSignText { get; private set; }
 
 		public override void SetStaticDefaults() {
-			// These are all used by TileID.Signs, hover over them to read their documentation and see the purpose of each
+			// These are all used by TileID.Signs, 悬停 over them to read their documentation and see the purpose of each
 			Main.tileSign[Type] = true;
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;
@@ -27,15 +27,15 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.InteractibleByNPCs[Type] = true;
 
 			// TileObjectData assignment
-			// The TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will not be copying from it in this case
-			// Using Style2x2 as a base, we will create a TileObjectData with 5 alternate placements, each anchoring to a different anchor.
-			// We also adjust the Origin for the alternates to match vanilla. Style2x2 starts with a origin at 0, 1 and a AnchorBottom, these will both be adjusted in the alternates.
+			// TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will 不 copying from it 在这种情况下
+			// 使用 Style2x2 as a base, we will create a TileObjectData with 5 alternate placements, each 锚定 to a different anchor.
+			// 我们 also adjust the 原点 对于 alternates to 匹配 vanilla. Style2x2 starts with a 原点 at 0, 1 and a AnchorBottom, these will 两者 be adjusted 在 alternates.
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 5; // Since each style has 5 placement styles, we set this to 5.
-			TileObjectData.newTile.AnchorBottom = AnchorData.Empty; // Clear out existing bottom anchor inherited from Style2x2 temporarily so that we don't have to set it to empty in each of the alternates. 
+			TileObjectData.newTile.AnchorBottom = AnchorData.Empty; // 清除 out existing 底部 anchor inherited from Style2x2 temporarily 以便 we don't 必须 set it to empty in each 的 alternates. 
 
-			// To reduce code repetition, we'll use the same AnchorData value multiple times. This works because the tile is as tall as it is wide.
+			// 要 reduce code repetition, we'll use the same AnchorData 值 多个 times. This works because the 图格 is as tall as it is wide.
 			AnchorData SolidOrSolidSideAnchor2TilesLong = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 2, 0);
 
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
@@ -58,11 +58,11 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.newAlternate.AnchorWall = true;
 			TileObjectData.addAlternate(4);
 
-			// Finally, we restore the default AnchorBottom, the extra AnchorTypes here allow placing on tables, platforms, and other tiles.
+			// 最后, we restore the default AnchorBottom, the extra AnchorTypes here 允许 placing on tables, platforms, and other tiles.
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.Table | AnchorType.SolidSide, 2, 0);
 			TileObjectData.addTile(Type);
 
-			// Map entry and extra localization
+			// 地图 entry and extra localization
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(200, 200, 200), name);
 
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void PlaceInWorld(int i, int j, Item item) {
-			// This code sets a default value for the sign, this is not typical and can be removed from normal sign tiles.
+			// This code sets a default 值 对于 sign, this is not typical and 可以 removed from normal sign tiles.
 			int signId = Sign.ReadSign(i, j, true);
 			if (signId != -1) {
 				Sign.TextSign(signId, DefaultSignText.Value);
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override bool RightClick(int i, int j) {
-			// Normal sign right click behavior happens automatically because of Main.tileSign, this code just shows how to retrieve the text of the sign and should be removed from normal sign tiles.
+			// Normal sign 右 点击 behavior happens automatically 因为 Main.tileSign, this code just shows how to retrieve the 文本 的 sign and 应该 removed from normal sign tiles.
 			int signId = Sign.ReadSign(i, j);
 			if (signId != -1) {
 				string signText = Main.sign[signId].text;
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// Destroy the associated Sign data.
+			// Destroy the associated Sign 数据.
 			Sign.KillSign(i, j);
 		}
 

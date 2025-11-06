@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Tools
 {
-	// Magic Mirror is one of the only vanilla items that does its action somewhere other than the start of its animation, which is why we use code in UseStyle NOT UseItem.
-	// It may prove a useful guide for ModItems with similar behaviors.
+	// Magic Mirror is one 的 only vanilla items that does its action somewhere other than the 开始 of its 动画, 即 why 我们使用 code in UseStyle NOT UseItem.
+	// 它可能 prove a useful guide for ModItems with similar behaviors.
 	internal class ExampleMagicMirror : ExampleItem
 	{
 		private static readonly Color[] itemNameCycleColors = {
@@ -17,18 +17,18 @@ namespace ExampleMod.Content.Items.Tools
 			new Color(0, 106, 185),
 		};
 
-		public override string Texture => $"Terraria/Images/Item_{ItemID.IceMirror}"; // Copies the texture for the Ice Mirror, make your own texture if need be.
+		public override string Texture => $"Terraria/Images/Item_{ItemID.IceMirror}"; // Copies the 纹理 对于 Ice Mirror, make your own 纹理 if need be.
 
 		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.IceMirror); // Copies the defaults from the Ice Mirror.
-			Item.color = Color.Violet; // Sets the item color
+			Item.CloneDefaults(ItemID.IceMirror); // Copies the defaults 从 Ice Mirror.
+			Item.color = Color.Violet; // 设置s the 项 颜色
 		}
 
-		// UseStyle is called each frame that the item is being actively used.
+		// 使用Style is called each 帧 th在 项 is being actively used.
 		public override void UseStyle(Player player, Rectangle heldItemFrame) {
-			// Each frame, make some dust
+			// Each 帧, make some dust
 			if (Main.rand.NextBool()) {
-				Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, Color.White, 1.1f); // Makes dust from the player's position and copies the hitbox of which the dust may spawn. Change these arguments if needed.
+				Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, Color.White, 1.1f); // 使 dust 从 玩家's 位置 and copies the hitbox of which the dust may 生成. Change these arguments 如果需要.
 			}
 
 			// This sets up the itemTime correctly.
@@ -36,9 +36,9 @@ namespace ExampleMod.Content.Items.Tools
 				player.ApplyItemTime(Item);
 			}
 			else if (player.itemTime == player.itemTimeMax / 2) {
-				// This code runs once halfway through the useTime of the Item. You'll notice with magic mirrors you are still holding the item for a little bit after you've teleported.
+				// This code runs once halfway through the useTime 的 项. You'll notice with magic mirrors you are still holding the 项 for 一点 bit after you've teleported.
 
-				// Make dust 70 times for a cool effect.
+				// 使 dust 70 times for a cool 效果.
 				for (int d = 0; d < 70; d++) {
 					Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default, 1.5f);
 				}
@@ -46,10 +46,10 @@ namespace ExampleMod.Content.Items.Tools
 				// This code releases all grappling hooks and kills/despawns them.
 				player.RemoveAllGrapplingHooks();
 
-				// The actual method that moves the player back to bed/spawn.
+				// actual 方法 that moves the 玩家 back to bed/生成.
 				player.Spawn(PlayerSpawnContext.RecallFromItem);
 
-				// Make dust 70 times for a cool effect. This dust is the dust at the destination.
+				// 使 dust 70 times for a cool 效果. This dust is the dust 在 destination.
 				for (int d = 0; d < 70; d++) {
 					Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.5f);
 				}
@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// This code shows using Color.Lerp,  Main.GameUpdateCount, and the modulo operator (%) to do a neat effect cycling between 4 custom colors.
+			// This code shows using 颜色.Lerp,  Main.GameUpdateCount, and the modulo operator (%) to do a neat 效果 cycling between 4 custom colors.
 			int numColors = itemNameCycleColors.Length;
 
 			foreach (TooltipLine line2 in tooltips) {
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Items.Tools
 			}
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

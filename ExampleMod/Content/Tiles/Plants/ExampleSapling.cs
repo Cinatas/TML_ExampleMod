@@ -46,7 +46,7 @@ namespace ExampleMod.Content.Tiles.Plants
 			TileID.Sets.TreeSapling[Type] = true;
 			TileID.Sets.CommonSapling[Type] = true;
 			TileID.Sets.SwaysInWindBasic[Type] = true;
-			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // Make this tile interact with golf balls in the same way other plants do
+			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // 使 this 图格 interact with golf balls 在 same way other plants do
 
 			DustType = ModContent.DustType<Sparkle>();
 
@@ -58,16 +58,16 @@ namespace ExampleMod.Content.Tiles.Plants
 		}
 
 		public override void RandomUpdate(int i, int j) {
-			// A random chance to slow down growth
+			// 一个 随机 概率 to slow down growth
 			if (!WorldGen.genRand.NextBool(20)) {
 				return;
 			}
 
-			Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile at the given coordinates
+			Tile tile = Framing.GetTileSafely(i, j); // Safely get the 图格 在 given coordinates
 			bool growSuccess; // A bool to see if the tree growing was successful.
 
-			// Style 0 is for the ExampleTree sapling, and style 1 is for ExamplePalmTree, so here we check frameX to call the correct method.
-			// Any pixels before 54 on the tilesheet are for ExampleTree while any pixels above it are for ExamplePalmTree
+			// Style 0 is 对于 ExampleTree sapling, and style 1 is 例如PalmTree, so here we check frameX to call the correct 方法.
+			// Any pixels before 54 在 tilesheet are 例如Tree while 任何 pixels above it are 例如PalmTree
 			if (tile.TileFrameX < 54) {
 				growSuccess = WorldGen.GrowTree(i, j);
 			}
@@ -75,10 +75,10 @@ namespace ExampleMod.Content.Tiles.Plants
 				growSuccess = WorldGen.GrowPalmTree(i, j);
 			}
 
-			// A flag to check if a player is near the sapling
+			// 一个 标志 to check if a 玩家 is near the sapling
 			bool isPlayerNear = WorldGen.PlayerLOS(i, j);
 
-			//If growing the tree was a success and the player is near, show growing effects
+			//If growing the tree was a success and the 玩家 is near, show growing effects
 			if (growSuccess && isPlayerNear) {
 				WorldGen.TreeGrowFXCheck(i, j);
 			}

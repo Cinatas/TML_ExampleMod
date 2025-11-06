@@ -11,22 +11,22 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleInGameNotification
 {
-	// This is a custom implementation of IInGameNotification for usage with the InGameNotificationSystem class.
-	// It displays a welcome message to the player when they join a world, controlled through ExampleInGameNotificationPlayer.
+	// 这是用于 InGameNotificationSystem 类的 IInGameNotification 的自定义实现。
+	// 它在玩家加入世界时向玩家显示欢迎消息，通过 ExampleInGameNotificationPlayer 控制。
 	public class ExampleJoinWorldInGameNotification : IInGameNotification
 	{
-		// Remove this notification once the 5-second timer is up.
+		// 一旦 5 秒计时器结束，删除此通知。
 		public bool ShouldBeRemoved => timeLeft <= 0;
 
-		// 5 seconds, controls how long this notification lasts for.
+		// 5 seconds, controls how long this 通知 lasts for.
 		private int timeLeft = 5 * 60;
 
-		// The texture we'll use for our icon display.
-		// Let's keep it simple and use use the ExampleItem's sprite.
+		// 我们将用于图标显示的纹理。
+		// 让我们保持简单并使用 ExampleItem 的精灵。
 		private Asset<Texture2D> iconTexture = TextureAssets.Item[ModContent.ItemType<ExampleItem>()];
 
-		// The Scale and Opacity properties are used to control the scale and opacity of the UI popup,
-		// and are directly taken from the vanilla achievement popup UI. This is done for consistency.
+		// The 缩放 and Opacity properties are 用于 控制 the 缩放 and opacity 的 用户界面 popup,
+		// and are directly taken 从 vanilla 成就 popup 用户界面. This is done for consistency.
 		private float Scale {
 			get {
 				if (timeLeft < 30) {
@@ -41,7 +41,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 			}
 		}
 
-		// See the comments for Scale.
+		// See the comments for 缩放.
 		private float Opacity {
 			get {
 				if (Scale <= 0.5f) {
@@ -55,7 +55,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 		public void Update() {
 			timeLeft--;
 
-			// Keep the timer kept to a minimum value of 0 to avoid issues, since we
+			// Keep the 计时器 kept to a 最小 值 of 0 to avoid issues, since we
 			// use it for lerping and other effects.
 			if (timeLeft < 0) {
 				timeLeft = 0;
@@ -63,7 +63,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 		}
 
 		public void DrawInGame(SpriteBatch spriteBatch, Vector2 bottomAnchorPosition) {
-			// No reason to continue drawing if the notification is no longer visible.
+			// No reason to 继续 drawing if the 通知 is 不再 visible.
 
 			if (Opacity <= 0f) {
 				return;
@@ -72,17 +72,17 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 			string title = Language.GetTextValue("Mods.ExampleMod.UI.InGameNotificationTitle");
 
 			// Below is draw-code directly from vanilla with some tweaks to suit our needs.
-			// Changes are minimal; important things to note:
-			// - we draw the panel with Utils.DrawInvBG,
-			// - we calculate the panel size based on the title size,
-			// - we draw the title and icon after the panel,
-			// - we utilize the calculated opacity and scale values.
+			// 更改s are minimal; important things to note:
+			// - we draw the 面板 with Utils.DrawInvBG,
+			// - we calculate the 面板 大小 based 在 称号 大小,
+			// - we draw the 称号 and 图标 after the 面板,
+			// - we utilize the calculated opacity and 缩放 values.
 
 			float effectiveScale = Scale * 1.1f;
 			Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(58f, 10f)) * effectiveScale;
 			Rectangle panelSize = Utils.CenteredRectangle(bottomAnchorPosition + new Vector2(0f, (0f - size.Y) * 0.5f), size);
 
-			// Check if the mouse is hovering over the notification.
+			// 检查 if the 鼠标 is hovering over the 通知.
 			bool hovering = panelSize.Contains(Main.MouseScreen.ToPoint());
 
 			Utils.DrawInvBG(spriteBatch, panelSize, new Color(64, 109, 164) * (hovering ? 0.75f : 0.5f));
@@ -97,14 +97,14 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 		}
 
 		private void OnMouseOver() {
-			// This method is called when the user hovers over the notification.
+			// This 方法 is called when the 用户 hovers over the 通知.
 
-			// Skip if we're ignoring mouse input.
+			// 跳过 if we're ignoring 鼠标 输入.
 			if (PlayerInput.IgnoreMouseInterface) {
 				return;
 			}
 
-			// We are now interacting with a UI.
+			// We are now interacting with a 用户界面.
 			Main.LocalPlayer.mouseInterface = true;
 
 			if (!Main.mouseLeft || !Main.mouseLeftRelease) {
@@ -113,18 +113,18 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 
 			Main.mouseLeftRelease = false;
 
-			// In our example, we just accelerate the exiting process on click.
-			// If you want it to close immediately, you can just set timeLeft to 0.
-			// This allows the notification time to shrink and fade away, as expected.
+			// In our example, we just accelerate the exiting 过程 on 点击.
+			// If you want it to 关闭 immediately, you can just set timeLeft to 0.
+			// 这允许 the 通知 时间 to shrink and fade away, as expected.
 			if (timeLeft > 30) {
 				timeLeft = 30;
 			}
 		}
 
 		public void PushAnchor(ref Vector2 positionAnchorBottom) {
-			// Anchoring is used for determining how much space a popup takes up, essentially.
-			// This is because notifications visually stack. In our case, we want to let other notifications
-			// go in front of ours once we start fading off, so we scale the offset based on opacity.
+			// 锚定 is used for determining how much space a popup takes up, essentially.
+			// This is because notifications visually 堆叠. In our case, we 想要 let other notifications
+			// go in front of ours once we 开始 fading off, so we 缩放 the 偏移 基于 opacity.
 			positionAnchorBottom.Y -= 50f * Opacity;
 		}
 	}

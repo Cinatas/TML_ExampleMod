@@ -21,7 +21,7 @@ namespace ExampleMod.NPCs.Abomination
 		public const string CaptiveElement2Head = "ExampleMod/NPCs/Abomination/CaptiveElement2_Head_Boss_";
 
 		public override bool Autoload(ref string name) {
-			// Adds boss head textures for the Abomination boss
+			// 添加s Boss head textures 对于 Abomination Boss
 			for (int k = 1; k <= 4; k++) {
 				mod.AddBossHeadTexture(CaptiveElement2Head + k);
 			}
@@ -141,7 +141,7 @@ namespace ExampleMod.NPCs.Abomination
 			if (run < 2 && npc.timeLeft < 750) {
 				npc.timeLeft = 750;
 			}
-			//move
+			//移动
 			int count = 0;
 			for (int k = 0; k < 200; k++) {
 				if (Main.npc[k].active && Main.npc[k].type == NPCType<CaptiveElement2>()) {
@@ -367,7 +367,7 @@ namespace ExampleMod.NPCs.Abomination
 			if (!ExampleWorld.downedAbomination) {
 				ExampleWorld.downedAbomination = true;
 				if (Main.netMode == NetmodeID.Server) {
-					NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+					NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new 世界 状态.
 				}
 			}
 		}

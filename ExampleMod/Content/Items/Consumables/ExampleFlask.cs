@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Consumables
 {
 	/// <summary>
-	/// A potion that applies the ExampleWeaponImbue buff to the player.
-	/// See also ExampleWeaponImbue and ExampleWeaponEnchantmentPlayer.
+	/// A 药水 that applies the ExampleWeaponImbue 增益 到 玩家.
+	/// 另请参阅 ExampleWeaponImbue and ExampleWeaponEnchantmentPlayer.
 	/// </summary>
 	public class ExampleFlask : ModItem
 	{

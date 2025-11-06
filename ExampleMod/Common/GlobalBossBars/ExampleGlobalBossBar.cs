@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.GlobalBossBars
 {
-	// Shows things you can do around drawing boss bars
+	// 展示你可以在绘制 Boss 血条方面做的事情
 	public class ExampleGlobalBossBar : GlobalBossBar
 	{
 		public override bool PreDraw(SpriteBatch spriteBatch, NPC npc, ref BossBarDrawParams drawParams) {
@@ -25,7 +25,7 @@ namespace ExampleMod.Common.GlobalBossBars
 				string text = "GlobalBossBar Showcase";
 				var font = FontAssets.MouseText.Value;
 				Vector2 size = font.MeasureString(text);
-				// Draw centered on the boss bar, offset upwards, otherwise it will overlap with the health text
+				// 在 Boss 血条上居中绘制，向上偏移，否则会与生命值文本重叠
 				spriteBatch.DrawString(font, text, drawParams.BarCenter - size / 2 + new Vector2(0, -30), Color.White);
 			}
 		}

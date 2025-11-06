@@ -5,22 +5,22 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// Basic code for a fishing crate
-	// The catch code is in a separate ModPlayer class (ExampleFishingPlayer)
-	// The placed tile is in a separate ModTile class
+	// 基本 code for a fishing crate
+	// catch code is in a 分离 ModPlayer 类 (ExampleFishingPlayer)
+	// placed 图格 is in a 分离 ModTile 类
 	public class ExampleFishingCrate : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// Disclaimer for both of these sets (as per their docs): They are only checked for vanilla item IDs, but for cross-mod purposes it would be helpful to set them for modded crates too
+			// Disclaimer for 两者 的se sets (as per their docs): They are only checked for vanilla 项 IDs, but for cross-mod purposes it 将 helpful to set them for modded crates too
 			ItemID.Sets.IsFishingCrate[Type] = true;
-			//ItemID.Sets.IsFishingCrateHardmode[Type] = true; // This is a crate that mimics a pre-hardmode biome crate, so this is commented out
+			//ItemID.Sets.IsFishingCrateHardmode[类型] = 真; // 这是一个 crate that mimics a pre-hardmode 生物群系 crate, so this is commented out
 
 			Item.ResearchUnlockCount = 10;
 		}
 
 		public override void SetDefaults() {
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ExampleFishingCrate>());
-			Item.width = 12; //The hitbox dimensions are intentionally smaller so that it looks nicer when fished up on a bobber
+			Item.width = 12; //The hitbox dimensions are intentionally smaller 以便 it looks nicer when fished up on a bobber
 			Item.height = 12;
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.sellPrice(0, 2);
@@ -35,17 +35,17 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override void ModifyItemLoot(ItemLoot itemLoot) {
-			// Drop a special weapon/accessory etc. specific to this crate's theme (i.e. Sky Crate dropping Fledgling Wings or Starfury)
+			// 放下 a special 武器/饰品 etc. specific to this crate's theme (i.e. Sky Crate dropping Fledgling Wings or Starfury)
 			int[] themedDrops = new int[] {
 				ModContent.ItemType<Accessories.ExampleBeard>(),
 				ModContent.ItemType<Accessories.ExampleStatBonusAccessory>()
 			};
 			itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, themedDrops));
 
-			// Drop coins
+			// 放下 coins
 			itemLoot.Add(ItemDropRule.Common(ItemID.GoldCoin, 4, 5, 13));
 
-			// Drop pre-hm ores, with the addition of one from ExampleMod
+			// 放下 pre-hm ores, 与 addition of one from ExampleMod
 			IItemDropRule[] oreTypes = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.CopperOre, 1, 30, 50),
 				ItemDropRule.Common(ItemID.TinOre, 1, 30, 50),
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Items.Consumables
 			};
 			itemLoot.Add(new OneFromRulesRule(7, oreTypes));
 
-			// Drop pre-hm bars (except copper/tin), with the addition of one from ExampleMod
+			// 放下 pre-hm bars (except 铜币/tin), 与 addition of one from ExampleMod
 			IItemDropRule[] oreBars = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.IronBar, 1, 10, 21),
 				ItemDropRule.Common(ItemID.LeadBar, 1, 10, 21),
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Items.Consumables
 			};
 			itemLoot.Add(new OneFromRulesRule(4, oreBars));
 
-			// Drop an "exploration utility" potion, with the addition of one from ExampleMod
+			// 放下 an "exploration utility" 药水, 与 addition of one from ExampleMod
 			IItemDropRule[] explorationPotions = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.ObsidianSkinPotion, 1, 2, 5),
 				ItemDropRule.Common(ItemID.SpelunkerPotion, 1, 2, 5),
@@ -83,14 +83,14 @@ namespace ExampleMod.Content.Items.Consumables
 			};
 			itemLoot.Add(new OneFromRulesRule(4, explorationPotions));
 
-			// Drop (pre-hm) resource potion
+			// 放下 (pre-hm) 资源 药水
 			IItemDropRule[] resourcePotions = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.HealingPotion, 1, 5, 18),
 				ItemDropRule.Common(ItemID.ManaPotion, 1, 5, 18),
 			};
 			itemLoot.Add(new OneFromRulesRule(2, resourcePotions));
 
-			// Drop (high-end) bait
+			// 放下 (high-结束) bait
 			IItemDropRule[] highendBait = new IItemDropRule[] {
 				ItemDropRule.Common(ItemID.JourneymanBait, 1, 2, 7),
 				ItemDropRule.Common(ItemID.MasterBait, 1, 2, 7),

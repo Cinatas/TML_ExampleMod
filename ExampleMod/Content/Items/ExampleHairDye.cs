@@ -10,12 +10,12 @@ namespace ExampleMod.Content.Items
 	public class ExampleHairDye : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// Avoid loading assets on dedicated servers. They don't use graphics cards.
+			// 避免 loading assets on dedicated servers. They don't use graphics cards.
 			if (!Main.dedServ) {
-				// The following code creates a hair color-returning delegate (anonymous method), and associates it with this item's type Id.
+				// following code creates a hair 颜色-returning delegate (anonymous 方法), and associates it with this 项's 类型 ID.
 				GameShaders.Hair.BindShader(
 					Item.type,
-					new LegacyHairShaderData().UseLegacyMethod((Player player, Color newColor, ref bool lighting) => Main.DiscoColor) // Returning Main.DiscoColor will make our hair an animated rainbow. You can return any Color here.
+					new LegacyHairShaderData().UseLegacyMethod((Player player, Color newColor, ref bool lighting) => Main.DiscoColor) // 返回ing Main.DiscoColor will make our hair an animated rainbow. You can 返回 任何 颜色 here.
 				);
 			}
 

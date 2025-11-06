@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Placeable
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 100;
 
-			// Set the SandgunAmmoProjectileData to your sandgun projectile with a bonus damage of 10
+			// 设置 the SandgunAmmoProjectileData to your sandgun 弹幕 with a 奖励 伤害 of 10
 			ItemID.Sets.SandgunAmmoProjectileData[Type] = new(ModContent.ProjectileType<Projectiles.ExampleSandBallGunProjectile>(), 10);
 		}
 
@@ -18,7 +18,7 @@ namespace ExampleMod.Content.Items.Placeable
 			Item.width = 12;
 			Item.height = 12;
 			Item.ammo = AmmoID.Sand;
-			// Item.shoot and Item.damage are not used for sand ammo by convention. They would result in undesireable item tooltips.
+			// 项.shoot and 项.伤害 are not used for sand ammo by convention. They would result in undesireable 项 tooltips.
 			// ItemID.Sets.SandgunAmmoProjectileData is used instead.
 			Item.notAmmo = true;
 		}

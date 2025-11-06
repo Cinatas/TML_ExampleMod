@@ -21,23 +21,23 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.width = 32;
 			Item.height = 32;
 			Item.shoot = ProjectileID.PurificationPowder;
-			// This Ammo is nonspecific. I want to modify what it shoots, however.
+			// This Ammo is nonspecific. I 想要 modify what it shoots, however.
 			Item.useAmmo = AmmoID.Bullet;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			// NewProjectile returns the index of the projectile it creates in the NewProjectile array.
-			// Here we are using it to gain access to the projectile object.
+			// NewProjectile returns the 索引 的 弹幕 it creates 在 NewProjectile 数组.
+			// 在这里 we are using it to gain access 到 弹幕 对象.
 			int projectileID = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 			Projectile projectile = Main.projectile[projectileID];
 
 			ExampleProjectileModifications globalProjectile = projectile.GetGlobalProjectile<ExampleProjectileModifications>();
-			// For more context, see ExampleProjectileModifications.cs
+			// 对于 more context, see ExampleProjectileModifications.cs
 			globalProjectile.SetTrail(Color.Green);
 			globalProjectile.sayTimesHitOnThirdHit = true;
 			globalProjectile.applyBuffOnHit = true;
 
-			// We do not want vanilla to spawn a duplicate projectile.
+			// 我们 do not want vanilla to 生成 a duplicate 弹幕.
 			return false;
 		}
 	}

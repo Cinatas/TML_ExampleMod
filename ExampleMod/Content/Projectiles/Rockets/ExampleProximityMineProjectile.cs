@@ -10,40 +10,40 @@ namespace ExampleMod.Content.Projectiles.Rockets
 	public class ExampleProximityMineProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Type] = true; // Deal triple damage when not moving and "armed".
-			ProjectileID.Sets.PlayerHurtDamageIgnoresDifficultyScaling[Type] = true; // Damage dealt to players does not scale with difficulty in vanilla.
+			ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Type] = true; // Deal triple 伤害 when not moving and "armed".
+			ProjectileID.Sets.PlayerHurtDamageIgnoresDifficultyScaling[Type] = true; // 伤害 dealt to players does not 缩放 with difficulty in vanilla.
 
 			// This set handles some things for us already:
-			// Sets the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
-			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
+			// 设置s the timeLeft to 3 and the 弹幕 方向 when colliding with an NPC or 玩家 in PVP (so the explosive can detonate).
+			// Explosives also bounce off the 顶部 of Shimmer, detonate with no blast 伤害 when touching the 底部 or sides of Shimmer, and 伤害 other players in 对于 Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
 		public override void SetDefaults() {
 			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.friendly = true;
-			Projectile.penetrate = -1; // Infinite penetration so that the blast can hit all enemies within its radius.
+			Projectile.penetrate = -1; // Infinite penetration so th在 blast can hit all enemies within its radius.
 			Projectile.DamageType = DamageClass.Ranged;
 
-			// Proximity Mines use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here with the correct AIType.
-			// But, using our own AI allows us to customize things like the dusts that the mine creates.
-			// Projectile.aiStyle = ProjAIStyleID.Explosive;
+			// Proximity Mines use explosive AI, ProjAIStyleID.Explosive (16). You could use that instead here 与 correct AIType.
+			// But, using our own AI allows us to customize things like the dusts th在 地雷 creates.
+			// 弹幕.aiStyle = ProjAIStyleID.Explosive;
 			// AIType = ProjectileID.ProximityMineI;
 		}
 		public override void AI() {
-			// If timeLeft is <= 3, then explode the mine.
+			// 如果 timeLeft is <= 3, then explode the 地雷.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow();
 			}
 			else {
-				// If the mine is not moving or barely moving, make it turn almost invisible.
+				// 如果 the 地雷 is not moving or barely moving, make it turn almost invisible.
 				if (Projectile.velocity.X > -0.2f && Projectile.velocity.X < 0.2f && Projectile.velocity.Y > -0.2f && Projectile.velocity.Y < 0.2f) {
 					Projectile.alpha += 2;
 					if (Projectile.alpha > 200) {
 						Projectile.alpha = 200; // 255 Alpha is completely transparent. So, 200 is almost completely invisible.
 					}
 				}
-				// Otherwise make it opaque and spawn a bunch of smoke dusts.
+				// 否则 make it opaque and 生成 a bunch of smoke dusts.
 				else {
 					Projectile.alpha = 0; // 0 Alpha is completely opaque.
 					var smokeDust = Dust.NewDustDirect(new Vector2(Projectile.position.X + 3f, Projectile.position.Y + 3f) - Projectile.velocity * 0.5f, Projectile.width - 8, Projectile.height - 8, DustID.Smoke, 0f, 0f, 100);
@@ -53,10 +53,10 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				}
 			}
 
-			Projectile.velocity.Y += 0.2f; // Make it fall down. Remember, positive Y is down.
-			Projectile.velocity *= 0.97f; // Make it slow down.
+			Projectile.velocity.Y += 0.2f; // 使 it fall down. Remember, positive Y is down.
+			Projectile.velocity *= 0.97f; // 使 it slow down.
 
-			// If the mine is moving very slowly, just make it stop entirely.
+			// 如果 the 地雷 is moving very slowly, just make it 停止 entirely.
 			if (Projectile.velocity.X > -0.1f && Projectile.velocity.X < 0.1f) {
 				Projectile.velocity.X = 0f;
 			}
@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				Projectile.velocity.Y = 0f;
 			}
 
-			Projectile.rotation += Projectile.velocity.X * 0.1f; // Rotate the mine based on the direction it is moving.
+			Projectile.rotation += Projectile.velocity.X * 0.1f; // 旋转 the 地雷 based 在 方向 it is moving.
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
@@ -77,40 +77,40 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			if (Projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 0.7f) {
 				Projectile.velocity.Y = oldVelocity.Y * -0.4f;
 			}
-			// Return false so the projectile doesn't get killed. If you do want your projectile to explode on contact with tiles, do not return true here.
-			// If you return true, the projectile will die without being resized (no blast radius).
-			// Instead, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
+			// 返回 假 so the 弹幕 doesn't get killed. If you do want your 弹幕 to explode on contact with tiles, do not 返回 真 here.
+			// 如果 you 返回 真, the 弹幕 will die without being resized (no blast radius).
+			// 代替, set `弹幕.timeLeft = 3;` like the Example 火箭 弹幕.
 			return false;
 		}
 
 		public override void PrepareBombToBlow() {
-			Projectile.tileCollide = false; // This is important or the explosion will be in the wrong place if the mine explodes on slopes.
-			Projectile.alpha = 255; // Make the mine invisible.
+			Projectile.tileCollide = false; // This is important or the explosion 将 在 wrong place if the 地雷 explodes on slopes.
+			Projectile.alpha = 255; // 使 the 地雷 invisible.
 
-			// Resize the hitbox of the projectile for the blast "radius".
-			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
+			// Resize the hitbox 的 弹幕 对于 blast "radius".
+			// 火箭 I: 128, 火箭 III: 200, Mini Nuke 火箭: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
-			// Set the knockback of the blast.
-			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
+			// 设置 the knockback 的 blast.
+			// 火箭 I: 8f, 火箭 III: 10f, Mini Nuke 火箭: 12f
 			Projectile.knockBack = 8f;
 		}
 
 		public override void OnKill(int timeLeft) {
-			// Play an exploding sound.
+			// Play an exploding 声音.
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-			// Resize the projectile again so the explosion dust and gore spawn from the middle.
-			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
+			// Resize the 弹幕 again so the explosion dust and gore 生成 从 middle.
+			// 火箭 I: 22, 火箭 III: 80, Mini Nuke 火箭: 50
 			Projectile.Resize(22, 22);
 
-			// Spawn a bunch of smoke dusts.
+			// 生成 a bunch of smoke dusts.
 			for (int i = 0; i < 30; i++) {
 				var smokeDust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
 				smokeDust.velocity *= 1.4f;
 			}
 
-			// Spawn a bunch of fire dusts.
+			// 生成 a bunch of fire dusts.
 			for (int j = 0; j < 20; j++) {
 				var fireDust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 3.5f);
 				fireDust.noGravity = true;
@@ -119,7 +119,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				fireDust.velocity *= 3f;
 			}
 
-			// Spawn a bunch of smoke gores.
+			// 生成 a bunch of smoke gores.
 			for (int k = 0; k < 2; k++) {
 				float speedMulti = 0.4f;
 				if (k == 1) {
@@ -142,7 +142,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// To make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look 在 commented out code in Example 火箭 弹幕.
 		}
 	}
 }

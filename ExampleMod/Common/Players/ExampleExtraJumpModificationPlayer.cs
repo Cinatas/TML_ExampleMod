@@ -2,11 +2,11 @@
 
 namespace ExampleMod.Common.Players
 {
-	// Showcases modifying the extra jump from the Sandstorm in a Bottle
+	// 展示修改沙暴瓶中的额外跳跃
 	public class ExampleExtraJumpModificationPlayer : ModPlayer
 	{
 		public override void ModifyExtraJumpDurationMultiplier(ExtraJump jump, ref float duration) {
-			// Make the jump duration last for 2x longer than normal
+			// 使跳跃持续时间比正常时间长 2 倍
 			if (jump == ExtraJump.SandstormInABottle)
 				duration *= 2f;
 		}

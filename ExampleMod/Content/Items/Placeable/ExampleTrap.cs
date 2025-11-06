@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Placeable
 {
-	// This item shows off using 1 class to load multiple items. This is an alternate to typical inheritance.
-	// Read the comments in this example carefully, as there are many parts necessary to make this approach work.
-	// The real strength of this approach is when you have many items that vary by small changes, like how these 2 trap items vary only by placeStyle.
+	// This 项 shows off using 1 类 to 加载 多个 items. 这是一个 alternate to typical inheritance.
+	// Read the comments in this example carefully, as there are m任何 parts necessary to make this approach work.
+	// real strength of this approach is when you have m任何 items that vary by small changes, like how these 2 陷阱 items vary only by placeStyle.
 	public class ExampleTrap : ModItem
 	{
-		// This inner class is an ILoadable, the game will automatically call the Load method when loading this mod.
-		// Using this class, we manually call AddContent with 2 instances of the ExampleTrap class. This adds them to the game.
+		// This inner 类 is an ILoadable, 游戏 will automatically call the 加载 方法 when loading this mod.
+		// 使用 this 类, we manually call AddContent with 2 instances 的 ExampleTrap 类. This adds them 到 game.
 		public class ExampleTrapLoader : ILoadable
 		{
 			public void Load(Mod mod) {
@@ -23,21 +23,21 @@ namespace ExampleMod.Content.Items.Placeable
 			}
 		}
 
-		// CloneNewInstances is needed so that fields in this class are Cloned onto new instances, such as when this item is crafted or hovered over.
-		// By default, the game creates new instances rather than clone. By forcing Clone, we can preserve fields per Item added by the mod while sharing the same class.
+		// CloneNewInstances is needed 以便 fields in this 类 are Cloned onto new instances, 例如 when this 项 is crafted or hovered over.
+		// 默认情况下, 游戏 creates new instances 而不是 clone. By forcing Clone, 我们可以 preserve fields per 项 added by the mod while sharing the same 类.
 		protected override bool CloneNewInstances => true;
 		private readonly int placeStyle;
 
-		// The internal name of each ModItem must be unique. This code ensures that each of the 2 ExampleTrap instances added have a unique name.
-		// In the localization files, these internal names are used as keys for DisplayName and Tooltip, rather than the classname.
+		// internal 名称 of each ModItem 必须 unique. This code ensures that each 的 2 ExampleTrap instances added have a unique 名称.
+		// 在 the localization files, these internal names are used as keys for DisplayName and 工具提示, 而不是 the classname.
 		public override string Name => GetInternalNameFromStyle(placeStyle);
 
-		// This helper method converts from the custom instanced data to the internal name. In this example the placeStyle value is the only custom data.
-		// This method is called by the Name property and 
+		// This helper 方法 converts 从 custom instanced 数据 到 internal 名称. In this example the placeStyle 值 is the only custom 数据.
+		// 此方法 is called by the 名称 属性 and 
 		public static string GetInternalNameFromStyle(int style) {
-			// Here we define some strings that will be used as the ModItem.Name, the internal name of the ModItem.
-			// Every ModItem must have a unique internal name, so this step is necessary.
-			// We use these in the ExampleMod.Content.Tiles.ExampleTrap.GetItemDrops rather than ModContent.ItemType<Items.Placeable.ExampleTrap>() to retrieve the correct ItemID.
+			// 在这里 we define some strings that 将 used as the ModItem.名称, the internal 名称 的 ModItem.
+			// Every ModItem must have a unique internal 名称, so this 步骤 is necessary.
+			// 我们 use these 在 ExampleMod.Content.Tiles.ExampleTrap.GetItemDrops 而不是 ModContent.ItemType<Items.Placeable.ExampleTrap>() to retrieve the correct ItemID.
 			if (style == 0) {
 				return "ExampleTrapIchorBullet";
 			}
@@ -47,13 +47,13 @@ namespace ExampleMod.Content.Items.Placeable
 			throw new Exception("Invalid style");
 		}
 
-		// Content loaded multiple times must have a non-default constructor. This is where unique data is passed in to be used later. This also prevents the game from attempting to add this ModItem to the game automatically.
+		// Content loaded 多个 times must have a non-default constructor. This is where unique 数据 is passed in to be used later. This also prevents 游戏 from attempting to add this ModItem 到 game automatically.
 		public ExampleTrap(int placeStyle) {
 			this.placeStyle = placeStyle;
 		}
 
 		public override void SetDefaults() {
-			// With all the setup above, placeStyle will be either 0 or 1 for the 2 ExampleTrap instances we've loaded.
+			// With all the setup above, placeStyle 将 任一 0 or 1 对于 2 ExampleTrap instances we've loaded.
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ExampleTrap>(), placeStyle);
 
 			Item.width = 12;

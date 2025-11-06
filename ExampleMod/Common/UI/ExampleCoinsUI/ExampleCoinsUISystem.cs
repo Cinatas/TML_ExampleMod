@@ -6,13 +6,13 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleCoinsUI
 {
-	[Autoload(Side = ModSide.Client)] // This attribute makes this class only load on a particular side. Naturally this makes sense here since UI should only be a thing clientside. Be wary though that accessing this class serverside will error
+	[Autoload(Side = ModSide.Client)] // This attribute makes this 类 only 加载 on a particular side. Naturally this makes sense here since 用户界面 should only be a thing clientside. Be wary though that accessing this 类 serverside will 错误
 	public class ExampleCoinsUISystem : ModSystem
 	{
 		private UserInterface exampleCoinUserInterface;
 		internal ExampleCoinsUIState exampleCoinsUI;
 
-		// These two methods will set the state of our custom UI, causing it to show or hide
+		// 这两个方法将设置我们的自定义 用户界面 的状态，导致它显示或隐藏
 		public void ShowMyUI() {
 			exampleCoinUserInterface?.SetState(exampleCoinsUI);
 		}
@@ -22,24 +22,24 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 		}
 
 		public override void Load() {
-			// Create custom interface which can swap between different UIStates
+			// 创建可以在不同 UIState 之间交换的自定义界面
 			exampleCoinUserInterface = new UserInterface();
-			// Creating custom UIState
+			// 创建自定义 UIState
 			exampleCoinsUI = new ExampleCoinsUIState();
 
-			// Activate calls Initialize() on the UIState if not initialized, then calls OnActivate and then calls Activate on every child element
+			// 激活 在 UIState 未初始化时调用 Initialize()，然后调用 OnActivate，然后在每个子元素上调用 激活
 			exampleCoinsUI.Activate();
 		}
 
 		public override void UpdateUI(GameTime gameTime) {
-			// Here we call .Update on our custom UI and propagate it to its state and underlying elements
+			// 在这里我们在自定义 用户界面 上调用 .更新 并将其传播到其状态和底层元素
 			if (exampleCoinUserInterface?.CurrentState != null) {
 				exampleCoinUserInterface?.Update(gameTime);
 			}
 		}
 
-		// Adding a custom layer to the vanilla layer list that will call .Draw on your interface if it has a state
-		// Setting the InterfaceScaleType to UI for appropriate UI scaling
+		// 添加ing a custom 层 到 vanilla 层 列表 that will call .Draw on your 界面 if it has a 状态
+		// 设置ting the InterfaceScaleType to 用户界面 for appropriate 用户界面 scaling
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
 			int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
 			if (mouseTextIndex != -1) {

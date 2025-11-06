@@ -37,11 +37,11 @@ namespace ExampleMod.Items.Abomination
 		}
 
 		public override bool CanEquipAccessory(Player player, int slot) {
-			if (slot < 10) // This allows the accessory to equip in Vanity slots with no reservations.
+			if (slot < 10) // 这允许 the 饰品 to equip in Vanity slots with no reservations.
 			{
 				int maxAccessoryIndex = 5 + player.extraAccessorySlots;
 				for (int i = 3; i < 3 + maxAccessoryIndex; i++) {
-					// We need "slot != i" because we don't care what is currently in the slot we will be replacing.
+					// 我们需要 "槽位 != i" because we don't care what is currently 在 槽位 we 将 replacing.
 					if (slot != i && player.armor[i].type == ItemID.AnkhShield) {
 						return false;
 					}
@@ -51,16 +51,16 @@ namespace ExampleMod.Items.Abomination
 		}
 	}
 
-	// We need to do the same for the AnkhShield so our restriction is enforced both ways.
+	// 我们需要 to do the same 对于 AnkhShield so our restriction is enforced 两者 ways.
 	public class AnkhShield : GlobalItem
 	{
 		public override bool CanEquipAccessory(Item item, Player player, int slot) {
 			if (item.type == ItemID.AnkhShield) {
-				if (slot < 10) // This allows the accessory to equip in Vanity slots with no reservations.
+				if (slot < 10) // 这允许 the 饰品 to equip in Vanity slots with no reservations.
 				{
 					int maxAccessoryIndex = 5 + player.extraAccessorySlots;
 					for (int i = 3; i < 3 + maxAccessoryIndex; i++) {
-						// We need "slot != i" because we don't care what is currently in the slot we will be replacing.
+						// 我们需要 "槽位 != i" because we don't care what is currently 在 槽位 we 将 replacing.
 						if (slot != i && player.armor[i].type == ItemType<SixColorShield>()) {
 							return false;
 						}

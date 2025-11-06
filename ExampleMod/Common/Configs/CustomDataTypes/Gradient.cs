@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System.ComponentModel;
 
-// This file defines custom data type that represents Gradient data type that can be used in ModConfig classes.
+// 此文件定义表示可在 ModConfig 类中使用的渐变数据类型的自定义数据类型。
 namespace ExampleMod.Common.Configs.CustomDataTypes
 {
 	public class Gradient
 	{
 		[DefaultValue(typeof(Color), "0, 0, 255, 255")]
-		public Color start = Color.Blue; // For sub-objects, you'll want to make sure to set defaults in constructor or field initializer.
+		public Color start = Color.Blue; // For sub-objects, you'll 想要 确保 to set defaults in constructor or 字段 initializer.
 		[DefaultValue(typeof(Color), "255, 0, 0, 255")]
 		public Color end = Color.Red;
 

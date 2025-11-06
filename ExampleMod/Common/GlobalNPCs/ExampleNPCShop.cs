@@ -13,27 +13,27 @@ namespace ExampleMod.Common.GlobalNPCs
 	{
 		public override void ModifyShop(NPCShop shop) {
 			if (shop.NpcType == NPCID.Dryad) {
-				// Adding an item to a vanilla NPC is easy:
-				// This item sells for the normal price.
+				// 向原版 NPC 添加物品很简单：
+				// 此物品以正常价格出售。
 				shop.Add<ExampleMountItem>();
 
-				// We can use shopCustomPrice and shopSpecialCurrency to support custom prices and currency. Usually a shop sells an item for item.value.
-				// Editing item.value in SetupShop is an incorrect approach.
+				// 我们可以使用 shopCustomPrice 和 shopSpecialCurrency 来支持自定义价格和货币。通常商店以 项.值 的价格出售物品。
+				// 在 SetupShop 中编辑 项.值 是一种不正确的方法。
 
-				// This shop entry sells for 2 Defenders Medals.
+				// 此商店条目以 2 个防御者奖章的价格出售。
 				shop.Add(new Item(ModContent.ItemType<ExampleMountItem>()) {
 					shopCustomPrice = 2,
-					shopSpecialCurrency = CustomCurrencyID.DefenderMedals // omit this line if shopCustomPrice should be in regular coins.
+					shopSpecialCurrency = CustomCurrencyID.DefenderMedals // omit this line if shopCustomPrice 应该 in regular coins.
 				});
 
-				// This shop entry sells for 3 of a custom currency added in our mod.
+				// 此商店条目以我们模组中添加的 3 个自定义货币的价格出售。
 				shop.Add(new Item(ModContent.ItemType<ExampleMountItem>()) {
 					shopCustomPrice = 2,
 					shopSpecialCurrency = ExampleMod.ExampleCustomCurrencyId
 				});
 			}
 			else if (shop.NpcType == NPCID.Wizard) {
-				// shopContents.Add(ModContent.ItemType<Infinity>(), ChestLoot.Condition.InExpertMode);
+				// shopContents.Add(ModContent.ItemType<Infinity>(), ChestLoot.条件.InExpertMode);
 			}
 			else if (shop.NpcType == NPCID.Stylist) {
 				shop.Add<ExampleHairDye>();
@@ -45,41 +45,41 @@ namespace ExampleMod.Common.GlobalNPCs
 				shop.Add<ExampleRocket>(Condition.NpcIsPresent(ModContent.NPCType<ExamplePerson>()));
 			}
 
-			// Example of adding new items with complex conditions in the Merchant shop.
-			// Style 1 check for application
+			// 在商人商店中添加具有复杂条件的新物品的示例。
+			// 样式 1 应用检查
 			if (shop.FullName != NPCShopDatabase.GetShopName(NPCID.Merchant, "Shop"))
 				return;
 
-			// Style 2 check for application
+			// 样式 2 应用检查
 			if (shop.NpcType != NPCID.Merchant || shop.Name != "Shop")
 				return;
 
-			// Style 3 check for application (works just if NPC has one shop)
+			// 样式 3 应用检查（仅当 NPC 只有一个商店时才有效）
 			if (shop.NpcType != NPCID.Merchant)
 				return;
 
-			// Adding ExampleTorch to Merchant, with condition being sold only during daytime. Have it appear just after Torch
+			// 将 ExampleTorch 添加到商人，条件是仅在白天出售。让它在火把之后出现
 			shop.InsertAfter(ItemID.Torch, ModContent.ItemType<Content.Items.Placeable.ExampleTorch>(), Condition.TimeDay);
 
-			// Hiding Copper Pickaxe and Copper Axe. They will never appear in Merchant shop anymore
-			// However, this approach may fail if item doesn't exists in shop.
+			// 隐藏铜镐和铜斧。它们将不再出现在商人商店中
+			// 但是，如果物品不在商店中，此方法可能会失败。
 			shop.GetEntry(ItemID.CopperAxe).Disable();
 
-			// Safer approach for disabling item
+			// 禁用物品的更安全方法
 			if (shop.TryGetEntry(ItemID.CopperPickaxe, out NPCShop.Entry entry)) {
 				entry.Disable();
 			}
 
-			// Adding new Condition to Blue Flare. Now it will appear just if player carries a Flare Gun in their inventory AND is in Snow biome
+			// 为蓝色照明弹添加新条件。现在只有当玩家在库存中携带照明枪并且在雪地生物群系中时才会出现
 			shop.GetEntry(ItemID.BlueFlare).AddCondition(Condition.InSnow);
 
-			// Let's add an item that appears just during Windy day and when NPC is happy enough (can sell pylons)
-			// If condition is fulfilled, add an item to the shop.
+			// 让我们添加一个仅在刮风天出现并且 NPC 足够快乐时（可以出售晶塔）的物品
+			// 如果满足条件，则将物品添加到商店。
 			shop.Add<ExampleItem>(Condition.HappyWindyDay, Condition.HappyEnough);
 
-			// Custom condition, opposite of conditions for ExampleItem above.
+			// 自定义条件，与上面 ExampleItem 的条件相反。
 			var redPotCondition = new Condition("Mods.ExampleMod.Conditions.NotSellingExampleItem", () => !Condition.HappyWindyDay.IsMet() || !Condition.HappyEnough.IsMet());
-			// Otherwise, if condition is not fulfilled, then let's check if its For The Worthy world and then sell Red Potion.
+			// 否则，如果不满足条件，那么让我们检查它是否是 对于 Worthy 世界，然后出售红色药水。
 			shop.Add(ItemID.RedPotion, redPotCondition, Condition.ForTheWorthyWorld);
 		}
 	}

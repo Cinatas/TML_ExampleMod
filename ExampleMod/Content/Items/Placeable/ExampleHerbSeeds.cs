@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Items.Placeable
 	public class ExampleHerbSeeds : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true; // This prevents this item from being automatically dropped from ExampleHerb tile. 
+			ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true; // 这防止 this 项 from being automatically dropped from ExampleHerb 图格. 
 			Item.ResearchUnlockCount = 25;
 		}
 
@@ -18,7 +18,7 @@ namespace ExampleMod.Content.Items.Placeable
 			Item.value = 80;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe(1)
 				.AddIngredient(ModContent.ItemType<ExampleBlock>(), 1)

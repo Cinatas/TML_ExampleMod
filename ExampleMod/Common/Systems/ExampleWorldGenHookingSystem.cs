@@ -8,14 +8,14 @@ using Terraria.WorldBuilding;
 
 namespace ExampleMod.Common.Systems
 {
-	// This ModSystem will demonstrate how to IL edit and Detour world generation passes
-	// Since world generation passes are anonymous methods (they don't have a name), they can't be edited the standard way (using IL_xx or On_xx)
+	// 此 ModSystem 将演示如何 IL 编辑和 Detour 世界生成过程
+	// 由于世界生成过程是匿名方法（它们没有名称），因此无法以标准方式编辑它们（使用 IL_xx 或 On_xx）
 	public class ExampleWorldGenHookingSystem : ModSystem
 	{
-		// All of the registration should take place in load
-		// Generation pass hooks are unloaded manually, so no Unload method is needed
+		// 所有注册都应该在加载中进行
+		// 生成过程钩子是手动卸载的，因此不需要 Unload 方法
 		public override void Load() {
-			// IL editing the pyramids pass
+			// IL 编辑金字塔过程
 			WorldGen.ModifyPass((PassLegacy)WorldGen.VanillaGenPasses["Pyramids"], Modify_Pyramids);
 
 			// Detouring the shinies pass (generates ore)
@@ -32,9 +32,9 @@ namespace ExampleMod.Common.Systems
 			}
 		}
 
-		// Detouring should be the same (except for one thing mentioned below), this is just an example so you can check this is actually working
-		// One thing to note is that for technical reasons, the self parameter is an object type
-		// You will never need to actually cast it to type WorldGen though, since it contains no instance fields or methods
+		// Detouring 应该 the same (除了 one thing mentioned below), this is just an example so you can check this is actually working
+		// One thing to note is that for technical reasons, the self 参数 is an 对象 类型
+		// 你将 never 需要 actually cast it to 类型 WorldGen though, since it contains no 实例 fields or methods
 		void Detour_Shinies(WorldGen.orig_GenPassDetour orig, object self, GenerationProgress progress, GameConfiguration configuration) {
 			ModContent.GetInstance<ExampleMod>().Logger.Debug("(On Hook) Before Shinies");
 			orig(self, progress, configuration);

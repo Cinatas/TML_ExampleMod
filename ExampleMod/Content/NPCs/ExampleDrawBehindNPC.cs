@@ -4,34 +4,34 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.NPCs
 {
-	// This NPC is simply an exhibition of the DrawBehind method.
-	// The npc cycles between all the available "layers" that a ModNPC can be drawn at.
-	// Spawn this NPC with something like Cheat Sheet or Hero's Mod to view the effect.
+	// This NPC is simply an exhibition 的 DrawBehind 方法.
+	// npc cycles between all the available "layers" that a ModNPC 可以 drawn at.
+	// 生成 this NPC with something like Cheat Sheet or Hero's Mod to 视图 the 效果.
 	public class ExampleDrawBehindNPC : ModNPC
 	{
 		public override void SetStaticDefaults() {
-			// Total count animation frames
+			// Total 计数 动画 frames
 			Main.npcFrameCount[NPC.type] = 6;
 		}
 
 		public override void SetDefaults() {
-			NPC.width = 30; // The width of the npc hitbox
-			NPC.height = 40; // The height of the npc hitbox
+			NPC.width = 30; // The 宽度 的 npc hitbox
+			NPC.height = 40; // The 高度 的 npc hitbox
 			NPC.aiStyle = -1; // Using custom AI
-			NPC.damage = 0; // The amount of damage this NPC will deal on collision
-			NPC.defense = 2; // How resistant to damage this NPC is
-			NPC.lifeMax = 100; // The maximum life of this NPC
-			NPC.HitSound = SoundID.NPCHit2; // The sound that plays when this npc is hit
-			NPC.DeathSound = SoundID.NPCDeath2; // The sound that plays when this npc dies
-			NPC.noGravity = true; // If true, the npc will not be affected by gravity
-			NPC.noTileCollide = true; // If true, the npc does not collide with tiles
-			NPC.knockBackResist = 0f; // How much of the knockback it receives will actually apply. 1f: full knockback; 0f: no knockback
+			NPC.damage = 0; // The amount of 伤害 this NPC will deal on collision
+			NPC.defense = 2; // How resistant to 伤害 this NPC is
+			NPC.lifeMax = 100; // The 最大 life of this NPC
+			NPC.HitSound = SoundID.NPCHit2; // The 声音 that plays when this npc is hit
+			NPC.DeathSound = SoundID.NPCDeath2; // The 声音 that plays when this npc dies
+			NPC.noGravity = true; // If 真, the npc will 不 affected by gravity
+			NPC.noTileCollide = true; // If 真, the npc does not collide with tiles
+			NPC.knockBackResist = 0f; // How much 的 knockback it receives will actually apply. 1f: full knockback; 0f: no knockback
 		}
 
-		// The current drawing layer will change every 40 ticks
+		// current drawing 层 will change 每个 40 ticks
 		private int CurrentLayer => (int)(NPC.ai[0] / 40);
 
-		// This changes the frame from the this NPC's texture that is drawn, depending on the current layer
+		// This changes the 帧 从 this NPC's 纹理 即 drawn, depending 在 current 层
 		public override void FindFrame(int frameHeight) {
 			NPC.frame.Y = CurrentLayer * frameHeight;
 		}
@@ -58,9 +58,9 @@ namespace ExampleMod.Content.NPCs
 			}
 		}
 
-		// This method allows you to specify that this npc should be drawn behind certain elements
+		// 此方法 allows you to specify that this npc 应该 drawn behind certain elements
 		public override void DrawBehind(int index) {
-			// The 6 available positions are as follows:
+			// 6 available positions are as follows:
 			switch (CurrentLayer) {
 				case 0: // Behind tiles and walls
 					Main.instance.DrawCacheNPCsMoonMoon.Add(index);

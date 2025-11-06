@@ -6,7 +6,7 @@ namespace ExampleMod.Content.Items.Placeable
 {
 	internal class ExampleLamp : ModItem
 	{
-		// This example uses LocalizedText.Empty to prevent any translation key from being generated. This can be used for items that definitely won't have a tooltip, keeping the localization file cleaner.
+		// 此示例 uses LocalizedText.Empty to 防止 任何 翻译 键 from being generated. This 可以 used for items that definitely won't have a 工具提示, keeping the localization 文件 cleaner.
 		public override LocalizedText Tooltip => LocalizedText.Empty;
 
 		public override void SetDefaults() {
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Placeable
 			Item.value = 500;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

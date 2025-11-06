@@ -12,7 +12,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// An enum for the 3 stages of herb growth
+	// An enum 对于 3 stages of herb growth
 	public enum PlantStage : byte
 	{
 		Planted,
@@ -20,13 +20,13 @@ namespace ExampleMod.Content.Tiles
 		Grown
 	}
 
-	// A plant with 3 stages, planted, growing and grown
-	// Sadly, modded plants are unable to be grown by the flower boots
+	// 一个 plant with 3 stages, planted, growing and grown
+	// Sadly, modded plants are un能够 be grown by the flower boots
 	//TODO smart cursor support for herbs, see SmartCursorHelper.Step_AlchemySeeds
 	//TODO Staff of Regrowth:
-	//- Player.PlaceThing_Tiles_BlockPlacementForAssortedThings: check where type == 84 (grown herb)
-	//- Player.ItemCheck_GetTileCutIgnoreList: maybe generalize?
-	//TODO vanilla seeds to replace fully grown herb
+	//- 玩家.PlaceThing_Tiles_BlockPlacementForAssortedThings: check where 类型 == 84 (grown herb)
+	//- 玩家.ItemCheck_GetTileCutIgnoreList: maybe generalize?
+	//TODO vanilla seeds to 替换 fully grown herb
 	public class ExampleHerb : ModTile
 	{
 		private const int FrameWidth = 18; // A constant for readability and to kick out those magic numbers
@@ -39,13 +39,13 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.ReplaceTileBreakUp[Type] = true;
 			TileID.Sets.IgnoredInHouseScore[Type] = true;
 			TileID.Sets.IgnoredByGrowingSaplings[Type] = true;
-			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // Make this tile interact with golf balls in the same way other plants do
+			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // 使 this 图格 interact with golf balls 在 same way other plants do
 
-			// We do not use this because our tile should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
-			//Main.tileSpelunker[Type] = true;
+			// 我们 do not use this because our 图格 should only be spelunkable when it's fully grown. That's why 我们使用 the IsTileSpelunkable hook instead
+			//Main.tileSpelunker[类型] = 真;
 
-			// Do NOT use this, it causes many unintended side effects
-			//Main.tileAlch[Type] = true;
+			// Do NOT use this, it causes m任何 unintended side effects
+			//Main.tileAlch[类型] = 真;
 
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(128, 128, 128), name);
@@ -67,14 +67,14 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override bool CanPlace(int i, int j) {
-			Tile tile = Framing.GetTileSafely(i, j); // Safe way of getting a tile instance
+			Tile tile = Framing.GetTileSafely(i, j); // Safe way of getting a 图格 实例
 
 			if (tile.HasTile) {
 				int tileType = tile.TileType;
 				if (tileType == Type) {
-					PlantStage stage = GetStage(i, j); // The current stage of the herb
+					PlantStage stage = GetStage(i, j); // 当前的 阶段 的 herb
 
-					// Can only place on the same herb again if it's grown already
+					// Can only place 在 same herb again if it's grown already
 					return stage == PlantStage.Grown;
 				}
 				else {
@@ -108,14 +108,14 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-			offsetY = -2; // This is -1 for tiles using StyleAlch, but vanilla sets to -2 for herbs, which causes a slight visual offset between the placement preview and the placed tile. 
+			offsetY = -2; // This is -1 for tiles using StyleAlch, but vanilla sets to -2 for herbs, which causes a slight visual 偏移 between the placement preview and the placed 图格. 
 		}
 
 		public override bool CanDrop(int i, int j) {
 			PlantStage stage = GetStage(i, j);
 
 			if (stage == PlantStage.Planted) {
-				// Do not drop anything when just planted
+				// Do not 放下 任何thing when just planted
 				return false;
 			}
 			return true;
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Tiles
 				seedItemStack = Main.rand.Next(1, 6);
 			}
 			else if (stage == PlantStage.Grown) {
-				// Default yields, only when fully grown
+				// 默认 yields, only when fully grown
 				herbItemStack = 1;
 				seedItemStack = Main.rand.Next(1, 4);
 			}
@@ -156,7 +156,7 @@ namespace ExampleMod.Content.Tiles
 		public override bool IsTileSpelunkable(int i, int j) {
 			PlantStage stage = GetStage(i, j);
 
-			// Only glow if the herb is grown
+			// 仅 glow if the herb is grown
 			return stage == PlantStage.Grown;
 		}
 
@@ -164,19 +164,19 @@ namespace ExampleMod.Content.Tiles
 			Tile tile = Framing.GetTileSafely(i, j);
 			PlantStage stage = GetStage(i, j);
 
-			// Only grow to the next stage if there is a next stage. We don't want our tile turning pink!
+			// 仅 grow 到 next 阶段 if there is a next 阶段. We don't want our 图格 turning pink!
 			if (stage != PlantStage.Grown) {
-				// Increase the x frame to change the stage
+				// Increase the x 帧 to change the 阶段
 				tile.TileFrameX += FrameWidth;
 
-				// If in multiplayer, sync the frame change
+				// 如果 in multiplayer, 同步 the 帧 change
 				if (Main.netMode != NetmodeID.SinglePlayer) {
 					NetMessage.SendTileSquare(-1, i, j, 1);
 				}
 			}
 		}
 
-		// A helper method to quickly get the current stage of the herb (assuming the tile at the coordinates is our herb)
+		// 一个 helper 方法 to quickly get the current 阶段 的 herb (assuming the 图格 在 coordinates is our herb)
 		private static PlantStage GetStage(int i, int j) {
 			Tile tile = Framing.GetTileSafely(i, j);
 			return (PlantStage)(tile.TileFrameX / FrameWidth);

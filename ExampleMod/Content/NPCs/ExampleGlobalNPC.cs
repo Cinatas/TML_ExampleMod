@@ -26,7 +26,7 @@ namespace ExampleMod.Content.NPCs
 			HasBeenHitByPlayer = true;
 		}
 
-		// If the merchant has been hit by a player, they will double their sell price
+		// 如果 the 商人 has been hit by a 玩家, they will double their 出售 价格
 		public override void ModifyActiveShop(NPC npc, string shopName, Item[] items) {
 			if (!npc.GetGlobalNPC<ExampleGlobalNPC>().HasBeenHitByPlayer) {
 				return;

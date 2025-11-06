@@ -8,15 +8,15 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// ExampleStatue shows off correctly using wiring to spawn items and NPC.
-	// See StatueWorldGen to see how ExampleStatue is added as an option for naturally spawning statues during worldgen.
+	// 示例Statue shows off correctly using wiring to 生成 items and NPC.
+	// 参见 StatueWorldGen to see how ExampleStatue is added as an 选项 for naturally spawning statues during worldgen.
 	public class ExampleStatue : ModTile
 	{
 		public override void SetStaticDefaults() {
 			Main.tileFrameImportant[Type] = true;
 			Main.tileObsidianKill[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
-			TileID.Sets.IsAMechanism[Type] = true; // Ensures that this tile and connected pressure plate won't be removed during the "Remove Broken Traps" worldgen step
+			TileID.Sets.IsAMechanism[Type] = true; // 确保s that this 图格 and connected pressure plate won't be removed during the "删除 Broken Traps" worldgen 步骤
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.addTile(Type);
@@ -26,31 +26,31 @@ namespace ExampleMod.Content.Tiles
 			AddMapEntry(new Color(144, 148, 144), Language.GetText("MapObject.Statue"));
 		}
 
-		// This hook allows you to make anything happen when this statue is powered by wiring.
-		// In this example, powering the statue either spawns a random coin with a 95% chance, or, with a 5% chance - a goldfish.
+		// This hook allows you to make 任何thing happen when this statue is powered by wiring.
+		// 在 this example, powering the statue 任一 spawns a 随机 硬币 with a 95% 概率, or, with a 5% 概率 - a goldfish.
 		public override void HitWire(int i, int j) {
-			// Find the coordinates of top left tile square through math
+			// 查找 the coordinates of 顶部 左 图格 square through math
 			int y = j - Main.tile[i, j].TileFrameY / 18;
 			int x = i - Main.tile[i, j].TileFrameX / 18;
 
 			const int TileWidth = 2;
 			const int TileHeight = 3;
 
-			// Here we call SkipWire on all tile coordinates covered by this tile. This ensures a wire signal won't run multiple times.
+			// 在这里 we call SkipWire on all 图格 coordinates covered by this 图格. 这确保 a wire 信号 won't run 多个 times.
 			for (int yy = y; yy < y + TileHeight; yy++) {
 				for (int xx = x; xx < x + TileWidth; xx++) {
 					Wiring.SkipWire(xx, yy);
 				}
 			}
 
-			// Calculcate the center of this tile to use as an entity spawning position.
-			// Note that we use 0.65 for height because even though the statue takes 3 blocks, its appearance is shorter.
+			// Calculcate the 中心 of this 图格 to use as an entity spawning 位置.
+			// 注意 that 我们使用 0.65 for 高度 because 尽管 the statue takes 3 blocks, its appearance is shorter.
 			float spawnX = (x + TileWidth * 0.5f) * 16;
 			float spawnY = (y + TileHeight * 0.65f) * 16;
 
-			// This example shows both item spawning code and npc spawning code, you can use whichever code suits your mod
-			// There is a 95% chance for item spawn and a 5% chance for npc spawn
-			// If you want to make a item spawning statue, see below.
+			// 此示例 shows 两者 项 spawning code and npc spawning code, you can use whichever code suits your mod
+			// 有 a 95% 概率 for 项 生成 and a 5% 概率 for npc 生成
+			// 如果 you 想要 make a 项 spawning statue, see below.
 
 			var entitySource = new EntitySource_TileUpdate(x, y, context: "ExampleStatue");
 
@@ -70,10 +70,10 @@ namespace ExampleMod.Content.Tiles
 				}
 			}
 			else {
-				// If you want to make an NPC spawning statue, see below.
+				// 如果 you 想要 make an NPC spawning statue, see below.
 				int npcIndex = -1;
 
-				// 30 is the time before it can be used again. NPC.MechSpawn checks nearby for other spawns to prevent too many spawns. 3 in immediate vicinity, 6 nearby, 10 in world.
+				// 30 is the 时间 before it 可以 used again. NPC.MechSpawn checks nearby for other spawns to 防止 too m任何 spawns. 3 in immediate vicinity, 6 nearby, 10 in 世界.
 				int spawnedNpcId = NPCID.Goldfish;
 
 				if (Wiring.CheckMech(x, y, 30) && NPC.MechSpawn(spawnX, spawnY, spawnedNpcId)) {
@@ -85,8 +85,8 @@ namespace ExampleMod.Content.Tiles
 
 					npc.value = 0f;
 					npc.npcSlots = 0f;
-					// Prevents Loot if NPCID.Sets.NoEarlymodeLootWhenSpawnedFromStatue and !Main.HardMode or NPCID.Sets.StatueSpawnedDropRarity != -1 and NextFloat() >= NPCID.Sets.StatueSpawnedDropRarity or killed by traps.
-					// Prevents CatchNPC
+					// 防止s Loot if NPCID.Sets.NoEarlymodeLootWhenSpawnedFromStatue and !Main.HardMode or NPCID.Sets.StatueSpawnedDropRarity != -1 and NextFloat() >= NPCID.Sets.StatueSpawnedDropRarity or killed by traps.
+					// 防止s CatchNPC
 					npc.SpawnedFromStatue = true;
 				}
 			}

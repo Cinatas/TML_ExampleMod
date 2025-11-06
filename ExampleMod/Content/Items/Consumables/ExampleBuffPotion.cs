@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items.Consumables
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 20;
 
-			// Dust that will appear in these colors when the item with ItemUseStyleID.DrinkLiquid is used
+			// Dust that will appear 在se colors when the 项 with ItemUseStyleID.DrinkLiquid is used
 			ItemID.Sets.DrinkParticleColors[Type] = new Color[3] {
 				new Color(240, 240, 240),
 				new Color(200, 200, 200),
@@ -30,8 +30,8 @@ namespace ExampleMod.Content.Items.Consumables
 			Item.consumable = true;
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.buyPrice(gold: 1);
-			Item.buffType = ModContent.BuffType<Buffs.ExampleDefenseBuff>(); // Specify an existing buff to be applied when used.
-			Item.buffTime = 5400; // The amount of time the buff declared in Item.buffType will last in ticks. 5400 / 60 is 90, so this buff will last 90 seconds.
+			Item.buffType = ModContent.BuffType<Buffs.ExampleDefenseBuff>(); // Specify an existing 增益 to be applied when used.
+			Item.buffTime = 5400; // The amount of 时间 the 增益 declared in 项.buffType will last in ticks. 5400 / 60 is 90, so this 增益 will last 90 seconds.
 		}
 	}
 }

@@ -6,17 +6,17 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This is the item used to summon a boss, in this case the modded Minion Boss from Example Mod. For vanilla boss summons, see comments in SetStaticDefaults
+	// 这是 the 项 用于 summon a Boss, 在这种情况下 the modded 仆从 Boss from Example Mod. For vanilla Boss summons, see comments in SetStaticDefaults
 	public class MinionBossSummonItem : ModItem
 	{
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 3;
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps sort inventory know that this is a boss summoning Item.
+			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps 排序 库存 know that 这是一个 Boss summoning 项.
 
-			// If this would be for a vanilla boss that has no summon item, you would have to include this line here:
-			// NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = true;
+			// 如果 this 将 for a vanilla Boss that has no summon 项, you would 必须 include this line here:
+			// NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = 真;
 
-			// Otherwise the UseItem code to spawn it will not work in multiplayer
+			// 否则 the UseItem code to 生成 it will not work in multiplayer
 		}
 
 		public override void SetDefaults() {
@@ -36,27 +36,27 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool CanUseItem(Player player) {
-			// If you decide to use the below UseItem code, you have to include !NPC.AnyNPCs(id), as this is also the check the server does when receiving MessageID.SpawnBoss.
-			// If you want more constraints for the summon item, combine them as boolean expressions:
-			//    return !Main.IsItDay() && !NPC.AnyNPCs(ModContent.NPCType<MinionBossBody>()); would mean "not daytime and no MinionBossBody currently alive"
+			// 如果 you decide to use the below UseItem code, you 必须 include !NPC.AnyNPCs(ID), as this is also the check the 服务器 does when receiving MessageID.SpawnBoss.
+			// 如果 you want more constraints 对于 summon 项, 组合 them as 布尔值 expressions:
+			//    返回 !Main.IsItDay() && !NPC.AnyNPCs(ModContent.NPCType<MinionBossBody>()); would mean "not daytime and no MinionBossBody currently alive"
 			return !NPC.AnyNPCs(ModContent.NPCType<MinionBossBody>());
 		}
 
 		public override bool? UseItem(Player player) {
 			if (player.whoAmI == Main.myPlayer) {
-				// If the player using the item is the client
+				// 如果 the 玩家 使用 项 is the 客户端
 				// (explicitly excluded serverside here)
 				SoundEngine.PlaySound(SoundID.Roar, player.position);
 
 				int type = ModContent.NPCType<MinionBossBody>();
 
 				if (Main.netMode != NetmodeID.MultiplayerClient) {
-					// If the player is not in multiplayer, spawn directly
+					// 如果 the 玩家 is not in multiplayer, 生成 directly
 					NPC.SpawnOnPlayer(player.whoAmI, type);
 				}
 				else {
-					// If the player is in multiplayer, request a spawn
-					// This will only work if NPCID.Sets.MPAllowedEnemies[type] is true, which we set in MinionBossBody
+					// 如果 the 玩家 is in multiplayer, 请求 a 生成
+					// 这将 only work if NPCID.Sets.MPAllowedEnemies[类型] is 真, which we set in MinionBossBody
 					NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
 				}
 			}
@@ -64,7 +64,7 @@ namespace ExampleMod.Content.Items.Consumables
 			return true;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

@@ -8,13 +8,13 @@ namespace ExampleMod.Content.Items.Placeable.Furniture
 	{
 		public override void SetDefaults() {
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.ExampleChest>());
-			// Item.placeStyle = 1; // Use this to place the chest in its locked style
+			// 项.placeStyle = 1; // 使用 this to place the 箱子 in its locked style
 			Item.width = 26;
 			Item.height = 22;
 			Item.value = 500;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Items.Placeable.Furniture
 	public class ExampleChestKey : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Item.ResearchUnlockCount = 3; // Biome keys usually take 1 item to research instead.
+			Item.ResearchUnlockCount = 3; // 生物群系 keys usually take 1 项 to research instead.
 		}
 
 		public override void SetDefaults() {

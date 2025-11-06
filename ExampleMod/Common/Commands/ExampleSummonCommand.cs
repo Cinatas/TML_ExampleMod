@@ -7,15 +7,15 @@ namespace ExampleMod.Common.Commands
 {
 	public class ExampleSummonCommand : ModCommand
 	{
-		// CommandType.World means that command can be used in Chat in SP and MP, but executes on the Server in MP
+		// CommandType.世界 表示命令可以在单人和多人模式的聊天中使用，但在多人模式中在服务器上执行
 		public override CommandType Type
 			=> CommandType.World;
 
-		// The desired text to trigger this command
+		// 触发此命令所需的文本
 		public override string Command
 			=> "summon";
 
-		// A short usage explanation for this command
+		// 此命令的简短使用说明
 		public override string Usage
 			=> "/summon type [[~]x] [[~]y] [number]" +
 			"\n type - NPCID of NPC." +
@@ -23,54 +23,54 @@ namespace ExampleMod.Common.Commands
 			"\n ~ - to use position relative to player." +
 			"\n number - number of NPC's to spawn.";
 
-		// A short description of this command
+		// 此命令的简短描述
 		public override string Description
 			=> "Spawn a NPC by NPCID";
 
 		public override void Action(CommandCaller caller, string input, string[] args) {
-			// Checking input Arguments
+			// 检查输入参数
 			if (args.Length == 0) {
-				throw new UsageException("At least one argument was expected.");
+				throw new UsageException("至少 one argument was expected.");
 			}
 			if (!int.TryParse(args[0], out int type)) {
 				throw new UsageException(args[0] + " is not a correct integer value.");
 			}
 
-			// Default values for spawn
-			// Position - Player.Bottom, number of NPC - 1 
+			// 生成的默认值
+			// 位置 - 玩家.底部，NPC 数量 - 1 
 			int xSpawnPosition = (int)caller.Player.Bottom.X;
 			int ySpawnPosition = (int)caller.Player.Bottom.Y;
 			int numToSpawn = 1;
 			bool relativeX = false;
 			bool relativeY = false;
 
-			// If command has X position argument
+			// 如果命令有 X 位置参数
 			if (args.Length > 1) {
-				// X relative check
+				// X 相对检查
 				if (args[1][0] == '~') {
 					relativeX = true;
 					args[1] = args[1].Substring(1);
 				}
-				// Parsing X position
+				// 解析 X 位置
 				if (!int.TryParse(args[1], out xSpawnPosition)) {
-					throw new UsageException(args[1] + " is not a correct X position (must be valid integer value).");
+					throw new UsageException(args[1] + " is not a correct X position (必须 valid integer value).");
 				}
 			}
 
-			// If command has Y position argument
+			// 如果命令有 Y 位置参数
 			if (args.Length > 2) {
-				// Y relative check
+				// Y 相对检查
 				if (args[2][0] == '~') {
 					relativeY = true;
 					args[2] = args[2].Substring(1);
 				}
-				// Parsing Y position
+				// 解析 Y 位置
 				if (!int.TryParse(args[2], out ySpawnPosition)) {
-					throw new UsageException(args[2] + " is not a correct Y position (must be valid integer value).");
+					throw new UsageException(args[2] + " is not a correct Y position (必须 valid integer value).");
 				}
 			}
 
-			// Adjusting the positions if they are relative
+			// 如果位置是相对的，则调整位置
 			if (relativeX) {
 				xSpawnPosition += (int)caller.Player.Bottom.X;
 			}
@@ -78,19 +78,19 @@ namespace ExampleMod.Common.Commands
 				ySpawnPosition += (int)caller.Player.Bottom.Y;
 			}
 
-			// If command has number argument
+			// 如果命令有数量参数
 			if (args.Length > 3) {
 				if (!int.TryParse(args[3], out numToSpawn)) {
-					throw new UsageException(args[3] + " is not a correct number (must be valid integer value).");
+					throw new UsageException(args[3] + " is not a correct number (必须 valid integer value).");
 				}
 			}
 
-			// Spawning numToSpawn NPCs with a given position and type
+			// 使用给定的位置和类型生成 numToSpawn 个 NPC
 			for (int k = 0; k < numToSpawn; k++) {
-				// NPC.NewNPC return 200 (Main.maxNPCs) if there are not enough NPC slots to spawn
+				// 如果没有足够的 NPC 槽位来生成，NPC.NewNPC 返回 200 (Main.maxNPCs)
 				int slot = NPC.NewNPC(new EntitySource_DebugCommand($"{nameof(ExampleMod)}_{nameof(ExampleSummonCommand)}"), xSpawnPosition, ySpawnPosition, type);
 
-				// Sync of NPCs on the server in MP
+				// 在多人模式中在服务器上同步 NPC
 				if (Main.netMode == NetmodeID.Server && slot < Main.maxNPCs) {
 					NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, slot);
 				}

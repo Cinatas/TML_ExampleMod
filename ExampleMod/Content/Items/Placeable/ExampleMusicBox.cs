@@ -7,14 +7,14 @@ namespace ExampleMod.Content.Items.Placeable
 	public class ExampleMusicBox : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.CanGetPrefixes[Type] = false; // music boxes can't get prefixes in vanilla
-			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox; // recorded music boxes transform into the basic form in shimmer
+			ItemID.Sets.CanGetPrefixes[Type] = false; // 音乐 boxes can't get prefixes in vanilla
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox; // recorded 音乐 boxes transform in到 basic form in shimmer
 
-			// The following code links the music box's item and tile with a music track:
-			//   When music with the given ID is playing, equipped music boxes have a chance to change their id to the given item type.
-			//   When an item with the given item type is equipped, it will play the music that has musicSlot as its ID.
-			//   When a tile with the given type and Y-frame is nearby, if its X-frame is >= 36, it will play the music that has musicSlot as its ID.
-			// When getting the music slot, you should not add the file extensions!
+			// following code links the 音乐 box's 项 and 图格 with a 音乐 跟踪:
+			//   When 音乐 与 given ID is playing, equipped 音乐 boxes have a 概率 to change their ID 到 given 项 类型.
+			//   When an 项 与 given 项 类型 is equipped, it will play the 音乐 that has musicSlot as its ID.
+			//   When a 图格 与 given 类型 and Y-帧 is nearby, if its X-帧 is >= 36, it will play the 音乐 that has musicSlot as its ID.
+			// 当 getting the 音乐 槽位, 你应该 not add the 文件 extensions!
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/MysteriousMystery"), ModContent.ItemType<ExampleMusicBox>(), ModContent.TileType<ExampleMusicBoxTile>());
 		}
 

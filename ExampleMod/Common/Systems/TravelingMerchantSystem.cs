@@ -34,10 +34,10 @@ namespace ExampleMod.Common.Systems
 		}
  
 		public override void NetSend(BinaryWriter writer) {
-			// Note that NetSend is called whenever WorldData packet is sent.
-			// We use this so that shop items can easily be synced to joining players
-			// We recommend modders avoid sending WorldData too often, or filling it with too much data, lest too much bandwidth be consumed sending redundant data repeatedly
-			// Consider sending a custom packet instead of WorldData if you have a significant amount of data to synchronise
+			// 请注意，每当发送 WorldData 数据包时都会调用 NetSend。
+			// 我们使用这个，以便商店物品可以轻松同步到加入的玩家
+			// 我们建议模组作者避免过于频繁地发送 WorldData，或用太多数据填充它，以免消耗太多带宽重复发送冗余数据
+			// 如果你有大量数据要同步，请考虑发送自定义数据包而不是 WorldData
 
 			writer.Write(ExampleTravelingMerchant.shopItems.Count);
 			foreach (Item item in ExampleTravelingMerchant.shopItems) {

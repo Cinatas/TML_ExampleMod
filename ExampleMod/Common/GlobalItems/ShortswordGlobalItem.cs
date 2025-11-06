@@ -6,27 +6,27 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.GlobalItems
 {
-	// This file shows a very simple example of a GlobalItem class. GlobalItem hooks are called on all items in the game and are suitable for sweeping changes like
-	// adding additional data to all items in the game. Here we simply adjust the damage of the Copper Shortsword item, as it is simple to understand.
-	// See other GlobalItem classes in ExampleMod to see other ways that GlobalItem can be used.
+	// 此文件展示了一个非常简单的 GlobalItem 类示例。GlobalItem 钩子在游戏中的所有物品上调用，适用于像
+	// 为游戏中的所有物品添加额外数据这样的全面更改。在这里，我们只是调整了铜短剑物品的伤害，因为它很容易理解。
+	// 查看 ExampleMod 中的其他 GlobalItem 类以了解 GlobalItem 可以使用的其他方式。
 	public class ShortswordGlobalItem : GlobalItem
 	{
-		// Here we make sure to only instance this GlobalItem for the Copper Shortsword, by checking item.type
+		// 在这里，我们通过检查 项.类型 确保仅为铜短剑实例化此 GlobalItem
 		public override bool AppliesToEntity(Item item, bool lateInstantiation) {
 			return item.type == ItemID.CopperShortsword;
 		}
 
 		public override void SetDefaults(Item item) {
-			item.StatsModifiedBy.Add(Mod); // Notify the game that we've made a functional change to this item.
+			item.StatsModifiedBy.Add(Mod); // 通知游戏我们对此物品进行了功能性更改。
 
-			item.damage = 50; // Change damage to 50!
+			item.damage = 50; // 将伤害更改为 50！
 		}
 
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			// Make it shoot grenades for no reason
+			// 无缘无故地让它发射手榴弹
 			Projectile.NewProjectileDirect(source, player.Center, velocity * 5f, ProjectileID.Grenade, damage, knockback, player.whoAmI);
-			// Returning false prevents vanilla's shooting behavior from running.
-			// In this case it prevents the shortsword's blade stabbing animation, as the blade itself is a projectile.
+			// 返回 假 可防止原版的射击行为运行。
+			// 在这种情况下，它会阻止短剑的刀刃刺击动画，因为刀刃本身是一个弹幕。
 			return false;
 		}
 	}

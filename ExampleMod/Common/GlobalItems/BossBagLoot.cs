@@ -10,7 +10,7 @@ namespace ExampleMod.Common.GlobalItems
 	public class BossBagLoot : GlobalItem
 	{
 		public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
-			// In addition to this code, we also do similar code in Common/GlobalNPCs/ExampleNPCLoot.cs to edit the boss loot for non-expert drops. Remember to do both if your edits should affect non-expert drops as well.
+			// 除了此代码之外，我们还在 Common/GlobalNPCs/ExampleNPCLoot.cs 中执行类似的代码来编辑非专家掉落的 Boss 战利品。如果你的编辑也应该影响非专家掉落，请记住两者都要做。
 			if (item.type == ItemID.QueenBeeBossBag) {
 				foreach (var rule in itemLoot.Get()) {
 					if (rule is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsDrop && oneFromOptionsDrop.dropIds.Contains(ItemID.BeeGun)) {

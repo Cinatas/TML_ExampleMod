@@ -12,21 +12,21 @@ namespace ExampleMod.Content.Items.Ammo
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 12; // The damage for projectiles isn't actually 12, it actually is the damage combined with the projectile and the item together.
+			Item.damage = 12; // The 伤害 for projectiles isn't actually 12, it actually is the 伤害 combined 与 弹幕 and the 项 together.
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 8;
 			Item.height = 8;
 			Item.maxStack = Item.CommonMaxStack;
-			Item.consumable = true; // This marks the item as consumable, making it automatically be consumed when it's used as ammunition, or something else, if possible.
+			Item.consumable = true; // This marks the 项 as consumable, making it automatically be consumed when it's used as ammunition, or something else, 如果可能.
 			Item.knockBack = 1.5f;
 			Item.value = 10;
 			Item.rare = ItemRarityID.Green;
-			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBullet>(); // The projectile that weapons fire when using this item as ammunition.
-			Item.shootSpeed = 16f; // The speed of the projectile.
-			Item.ammo = AmmoID.Bullet; // The ammo class this ammo belongs to.
+			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBullet>(); // The 弹幕 that weapons fire when using this 项 as ammunition.
+			Item.shootSpeed = 16f; // The 速度 的 弹幕.
+			Item.ammo = AmmoID.Bullet; // The ammo 类 this ammo belongs to.
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

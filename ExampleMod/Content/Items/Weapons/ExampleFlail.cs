@@ -6,44 +6,44 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// ExampleFlail and ExampleFlailProjectile show the minimum amount of code needed for a flail using the existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile need to be consulted if more advanced customization is desired, or if you want to learn more advanced modding techniques.
-	// ExampleFlail is a copy of the Sunfury flail weapon.
+	// 示例Flail and ExampleFlailProjectile show the 最小 amount of code needed for a flail 使用 existing vanilla code and behavior. ExampleAdvancedFlail and ExampleAdvancedFlailProjectile 需要 be consulted if more advanced customization is desired, or if you 想要 learn more advanced modding techniques.
+	// 示例Flail is a 复制 的 Sunfury flail 武器.
 	internal class ExampleFlail : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// This line will make the damage shown in the tooltip twice the actual Item.damage. This multiplier is used to adjust for the dynamic damage capabilities of the projectile.
-			// When thrown directly at enemies, the flail projectile will deal double Item.damage, matching the tooltip, but deals normal damage in other modes.
+			// This line will make the 伤害 shown 在 工具提示 twice the actual 项.伤害. This 乘数 is 用于 adjust 对于 dynamic 伤害 capabilities 的 弹幕.
+			// 当 thrown directly at enemies, the flail 弹幕 will deal double 项.伤害, matching the 工具提示, but deals normal 伤害 in other modes.
 			ItemID.Sets.ToolTipDamageMultiplier[Type] = 2f;
 		}
 
 		public override void SetDefaults() {
-			// These default values aside from Item.shoot match the Sunfury values, feel free to tweak them.
-			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
-			Item.useAnimation = 45; // The item's use time in ticks (60 ticks == 1 second.)
-			Item.useTime = 45; // The item's use time in ticks (60 ticks == 1 second.)
-			Item.knockBack = 6.75f; // The knockback of your flail, this is dynamically adjusted in the projectile code.
-			Item.width = 30; // Hitbox width of the item.
-			Item.height = 10; // Hitbox height of the item.
-			Item.damage = 32; // The damage of your flail, this is dynamically adjusted in the projectile code.
-			Item.crit = 7; // Critical damage chance %
+			// These default values aside from 项.shoot 匹配 the Sunfury values, feel free to tweak them.
+			Item.useStyle = ItemUseStyleID.Shoot; // How you use the 项 (swinging, holding out, etc.)
+			Item.useAnimation = 45; // The 项's use 时间 in ticks (60 ticks == 1 second.)
+			Item.useTime = 45; // The 项's use 时间 in ticks (60 ticks == 1 second.)
+			Item.knockBack = 6.75f; // The knockback of your flail, this is dynamically adjusted 在 弹幕 code.
+			Item.width = 30; // Hitbox 宽度 的 项.
+			Item.height = 10; // Hitbox 高度 的 项.
+			Item.damage = 32; // The 伤害 of your flail, this is dynamically adjusted 在 弹幕 code.
+			Item.crit = 7; // Critical 伤害 概率 %
 			Item.scale = 1.1f;
-			Item.noUseGraphic = true; // This makes sure the item does not get shown when the player swings his hand
-			Item.shoot = ModContent.ProjectileType<ExampleFlailProjectile>(); // The flail projectile
-			Item.shootSpeed = 12f; // The speed of the projectile measured in pixels per frame.
-			Item.UseSound = SoundID.Item1; // The sound that this item makes when used
-			Item.rare = ItemRarityID.Orange; // The color of the name of your item
-			Item.value = Item.sellPrice(gold: 2, silver: 50); // Sells for 2 gold 50 silver
-			Item.DamageType = DamageClass.MeleeNoSpeed; // Deals melee damage
+			Item.noUseGraphic = true; // 这使 sure the 项 does not get shown when the 玩家 swings his hand
+			Item.shoot = ModContent.ProjectileType<ExampleFlailProjectile>(); // The flail 弹幕
+			Item.shootSpeed = 12f; // The 速度 的 弹幕 measured in pixels per 帧.
+			Item.UseSound = SoundID.Item1; // The 声音 that this 项 makes when used
+			Item.rare = ItemRarityID.Orange; // The 颜色 的 名称 of your 项
+			Item.value = Item.sellPrice(gold: 2, silver: 50); // Sells for 2 金币 50 银币
+			Item.DamageType = DamageClass.MeleeNoSpeed; // Deals melee 伤害
 			Item.channel = true;
-			Item.noMelee = true; // This makes sure the item does not deal damage from the swinging animation
+			Item.noMelee = true; // 这使 sure the 项 does not deal 伤害 从 swinging 动画
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
-			// Aside from SetDefaults, when making a copy of a vanilla weapon you may have to hunt down other bits of code. This code makes the item draw in full brightness when dropped.
+			// Aside from SetDefaults, when making a 复制 of a vanilla 武器 你可以 必须 hunt down other bits of code. This code makes the 项 draw in full brightness when dropped.
 			return Color.White;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

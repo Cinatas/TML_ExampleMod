@@ -6,9 +6,9 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod.Projectiles.Minions
 {
-	// PurityWisp uses inheritace as an example of how it can be useful in modding.
-	// HoverShooter and Minion classes help abstract common functionality away, which is useful for mods that have many similar behaviors.
-	// Inheritance is an advanced topic and could be confusing to new programmers, see ExampleSimpleMinion.cs for a simpler minion example.
+	// PurityWisp uses inheritace as an example of how it 可以 useful in modding.
+	// HoverShooter and 仆从 classes 帮助 abstract common functionality away, 即 useful for mods that have m任何 similar behaviors.
+	// Inheritance is an advanced topic and 可能 confusing to new programmers, see ExampleSimpleMinion.cs for a simpler 仆从 example.
 	public class PurityWisp : HoverShooter
 	{
 		public override void SetStaticDefaults() {
@@ -16,7 +16,7 @@ namespace ExampleMod.Projectiles.Minions
 			Main.projPet[projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
 			ProjectileID.Sets.Homing[projectile.type] = true;
-			ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true; //This is necessary for right-click targeting
+			ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true; //This is necessary for 右-点击 targeting
 		}
 
 		public override void SetDefaults() {
@@ -41,7 +41,7 @@ namespace ExampleMod.Projectiles.Minions
 			if (player.dead) {
 				modPlayer.purityMinion = false;
 			}
-			if (modPlayer.purityMinion) { // Make sure you are resetting this bool in ModPlayer.ResetEffects. See ExamplePlayer.ResetEffects
+			if (modPlayer.purityMinion) { // 使 sure you are resetting this bool in ModPlayer.ResetEffects. See ExamplePlayer.ResetEffects
 				projectile.timeLeft = 2;
 			}
 		}

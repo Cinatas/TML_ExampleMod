@@ -22,8 +22,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ExampleMod
 {
-	// ModPlayer classes provide a way to attach data to Players and act on that data. ExamplePlayer has a lot of functionality related to 
-	// several effects and items in ExampleMod. See SimpleModPlayer for a very simple example of how ModPlayer classes work.
+	// ModPlayer classes provide a way to attach 数据 to Players and act on that 数据. ExamplePlayer has 很多 functionality 与...相关 
+	// 几个 effects and items in ExampleMod. See SimpleModPlayer for a very simple example of how ModPlayer classes work.
 	public class ExamplePlayer : ModPlayer
 	{
 		public int score;
@@ -51,7 +51,7 @@ namespace ExampleMod
 		public bool strongBeesUpgrade;
 		public bool manaHeart;
 		public int manaHeartCounter;
-		public bool nonStopParty; // The value of this bool can't be calculated by other clients automatically since it is set in ExampleUI. This bool is synced by SendClientChanges.
+		public bool nonStopParty; // The 值 of this bool can't be calculated by other clients automatically since it is set in ExampleUI. This bool is synced by SendClientChanges.
 		public bool examplePersonGiftReceived;
 
 		public const int maxExampleLifeFruits = 10;
@@ -83,22 +83,22 @@ namespace ExampleMod
 		}
 
 		public override void OnEnterWorld(Player player) {
-			// We can refresh UI using OnEnterWorld. OnEnterWorld happens after Load, so nonStopParty is the correct value.
+			// 我们可以 刷新 用户界面 using OnEnterWorld. OnEnterWorld happens after 加载, so nonStopParty is the correct 值.
 			GetInstance<ExampleMod>().ExampleUI.ExampleButton.HoverText = "SendClientChanges Example: Non-Stop Party " + (nonStopParty ? "On" : "Off");
 		}
 
-		// In MP, other clients need accurate information about your player or else bugs happen.
+		// In MP, other clients need accurate information about your 玩家 or else bugs happen.
 		// clientClone, SyncPlayer, and SendClientChanges, ensure that information is correct.
-		// We only need to do this for data that is changed by code not executed by all clients, 
-		// or data that needs to be shared while joining a world.
-		// For example, examplePet doesn't need to be synced because all clients know that the player is wearing the ExamplePet item in an equipment slot. 
-		// The examplePet bool is set for that player on every clients computer independently (via the Buff.Update), keeping that data in sync.
-		// ExampleLifeFruits, however might be out of sync. For example, when joining a server, we need to share the exampleLifeFruits variable with all other clients.
-		// In addition, in ExampleUI we have a button that toggles "Non-Stop Party". We need to sync this whenever it changes.
+		// We only 需要 do this for 数据 即 changed by code not executed by all clients, 
+		// or 数据 that needs to be shared while joining a 世界.
+		// 例如, examplePet doesn't 需要 be synced because all clients know th在 玩家 is wearing the ExamplePet 项 in an equipment 槽位. 
+		// The examplePet bool is set for that 玩家 on 每个 clients computer independently (via the 增益.更新), keeping that 数据 in 同步.
+		// 示例LifeFruits, however might be out of 同步. 例如, when joining a 服务器, we 需要 share the exampleLifeFruits 变量 with all other clients.
+		// 另外, in ExampleUI we have a 按钮 that toggles "Non-停止 Party". We 需要 同步 this whenever it changes.
 		public override void clientClone(ModPlayer clientClone) {
 			ExamplePlayer clone = clientClone as ExamplePlayer;
-			// Here we would make a backup clone of values that are only correct on the local players Player instance.
-			// Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
+			// Here we would make a backup clone of values that are only correct 在 local players 玩家 实例.
+			// Some examples 将 RPG stats from a 图形界面, Hotkey states, and Extra 项 Slots
 			clone.nonStopParty = nonStopParty;
 		}
 
@@ -107,15 +107,15 @@ namespace ExampleMod
 			packet.Write((byte)ExampleModMessageType.ExamplePlayerSyncPlayer);
 			packet.Write((byte)player.whoAmI);
 			packet.Write(exampleLifeFruits);
-			packet.Write(nonStopParty); // While we sync nonStopParty in SendClientChanges, we still need to send it here as well so newly joining players will receive the correct value.
+			packet.Write(nonStopParty); // While we 同步 nonStopParty in SendClientChanges, we still 需要 send it here 以及 so newly joining players will receive the correct 值.
 			packet.Send(toWho, fromWho);
 		}
 
 		public override void SendClientChanges(ModPlayer clientPlayer) {
-			// Here we would sync something like an RPG stat whenever the player changes it.
+			// Here we would 同步 something like an RPG stat whenever the 玩家 changes it.
 			ExamplePlayer clone = clientPlayer as ExamplePlayer;
 			if (clone.nonStopParty != nonStopParty) {
-				// Send a Mod Packet with the changes.
+				// Send a Mod 数据包 与 changes.
 				var packet = mod.GetPacket();
 				packet.Write((byte)ExampleModMessageType.NonStopPartyChanged);
 				packet.Write((byte)player.whoAmI);
@@ -130,24 +130,24 @@ namespace ExampleMod
 		}
 
 		public override TagCompound Save() {
-			// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
+			// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading 数据.
 			return new TagCompound {
-				// {"somethingelse", somethingelse}, // To save more data, add additional lines
+				// {"somethingelse", somethingelse}, // To 保存 more 数据, add additional lines
 				{"score", score},
 				{"exampleLifeFruits", exampleLifeFruits},
 				{"nonStopParty", nonStopParty},
 				{nameof(examplePersonGiftReceived), examplePersonGiftReceived},
 			};
-			//note that C# 6.0 supports indexer initializers
-			//return new TagCompound {
-			//	["score"] = score
+			//注意 C# 6.0 supports indexer initializers
+			//返回 new TagCompound {
+			//	["分数"] = 分数
 			//};
 		}
 
 		public override void Load(TagCompound tag) {
 			score = tag.GetInt("score");
 			exampleLifeFruits = tag.GetInt("exampleLifeFruits");
-			// nonStopParty was added after the initial ExampleMod release. Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound#mod-version-updates for information about how to handle version updates in your mod without messing up current users of your mod.
+			// nonStopParty was added after the initial ExampleMod release. Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound#mod-版本-updates for information about how to 处理 版本 updates in your mod without messing up current users of your mod.
 			nonStopParty = tag.GetBool("nonStopParty");
 			examplePersonGiftReceived = tag.GetBool(nameof(examplePersonGiftReceived));
 		}
@@ -171,13 +171,13 @@ namespace ExampleMod
 		public override bool CustomBiomesMatch(Player other) {
 			ExamplePlayer modOther = other.GetModPlayer<ExamplePlayer>();
 			return ZoneExample == modOther.ZoneExample;
-			// If you have several Zones, you might find the &= operator or other logic operators useful:
-			// bool allMatch = true;
+			// If you have 几个 Zones, you might 查找 the &= operator or other logic operators useful:
+			// bool allMatch = 真;
 			// allMatch &= ZoneExample == modOther.ZoneExample;
 			// allMatch &= ZoneModel == modOther.ZoneModel;
-			// return allMatch;
+			// 返回 allMatch;
 			// Here is an example just using && chained together in one statemeny 
-			// return ZoneExample == modOther.ZoneExample && ZoneModel == modOther.ZoneModel;
+			// 返回 ZoneExample == modOther.ZoneExample && ZoneModel == modOther.ZoneModel;
 		}
 
 		public override void CopyCustomBiomesTo(Player other) {
@@ -213,12 +213,12 @@ namespace ExampleMod
 
 		public override void UpdateBadLifeRegen() {
 			if (eFlames) {
-				// These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects.
+				// These lines zero out 任何 positive lifeRegen. This is expected for all bad life regeneration effects.
 				if (player.lifeRegen > 0) {
 					player.lifeRegen = 0;
 				}
 				player.lifeRegenTime = 0;
-				// lifeRegen is measured in 1/2 life per second. Therefore, this effect causes 8 life lost per second.
+				// lifeRegen is measured in 1/2 life per second. Therefore, this 效果 causes 8 life lost per second.
 				player.lifeRegen -= 16;
 			}
 			if (healHurt > 0) {
@@ -609,7 +609,7 @@ namespace ExampleMod
 				fullBright = true;
 			}
 
-			if (nonStopParty && drawInfo.shadow == 0f && Main.rand.NextBool(6)) { // checking shadow == 0 helps avoid spawning extra dust because of extra shadow draws.
+			if (nonStopParty && drawInfo.shadow == 0f && Main.rand.NextBool(6)) { // 检查ing shadow == 0 helps avoid spawning extra dust 因为 extra shadow draws.
 				int dustIndex = Dust.NewDust(drawInfo.position + new Vector2(drawInfo.drawPlayer.width / 2 - 2, -30), 4, 4, 219, 0f, 0f, 100, default(Color), 1f);
 				
 				Dust dust = Main.dust[dustIndex];
@@ -709,7 +709,7 @@ namespace ExampleMod
 		}
 
 		public override void PostBuyItem(NPC vendor, Item[] shop, Item item) {
-			// Here we use PostBuyItem to limit the player to only buying 1 item from the ExamplePersonFreeGiftList by removing items from the shop.
+			// Here 我们使用 PostBuyItem to 限制 the 玩家 to only buying 1 项 从 ExamplePersonFreeGiftList by removing items 从 商店.
 			if (vendor.type == NPCType<ExamplePerson>() && item.GetGlobalItem<ExampleInstancedGlobalItem>().examplePersonFreeGift) {
 				examplePersonGiftReceived = true;
 				foreach (var shopItem in shop) {
@@ -721,7 +721,7 @@ namespace ExampleMod
 		}
 
 		public override void PostSellItem(NPC vendor, Item[] shopInventory, Item item) {
-			// Here we use PostSellItem to let the player buy a different item from the ExamplePersonFreeGiftList when the player sells the item back.
+			// Here 我们使用 PostSellItem to let the 玩家 购买 a different 项 从 ExamplePersonFreeGiftList when the 玩家 sells the 项 back.
 			if (vendor.type == NPCType<ExamplePerson>() && (GetInstance<ExampleConfigServer>().ExamplePersonFreeGiftList?.Any(x => x.Type == item.type) ?? false)) {
 				examplePersonGiftReceived = false;
 				item.TurnToAir();

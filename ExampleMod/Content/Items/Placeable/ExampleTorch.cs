@@ -17,21 +17,21 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void SetDefaults() {
-			// DefaultToTorch sets various properties common to torch placing items. Hover over DefaultToTorch in Visual Studio to see the specific properties set.
-			// Of particular note to torches are Item.holdStyle, Item.flame, and Item.noWet. 
+			// 默认ToTorch sets 各种 properties common to torch placing items. 悬停 over DefaultToTorch in Visual Studio to see the specific properties set.
+			// Of particular note to torches are 项.holdStyle, 项.flame, and 项.noWet. 
 			Item.DefaultToTorch(ModContent.TileType<Tiles.ExampleTorch>(), 0, false);
 			Item.value = 50;
 		}
 
 		public override void HoldItem(Player player) {
-			// This torch cannot be used in water, so it shouldn't spawn particles or light either
+			// This torch can不 used in water, so it shouldn't 生成 particles or light 任一
 			if (player.wet) {
 				return;
 			}
 
-			// Note that due to biome select torch god's favor, the player may not actually have an ExampleTorch in their inventory when this hook is called, so no modifications should be made to the item instance.
+			// 注意 that 由于 生物群系 select torch god's favor, the 玩家 may not actually have an ExampleTorch 在ir 库存 when this hook is called, so no modifications 应该 made 到 项 实例.
 
-			// Randomly spawn sparkles when the torch is held. Bigger chance to spawn them when swinging the torch.
+			// Randomly 生成 sparkles when the torch is held. Bigger 概率 to 生成 them when swinging the torch.
 			if (Main.rand.NextBool(player.itemAnimation > 0 ? 7 : 30)) {
 				Dust dust = Dust.NewDustDirect(new Vector2(player.itemLocation.X + (player.direction == -1 ? -16f : 6f), player.itemLocation.Y - 14f * player.gravDir), 4, 4, ModContent.DustType<Sparkle>(), 0f, 0f, 100);
 				if (!Main.rand.NextBool(3)) {
@@ -43,25 +43,25 @@ namespace ExampleMod.Content.Items.Placeable
 				dust.position = player.RotatedRelativePoint(dust.position);
 			}
 
-			// Create a white (1.0, 1.0, 1.0) light at the torch's approximate position, when the item is held.
+			// 创建 a white (1.0, 1.0, 1.0) light 在 torch's approximate 位置, when the 项 is held.
 			Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
 
 			Lighting.AddLight(position, 1f, 1f, 1f);
 		}
 
 		public override void PostUpdate() {
-			// Create a white (1.0, 1.0, 1.0) light when the item is in world, and isn't underwater.
+			// 创建 a white (1.0, 1.0, 1.0) light when the 项 is in 世界, and isn't underwater.
 			if (!Item.wet) {
 				Lighting.AddLight(Item.Center, 1f, 1f, 1f);
 			}
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
-				// .SortAfterFirstRecipesOf(ItemID.Torch) Uncomment this line to have this recipe appear after the Torch recipe. 
+				// .SortAfterFirstRecipesOf(ItemID.Torch) Uncomment this line to have this 配方 appear after the Torch 配方. 
 				.Register();
 		}
 	}

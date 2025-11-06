@@ -5,12 +5,12 @@ using Terraria;
 
 namespace ExampleMod.Common.Systems
 {
-	// See ExampleMod/Common/Systems/DownedBossSystem.cs for more information about saving world data.
+	// 有关保存世界数据的更多信息，请参阅 ExampleMod/Common/Systems/DownedBossSystem.cs。
 	public class ExampleTownPetSystem : ModSystem
 	{
 		/// <summary>
-		/// The bool for whether the Example Town Pet License has been used.
-		/// <para/> (Doesn't really have anything to do with buying, but it is named as such to match the vanilla NPC.boughtCat, NPC.boughtDog, and NPC.boughtBunny)
+		/// The bool for whether the Example Town 宠物 License has been used.
+		/// <para/> (Doesn't really have 任何thing to do with buying, but it is named as such to 匹配 the vanilla NPC.boughtCat, NPC.boughtDog, and NPC.boughtBunny)
 		/// </summary>
 		public static bool boughtExampleTownPet = false;
 

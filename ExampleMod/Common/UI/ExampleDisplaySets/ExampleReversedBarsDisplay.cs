@@ -7,11 +7,11 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.UI.ExampleDisplaySets
 {
-	// This file showcases an example resource display set
-	// In this example, it draws a clone of the Bars display set, but with the mana and stars "swapped" to the other location
+	// 此文件展示一个示例资源显示集
+	// 在此示例中，它绘制 Bars 显示集的克隆，但将魔力和星星"交换"到另一个位置
 	public class ExampleReversedBarsDisplay : ModResourceDisplaySet
 	{
-		// Variable names were copied from HorizontalBarsPlayerResourcesDisplaySet
+		// 变量名称是从 HorizontalBarsPlayerResourcesDisplaySet 复制的
 		private int _maxSegmentCount;
 		private int _hpSegmentsCount;
 		private int _mpSegmentsCount;
@@ -48,7 +48,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			_panelRightMP = ModContent.Request<Texture2D>(modFolder + "MP_Panel_Right");
 		}
 
-		// DrawLife runs before DrawMana, so keep that in mind
+		// 绘制Life 在 DrawMana 之前运行，所以请记住这一点
 		public override void DrawLife(SpriteBatch spriteBatch) {
 			int num = 16;
 			int num2 = 18;
@@ -59,7 +59,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 
 			bool isHovered = false;
 
-			// Draw the life panels
+			// 绘制生命面板
 			ResourceDrawSettings resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _hpSegmentsCount + 2;
 			resourceDrawSettings.ElementIndexOffset = 0;
@@ -71,10 +71,10 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			resourceDrawSettings.OffsetSpriteAnchorByTexturePercentile = Vector2.Zero;
 			resourceDrawSettings.StatsSnapshot = preparedSnapshot;
 			resourceDrawSettings.DisplaySet = this;
-			resourceDrawSettings.ResourceIndexOffset = -1;  // Make the range [-1, 20] instead of [0, 21]
+			resourceDrawSettings.ResourceIndexOffset = -1;  // 使 the 范围 [-1, 20] 代替 [0, 21]
 			resourceDrawSettings.Draw(spriteBatch, ref isHovered);
 
-			// Draw the life bar filling
+			// 绘制 the life 条 filling
 			resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _hpSegmentsCount;
 			resourceDrawSettings.ElementIndexOffset = 0;
@@ -101,7 +101,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 
 			bool isHovered = false;
 
-			// Draw the mana panels
+			// 绘制 the 魔力 panels
 			ResourceDrawSettings resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _mpSegmentsCount + 2;
 			resourceDrawSettings.ElementIndexOffset = 0;
@@ -113,10 +113,10 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			resourceDrawSettings.OffsetSpriteAnchorByTexturePercentile = Vector2.Zero;
 			resourceDrawSettings.StatsSnapshot = preparedSnapshot;
 			resourceDrawSettings.DisplaySet = this;
-			resourceDrawSettings.ResourceIndexOffset = -1;  // Make the range [-1, 20] instead of [0, 21]
+			resourceDrawSettings.ResourceIndexOffset = -1;  // 使 the 范围 [-1, 20] 代替 [0, 21]
 			resourceDrawSettings.Draw(spriteBatch, ref isHovered);
 
-			// Draw the mana bar filling
+			// 绘制 the 魔力 条 filling
 			resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _mpSegmentsCount;
 			resourceDrawSettings.ElementIndexOffset = 0;
@@ -148,7 +148,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			preparedSnapshot = snapshot;
 		}
 
-		// The methods below were copied from HorizontalBarsPlayerResourcesDisplaySet and modified to account for the changed right panels
+		// The methods below were copied from HorizontalBarsPlayerResourcesDisplaySet and modified to account 对于 changed 右 panels
 		private void LifePanelDrawer(int elementIndex, int firstElementIndex, int lastElementIndex, out Asset<Texture2D> sprite, out Vector2 offset, out float drawScale, out Rectangle? sourceRect) {
 			sourceRect = null;
 			offset = Vector2.Zero;
@@ -156,13 +156,13 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			drawScale = 1f;
 			if (elementIndex == lastElementIndex) {
 				sprite = _panelRightHP;
-				// Offset swapped with offset from ManaPanelDrawer
-				//offset = new Vector2(-16f, -10f);
+				// 偏移 swapped with 偏移 from ManaPanelDrawer
+				//偏移 = new Vector2(-16f, -10f);
 				offset = new Vector2(-16f, -6f);
 			}
 			else if (elementIndex != firstElementIndex) {
 				sprite = _panelMiddleHP;
-				// Make the panels draw from right to left
+				// 使 the panels draw from 右 to 左
 				int opposite = lastElementIndex - (elementIndex - firstElementIndex);
 				int drawIndexOffset = opposite - elementIndex;
 				offset.X = drawIndexOffset * _panelMiddleHP.Width();
@@ -176,13 +176,13 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			drawScale = 1f;
 			if (elementIndex == lastElementIndex) {
 				sprite = _panelRightMP;
-				// Offset swapped with offset from LifePanelDrawer
-				//offset = new Vector2(-16f, -6f);
+				// 偏移 swapped with 偏移 from LifePanelDrawer
+				//偏移 = new Vector2(-16f, -6f);
 				offset = new Vector2(-16f, -10f);
 			}
 			else if (elementIndex != firstElementIndex) {
 				sprite = _panelMiddleMP;
-				// Make the panels draw from right to left
+				// 使 the panels draw from 右 to 左
 				int opposite = lastElementIndex - (elementIndex - firstElementIndex);
 				int drawIndexOffset = opposite - elementIndex;
 				offset.X = drawIndexOffset * _panelMiddleMP.Width();
@@ -195,7 +195,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 				sprite = _hpFillHoney;
 
 			HorizontalBarsPlayerResourcesDisplaySet.FillBarByValues(elementIndex, sprite, _hpSegmentsCount, _hpPercent, out offset, out drawScale, out sourceRect);
-			// Make the bar fillings draw from right to left
+			// 使 the 条 fillings draw from 右 to 左
 			int opposite = lastElementIndex - (elementIndex - firstElementIndex);
 			int drawIndexOffset = opposite - elementIndex;
 			offset.X += drawIndexOffset * sprite.Width();
@@ -204,7 +204,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 		private void ManaFillingDrawer(int elementIndex, int firstElementIndex, int lastElementIndex, out Asset<Texture2D> sprite, out Vector2 offset, out float drawScale, out Rectangle? sourceRect) {
 			sprite = _mpFill;
 			HorizontalBarsPlayerResourcesDisplaySet.FillBarByValues(elementIndex, sprite, _mpSegmentsCount, _mpPercent, out offset, out drawScale, out sourceRect);
-			// Make the bar fillings draw from right to left
+			// 使 the 条 fillings draw from 右 to 左
 			int opposite = lastElementIndex - (elementIndex - firstElementIndex);
 			int drawIndexOffset = opposite - elementIndex;
 			offset.X += drawIndexOffset * sprite.Width();

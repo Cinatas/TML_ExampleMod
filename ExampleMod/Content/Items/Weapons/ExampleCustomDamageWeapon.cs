@@ -8,10 +8,10 @@ namespace ExampleMod.Content.Items.Weapons
 {
 	public class ExampleCustomDamageWeapon : ModItem
 	{
-		public override string Texture => "ExampleMod/Content/Items/Weapons/ExampleSword"; //TODO: remove when sprite is made for this
+		public override string Texture => "ExampleMod/Content/Items/Weapons/ExampleSword"; //TODO: 删除 when 精灵 is made for this
 
 		public override void SetDefaults() {
-			Item.DamageType = ModContent.GetInstance<ExampleDamageClass>(); // Makes our item use our custom damage type.
+			Item.DamageType = ModContent.GetInstance<ExampleDamageClass>(); // 使 our 项 use our custom 伤害 类型.
 			Item.width = 40;
 			Item.height = 40;
 			Item.useStyle = ItemUseStyleID.Swing;
@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.autoReuse = true;
 			Item.damage = 70;
 			Item.knockBack = 4;
-			// Item.mana = 5; // ExampleDamageClass weapons should get magic and melee prefixes, but since this weapon doesn't have a mana cost all magic prefixes except Deranged can't be applied.
+			// 项.魔力 = 5; // 示例DamageClass weapons should get magic and melee prefixes, but since this 武器 doesn't have a 魔力 成本 all magic prefixes except Deranged can't be applied.
 			Item.crit = 6;
 			Item.value = Item.buyPrice(gold: 1);
 			Item.rare = ItemRarityID.Green;

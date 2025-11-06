@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items
 	{
 		public override void SetStaticDefaults() {
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 4));
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true; // Makes the item have an animation while in world (not held.). Use in combination with RegisterItemAnimation
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true; // 使 the 项 have an 动画 while in 世界 (not held.). Use in combination with RegisterItemAnimation
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
+			// 在这里 we add a tooltipline that will later be removed, showcasing how to 删除 tooltips from an 项
 			var line = new TooltipLine(Mod, "Verbose:RemoveMe", "This tooltip won't show in-game");
 			tooltips.Add(line);
 
@@ -37,26 +37,26 @@ namespace ExampleMod.Content.Items
 			};
 			tooltips.Add(line);
 
-			// Here we give the item name a rainbow effect.
+			// 在这里 we give the 项 名称 a rainbow 效果.
 			foreach (TooltipLine line2 in tooltips) {
 				if (line2.Mod == "Terraria" && line2.Name == "ItemName") {
 					line2.OverrideColor = Main.DiscoColor;
 				}
 			}
 
-			// Here we will hide all tooltips whose title end with ':RemoveMe'
-			// One like that is added at the start of this method
+			// 在这里 we will hide all tooltips whose 称号 结束 with ':RemoveMe'
+			// One like 即 added 在 开始 of this 方法
 			foreach (var l in tooltips) {
 				if (l.Name.EndsWith(":RemoveMe")) {
 					l.Hide();
 				}
 			}
 
-			// Another method of hiding can be done if you want to hide just one line.
-			// tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
+			// Another 方法 of hiding 可以 done if you 想要 hide just one line.
+			// tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.名称 == "Verbose:RemoveMe")?.Hide();
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

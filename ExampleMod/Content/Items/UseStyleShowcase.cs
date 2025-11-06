@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items
 {
 	/// <summary>
-	/// This item lets you test the existing ItemUseStyleID values for Item.useStyle. Note that the sword texture might not fit each of the useStyle animations.
+	/// This 项 lets you 测试 the existing ItemUseStyleID values for 项.useStyle. Note th在 sword 纹理 might not fit each 的 useStyle animations.
 	/// </summary>
 	public class UseStyleShowcase : ModItem
 	{
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items
 			Item.width = 40;
 			Item.height = 40;
 
-			// In Visual Studio, you can click on "ItemUseStyleID" and then press F12 to see the list of possible values. You can also type "ItemUseStyleID." to view the list of possible values.
+			// 在 Visual Studio, you can 点击 on "ItemUseStyleID" 然后 press F12 to see the 列表 of possible values. You can also 类型 "ItemUseStyleID." to 视图 the 列表 of possible values.
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.useTime = 30;
 			Item.useAnimation = 30;
@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Items
 					Item.useStyle = ItemUseStyleID.Swing;
 				}
 				Main.NewText($"Switching to ItemUseStyleID #{Item.useStyle}");
-				// This line will trigger NetSend to be called at the end of this game update, allowing the changes to useStyle to be in sync. 
+				// This line will 触发器 NetSend to be called 在 结束 of this game 更新, allowing the changes to useStyle to be in 同步. 
 				Item.NetStateChanged();
 			}
 			else {

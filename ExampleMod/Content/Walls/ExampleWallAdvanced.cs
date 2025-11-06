@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Walls
 {
-	// This is a more advanced ModWall showing off animation, dynamic dust, light emitting, and simple custom framing logic
+	// 这是 a more advanced ModWall showing off 动画, dynamic dust, light emitting, and simple custom framing logic
 	public class ExampleWallAdvanced : ModWall
 	{
 		public override void SetStaticDefaults() {
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Walls
 		}
 
 		public override void AnimateWall(ref byte frame, ref byte frameCounter) {
-			// Loop through 2 frames of animation, changing every 5 game frames
+			// 循环 through 2 frames of 动画, changing 每个 5 game frames
 			if (++frameCounter >= 5) {
 				frameCounter = 0;
 				frame = (byte)(++frame % 2);
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Walls
 
 		public override bool WallFrame(int i, int j, bool randomizeFrame, ref int style, ref int frameNumber) {
 			if (randomizeFrame) {
-				// Here we make the chance of WallFrameNumber 0 very rare, just for visual variety: https://i.imgur.com/9Irak3p.png
+				// 在这里 we make the 概率 of WallFrameNumber 0 very rare, just for visual variety: https://i.imgur.com/9Irak3p.png
 				if (frameNumber == 0 && WorldGen.genRand.NextBool(3, 4)) {
 					frameNumber = WorldGen.genRand.Next(1, 3);
 				}

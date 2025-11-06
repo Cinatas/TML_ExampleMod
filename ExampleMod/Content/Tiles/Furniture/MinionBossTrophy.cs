@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles.Furniture
 {
-	// Simple 3x3 tile that can be placed on a wall
+	// 简单 3x3 图格 that 可以 placed on a 墙
 	public class MinionBossTrophy : ModTile
 	{
 		public override void SetStaticDefaults() {

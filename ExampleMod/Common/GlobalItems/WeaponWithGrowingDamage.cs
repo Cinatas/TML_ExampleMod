@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-//Related to GlobalProjectile: ProjectileWithGrowingDamage
+//与 GlobalProjectile 相关：ProjectileWithGrowingDamage
 namespace ExampleMod.Common.GlobalItems
 {
 	public class WeaponWithGrowingDamage : GlobalItem
@@ -22,21 +22,21 @@ namespace ExampleMod.Common.GlobalItems
 		public override bool InstancePerEntity => true;
 
 		public override bool IsLoadingEnabled(Mod mod) {
-			// To experiment with this example, you'll need to enable it in the config.
+			// 要试验此示例，你需要在配置中启用它。
 			return ModContent.GetInstance<ExampleModConfig>().WeaponWithGrowingDamageToggle;
 		}
 
 		public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-			//Apply to weapons
+			//应用于武器
 			return lateInstantiation && entity.damage > 0;
 		}
 		public override void LoadData(Item item, TagCompound tag) {
 			experience = 0;
-			GainExperience(item, tag.Get<int>("experience"));//Load experience tag
+			GainExperience(item, tag.Get<int>("experience"));//加载经验标签
 		}
 
 		public override void SaveData(Item item, TagCompound tag) {
-			tag["experience"] = experience;//Save experience tag
+			tag["experience"] = experience;//保存经验标签
 		}
 
 		public override void NetSend(Item item, BinaryWriter writer) {
@@ -53,7 +53,7 @@ namespace ExampleMod.Common.GlobalItems
 		}
 
 		public void OnHitNPCGeneral(Player player, NPC target, NPC.HitInfo hit, Item item = null, Projectile projectile = null) {
-			//The weapon gains experience when hitting an npc.
+			//武器在击中 NPC 时获得经验。
 			int xp = hit.Damage;
 			if (projectile != null) {
 				xp /= 2;
@@ -90,7 +90,7 @@ namespace ExampleMod.Common.GlobalItems
 		}
 
 		public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage) {
-			//Gain 1% multiplicative damage for every level on the weapon.
+			//武器每升一级获得 1% 的乘法伤害。
 			damage *= 1f + (float)level / 100f;
 		}
 
@@ -104,13 +104,13 @@ namespace ExampleMod.Common.GlobalItems
 
 		public override void OnCreated(Item item, ItemCreationContext context) {
 			if (item.type == ItemID.Snowball) {
-				GainExperience(item, item.stack); // snowballs come with 1xp, for testing :)
+				GainExperience(item, item.stack); // 雪球带有 1 经验值，用于测试 :)
 			}
 
 			if (context is RecipeItemCreationContext rContext) {
 				foreach (Item ingredient in rContext.ConsumedItems) {
 					if (ingredient.TryGetGlobalItem(out WeaponWithGrowingDamage ingredientGlobal)) {
-						//Transfer all experience from consumed items to the crafted item.
+						//将消耗物品的所有经验转移到制作的物品。
 						GainExperience(item, ingredientGlobal.experience);
 					}
 				}
@@ -130,19 +130,19 @@ namespace ExampleMod.Common.GlobalItems
 				return;
 			}
 
-			//Prevent duplicating the experience on the new item, increase, which is a clone of decrease.  experience should not be cloned, so set it to 0.
+			//防止在新物品上复制经验，increase 是 decrease 的克隆。经验不应该被克隆，所以将其设置为 0。
 			experience = 0;
 
 			TransferExperience(destination, source, weapon2, numToTransfer);
 		}
 
 		private void TransferExperience(Item destination, Item source, WeaponWithGrowingDamage weapon2, int numToTransfer) {
-			//Transfer experience and value to increase.
+			//将经验和价值转移到 increase。
 			experience += weapon2.experience;
 			UpdateValue(destination, numToTransfer);
 
 			if (source.stack > numToTransfer) {
-				//Prevent duplicating the experience by clearing it on decrease if decrease will still exist.
+				//如果 decrease 仍然存在，则通过清除其经验来防止复制经验。
 				weapon2.experience = 0;
 				weapon2.UpdateValue(source, -numToTransfer);
 			}
@@ -152,7 +152,7 @@ namespace ExampleMod.Common.GlobalItems
 	public class DoubleXPSnowBallInExamplePersonShop : GlobalNPC
 	{
 		public override bool IsLoadingEnabled(Mod mod) {
-			// To experiment with this example, you'll need to enable it in the config.
+			// 要试验此示例，你需要在配置中启用它。
 			return ModContent.GetInstance<ExampleModConfig>().WeaponWithGrowingDamageToggle;
 		}
 

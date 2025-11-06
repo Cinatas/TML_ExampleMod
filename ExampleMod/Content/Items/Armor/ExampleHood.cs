@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Armor
 {
-	// The AutoloadEquip attribute automatically attaches an equip texture to this item.
-	// Providing the EquipType.Head value here will result in TML expecting a X_Head.png file to be placed next to the item's main texture.
+	// AutoloadEquip attribute automatically attaches an equip 纹理 to this 项.
+	// Providing the EquipType.Head 值 here will result in TML expecting a X_Head.png 文件 to be placed next 到 项's main 纹理.
 	[AutoloadEquip(EquipType.Head)]
 	public class ExampleHood : ModItem
 	{
@@ -16,30 +16,30 @@ namespace ExampleMod.Content.Items.Armor
 		public static LocalizedText SetBonusText { get; private set; }
 
 		public override void SetStaticDefaults() {
-			// We are passing in "{0}" into WithFormatArgs to replace "{0}" with itself because we do the final formatting for this LocalizedText in UpdateArmorSet itself according to the players current ReversedUpDownArmorSetBonuses setting.
+			// 我们 are passing in "{0}" into WithFormatArgs to 替换 "{0}" with itself because we do the final formatting for this LocalizedText in UpdateArmorSet itself according 到 players current ReversedUpDownArmorSetBonuses 设置.
 			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs("{0}", ManaCostReductionPercent);
 		}
 
 		public override void SetDefaults() {
-			Item.width = 18; // Width of the item
-			Item.height = 18; // Height of the item
-			Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
-			Item.rare = ItemRarityID.Green; // The rarity of the item
-			Item.defense = 4; // The amount of defense the item will give when equipped
+			Item.width = 18; // 宽度 的 项
+			Item.height = 18; // 高度 的 项
+			Item.value = Item.sellPrice(gold: 1); // How m任何 coins the 项 is worth
+			Item.rare = ItemRarityID.Green; // The 稀有度 的 项
+			Item.defense = 4; // The amount of 防御 the 项 will give when equipped
 		}
 
-		// IsArmorSet determines what armor pieces are needed for the setbonus to take effect
+		// IsArmorSet determines what 护甲 pieces are needed 对于 setbonus to take 效果
 		public override bool IsArmorSet(Item head, Item body, Item legs) {
 			return body.type == ModContent.ItemType<ExampleBreastplate>() && legs.type == ModContent.ItemType<ExampleLeggings>();
 		}
 
-		// UpdateArmorSet allows you to give set bonuses to the armor.
+		// 更新ArmorSet allows you to give set bonuses 到 护甲.
 		public override void UpdateArmorSet(Player player) {
-			// This is the setbonus tooltip:
-			//   Double tap or hold DOWN/UP to toggle various armor shadow effects
-			//   10% reduced mana cost
+			// 这是 the setbonus 工具提示:
+			//   Double tap or hold DOWN/UP to toggle 各种 护甲 shadow effects
+			//   10% reduced 魔力 成本
 			player.setBonus = SetBonusText.Format(Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN"));
-			player.manaCost -= ManaCostReductionPercent / 100f; // Reduces mana cost by 10%
+			player.manaCost -= ManaCostReductionPercent / 100f; // Reduces 魔力 成本 by 10%
 			player.GetModPlayer<ExampleArmorSetBonusPlayer>().ExampleSetHood = true;
 		}
 
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Items.Armor
 			}
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

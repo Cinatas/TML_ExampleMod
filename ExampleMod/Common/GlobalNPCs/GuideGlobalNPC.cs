@@ -13,19 +13,19 @@ namespace ExampleMod.Common.GlobalNPCs
 		}
 
 		public override void AI(NPC npc) {
-			// Make the guide giant and green.
+			// 使向导巨大且绿色。
 			npc.scale = 1.5f;
 			npc.color = Color.ForestGreen;
 		}
 
 		public override void EmoteBubblePosition(NPC npc, ref Vector2 position, ref SpriteEffects spriteEffects) {
-			// Flip and move his emote bubble to the front of him.
+			// 翻转并将他的表情气泡移到他的前面。
 			spriteEffects = npc.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			position.X += npc.width * npc.spriteDirection;
 		}
 
 		public override void PartyHatPosition(NPC npc, ref Vector2 position, ref SpriteEffects spriteEffects) {
-			// Move where the party hat is on the Guide.
+			// 移动向导身上派对帽的位置。
 			position.Y -= npc.height / 2f;
 			position.X += 4 * npc.spriteDirection;
 		}

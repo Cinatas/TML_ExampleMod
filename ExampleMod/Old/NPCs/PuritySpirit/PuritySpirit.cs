@@ -51,7 +51,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 				npc.buffImmune[k] = true;
 			}
 			music = MusicID.Title;
-			musicPriority = MusicPriority.BossMedium; // By default, musicPriority is BossLow
+			musicPriority = MusicPriority.BossMedium; // 默认情况下, musicPriority is BossLow
 			bossBag = ItemType<PuritySpiritBag>();
 		}
 
@@ -264,7 +264,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 		public void RunAway() {
 			attackProgress++;
 			if (attackProgress == 180) {
-				Talk("Hmph. Was that the extent of your power?");
+				Talk("Hmph. Was th在 extent of your power?");
 			}
 			if (attackProgress >= 360) {
 				npc.active = false;
@@ -586,10 +586,10 @@ namespace ExampleMod.NPCs.PuritySpirit
 			}
 			else
 			{
-				//This is an alternate syntax you can use
+				//这是一个 alternate syntax you can use
 				//var maskChooser = new WeightedRandom<int>();
-				//maskChooser.Add(ItemType<Items.Armor.PuritySpiritMask>());
-				//maskChooser.Add(ItemType<Items.Armor.BunnyMask>());
+				//maskChooser.Add(ItemType<Items.护甲.PuritySpiritMask>());
+				//maskChooser.Add(ItemType<Items.护甲.BunnyMask>());
 				//maskChooser.Add(ItemID.Bunny, 5.0);
 				//int maskChoice = maskChooser;
 
@@ -638,7 +638,7 @@ namespace ExampleMod.NPCs.PuritySpirit
 			if (!ExampleWorld.downedPuritySpirit) {
 				ExampleWorld.downedPuritySpirit = true;
 				if (Main.netMode == NetmodeID.Server) {
-					NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+					NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new 世界 状态.
 				}
 			}
 		}

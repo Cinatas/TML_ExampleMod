@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Buffs
 {
-	// This class serves as an example of a debuff that causes constant loss of life
-	// See ExampleLifeRegenDebuffPlayer.UpdateBadLifeRegen at the end of the file for more information
+	// 此类 serves as an example of a 减益 that causes constant loss of life
+	// 参见 ExampleLifeRegenDebuffPlayer.UpdateBadLifeRegen 在 结束 的 文件 f或更多 information
 	public class ExampleLifeRegenDebuff : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			Main.debuff[Type] = true;  // Is it a debuff?
+			Main.debuff[Type] = true;  // Is it a 减益?
 			Main.pvpBuff[Type] = true; // Players can give other players buffs, which are listed as pvpBuff
-			Main.buffNoSave[Type] = true; // Causes this buff not to persist when exiting and rejoining the world
-			BuffID.Sets.LongerExpertDebuff[Type] = true; // If this buff is a debuff, setting this to true will make this buff last twice as long on players in expert mode
+			Main.buffNoSave[Type] = true; // Causes this 增益 not to persist when exiting and rejoining the 世界
+			BuffID.Sets.LongerExpertDebuff[Type] = true; // If this 增益 is a 减益, 设置 this to 真 will make this 增益 last twice as long on players in expert 模式
 		}
 
-		// Allows you to make this buff give certain effects to the given player
+		// 允许s you to make this 增益 give certain effects 到 given 玩家
 		public override void Update(Player player, ref int buffIndex) {
 			player.GetModPlayer<ExampleLifeRegenDebuffPlayer>().lifeRegenDebuff = true;
 		}
@@ -23,25 +23,25 @@ namespace ExampleMod.Content.Buffs
 
 	public class ExampleLifeRegenDebuffPlayer : ModPlayer
 	{
-		// Flag checking when life regen debuff should be activated
+		// 标志 checking when life regen 减益 应该 activated
 		public bool lifeRegenDebuff;
 
 		public override void ResetEffects() {
 			lifeRegenDebuff = false;
 		}
 
-		// Allows you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
-		// This is typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
-		// The player will take damage at a rate of half the number you subtract per second
+		// 允许s you to give the 玩家 a negative life regeneration 基于 its 状态 (例如, the "On Fire!" 减益 makes the 玩家 take 伤害-over-时间)
+		// 这是 typically done by 设置 玩家.lifeRegen to 0 if it is positive, 设置 玩家.lifeRegenTime to 0, and subtracting a 数字 from 玩家.lifeRegen
+		// 玩家 will take 伤害 at a rate of half the 数字 you subtract per second
 		public override void UpdateBadLifeRegen() {
 			if (lifeRegenDebuff) {
-				// These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects
+				// These lines zero out 任何 positive lifeRegen. This is expected for all bad life regeneration effects
 				if (Player.lifeRegen > 0)
 					Player.lifeRegen = 0;
-				// Player.lifeRegenTime used to increase the speed at which the player reaches its maximum natural life regeneration
-				// So we set it to 0, and while this debuff is active, it never reaches it
+				// 玩家.lifeRegenTime 用于 increase the 速度 at which the 玩家 reaches its 最大 natural life regeneration
+				// So we set it to 0, and while this 减益 is active, it never reaches it
 				Player.lifeRegenTime = 0;
-				// lifeRegen is measured in 1/2 life per second. Therefore, this effect causes 8 life lost per second
+				// lifeRegen is measured in 1/2 life per second. Therefore, this 效果 causes 8 life lost per second
 				Player.lifeRegen -= 16;
 			}
 		}

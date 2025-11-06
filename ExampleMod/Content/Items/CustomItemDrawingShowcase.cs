@@ -11,17 +11,17 @@ using Terraria.UI;
 namespace ExampleMod.Content.Items
 {
 	/*
-	This item showcases proper usage of PreDrawInInventory, PostDrawInInventory, PreDrawInWorld, and PostDrawInWorld. In particular, these examples are intended to show the correct math and arguments needed to draw at the intended positions. World drawing and inventory have specific nuances that modders need to be aware of.
+	This item showcases proper usage of PreDrawInInventory, PostDrawInInventory, PreDrawInWorld, and PostDrawInWorld. In particular, these examples are intended to show the correct math and arguments needed to draw 在 intended positions. World drawing and inventory have specific nuances that modders need to be aware of.
 
-	Right click on the item in the inventory to toggle between each example:
+	Right click 在 item 在 inventory to toggle between each example:
 		DrawModeGlowmask: A separate texture, CustomItemDrawingShowcase_Front, is drawn using PostDrawInInventory and PostDrawInWorld
 		DrawModePulse: The item texture is drawn manually in PreDrawInInventory and PreDrawInWorld to give the item a pulsing effect similar to Soul items.
 		DrawModeBehindTexture: A separate animated texture, CustomItemDrawingShowcase_Back, is drawn using PreDrawInInventory and PreDrawInWorld
 		DrawModeHighlightEffect: The item texture is drawn manually several times in PreDrawInWorld to give the item a afterimage aura effect, similar to Boss Bags.
 		DrawModeRockingRotation: The item texture is drawn manually.
 
-	Note that these techniques can't be used as is for useable items, such as swords, that would require more advanced logic and hooks.
-	When using these techniques, it's a good idea to test your custom inventory drawing code in other UI such as an ItemDefinition field of a ModConfig to make sure the drawing logic is correct at different draw scales.
+	Note th在se techniques can't be used as is for useable items, 例如 swords, that would require more advanced logic and hooks.
+	When using these techniques, it's a good idea to test your custom inventory drawing code in other UI 例如 an ItemDefinition field of a ModConfig to make sure the drawing logic is correct at different draw scales.
 	*/
 	public class CustomItemDrawingShowcase : ModItem
 	{
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items
 		public override void SetDefaults() {
 			Item.width = 20;
 			Item.height = 20;
-			// Note that Item.width and height are the in-world hitbox dimensions and don't have to match the texture dimensions. Be mindful of this distinction when writing custom item drawing code.
+			// 注意 that 项.宽度 and 高度 are the in-世界 hitbox dimensions and don't 必须 匹配 the 纹理 dimensions. Be mindful of this distinction when writing custom 项 drawing code.
 		}
 
 		public override bool CanRightClick() => true;
@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Items
 				case DrawModeBehindTexture:
 					return "Draw a texture behind the item";
 				case DrawModeHighlightAfterImageEffect:
-					return "Draw a highlight border similar to the Boss Bag visual effect";
+					return "Draw a highlight border similar 到 Boss Bag visual effect";
 				case DrawModeRockingRotation:
 					return "Draws the item rocking left and right";
 			}
@@ -81,10 +81,10 @@ namespace ExampleMod.Content.Items
 				scale *= Main.essScale;
 				drawColor *= Main.essScale;
 				spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, drawColor, 0, origin, scale, SpriteEffects.None, 0);
-				return false; // Since we drew the texture, return false so the item isn't drawn twice.
+				return false; // Since we drew the 纹理, 返回 假 so the 项 isn't drawn twice.
 			}
 			else if (drawMode == DrawModeBehindTexture) {
-				// CustomItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we need to calculate values for the origin and sourceRectangle parameters to draw correctly
+				// 自定义ItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we 需要 calculate values 对于 原点 and sourceRectangle parameters to draw correctly
 
 				int backFrameNumber = (int)(Main.GameUpdateCount % 60 / 30);
 				var backSourceRectangle = backTexture.Frame(verticalFrames: 2, frameY: backFrameNumber);
@@ -93,10 +93,10 @@ namespace ExampleMod.Content.Items
 				spriteBatch.Draw(backTexture.Value, position, backSourceRectangle, drawColor, 0, backOrigin, scale, SpriteEffects.None, 0);
 			}
 			else if (drawMode == DrawModeRockingRotation) {
-				float rotation = MathF.Cos(Main.GameUpdateCount * 0.03f) * MathHelper.ToRadians(30); // Rotate left and right at most 30 degrees. 0.03 slows down the rotation speed.
+				float rotation = MathF.Cos(Main.GameUpdateCount * 0.03f) * MathHelper.ToRadians(30); // 旋转 左 and 右 至多 30 degrees. 0.03 slows down the 旋转 速度.
 
 				spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, drawColor, rotation, origin, scale, SpriteEffects.None, 0);
-				return false; // Since we drew the texture, return false so the item isn't drawn twice.
+				return false; // Since we drew the 纹理, 返回 假 so the 项 isn't drawn twice.
 			}
 
 			return true;
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Items
 
 		public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
 			if (drawMode == DrawModeGlowmask) {
-				// For a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
+				// 对于 a glowmask 即 the same dimensions as the 项 精灵, 我们可以 use all the provided parameters as is to draw the glowmask 纹理.
 				spriteBatch.Draw(frontTexture.Value, position, frame, drawColor, 0, origin, scale, SpriteEffects.None, 0);
 			}
 		}
@@ -112,17 +112,17 @@ namespace ExampleMod.Content.Items
 		public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
 			Main.GetItemDrawFrame(Item.type, out var itemTexture, out var itemFrame);
 			Vector2 drawOrigin = itemFrame.Size() / 2f;
-			// Items in the world are drawn centered horizontally sitting at the bottom of the item hitbox, not in the center. 
+			// Items 在 世界 are drawn centered horizontally sitting 在 底部 的 项 hitbox, not 在 中心. 
 			Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, drawOrigin.Y);
 
 			if (drawMode == DrawModePulse) {
 				scale = scale * Main.essScale;
 				lightColor = lightColor * Main.essScale;
 				spriteBatch.Draw(itemTexture, drawPosition, itemFrame, lightColor, rotation, drawOrigin, scale, SpriteEffects.None, 0);
-				return false; // Since we drew the texture, return false so the item isn't drawn twice.
+				return false; // Since we drew the 纹理, 返回 假 so the 项 isn't drawn twice.
 			}
 			else if (drawMode == DrawModeBehindTexture) {
-				// CustomItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we need to calculate values for the origin and sourceRectangle parameters to draw correctly 
+				// 自定义ItemDrawingShowcase_Back.png has different dimensions than CustomItemDrawingShowcase.png, so we 需要 calculate values 对于 原点 and sourceRectangle parameters to draw correctly 
 
 				int backFrameNumber = (int)(Main.GameUpdateCount % 60 / 30);
 				var backSourceRectangle = backTexture.Frame(verticalFrames: 2, frameY: backFrameNumber);
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Items
 				spriteBatch.Draw(backTexture.Value, drawPosition, backSourceRectangle, lightColor, rotation, backOrigin, scale, SpriteEffects.None, 0);
 			}
 			else if (drawMode == DrawModeHighlightAfterImageEffect) {
-				// This code is a copy of the ItemID.Sets.BossBag effect code from Main.DrawItem. We wouldn't want to use ItemID.Sets.BossBag to get this effect for this item since ItemID.Sets.BossBag has other effects as well that we don't want.
+				// This code is a 复制 的 ItemID.Sets.BossBag 效果 code from Main.DrawItem. We wouldn't 想要 use ItemID.Sets.BossBag to get this 效果 for this 项 since ItemID.Sets.BossBag has other effects 以及 that we don't want.
 				float counter = Item.timeSinceItemSpawned / 240f + Main.GlobalTimeWrappedHourly * 0.04f;
 				float offsetScale = Main.GlobalTimeWrappedHourly;
 				offsetScale %= 4f;
@@ -145,7 +145,7 @@ namespace ExampleMod.Content.Items
 				for (float i = 0f; i < 1f; i += 0.25f) {
 					spriteBatch.Draw(itemTexture, drawPosition + new Vector2(0f, 8f).RotatedBy((i + counter) * ((float)Math.PI * 2f)) * offsetScale, itemFrame, new Color(90, 70, 255, 50), rotation, drawOrigin, scale, SpriteEffects.None, 0f);
 				}
-				// 3 close afterimages
+				// 3 关闭 afterimages
 				for (float i = 0f; i < 1f; i += 0.34f) {
 					spriteBatch.Draw(itemTexture, drawPosition + new Vector2(0f, 4f).RotatedBy((i + counter) * ((float)Math.PI * 2f)) * offsetScale, itemFrame, new Color(140, 120, 255, 77), rotation, drawOrigin, scale, SpriteEffects.None, 0f);
 				}
@@ -163,8 +163,8 @@ namespace ExampleMod.Content.Items
 			Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, origin.Y);
 
 			if (drawMode == DrawModeGlowmask) {
-				// For a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
-				// Instead of the provided lightColor, however, we use Color.White since we want to draw the glowmask texture at full brightness regardless of world lighting conditions.
+				// 对于 a glowmask 即 the same dimensions as the 项 精灵, 我们可以 use all the provided parameters as is to draw the glowmask 纹理.
+				// 代替 的 provided lightColor, however, 我们使用 颜色.White since we 想要 draw the glowmask 纹理 at full brightness 无论 世界 lighting conditions.
 				spriteBatch.Draw(frontTexture.Value, drawPosition, itemFrame, Color.White, rotation, origin, scale, SpriteEffects.None, 0);
 			}
 		}

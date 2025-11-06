@@ -5,15 +5,15 @@ namespace ExampleMod.Common.Commands
 {
 	public class ExampleCoinsCommand : ModCommand
 	{
-		// CommandType.Chat means that command can be used in Chat in SP and MP
+		// CommandType.Chat 表示命令可以在单人和多人模式的聊天中使用
 		public override CommandType Type
 			=> CommandType.Chat;
 
-		// The desired text to trigger this command
+		// 触发此命令所需的文本
 		public override string Command
 			=> "coins";
 
-		// A short description of this command
+		// 此命令的简短描述
 		public override string Description
 			=> "Show the coin rate UI";
 

@@ -8,12 +8,12 @@ namespace ExampleMod.Content.Pets.ExamplePet
 {
 	public class ExamplePetItem : ModItem
 	{
-		// Names and descriptions of all ExamplePetX classes are defined using .hjson files in the Localization folder
+		// Names and descriptions of all ExamplePetX classes are defined using .hjson files 在 Localization 文件夹
 		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.ZephyrFish); // Copy the Defaults of the Zephyr Fish Item.
+			Item.CloneDefaults(ItemID.ZephyrFish); // 复制 the Defaults 的 Zephyr Fish 项.
 
-			Item.shoot = ModContent.ProjectileType<ExamplePetProjectile>(); // "Shoot" your pet projectile.
-			Item.buffType = ModContent.BuffType<ExamplePetBuff>(); // Apply buff upon usage of the Item.
+			Item.shoot = ModContent.ProjectileType<ExamplePetProjectile>(); // "Shoot" your 宠物 弹幕.
+			Item.buffType = ModContent.BuffType<ExamplePetBuff>(); // 应用 增益 upon usage 的 项.
 		}
 
         public override bool? UseItem(Player player)
@@ -24,7 +24,7 @@ namespace ExampleMod.Content.Pets.ExamplePet
    			return true;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

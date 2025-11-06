@@ -6,41 +6,41 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Armor
 {
-	// This and several other classes show off using EquipTextures to do a Merfolk or Werewolf effect.
-	// Typically Armor items are automatically paired with an EquipTexture, but we can manually use EquipTextures to achieve more unique effects.
-	// There is code for this effect in many places, look in the following files for the full implementation:
-	// NPCs.ExamplePerson drops this item when killed
-	// Content.Items.Armor.ExampleCostume (below) is the accessory item that sets ExampleCostumePlayer values. Note that this item does not have EquipTypes set. This is a vital difference and key to our approach.
-	// Content.Items.Armor.BlockyHead (below) is an EquipTexture class. It spawns dust when active.
-	// ExampleCostume.Load() shows calling AddEquipTexture 3 times with appropriate parameters. This is how we register EquipTexture manually instead of the automatic pairing of ModItem and EquipTexture that other equipment uses.
-	// Buffs.Blocky is the Buff that is shown while in Blocky mode. The buff is responsible for the actual stat effects of the costume. It also needs to remove itself when not near town npcs.
-	// ExampleCostumePlayer has 6 bools. They manage the visibility and other things related to this effect.
-	// ExampleCostumePlayer.ResetEffects resets those bool, except blockyAccessoryPrevious which is special because of the order of hooks.
-	// ExampleCostumePlayer.UpdateEquips is responsible for applying the Blocky buff to the player if the conditions are met and the accessory is equipped.
-	// ExampleCostumePlayer.FrameEffects is most important. It overrides the drawn equipment slots and sets them to our Blocky EquipTextures.
-	// ExampleCostumePlayer.ModifyDrawInfo is for some fun effects for our costume.
-	// Remember that the visuals and the effects of Costumes must be kept separate. Follow this example for best results.
+	// This and 几个 other classes show off using EquipTextures to do a Merfolk or Werewolf 效果.
+	// Typically 护甲 items are automatically paired with an EquipTexture, but 我们可以 manually use EquipTextures to achieve more unique effects.
+	// 有 code for this 效果 in m任何 places, look 在 following files 对于 full implementation:
+	// NPCs.ExamplePerson drops this 项 when killed
+	// Content.Items.护甲.ExampleCostume (below) is the 饰品 项 that sets ExampleCostumePlayer values. 注意 this 项 does not have EquipTypes set. 这是一个 vital difference and 键 to our approach.
+	// Content.Items.护甲.BlockyHead (below) is an EquipTexture 类. It spawns dust when active.
+	// 示例Costume.加载() shows calling AddEquipTexture 3 times with appropriate parameters. This is how we register EquipTexture manually instead 的 automatic pairing of ModItem and EquipTexture that other equipment uses.
+	// Buffs.Blocky is the 增益 即 shown while in Blocky 模式. The 增益 is responsible 对于 actual stat effects 的 costume. It also needs to 删除 itself when not near town npcs.
+	// 示例CostumePlayer has 6 bools. They 管理 the visibility and other things 与...相关 this 效果.
+	// 示例CostumePlayer.ResetEffects resets those bool, except blockyAccessoryPrevious 即 special because 的 顺序 of hooks.
+	// 示例CostumePlayer.UpdateEquips is responsible for applying the Blocky 增益 到 玩家 if the conditions are met and the 饰品 is equipped.
+	// 示例CostumePlayer.FrameEffects is most important. It overrides the drawn equipment slots and sets them to our Blocky EquipTextures.
+	// 示例CostumePlayer.ModifyDrawInfo is for some fun effects for our costume.
+	// 记住 th在 visuals and the effects of Costumes 必须 kept 分离. Follow this example for best results.
 	public class ExampleCostume : ModItem
 	{
 		public override void Load() {
-			// The code below runs only if we're not loading on a server
+			// code below runs only if we're not loading on a 服务器
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
-			// Add equip textures
+			// 添加 equip textures
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Head}", EquipType.Head, this, equipTexture: new BlockyHead());
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Body}", EquipType.Body, this);
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Legs}", EquipType.Legs, this);
 
-			//Add a separate set of equip textures by providing a custom name reference instead of an item reference
+			//Add a 分离 set of equip textures by providing a custom 名称 引用 代替 an 项 引用
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Head}", EquipType.Head, name: "BlockyAlt", equipTexture: new BlockyHead());
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Body}", EquipType.Body, name: "BlockyAlt");
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Legs}", EquipType.Legs, name: "BlockyAlt");
 		}
 
-		// Called in SetStaticDefaults
+		// 调用ed in SetStaticDefaults
 		private void SetupDrawing() {
-			// Since the equipment textures weren't loaded on the server, we can't have this code running server-side
+			// Since the equipment textures weren't loaded 在 服务器, 我们可以't have this code running 服务器-side
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
@@ -94,12 +94,12 @@ namespace ExampleMod.Content.Items.Armor
 
 		public override void UpdateVanitySet(Player player) {
 			if (Main.rand.NextBool(20)) {
-				// 2 separate instances of the BlockyHead class are used, we can differentiate them with Name if needed.
+				// 2 分离 instances 的 BlockyHead 类 are used, 我们可以 differentiate them with 名称 如果需要.
 				if (Name == "ExampleCostume") {
 					Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<Sparkle>());
 				}
 				else {
-					// Name == "BlockyAlt"
+					// 名称 == "BlockyAlt"
 					Dust.NewDust(player.position, player.width, player.height, DustID.BlueFlare);
 				}
 			}

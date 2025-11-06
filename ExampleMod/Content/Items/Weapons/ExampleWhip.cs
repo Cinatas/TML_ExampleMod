@@ -12,14 +12,14 @@ namespace ExampleMod.Content.Items.Weapons
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExampleWhipDebuff.TagDamage);
 
 		public override void SetDefaults() {
-			// This method quickly sets the whip's properties.
-			// Mouse over to see its parameters.
+			// 此方法 quickly sets the whip's properties.
+			// 鼠标 over to see its parameters.
 			Item.DefaultToWhip(ModContent.ProjectileType<ExampleWhipProjectile>(), 20, 2, 4);
 			Item.rare = ItemRarityID.Green;
 			Item.channel = true;
 		}
 
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+		// Please see Content/ExampleRecipes.cs for a detailed explanation of 配方 creation.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Items.Weapons
 				.Register();
 		}
 
-		// Makes the whip receive melee prefixes
+		// 使 the whip receive melee prefixes
 		public override bool MeleePrefix() {
 			return true;
 		}
