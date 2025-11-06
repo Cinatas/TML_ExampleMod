@@ -8,36 +8,36 @@ using Terraria.ModLoader;
 namespace ExampleMod.Common.GlobalPylons
 {
 	/// <summary>
-	/// An example and showcase of some of the hooks within the GlobalPylon class, which allow us to change functionality
-	/// for any type of pylon that we want. The changes we make in this class may not be the most practical, as they are more-so
-	/// showing what you can do with the hooks.
+	/// 一个示例和展示 GlobalPylon 类中一些钩子的例子，这些钩子允许我们更改功能
+	/// 适用于我们想要的任何类型的晶塔。我们在此类中所做的更改可能不是最实用的，因为它们更多地是
+	/// 展示你可以用钩子做什么。
 	/// </summary>.
 	public class ExampleGlobalPylon : GlobalPylon
 	{
 		public override bool? ValidTeleportCheck_PreNPCCount(TeleportPylonInfo pylonInfo, ref int defaultNecessaryNPCCount) {
-			// Since we have the capabilities, we can allow players to teleport to any pylon even if there are no NPCs there during the night time.
+			// 由于我们有这种能力，我们可以允许玩家在夜间传送到任何晶塔，即使那里没有 NPC。
 			if (!Main.dayTime) {
 				defaultNecessaryNPCCount = 0;
 			}
 
-			// Since we aren't preventing anything and just changing the NPC count, we can just return what the default method returns, which is null (AKA vanilla behavior)
+			// 由于我们没有阻止任何内容，只是更改 NPC 计数，我们可以返回默认方法返回的内容，即 null（又名原版行为）
 			return base.ValidTeleportCheck_PreNPCCount(pylonInfo, ref defaultNecessaryNPCCount);
 		}
 
 		public override bool PreDrawMapIcon(ref MapOverlayDrawContext context, ref string mouseOverText, ref TeleportPylonInfo pylonInfo, ref bool isNearPylon, ref Color drawColor, ref float deselectedScale, ref float selectedScale) {
-			// What if we want to change the color of all of the map icons?
-			// If we aren't near a pylon, we're going to shift the color of all pylon icons to being more red
+			// 如果我们想改变所有地图图标的颜色怎么办？
+			// 如果我们不在晶塔附近，我们将把所有晶塔图标的颜色转换为更红
 			if (!isNearPylon) {
 				drawColor = Color.Lerp(drawColor, Color.Red, 0.75f);
 			}
 
-			// Since we aren't actually preventing the drawing of any map icons, we can just return the default value, which in this case is null (AKA vanilla behavior)
+			// 由于我们实际上并没有阻止绘制任何地图图标，我们可以返回默认值，在这种情况下为 null（又名原版行为）
 			return base.PreDrawMapIcon(ref context, ref mouseOverText, ref pylonInfo, ref isNearPylon, ref drawColor, ref deselectedScale, ref selectedScale);
 		}
 
 		public override bool? PreCanPlacePylon(int x, int y, int tileType, TeleportPylonType pylonType) {
-			// What if we want to override the functionality for pylon placement?
-			// For example, let's always allow the players to place universal pylons, even if they already exist in the world:
+			// 如果我们想覆盖晶塔放置的功能怎么办？
+			// 例如，让我们始终允许玩家放置万能晶塔，即使它们已经存在于世界中：
 			if (pylonType == TeleportPylonType.Victory) {
 				return true;
 			}

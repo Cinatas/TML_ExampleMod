@@ -4,7 +4,7 @@ using Terraria.Localization;
 
 namespace ExampleMod.Common.ItemDropRules.DropConditions
 {
-	// Very simple drop condition: drop during daytime
+	// 非常简单的掉落条件：在白天掉落
 	public class ExampleDropCondition : IItemDropRuleCondition
 	{
 		private static LocalizedText Description;

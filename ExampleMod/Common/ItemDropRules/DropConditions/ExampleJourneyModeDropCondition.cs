@@ -4,7 +4,7 @@ using Terraria.Localization;
 
 namespace ExampleMod.Common.ItemDropRules.DropConditions
 {
-	// Drop condition where items drop only on Journey mode.
+	// 掉落条件，物品仅在旅程模式下掉落。
 	public class ExampleJourneyModeDropCondition : IItemDropRuleCondition
 	{
 		private static LocalizedText Description;
