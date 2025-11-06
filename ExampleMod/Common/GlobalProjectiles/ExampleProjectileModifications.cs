@@ -6,17 +6,17 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.GlobalProjectiles
 {
-	// Here is a class dedicated to showcasing projectile modifications
+	// 这是一个专门展示弹幕修改的类
 	public class ExampleProjectileModifications : GlobalProjectile
 	{
 		public override bool InstancePerEntity => true;
 		public bool applyBuffOnHit;
 		public bool sayTimesHitOnThirdHit;
-		// These are set when the user specifies that they want a trail.
+		// 当用户指定他们想要轨迹时设置这些。
 		private Color trailColor;
 		private bool trailActive;
 
-		// Here, a method is provided for setting the above fields.
+		// 在这里，提供了一个用于设置上述字段的方法。
 		public void SetTrail(Color color) {
 			trailColor = color;
 			trailActive = true;
