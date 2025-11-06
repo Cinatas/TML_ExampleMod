@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.penetrate = -1; // Infinite pierce
 			Projectile.DamageType = DamageClass.Melee; // Deals melee damage
 			Projectile.scale = 0.8f;
-			Projectile.usesLocalNPCImmunity = true; // Used for hit cooldown changes in the ai hook
+			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes in the ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
 			// 在这里 we reuse the flail projectile aistyle and set the aitype to the Sunfury. These lines will get our projectile to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code for the other behaviors you wish to use.
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// All of the following methods are additional behaviors of Sunfury that are not automatically inherited by ExampleFlailProjectile through the use of Projectile.aiStyle and AIType. You'll need to find corresponding code in the decompiled source code if you wish to clone a different vanilla projectile as a starting point.
 
-		// Draw the projectile in full brightness, ignoring lighting conditions.
+		// 绘制 the projectile in full brightness, ignoring lighting conditions.
 		public override Color? GetAlpha(Color lightColor) {
 			return Color.White;
 		}

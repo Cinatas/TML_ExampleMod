@@ -35,8 +35,8 @@ namespace ExampleMod.Content.Mounts
 			MountData.jumpHeight = 5; // How high the mount can jump.
 			MountData.acceleration = 0.19f; // The rate at which the mount speeds up.
 			MountData.jumpSpeed = 4f; // The rate at which the player and mount ascend towards (negative y velocity) the jump height when the jump button is pressed.
-			MountData.blockExtraJumps = false; // Determines whether or not you can use a double jump (like cloud in a bottle) while in the mount.
-			MountData.constantJump = true; // Allows you to hold the jump button down.
+			MountData.blockExtraJumps = false; // 确定s whether or not you can use a double jump (like cloud in a bottle) while in the mount.
+			MountData.constantJump = true; // 允许s you to hold the jump button down.
 			MountData.heightBoost = 20; // Height between the mount and the ground
 			MountData.fallDamage = 0.5f; // Fall damage multiplier.
 			MountData.runSpeed = 11f; // The speed of the mount
@@ -129,7 +129,7 @@ namespace ExampleMod.Content.Mounts
 		}
 
 		public override bool Draw(List<DrawData> playerDrawData, int drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref float rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref float drawScale, float shadow) {
-			// Draw is called for each mount texture we provide, so we check drawType to avoid duplicate draws.
+			// 绘制 is called for each mount texture we provide, so we check drawType to avoid duplicate draws.
 			if (drawType == 0) {
 				// 我们 draw some extra balloons before _Back texture
 				var balloons = (CarSpecificData)drawPlayer.mount._mountSpecificData;

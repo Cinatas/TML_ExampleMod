@@ -15,9 +15,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.height = 30; // The height of item hitbox
 
 			Item.autoReuse = true;  // Whether or not you can hold click to automatically use it again.
-			Item.damage = 12; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.damage = 12; // 设置s the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
 			Item.DamageType = DamageClass.Ranged; // What type of damage does this item affect?
-			Item.knockBack = 4f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			Item.knockBack = 4f; // 设置s the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 			Item.rare = ItemRarityID.Yellow; // The color that the item's name will be in-game.
 			Item.shootSpeed = 10f; // The speed of the projectile (measured in pixels per frame.)

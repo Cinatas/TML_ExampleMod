@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.value = Item.sellPrice(silver: 5);
 			Item.maxStack = 999;
 
-			// Use Properties
+			// 使用 Properties
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.useAnimation = 25;
 			Item.useTime = 25;

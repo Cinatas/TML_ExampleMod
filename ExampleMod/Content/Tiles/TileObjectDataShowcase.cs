@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Tiles
 			AnimationFrameHeight = TileObjectData.GetTileData(Type, 0).CoordinateFullHeight;
 		}
 
-		// Displays various info about the tile placement in chat.
+		// 显示s various info about the tile placement in chat.
 		private int PostPlaceMethod(int x, int y, int type, int style, int direction, int alternate) {
 			// 注意 that alternate here is the alternate index, not the alternate placement style. We'll use some math to calculate the random offset and placement style values
 			var tileData = TileObjectData.GetTileData(type, style, alternate);

@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Projectiles
 			float direction = Projectile.ai[0];
 			float velocityRotation = Projectile.velocity.ToRotation();
 			float adjustedRotation = MathHelper.Pi * direction * percentageOfLife + velocityRotation + direction * MathHelper.Pi + player.fullRotation;
-			Projectile.rotation = adjustedRotation; // Set the rotation to our to the new rotation we calculated.
+			Projectile.rotation = adjustedRotation; // 设置 the rotation to our to the new rotation we calculated.
 
 			float scaleMulti = 0.6f; // Excalibur, Terra Blade, and The Horseman's Blade is 0.6f; True Excalibur is 1f; default is 0.2f 
 			float scaleAdder = 1f; // Excalibur, Terra Blade, and The Horseman's Blade is 1f; True Excalibur is 1.2f; default is 1f 
@@ -99,7 +99,7 @@ namespace ExampleMod.Content.Projectiles
 				Dust.NewDustPerfect(dustPosition, DustID.TintableDustLighted, dustVelocity, 100, Color.SkyBlue * Projectile.Opacity, 1.2f * Projectile.Opacity);
 			}
 
-			Projectile.scale *= Projectile.ai[2]; // Set the scale of the projectile to the scale of the item.
+			Projectile.scale *= Projectile.ai[2]; // 设置 the scale of the projectile to the scale of the item.
 
 			// 如果 the projectile is as old as the max animation time, kill the projectile.
 			if (Projectile.localAI[0] >= Projectile.ai[1]) {
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.Projectiles
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			// Vanilla has several particles that can easily be used anywhere.
 			// particles from the Particle Orchestra are predefined by vanilla and most can not be customized that much.
-			// Use auto complete to see the other ParticleOrchestraType types there are.
+			// 使用 auto complete to see the other ParticleOrchestraType types there are.
 			// 在这里 we are spawning the Excalibur particle randomly inside of the target's hitbox.
 			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.Excalibur,
 				new ParticleOrchestraSettings { PositionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox) },
@@ -173,7 +173,7 @@ namespace ExampleMod.Content.Projectiles
 			// 你 could also spawn dusts at the enemy position. Here is simple an example:
 			// Dust.NewDust(Main.rand.NextVector2FromRectangle(target.Hitbox), 0, 0, ModContent.DustType<Content.Dusts.Sparkle>());
 
-			// Set the target's hit direction to away from the player so the knockback is in the correct direction.
+			// 设置 the target's hit direction to away from the player so the knockback is in the correct direction.
 			hit.HitDirection = (Main.player[Projectile.owner].Center.X < target.Center.X) ? 1 : (-1);
 		}
 

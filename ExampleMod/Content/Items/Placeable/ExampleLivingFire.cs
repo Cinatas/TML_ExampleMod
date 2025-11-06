@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Placeable
 		}
 
 		public override void PostUpdate() {
-			// Add some lighting when the item is dropped in the world.
+			// 添加 some lighting when the item is dropped in the world.
 			// Curiously, only the regular Living Fire Block creates light.
 			Lighting.AddLight(Item.Center, LightColor);
 		}

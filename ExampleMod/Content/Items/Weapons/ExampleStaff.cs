@@ -24,10 +24,10 @@ namespace ExampleMod.Content.Items.Weapons
 			// Customize the UseSound. DefaultToStaff sets UseSound to SoundID.Item43, but we want SoundID.Item20
 			Item.UseSound = SoundID.Item20;
 
-			// Set damage and knockBack
+			// 设置 damage and knockBack
 			Item.SetWeaponValues(20, 5);
 
-			// Set rarity and value
+			// 设置 rarity and value
 			Item.SetShopValues(ItemRarityColor.Green2, 10000);
 		}
 

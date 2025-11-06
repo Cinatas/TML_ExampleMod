@@ -33,7 +33,7 @@ namespace ExampleMod.Content.Items.Armor
 			return body.type == ModContent.ItemType<ExampleBreastplate>() && legs.type == ModContent.ItemType<ExampleLeggings>();
 		}
 
-		// UpdateArmorSet allows you to give set bonuses to the armor.
+		// 更新ArmorSet allows you to give set bonuses to the armor.
 		public override void UpdateArmorSet(Player player) {
 			// 这是 the setbonus tooltip:
 			//   Double tap or hold DOWN/UP to toggle various armor shadow effects

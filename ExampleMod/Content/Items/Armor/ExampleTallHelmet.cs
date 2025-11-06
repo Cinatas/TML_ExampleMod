@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Items.Armor
 	{
 		public override void SetStaticDefaults() {
 			ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
-			// Setting IsTallHat is the only special thing this item does.
+			// 设置ting IsTallHat is the only special thing this item does.
 			ArmorIDs.Head.Sets.IsTallHat[Item.headSlot] = true;
 		}
 

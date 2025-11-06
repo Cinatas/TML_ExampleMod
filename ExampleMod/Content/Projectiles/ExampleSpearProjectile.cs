@@ -20,9 +20,9 @@ namespace ExampleMod.Content.Projectiles
 			Player player = Main.player[Projectile.owner]; // Since we access the owner player instance so much, it's useful to create a helper local variable for this
 			int duration = player.itemAnimationMax; // Define the duration the projectile will exist in frames
 
-			player.heldProj = Projectile.whoAmI; // Update the player's held projectile id
+			player.heldProj = Projectile.whoAmI; // 更新 the player's held projectile id
 
-			// Reset projectile time left if necessary
+			// 重置 projectile time left if necessary
 			if (Projectile.timeLeft > duration) {
 				Projectile.timeLeft = duration;
 			}
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Projectiles
 			// Move the projectile from the HoldoutRangeMin to the HoldoutRangeMax and back, using SmoothStep for easing the movement
 			Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
 
-			// Apply proper rotation to the sprite.
+			// 应用 proper rotation to the sprite.
 			if (Projectile.spriteDirection == -1) {
 				// 如果 sprite is facing left, rotate 45 degrees
 				Projectile.rotation += MathHelper.ToRadians(45f);
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.rotation += MathHelper.ToRadians(135f);
 			}
 
-			// Avoid spawning dusts on dedicated servers
+			// 避免 spawning dusts on dedicated servers
 			if (!Main.dedServ) {
 				// These dusts are added later, for the 'ExampleMod' effect
 				if (Main.rand.NextBool(3)) {

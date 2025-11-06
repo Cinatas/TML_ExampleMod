@@ -137,7 +137,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private bool BasicSoundUpdateCallback(ProjectileAudioTracker tracker, ActiveSound soundInstance) {
-			// Update sound location according to projectile position
+			// 更新 sound location according to projectile position
 			soundInstance.Position = Projectile.position;
 			// ProjectileAudioTracker is necessary to avoid rare situations where sounds can loop indefinitely. IsActiveAndInGame returns a value indicating if the sound should still be active.
 			return tracker.IsActiveAndInGame();

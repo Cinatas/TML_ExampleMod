@@ -39,7 +39,7 @@ namespace ExampleMod.Items
 				Vector2 offsetPositon = Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * i) * 2;
 				spriteBatch.Draw(texture, position + offsetPositon, null, Main.DiscoColor, rotation, texture.Size() * 0.5f, scale, SpriteEffects.None, 0f);
 			}
-			// Return true so the original sprite is drawn right after
+			// 返回 true so the original sprite is drawn right after
 			return true;
 		}
 

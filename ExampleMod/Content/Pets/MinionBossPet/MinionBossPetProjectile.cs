@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		public override void SetDefaults() {
 			Projectile.CloneDefaults(ProjectileID.EyeOfCthulhuPet); // Copy the stats of the Suspicious Grinning Eye projectile
 
-			Projectile.aiStyle = -1; // Use custom AI
+			Projectile.aiStyle = -1; // 使用 custom AI
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
@@ -65,7 +65,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		}
 
 		public override void PostDraw(Color lightColor) {
-			// Draw surrounding eyes to mimic the boss
+			// 绘制 surrounding eyes to mimic the boss
 			Texture2D eyeTexture = EyeAsset.Value;
 
 			Vector2 offset = new Vector2(0, Projectile.gfxOffY); // Vertical offset when the projectile is changing elevation on tiles (does not apply to this particular projectile because it is always airborne)
@@ -79,11 +79,11 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			int eyeCount = 10;
 			for (int i = 0; i < eyeCount; i++) {
 				Vector2 origin = Vector2.Zero; // Using origin as zero because the draw position is the center
-				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // Create a vector of length 24 with a specific rotation based on loop index
+				Vector2 rotatedPos = (Vector2.UnitY * 24).RotatedBy(i / (float)eyeCount * MathHelper.TwoPi); // 创建 a vector of length 24 with a specific rotation based on loop index
 				Vector2 drawPos = orbitingCenter - Main.screenPosition + origin + rotatedPos; // 始终 important to substract Main.screenPosition to translate it into screen coordinates
-				Color color = Color.White * (1f - AlphaForVisuals) * Projectile.Opacity; // Draw it in reversed alpha to the projectile
+				Color color = Color.White * (1f - AlphaForVisuals) * Projectile.Opacity; // 绘制 it in reversed alpha to the projectile
 
-				// Use this instead of Main.spriteBatch.Draw so that dyes apply to it
+				// 使用 this instead of Main.spriteBatch.Draw so that dyes apply to it
 				Main.EntitySpriteDraw(eyeTexture, drawPos, eyeTexture.Bounds, color, 0f, origin, 1f, SpriteEffects.None, 0);
 			}
 		}
@@ -110,16 +110,16 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		}
 
 		private bool Movement(Player player) {
-			// Handles movement, returns true if moving fast (used for animation)
+			// 处理s movement, returns true if moving fast (used for animation)
 			float velDistanceChange = 2f;
 
-			// Calculates the desired resting position, as well as some vectors used in velocity/rotation calculations
+			// 计算s the desired resting position, as well as some vectors used in velocity/rotation calculations
 			int dir = player.direction;
 			Projectile.direction = Projectile.spriteDirection = dir;
 
 			Vector2 desiredCenterRelative = new Vector2(dir * 30, -30f);
 
-			// Add some sine motion
+			// 添加 some sine motion
 			desiredCenterRelative.Y += (float)Math.Sin(Main.GameUpdateCount / 120f * MathHelper.TwoPi) * 5;
 
 			Vector2 desiredCenter = player.MountedCenter + desiredCenterRelative;
@@ -127,7 +127,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			float betweenSQ = betweenDirection.LengthSquared(); // It is recommended to operate on squares of distances, to save computing time on square-rooting
 
 			if (betweenSQ > 1000f * 1000f || betweenSQ < velDistanceChange * velDistanceChange) {
-				// Set position directly if too far away from the player, or when near the desired location
+				// 设置 position directly if too far away from the player, or when near the desired location
 				Projectile.Center = desiredCenter;
 				Projectile.velocity = Vector2.Zero;
 			}

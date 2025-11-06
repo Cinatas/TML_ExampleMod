@@ -19,8 +19,8 @@ namespace ExampleMod.Content.Tiles
 
 			// Sand specific properties
 			Main.tileSand[Type] = true;
-			TileID.Sets.Conversion.Sand[Type] = true; // Allows Clentaminator solutions to convert this tile to their respective Sand tiles.
-			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true; // Allows Sandshark enemies to "swim" in this sand.
+			TileID.Sets.Conversion.Sand[Type] = true; // 允许s Clentaminator solutions to convert this tile to their respective Sand tiles.
+			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true; // 允许s Sandshark enemies to "swim" in this sand.
 			TileID.Sets.CanBeDugByShovel[Type] = true;
 			TileID.Sets.Falling[Type] = true;
 			TileID.Sets.Suffocate[Type] = true;

@@ -38,7 +38,7 @@ namespace ExampleMod.Content.TileEntities
 		}
 
 		public override void Update() {
-			// Update is only ever called on the Server or in SinglePlayer, so our randomness will be in that frame of reference
+			// 更新 is only ever called on the Server or in SinglePlayer, so our randomness will be in that frame of reference
 			// Every tick, there will be a 1/180 chance that the active state of this pylon will swap (ON to OFF or vice versa)
 			if (!Main.rand.NextBool(180)) {
 				return;

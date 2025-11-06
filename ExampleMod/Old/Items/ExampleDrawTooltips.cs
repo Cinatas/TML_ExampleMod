@@ -32,20 +32,20 @@ namespace ExampleMod.Items
 			// You can offset the entire tooltip by changing x and y
 			// You can actually have the entire tooltip draw somewhere else, x and y is where the tooltip starts drawing
 
-			// Draw a magic box for this tooltip
+			// 绘制 a magic box for this tooltip
 			// From all tooltips we select their texts
 			var texts = lines.Select(z => z.text);
-			// Calculate our width for the box, which will be the width of the longest text, plus some padding. This code takes into account Snippets and character widths.
+			// 计算 our width for the box, which will be the width of the longest text, plus some padding. This code takes into account Snippets and character widths.
 			int widthForBox = texts.Max(t => (int)ChatManager.GetStringSize(Main.fontMouseText, t, Vector2.One).X) + paddingForBox * 2;
-			// Calculate our height for the box, which will be the sum of the text heights, plus some padding
+			// 计算 our height for the box, which will be the sum of the text heights, plus some padding
 			int heightForBox = (int)texts.ToList().Sum(z => Main.fontMouseText.MeasureString(z).Y) + paddingForBox * 2;
-			// Set our boxSize to our calculated size, now we can use this elsewhere too
+			// 设置 our boxSize to our calculated size, now we can use this elsewhere too
 			boxSize = new Vector2(widthForBox, heightForBox);
 
 			// We will start drawing the box slightly offset to accommodate for padding
 			Vector2 drawPosForBox = new Vector2(x - paddingForBox, y - paddingForBox);
 			Rectangle drawRectForBox = new Rectangle((int)drawPosForBox.X, (int)drawPosForBox.Y, widthForBox, heightForBox);
-			// Draw the magic box
+			// 绘制 the magic box
 			Main.spriteBatch.Draw(Main.magicPixel, drawRectForBox, Main.mouseTextColorReal);
 
 			return true;
@@ -92,7 +92,7 @@ namespace ExampleMod.Items
 					yOffset = (int)sepHeight / 4;
 				}
 				else {
-					// Reset the offset for other lines
+					// 重置 the offset for other lines
 					yOffset = 0;
 				}
 			}

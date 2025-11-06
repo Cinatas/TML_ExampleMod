@@ -4,7 +4,7 @@ namespace ExampleMod.Backgrounds
 {
 	public class ExampleSurfaceBackgroundStyle : ModSurfaceBackgroundStyle
 	{
-		// Use this to keep far Backgrounds like the mountains.
+		// 使用 this to keep far Backgrounds like the mountains.
 		public override void ModifyFarFades(float[] fades, float transitionSpeed) {
 			for (int i = 0; i < fades.Length; i++) {
 				if (i == Slot) {

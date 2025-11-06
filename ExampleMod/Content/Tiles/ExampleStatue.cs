@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Tiles
 			Main.tileFrameImportant[Type] = true;
 			Main.tileObsidianKill[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
-			TileID.Sets.IsAMechanism[Type] = true; // Ensures that this tile and connected pressure plate won't be removed during the "Remove Broken Traps" worldgen step
+			TileID.Sets.IsAMechanism[Type] = true; // 确保s that this tile and connected pressure plate won't be removed during the "Remove Broken Traps" worldgen step
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.addTile(Type);
@@ -85,8 +85,8 @@ namespace ExampleMod.Content.Tiles
 
 					npc.value = 0f;
 					npc.npcSlots = 0f;
-					// Prevents Loot if NPCID.Sets.NoEarlymodeLootWhenSpawnedFromStatue and !Main.HardMode or NPCID.Sets.StatueSpawnedDropRarity != -1 and NextFloat() >= NPCID.Sets.StatueSpawnedDropRarity or killed by traps.
-					// Prevents CatchNPC
+					// 防止s Loot if NPCID.Sets.NoEarlymodeLootWhenSpawnedFromStatue and !Main.HardMode or NPCID.Sets.StatueSpawnedDropRarity != -1 and NextFloat() >= NPCID.Sets.StatueSpawnedDropRarity or killed by traps.
+					// 防止s CatchNPC
 					npc.SpawnedFromStatue = true;
 				}
 			}

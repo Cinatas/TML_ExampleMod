@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Tools
 			Item.rare = ItemRarityID.Blue;
 			Item.value = Item.buyPrice(0, 0, 40);
 
-			// Use Properties
+			// 使用 Properties
 			Item.useAnimation = 25;
 			Item.useTurn = true;
 			Item.autoReuse = true;
@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Items.Tools
 		public override bool? CanCatchNPC(NPC target, Player player) {
 			// This hook is used to determine whether or not your catching tool can catch a given NPC.
 			// This returns null by default, which allows vanilla to decide whether or not the NPC should be caught.
-			// Returning true forces the NPC to be caught, while returning false forces the NPC to not be caught.
+			// 返回ing true forces the NPC to be caught, while returning false forces the NPC to not be caught.
 			// 如果 you're unsure what to return, return null.
 			// 对于 this example, we'll give our example bug net a 20% chance to catch lava critters successfully (50% with a Warmth Potion buff active).
 			if (ItemID.Sets.IsLavaBait[target.catchItem]) {

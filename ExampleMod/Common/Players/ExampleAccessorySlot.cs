@@ -56,7 +56,7 @@ namespace ExampleMod.Common.Players
 			return false; // 不能 use slot
 		}
 
-		// Overrides the default behavior where a disabled accessory slot will allow retrieve items if it contains items
+		// 覆盖s the default behavior where a disabled accessory slot will allow retrieve items if it contains items
 		public override bool IsVisibleWhenNotEnabled() {
 			return false; // We set to false to just not display if not Enabled. NOTE: this does not affect behavior when mod is unloaded!
 		}

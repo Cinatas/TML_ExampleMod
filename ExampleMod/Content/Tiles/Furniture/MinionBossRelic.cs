@@ -99,7 +99,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				return;
 			}
 
-			// Get the initial draw parameters
+			// 获取 the initial draw parameters
 			Texture2D texture = RelicTexture.Value;
 
 			int frameY = tile.TileFrameX / FrameWidth; // Picks the frame on the sheet based on the placeStyle of the item
@@ -118,10 +118,10 @@ namespace ExampleMod.Content.Tiles.Furniture
 			float offset = (float)Math.Sin(Main.GlobalTimeWrappedHourly * TwoPi / 5f);
 			Vector2 drawPos = worldPos + offScreen - Main.screenPosition + new Vector2(0f, -40f) + new Vector2(0f, offset * 4f);
 
-			// Draw the main texture
+			// 绘制 the main texture
 			spriteBatch.Draw(texture, drawPos, frame, color, 0f, origin, 1f, effects, 0f);
 
-			// Draw the periodic glow effect
+			// 绘制 the periodic glow effect
 			float scale = (float)Math.Sin(Main.GlobalTimeWrappedHourly * TwoPi / 2f) * 0.3f + 0.7f;
 			Color effectColor = color;
 			effectColor.A = 0;

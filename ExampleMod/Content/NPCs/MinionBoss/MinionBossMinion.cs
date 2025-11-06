@@ -52,7 +52,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// Optional: If you don't want this NPC to show on the bestiary (if there is no reason to show a boss minion separately)
 			// 确保 to remove SetBestiary code as well
 			// NPCID.Sets.NPCBestiaryDrawModifiers bestiaryData = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-			//	Hide = true // Hides this NPC from the bestiary
+			//	Hide = true // 隐藏s this NPC from the bestiary
 			// };
 			// NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, bestiaryData);
 		}
@@ -166,7 +166,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// the main body it is positioned at
 			float rad = (float)PositionOffset * MathHelper.TwoPi;
 
-			// Add some slight uniform rotation to make the eyes move, giving a chance to touch the player and thus helping melee players
+			// 添加 some slight uniform rotation to make the eyes move, giving a chance to touch the player and thus helping melee players
 			RotationTimer += 0.5f;
 			if (RotationTimer > RotationTimerMax) {
 				RotationTimer = 0;

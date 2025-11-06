@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.light = 0.5f; // How much light emit around the projectile
 			Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
 			Projectile.tileCollide = true; // Can the projectile collide with tiles?
-			Projectile.extraUpdates = 1; // Set to above 0 if you want the projectile to update multiple time in a frame
+			Projectile.extraUpdates = 1; // 设置 to above 0 if you want the projectile to update multiple time in a frame
 
 			AIType = ProjectileID.Bullet; // Act exactly like default Bullet
 		}

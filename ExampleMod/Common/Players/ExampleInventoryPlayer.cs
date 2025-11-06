@@ -10,7 +10,7 @@ namespace ExampleMod.Common.Players
 {
 	public class ExampleInventoryPlayer : ModPlayer
 	{
-		// AddStartingItems 是一种方法，你可以使用它将物品添加到玩家的起始库存中。
+		// 添加StartingItems 是一种方法，你可以使用它将物品添加到玩家的起始库存中。
 		// 当玩家中核死亡时也会调用它
 		// 返回一个包含你想要添加到库存的物品的可枚举对象。
 		// This method adds an ExampleItem and 256 gold ore to the player's inventory.
@@ -36,7 +36,7 @@ namespace ExampleMod.Common.Players
 			};
 		}
 
-		// ModifyStartingItems is a more elaborate version of AddStartingItems, which lets you remove items
+		// 修改StartingItems is a more elaborate version of AddStartingItems, which lets you remove items
 		// that either vanilla or other mods add. You can technically use it to add items as well, but it's recommended
 		// to only do that in AddStartingItems.
 		// In this example, we stop Terraria from adding an Iron Axe to the player's inventory if it's journey mode.

@@ -66,7 +66,7 @@ namespace ExampleMod.Content.NPCs
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+				Velocity = 1f, // 绘制s the NPC in the bestiary as if its walking +1 tiles in the x direction
 				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
 			};
 
@@ -101,11 +101,11 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the preferred biomes of this town NPC listed in the bestiary.
+				// 设置s the preferred biomes of this town NPC listed in the bestiary.
 				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
-				// Sets your NPC's flavor text in the bestiary.
+				// 设置s your NPC's flavor text in the bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Bone Merchant will show you how to make a mysterious merchant underground with tModLoader."),
 
 				// 你 can add multiple elements if you really wanted to
@@ -122,7 +122,7 @@ namespace ExampleMod.Content.NPCs
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Sparkle>());
 			}
 
-			// Create gore when the NPC is killed.
+			// 创建 gore when the NPC is killed.
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
 				// Retrieve the gore types. This NPC only has shimmer variants. (6 total gores)
 				string variant = "";
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.NPCs
 				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
 				int legGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Leg").Type;
 
-				// Spawn the gores. The positions of the arms and legs are lowered for a more natural look.
+				// 生成 the gores. The positions of the arms and legs are lowered for a more natural look.
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, headGore, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);

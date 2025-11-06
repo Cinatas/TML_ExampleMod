@@ -8,7 +8,7 @@ namespace ExampleMod.Content.Items.Placeable.Furniture
 	{
 		public override void SetDefaults() {
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.ExampleChest>());
-			// Item.placeStyle = 1; // Use this to place the chest in its locked style
+			// Item.placeStyle = 1; // 使用 this to place the chest in its locked style
 			Item.width = 26;
 			Item.height = 22;
 			Item.value = 500;

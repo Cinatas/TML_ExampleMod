@@ -94,7 +94,7 @@ namespace ExampleMod.Projectiles
 				}
 			}
 
-			// Set the rotation so the projectile points towards where it's going.
+			// 设置 the rotation so the projectile points towards where it's going.
 			if (projectile.velocity != Vector2.Zero) {
 				projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver4;
 			}

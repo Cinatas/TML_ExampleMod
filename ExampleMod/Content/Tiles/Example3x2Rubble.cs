@@ -37,10 +37,10 @@ namespace ExampleMod.Content.Tiles
 	public class Example3x2RubbleFake : Example3x2RubbleBase
 	{
 		public override void SetStaticDefaults() {
-			// Call to base SetStaticDefaults. Must inherit static defaults from base type 
+			// 调用 to base SetStaticDefaults. Must inherit static defaults from base type 
 			base.SetStaticDefaults();
 
-			// Add rubble variant, all existing styles, to Rubblemaker, allowing to place this tile by consuming ExampleBlock
+			// 添加 rubble variant, all existing styles, to Rubblemaker, allowing to place this tile by consuming ExampleBlock
 			FlexibleTileWand.RubblePlacementLarge.AddVariations(ModContent.ItemType<Items.Placeable.ExampleBlock>(), Type, 0, 1, 2, 3, 4, 5);
 
 			// Tiles placed by Rubblemaker drop the item used to place them.

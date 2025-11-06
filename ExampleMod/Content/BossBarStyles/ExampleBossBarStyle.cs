@@ -10,7 +10,7 @@ namespace ExampleMod.Content.BossBars
 	// 如果 you want custom NPC selection code for which boss bars to display, return true for PreventUpdate, and implement your own code in the Update hook
 	public class ExampleBossBarStyle : ModBossBarStyle
 	{
-		public override bool PreventDraw => true; // Prevents the default drawing code
+		public override bool PreventDraw => true; // 防止s the default drawing code
 
 		public override void Draw(SpriteBatch spriteBatch, IBigProgressBar currentBar, BigProgressBarInfo info) {
 			if (currentBar == null) {

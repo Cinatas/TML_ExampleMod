@@ -50,7 +50,7 @@ namespace ExampleMod.Content.Items.Tools
 			Projectile.CloneDefaults(ProjectileID.GemHookAmethyst); // Copies the attributes of the Amethyst hook's projectile.
 		}
 
-		// Use this hook for hooks that can have multiple hooks mid-flight: Dual Hook, Web Slinger, Fish Hook, Static Hook, Lunar Hook.
+		// 使用 this hook for hooks that can have multiple hooks mid-flight: Dual Hook, Web Slinger, Fish Hook, Static Hook, Lunar Hook.
 		public override bool? CanUseGrapple(Player player) {
 			int hooksOut = 0;
 			foreach (var projectile in Main.ActiveProjectiles) {
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Items.Tools
 			return hooksOut <= 2;
 		}
 
-		// Use this to kill oldest hook. For hooks that kill the oldest when shot, not when the newest latches on: Like SkeletronHand
+		// 使用 this to kill oldest hook. For hooks that kill the oldest when shot, not when the newest latches on: Like SkeletronHand
 		// 你 can also change the projectile like: Dual Hook, Lunar Hook
 		// public override void UseGrapple(Player player, ref int type) {
 		//	int hooksOut = 0;
@@ -125,7 +125,7 @@ namespace ExampleMod.Content.Items.Tools
 			return null;
 		}
 
-		// Draws the grappling hook's chain.
+		// 绘制s the grappling hook's chain.
 		public override bool PreDrawExtras() {
 			Vector2 playerCenter = Main.player[Projectile.owner].MountedCenter;
 			Vector2 center = Projectile.Center;
@@ -143,7 +143,7 @@ namespace ExampleMod.Content.Items.Tools
 
 				Color drawColor = Lighting.GetColor((int)center.X / 16, (int)(center.Y / 16));
 
-				// Draw chain
+				// 绘制 chain
 				Main.EntitySpriteDraw(chainTexture.Value, center - Main.screenPosition,
 					chainTexture.Value.Bounds, drawColor, chainRotation,
 					chainTexture.Size() * 0.5f, 1f, SpriteEffects.None, 0);

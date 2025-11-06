@@ -34,13 +34,13 @@ namespace ExampleMod.Content.Projectiles
 		// While there are several different ways to change how our projectile could behave differently, lets make it so
 		// when our projectile finally dies, it will explode into 4 regular Meowmere projectiles.
 		public override void OnKill(int timeLeft) {
-			Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.
+			Vector2 launchVelocity = new Vector2(-4, 0); // 创建 a velocity moving the left.
 			for (int i = 0; i < 4; i++) {
 				// Every iteration, rotate the newly spawned projectile by the equivalent 1/4th of a circle (MathHelper.PiOver4)
 				// (Remember that all rotation in Terraria is based on Radians, NOT Degrees!)
 				launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
 
-				// Spawn a new projectile with the newly rotated velocity, belonging to the original projectile owner. The new projectile will inherit the spawning source of this projectile.
+				// 生成 a new projectile with the newly rotated velocity, belonging to the original projectile owner. The new projectile will inherit the spawning source of this projectile.
 				Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, launchVelocity, ProjectileID.Meowmere, Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
 			}
 		}

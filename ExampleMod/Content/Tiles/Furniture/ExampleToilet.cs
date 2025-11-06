@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 	//Very similar to ExampleChair, but has special HitWire code and potentially additional AdjTiles
 	public class ExampleToilet : ModTile
 	{
-		public const int NextStyleHeight = 40; // Calculated by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all of them + 2
+		public const int NextStyleHeight = 40; // 计算d by adding all CoordinateHeights + CoordinatePaddingFix.Y applied to all of them + 2
 
 		public override void SetStaticDefaults() {
 			// Properties
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
-			return settings.player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance); // Avoid being able to trigger it from long range
+			return settings.player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance); // 避免 being able to trigger it from long range
 		}
 
 		public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info) {
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		public override bool RightClick(int i, int j) {
 			Player player = Main.LocalPlayer;
 
-			if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) { // Avoid being able to trigger it from long range
+			if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) { // 避免 being able to trigger it from long range
 				player.GamepadEnableGrappleCooldown();
 				player.sitting.SitDown(player, i, j);
 			}
@@ -118,7 +118,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void HitWire(int i, int j) {
-			// Spawn the toilet effect here when triggered by a signal
+			// 生成 the toilet effect here when triggered by a signal
 			Tile tile = Main.tile[i, j];
 
 			int spawnX = i;

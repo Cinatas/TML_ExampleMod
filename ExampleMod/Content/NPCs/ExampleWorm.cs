@@ -34,17 +34,17 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				// 设置s the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
 
-				// Sets the description of this NPC that is listed in the bestiary.
+				// 设置s the description of this NPC that is listed in the bestiary.
 				new FlavorTextBestiaryInfoElement("Looks like a Digger fell into some aqua-colored paint. Oh well.")
 			});
 		}
 
 		public override void Init() {
-			// Set the segment variance
+			// 设置 the segment variance
 			// 如果 you want the segment length to be constant, set these two properties to the same value
 			MinSegmentLength = 6;
 			MaxSegmentLength = 12;
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.NPCs
 	{
 		public override void SetStaticDefaults() {
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+				Hide = true // 隐藏s this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 		}
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.NPCs
 	{
 		public override void SetStaticDefaults() {
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+				Hide = true // 隐藏s this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 		}

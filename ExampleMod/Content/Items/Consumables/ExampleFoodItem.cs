@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 			// 这是 to show the correct frame in the inventory
 			// MaxValue argument is for the animation speed, we want it to be stuck on frame 1
-			// Setting it to max value will cause it to take 414 days to reach the next frame
+			// 设置ting it to max value will cause it to take 414 days to reach the next frame
 			// No one is going to have game open that long so this is fine
 			// second argument is the number of frames, which is 3
 			// first frame is the inventory texture, the second frame is the holding texture,

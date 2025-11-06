@@ -43,7 +43,7 @@ namespace ExampleMod.Content.NPCs
 		private static Profiles.StackedNPCProfile NPCProfile;
 
 		public override void Load() {
-			// Adds our Shimmer Head to the NPCHeadLoader.
+			// 添加s our Shimmer Head to the NPCHeadLoader.
 			ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
 		}
 
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
 			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says that the Town NPC has a Shimmered form. Otherwise, the Town NPC will become transparent when touching Shimmer like other enemies.
 
-			NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
+			NPCID.Sets.ShimmerTownTransform[Type] = true; // 允许s for this NPC to have a different texture after touching the Shimmer liquid.
 
 			// Connects this NPC with a custom emote.
 			// This makes it when the NPC is in the world, other NPCs will "talk about him".
@@ -68,7 +68,7 @@ namespace ExampleMod.Content.NPCs
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+				Velocity = 1f, // 绘制s the NPC in the bestiary as if its walking +1 tiles in the x direction
 				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
 				// Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
 				// 如果 you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
@@ -76,7 +76,7 @@ namespace ExampleMod.Content.NPCs
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
-			// Set Example Person's biome and neighbor preferences with the NPCHappiness hook. You can add happiness text and remarks with localization (See an example in ExampleMod/Localization/en-US.lang).
+			// 设置 Example Person's biome and neighbor preferences with the NPCHappiness hook. You can add happiness text and remarks with localization (See an example in ExampleMod/Localization/en-US.lang).
 			// NOTE: The following code uses chaining - a style that works due to the fact that the SetXAffection methods return the same NPCHappiness instance they're called on.
 			NPC.Happiness
 				.SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // Example Person prefers the forest.
@@ -96,7 +96,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetDefaults() {
-			NPC.townNPC = true; // Sets NPC to be a Town NPC
+			NPC.townNPC = true; // 设置s NPC to be a Town NPC
 			NPC.friendly = true; // NPC Will not attack player
 			NPC.width = 18;
 			NPC.height = 40;
@@ -114,11 +114,11 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the preferred biomes of this town NPC listed in the bestiary.
+				// 设置s the preferred biomes of this town NPC listed in the bestiary.
 				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
-				// Sets your NPC's flavor text in the bestiary.
+				// 设置s your NPC's flavor text in the bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Person is here to help you understand everything about tModLoader."),
 
 				// 你 can add multiple elements if you really wanted to
@@ -128,7 +128,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		// PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
-		// Returning false will allow you to manually draw your NPC
+		// 返回ing false will allow you to manually draw your NPC
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
 			// This code slowly rotates the NPC in the bestiary
 			// (simply checking NPC.IsABestiaryIconDummy and incrementing NPC.Rotation won't work here as it gets overridden by drawModifiers.Rotation each tick)
@@ -150,7 +150,7 @@ namespace ExampleMod.Content.NPCs
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Sparkle>());
 			}
 
-			// Create gore when the NPC is killed.
+			// 创建 gore when the NPC is killed.
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
 				// Retrieve the gore types. This NPC has shimmer and party variants for head, arm, and leg gore. (12 total gores)
 				string variant = "";
@@ -161,7 +161,7 @@ namespace ExampleMod.Content.NPCs
 				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
 				int legGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Leg").Type;
 
-				// Spawn the gores. The positions of the arms and legs are lowered for a more natural look.
+				// 生成 the gores. The positions of the arms and legs are lowered for a more natural look.
 				if (hatGore > 0) {
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, hatGore);
 				}
@@ -369,7 +369,7 @@ namespace ExampleMod.Content.NPCs
 			}
 		}
 
-		// Create a square of pixels around the NPC on teleport.
+		// 创建 a square of pixels around the NPC on teleport.
 		public void StatueTeleport() {
 			for (int i = 0; i < 30; i++) {
 				Vector2 position = Main.rand.NextVector2Square(-20, 21);
@@ -427,7 +427,7 @@ namespace ExampleMod.Content.NPCs
 				emoteList.Add(type);
 			}
 
-			// Use this or return null if you don't want to override the emote selection totally
+			// 使用 this or return null if you don't want to override the emote selection totally
 			return base.PickEmote(closestPlayer, emoteList, otherAnchor);
 		}
 	}

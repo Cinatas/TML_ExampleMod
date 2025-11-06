@@ -33,7 +33,7 @@ namespace ExampleMod.Content.Buffs
 
 			// 我们 draw our special texture here with a specific animation.
 
-			// Use our animation spritesheet.
+			// 使用 our animation spritesheet.
 			Texture2D ourTexture = animatedTexture.Value;
 			// Choose the frame to display, here based on constants and the game's tick count.
 			Rectangle ourSourceRectangle = ourTexture.Frame(verticalFrames: FrameCount, frameY: (int)Main.GameUpdateCount / AnimationSpeed % FrameCount);
@@ -57,14 +57,14 @@ namespace ExampleMod.Content.Buffs
 			// OPTION 1 - Let the game draw it for us. Therefore we have to assign our variables to drawParams:
 			drawParams.Texture = ourTexture;
 			drawParams.SourceRectangle = ourSourceRectangle;
-			// Return true to let the game draw the buff icon.
+			// 返回 true to let the game draw the buff icon.
 			return true;
 
 			/*
 			// OPTION 2 - Draw our buff manually:
 			spriteBatch.Draw(ourTexture, drawParams.position, ourSourceRectangle, drawParams.drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			// Return false to prevent drawing the icon, since we have already drawn it.
+			// 返回 false to prevent drawing the icon, since we have already drawn it.
 			return false;
 			*/
 		}

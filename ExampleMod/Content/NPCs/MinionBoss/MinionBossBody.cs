@@ -109,7 +109,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 6;
 
-			// Add this in for bosses that have a summon item, requires corresponding code in the item (See MinionBossSummonItem.cs)
+			// 添加 this in for bosses that have a summon item, requires corresponding code in the item (See MinionBossSummonItem.cs)
 			NPCID.Sets.MPAllowedEnemies[Type] = true;
 			// Automatically group with other bosses
 			NPCID.Sets.BossBestiaryPriority.Add(Type);
@@ -161,7 +161,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// Sets the description of this NPC that is listed in the bestiary
+			// 设置s the description of this NPC that is listed in the bestiary
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
 				new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), // Plain black background
 				new FlavorTextBestiaryInfoElement("Example Minion Boss that spawns minions on spawn, summoned with a spawn item. Showcases boss minion handling, multiplayer considerations, and custom boss bar.")
@@ -205,7 +205,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// 最后 add the leading rule
 			npcLoot.Add(notExpertRule);
 
-			// Add the treasure bag using ItemDropRule.BossBag (automatically checks for expert mode)
+			// 添加 the treasure bag using ItemDropRule.BossBag (automatically checks for expert mode)
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MinionBossBag>()));
 
 			// ItemDropRule.MasterModeCommonDrop for the relic
@@ -452,7 +452,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 					// 对于 visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
 					NPC.position += NPC.netOffset;
 
-					// Draw a line between the NPC and its destination, represented as dusts every 20 pixels
+					// 绘制 a line between the NPC and its destination, represented as dusts every 20 pixels
 					Dust.QuickDustLine(NPC.Center + toDestinationNormalized * NPC.width, FirstStageDestination, toDestination.Length() / 20f, Color.Yellow);
 
 					NPC.position -= NPC.netOffset;
@@ -524,7 +524,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 
 			if (NPC.HasValidTarget && SecondStageTimer_SpawnEyes == 0 && Main.netMode != NetmodeID.MultiplayerClient) {
-				// Spawn projectile randomly below player, based on horizontal velocity to make kiting harder, starting velocity 1f upwards
+				// 生成 projectile randomly below player, based on horizontal velocity to make kiting harder, starting velocity 1f upwards
 				// (The projectiles accelerate from their initial velocity)
 
 				float kitingOffsetX = Utils.Clamp(player.velocity.X * 16, -100, 100);
@@ -562,7 +562,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 				}
 			}
 
-			// Spawn a ring of dust to communicate the change.
+			// 生成 a ring of dust to communicate the change.
 			for (int loops = 0; loops < 2; loops++) {
 				for (int i = 0; i < 50; i++) {
 					Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);

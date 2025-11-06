@@ -30,7 +30,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		// Will not show. Avoid static. Due to how ModConfig works, static fields will not work correctly. Use a static field named Instance in the manner used in ExampleConfigServer for accessing ModConfig fields in the rest of your mod.
 		public static float Static;
 
-		// Get only properties will show up, but will be grayed out to show that they can't be changed.
+		// 获取 only properties will show up, but will be grayed out to show that they can't be changed.
 		public float Getter => Main.rand?.NextFloat(1f) ?? 0; // This is just an example, please don't do this.
 
 		// AutoProperties work the same as fields.
@@ -48,7 +48,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public float Ignore;
 
 		// Using ShowDespiteJsonIgnore overrides JsonIgnore for the UI. Use this to display info to the user if needed. The value won't be saved since it is derived from other fields.
-		// Useful for things like displaying sums or calculated relationships.
+		// 使用ful for things like displaying sums or calculated relationships.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		public float IgnoreWithLabelGetter => AutoProperty + Public;
@@ -58,7 +58,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 		public Pair pair2 => pair;
 		public Pair pair;
 
-		// Set only properties will crash tModLoader.
+		// 设置 only properties will crash tModLoader.
 		// public float Setter { set { Public = value; } }
 
 		// The following shows how you can use properties to implement a preset system

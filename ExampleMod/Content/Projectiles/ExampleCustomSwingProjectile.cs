@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Projectiles
 		private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
 		private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
 
-		public override string Texture => "ExampleMod/Content/Items/Weapons/ExampleCustomSwingSword"; // Use texture of item as projectile texture
+		public override string Texture => "ExampleMod/Content/Items/Weapons/ExampleCustomSwingSword"; // 使用 texture of item as projectile texture
 		private Player Owner => Main.player[Projectile.owner];
 
 		public override void SetStaticDefaults() {
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.timeLeft = 10000; // Time it takes for projectile to expire
 			Projectile.penetrate = -1; // Projectile pierces infinitely
 			Projectile.tileCollide = false; // Projectile does not collide with tiles
-			Projectile.usesLocalNPCImmunity = true; // Uses local immunity frames
+			Projectile.usesLocalNPCImmunity = true; // 使用s local immunity frames
 			Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the projectile doesn't hit twice
 			Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
 			Projectile.DamageType = DamageClass.Melee; // Projectile is a melee projectile
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool PreDraw(ref Color lightColor) {
-			// Calculate origin of sword (hilt) based on orientation and offset sword rotation (as sword is angled in its sprite)
+			// 计算 origin of sword (hilt) based on orientation and offset sword rotation (as sword is angled in its sprite)
 			Vector2 origin;
 			float rotationOffset;
 			SpriteEffects effects;
@@ -211,14 +211,14 @@ namespace ExampleMod.Content.Projectiles
 
 		// Function to easily set projectile and arm position
 		public void SetSwordPosition() {
-			Projectile.rotation = InitialAngle + Projectile.spriteDirection * Progress; // Set projectile rotation
+			Projectile.rotation = InitialAngle + Projectile.spriteDirection * Progress; // 设置 projectile rotation
 
-			// Set composite arm allows you to set the rotation of the arm and stretch of the front and back arms independently
+			// 设置 composite arm allows you to set the rotation of the arm and stretch of the front and back arms independently
 			Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f)); // set arm position (90 degree offset since arm starts lowered)
 			Vector2 armPosition = Owner.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, Projectile.rotation - (float)Math.PI / 2); // get position of hand
 
 			armPosition.Y += Owner.gfxOffY;
-			Projectile.Center = armPosition; // Set projectile to arm position
+			Projectile.Center = armPosition; // 设置 projectile to arm position
 			Projectile.scale = Size * 1.2f * Owner.GetAdjustedItemScale(Owner.HeldItem); // Slightly scale up the projectile and also take into account melee size modifiers
 
 			Owner.heldProj = Projectile.whoAmI; // set held projectile to this projectile
@@ -226,7 +226,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// Function facilitating the taking out of the sword
 		private void PrepareStrike() {
-			Progress = WINDUP * SWINGRANGE * (1f - Timer / prepTime); // Calculates rotation from initial angle
+			Progress = WINDUP * SWINGRANGE * (1f - Timer / prepTime); // 计算s rotation from initial angle
 			Size = MathHelper.SmoothStep(0, 1, Timer / prepTime); // Make sword slowly increase in size as we prepare to strike until it reaches max
 
 			if (Timer >= prepTime) {
@@ -249,7 +249,7 @@ namespace ExampleMod.Content.Projectiles
 
 				if (Timer == (int)(execTime * SPINTIME * 3 / 4)) {
 					SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again
-					Projectile.ResetLocalNPCHitImmunity(); // Reset the local npc hit immunity for second half of spin
+					Projectile.ResetLocalNPCHitImmunity(); // 重置 the local npc hit immunity for second half of spin
 				}
 
 				if (Timer >= execTime * SPINTIME) {

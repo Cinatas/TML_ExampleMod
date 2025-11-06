@@ -21,16 +21,16 @@ namespace ExampleMod.Content.Tiles
 			// 对于 modders, just remember to set this to true when you make a tile that uses a TileObjectData
 			// Or basically all tiles that aren't like dirt, ores, or other basic building tiles
 			Main.tileFrameImportant[Type] = true;
-			// Set to True if you'd like your tile to die if hit by lava
+			// 设置 to True if you'd like your tile to die if hit by lava
 			Main.tileLavaDeath[Type] = true;
-			// Use this to utilize an existing template
+			// 使用 this to utilize an existing template
 			// names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
 			// This last call adds a new tile
 			// 之前 that, you can make some changes to newTile like height, origin and etc.
 			TileObjectData.addTile(Type);
 
-			// AddMapEntry is for setting the color and optional text associated with the Tile when viewed on the map
+			// 添加MapEntry is for setting the color and optional text associated with the Tile when viewed on the map
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(238, 145, 105), name);
 

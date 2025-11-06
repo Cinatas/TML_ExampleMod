@@ -233,23 +233,23 @@ namespace ExampleMod.NPCs
 					IEntitySource source = NPC.GetSource_FromAI();
 
 					if (HasCustomBodySegments) {
-						// Call the method that'll handle spawning the body segments
+						// 调用 the method that'll handle spawning the body segments
 						latestNPC = SpawnBodySegments(distance);
 					}
 					else {
-						// Spawn the body segments like usual
+						// 生成 the body segments like usual
 						while (distance > 0) {
 							latestNPC = SpawnSegment(source, BodyType, latestNPC);
 							distance--;
 						}
 					}
 
-					// Spawn the tail segment
+					// 生成 the tail segment
 					SpawnSegment(source, TailType, latestNPC);
 
 					NPC.netUpdate = true;
 
-					// Ensure that all of the segments could spawn.  If they could not, despawn the worm entirely
+					// 确保 that all of the segments could spawn.  If they could not, despawn the worm entirely
 					int count = 0;
 					foreach (var n in Main.ActiveNPCs) {
 						if ((n.type == Type || n.type == BodyType || n.type == TailType) && n.realLife == NPC.whoAmI)
@@ -266,7 +266,7 @@ namespace ExampleMod.NPCs
 						}
 					}
 
-					// Set the player target for good measure
+					// 设置 the player target for good measure
 					NPC.TargetClosest(true);
 				}
 			}
@@ -278,7 +278,7 @@ namespace ExampleMod.NPCs
 			int minTilePosY = (int)(NPC.Top.Y / 16) - 1;
 			int maxTilePosY = (int)(NPC.Bottom.Y / 16) + 2;
 
-			// Ensure that the tile range is within the world bounds
+			// 确保 that the tile range is within the world bounds
 			if (minTilePosX < 0)
 				minTilePosX = 0;
 			if (maxTilePosX > Main.maxTilesX)
@@ -390,7 +390,7 @@ namespace ExampleMod.NPCs
 			// Constant gravity of 0.11 pixels/tick
 			NPC.velocity.Y += 0.11f;
 
-			// Ensure that the NPC does not fall too quickly
+			// 确保 that the NPC does not fall too quickly
 			if (NPC.velocity.Y > speed)
 				NPC.velocity.Y = speed;
 
@@ -500,7 +500,7 @@ namespace ExampleMod.NPCs
 		}
 
 		private void HeadAI_Movement_SetRotation(bool collision) {
-			// Set the correct rotation for this NPC.
+			// 设置 the correct rotation for this NPC.
 			// Assumes the sprite for the NPC points upward.  You might have to modify this line to properly account for your NPC's orientation
 			NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
 
@@ -552,7 +552,7 @@ namespace ExampleMod.NPCs
 
 			if (following is not null) {
 				// Follow behind the segment "in front" of this NPC
-				// Use the current NPC.Center to calculate the direction towards the "parent NPC" of this NPC.
+				// 使用 the current NPC.Center to calculate the direction towards the "parent NPC" of this NPC.
 				float dirX = following.Center.X - worm.NPC.Center.X;
 				float dirY = following.Center.Y - worm.NPC.Center.Y;
 				// 我们 then use Atan2 to get a correct rotation towards that parent NPC.
@@ -565,7 +565,7 @@ namespace ExampleMod.NPCs
 				float posX = dirX * dist;
 				float posY = dirY * dist;
 
-				// Reset the velocity of this NPC, because we don't want it to move on its own
+				// 重置 the velocity of this NPC, because we don't want it to move on its own
 				worm.NPC.velocity = Vector2.Zero;
 				// And set this NPCs position accordingly to that of this NPCs parent NPC.
 				worm.NPC.position.X += posX;

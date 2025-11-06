@@ -57,16 +57,16 @@ namespace ExampleMod.NPCs
 				}
 			}
 
-			// Spawn the traveler if the spawn conditions are met (time of day, no events, no sundial)
+			// 生成 the traveler if the spawn conditions are met (time of day, no events, no sundial)
 			if (traveler == null && CanSpawnNow()) {
-				int newTraveler = NPC.NewNPC(Main.spawnTileX * 16, Main.spawnTileY * 16, NPCType<ExampleTravelingMerchant>(), 1); // Spawning at the world spawn
+				int newTraveler = NPC.NewNPC(Main.spawnTileX * 16, Main.spawnTileY * 16, NPCType<ExampleTravelingMerchant>(), 1); // 生成ing at the world spawn
 				traveler = Main.npc[newTraveler];
 				traveler.homeless = true;
 				traveler.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
 				traveler.netUpdate = true;
 				shopItems = CreateNewShop();
 
-				// Prevents the traveler from spawning again the same day
+				// 防止s the traveler from spawning again the same day
 				spawnTime = double.MaxValue;
 
 				// Annouce that the traveler has spawned in!

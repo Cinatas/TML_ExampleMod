@@ -57,7 +57,7 @@ namespace ExampleMod.Content.Tiles
 			Wiring.SkipWire(i, topY + 1);
 			Wiring.SkipWire(i, topY + 2);
 
-			// Avoid trying to send packets in singleplayer.
+			// 避免 trying to send packets in singleplayer.
 			if (Main.netMode != NetmodeID.SinglePlayer) {
 				NetMessage.SendTileSquare(-1, i, topY + 1, 3, TileChangeType.None);
 			}
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Tiles
 			short frameX = tile.TileFrameX;
 			short frameY = tile.TileFrameY;
 
-			// Return if the lamp is off (when frameX is 0), or if a random check failed.
+			// 返回 if the lamp is off (when frameX is 0), or if a random check failed.
 			if (frameX != 0 || !Main.rand.NextBool(40)) {
 				return;
 			}

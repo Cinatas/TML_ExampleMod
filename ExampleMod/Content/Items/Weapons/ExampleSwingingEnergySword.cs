@@ -31,7 +31,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
+			float adjustedItemScale = player.GetAdjustedItemScale(Item); // 获取 the melee scale of the player and item.
 			Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
 			NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
 

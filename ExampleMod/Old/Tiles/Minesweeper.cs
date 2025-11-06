@@ -37,7 +37,7 @@ namespace ExampleMod.Tiles
 			bool IsBomb = (tile.frameX == 18 || tile.frameX == 5 * 18) && tile.frameY == 0;
 
 			if (IsBomb) {
-				// Spawning a Grenade projectile that dies quickly is the simplest way to get this effect
+				// 生成ing a Grenade projectile that dies quickly is the simplest way to get this effect
 				int projectile = Projectile.NewProjectile(i * 16 + 8, j * 16 + 8, 0, 0, ProjectileID.Grenade, 30, 1, Main.myPlayer);
 				Main.projectile[projectile].timeLeft = 2;
 				Main.projectile[projectile].netUpdate = true;

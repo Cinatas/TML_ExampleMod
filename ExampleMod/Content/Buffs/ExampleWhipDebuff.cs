@@ -36,13 +36,13 @@ namespace ExampleMod.Content.Buffs
 			// SummonTagDamageMultiplier scales down tag damage for some specific minion and sentry projectiles for balance purposes.
 			var projTagMultiplier = ProjectileID.Sets.SummonTagDamageMultiplier[projectile.type];
 			if (npc.HasBuff<ExampleWhipDebuff>()) {
-				// Apply a flat bonus to every hit
+				// 应用 a flat bonus to every hit
 				modifiers.FlatBonusDamage += ExampleWhipDebuff.TagDamage * projTagMultiplier;
 			}
 
 			// if you have a lot of buffs in your mod, it might be faster to loop over the NPC.buffType and buffTime arrays once, and track the buffs you find, rather than calling HasBuff many times
 			if (npc.HasBuff<ExampleWhipAdvancedDebuff>()) {
-				// Apply the scaling bonus to the next hit, and then remove the buff, like the vanilla firecracker
+				// 应用 the scaling bonus to the next hit, and then remove the buff, like the vanilla firecracker
 				modifiers.ScalingBonusDamage += ExampleWhipAdvancedDebuff.TagDamageMultiplier * projTagMultiplier;
 				npc.RequestBuffRemoval(ModContent.BuffType<ExampleWhipAdvancedDebuff>());
 			}

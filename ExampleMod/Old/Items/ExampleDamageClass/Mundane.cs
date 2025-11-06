@@ -9,9 +9,9 @@ namespace ExampleMod.Items.ExampleDamageClass
 	{
 		public override string Texture => "Terraria/Item_" + ItemID.HellwingBow;
 
-		// Called when the mod loads, so our changes are added to the game
+		// 调用ed when the mod loads, so our changes are added to the game
 		public static void AddHacks() {
-			// Set ourselves to be ranged temporarily to benefit from ranged bonuses
+			// 设置 ourselves to be ranged temporarily to benefit from ranged bonuses
 			// This is needed because terraria changes the variables before calling tML's method
 			// based on if the item was set to be ranged. Ours isn't, but we still want our custom bow
 			// to benefit from ranged bonuses, despite being an Example damage weapon.

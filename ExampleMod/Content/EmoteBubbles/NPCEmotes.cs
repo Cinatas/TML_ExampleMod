@@ -11,7 +11,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		public override string Texture => "ExampleMod/Content/EmoteBubbles/NPCEmotes";
 
 		public override void SetStaticDefaults() {
-			// Add NPC emotes to "Town" category.
+			// 添加 NPC emotes to "Town" category.
 			AddToCategory(EmoteID.Category.Town);
 		}
 

@@ -27,16 +27,16 @@ namespace ExampleMod.Content.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual) {
 			// These 2 stat changes are equal to the Lightning Boots
 			player.moveSpeed += MoveSpeedBonus / 100f; // Modifies the player movement speed bonus.
-			player.accRunSpeed = 6.75f; // Sets the players sprint speed in boots.
+			player.accRunSpeed = 6.75f; // 设置s the players sprint speed in boots.
 
 			// player.maxRunSpeed and player.runAcceleration are usually not set by boots and should not be changed in UpdateAccessory due to the logic order. See ExampleStatBonusAccessoryPlayer.PostUpdateRunSpeeds for an example of adjusting those speed stats.
 
-			// Determines whether the boots count as rocket boots
+			// 确定s whether the boots count as rocket boots
 			// 0 - These are not rocket boots
 			// Anything else - These are rocket boots
 			player.rocketBoots = 2;
 
-			// Sets which dust and sound to use for the rocket flight
+			// 设置s which dust and sound to use for the rocket flight
 			// 1 - Rocket Boots
 			// 2 - Fairy Boots, Spectre Boots, Lightning Boots
 			// 3 - Frostspark Boots
@@ -44,8 +44,8 @@ namespace ExampleMod.Content.Items.Accessories
 			// 5 - Hellfire Treads
 			player.vanityRocketBoots = 2;
 
-			player.waterWalk2 = true; // Allows walking on all liquids without falling into it
-			player.waterWalk = true; // Allows walking on water, honey, and shimmer without falling into it
+			player.waterWalk2 = true; // 允许s walking on all liquids without falling into it
+			player.waterWalk = true; // 允许s walking on water, honey, and shimmer without falling into it
 			player.iceSkate = true; // Grant the player improved speed on ice and not breaking thin ice when falling onto it
 			player.desertBoots = true; // Grants the player increased movement speed while running on sand
 			player.fireWalk = true; // Grants the player immunity from Meteorite and Hellstone tile damage
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Items.Accessories
 			player.lavaRose = true; // Grants the Lava Rose effect
 			player.lavaMax += LavaImmunityTime * 60; // Grants the player 2 additional seconds of lava immunity
 
-			// player.DoBootsEffect(player.DoBootsEffect_PlaceFlowersOnTile); // Spawns flowers when walking on normal or Hallowed grass
+			// player.DoBootsEffect(player.DoBootsEffect_PlaceFlowersOnTile); // 生成s flowers when walking on normal or Hallowed grass
 
 			// These effects are visual only. These are replicated in UpdateVanity below so they apply for vanity equipment.
 			if (!hideVisual) {
@@ -64,7 +64,7 @@ namespace ExampleMod.Content.Items.Accessories
 				// Other boot run visual effects include: sailDash, coldDash, desertDash, fairyBoots
 
 				if (!player.mount.Active || player.mount.Type != MountID.WallOfFleshGoat) {
-					// Spawns flames when walking, like Flame Waker Boots. We also check the Goat Skull mount so the effects don't overlap.
+					// 生成s flames when walking, like Flame Waker Boots. We also check the Goat Skull mount so the effects don't overlap.
 					player.DoBootsEffect(player.DoBootsEffect_PlaceFlamesOnTile);
 				}
 			}

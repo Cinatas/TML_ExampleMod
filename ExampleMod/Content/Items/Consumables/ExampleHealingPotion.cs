@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Consumables
 			TooltipLine line = tooltips.FirstOrDefault(x => x.Mod == "Terraria" && x.Name == "HealLife");
 
 			if (line != null) {
-				// Change the text to 'Heals max/2 (max/4 when quick healing) life'
+				// 更改 the text to 'Heals max/2 (max/4 when quick healing) life'
 				line.Text = Language.GetTextValue("CommonItemTooltip.RestoresLife", RestoreLifeText.Format(Main.LocalPlayer.statLifeMax2 / 2, Main.LocalPlayer.statLifeMax2 / 4));
 			}
 		}

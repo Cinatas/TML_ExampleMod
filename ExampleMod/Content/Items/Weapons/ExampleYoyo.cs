@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Items.Weapons
 	{
 		public override void SetStaticDefaults() {
 			// These are all related to gamepad controls and don't seem to affect anything else
-			ItemID.Sets.Yoyo[Item.type] = true; // Used to increase the gamepad range when using Strings.
+			ItemID.Sets.Yoyo[Item.type] = true; // 使用d to increase the gamepad range when using Strings.
 			ItemID.Sets.GamepadExtraRange[Item.type] = 15; // Increases the gamepad range. Some vanilla values: 4 (Wood), 10 (Valor), 13 (Yelets), 18 (The Eye of Cthulhu), 21 (Terrarian).
 			ItemID.Sets.GamepadSmartQuickReach[Item.type] = true; // Unused, but weapons that require aiming on the screen are in this set.
 		}
@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.DamageType = DamageClass.MeleeNoSpeed; // The type of damage the weapon does. MeleeNoSpeed means the item will not scale with attack speed.
 			Item.knockBack = 2.5f; // The amount of knockback the item inflicts.
 			Item.crit = 8; // The percent chance for the weapon to deal a critical strike. Defaults to 4.
-			Item.channel = true; // Set to true for items that require the attack button to be held out (e.g. yoyos and magic missile weapons)
+			Item.channel = true; // 设置 to true for items that require the attack button to be held out (e.g. yoyos and magic missile weapons)
 			Item.rare = ModContent.RarityType<ExampleModRarity>(); // The item's rarity. This changes the color of the item's name.
 			Item.value = Item.buyPrice(gold: 1); // The amount of money that the item is can be bought for.
 

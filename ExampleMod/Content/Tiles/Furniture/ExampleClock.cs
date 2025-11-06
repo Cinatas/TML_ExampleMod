@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override bool RightClick(int x, int y) {
 			string text = "AM";
-			// Get current weird time
+			// 获取 current weird time
 			double time = Main.time;
 			if (!Main.dayTime) {
 				// if it's night add this number
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			}
 
 			int intTime = (int)time;
-			// Get the decimal points of time.
+			// 获取 the decimal points of time.
 			double deltaTime = time - intTime;
 			// multiply them by 60. Minutes, probably
 			deltaTime = (int)(deltaTime * 60.0);

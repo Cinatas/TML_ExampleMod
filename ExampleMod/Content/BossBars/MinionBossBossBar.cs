@@ -16,7 +16,7 @@ namespace ExampleMod.Content.BossBars
 		private int bossHeadIndex = -1;
 
 		public override Asset<Texture2D> GetIconTexture(ref Rectangle? iconFrame) {
-			// Display the previously assigned head index
+			// 显示 the previously assigned head index
 			if (bossHeadIndex != -1) {
 				return TextureAssets.NpcHeadBoss[bossHeadIndex];
 			}

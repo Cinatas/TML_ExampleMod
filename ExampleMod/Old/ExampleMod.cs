@@ -60,13 +60,13 @@ namespace ExampleMod
 
 			// All code below runs only if we're not loading on a server
 			if (!Main.dedServ) {
-				// Add certain equip textures
+				// 添加 certain equip textures
 				AddEquipTexture(null, EquipType.Legs, "ExampleRobe_Legs", "ExampleMod/Items/Armor/ExampleRobe_Legs");
 
 				// Register a new music box
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MarbleGallery"), ItemType("ExampleMusicBox"), TileType("ExampleMusicBox"));
 
-				// Change the vanilla loom texture
+				// 更改 the vanilla loom texture
 				Main.instance.LoadTiles(TileID.Loom); // 首先 load the tile texture
 				Main.tileTexture[TileID.Loom] = GetTexture("Tiles/AnimatedLoom"); // Now we change it
 
@@ -77,7 +77,7 @@ namespace ExampleMod
 				//Main.armorHeadLoaded[copperHelmet.headSlot] = true;
 				//Main.armorHeadTexture[copperHelmet.headSlot] = GetTexture("Resprite/CopperHelmet_Head");
 
-				// Create new skies and screen filters
+				// 创建 new skies and screen filters
 				Filters.Scene["ExampleMod:PuritySpirit"] = new Filter(new PuritySpiritScreenShaderData("FilterMiniTower").UseColor(0.4f, 0.9f, 0.4f).UseOpacity(0.7f), EffectPriority.VeryHigh);
 				SkyManager.Instance["ExampleMod:PuritySpirit"] = new PuritySpiritSky();
 				Filters.Scene["ExampleMod:MonolithVoid"] = new Filter(new ScreenShaderData("FilterMoonLord"), EffectPriority.Medium);
@@ -95,7 +95,7 @@ namespace ExampleMod
 				_exampleUserInterface = new UserInterface();
 				_exampleUserInterface.SetState(ExampleUI);
 
-				// UserInterface can only show 1 UIState at a time. If you want different "pages" for a UI, switch between UIStates on the same UserInterface instance. 
+				// 使用rInterface can only show 1 UIState at a time. If you want different "pages" for a UI, switch between UIStates on the same UserInterface instance. 
 				// We want both the Coin counter and the Example Person UI to be independent and coexist simultaneously, so we have them each in their own UserInterface.
 				ExamplePersonUserInterface = new UserInterface();
 				// We will call .SetState later in ExamplePerson.OnChatButtonClicked
@@ -129,7 +129,7 @@ namespace ExampleMod
 		public override void Unload() {
 			// All code below runs only if we're not loading on a server
 			if (!Main.dedServ) {
-				Main.tileFrame[TileID.Loom] = 0; // Reset the frame of the loom tile
+				Main.tileFrame[TileID.Loom] = 0; // 重置 the frame of the loom tile
 				Main.tileSetsLoaded[TileID.Loom] = false; // Causes the loom tile to reload its vanilla texture
 			}
 
@@ -140,7 +140,7 @@ namespace ExampleMod
 		}
 
 		public override void PostSetupContent() {
-			// Showcases mod support with Boss Checklist without referencing the mod
+			// 显示cases mod support with Boss Checklist without referencing the mod
 			Mod bossChecklist = ModLoader.GetMod("BossChecklist");
 			if (bossChecklist != null) {
 				bossChecklist.Call(
@@ -171,7 +171,7 @@ namespace ExampleMod
 		}
 
 		public override void AddRecipeGroups() {
-			// Creates a new recipe group
+			// 创建s a new recipe group
 			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemType("ExampleItem")), new[]
 			{
 				ItemType("ExampleItem"),
@@ -181,7 +181,7 @@ namespace ExampleMod
 			// Registers the new recipe group with the specified name
 			RecipeGroup.RegisterGroup("ExampleMod:ExampleItem", group);
 
-			// Modifying a vanilla recipe group. Now we can use Lava Snail to craft Snail Statue
+			// 修改ing a vanilla recipe group. Now we can use Lava Snail to craft Snail Statue
 			RecipeGroup snailGroup = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Snails"]];
 			snailGroup.ValidItems.Add(ModContent.ItemType<NPCs.ExampleCritterItem>());
 
@@ -231,7 +231,7 @@ namespace ExampleMod
 			int sunR = backgroundColor.R;
 			int sunG = backgroundColor.G;
 			int sunB = backgroundColor.B;
-			// Remove some green and more red.
+			// 删除 some green and more red.
 			sunR -= (int)(180f * exampleStrength * (backgroundColor.R / 255f));
 			sunG -= (int)(90f * exampleStrength * (backgroundColor.G / 255f));
 			sunR = Utils.Clamp(sunR, 15, 255);

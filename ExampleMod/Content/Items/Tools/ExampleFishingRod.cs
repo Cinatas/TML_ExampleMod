@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Items.Tools
 	public class ExampleFishingRod : ModItem
 	{
 		public override void SetStaticDefaults() {
-			ItemID.Sets.CanFishInLava[Item.type] = true; // Allows the pole to fish in lava
+			ItemID.Sets.CanFishInLava[Item.type] = true; // 允许s the pole to fish in lava
 		}
 
 		public override void SetDefaults() {
@@ -26,8 +26,8 @@ namespace ExampleMod.Content.Items.Tools
 			// Item.UseSound = SoundID.Item1;
 			Item.CloneDefaults(ItemID.WoodFishingPole);
 
-			Item.fishingPole = 30; // Sets the poles fishing power
-			Item.shootSpeed = 12f; // Sets the speed in which the bobbers are launched. Wooden Fishing Pole is 9f and Golden Fishing Rod is 17f.
+			Item.fishingPole = 30; // 设置s the poles fishing power
+			Item.shootSpeed = 12f; // 设置s the speed in which the bobbers are launched. Wooden Fishing Pole is 9f and Golden Fishing Rod is 17f.
 			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleBobber>(); // The bobber projectile. Note that this will be overridden by Fishing Bobber accessories if present, so don't assume the bobber spawned is the specified projectile. https://terraria.wiki.gg/wiki/Fishing_Bobbers
 		}
 
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items.Tools
 			player.accFishingLine = true;
 		}
 
-		// Overrides the default shooting method to fire multiple bobbers.
+		// 覆盖s the default shooting method to fire multiple bobbers.
 		// NOTE: This will allow the fishing rod to summon multiple Duke Fishrons with multiple Truffle Worms in the inventory.
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			int bobberAmount = Main.rand.Next(3, 6); // 3 to 5 bobbers
@@ -46,18 +46,18 @@ namespace ExampleMod.Content.Items.Tools
 			for (int index = 0; index < bobberAmount; ++index) {
 				Vector2 bobberSpeed = velocity + new Vector2(Main.rand.NextFloat(-spreadAmount, spreadAmount) * 0.05f, Main.rand.NextFloat(-spreadAmount, spreadAmount) * 0.05f);
 
-				// Generate new bobbers
+				// 生成 new bobbers
 				Projectile.NewProjectile(source, position, bobberSpeed, type, 0, 0f, player.whoAmI);
 			}
 			return false;
 		}
 
 		public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor) {
-			// Change these two values in order to change the origin of where the line is being drawn.
+			// 更改 these two values in order to change the origin of where the line is being drawn.
 			// This will make it draw 43 pixels right and 30 pixels up from the player's center, while they are looking right and in normal gravity.
 			lineOriginOffset = new Vector2(43, -30);
 
-			// Sets the fishing line's color. Note that this will be overridden by the colored string accessories.
+			// 设置s the fishing line's color. Note that this will be overridden by the colored string accessories.
 			if (bobber.ModProjectile is ExampleBobber exampleBobber) {
 				// ExampleBobber has custom code to decide on a line color.
 				lineColor = exampleBobber.FishingLineColor;

@@ -23,10 +23,10 @@ namespace ExampleMod
 			recipe.AddRecipe(); // finally, add the recipe
 		}
 
-		// Add recipes
+		// 添加 recipes
 		public static void AddExampleRecipes(Mod mod) {
 			// ExampleItem crafts into the following items
-			// Check the method signature of MakeSimpleRecipes for the arguments, this is a method signature:
+			// 检查 the method signature of MakeSimpleRecipes for the arguments, this is a method signature:
 			// private static void MakeSimpleRecipe(Mod mod, string modIngredient, short resultType, int ingredientStack = 1, int resultStack = 1, string reqTile = null) 
 
 			MakeSimpleRecipe(mod, "ExampleItem", ItemID.Silk, 999);
@@ -39,7 +39,7 @@ namespace ExampleMod
 			AddBossRecipes(mod);
 		}
 
-		// Add boss related recipes
+		// 添加 boss related recipes
 		private static void AddBossRecipes(Mod mod) {
 			// BossItem crafts into the following items
 			// We are using the same helper method here, and we are making use of the reqTile parameter
@@ -53,7 +53,7 @@ namespace ExampleMod
 			MakeSimpleRecipe(mod, "BossItem", ItemID.MechanicalSkull, 10, 20, "ExampleWorkbench");
 			// Here we see another way to retrieve type ids from classnames, using generic calls
 			// This way you don't have to specify the mod, because you simply pass the ID of the item as you would for vanilla items.
-			// Useful for those who program in an IDE who wish to avoid spelling mistakes.
+			// 使用ful for those who program in an IDE who wish to avoid spelling mistakes.
 			// What's also neat is that the references to classes can be automatically included in refactors, string literals cannot. (unless you have ReSharper)
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemType<Items.BossItem>(), 10); // Items is our namespace (ExampleMod.Items), BossItem our class
@@ -62,7 +62,7 @@ namespace ExampleMod
 			recipe.AddRecipe();
 		}
 
-		// Showcase RecipeFinder and RecipeEditor
+		// 显示case RecipeFinder and RecipeEditor
 		// With these classes, you can find and edit recipes
 		public static void ExampleRecipeEditing(Mod mod) {
 			// In the following example, we find recipes that uses a chain as ingredient and then we remove that ingredient from the recipe.

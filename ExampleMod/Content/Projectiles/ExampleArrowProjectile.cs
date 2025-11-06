@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Projectiles
 			// like some examples do, this example has custom AI code that is better suited for modifying directly.
 			// 参见 https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#what-is-ai for more information on custom projectile AI.
 
-			// Apply gravity after a quarter of a second
+			// 应用 gravity after a quarter of a second
 			Projectile.ai[0] += 1f;
 			if (Projectile.ai[0] >= 15f) {
 				Projectile.ai[0] = 15f;
@@ -48,7 +48,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void OnKill(int timeLeft) {
 			SoundEngine.PlaySound(SoundID.Dig, Projectile.position); // Plays the basic sound most projectiles make when hitting blocks.
-			for (int i = 0; i < 5; i++) // Creates a splash of dust around the position the projectile dies.
+			for (int i = 0; i < 5; i++) // 创建s a splash of dust around the position the projectile dies.
 			{
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;

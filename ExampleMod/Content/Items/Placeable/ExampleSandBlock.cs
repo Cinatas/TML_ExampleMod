@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Placeable
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 100;
 
-			// Set the SandgunAmmoProjectileData to your sandgun projectile with a bonus damage of 10
+			// 设置 the SandgunAmmoProjectileData to your sandgun projectile with a bonus damage of 10
 			ItemID.Sets.SandgunAmmoProjectileData[Type] = new(ModContent.ProjectileType<Projectiles.ExampleSandBallGunProjectile>(), 10);
 		}
 

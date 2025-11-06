@@ -34,18 +34,18 @@ namespace ExampleMod.Items.ExampleDamageClass
 		}
 
 		public override void GetWeaponKnockback(Player player, ref float knockback) {
-			// Adds knockback bonuses
+			// 添加s knockback bonuses
 			knockback += ExampleDamagePlayer.ModPlayer(player).exampleKnockback;
 		}
 
 		public override void GetWeaponCrit(Player player, ref int crit) {
-			// Adds crit bonuses
+			// 添加s crit bonuses
 			crit += ExampleDamagePlayer.ModPlayer(player).exampleCrit;
 		}
 
 		// Because we want the damage tooltip to show our custom damage, we need to modify it
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// Get the vanilla damage tooltip
+			// 获取 the vanilla damage tooltip
 			TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
 			if (tt != null) {
 				// We want to grab the last word of the tooltip, which is the translated word for 'damage' (depending on what language the player is using)
@@ -53,7 +53,7 @@ namespace ExampleMod.Items.ExampleDamageClass
 				string[] splitText = tt.text.Split(' ');
 				string damageValue = splitText.First();
 				string damageWord = splitText.Last();
-				// Change the tooltip text
+				// 更改 the tooltip text
 				tt.text = damageValue + " example " + damageWord;
 			}
 		}

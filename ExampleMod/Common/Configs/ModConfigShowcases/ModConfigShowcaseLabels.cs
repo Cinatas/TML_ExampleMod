@@ -17,7 +17,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		// By default, all ModConfig fields and properties will have an automatically assigned Label and Tooltip translation key. You'll find these translation keys in your translation files. All of the English translations for the configs in ExampleMod are found in ExampleMod/Localization/en-US_Mods.ExampleMod.Configs.hjson
 
-		// Use Tooltip to convey additional information about the config item.
+		// 使用 Tooltip to convey additional information about the config item.
 		// This example shows additional text when hovered.
 		[SliderColor(255, 0, 127)]
 		public float SomeFloat;
@@ -29,7 +29,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 
 		// These 3 examples showcase the power of interpolating values into the translations.
 		// Note how all 3 are using the same label key, but are interpolating different values into the label translation, resulting in different text. The same is done for tooltips.
-		// Use this approach to reduce unnecessary duplication of text.
+		// 使用 this approach to reduce unnecessary duplication of text.
 		// Note: using nameof can help avoid typos and errors. That would look like: $"$Mods.ExampleMod.Items.{nameof(ExampleYoyo)}.DisplayName"
 		// Note: These examples use color and item chat tags. See here for help on using Tags: https://terraria.wiki.gg/wiki/Chat#Tags
 		const string InterpolatedLabel = "$Mods.ExampleMod.Configs.Common.InterpolatedLabel";

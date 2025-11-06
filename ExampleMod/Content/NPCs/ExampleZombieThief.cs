@@ -24,7 +24,7 @@ namespace ExampleMod.Content.NPCs
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				// Influences how the NPC looks in the Bestiary
-				Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+				Velocity = 1f // 绘制s the NPC in the bestiary as if its walking +1 tiles in the x direction
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
@@ -41,8 +41,8 @@ namespace ExampleMod.Content.NPCs
 			NPC.knockBackResist = 0.5f;
 			NPC.aiStyle = 3; // Fighter AI, important to choose the aiStyle that matches the NPCID that we want to mimic
 
-			AIType = NPCID.Zombie; // Use vanilla zombie's type when executing AI code. (This also means it will try to despawn during daytime)
-			AnimationType = NPCID.Zombie; // Use vanilla zombie's type when executing animation code. Important to also match Main.npcFrameCount[NPC.type] in SetStaticDefaults.
+			AIType = NPCID.Zombie; // 使用 vanilla zombie's type when executing AI code. (This also means it will try to despawn during daytime)
+			AnimationType = NPCID.Zombie; // 使用 vanilla zombie's type when executing animation code. Important to also match Main.npcFrameCount[NPC.type] in SetStaticDefaults.
 			Banner = Item.NPCtoBanner(NPCID.Zombie); // Makes this NPC get affected by the normal zombie banner.
 			BannerItem = Item.BannerToItem(Banner); // Makes kills of this NPC go towards dropping the banner it's associated with.
 			SpawnModBiomes = new int[] { ModContent.GetInstance<ExampleSurfaceBiome>().Type }; // Associates this NPC with the ExampleSurfaceBiome in Bestiary
@@ -51,10 +51,10 @@ namespace ExampleMod.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				// 设置s the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
-				// Sets the description of this NPC that is listed in the bestiary.
+				// 设置s the description of this NPC that is listed in the bestiary.
 				new FlavorTextBestiaryInfoElement("This type of zombie really like Example Items. They steal them as soon as they find some."),
 			});
 		}
@@ -73,7 +73,7 @@ namespace ExampleMod.Content.NPCs
 
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item.whoAmI);
 
-					// Show emote when stealing an example item
+					// 显示 emote when stealing an example item
 					EmoteBubble.NewBubble(ModContent.EmoteBubbleType<ExampleItemEmote>(), new WorldUIAnchor(NPC), 90);
 				}
 			}
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.NPCs
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
 			// Can only spawn in the ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
 			if (spawnInfo.Player.InModBiome(ModContent.GetInstance<ExampleSurfaceBiome>()) && !NPC.AnyNPCs(Type)) {
-				return SpawnCondition.OverworldNightMonster.Chance * 0.1f; // Spawn with 1/10th the chance of a regular zombie.
+				return SpawnCondition.OverworldNightMonster.Chance * 0.1f; // 生成 with 1/10th the chance of a regular zombie.
 			}
 
 			return 0f;

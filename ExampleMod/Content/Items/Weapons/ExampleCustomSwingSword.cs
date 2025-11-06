@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.value = Item.sellPrice(gold: 2, silver: 50);
 			Item.rare = ItemRarityID.Green;
 
-			// Use Properties
+			// 使用 Properties
 			// 注意 that useTime and useAnimation for this item don't actually affect the behavior because the held projectile handles that. 
 			// Each attack takes a different amount of time to execute
 			// Conforming to the item useTime and useAnimation makes it much harder to design

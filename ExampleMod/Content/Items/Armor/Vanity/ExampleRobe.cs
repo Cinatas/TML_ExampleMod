@@ -19,7 +19,7 @@ namespace ExampleMod.Content.Items.Armor.Vanity
 		}
 
 		public override void SetStaticDefaults() {
-			// HidesHands defaults to true which we don't want.
+			// 隐藏sHands defaults to true which we don't want.
 			ArmorIDs.Body.Sets.HidesHands[Item.bodySlot] = false;
 		}
 

@@ -11,7 +11,7 @@ namespace ExampleMod.Content
 {
 	public class ExampleModMenu : ModMenu
 	{
-		private const string menuAssetPath = "ExampleMod/Assets/Textures/Menu"; // Creates a constant variable representing the texture path, so we don't have to write it out multiple times
+		private const string menuAssetPath = "ExampleMod/Assets/Textures/Menu"; // 创建s a constant variable representing the texture path, so we don't have to write it out multiple times
 
 		private Asset<Texture2D> sunTexture;
 		private Asset<Texture2D> moonTexture;
@@ -45,7 +45,7 @@ namespace ExampleMod.Content
 		}
 
 		public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
-			drawColor = Main.DiscoColor; // Changes the draw color of the logo
+			drawColor = Main.DiscoColor; // 更改s the draw color of the logo
 			return true;
 		}
 	}

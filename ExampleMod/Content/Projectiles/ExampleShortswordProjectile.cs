@@ -26,14 +26,14 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void SetDefaults() {
 			Projectile.Size = new Vector2(18); // This sets width and height to the same value (important when projectiles can rotate)
-			Projectile.aiStyle = -1; // Use our own AI to customize how it behaves, if you don't want that, keep this at ProjAIStyleID.ShortSword. You would still need to use the code in SetVisualOffsets() though
+			Projectile.aiStyle = -1; // 使用 our own AI to customize how it behaves, if you don't want that, keep this at ProjAIStyleID.ShortSword. You would still need to use the code in SetVisualOffsets() though
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
 			Projectile.scale = 1f;
 			Projectile.DamageType = DamageClass.Melee;
-			Projectile.ownerHitCheck = true; // Prevents hits through tiles. Most melee weapons that use projectiles have this
-			Projectile.extraUpdates = 1; // Update 1+extraUpdates times per tick
+			Projectile.ownerHitCheck = true; // 防止s hits through tiles. Most melee weapons that use projectiles have this
+			Projectile.extraUpdates = 1; // 更新 1+extraUpdates times per tick
 			Projectile.timeLeft = 360; // This value does not matter since we manually kill it earlier, it just has to be higher than the duration we use in AI
 			Projectile.hide = true; // Important when used alongside player.heldProj. "Hidden" projectiles have special draw conditions
 		}
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			// Fade in and out
-			// GetLerpValue returns a value between 0f and 1f - if clamped is true - representing how far Timer got along the "distance" defined by the first two parameters
+			// 获取LerpValue returns a value between 0f and 1f - if clamped is true - representing how far Timer got along the "distance" defined by the first two parameters
 			// first call handles the fade in, the second one the fade out.
 			// 注意 the second call's parameters are swapped, this means the result will be reverted
 			Projectile.Opacity = Utils.GetLerpValue(0f, FadeInDuration, Timer, clamped: true) * Utils.GetLerpValue(TotalDuration, TotalDuration - FadeOutDuration, Timer, clamped: true);
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false);
 			Projectile.Center = playerCenter + Projectile.velocity * (Timer - 1f);
 
-			// Set spriteDirection based on moving left or right. Left -1, right 1
+			// 设置 spriteDirection based on moving left or right. Left -1, right 1
 			Projectile.spriteDirection = (Vector2.Dot(Projectile.velocity, Vector2.UnitX) >= 0f).ToDirectionInt();
 
 			// Point towards where it is moving, applied offset for top right of the sprite respecting spriteDirection
@@ -99,7 +99,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool ShouldUpdatePosition() {
-			// Update Projectile.Center manually
+			// 更新 Projectile.Center manually
 			return false;
 		}
 

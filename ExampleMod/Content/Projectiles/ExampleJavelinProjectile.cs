@@ -85,7 +85,7 @@ namespace ExampleMod.Content.Projectiles
 			// Offset the rotation by 90 degrees because the sprite is oriented vertically.
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 
-			// Spawn some random dusts as the javelin travels
+			// 生成 some random dusts as the javelin travels
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, ModContent.DustType<Sparkle>(), Projectile.velocity.X * .2f, Projectile.velocity.Y * .2f, 200, Scale: 1.2f);
 				dust.velocity += Projectile.velocity * 0.3f;
@@ -113,7 +113,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 			else if (Main.npc[npcTarget].active && !Main.npc[npcTarget].dontTakeDamage) {
 				// 如果 the target is active and can take damage
-				// Set the projectile's position relative to the target's center
+				// 设置 the projectile's position relative to the target's center
 				Projectile.Center = Main.npc[npcTarget].Center - Projectile.velocity * 2f;
 				Projectile.gfxOffY = Main.npc[npcTarget].gfxOffY;
 				if (hitEffect) {
@@ -135,9 +135,9 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 rotationVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2(); // rotation vector to use for dust velocity
 			usePos += rotationVector * 16f;
 
-			// Spawn some dusts upon javelin death
+			// 生成 some dusts upon javelin death
 			for (int i = 0; i < 20; i++) {
-				// Create a new dust
+				// 创建 a new dust
 				Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, DustID.Tin);
 				dust.position = (dust.position + Projectile.Center) / 2f;
 				dust.velocity += rotationVector * 2f;
@@ -168,9 +168,9 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			IsStickingToTarget = true; // we are sticking to a target
-			TargetWhoAmI = target.whoAmI; // Set the target whoAmI
+			TargetWhoAmI = target.whoAmI; // 设置 the target whoAmI
 			Projectile.velocity = (target.Center - Projectile.Center) *
-				0.75f; // Change velocity based on delta center of targets (difference between entity centers)
+				0.75f; // 更改 velocity based on delta center of targets (difference between entity centers)
 			Projectile.netUpdate = true; // netUpdate this javelin
 			Projectile.damage = 0; // Makes sure the sticking javelins do not deal damage anymore
 
@@ -194,7 +194,7 @@ namespace ExampleMod.Content.Projectiles
 			if (targetHitbox.Width > 8 && targetHitbox.Height > 8) {
 				targetHitbox.Inflate(-targetHitbox.Width / 8, -targetHitbox.Height / 8);
 			}
-			// Return if the hitboxes intersects, which means the javelin collides or not
+			// 返回 if the hitboxes intersects, which means the javelin collides or not
 			return projHitbox.Intersects(targetHitbox);
 		}
 
@@ -217,7 +217,7 @@ namespace ExampleMod.Content.Projectiles
 			behindNPCsAndTiles.Add(index);
 		}
 
-		// Change this number if you want to alter how the alpha changes
+		// 更改 this number if you want to alter how the alpha changes
 		private const int AlphaFadeInSpeed = 25;
 
 		private void UpdateAlpha() {

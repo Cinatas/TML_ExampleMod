@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items
 	public class ExampleDye : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// Avoid loading assets on dedicated servers. They don't use graphics cards.
+			// 避免 loading assets on dedicated servers. They don't use graphics cards.
 			if (!Main.dedServ) {
 				// following code creates an effect (shader) reference and associates it with this item's type Id.
 				GameShaders.Armor.BindShader(

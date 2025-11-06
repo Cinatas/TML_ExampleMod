@@ -29,7 +29,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			CoinCounterPanel.SetPadding(0);
 			// We need to place this UIElement in relation to its Parent. Later we will be calling `base.Append(coinCounterPanel);`. 
 			// This means that this class, ExampleCoinsUI, will be our Parent. Since ExampleCoinsUI is a UIState, the Left and Top are relative to the top left of the screen.
-			// SetRectangle method help us to set the position and size of UIElement
+			// 设置Rectangle method help us to set the position and size of UIElement
 			SetRectangle(CoinCounterPanel, left: 400f, top: 100f, width: 170f, height: 70f);
 			CoinCounterPanel.BackgroundColor = new Color(73, 94, 171);
 
@@ -121,15 +121,15 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 
 		protected override void DrawSelf(SpriteBatch spriteBatch) {
 			CalculatedStyle innerDimensions = GetInnerDimensions();
-			// Getting top left position of this UIElement
+			// 获取ting top left position of this UIElement
 			float shopx = innerDimensions.X;
 			float shopy = innerDimensions.Y;
 
-			// Drawing first line of coins (current collected coins)
+			// 绘制ing first line of coins (current collected coins)
 			// CoinsSplit converts the number of copper coins into an array of all types of coins
 			DrawCoins(spriteBatch, shopx, shopy, Utils.CoinsSplit(collectedCoins));
 
-			// Drawing second line of coins (coins per minute) and text "CPM"
+			// 绘制ing second line of coins (coins per minute) and text "CPM"
 			DrawCoins(spriteBatch, shopx, shopy, Utils.CoinsSplit(GetCoinsPerMinute()), 0, 25);
 			Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, "CPM", shopx + (float)(24 * 4), shopy + 25f, Color.White, Color.Black, new Vector2(0.3f), 0.75f);
 		}

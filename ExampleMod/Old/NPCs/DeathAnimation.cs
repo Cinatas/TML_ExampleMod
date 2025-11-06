@@ -34,7 +34,7 @@ namespace ExampleMod.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-			// Spawn this NPC with something like Cheat Sheet or Hero's Mod
+			// 生成 this NPC with something like Cheat Sheet or Hero's Mod
 			return 0f;
 		}
 
@@ -47,14 +47,14 @@ namespace ExampleMod.NPCs
 			// Retrieve reference to shader
 			var deathShader = GameShaders.Misc["ExampleMod:DeathAnimation"];
 
-			// Reset back to default value.
+			// 重置 back to default value.
 			deathShader.UseOpacity(1f);
 			// We use npc.ai[3] as a counter since the real death.
 			if (npc.ai[3] > 30f) {
 				// Our shader uses the Opacity register to drive the effect. See ExampleEffectDeath.fx to see how the Opacity parameter factors into the shader math. 
 				deathShader.UseOpacity(1f - (npc.ai[3] - 30f) / 150f);
 			}
-			// Call Apply to apply the shader to the SpriteBatch. Only 1 shader can be active at a time.
+			// 调用 Apply to apply the shader to the SpriteBatch. Only 1 shader can be active at a time.
 			deathShader.Apply(null);
 			return true;
 		}
@@ -219,7 +219,7 @@ public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 	Main.spriteBatch.End();
 	Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.Transform);
 
-	// Prevent Vanilla drawing
+	// 防止 Vanilla drawing
 	return false;
 }
 */

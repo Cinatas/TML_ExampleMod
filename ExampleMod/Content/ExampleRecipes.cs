@@ -19,7 +19,7 @@ namespace ExampleMod.Content
 		}
 
 		public override void AddRecipeGroups() {
-			// Create a recipe group and store it
+			// 创建 a recipe group and store it
 			// Language.GetTextValue("LegacyMisc.37") is the word "Any" in English, and the corresponding word in other languages
 			ExampleRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<Items.ExampleItem>())}",
 				ModContent.ItemType<Items.ExampleItem>(), ModContent.ItemType<Items.ExampleDataItem>());
@@ -27,7 +27,7 @@ namespace ExampleMod.Content
 			// 要 avoid name collisions, when a modded items is the iconic or 1st item in a recipe group, name the recipe group: ModName:ItemName
 			RecipeGroup.RegisterGroup("ExampleMod:ExampleItem", ExampleRecipeGroup);
 
-			// Add an item to an existing Terraria recipeGroup. ExampleCritterItem isn't gold but it serves as an example for this.
+			// 添加 an item to an existing Terraria recipeGroup. ExampleCritterItem isn't gold but it serves as an example for this.
 			RecipeGroup.recipeGroups[RecipeGroupID.GoldenCritter].ValidItems.Add(ModContent.ItemType<ExampleCritterItem>());
 
 			// While an "IronBar" group exists, "SilverBar" does not. tModLoader will merge recipe groups registered with the same name, so if you are registering a recipe group with a vanilla item as the 1st item, you can register it using just the internal item name if you anticipate other mods wanting to use this recipe group for the same concept. By doing this, multiple mods can add to the same group without extra effort. In this case we are adding a SilverBar group. Don't store the RecipeGroup instance, it might not be used, use the same nameof(ItemID.ItemName) or RecipeGroupID returned from RegisterGroup when using Recipe.AddRecipeGroup instead.
@@ -59,7 +59,7 @@ namespace ExampleMod.Content
 
 			// Start a new Recipe.
 			resultItem.CreateRecipe()
-				// Adds a Vanilla Ingredient.
+				// 添加s a Vanilla Ingredient.
 				// Look up ItemIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-Content-IDs#item-ids
 				// 要 specify more than one ingredient type, use multiple recipe.AddIngredient() calls.
 				.AddIngredient(ItemID.StoneBlock)
@@ -67,13 +67,13 @@ namespace ExampleMod.Content
 				.AddIngredient(ItemID.Acorn, 10)
 				// 我们 can also specify the current item as an ingredient
 				.AddIngredient(resultItem)
-				// Adds a Mod Ingredient. Do not attempt ItemID.ExampleSword, it's not how it works.
+				// 添加s a Mod Ingredient. Do not attempt ItemID.ExampleSword, it's not how it works.
 				.AddIngredient<Items.Weapons.ExampleSword>()
 				// An alternate string-based approach to the above. Try to only use it for other mods' items, because it's slower.
 				.AddIngredient(Mod, "ExampleSword")
 
 				// RecipeGroups allow you create a recipe that accepts items from a group of similar ingredients. For example, all varieties of Wood are in the vanilla "Wood" Group
-				// Check here for other vanilla groups: https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#using-existing-recipegroups
+				// 检查 here for other vanilla groups: https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#using-existing-recipegroups
 				.AddRecipeGroup(RecipeGroupID.Wood)
 				// Just like with AddIngredient, there's a stack parameter with a default value of 1.
 				.AddRecipeGroup(RecipeGroupID.IronBar, 2)
@@ -83,23 +83,23 @@ namespace ExampleMod.Content
 				.AddRecipeGroup("Wood")
 				.AddRecipeGroup("ExampleMod:ExampleItem", 2)
 
-				// Adds a vanilla tile requirement.
+				// 添加s a vanilla tile requirement.
 				// 要 specify a crafting station, specify a tile. Look up TileIDs: https://github.com/tModLoader/tModLoader/wiki/Vanilla-Tile-IDs
 				.AddTile(TileID.WorkBenches)
-				// Adds a mod tile requirement. To specify more than one crafting station, use multiple recipe.AddTile() calls.
+				// 添加s a mod tile requirement. To specify more than one crafting station, use multiple recipe.AddTile() calls.
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				// An alternate string-based approach to the above. Try to only use it for other mods' tiles, because it's slower.
 				.AddTile(Mod, "ExampleWorkbench")
 
-				// Adds pre-defined conditions. These 3 lines combine to make so that the recipe must be crafted in desert waters at night.
+				// 添加s pre-defined conditions. These 3 lines combine to make so that the recipe must be crafted in desert waters at night.
 				.AddCondition(Condition.InDesert)
 				.AddCondition(Condition.NearWater)
 				.AddCondition(Condition.TimeNight)
-				// Adds a custom condition, that the player must be at <1/2 health for the recipe to work.
+				// 添加s a custom condition, that the player must be at <1/2 health for the recipe to work.
 				// key used here is defined in 'Localization/*.hjson' files.
 				// second argument uses a lambda expression to create a delegate, you can learn more about lambdas in Google.
 				.AddCondition(Language.GetOrRegister("Mods.ExampleMod.Conditions.LowHealth"), () => Main.LocalPlayer.statLife < Main.LocalPlayer.statLifeMax / 2)
-				// Adds a custom condition that can be reused in other recipes easily because it is stored in a static class. This is the recommended approach for custom conditions: https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#custom-conditions
+				// 添加s a custom condition that can be reused in other recipes easily because it is stored in a static class. This is the recommended approach for custom conditions: https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#custom-conditions
 				.AddCondition(ExampleConditions.InExampleBiome)
 
 				// 当 you're done, call this to register the recipe. Note that there's a semicolon at the end of the chain.

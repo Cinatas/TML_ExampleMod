@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Items.Weapons
 	// Holding this item will cause the ExampleResourceBar UI to show, displaying the player's custom resource amounts tracked in ExampleResourcePlayer.
 	public class ExampleCustomResourceWeapon : ModItem
 	{
-		private int exampleResourceCost; // Add our custom resource cost
+		private int exampleResourceCost; // 添加 our custom resource cost
 
 		public static LocalizedText UsesXExampleResourceText { get; private set; }
 
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.shoot = ProjectileID.VortexBeaterRocket;
 			Item.shootSpeed = 7;
 			Item.crit = 32;
-			exampleResourceCost = 5; // Set our custom resource cost to 5
+			exampleResourceCost = 5; // 设置 our custom resource cost to 5
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {

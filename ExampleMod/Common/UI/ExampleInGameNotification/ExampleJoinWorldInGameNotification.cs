@@ -72,7 +72,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 			string title = Language.GetTextValue("Mods.ExampleMod.UI.InGameNotificationTitle");
 
 			// Below is draw-code directly from vanilla with some tweaks to suit our needs.
-			// Changes are minimal; important things to note:
+			// 更改s are minimal; important things to note:
 			// - we draw the panel with Utils.DrawInvBG,
 			// - we calculate the panel size based on the title size,
 			// - we draw the title and icon after the panel,
@@ -82,7 +82,7 @@ namespace ExampleMod.Common.UI.ExampleInGameNotification
 			Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(58f, 10f)) * effectiveScale;
 			Rectangle panelSize = Utils.CenteredRectangle(bottomAnchorPosition + new Vector2(0f, (0f - size.Y) * 0.5f), size);
 
-			// Check if the mouse is hovering over the notification.
+			// 检查 if the mouse is hovering over the notification.
 			bool hovering = panelSize.Contains(Main.MouseScreen.ToPoint());
 
 			Utils.DrawInvBG(spriteBatch, panelSize, new Color(64, 109, 164) * (hovering ? 0.75f : 0.5f));

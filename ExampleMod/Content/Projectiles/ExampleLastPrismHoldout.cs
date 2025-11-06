@@ -65,12 +65,12 @@ namespace ExampleMod.Content.Projectiles
 			// This prevents the issue with the vanilla Last Prism where the beams are invisible in multiplayer.
 			ProjectileID.Sets.NeedsUUID[Projectile.type] = true;
 
-			// Prevents jitter when stepping up and down blocks and half blocks
+			// 防止s jitter when stepping up and down blocks and half blocks
 			ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
 		}
 
 		public override void SetDefaults() {
-			// Use CloneDefaults to clone all basic Projectile statistics from the vanilla Last Prism.
+			// 使用 CloneDefaults to clone all basic Projectile statistics from the vanilla Last Prism.
 			Projectile.CloneDefaults(ProjectileID.LastPrism);
 		}
 
@@ -78,20 +78,20 @@ namespace ExampleMod.Content.Projectiles
 			Player player = Main.player[Projectile.owner];
 			Vector2 rrp = player.RotatedRelativePoint(player.MountedCenter, true);
 
-			// Update the Prism's damage every frame so that it is dynamically affected by Mana Sickness.
+			// 更新 the Prism's damage every frame so that it is dynamically affected by Mana Sickness.
 			UpdateDamageForManaSickness(player);
 
-			// Update the frame counter.
+			// 更新 the frame counter.
 			FrameCounter += 1f;
 
-			// Update Projectile visuals and sound.
+			// 更新 Projectile visuals and sound.
 			UpdateAnimation();
 			PlaySounds();
 
-			// Update the Prism's position in the world and relevant variables of the player holding it.
+			// 更新 the Prism's position in the world and relevant variables of the player holding it.
 			UpdatePlayerVisuals(player, rrp);
 
-			// Update the Prism's behavior: project beams on frame 1, consume mana, and despawn if out of mana.
+			// 更新 the Prism's behavior: project beams on frame 1, consume mana, and despawn if out of mana.
 			if (Projectile.owner == Main.myPlayer) {
 				// Slightly re-aim the Prism every frame so that it gradually sweeps to point towards the mouse.
 				UpdateAim(rrp, player.HeldItem.shootSpeed);
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Projectiles
 				// player.channel indicates whether the player is still holding down the mouse button to use the item.
 				bool stillInUse = player.channel && manaIsAvailable && !player.noItems && !player.CCed;
 
-				// Spawn in the Prism's lasers on the first frame if the player is capable of using the item.
+				// 生成 in the Prism's lasers on the first frame if the player is capable of using the item.
 				if (stillInUse && FrameCounter == 1f) {
 					FireBeams();
 				}
@@ -188,13 +188,13 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void UpdateAim(Vector2 source, float speed) {
-			// Get the player's current aiming direction as a normalized vector.
+			// 获取 the player's current aiming direction as a normalized vector.
 			Vector2 aim = Vector2.Normalize(Main.MouseWorld - source);
 			if (aim.HasNaNs()) {
 				aim = -Vector2.UnitY;
 			}
 
-			// Change a portion of the Prism's current velocity so that it points to the mouse. This gives smooth movement over time.
+			// 更改 a portion of the Prism's current velocity so that it points to the mouse. This gives smooth movement over time.
 			aim = Vector2.Normalize(Vector2.Lerp(Vector2.Normalize(Projectile.velocity), aim, AimResponsiveness));
 			aim *= speed;
 

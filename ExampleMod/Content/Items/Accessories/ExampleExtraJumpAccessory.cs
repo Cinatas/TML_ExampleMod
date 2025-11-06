@@ -40,20 +40,20 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override float GetDurationMultiplier(Player player) {
-			// Use this hook to set the duration of the extra jump
+			// 使用 this hook to set the duration of the extra jump
 			// XML summary for this hook mentions the values used by the vanilla extra jumps
 			return 2.25f;
 		}
 
 		public override void UpdateHorizontalSpeeds(Player player) {
-			// Use this hook to modify "player.runAcceleration" and "player.maxRunSpeed"
+			// 使用 this hook to modify "player.runAcceleration" and "player.maxRunSpeed"
 			// XML summary for this hook mentions the values used by the vanilla extra jumps
 			player.runAcceleration *= 1.75f;
 			player.maxRunSpeed *= 2f;
 		}
 
 		public override void OnStarted(Player player, ref bool playSound) {
-			// Use this hook to trigger effects that should appear at the start of the extra jump
+			// 使用 this hook to trigger effects that should appear at the start of the extra jump
 			// 此示例 mimics the logic for spawning the puff of smoke from the Cloud in a Bottle
 			int offsetY = player.height;
 			if (player.gravDir == -1f)
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void ShowVisuals(Player player) {
-			// Use this hook to trigger effects that should appear throughout the duration of the extra jump
+			// 使用 this hook to trigger effects that should appear throughout the duration of the extra jump
 			// 此示例 mimics the logic for spawning the dust from the Blizzard in a Bottle
 			int offsetY = player.height - 6;
 			if (player.gravDir == -1f)

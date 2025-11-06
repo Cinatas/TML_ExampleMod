@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {
 			Tile tile = Main.tile[i, j];
-			// GetSmallAnimalCageFrame method utilizes some math to stagger each individual tile. First the top left tile is found, then those coordinates are passed into some math to stagger an index into Main.snail2CageFrame
+			// 获取SmallAnimalCageFrame method utilizes some math to stagger each individual tile. First the top left tile is found, then those coordinates are passed into some math to stagger an index into Main.snail2CageFrame
 			// Main.frogCageFrame is used since we want the same animation, but if we wanted a different frame count or a different animation timing, we could write our own by adapting vanilla code and placing the code in AnimateTile
 			int tileCageFrameIndex = TileDrawing.GetSmallAnimalCageFrame(i, j, tile.TileFrameX, tile.TileFrameY);
 			frameYOffset = Main.frogCageFrame[tileCageFrameIndex] * AnimationFrameHeight;

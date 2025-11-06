@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Items.Accessories
 				c.Index++;
 				// Push the Player instance onto the stack
 				c.Emit(OpCodes.Ldarg_0);
-				// Call a delegate using the int and Player from the stack.
+				// 调用 a delegate using the int and Player from the stack.
 				c.EmitDelegate<Func<int, Player, int>>((returnValue, player) => {
 					// Regular c# code
 					if (player.GetModPlayer<WaspNestPlayer>().strongBeesUpgrade && Main.rand.NextBool(10) && Main.ProjectileUpdateLoopIndex == -1) {

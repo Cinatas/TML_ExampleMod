@@ -328,7 +328,7 @@ namespace ExampleMod
 		}
 
 		public override void PreUpdate() {
-			// Update everything about spawning the traveling merchant from the methods we have in the Traveling Merchant's class
+			// 更新 everything about spawning the traveling merchant from the methods we have in the Traveling Merchant's class
 			ExampleTravelingMerchant.UpdateTravelingMerchant();
 		}
 

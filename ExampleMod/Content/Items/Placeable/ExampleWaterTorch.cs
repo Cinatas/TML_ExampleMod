@@ -38,14 +38,14 @@ namespace ExampleMod.Content.Items.Placeable
 				dust.position = player.RotatedRelativePoint(dust.position);
 			}
 
-			// Create a greenish (0.5, 1.5, 0.5) light at the torch's approximate position, when the item is held.
+			// 创建 a greenish (0.5, 1.5, 0.5) light at the torch's approximate position, when the item is held.
 			Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
 
 			Lighting.AddLight(position, 0.5f, 1.5f, 0.5f);
 		}
 
 		public override void PostUpdate() {
-			// Create a greenish (0.5, 1.5, 0.5) light when the item is in world, even if underwater.
+			// 创建 a greenish (0.5, 1.5, 0.5) light when the item is in world, even if underwater.
 			Lighting.AddLight(Item.Center, 0.5f, 1.5f, 0.5f);
 		}
 

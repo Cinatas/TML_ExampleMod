@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.height = 18; // Hitbox height of the item.
 			Item.rare = ItemRarityID.Green; // The color that the item's name will be in-game.
 
-			// Use Properties
+			// 使用 Properties
 			Item.useTime = 55; // The item's use time in ticks (60 ticks == 1 second.)
 			Item.useAnimation = 55; // The length of the item's use animation in ticks (60 ticks == 1 second.)
 			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
@@ -24,9 +24,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.UseSound = SoundID.Item36; // The sound that this item plays when used.
 
 			// Weapon Properties
-			Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-			Item.damage = 10; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-			Item.knockBack = 6f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			Item.DamageType = DamageClass.Ranged; // 设置s the damage type to ranged.
+			Item.damage = 10; // 设置s the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.knockBack = 6f; // 设置s the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
 			// Gun Properties
@@ -45,11 +45,11 @@ namespace ExampleMod.Content.Items.Weapons
 				// Decrease velocity randomly for nicer visuals.
 				newVelocity *= 1f - Main.rand.NextFloat(0.3f);
 
-				// Create a projectile.
+				// 创建 a projectile.
 				Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
 			}
 
-			return false; // Return false because we don't want tModLoader to shoot projectile
+			return false; // 返回 false because we don't want tModLoader to shoot projectile
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

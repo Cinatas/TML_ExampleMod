@@ -33,7 +33,7 @@ namespace ExampleMod.Content.Items.Consumables
 			// Moving the exampleManaCrystals check from CanUseItem to here allows this example crystal to still "be used" like Mana Crystals can be
 			// when at the max allowed, but it will just play the animation and not affect the player's max mana
 			if (player.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals >= MaxExampleManaCrystals) {
-				// Returning null will make the item not be consumed
+				// 返回ing null will make the item not be consumed
 				return null;
 			}
 

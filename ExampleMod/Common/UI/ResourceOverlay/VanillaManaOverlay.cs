@@ -33,19 +33,19 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 				DrawClassicFancyOverlay(context);
 			}
 			else if (CompareAssets(asset, fancyFolder + "Star_Fill")) {
-				// Draw over the Fancy stars
+				// 绘制 over the Fancy stars
 				DrawClassicFancyOverlay(context);
 			}
 			else if (CompareAssets(asset, barsFolder + "MP_Fill")) {
-				// Draw over the Bars mana bars
+				// 绘制 over the Bars mana bars
 				DrawBarsOverlay(context);
 			}
 			else if (CompareAssets(asset, fancyFolder + "Star_A") || CompareAssets(asset, fancyFolder + "Star_B") || CompareAssets(asset, fancyFolder + "Star_C") || CompareAssets(asset, fancyFolder + "Star_Single")) {
-				// Draw over the Fancy star panels
+				// 绘制 over the Fancy star panels
 				DrawFancyPanelOverlay(context);
 			}
 			else if (CompareAssets(asset, barsFolder + "MP_Panel_Middle")) {
-				// Draw over the Bars middle mana panels
+				// 绘制 over the Bars middle mana panels
 				DrawBarsPanelOverlay(context);
 			}
 		}
@@ -59,17 +59,17 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		}
 
 		private void DrawClassicFancyOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Classic / Mana stars
+			// 绘制 over the Classic / Mana stars
 			// "context" contains information used to draw the resource
 			// If you want to draw directly on top of the vanilla stars, just replace the texture and have the context draw the new texture
 			context.texture = starTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/ClassicManaOverlay");
 			context.Draw();
 		}
 
-		// Drawing over the panel backgrounds is not required.
+		// 绘制ing over the panel backgrounds is not required.
 		// This example just showcases changing the "inner" part of the star panels to more closely resemble the example life fruit.
 		private void DrawFancyPanelOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Fancy star panels
+			// 绘制 over the Fancy star panels
 			string fancyFolder = "Images/UI/PlayerResourceSets/FancyClassic/";
 
 			// The original position refers to the entire panel slice.
@@ -109,17 +109,17 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		}
 
 		private void DrawBarsOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Bars mana bars
+			// 绘制 over the Bars mana bars
 			// "context" contains information used to draw the resource
 			// If you want to draw directly on top of the vanilla bars, just replace the texture and have the context draw the new texture
 			context.texture = barsFillingTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsManaOverlay_Fill");
 			context.Draw();
 		}
 
-		// Drawing over the panel backgrounds is not required.
+		// 绘制ing over the panel backgrounds is not required.
 		// This example just showcases changing the "inner" part of the bar panels to more closely resemble the example life fruit.
 		private void DrawBarsPanelOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Bars middle life panels
+			// 绘制 over the Bars middle life panels
 			// "context" contains information used to draw the resource
 			// If you want to draw directly on top of the vanilla bar panels, just replace the texture and have the context draw the new texture
 			context.texture = barsPanelTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsManaOverlay_Panel");

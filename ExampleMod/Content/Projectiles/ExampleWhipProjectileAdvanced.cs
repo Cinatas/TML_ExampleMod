@@ -75,7 +75,7 @@ namespace ExampleMod.Content.Projectiles
 				SoundEngine.PlaySound(SoundID.Item153, points[points.Count - 1]);
 			}
 
-			// Spawn Dust along the whip path
+			// 生成 Dust along the whip path
 			// 这是 the dust code used by Durendal. Consult the Terraria source code for even more examples, found in Projectile.AI_165_Whip.
 			float swingProgress = Timer / swingTime;
 			// This code limits dust to only spawn during the the actual swing.
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// 此方法 handles a charging mechanic.
 		// 如果 you remove this, also remove Item.channel = true from the item's SetDefaults.
-		// Returns true if fully charged
+		// 返回s true if fully charged
 		private bool Charge(Player owner) {
 			// 像 other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
 			if (!owner.channel || ChargeTime >= 120) {
@@ -119,7 +119,7 @@ namespace ExampleMod.Content.Projectiles
 			// Increase range up to 2x for full charge.
 			Projectile.WhipSettings.RangeMultiplier += 1 / 120f;
 
-			// Reset the animation and item timer while charging.
+			// 重置 the animation and item timer while charging.
 			owner.itemAnimation = owner.itemAnimationMax;
 			owner.itemTime = owner.itemTimeMax;
 

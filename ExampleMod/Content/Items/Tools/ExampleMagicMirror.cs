@@ -21,10 +21,10 @@ namespace ExampleMod.Content.Items.Tools
 
 		public override void SetDefaults() {
 			Item.CloneDefaults(ItemID.IceMirror); // Copies the defaults from the Ice Mirror.
-			Item.color = Color.Violet; // Sets the item color
+			Item.color = Color.Violet; // 设置s the item color
 		}
 
-		// UseStyle is called each frame that the item is being actively used.
+		// 使用Style is called each frame that the item is being actively used.
 		public override void UseStyle(Player player, Rectangle heldItemFrame) {
 			// Each frame, make some dust
 			if (Main.rand.NextBool()) {

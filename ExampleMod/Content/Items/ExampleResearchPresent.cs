@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Items
 			// Research amount will never go down or over the max limit of 9999.
 			Item.ResearchUnlockCount = Utils.Clamp(ItemLoader.ItemCount, 1, 9999);
 
-			// Use a MonoMod hook to allow our presents to run through the Sacrifice system.
+			// 使用 a MonoMod hook to allow our presents to run through the Sacrifice system.
 			On_CreativeUI.SacrificeItem_refItem_refInt32_bool += OnSacrificeItem;
 		}
 
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Items
 				// 这是 the amount the sacrifice counter goes up by. We didn't actually change the total number of sacrifices, so this is 0
 				amountWeSacrificed = 0;
 
-				// Return SacrificedAndDone, so the animation and effects happen
+				// 返回 SacrificedAndDone, so the animation and effects happen
 				return CreativeUI.ItemSacrificeResult.SacrificedAndDone;
 			}
 

@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Biomes
 		// Select Music
 		public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/MysteriousMystery");
 
-		// Sets how the Scene Effect associated with this biome will be displayed with respect to vanilla Scene Effects. For more information see SceneEffectPriority & its values.
+		// 设置s how the Scene Effect associated with this biome will be displayed with respect to vanilla Scene Effects. For more information see SceneEffectPriority & its values.
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow; // We have set the SceneEffectPriority to be BiomeLow for purpose of example, however default behavior is BiomeLow.
 
 		// Populate the Bestiary Filter
@@ -23,11 +23,11 @@ namespace ExampleMod.Content.Biomes
 		public override string BackgroundPath => base.BackgroundPath;
 		public override Color? BackgroundColor => base.BackgroundColor;
 
-		// Calculate when the biome is active.
+		// 计算 when the biome is active.
 		public override bool IsBiomeActive(Player player) {
 			// Limit the biome height to be underground in either rock layer or dirt layer
 			return (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) &&
-				// Check how many tiles of our biome are present, such that biome should be active
+				// 检查 how many tiles of our biome are present, such that biome should be active
 				ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount >= 40 &&
 				// Limit our biome to be in only the horizontal center third of the world.
 				Math.Abs(player.position.ToTileCoordinates().X - Main.maxTilesX / 2) < Main.maxTilesX / 6;

@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Biomes
 	public class ExampleSurfaceBiome : ModBiome
 	{
 		// Select all the scenery
-		public override ModWaterStyle WaterStyle => ModContent.GetInstance<ExampleWaterStyle>(); // Sets a water style for when inside this biome
+		public override ModWaterStyle WaterStyle => ModContent.GetInstance<ExampleWaterStyle>(); // 设置s a water style for when inside this biome
 		public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.GetInstance<ExampleSurfaceBackgroundStyle>();
 		public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Crimson;
 
@@ -29,7 +29,7 @@ namespace ExampleMod.Content.Biomes
 		public override Color? BackgroundColor => base.BackgroundColor;
 		public override string MapBackground => BackgroundPath; // Re-uses Bestiary Background for Map Background
 
-		// Calculate when the biome is active.
+		// 计算 when the biome is active.
 		public override bool IsBiomeActive(Player player) {
 			// 首先, we will use the exampleBlockCount from our added ModSystem for our first custom condition
 			bool b1 = ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount >= 40;

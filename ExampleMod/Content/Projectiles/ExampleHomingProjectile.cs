@@ -77,12 +77,12 @@ namespace ExampleMod.Content.Projectiles
 
 			// Loop through all NPCs
 			foreach (var target in Main.ActiveNPCs) {
-				// Check if NPC able to be targeted. 
+				// 检查 if NPC able to be targeted. 
 				if (IsValidTarget(target)) {
 					// DistanceSquared function returns a squared distance between 2 points, skipping relatively expensive square root calculations
 					float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
 
-					// Check if it is within the radius
+					// 检查 if it is within the radius
 					if (sqrDistanceToTarget < sqrMaxDetectDistance) {
 						sqrMaxDetectDistance = sqrDistanceToTarget;
 						closestNPC = target;

@@ -61,7 +61,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.PreventsSandfall[Type] = true;
 			TileID.Sets.AvoidedByMeteorLanding[Type] = true;
 
-			// Adds functionality for proximity of pylons; if this is true, then being near this tile will count as being near a pylon for the teleportation process.
+			// 添加s functionality for proximity of pylons; if this is true, then being near this tile will count as being near a pylon for the teleportation process.
 			AddToArray(ref TileID.Sets.CountsAsPylon);
 
 			LocalizedText pylonName = CreateMapEntryName(); //Name is in the localization file
@@ -82,7 +82,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void MouseOver(int i, int j) {
-			// Show a little pylon icon on the mouse indicating we are hovering over it.
+			// 显示 a little pylon icon on the mouse indicating we are hovering over it.
 			Main.LocalPlayer.cursorItemIconEnabled = true;
 			Main.LocalPlayer.cursorItemIconID = ModContent.ItemType<ExamplePylonItem>();
 		}

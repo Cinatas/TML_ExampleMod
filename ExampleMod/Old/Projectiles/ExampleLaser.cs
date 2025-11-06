@@ -11,7 +11,7 @@ namespace ExampleMod.Projectiles
 	// Using custom drawing, dust effects, and custom collision checks for tiles
 	public class ExampleLaser : ModProjectile
 	{
-		// Use a different style for constant so it is very clear in code when a constant is used
+		// 使用 a different style for constant so it is very clear in code when a constant is used
 
 		// The maximum charge value
 		private const float MAX_CHARGE = 50f;
@@ -57,7 +57,7 @@ namespace ExampleMod.Projectiles
 		public void DrawLaser(SpriteBatch spriteBatch, Texture2D texture, Vector2 start, Vector2 unit, float step, int damage, float rotation = 0f, float scale = 1f, float maxDist = 2000f, Color color = default(Color), int transDist = 50) {
 			float r = unit.ToRotation() + rotation;
 
-			// Draws the laser 'body'
+			// 绘制s the laser 'body'
 			for (float i = transDist; i <= Distance; i += step) {
 				Color c = Color.White;
 				var origin = start + i * unit;
@@ -66,16 +66,16 @@ namespace ExampleMod.Projectiles
 					new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
 			}
 
-			// Draws the laser 'tail'
+			// 绘制s the laser 'tail'
 			spriteBatch.Draw(texture, start + unit * (transDist - step) - Main.screenPosition,
 				new Rectangle(0, 0, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
 
-			// Draws the laser 'head'
+			// 绘制s the laser 'head'
 			spriteBatch.Draw(texture, start + (Distance + step) * unit - Main.screenPosition,
 				new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
 		}
 
-		// Change the way of collision check of the projectile
+		// 更改 the way of collision check of the projectile
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			// We can only collide if we are at max charge, which is when the laser is actually fired
 			if (!IsAtMaxCharge) return false;
@@ -89,7 +89,7 @@ namespace ExampleMod.Projectiles
 				player.Center + unit * Distance, 22, ref point);
 		}
 
-		// Set custom immunity time on hitting an NPC
+		// 设置 custom immunity time on hitting an NPC
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
 			target.immune[projectile.owner] = 5;
 		}
@@ -202,11 +202,11 @@ namespace ExampleMod.Projectiles
 				projectile.netUpdate = true;
 			}
 			int dir = projectile.direction;
-			player.ChangeDir(dir); // Set player direction to where we are shooting
-			player.heldProj = projectile.whoAmI; // Update player's held projectile
-			player.itemTime = 2; // Set item time to 2 frames while we are used
-			player.itemAnimation = 2; // Set item animation time to 2 frames while we are used
-			player.itemRotation = (float)Math.Atan2(projectile.velocity.Y * dir, projectile.velocity.X * dir); // Set the item rotation to where we are shooting
+			player.ChangeDir(dir); // 设置 player direction to where we are shooting
+			player.heldProj = projectile.whoAmI; // 更新 player's held projectile
+			player.itemTime = 2; // 设置 item time to 2 frames while we are used
+			player.itemAnimation = 2; // 设置 item animation time to 2 frames while we are used
+			player.itemRotation = (float)Math.Atan2(projectile.velocity.Y * dir, projectile.velocity.X * dir); // 设置 the item rotation to where we are shooting
 		}
 
 		private void CastLights() {

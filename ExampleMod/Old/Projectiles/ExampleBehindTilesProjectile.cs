@@ -19,14 +19,14 @@ namespace ExampleMod.Projectiles
 		public override void SetDefaults() {
 			projectile.CloneDefaults(ProjectileID.Shuriken);
 			aiType = ProjectileID.Shuriken;
-			projectile.hide = true; // Prevents projectile from being drawn normally. Use in conjunction with DrawBehind.
+			projectile.hide = true; // 防止s projectile from being drawn normally. Use in conjunction with DrawBehind.
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 			projectile.timeLeft = 60;
 		}
 
 		public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI) {
-			// Add this projectile to the list of projectiles that will be drawn BEFORE tiles and NPC are drawn. This makes the projectile appear to be BEHIND the tiles and NPC.
+			// 添加 this projectile to the list of projectiles that will be drawn BEFORE tiles and NPC are drawn. This makes the projectile appear to be BEHIND the tiles and NPC.
 			drawCacheProjsBehindNPCsAndTiles.Add(index);
 		}
 	}
@@ -34,7 +34,7 @@ namespace ExampleMod.Projectiles
 	// This is an approach you can take to fit your organization style.
 	public class ExampleBehindTilesProjectileItem : ModItem
 	{
-		// Use this to use Vanilla textures. The number corresponds to the ItemID of the vanilla item.
+		// 使用 this to use Vanilla textures. The number corresponds to the ItemID of the vanilla item.
 		public override string Texture => "Terraria/Item_42";
 
 		public override void SetStaticDefaults() {

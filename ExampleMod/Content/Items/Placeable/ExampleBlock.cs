@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items.Placeable
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				.Register();
 
-			CreateRecipe() // Add multiple recipes set to one Item.
+			CreateRecipe() // 添加 multiple recipes set to one Item.
 				.AddIngredient<ExampleWall>(4)
 				.AddTile<Tiles.Furniture.ExampleWorkbench>()
 				.Register();
@@ -48,11 +48,11 @@ namespace ExampleMod.Content.Items.Placeable
 				.Register();
 		}
 
-		public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack) { // Calls upon use of an extractinator. Below is the chance you will get ExampleOre from the extractinator.
+		public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack) { // 调用s upon use of an extractinator. Below is the chance you will get ExampleOre from the extractinator.
 			if (Main.rand.NextBool(3)) {
-				resultType = ModContent.ItemType<ExampleOre>();  // Get this from the extractinator with a 1 in 3 chance.
+				resultType = ModContent.ItemType<ExampleOre>();  // 获取 this from the extractinator with a 1 in 3 chance.
 				if (Main.rand.NextBool(5)) {
-					resultStack += Main.rand.Next(2); // Add a chance to get more than one of ExampleOre from the extractinator.
+					resultStack += Main.rand.Next(2); // 添加 a chance to get more than one of ExampleOre from the extractinator.
 				}
 			}
 		}

@@ -83,7 +83,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override float GetTorchLuck(Player player) {
-			// GetTorchLuck is called when there is an ExampleTorch nearby the client player
+			// 获取TorchLuck is called when there is an ExampleTorch nearby the client player
 			// 在 most use-cases you should return 1f for a good luck torch, or -1f for a bad luck torch.
 			// 你 can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
 			// 记住 that the overall torch luck is decided by every torch around the player, so it may be wise to have a smaller amount of luck impact.

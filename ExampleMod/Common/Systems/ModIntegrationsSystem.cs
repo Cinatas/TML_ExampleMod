@@ -51,7 +51,7 @@ namespace ExampleMod.Common.Systems
 			// Value inferred from boss progression, see the wiki for details
 			float weight = 0.7f;
 
-			// Used for tracking checklist progress
+			// 使用d for tracking checklist progress
 			Func<bool> downed = () => DownedBossSystem.downedMinionBoss;
 
 			// The NPC type of the boss

@@ -123,15 +123,15 @@ namespace ExampleMod.Content.NPCs
 				}
 			}
 
-			// Spawn the traveler if the spawn conditions are met (time of day, no events, no sundial)
+			// 生成 the traveler if the spawn conditions are met (time of day, no events, no sundial)
 			if (!travelerIsThere && CanSpawnNow()) {
-				int newTraveler = NPC.NewNPC(Terraria.Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, ModContent.NPCType<ExampleTravelingMerchant>(), 1); // Spawning at the world spawn
+				int newTraveler = NPC.NewNPC(Terraria.Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, ModContent.NPCType<ExampleTravelingMerchant>(), 1); // 生成ing at the world spawn
 				NPC traveler = Main.npc[newTraveler];
 				traveler.homeless = true;
 				traveler.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
 				traveler.netUpdate = true;
 
-				// Prevents the traveler from spawning again the same day
+				// 防止s the traveler from spawning again the same day
 				spawnTime = double.MaxValue;
 
 				// Announce that the traveler has spawned in!
@@ -172,7 +172,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void Load() {
-			// Adds our Shimmer Head to the NPCHeadLoader.
+			// 添加s our Shimmer Head to the NPCHeadLoader.
 			ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
 		}
 
@@ -186,12 +186,12 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.AttackAverageChance[Type] = 1;
 			NPCID.Sets.HatOffsetY[Type] = 4;
 			NPCID.Sets.ShimmerTownTransform[Type] = true;
-			NPCID.Sets.NoTownNPCHappiness[Type] = true; // Prevents the happiness button
+			NPCID.Sets.NoTownNPCHappiness[Type] = true; // 防止s the happiness button
 			NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<ExampleTravellingMerchantEmote>();
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 2f, // Draws the NPC in the bestiary as if its walking +2 tiles in the x direction
+				Velocity = 2f, // 绘制s the NPC in the bestiary as if its walking +2 tiles in the x direction
 				Direction = -1 // -1 is left and 1 is right.
 			};
 
@@ -243,7 +243,7 @@ namespace ExampleMod.Content.NPCs
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Sparkle>());
 			}
 
-			// Create gore when the NPC is killed.
+			// 创建 gore when the NPC is killed.
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
 				// Retrieve the gore types. This NPC has shimmer variants for head, arm, and leg gore. It also has a custom hat gore. (7 gores)
 				// This NPC will spawn either the assigned party hat or a custom hat gore when not shimmered. When shimmered the top hat is part of the head and no hat gore is spawned.
@@ -258,7 +258,7 @@ namespace ExampleMod.Content.NPCs
 				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
 				int legGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Leg").Type;
 
-				// Spawn the gores. The positions of the arms and legs are lowered for a more natural look.
+				// 生成 the gores. The positions of the arms and legs are lowered for a more natural look.
 				if (hatGore > 0) {
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, hatGore);
 				}

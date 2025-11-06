@@ -93,7 +93,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 				}
 
 				Projectile.velocity += Vector2.Normalize(npc.Center - Projectile.Center) * DashSpeed; // Fling the projectile towards the npc.
-				AIDashCharge = 0f; // Reset the charge.
+				AIDashCharge = 0f; // 重置 the charge.
 
 				// Play a sound.
 				if (!Main.dedServ) {
@@ -146,7 +146,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		}
 
 		private void UpdateExtraMovement() {
-			// Adds some friction to the pet's movement as long as its speed is above 1
+			// 添加s some friction to the pet's movement as long as its speed is above 1
 			if (Projectile.velocity.Length() > 1f) {
 				Projectile.velocity *= 0.98f;
 			}

@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Mounts
 				MountData.frontTexture
 			);
 
-			// Change properties on MountData here further, for example:
+			// 更改 properties on MountData here further, for example:
 			MountData.spawnDust = 21;
 			MountData.delegations.MinecartDust = DelegateMethods.Minecart.SparksMeow;
 			MountData.delegations.MinecartLandingSound = DelegateMethods.Minecart.LandingSoundFart;

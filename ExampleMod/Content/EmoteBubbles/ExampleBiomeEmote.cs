@@ -11,11 +11,11 @@ namespace ExampleMod.Content.EmoteBubbles
 {
 	// 这是 a showcase of drawing the emote bubble yourself.
 	// It performs totally the same as vanilla.
-	// Check Common/GlobalNPC/EmotePickerGlobalNPC.cs for adding this emote for all NPCs.
+	// 检查 Common/GlobalNPC/EmotePickerGlobalNPC.cs for adding this emote for all NPCs.
 	public class ExampleBiomeEmote : ModEmoteBubble
 	{
 		public override void SetStaticDefaults() {
-			// Add the emote to "biomes" category
+			// 添加 the emote to "biomes" category
 			AddToCategory(EmoteID.Category.NatureAndWeather);
 		}
 
@@ -25,7 +25,7 @@ namespace ExampleMod.Content.EmoteBubbles
 			// 这是 the frame rectangle for the bubble in emotes texture.
 			Rectangle bubbleFrame = bubbleTexture.Frame(8, 39, EmoteBubble.IsFullyDisplayed ? 1 : 0);
 
-			// Draw the bubble background.
+			// 绘制 the bubble background.
 			spriteBatch.Draw(bubbleTexture, position, bubbleFrame, Color.White, 0f, origin, 1f, spriteEffects, 0f);
 
 			// 如果 the emote bubble isn't fully displayed (bubble pop-up animation is being displayed),
@@ -34,7 +34,7 @@ namespace ExampleMod.Content.EmoteBubbles
 				return false;
 			}
 
-			// Draw the emote.
+			// 绘制 the emote.
 			spriteBatch.Draw(texture, position, frame, Color.White, 0f, origin, 1f, spriteEffects, 0f);
 
 			return false; // Stop vanilla drawing code.
@@ -50,7 +50,7 @@ namespace ExampleMod.Content.EmoteBubbles
 			// 这是 the frame rectangle for the bubble in emotes texture.
 			Rectangle bubbleFrame = uiEmoteButton.BubbleTexture.Frame(8, 39, 1, 0);
 
-			// Draw everything
+			// 绘制 everything
 			spriteBatch.Draw(uiEmoteButton.BubbleTexture.Value, position, bubbleFrame, Color.White, 0f, origin, 1f, SpriteEffects.None, 0f);
 			spriteBatch.Draw(uiEmoteButton.EmoteTexture.Value, position, frame, Color.White, 0f, origin, 1f, SpriteEffects.None, 0f);
 			spriteBatch.Draw(uiEmoteButton.BorderTexture.Value, position - Vector2.One * 2f, null, borderColor, 0f, origin, 1f, SpriteEffects.None, 0f);

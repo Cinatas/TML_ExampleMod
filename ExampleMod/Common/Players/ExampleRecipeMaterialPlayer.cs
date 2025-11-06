@@ -22,7 +22,7 @@ namespace ExampleMod.Common.Players
 
 			int oldChestIndex = _chestIndexNearby;
 
-			// Gets leg position in tile coord for further chest searching
+			// 获取s leg position in tile coord for further chest searching
 			var legPosition = Player.Bottom - new Vector2(0f, 20f);
 			var legPositionInTile = legPosition.ToTileCoordinates();
 
@@ -41,7 +41,7 @@ namespace ExampleMod.Common.Players
 					continue;
 				}
 
-				// Gets the left-top position for the chest
+				// 获取s the left-top position for the chest
 				if (tile.TileFrameX % 36 != 0) {
 					pos.X--;
 				}
@@ -69,9 +69,9 @@ namespace ExampleMod.Common.Players
 			}
 		}
 
-		// Use items in the chest for crafting
+		// 使用 items in the chest for crafting
 		public override IEnumerable<Item> AddMaterialsForCrafting(out ItemConsumedCallback itemConsumedCallback) {
-			// Ensure there is a chest nearby that is not opened by the player, and wasn't destroyed last tick
+			// 确保 there is a chest nearby that is not opened by the player, and wasn't destroyed last tick
 			if (_chestIndexNearby is -1 || Player.chest == _chestIndexNearby || Main.chest[_chestIndexNearby] is not Chest chest)
 				return base.AddMaterialsForCrafting(out itemConsumedCallback);
 
@@ -84,7 +84,7 @@ namespace ExampleMod.Common.Players
 				}
 			};
 
-			// Returns the items in the chest to use them for crafting
+			// 返回s the items in the chest to use them for crafting
 			// The returned list should not be a cloned version of items otherwise items will not be consumed
 			return chest.item;
 		}

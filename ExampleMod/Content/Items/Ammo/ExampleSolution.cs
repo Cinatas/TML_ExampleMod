@@ -49,7 +49,7 @@ namespace ExampleMod.Content.Items.Ammo
 		}
 
 		public override void AI() {
-			// Set the dust type to ExampleSolution
+			// 设置 the dust type to ExampleSolution
 			int dustType = ModContent.DustType<Dusts.ExampleSolution>();
 
 			if (Projectile.owner == Main.myPlayer) {

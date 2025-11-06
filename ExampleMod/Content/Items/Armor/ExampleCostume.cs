@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Items.Armor
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
-			// Add equip textures
+			// 添加 equip textures
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Head}", EquipType.Head, this, equipTexture: new BlockyHead());
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Body}", EquipType.Body, this);
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}_{EquipType.Legs}", EquipType.Legs, this);
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Items.Armor
 			EquipLoader.AddEquipTexture(Mod, $"{Texture}Alt_{EquipType.Legs}", EquipType.Legs, name: "BlockyAlt");
 		}
 
-		// Called in SetStaticDefaults
+		// 调用ed in SetStaticDefaults
 		private void SetupDrawing() {
 			// Since the equipment textures weren't loaded on the server, we can't have this code running server-side
 			if (Main.netMode == NetmodeID.Server)

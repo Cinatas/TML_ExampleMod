@@ -48,7 +48,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			_panelRightMP = ModContent.Request<Texture2D>(modFolder + "MP_Panel_Right");
 		}
 
-		// DrawLife 在 DrawMana 之前运行，所以请记住这一点
+		// 绘制Life 在 DrawMana 之前运行，所以请记住这一点
 		public override void DrawLife(SpriteBatch spriteBatch) {
 			int num = 16;
 			int num2 = 18;
@@ -74,7 +74,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			resourceDrawSettings.ResourceIndexOffset = -1;  // Make the range [-1, 20] instead of [0, 21]
 			resourceDrawSettings.Draw(spriteBatch, ref isHovered);
 
-			// Draw the life bar filling
+			// 绘制 the life bar filling
 			resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _hpSegmentsCount;
 			resourceDrawSettings.ElementIndexOffset = 0;
@@ -101,7 +101,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 
 			bool isHovered = false;
 
-			// Draw the mana panels
+			// 绘制 the mana panels
 			ResourceDrawSettings resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _mpSegmentsCount + 2;
 			resourceDrawSettings.ElementIndexOffset = 0;
@@ -116,7 +116,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			resourceDrawSettings.ResourceIndexOffset = -1;  // Make the range [-1, 20] instead of [0, 21]
 			resourceDrawSettings.Draw(spriteBatch, ref isHovered);
 
-			// Draw the mana bar filling
+			// 绘制 the mana bar filling
 			resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _mpSegmentsCount;
 			resourceDrawSettings.ElementIndexOffset = 0;

@@ -48,7 +48,7 @@ namespace ExampleMod.UI
 			// You could go with a different design, keeping around the same UIState instance if you wanted. This would preserve the UIState between opening and closing. Up to you.
 		}
 
-		// Update is called on a UIState while it is the active state of the UserInterface.
+		// 更新 is called on a UIState while it is the active state of the UserInterface.
 		// We use Update to handle automatically closing our UI when the player is no longer talking to our Example Person NPC.
 		public override void Update(GameTime gameTime) {
 			// 不要 delete this or the UIElements attached to this UIState will cease to function.

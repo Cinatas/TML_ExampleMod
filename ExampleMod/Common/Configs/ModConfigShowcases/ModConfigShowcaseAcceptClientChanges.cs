@@ -8,7 +8,7 @@ namespace ExampleMod.Common.Configs.ModConfigShowcases
 	// ModConfigShowcaseAcceptClientChanges showcases the AcceptClientChanges method.
 	// In multiplayer all connected clients can attempt to change ServerSide configs.
 	// By default changes that don't require a reload will be accepted, but modders can use AcceptClientChanges to further limit this behavior.
-	// Use the AcceptClientChanges method to determine if the clients changes to this config will be accepted and relayed to all other clients.
+	// 使用 the AcceptClientChanges method to determine if the clients changes to this config will be accepted and relayed to all other clients.
 	public class ModConfigShowcaseAcceptClientChanges : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;

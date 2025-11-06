@@ -38,8 +38,8 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 			}
 		}
 
-		// Adding a custom layer to the vanilla layer list that will call .Draw on your interface if it has a state
-		// Setting the InterfaceScaleType to UI for appropriate UI scaling
+		// 添加ing a custom layer to the vanilla layer list that will call .Draw on your interface if it has a state
+		// 设置ting the InterfaceScaleType to UI for appropriate UI scaling
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
 			int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
 			if (mouseTextIndex != -1) {

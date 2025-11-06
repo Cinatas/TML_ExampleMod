@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.scale = 0.75f;
 			Item.rare = ItemRarityID.Green; // The color that the item's name will be in-game.
 
-			// Use Properties
+			// 使用 Properties
 			Item.useTime = 5; // The item's use time in ticks (60 ticks == 1 second.)
 			Item.useAnimation = 15; // The length of the item's use animation in ticks (60 ticks == 1 second.)
 			Item.reuseDelay = 5; // The amount of time the item waits between use animations (60 ticks == 1 second.)
@@ -39,9 +39,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.UseSound = SoundID.Item11;
 
 			// Weapon Properties
-			Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-			Item.damage = 20; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-			Item.knockBack = 5f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			Item.DamageType = DamageClass.Ranged; // 设置s the damage type to ranged.
+			Item.damage = 20; // 设置s the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.knockBack = 5f; // 设置s the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
 			// Gun Properties
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Items.Weapons
 			// CanChooseAmmo allows ammo to be chosen or denied independently of the useAmmo field's restrictions.
 			// (Its sister hook, CanBeChosenAsAmmo, is called on the ammo, and has the same function.)
 			// This returns null by default, which simply picks the ammo based on whether or not ammo.ammo == weapon.useAmmo.
-			// Returning true will forcibly allow an ammo to be used; returning false will forcibly deny it.
+			// 返回ing true will forcibly allow an ammo to be used; returning false will forcibly deny it.
 			// 对于 this example, we'll forcefully deny Cursed Bullets from being used as ammunition, but otherwise make no changes to the ammo pool.
 			if (ammo.type == ItemID.CursedBullet)
 				return false;

@@ -17,8 +17,8 @@ namespace ExampleMod.Content.Items.Armor
 		public override void SetStaticDefaults() {
 			// 如果 your head equipment should draw hair while drawn, use one of the following:
 			// ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false; // 不要 draw the head at all. Used by Space Creature Mask
-			// ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true; // Draw hair as if a hat was covering the top. Used by Wizards Hat
-			// ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; // Draw all hair as normal. Used by Mime Mask, Sunglasses
+			// ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true; // 绘制 hair as if a hat was covering the top. Used by Wizards Hat
+			// ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; // 绘制 all hair as normal. Used by Mime Mask, Sunglasses
 			// ArmorIDs.Head.Sets.DrawsBackHairWithoutHeadgear[Item.headSlot] = true;
 
 			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(AdditiveGenericDamageBonus);
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items.Armor
 			return body.type == ModContent.ItemType<ExampleBreastplate>() && legs.type == ModContent.ItemType<ExampleLeggings>();
 		}
 
-		// UpdateArmorSet allows you to give set bonuses to the armor.
+		// 更新ArmorSet allows you to give set bonuses to the armor.
 		public override void UpdateArmorSet(Player player) {
 			player.setBonus = SetBonusText.Value; // This is the setbonus tooltip: "Increases dealt damage by 20%"
 			player.GetDamage(DamageClass.Generic) += AdditiveGenericDamageBonus / 100f; // Increase dealt damage for all weapon classes by 20%

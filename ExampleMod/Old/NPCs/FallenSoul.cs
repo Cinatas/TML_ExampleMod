@@ -31,7 +31,7 @@ namespace ExampleMod.NPCs
 			animationType = NPCID.Wraith;
 		}
 
-		// Allows hitting the NPC with melee type weapons, even if it's friendly.
+		// 允许s hitting the NPC with melee type weapons, even if it's friendly.
 		public override bool? CanBeHitByItem(Player player, Item item) {
 			return true;
 		}
@@ -55,7 +55,7 @@ namespace ExampleMod.NPCs
 			}
 		}
 
-		// Allows the NPC to talk with the player, even if it isn't a town NPC.
+		// 允许s the NPC to talk with the player, even if it isn't a town NPC.
 		public override bool CanChat() {
 			return true;
 		}
@@ -114,7 +114,7 @@ namespace ExampleMod.NPCs
 
 		// Make the NPC stop moving if it is close to the player.
 		public override bool ShouldMove(float ai) {
-			npc.ai[2] = 0; // Prevents the NPC from stopping following their target.
+			npc.ai[2] = 0; // 防止s the NPC from stopping following their target.
 			if (npc.Distance(Main.player[npc.target].Center) < 150f) {
 				npc.velocity *= 0.95f;
 				if (Math.Abs(npc.velocity.X) < 0.1f) {

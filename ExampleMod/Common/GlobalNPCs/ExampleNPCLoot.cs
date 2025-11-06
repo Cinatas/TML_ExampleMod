@@ -14,7 +14,7 @@ namespace ExampleMod.Common.GlobalNPCs
 	// 尽管此文件是 GlobalNPC，这里的所有内容也可以与 ModNPC 一起使用！请参阅 Content/NPCs 文件夹中的示例。
 	public class ExampleNPCLoot : GlobalNPC
 	{
-		// ModifyNPCLoot 使用一个名为 ItemDropDatabase 的独特系统，该系统为许多不同的掉落用例提供了许多不同的规则。
+		// 修改NPCLoot 使用一个名为 ItemDropDatabase 的独特系统，该系统为许多不同的掉落用例提供了许多不同的规则。
 		// 在这里我们将介绍所有这些，以及如何使用它们。
 		// 原版中还有大量其他示例！在反编译的原版构建中，GameContent/ItemDropRules/ItemDropDatabase 为每个原版 NPC 添加物品掉落，这可能是一个很好的资源。
 
@@ -29,7 +29,7 @@ namespace ExampleMod.Common.GlobalNPCs
 
 			// 我们现在将使用向导来解释许多其他类型的掉落规则。
 			if (npc.type == NPCID.Guide) {
-				// RemoveWhere 将删除与提供的表达式匹配的任何掉落规则。
+				// 删除Where 将删除与提供的表达式匹配的任何掉落规则。
 				// 要创建自己的表达式来删除原版掉落规则，你通常必须研究添加这些规则的原始源代码。
 				npcLoot.RemoveWhere(
 					// 如果满足以下条件，则以下表达式返回 true：
@@ -93,9 +93,9 @@ namespace ExampleMod.Common.GlobalNPCs
 			//TODO: Add the rest of the vanilla drop rules!!
 		}
 
-		// ModifyGlobalLoot 允许你修改每个 NPC 都应该能够掉落的战利品，最好有一个条件。
+		// 修改GlobalLoot 允许你修改每个 NPC 都应该能够掉落的战利品，最好有一个条件。
 		// 原版将其用于生物群系钥匙、夜晚/光明之魂以及节日掉落。
-		// ModifyGlobalLoot 中的任何掉落规则都应该只运行一次。其他所有内容都应该放在 ModifyNPCLoot 中。
+		// 修改GlobalLoot 中的任何掉落规则都应该只运行一次。其他所有内容都应该放在 ModifyNPCLoot 中。
 		public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
 			// 如果 ExampleSoulCondition 为 true，则以 20% 的概率掉落 ExampleSoul。有关如何确定的信息，请参阅 Common/ItemDropRules/DropConditions/ExampleSoulCondition.cs
 			globalLoot.Add(ItemDropRule.ByCondition(new ExampleSoulCondition(), ModContent.ItemType<ExampleSoul>(), 5, 1, 1));

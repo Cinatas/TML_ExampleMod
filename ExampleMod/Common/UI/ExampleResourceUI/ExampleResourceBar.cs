@@ -65,7 +65,7 @@ namespace ExampleMod.Common.UI.ExampleResourceUI
 			base.DrawSelf(spriteBatch);
 
 			var modPlayer = Main.LocalPlayer.GetModPlayer<ExampleResourcePlayer>();
-			// Calculate quotient
+			// 计算 quotient
 			float quotient = (float)modPlayer.exampleResourceCurrent / modPlayer.exampleResourceMax2; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
 			quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
 
@@ -92,7 +92,7 @@ namespace ExampleMod.Common.UI.ExampleResourceUI
 				return;
 
 			var modPlayer = Main.LocalPlayer.GetModPlayer<ExampleResourcePlayer>();
-			// Setting the text per tick to update and show our resource values.
+			// 设置ting the text per tick to update and show our resource values.
 			text.SetText(ExampleResourceUISystem.ExampleResourceText.Format(modPlayer.exampleResourceCurrent, modPlayer.exampleResourceMax2));
 			base.Update(gameTime);
 		}

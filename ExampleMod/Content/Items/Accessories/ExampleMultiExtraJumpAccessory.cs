@@ -55,15 +55,15 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void OnRefreshed(Player player) {
-			// Reset the jump counter
+			// 重置 the jump counter
 			player.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining = 3;
 		}
 
 		public override void OnStarted(Player player, ref bool playSound) {
-			// Get the jump counter
+			// 获取 the jump counter
 			ref int jumps = ref player.GetModPlayer<MultipleUseExtraJumpPlayer>().jumpsRemaining;
 
-			// Spawn rings of fire particles
+			// 生成 rings of fire particles
 			int offsetY = player.height;
 			if (player.gravDir == -1f)
 				offsetY = 0;
@@ -124,7 +124,7 @@ namespace ExampleMod.Content.Items.Accessories
 			// Decrement the jump counter
 			jumps--;
 
-			// Allow the jump to be used again while the jump counter is > 0
+			// 允许 the jump to be used again while the jump counter is > 0
 			if (jumps > 0)
 				player.GetJumpState(this).Available = true;
 		}

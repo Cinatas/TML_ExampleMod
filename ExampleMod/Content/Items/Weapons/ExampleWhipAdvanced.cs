@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items.Weapons
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExampleWhipAdvancedDebuff.TagDamagePercent);
 
 		public override void SetDefaults() {
-			// Call this method to quickly set some of the properties below.
+			// 调用 this method to quickly set some of the properties below.
 			//Item.DefaultToWhip(ModContent.ProjectileType<ExampleWhipProjectileAdvanced>(), 20, 2, 4);
 
 			Item.DamageType = DamageClass.SummonMeleeSpeed;

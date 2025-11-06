@@ -30,9 +30,9 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.alpha = 255; // How transparent to draw this projectile. 0 to 255. 255 is completely transparent.
 		}
 
-		// Allows you to determine the color and transparency in which a projectile is drawn
-		// Return null to use the default color (normally light and buff color)
-		// Returns null by default.
+		// 允许s you to determine the color and transparency in which a projectile is drawn
+		// 返回 null to use the default color (normally light and buff color)
+		// 返回s null by default.
 		public override Color? GetAlpha(Color lightColor) {
 			// return Color.White;
 			return new Color(255, 255, 255, 0) * Projectile.Opacity;
@@ -64,7 +64,7 @@ namespace ExampleMod.Content.Projectiles
 			if (Projectile.ai[0] >= 60f)
 				Projectile.Kill();
 
-			// Set both direction and spriteDirection to 1 or -1 (right and left respectively)
+			// 设置 both direction and spriteDirection to 1 or -1 (right and left respectively)
 			// Projectile.direction is automatically set correctly in Projectile.Update, but we need to set it here or the textures will draw incorrectly on the 1st frame.
 			Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f) ? 1 : -1;
 
@@ -105,7 +105,7 @@ namespace ExampleMod.Content.Projectiles
 			if (Projectile.spriteDirection == -1)
 				spriteEffects = SpriteEffects.FlipHorizontally;
 
-			// Getting texture of projectile
+			// 获取ting texture of projectile
 			Texture2D texture = TextureAssets.Projectile[Type].Value;
 
 			// Calculating frameHeight and current Y pos dependence of frame
@@ -113,7 +113,7 @@ namespace ExampleMod.Content.Projectiles
 			int frameHeight = texture.Height / Main.projFrames[Type];
 			int startY = frameHeight * Projectile.frame;
 
-			// Get this frame on texture
+			// 获取 this frame on texture
 			Rectangle sourceRectangle = new Rectangle(0, startY, texture.Width, frameHeight);
 
 			// Alternatively, you can skip defining frameHeight and startY and use this:
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Projectiles
 			// origin.Y = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Height - offsetY : offsetY);
 
 
-			// Applying lighting and draw current frame
+			// 应用ing lighting and draw current frame
 			Color drawColor = Projectile.GetAlpha(lightColor);
 			Main.EntitySpriteDraw(texture,
 				Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),

@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.friendly = true; // Deals damage to enemies
 			Projectile.penetrate = -1; // Infinite pierce
 			Projectile.DamageType = DamageClass.Melee; // Deals melee damage
-			Projectile.usesLocalNPCImmunity = true; // Used for hit cooldown changes in the ai hook
+			Projectile.usesLocalNPCImmunity = true; // 使用d for hit cooldown changes in the ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
 			// Vanilla flails all use aiStyle 15, but the code isn't customizable so an adaption of that aiStyle is used in the AI method
@@ -310,7 +310,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 			player.itemRotation = MathHelper.WrapAngle(player.itemRotation);
 
-			// Spawning dust. We spawn dust more often when in the LaunchingForward state
+			// 生成ing dust. We spawn dust more often when in the LaunchingForward state
 			int dustRate = 15;
 			if (doFastThrowDust)
 				dustRate = 1;
@@ -441,7 +441,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Rectangle? chainSourceRectangle = null;
 			// Drippler Crippler customizes sourceRectangle to cycle through sprite frames: sourceRectangle = asset.Frame(1, 6);
-			float chainHeightAdjustment = 0f; // Use this to adjust the chain overlap. 
+			float chainHeightAdjustment = 0f; // 使用 this to adjust the chain overlap. 
 
 			Vector2 chainOrigin = chainSourceRectangle.HasValue ? (chainSourceRectangle.Value.Size() / 2f) : (chainTexture.Size() / 2f);
 			Vector2 chainDrawPosition = Projectile.Center;
@@ -466,7 +466,7 @@ namespace ExampleMod.Content.Projectiles
 
 				var chainTextureToDraw = chainTexture;
 				if (chainCount >= 4) {
-					// Use normal chainTexture and lighting, no changes
+					// 使用 normal chainTexture and lighting, no changes
 				}
 				else if (chainCount >= 2) {
 					// Near to the ball, we draw a custom chain texture and slightly make it glow if unlit.
@@ -496,7 +496,7 @@ namespace ExampleMod.Content.Projectiles
 				chainLengthRemainingToDraw -= chainSegmentLength;
 			}
 
-			// Add a motion trail when moving forward, like most flails do (don't add trail if already hit a tile)
+			// 添加 a motion trail when moving forward, like most flails do (don't add trail if already hit a tile)
 			if (CurrentAIState == AIState.LaunchingForward) {
 				Texture2D projectileTexture = TextureAssets.Projectile[Type].Value;
 				Vector2 drawOrigin = new Vector2(projectileTexture.Width * 0.5f, Projectile.height * 0.5f);

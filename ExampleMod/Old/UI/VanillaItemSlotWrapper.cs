@@ -38,11 +38,11 @@ namespace ExampleMod.UI
 			if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface) {
 				Main.LocalPlayer.mouseInterface = true;
 				if (ValidItemFunc == null || ValidItemFunc(Main.mouseItem)) {
-					// Handle handles all the click and hover actions based on the context.
+					// 处理 handles all the click and hover actions based on the context.
 					ItemSlot.Handle(ref Item, _context);
 				}
 			}
-			// Draw draws the slot itself and Item. Depending on context, the color will change, as will drawing other things like stack counts.
+			// 绘制 draws the slot itself and Item. Depending on context, the color will change, as will drawing other things like stack counts.
 			ItemSlot.Draw(spriteBatch, ref Item, _context, rectangle.TopLeft());
 			Main.inventoryScale = oldScale;
 		}

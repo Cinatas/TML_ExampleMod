@@ -100,7 +100,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 	public class ExampleSimpleMinion : ModProjectile
 	{
 		public override void SetStaticDefaults() {
-			// Sets the amount of frames this minion has on its spritesheet
+			// 设置s the amount of frames this minion has on its spritesheet
 			Main.projFrames[Projectile.type] = 4;
 			// 这是 necessary for right-click targeting
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
@@ -236,7 +236,7 @@ namespace ExampleMod.Content.Projectiles.Minions
 						bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
 						bool inRange = between < distanceFromTarget;
 						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-						// Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
+						// 添加itional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
 						// number depends on various parameters seen in the movement code below. Test different ones out until it works alright
 						bool closeThroughWall = between < 100f;
 

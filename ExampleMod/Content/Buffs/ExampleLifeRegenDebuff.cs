@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Buffs
 			BuffID.Sets.LongerExpertDebuff[Type] = true; // If this buff is a debuff, setting this to true will make this buff last twice as long on players in expert mode
 		}
 
-		// Allows you to make this buff give certain effects to the given player
+		// 允许s you to make this buff give certain effects to the given player
 		public override void Update(Player player, ref int buffIndex) {
 			player.GetModPlayer<ExampleLifeRegenDebuffPlayer>().lifeRegenDebuff = true;
 		}
@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Buffs
 			lifeRegenDebuff = false;
 		}
 
-		// Allows you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
+		// 允许s you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
 		// 这是 typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
 		// player will take damage at a rate of half the number you subtract per second
 		public override void UpdateBadLifeRegen() {

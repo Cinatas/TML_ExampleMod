@@ -11,7 +11,7 @@ namespace ExampleMod.Content.Prefixes
 		// 我们 declare a custom *virtual* property here, so that another type, ExampleDerivedPrefix, could override it and change the effective power for itself.
 		public virtual float Power => 1f;
 
-		// Change your category this way, defaults to PrefixCategory.Custom. Affects which items can get this prefix.
+		// 更改 your category this way, defaults to PrefixCategory.Custom. Affects which items can get this prefix.
 		public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 
 		// 参见 documentation for vanilla weights and more information.
@@ -22,19 +22,19 @@ namespace ExampleMod.Content.Prefixes
 			return 5f;
 		}
 
-		// Determines if it can roll at all.
-		// Use this to control if a prefix can be rolled or not.
+		// 确定s if it can roll at all.
+		// 使用 this to control if a prefix can be rolled or not.
 		public override bool CanRoll(Item item) {
 			return true;
 		}
 
-		// Use this function to modify these stats for items which have this prefix:
+		// 使用 this function to modify these stats for items which have this prefix:
 		// Damage Multiplier, Knockback Multiplier, Use Time Multiplier, Scale Multiplier (Size), Shoot Speed Multiplier, Mana Multiplier (Mana cost), Crit Bonus.
 		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus) {
 			damageMult *= 1f + 0.20f * Power;
 		}
 
-		// Modify the cost of items with this modifier with this function.
+		// 修改 the cost of items with this modifier with this function.
 		public override void ModifyValue(ref float valueMult) {
 			valueMult *= 1f + 0.05f * Power;
 		}
@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Prefixes
 			// This results in "+1 Power" for ExamplePrefix and "+2 Power" for ExampleDerivedPrefix.
 			// Power isn't an actual stat, the effects of Power are already shown in the "+X% damage" tooltip, so this example is purely educational.
 			yield return new TooltipLine(Mod, "PrefixWeaponAwesome", PowerTooltip.Format(Power)) {
-				IsModifier = true, // Sets the color to the positive modifier color.
+				IsModifier = true, // 设置s the color to the positive modifier color.
 			};
 			// This localization is not shared with the inherited classes. ExamplePrefix and ExampleDerivedPrefix have their own translations for this line.
 			yield return new TooltipLine(Mod, "PrefixWeaponAwesomeDescription", AdditionalTooltip.Value) {
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Prefixes
 		// PowerTooltip is shared between ExamplePrefix and ExampleDerivedPrefix. 
 		public static LocalizedText PowerTooltip { get; private set; }
 
-		// AdditionalTooltip shows off how to do the inheritable localized properties approach. This is necessary this this example uses inheritance and we want different translations for each inheriting class. https://github.com/tModLoader/tModLoader/wiki/Localization#inheritable-localized-properties
+		// 添加itionalTooltip shows off how to do the inheritable localized properties approach. This is necessary this this example uses inheritance and we want different translations for each inheriting class. https://github.com/tModLoader/tModLoader/wiki/Localization#inheritable-localized-properties
 		public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
 		public override void SetStaticDefaults() {

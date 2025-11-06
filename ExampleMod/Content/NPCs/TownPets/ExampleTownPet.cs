@@ -28,7 +28,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		private static ITownNPCProfile NPCProfile;
 
 		public override void Load() {
-			// Adds our variant heads to the NPCHeadLoader.
+			// 添加s our variant heads to the NPCHeadLoader.
 			HeadIndex1 = Mod.AddNPCHeadTexture(Type, $"{Texture}_1_Head");
 			HeadIndex2 = Mod.AddNPCHeadTexture(Type, $"{Texture}_2_Head");
 			HeadIndex3 = Mod.AddNPCHeadTexture(Type, $"{Texture}_3_Head");
@@ -60,7 +60,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new() {
-				Velocity = 0.25f, // Draws the NPC in the bestiary as if its walking +0.25 tiles in the x direction
+				Velocity = 0.25f, // 绘制s the NPC in the bestiary as if its walking +0.25 tiles in the x direction
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -106,7 +106,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			return NPCProfile;
 		}
 
-		// Create a bunch of lists for our names. Each variant gets its own list of names.
+		// 创建 a bunch of lists for our names. Each variant gets its own list of names.
 		// 你 can these lists as long or as short as you'd like. 
 		public readonly List<string> NameList0 = new() {
 			"Monochromatic", "Grayscale", "Unpainted"
@@ -128,7 +128,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		};
 
 		public override List<string> SetNPCNameList() {
-			return NPC.townNpcVariationIndex switch { // Change the name based on the variation.
+			return NPC.townNpcVariationIndex switch { // 更改 the name based on the variation.
 				0 => NameList0,
 				1 => NameList1, // Variant 1 will be the Shimmered variant if your NPC has a shimmer variant.
 				// Green (2) variant shows one approach to localizing Town NPC names.
@@ -162,7 +162,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 				DrawOffsetY = -10; // 记住: Negative Y is up. So, this is moving the NPC up visually by 10 pixels.
 			}
 			else {
-				DrawOffsetY = 0; // Reset it back to 0 when not sitting in a chair.
+				DrawOffsetY = 0; // 重置 it back to 0 when not sitting in a chair.
 			}
 			// Do not try to add or subtract from the DrawOffsetY. It'll cause the sprite to change its height every frame which will make it go off of the screen.
 
@@ -301,7 +301,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 	{
 		private static readonly string filePath = "ExampleMod/Content/NPCs/TownPets/ExampleTownPet"; // The path to our base texture.
 
-		// Load all of our textures only one time during mod load time.
+		// 加载 all of our textures only one time during mod load time.
 		private readonly Asset<Texture2D> variant0 = ModContent.Request<Texture2D>(filePath);
 		private readonly Asset<Texture2D> variant1 = ModContent.Request<Texture2D>($"{filePath}_1");
 		private readonly Asset<Texture2D> variant2 = ModContent.Request<Texture2D>($"{filePath}_2");

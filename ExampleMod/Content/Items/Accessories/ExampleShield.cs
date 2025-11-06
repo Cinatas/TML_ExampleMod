@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
+	[AutoloadEquip(EquipType.Shield)] // 加载 the spritesheet you create as a shield for the player when it is equipped.
 	public class ExampleShield : ModItem
 	{
 		public override void SetDefaults() {
@@ -58,10 +58,10 @@ namespace ExampleMod.Content.Items.Accessories
 		public int DashTimer = 0; // frames remaining in the dash
 
 		public override void ResetEffects() {
-			// Reset our equipped flag. If the accessory is equipped somewhere, ExampleShield.UpdateAccessory will be called and set the flag before PreUpdateMovement
+			// 重置 our equipped flag. If the accessory is equipped somewhere, ExampleShield.UpdateAccessory will be called and set the flag before PreUpdateMovement
 			DashAccessoryEquipped = false;
 
-			// ResetEffects is called not long after player.doubleTapCardinalTimer's values have been set
+			// 重置Effects is called not long after player.doubleTapCardinalTimer's values have been set
 			// 当 a directional key is pressed and released, vanilla starts a 15 tick (1/4 second) timer during which a second press activates a dash
 			// 如果 the timers are set to 15, then this is the first press just processed by the vanilla logic.  Otherwise, it's a double-tap
 			if (Player.controlDown && Player.releaseDown && Player.doubleTapCardinalTimer[DashDown] < 15) {

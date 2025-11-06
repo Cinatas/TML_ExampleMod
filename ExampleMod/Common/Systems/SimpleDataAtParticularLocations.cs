@@ -88,7 +88,7 @@ namespace ExampleMod.Common.Systems
 		// We use the column at world center to paint nearby tiles based on the player's proximity to the nearest entry in the map.
 		// In this case, the nearest entry should correspond to the player's depth.
 		public void UpdateFromNearestInMap(Player player) {
-			// Get player position in tile coordinates
+			// 获取 player position in tile coordinates
 			Point z = player.position.ToTileCoordinates();
 			// Search for an entry within 32 tiles of our player
 			if (PosData.NearbySearchOrderedPosMap(myMap, z, 32, out var entry)) {

@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Projectiles
 		// How quickly the beam adjusts to sudden changes in length.
 		// Every frame, the beam replaces this ratio of its current length with its intended length.
 		// Generally you shouldn't need to change this.
-		// Setting it too low will make the beam lazily pass through walls before being blocked by them.
+		// 设置ting it too low will make the beam lazily pass through walls before being blocked by them.
 		private const float BeamLengthChangeFactor = 0.75f;
 
 		// charge percentage required on the host prism for the beam to begin visual effects (e.g. impact dust).
@@ -116,7 +116,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 hostPrismDir = Vector2.Normalize(hostPrism.velocity);
 			float chargeRatio = MathHelper.Clamp(hostPrism.ai[0] / ExampleLastPrismHoldout.MaxCharge, 0f, 1f);
 
-			// Update the beam's damage every frame based on charge and the host Prism's damage.
+			// 更新 the beam's damage every frame based on charge and the host Prism's damage.
 			Projectile.damage = (int)(hostPrism.damage * GetDamageMultiplier(chargeRatio));
 
 			// beam cannot strike enemies until the host Prism is at a certain charge level.
@@ -173,23 +173,23 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 beamSpanVector = (unitRot * yVec).RotatedBy(hostPrismAngle);
 			float sinusoidYOffset = unitRot.Y * PiBeamDivisor * beamSpread;
 
-			// Calculate the beam's emanating position. Start with the Prism's center.
+			// 计算 the beam's emanating position. Start with the Prism's center.
 			Projectile.Center = hostPrism.Center;
-			// Add a fixed offset to align with the Prism's sprite sheet.
+			// 添加 a fixed offset to align with the Prism's sprite sheet.
 			Projectile.position += hostPrismDir * 16f + new Vector2(0f, -hostPrism.gfxOffY);
-			// Add the forwards offset, measured in pixels.
+			// 添加 the forwards offset, measured in pixels.
 			Projectile.position += hostPrismDir * beamStartForwardsOffset;
-			// Add the sideways offset vector, which is calculated for the current angle of the beam and scales with the beam's sideways offset.
+			// 添加 the sideways offset vector, which is calculated for the current angle of the beam and scales with the beam's sideways offset.
 			Projectile.position += beamSpanVector;
 
-			// Set the beam's velocity to point towards its current spread direction and sanity check it. It should have magnitude 1.
+			// 设置 the beam's velocity to point towards its current spread direction and sanity check it. It should have magnitude 1.
 			Projectile.velocity = hostPrismDir.RotatedBy(sinusoidYOffset);
 			if (Projectile.velocity.HasNaNs() || Projectile.velocity == Vector2.Zero) {
 				Projectile.velocity = -Vector2.UnitY;
 			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
-			// Update the beam's length by performing a hitscan collision check.
+			// 更新 the beam's length by performing a hitscan collision check.
 			float hitscanBeamLength = PerformBeamHitscan(hostPrism, chargeRatio >= 1f);
 			BeamLength = MathHelper.Lerp(BeamLength, hitscanBeamLength, BeamLengthChangeFactor);
 
@@ -213,7 +213,7 @@ namespace ExampleMod.Content.Projectiles
 			Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * BeamLength, beamDims.Y, new Utils.TileActionAttempt(DelegateMethods.CastLight));
 		}
 
-		// Uses a simple polynomial (x^3) to get sudden but smooth damage increase near the end of the charge-up period.
+		// 使用s a simple polynomial (x^3) to get sudden but smooth damage increase near the end of the charge-up period.
 		private float GetDamageMultiplier(float chargeRatio) {
 			float f = chargeRatio * chargeRatio * chargeRatio;
 			return MathHelper.Lerp(1f, MaxDamageMultiplier, f);
@@ -248,7 +248,7 @@ namespace ExampleMod.Content.Projectiles
 			return averageLengthSample;
 		}
 
-		// Determines whether the specified target hitbox is intersecting with the beam.
+		// 确定s whether the specified target hitbox is intersecting with the beam.
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			// 如果 the target is touching the beam's hitbox (which is a small rectangle vaguely overlapping the host Prism), that's good enough.
 			if (projHitbox.Intersects(targetHitbox)) {
@@ -278,14 +278,14 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 startPosition = centerFloored - Main.screenPosition;
 			Vector2 endPosition = startPosition + Projectile.velocity * visualBeamLength;
 
-			// Draw the outer beam.
+			// 绘制 the outer beam.
 			DrawBeam(Main.spriteBatch, texture, startPosition, endPosition, drawScale, GetOuterBeamColor() * OuterBeamOpacityMultiplier * Projectile.Opacity);
 
-			// Draw the inner beam, which is half size.
+			// 绘制 the inner beam, which is half size.
 			drawScale *= 0.5f;
 			DrawBeam(Main.spriteBatch, texture, startPosition, endPosition, drawScale, GetInnerBeamColor() * InnerBeamOpacityMultiplier * Projectile.Opacity);
 
-			// Returning false prevents Terraria from trying to draw the Projectile itself.
+			// 返回ing false prevents Terraria from trying to draw the Projectile itself.
 			return false;
 		}
 
@@ -313,7 +313,7 @@ namespace ExampleMod.Content.Projectiles
 		private Color GetInnerBeamColor() => Color.White;
 
 		private void ProduceBeamDust(Color beamColor) {
-			// Create one dust per frame a small distance from where the beam ends.
+			// 创建 one dust per frame a small distance from where the beam ends.
 			const int type = 15;
 			Vector2 endPosition = Projectile.Center + Projectile.velocity * (BeamLength - 14.5f * Projectile.scale);
 

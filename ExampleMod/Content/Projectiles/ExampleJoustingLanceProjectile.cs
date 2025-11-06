@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.scale = 1f; // The scale of the projectile. This only effects the drawing and the width of the collision.
 			Projectile.hide = true; // We are drawing the projectile ourselves. See PreDraw() below.
 			Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
-			Projectile.DamageType = DamageClass.MeleeNoSpeed; // Set the damage to melee damage.
+			Projectile.DamageType = DamageClass.MeleeNoSpeed; // 设置 the damage to melee damage.
 
 			// Act like the normal Jousting Lance. Use this if you set the aiStyle to 19.
 			// AIType = ProjectileID.JoustingLance; 
@@ -47,9 +47,9 @@ namespace ExampleMod.Content.Projectiles
 
 		// 这是 the behavior of the Jousting Lances.
 		public override void AI() {
-			Player owner = Main.player[Projectile.owner]; // Get the owner of the projectile.
+			Player owner = Main.player[Projectile.owner]; // 获取 the owner of the projectile.
 			Projectile.direction = owner.direction; // Direction will be -1 when facing left and +1 when facing right. 
-			owner.heldProj = Projectile.whoAmI; // Set the owner's held projectile to this projectile. heldProj is used so that the projectile will be killed when the player drops or swap items.
+			owner.heldProj = Projectile.whoAmI; // 设置 the owner's held projectile to this projectile. heldProj is used so that the projectile will be killed when the player drops or swap items.
 
 			int itemAnimationMax = owner.itemAnimationMax;
 			// 记住, frames count down from itemAnimationMax to 0
@@ -76,11 +76,11 @@ namespace ExampleMod.Content.Projectiles
 			float retractDist = extendDist / 2; // How far to fly back during retraction
 			float tipDist = 98 + extension * extendDist - retraction * retractDist; // If your Jousting Lance is larger or smaller than the standard size, it is recommended to change the shoot speed of the item instead of this value.
 
-			Vector2 center = owner.RotatedRelativePoint(owner.MountedCenter); // Get the center of the owner. This accounts for the player being shifted up or down while riding a mount, sitting in a chair, etc.
-			Projectile.Center = center; // Set the center of the projectile to the center of the owner. Projectile.Center is now actually the tip of the Jousting Lance.
+			Vector2 center = owner.RotatedRelativePoint(owner.MountedCenter); // 获取 the center of the owner. This accounts for the player being shifted up or down while riding a mount, sitting in a chair, etc.
+			Projectile.Center = center; // 设置 the center of the projectile to the center of the owner. Projectile.Center is now actually the tip of the Jousting Lance.
 			Projectile.position += Projectile.velocity * tipDist; // The projectile velocity contains the orientation of the lance, multiply it by the tipDist to position the tip.
 
-			// Set the rotation of the projectile.
+			// 设置 the rotation of the projectile.
 			// 对于 reference, 0 is the top left, 180 degrees or pi radians is the bottom right.
 			Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + (float)Math.PI * 3 / 4f;
 
@@ -110,13 +110,13 @@ namespace ExampleMod.Content.Projectiles
 					dustChance = 2;
 				}
 
-				// Set your dust types here.
+				// 设置 your dust types here.
 				int dustTypeCommon = ModContent.DustType<Dusts.Sparkle>();
 				int dustTypeRare = DustID.WhiteTorch;
 
 				int offset = 4; // This offset will affect how much the dust spreads out.
 
-				// Spawn the dusts based on the dustChance. The dusts are spawned at the tip of the Jousting Lance.
+				// 生成 the dusts based on the dustChance. The dusts are spawned at the tip of the Jousting Lance.
 				if (Main.rand.NextBool(dustChance)) {
 					int newDust = Dust.NewDust(Projectile.Center - new Vector2(offset, offset), offset * 2, offset * 2, dustTypeCommon, Projectile.velocity.X * 0.2f + (Projectile.direction * 3), Projectile.velocity.Y * 0.2f, 100, default, 1.2f);
 					Main.dust[newDust].noGravity = true;
@@ -152,7 +152,7 @@ namespace ExampleMod.Content.Projectiles
 			// size doesn't matter too much because this rectangle is only a basic check for the collision (the hit-line is much more important).
 			Rectangle lanceHitboxBounds = new Rectangle(0, 0, 300, 300);
 
-			// Set the position of the large rectangle.
+			// 设置 the position of the large rectangle.
 			lanceHitboxBounds.X = (int)Projectile.position.X - lanceHitboxBounds.Width / 2;
 			lanceHitboxBounds.Y = (int)Projectile.position.Y - lanceHitboxBounds.Height / 2;
 
@@ -178,10 +178,10 @@ namespace ExampleMod.Content.Projectiles
 			// SpriteEffects change which direction the sprite is drawn.
 			SpriteEffects spriteEffects = SpriteEffects.None;
 
-			// Get texture of projectile.
+			// 获取 texture of projectile.
 			Texture2D texture = TextureAssets.Projectile[Type].Value;
 
-			// Get the currently selected frame on the texture.
+			// 获取 the currently selected frame on the texture.
 			Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Type], frameY: Projectile.frame);
 
 			// origin in this case is (0, 0) of our projectile because Projectile.Center is the tip of our Jousting Lance.
@@ -201,7 +201,7 @@ namespace ExampleMod.Content.Projectiles
 			// position of the sprite. Not subtracting Main.player[Projectile.owner].gfxOffY will cause the sprite to bounce when walking up blocks.
 			Vector2 position = new(Projectile.Center.X, Projectile.Center.Y - Main.player[Projectile.owner].gfxOffY);
 
-			// Apply lighting and draw our projectile
+			// 应用 lighting and draw our projectile
 			Color drawColor = Projectile.GetAlpha(lightColor);
 
 			Main.EntitySpriteDraw(texture,

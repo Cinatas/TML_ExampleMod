@@ -64,7 +64,7 @@ namespace ExampleMod.Content.NPCs
 						;
 					}
 
-					// Get the label for case 61: if it exists
+					// 获取 the label for case 61: if it exists
 					int case61Index = 61 - offset;
 					if (case61Index < 0 || case61Index >= targets.Length || targets[case61Index] is not ILLabel target) {
 						continue;
@@ -118,7 +118,7 @@ namespace ExampleMod.Content.NPCs
 			// HitSound = SoundID.NPCHit1;
 			// DeathSound = SoundID.NPCDeath1;
 			// catchItem = 2121;
-			// Sets the above
+			// 设置s the above
 			NPC.CloneDefaults(ClonedNPCID);
 
 			NPC.catchItem = ModContent.ItemType<ExampleCritterItem>();
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override Color? GetAlpha(Color drawColor) {
-			// GetAlpha gives our Lava Frog a red glow.
+			// 获取Alpha gives our Lava Frog a red glow.
 			return drawColor with {
 				R = 255,
 				// Both these do the same in this situation, using these methods is useful.
@@ -184,13 +184,13 @@ namespace ExampleMod.Content.NPCs
 
 			Point npcTile = NPC.Center.ToTileCoordinates();
 
-			if (!WorldGen.SolidTile(npcTile.X, npcTile.Y)) { // Check if the tile the npc resides the most in is non solid
+			if (!WorldGen.SolidTile(npcTile.X, npcTile.Y)) { // 检查 if the tile the npc resides the most in is non solid
 				Tile tile = Main.tile[npcTile];
-				tile.LiquidAmount = tile.LiquidType == LiquidID.Lava ? // Check if the tile has lava in it
+				tile.LiquidAmount = tile.LiquidType == LiquidID.Lava ? // 检查 if the tile has lava in it
 					Math.Max((byte)Main.rand.Next(50, 150), tile.LiquidAmount) // If it does, then top up the amount
 					: (byte)Main.rand.Next(50, 150); // If it doesn't, then overwrite the amount. Technically this distinction should never be needed bc it will burn but to be safe it's here
-				tile.LiquidType = LiquidID.Lava; // Set the liquid type to lava
-				WorldGen.SquareTileFrame(npcTile.X, npcTile.Y, true); // Update the surrounding area in the tilemap
+				tile.LiquidType = LiquidID.Lava; // 设置 the liquid type to lava
+				WorldGen.SquareTileFrame(npcTile.X, npcTile.Y, true); // 更新 the surrounding area in the tilemap
 			}
 		}
 	}

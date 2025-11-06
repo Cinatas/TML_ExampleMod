@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			ProjectileID.Sets.RocketsSkipDamageForPlayers[Type] = true; // This set makes it so the rocket doesn't deal damage to players.
 
 			// This set handles some things for us already:
-			// Sets the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
+			// 设置s the timeLeft to 3 and the projectile direction when colliding with an NPC or player in PVP (so the explosive can detonate).
 			// Explosives also bounce off the top of Shimmer, detonate with no blast damage when touching the bottom or sides of Shimmer, and damage other players in For the Worthy worlds.
 			ProjectileID.Sets.Explosive[Type] = true;
 		}
@@ -65,21 +65,21 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						velocityYAdder = Projectile.velocity.Y * 0.5f;
 					}
 
-					// Spawn some fire dusts.
+					// 生成 some fire dusts.
 					if (Main.rand.NextBool(2)) {
 						Dust fireDust = Dust.NewDustDirect(new Vector2(Projectile.position.X + 3f + velocityXAdder, Projectile.position.Y + 3f + velocityYAdder) - Projectile.velocity * 0.5f, Projectile.width - 8, Projectile.height - 8, DustID.Torch, 0f, 0f, 100);
 						fireDust.scale *= 1.4f + Main.rand.Next(10) * 0.1f;
 						fireDust.velocity *= 0.2f;
 						fireDust.noGravity = true;
 
-						// Used by the liquid rockets which leave trails of their liquid instead of fire.
+						// 使用d by the liquid rockets which leave trails of their liquid instead of fire.
 						// if (fireDust.type == Dust.dustWater()) {
 						//	fireDust.scale *= 0.65f;
 						//	fireDust.velocity += Projectile.velocity * 0.1f;
 						// }
 					}
 
-					// Spawn some smoke dusts.
+					// 生成 some smoke dusts.
 					if (Main.rand.NextBool(2)) {
 						Dust smokeDust = Dust.NewDustDirect(new Vector2(Projectile.position.X + 3f + velocityXAdder, Projectile.position.Y + 3f + velocityYAdder) - Projectile.velocity * 0.5f, Projectile.width - 8, Projectile.height - 8, DustID.Smoke, 0f, 0f, 100, default, 0.5f);
 						smokeDust.fadeIn = 0.5f + Main.rand.Next(5) * 0.1f;
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 						NPC searchNPC = Main.npc[i];
 						// 如果 the target can be homed on to.
 						if (searchNPC.CanBeChasedBy(this)) {
-							// Get the target's position.
+							// 获取 the target's position.
 							float targetPosX = searchNPC.position.X + (searchNPC.width / 2);
 							float targetPosY = searchNPC.position.Y + (searchNPC.height / 2);
 							// Find the distance from the projectile to the target.
@@ -149,8 +149,8 @@ namespace ExampleMod.Content.Projectiles.Rockets
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
 			Projectile.velocity *= 0f; // Stop moving so the explosion is where the rocket was.
-			Projectile.timeLeft = 3; // Set the timeLeft to 3 so it can get ready to explode.
-			return false; // Returning false is important here. Otherwise the projectile will die without being resized (no blast radius).
+			Projectile.timeLeft = 3; // 设置 the timeLeft to 3 so it can get ready to explode.
+			return false; // 返回ing false is important here. Otherwise the projectile will die without being resized (no blast radius).
 		}
 
 		public override void PrepareBombToBlow() {
@@ -161,7 +161,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// Rocket I: 128, Rocket III: 200, Mini Nuke Rocket: 250
 			// Measurements are in pixels, so 128 / 16 = 8 tiles.
 			Projectile.Resize(128, 128);
-			// Set the knockback of the blast.
+			// 设置 the knockback of the blast.
 			// Rocket I: 8f, Rocket III: 10f, Mini Nuke Rocket: 12f
 			Projectile.knockBack = 8f;
 		}
@@ -174,13 +174,13 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
 			Projectile.Resize(22, 22);
 
-			// Spawn a bunch of smoke dusts.
+			// 生成 a bunch of smoke dusts.
 			for (int i = 0; i < 30; i++) {
 				Dust smoke = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
 				smoke.velocity *= 1.4f;
 			}
 
-			// Spawn a bunch of fire dusts.
+			// 生成 a bunch of fire dusts.
 			for (int j = 0; j < 20; j++) {
 				Dust fireDust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 3.5f);
 				fireDust.noGravity = true;
@@ -189,7 +189,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				fireDust.velocity *= 3f;
 			}
 
-			// Spawn a bunch of smoke gores.
+			// 生成 a bunch of smoke gores.
 			for (int k = 0; k < 2; k++) {
 				float speedMulti = 0.4f;
 				if (k == 1) {

@@ -37,19 +37,19 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 				DrawClassicFancyOverlay(context);
 			}
 			else if (CompareAssets(asset, fancyFolder + "Heart_Fill") || CompareAssets(asset, fancyFolder + "Heart_Fill_B")) {
-				// Draw over the Fancy hearts
+				// 绘制 over the Fancy hearts
 				DrawClassicFancyOverlay(context);
 			}
 			else if (CompareAssets(asset, barsFolder + "HP_Fill") || CompareAssets(asset, barsFolder + "HP_Fill_Honey")) {
-				// Draw over the Bars life bars
+				// 绘制 over the Bars life bars
 				DrawBarsOverlay(context);
 			}
 			else if (CompareAssets(asset, fancyFolder + "Heart_Left") || CompareAssets(asset, fancyFolder + "Heart_Middle") || CompareAssets(asset, fancyFolder + "Heart_Right") || CompareAssets(asset, fancyFolder + "Heart_Right_Fancy") || CompareAssets(asset, fancyFolder + "Heart_Single_Fancy")) {
-				// Draw over the Fancy heart panels
+				// 绘制 over the Fancy heart panels
 				DrawFancyPanelOverlay(context);
 			}
 			else if (drawingBarsPanels) {
-				// Draw over the Bars middle life panels
+				// 绘制 over the Bars middle life panels
 				DrawBarsPanelOverlay(context);
 			}
 		}
@@ -63,17 +63,17 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		}
 
 		private void DrawClassicFancyOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Classic / Fancy hearts
+			// 绘制 over the Classic / Fancy hearts
 			// "context" contains information used to draw the resource
 			// If you want to draw directly on top of the vanilla hearts, just replace the texture and have the context draw the new texture
 			context.texture = heartTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/ClassicLifeOverlay");
 			context.Draw();
 		}
 
-		// Drawing over the panel backgrounds is not required.
+		// 绘制ing over the panel backgrounds is not required.
 		// This example just showcases changing the "inner" part of the heart panels to more closely resemble the example life fruit.
 		private void DrawFancyPanelOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Fancy heart panels
+			// 绘制 over the Fancy heart panels
 			string fancyFolder = "Images/UI/PlayerResourceSets/FancyClassic/";
 
 			// The original position refers to the entire panel slice.
@@ -117,17 +117,17 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 		}
 
 		private void DrawBarsOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Bars life bars
+			// 绘制 over the Bars life bars
 			// "context" contains information used to draw the resource
 			// If you want to draw directly on top of the vanilla bars, just replace the texture and have the context draw the new texture
 			context.texture = barsFillingTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsLifeOverlay_Fill");
 			context.Draw();
 		}
 
-		// Drawing over the panel backgrounds is not required.
+		// 绘制ing over the panel backgrounds is not required.
 		// This example just showcases changing the "inner" part of the bar panels to more closely resemble the example life fruit.
 		private void DrawBarsPanelOverlay(ResourceOverlayDrawContext context) {
-			// Draw over the Bars middle life panels
+			// 绘制 over the Bars middle life panels
 			// "context" contains information used to draw the resource
 			// If you want to draw directly on top of the vanilla bar panels, just replace the texture and have the context draw the new texture
 			context.texture = barsPanelTexture ??= ModContent.Request<Texture2D>("ExampleMod/Common/UI/ResourceOverlay/BarsLifeOverlay_Panel");

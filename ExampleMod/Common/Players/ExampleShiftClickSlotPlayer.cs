@@ -12,9 +12,9 @@ namespace ExampleMod.Common.Players
 	public class ExampleShiftClickSlotPlayer : ModPlayer
 	{
 		public override bool ShiftClickSlot(Item[] inventory, int context, int slot) {
-			// Apply our changes if this item is in inventory and is gel
+			// 应用 our changes if this item is in inventory and is gel
 			if (context == ItemSlot.Context.InventoryItem && inventory[slot].type == ItemID.Gel) {
-				inventory[slot].color = Main.DiscoColor; // Change the color of the item into a "random" color
+				inventory[slot].color = Main.DiscoColor; // 更改 the color of the item into a "random" color
 				inventory[slot].rare = Main.rand.Next(ItemRarityID.Count); // Random rarity
 				SoundEngine.PlaySound(SoundID.Item4); // Play mana crystal using sound
 
@@ -26,7 +26,7 @@ namespace ExampleMod.Common.Players
 
 		// Here we override the cursor style
 		public override bool HoverSlot(Item[] inventory, int context, int slot) {
-			// Apply our changes if this item is in inventory and is gel
+			// 应用 our changes if this item is in inventory and is gel
 			if (context == ItemSlot.Context.InventoryItem && inventory[slot].type == ItemID.Gel) {
 				// If player is holding shift, use FavoriteStar texture to indicate that a special action will be performed
 				if (ItemSlot.ShiftInUse) {

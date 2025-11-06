@@ -39,7 +39,7 @@ namespace ExampleMod.Common.Players
 				Player.body = EquipLoader.GetEquipSlot(Mod, exampleCostume.Name, EquipType.Body);
 				Player.legs = EquipLoader.GetEquipSlot(Mod, exampleCostume.Name, EquipType.Legs);
 
-				// Use the alternative equipment textures by calling them through their internal name.
+				// 使用 the alternative equipment textures by calling them through their internal name.
 				if (Player.wet) {
 					Player.head = EquipLoader.GetEquipSlot(Mod, "BlockyAlt", EquipType.Head);
 					Player.body = EquipLoader.GetEquipSlot(Mod, "BlockyAlt", EquipType.Body);

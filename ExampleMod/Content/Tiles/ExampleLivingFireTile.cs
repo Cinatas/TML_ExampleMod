@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Tiles
 			// This set includes Cobwebs, Coin Piles, Living Fire Blocks, Smoke Blocks, and Bubble Blocks.
 			TileID.Sets.CanPlaceNextToNonSolidTile[Type] = true;
 
-			DustType = ModContent.DustType<Sparkle>(); // Set the dust type.
+			DustType = ModContent.DustType<Sparkle>(); // 设置 the dust type.
 
 			// 在这里 we set the map color to the same color as the light color.
 			// 我们 are accessing a variable that we defined inside of the item so we don't have to repeat entering the values.

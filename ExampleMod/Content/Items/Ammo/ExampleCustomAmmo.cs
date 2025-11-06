@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Ammo
 {
 	// This Example class demonstrates how to make your own weapon ammo.
-	// Used by ExampleCustomAmmoGun
+	// 使用d by ExampleCustomAmmoGun
 	public class ExampleCustomAmmo : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Items.Ammo
 
 			Item.maxStack = Item.CommonMaxStack; // The maximum number of items that can be contained within a single stack
 			Item.consumable = true; // This marks the item as consumable, making it automatically be consumed when it's used as ammunition, or something else, if possible
-			Item.knockBack = 2f; // Sets the item's knockback. Ammunition's knockback added together with weapon and projectiles.
+			Item.knockBack = 2f; // 设置s the item's knockback. Ammunition's knockback added together with weapon and projectiles.
 			Item.value = Item.sellPrice(0, 0, 1, 0); // Item price in copper coins (can be converted with Item.sellPrice/Item.buyPrice)
 			Item.rare = ItemRarityID.Yellow; // The color that the item's name will be in-game.
 			Item.shoot = ModContent.ProjectileType<Projectiles.ExampleHomingProjectile>(); // The projectile that weapons fire when using this item as ammunition.

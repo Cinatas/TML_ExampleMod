@@ -28,7 +28,7 @@ public class FreeBaitBuilderToggle : BuilderToggle
 	public override Position OrderPosition => new After(TorchBiome);
 
 	public override bool OnLeftClick(ref SoundStyle? sound) {
-		// Change the click sound.
+		// 更改 the click sound.
 		// 如果 you don't want a sound to play, set sound to null.
 		sound = SoundID.DrumTomHigh;
 		return true;
@@ -48,7 +48,7 @@ public class FreeBaitBuilderToggle : BuilderToggle
 		Main.LocalPlayer.QuickSpawnItem(new EntitySource_Gift(Main.LocalPlayer), itemType, 10);
 	}
 
-	// Use custom drawing to handle frame changes.
+	// 使用 custom drawing to handle frame changes.
 	public override bool Draw(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams) {
 		drawParams.Frame = drawParams.Texture.Frame(4, 2, CurrentState % 4);
 		return true;
