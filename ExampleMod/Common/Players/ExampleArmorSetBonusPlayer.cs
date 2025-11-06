@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.Players
 {
-	// This ModPlayer facilitates a set bonus effect. This example shows how either ArmorSetBonusActivated or ArmorSetBonusHeld can be used depending on how you want the player to interact with the set bonus effect. 
+	// 此 ModPlayer 促进套装奖励效果。此示例展示了如何根据你希望玩家与套装奖励效果交互的方式使用 ArmorSetBonusActivated 或 ArmorSetBonusHeld。 
 	public class ExampleArmorSetBonusPlayer : ModPlayer
 	{
 		public bool ExampleSetHood; // Indicates if the ExampleSet with ExampleHood is the active armor set.

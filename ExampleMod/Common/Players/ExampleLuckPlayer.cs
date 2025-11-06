@@ -6,12 +6,12 @@ namespace ExampleMod.Common.Players
 	public class ExampleLuckPlayer : ModPlayer
 	{
 		public override void ModifyLuck(ref float luck) { // ModifyLuck is what you'll normally use for any modded content that wants to modify luck.
-			// Luck in total has a vanilla soft cap of 1. You can technically go above that value, but there's no benefit to be gained with vanilla luck calculations.
-			// However, modders can use the luck value however they want, so going above 1 may be beneficial. Decimal values are still recommended, though.
+			// 总运气在原版中有一个软上限为 1。你技术上可以超过该值，但使用原版运气计算没有好处。
+			// 但是，模组作者可以按照他们想要的方式使用运气值，因此超过 1 可能是有益的。不过，仍然建议使用十进制值。
 			if (Main.hardMode) { // If it is currently hardmode...
 				luck += 0.5f; // ...add 0.5 luck to the total luck count!
 			}
-			// Of course you can make luck negative as well, in which case a soft cap of -1 applies.
+			// 当然，你也可以使运气为负，在这种情况下，软上限为 -1。
 
 			// As the above code runs every time luck is calculated, and `hardMode` is accessible on both client and server, we don't need to worry about multiplayer syncing.
 			// If you have some code which relies on client side calculations, you will need to sync the variables to calculate luck correctly on the server.

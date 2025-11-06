@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.Players
 {
-	// This class showcases how to use items in the chest player stands on (if exists)
-	// for crafting, even if it is not opened by the player
-	// One use of this is allowing items in your custom bank to be used for crafting
+	// 此类展示如何使用玩家站立的箱子中的物品（如果存在）
+	// 用于制作，即使玩家没有打开它
+	// 其中一个用途是允许你的自定义银行中的物品用于制作
 	public class ExampleRecipeMaterialPlayer : ModPlayer
 	{
 		private int _chestIndexNearby = -1;

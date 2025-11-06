@@ -11,7 +11,7 @@ namespace ExampleMod.Common.Players
 {
 	public class ExampleCostumePlayer : ModPlayer
 	{
-		// These 6 relate to ExampleCostume.
+		// 这 6 个与 ExampleCostume 相关。
 		public bool BlockyAccessoryPrevious;
 		public bool BlockyAccessory;             // If true, an accessory granting potential effects is equipped
 		public bool BlockyHideVanity;            // If true, the item is in a hidden accessory slot
@@ -25,14 +25,14 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override void UpdateEquips() {
-			// Make sure this condition is the same as the condition in the Buff to remove itself. We do this here instead of in ModItem.UpdateAccessory in case we want future upgraded items to set blockyAccessory
+			// 确保此条件与增益中删除自身的条件相同。我们在这里执行此操作而不是在 ModItem.UpdateAccessory 中，以防我们希望将来升级的物品设置 blockyAccessory
 			if (Player.townNPCs >= 1 && BlockyAccessory) {
 				Player.AddBuff(ModContent.BuffType<Blocky>(), 60);
 			}
 		}
 
 		public override void FrameEffects() {
-			// TODO: Need new hook, FrameEffects doesn't run while paused.
+			// TODO：需要新钩子，FrameEffects 在暂停时不运行。
 			if (BlockyVanityEffects) {
 				var exampleCostume = ModContent.GetInstance<ExampleCostume>();
 				Player.head = EquipLoader.GetEquipSlot(Mod, exampleCostume.Name, EquipType.Head);

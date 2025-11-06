@@ -7,15 +7,15 @@ namespace ExampleMod.Common.Players
 {
 	public class ExampleModAccessorySlot1 : ModAccessorySlot
 	{
-		// If the class is empty, everything will default to a basic vanilla slot.
+		// 如果类为空，所有内容都将默认为基本原版槽位。
 	}
 
 	public class ExampleCustomLocationAndTextureSlot : ModAccessorySlot
 	{
-		// We will place the slot to be at the center of the map, making the decision not to follow the internal UI handling
+		// 我们将槽位放置在地图的中心，决定不遵循内部 UI 处理
 		public override Vector2? CustomLocation => new Vector2(Main.screenWidth / 2, 3 * Main.screenHeight / 4);
 
-		// We will draw the vanity slot when there's a dye
+		// 当有染料时，我们将绘制时装槽位
 		public override bool DrawVanitySlot => !DyeItem.IsAir;
 
 		//     We will use our 'custom' textures

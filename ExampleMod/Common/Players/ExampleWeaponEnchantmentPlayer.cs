@@ -31,7 +31,7 @@ namespace ExampleMod.Common.Players
 			}
 		}
 
-		// MeleeEffects and EmitEnchantmentVisualsAt apply the visual effects of the weapon imbue to items and projectiles respectively.
+		// MeleeEffects 和 EmitEnchantmentVisualsAt 分别将武器灌注的视觉效果应用于物品和弹幕。
 		public override void MeleeEffects(Item item, Rectangle hitbox) {
 			if (exampleWeaponImbue && item.DamageType.CountsAsClass<MeleeDamageClass>() && !item.noMelee && !item.noUseGraphic) {
 				if (Main.rand.NextBool(5)) {

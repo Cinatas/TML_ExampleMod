@@ -16,10 +16,10 @@ namespace ExampleMod.Common.Players
 	{
 		public float AdditiveCritDamageBonus;
 
-		// These 3 fields relate to the Example Dodge. Example Dodge is modeled after the dodge ability of the Hallowed armor set bonus.
-		// exampleDodge indicates if the player actively has the ability to dodge the next attack. This is set by ExampleDodgeBuff, which in this example is applied by the HitModifiersShowcase weapon. The buff is only applied if exampleDodgeCooldown is 0 and will be cleared automatically if an attack is dodged or if the player is no longer holding HitModifiersShowcase.
+		// 这 3 个字段与示例闪避相关。示例闪避是根据神圣套装奖励的闪避能力建模的。
+		// exampleDodge 指示玩家是否主动具有闪避下一次攻击的能力。这由 ExampleDodgeBuff 设置，在此示例中由 HitModifiersShowcase 武器应用。仅当 exampleDodgeCooldown 为 0 时才应用增益，如果闪避攻击或玩家不再持有 HitModifiersShowcase，则会自动清除。
 		public bool exampleDodge; // TODO: Example of custom player render
-		// Used to add a delay between Example Dodge being consumed and the next time the dodge buff can be acquired.
+		// 用于在消耗示例闪避和下次可以获得闪避增益之间添加延迟。
 		public int exampleDodgeCooldown;
 		// Controls the intensity of the visual effect of the dodge.
 		public int exampleDodgeVisualCounter;

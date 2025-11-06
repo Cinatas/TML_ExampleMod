@@ -11,11 +11,11 @@ namespace ExampleMod.Common.Players
 	/// </summary>
 	public class ExampleInfoDisplayPlayer : ModPlayer
 	{
-		// Flag checking when information display should be activated
+		// 标志检查信息显示何时应该被激活
 		public bool showMinionCount;
 
-		// Make sure to use the right Reset hook. This one is unique, as it will still be
-		// called when the game is paused; this allows for info accessories to keep updating properly.
+		// 确保使用正确的 Reset 钩子。这个是独特的，因为它仍然会
+		// 在游戏暂停时调用；这允许信息饰品继续正确更新。
 		public override void ResetInfoAccessories() {
 			showMinionCount = false;
 		}

@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.Players
 {
-	// This class showcases things you can do with fishing
+	// 此类展示你可以用钓鱼做什么
 	public class ExampleFishingPlayer : ModPlayer
 	{
 		public bool hasExampleCrateBuff;
@@ -19,8 +19,8 @@ namespace ExampleMod.Common.Players
 		}
 
 		public override void ModifyFishingAttempt(ref FishingAttempt attempt) {
-			// If the player has the Example Crate buff (given by Example Crate Potion), 10% additional chance that the catch will be a crate
-			// The "tier" of the crate depends on the rarity, which we don't modify here, see the comments in CatchFish for details
+			// 如果玩家有示例箱子增益（由示例箱子药水给予），则捕获物是箱子的额外 10% 概率
+			// 箱子的等级取决于稀有度，我们在这里不修改它，有关详细信息，请参阅 CatchFish 中的注释
 			if (hasExampleCrateBuff && !attempt.crate) {
 				if (Main.rand.Next(100) < 10) {
 					attempt.crate = true;

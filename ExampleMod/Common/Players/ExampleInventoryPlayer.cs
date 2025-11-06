@@ -10,9 +10,9 @@ namespace ExampleMod.Common.Players
 {
 	public class ExampleInventoryPlayer : ModPlayer
 	{
-		// AddStartingItems is a method you can use to add items to the player's starting inventory.
-		// It is also called when the player dies a mediumcore death
-		// Return an enumerable with the items you want to add to the inventory.
+		// AddStartingItems 是一种方法，你可以使用它将物品添加到玩家的起始库存中。
+		// 当玩家中核死亡时也会调用它
+		// 返回一个包含你想要添加到库存的物品的可枚举对象。
 		// This method adds an ExampleItem and 256 gold ore to the player's inventory.
 		//
 		// If you know what 'yield return' is, you can also use that here, if you prefer so.
