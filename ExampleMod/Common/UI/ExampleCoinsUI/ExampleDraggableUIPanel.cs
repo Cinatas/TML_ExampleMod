@@ -5,11 +5,11 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleCoinsUI
 {
-	// This DraggableUIPanel class inherits from UIPanel
-	// Inheriting is a great tool for UI design. By inheriting, we get the background drawing for free from UIPanel
-	// We've added some code to allow the panel to be dragged around
-	// We've also added some code to ensure that the panel will bounce back into bounds if it is dragged outside or the screen resizes
-	// UIPanel does not prevent the player from using items when the mouse is clicked, so we've added that as well
+	// 此 DraggableUIPanel 类继承自 UIPanel
+	// 继承是 UI 设计的好工具。通过继承，我们从 UIPanel 免费获得背景绘制
+	// 我们添加了一些代码以允许面板被拖动
+	// 我们还添加了一些代码以确保如果面板被拖到外面或屏幕调整大小，面板将弹回边界
+	// UIPanel 不会阻止玩家在单击鼠标时使用物品，所以我们也添加了这个
 	public class ExampleDraggableUIPanel : UIPanel
 	{
 		// Stores the offset from the top left of the UIPanel while dragging

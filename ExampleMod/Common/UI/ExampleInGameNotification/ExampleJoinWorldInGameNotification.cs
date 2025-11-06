@@ -11,18 +11,18 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleInGameNotification
 {
-	// This is a custom implementation of IInGameNotification for usage with the InGameNotificationSystem class.
-	// It displays a welcome message to the player when they join a world, controlled through ExampleInGameNotificationPlayer.
+	// 这是用于 InGameNotificationSystem 类的 IInGameNotification 的自定义实现。
+	// 它在玩家加入世界时向玩家显示欢迎消息，通过 ExampleInGameNotificationPlayer 控制。
 	public class ExampleJoinWorldInGameNotification : IInGameNotification
 	{
-		// Remove this notification once the 5-second timer is up.
+		// 一旦 5 秒计时器结束，删除此通知。
 		public bool ShouldBeRemoved => timeLeft <= 0;
 
 		// 5 seconds, controls how long this notification lasts for.
 		private int timeLeft = 5 * 60;
 
-		// The texture we'll use for our icon display.
-		// Let's keep it simple and use use the ExampleItem's sprite.
+		// 我们将用于图标显示的纹理。
+		// 让我们保持简单并使用 ExampleItem 的精灵。
 		private Asset<Texture2D> iconTexture = TextureAssets.Item[ModContent.ItemType<ExampleItem>()];
 
 		// The Scale and Opacity properties are used to control the scale and opacity of the UI popup,

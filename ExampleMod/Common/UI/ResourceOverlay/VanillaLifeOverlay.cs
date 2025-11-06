@@ -11,10 +11,10 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 {
 	public class VanillaLifeOverlay : ModResourceOverlay
 	{
-		// This field is used to cache vanilla assets used in the CompareAssets helper method further down in this file
+		// 此字段用于缓存此文件下方 CompareAssets 辅助方法中使用的原版资产
 		private Dictionary<string, Asset<Texture2D>> vanillaAssetCache = new();
 
-		// These fields are used to cache the result of ModContent.Request<Texture2D>()
+		// 这些字段用于缓存 ModContent.Request<Texture2D>() 的结果
 		private Asset<Texture2D> heartTexture, fancyPanelTexture, barsFillingTexture, barsPanelTexture;
 
 		public override void PostDrawResource(ResourceOverlayDrawContext context) {
@@ -27,13 +27,13 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 
 			int exampleFruits = Main.LocalPlayer.GetModPlayer<ExampleStatIncreasePlayer>().exampleLifeFruits;
 
-			// Life resources are drawn over in groups of two
+			// 生命资源以两个为一组绘制
 			if (context.resourceNumber >= 2 * exampleFruits)
 				return;
 
-			// NOTE: CompareAssets is defined below this method's body
+			// 注意：CompareAssets 在此方法主体下方定义
 			if (asset == TextureAssets.Heart || asset == TextureAssets.Heart2) {
-				// Draw over the Classic hearts
+				// 在经典心上绘制
 				DrawClassicFancyOverlay(context);
 			}
 			else if (CompareAssets(asset, fancyFolder + "Heart_Fill") || CompareAssets(asset, fancyFolder + "Heart_Fill_B")) {

@@ -12,7 +12,7 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 		private UserInterface exampleCoinUserInterface;
 		internal ExampleCoinsUIState exampleCoinsUI;
 
-		// These two methods will set the state of our custom UI, causing it to show or hide
+		// 这两个方法将设置我们的自定义 UI 的状态，导致它显示或隐藏
 		public void ShowMyUI() {
 			exampleCoinUserInterface?.SetState(exampleCoinsUI);
 		}
@@ -22,17 +22,17 @@ namespace ExampleMod.Common.UI.ExampleCoinsUI
 		}
 
 		public override void Load() {
-			// Create custom interface which can swap between different UIStates
+			// 创建可以在不同 UIState 之间交换的自定义界面
 			exampleCoinUserInterface = new UserInterface();
-			// Creating custom UIState
+			// 创建自定义 UIState
 			exampleCoinsUI = new ExampleCoinsUIState();
 
-			// Activate calls Initialize() on the UIState if not initialized, then calls OnActivate and then calls Activate on every child element
+			// Activate 在 UIState 未初始化时调用 Initialize()，然后调用 OnActivate，然后在每个子元素上调用 Activate
 			exampleCoinsUI.Activate();
 		}
 
 		public override void UpdateUI(GameTime gameTime) {
-			// Here we call .Update on our custom UI and propagate it to its state and underlying elements
+			// 在这里我们在自定义 UI 上调用 .Update 并将其传播到其状态和底层元素
 			if (exampleCoinUserInterface?.CurrentState != null) {
 				exampleCoinUserInterface?.Update(gameTime);
 			}

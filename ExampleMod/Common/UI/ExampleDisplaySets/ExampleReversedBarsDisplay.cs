@@ -7,11 +7,11 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.UI.ExampleDisplaySets
 {
-	// This file showcases an example resource display set
-	// In this example, it draws a clone of the Bars display set, but with the mana and stars "swapped" to the other location
+	// 此文件展示一个示例资源显示集
+	// 在此示例中，它绘制 Bars 显示集的克隆，但将魔力和星星"交换"到另一个位置
 	public class ExampleReversedBarsDisplay : ModResourceDisplaySet
 	{
-		// Variable names were copied from HorizontalBarsPlayerResourcesDisplaySet
+		// 变量名称是从 HorizontalBarsPlayerResourcesDisplaySet 复制的
 		private int _maxSegmentCount;
 		private int _hpSegmentsCount;
 		private int _mpSegmentsCount;
@@ -48,7 +48,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 			_panelRightMP = ModContent.Request<Texture2D>(modFolder + "MP_Panel_Right");
 		}
 
-		// DrawLife runs before DrawMana, so keep that in mind
+		// DrawLife 在 DrawMana 之前运行，所以请记住这一点
 		public override void DrawLife(SpriteBatch spriteBatch) {
 			int num = 16;
 			int num2 = 18;
@@ -59,7 +59,7 @@ namespace ExampleMod.Common.UI.ExampleDisplaySets
 
 			bool isHovered = false;
 
-			// Draw the life panels
+			// 绘制生命面板
 			ResourceDrawSettings resourceDrawSettings = default;
 			resourceDrawSettings.ElementCount = _hpSegmentsCount + 2;
 			resourceDrawSettings.ElementIndexOffset = 0;

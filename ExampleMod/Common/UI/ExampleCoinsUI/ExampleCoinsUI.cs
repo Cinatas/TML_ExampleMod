@@ -12,16 +12,16 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleCoinsUI
 {
-	// ExampleUIs visibility is toggled by typing "/coins" in chat (See CoinCommand.cs)
-	// ExampleCoinsUI is a simple UI example showing how to use UIPanel, UIImageButton, and even a custom UIElement
-	// For more info about UI you can check https://github.com/tModLoader/tModLoader/wiki/Basic-UI-Element and https://github.com/tModLoader/tModLoader/wiki/Advanced-guide-to-custom-UI 
+	// ExampleUI 的可见性通过在聊天中输入"/coins"来切换（参见 CoinCommand.cs）
+	// ExampleCoinsUI 是一个简单的 UI 示例，展示如何使用 UIPanel、UIImageButton，甚至自定义 UIElement
+	// 有关 UI 的更多信息，你可以查看 https://github.com/tModLoader/tModLoader/wiki/Basic-UI-Element 和 https://github.com/tModLoader/tModLoader/wiki/Advanced-guide-to-custom-UI 
 	internal class ExampleCoinsUIState : UIState
 	{
 		public ExampleDraggableUIPanel CoinCounterPanel;
 		public UIMoneyDisplay MoneyDisplay;
 
-		// In OnInitialize, we place various UIElements onto our UIState (this class).
-		// UIState classes have width and height equal to the full screen, because of this, usually we first define a UIElement that will act as the container for our UI.
+		// 在 OnInitialize 中，我们将各种 UIElement 放置到我们的 UIState（此类）上。
+		// UIState 类的宽度和高度等于全屏，因此，通常我们首先定义一个 UIElement，它将充当我们的 UI 的容器。
 		// We then place various other UIElement onto that container UIElement positioned relative to the container UIElement.
 		public override void OnInitialize() {
 			// Here we define our container UIElement. In DraggableUIPanel.cs, you can see that DraggableUIPanel is a UIPanel with a couple added features.

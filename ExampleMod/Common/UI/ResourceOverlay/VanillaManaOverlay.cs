@@ -11,13 +11,13 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 {
 	public class VanillaManaOverlay : ModResourceOverlay
 	{
-		// This field is used to cache vanilla assets used in the CompareAssets helper method further down in this file
+		// 此字段用于缓存此文件下方 CompareAssets 辅助方法中使用的原版资产
 		private Dictionary<string, Asset<Texture2D>> vanillaAssetCache = new();
 
-		// These fields are used to cache the result of ModContent.Request<Texture2D>()
+		// 这些字段用于缓存 ModContent.Request<Texture2D>() 的结果
 		private Asset<Texture2D> starTexture, fancyPanelTexture, barsFillingTexture, barsPanelTexture;
 
-		// Unlike VanillaLifeOverlay, every star is drawn over by this hook.
+		// 与 VanillaLifeOverlay 不同，此钩子绘制每个星星。
 		public override void PostDrawResource(ResourceOverlayDrawContext context) {
 			Asset<Texture2D> asset = context.texture;
 
@@ -27,9 +27,9 @@ namespace ExampleMod.Common.UI.ResourceOverlay
 			if (Main.LocalPlayer.GetModPlayer<ExampleStatIncreasePlayer>().exampleManaCrystals <= 0)
 				return;
 
-			// NOTE: CompareAssets is defined below this method's body
+			// 注意：CompareAssets 在此方法主体下方定义
 			if (asset == TextureAssets.Mana) {
-				// Draw over the Classic stars
+				// 在经典星星上绘制
 				DrawClassicFancyOverlay(context);
 			}
 			else if (CompareAssets(asset, fancyFolder + "Star_Fill")) {

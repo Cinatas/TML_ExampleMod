@@ -12,11 +12,11 @@ using Terraria.UI;
 
 namespace ExampleMod.Common.UI.ExampleResourceUI
 {
-	// This custom UI will show whenever the player is holding the ExampleCustomResourceWeapon item and will display the player's custom resource amounts that are tracked in ExampleResourcePlayer
+	// 每当玩家持有 ExampleCustomResourceWeapon 物品时，此自定义 UI 将显示，并将显示在 ExampleResourcePlayer 中跟踪的玩家自定义资源量
 	internal class ExampleResourceBar : UIState
 	{
-		// For this bar we'll be using a frame texture and then a gradient inside bar, as it's one of the more simpler approaches while still looking decent.
-		// Once this is all set up make sure to go and do the required stuff for most UI's in the ModSystem class.
+		// 对于此条，我们将使用框架纹理，然后在条内使用渐变，因为这是更简单的方法之一，同时看起来还不错。
+		// 一旦全部设置好，请确保在 ModSystem 类中为大多数 UI 执行所需的操作。
 		private UIText text;
 		private UIElement area;
 		private UIImage barFrame;
@@ -24,8 +24,8 @@ namespace ExampleMod.Common.UI.ExampleResourceUI
 		private Color gradientB;
 
 		public override void OnInitialize() {
-			// Create a UIElement for all the elements to sit on top of, this simplifies the numbers as nested elements can be positioned relative to the top left corner of this element. 
-			// UIElement is invisible and has no padding.
+			// 创建一个 UIElement 供所有元素位于其上，这简化了数字，因为嵌套元素可以相对于此元素的左上角定位。 
+			// UIElement 是不可见的，没有填充。
 			area = new UIElement();
 			area.Left.Set(-area.Width.Pixels - 600, 1f); // Place the resource bar to the left of the hearts.
 			area.Top.Set(30, 0f); // Placing it just a bit below the top of the screen.
