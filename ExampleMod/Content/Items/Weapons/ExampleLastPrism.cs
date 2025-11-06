@@ -9,13 +9,13 @@ namespace ExampleMod.Content.Items.Weapons
 {
 	public class ExampleLastPrism : ModItem
 	{
-		// You can use a vanilla texture for your item by using the format: "Terraria/Item_<Item ID>".
+		// 你 can use a vanilla texture for your item by using the format: "Terraria/Item_<Item ID>".
 		public override string Texture => "Terraria/Images/Item_" + ItemID.LastPrism;
 		public static Color OverrideColor = new(122, 173, 255);
 
 		public override void SetDefaults() {
 			// Start by using CloneDefaults to clone all the basic item properties from the vanilla Last Prism.
-			// For example, this copies sprite size, use style, sell price, and the item being a magic weapon.
+			// 对于 example, this copies sprite size, use style, sell price, and the item being a magic weapon.
 			Item.CloneDefaults(ItemID.LastPrism);
 			Item.mana = 4;
 			Item.damage = 42;

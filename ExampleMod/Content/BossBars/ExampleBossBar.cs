@@ -8,13 +8,13 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.BossBars
 {
-	// Shows basic boss bar code using a custom colored texture. It only does visual things, so for a more practical boss bar, see the other example (MinionBossBossBar)
-	// To use this, in an NPCs SetDefaults, write:
+	// 展示 basic boss bar code using a custom colored texture. It only does visual things, so for a more practical boss bar, see the other example (MinionBossBossBar)
+	// 要 use this, in an NPCs SetDefaults, write:
 	//  NPC.BossBar = ModContent.GetInstance<ExampleBossBar>();
 
-	// Keep in mind that if the NPC has a boss head icon, it will automatically have the common boss health bar from vanilla. A ModBossBar is not mandatory for a boss.
+	// 请记住 that if the NPC has a boss head icon, it will automatically have the common boss health bar from vanilla. A ModBossBar is not mandatory for a boss.
 
-	// You can make it so your NPC never shows a boss bar, such as Dungeon Guardian or Lunatic Cultist Clone:
+	// 你 can make it so your NPC never shows a boss bar, such as Dungeon Guardian or Lunatic Cultist Clone:
 	//  NPC.BossBar = Main.BigBossProgressBar.NeverValid;
 	public class ExampleBossBar : ModBossBar
 	{

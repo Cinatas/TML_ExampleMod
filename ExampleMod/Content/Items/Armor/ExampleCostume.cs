@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Items.Armor
 	public class ExampleCostume : ModItem
 	{
 		public override void Load() {
-			// The code below runs only if we're not loading on a server
+			// code below runs only if we're not loading on a server
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

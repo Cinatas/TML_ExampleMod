@@ -21,7 +21,7 @@ namespace ExampleMod.Content.Items
 			Item.autoReuse = true;
 			Item.UseSound = SoundID.Item1;
 
-			// In Visual Studio, you can click on "ItemHoldStyleID" and then press F12 to see the list of possible values. You can also type "ItemHoldStyleID." to view the list of possible values.
+			// 在 Visual Studio, you can click on "ItemHoldStyleID" and then press F12 to see the list of possible values. You can also type "ItemHoldStyleID." to view the list of possible values.
 			Item.holdStyle = ItemHoldStyleID.None;
 		}
 

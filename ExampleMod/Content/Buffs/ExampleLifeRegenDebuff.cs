@@ -4,8 +4,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Buffs
 {
-	// This class serves as an example of a debuff that causes constant loss of life
-	// See ExampleLifeRegenDebuffPlayer.UpdateBadLifeRegen at the end of the file for more information
+	// 此类 serves as an example of a debuff that causes constant loss of life
+	// 参见 ExampleLifeRegenDebuffPlayer.UpdateBadLifeRegen at the end of the file for more information
 	public class ExampleLifeRegenDebuff : ModBuff
 	{
 		public override void SetStaticDefaults() {
@@ -31,8 +31,8 @@ namespace ExampleMod.Content.Buffs
 		}
 
 		// Allows you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
-		// This is typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
-		// The player will take damage at a rate of half the number you subtract per second
+		// 这是 typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
+		// player will take damage at a rate of half the number you subtract per second
 		public override void UpdateBadLifeRegen() {
 			if (lifeRegenDebuff) {
 				// These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects

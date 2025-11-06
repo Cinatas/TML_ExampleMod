@@ -8,12 +8,12 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Pets.MinionBossPet
 {
-	// You can find a simple pet example in ExampleMod\Content\Pets\ExamplePet
+	// 你 can find a simple pet example in ExampleMod\Content\Pets\ExamplePet
 	// This pet uses custom AI and drawing to make it more special (It's a Master Mode boss pet after all)
 	// It behaves similarly to the Creeper Egg or Suspicious Grinning Eye pets, but takes some visual properties from ExampleMod's Minion Boss
 	public class MinionBossPetProjectile : ModProjectile
 	{
-		// This is a ref property, lets us write Projectile.ai[0] as whatever name we want
+		// 这是 a ref property, lets us write Projectile.ai[0] as whatever name we want
 		public ref float AlphaForVisuals => ref Projectile.ai[0];
 
 		// This projectile uses an additional texture for drawing
@@ -38,20 +38,20 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		public static void CharacterPreviewCustomization(Projectile proj, bool walking) {
 			// Modified floating from DelegateMethods.CharacterPreview.Float, this is technically not representative of how the pet actually looks and moves ingame, but the Suspicious Grinning Eye has that too
 
-			// If you don't need to modify it, just call DelegateMethods.CharacterPreview.Float(proj, walking) directly here instead and change properties of your pet after it.
-			// You do not need this otherwise and can use the preset directly as showcased in ExamplePetProjectile
+			// 如果 you don't need to modify it, just call DelegateMethods.CharacterPreview.Float(proj, walking) directly here instead and change properties of your pet after it.
+			// 你 do not need this otherwise and can use the preset directly as showcased in ExamplePetProjectile
 			float half = 0.5f;
 			float timer = (float)Main.timeForVisualEffects % 60f / 60f;
 			float speed = 1f; // This is normally 2
 			proj.position.Y += 0f - half + (float)(Math.Cos(timer * MathHelper.TwoPi * speed) * half * 2f);
 
-			// We are only using this method for one specific projectile, so it's fine to cast the ModProjectile directly like this
+			// 我们 are only using this method for one specific projectile, so it's fine to cast the ModProjectile directly like this
 			MinionBossPetProjectile minion = (MinionBossPetProjectile)proj.ModProjectile;
 
 			// Need to set the alpha to 1f to hide the eyes that would normally draw and show the actual pet
 			minion.AlphaForVisuals = 1f;
 
-			// You can use Projectile.isAPreviewDummy in the draw code instead, it depends if you prefer changing the conditions leading up to the drawing, or the drawing itself
+			// 你 can use Projectile.isAPreviewDummy in the draw code instead, it depends if you prefer changing the conditions leading up to the drawing, or the drawing itself
 		}
 
 		public override void SetDefaults() {
@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// For organization, the AI is split into several methods defined below
+			// 对于 organization, the AI is split into several methods defined below
 			// They are NOT part of the ModProjectile class!
 			CheckActive(player);
 
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 			bool movesFast = Projectile.velocity.LengthSquared() > 6f * 6f;
 
 			if (movesFast) {
-				// If moving very fast, rotate the projectile towards it smoothly
+				// 如果 moving very fast, rotate the projectile towards it smoothly
 				float rotationVel = Projectile.velocity.X * 0.08f + Projectile.velocity.Y * Projectile.spriteDirection * 0.02f;
 				if (Math.Abs(Projectile.rotation - rotationVel) >= MathHelper.Pi) {
 					if (rotationVel < Projectile.rotation) {
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.Pets.MinionBossPet
 				Projectile.rotation = (Projectile.rotation * (rotationInertia - 1f) + rotationVel) / rotationInertia;
 			}
 			else {
-				// If moving at regular speeds, rotate the projectile towards its default rotation (0) smoothly if necessary
+				// 如果 moving at regular speeds, rotate the projectile towards its default rotation (0) smoothly if necessary
 				if (Projectile.rotation > MathHelper.Pi) {
 					Projectile.rotation -= MathHelper.TwoPi;
 				}

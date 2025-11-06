@@ -34,13 +34,13 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.shoot = ProjectileID.StarWrath; // ID of the projectiles the sword will shoot
 			Item.shootSpeed = 8f; // Speed of the projectiles the sword will shoot
 
-			// If you want melee speed to only affect the swing speed of the weapon and not the shoot speed (not recommended)
+			// 如果 you want melee speed to only affect the swing speed of the weapon and not the shoot speed (not recommended)
 			// Item.attackSpeedOnlyAffectsWeaponAnimation = true;
 
 			// Normally shooting a projectile makes the player face the projectile, but if you don't want that (like the beam sword) use this line of code
 			// Item.ChangePlayerDirectionOnShoot = false;
 		}
-		// This method gets called when firing your weapon/sword.
+		// 此方法 gets called when firing your weapon/sword.
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
 			float ceilingLimit = target.Y;

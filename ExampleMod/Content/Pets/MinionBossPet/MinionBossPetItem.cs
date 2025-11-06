@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Pets.MinionBossPet
 {
-	// You can find a simple pet example in the ExampleMod\Content\Pets\ExamplePet\ folder
+	// 你 can find a simple pet example in the ExampleMod\Content\Pets\ExamplePet\ folder
 	public class MinionBossPetItem : ModItem
 	{
 		public override void SetDefaults() {

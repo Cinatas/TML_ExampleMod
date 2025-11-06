@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Consumables
 {
 	// Basic code for a fishing crate
-	// The catch code is in a separate ModPlayer class (ExampleFishingPlayer)
-	// The placed tile is in a separate ModTile class
+	// catch code is in a separate ModPlayer class (ExampleFishingPlayer)
+	// placed tile is in a separate ModTile class
 	public class ExampleFishingCrate : ModItem
 	{
 		public override void SetStaticDefaults() {

@@ -32,7 +32,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
@@ -45,14 +45,14 @@ namespace ExampleMod.Content.NPCs
 
 		public override void Init() {
 			// Set the segment variance
-			// If you want the segment length to be constant, set these two properties to the same value
+			// 如果 you want the segment length to be constant, set these two properties to the same value
 			MinSegmentLength = 6;
 			MaxSegmentLength = 12;
 
 			CommonWormInit(this);
 		}
 
-		// This method is invoked from ExampleWormHead, ExampleWormBody and ExampleWormTail
+		// 此方法 is invoked from ExampleWormHead, ExampleWormBody and ExampleWormTail
 		internal static void CommonWormInit(Worm worm) {
 			// These two properties handle the movement of the worm
 			worm.MoveSpeed = 5.5f;
@@ -75,7 +75,7 @@ namespace ExampleMod.Content.NPCs
 				}
 
 				Player target = Main.player[NPC.target];
-				// If the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path to the target unobstructed by blocks, summon a projectile.
+				// 如果 the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path to the target unobstructed by blocks, summon a projectile.
 				if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1)) {
 					Vector2 direction = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
 					direction = direction.RotatedByRandom(MathHelper.ToRadians(10));

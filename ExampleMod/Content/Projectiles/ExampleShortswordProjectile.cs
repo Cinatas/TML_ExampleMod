@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// Shortsword projectiles are handled in a special way with how they draw and damage things
-	// The "hitbox" itself is closer to the player, the sprite is centered on it
+	// "hitbox" itself is closer to the player, the sprite is centered on it
 	// However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
 	// Values chosen mostly correspond to Iron Shortsword
 	public class ExampleShortswordProjectile : ModProjectile
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Projectiles
 
 		public const int TotalDuration = 16;
 
-		// The "width" of the blade
+		// "width" of the blade
 		public float CollisionWidth => 10f * Projectile.scale;
 
 		public int Timer {
@@ -54,7 +54,7 @@ namespace ExampleMod.Content.Projectiles
 
 			// Fade in and out
 			// GetLerpValue returns a value between 0f and 1f - if clamped is true - representing how far Timer got along the "distance" defined by the first two parameters
-			// The first call handles the fade in, the second one the fade out.
+			// first call handles the fade in, the second one the fade out.
 			// Notice the second call's parameters are swapped, this means the result will be reverted
 			Projectile.Opacity = Utils.GetLerpValue(0f, FadeInDuration, Timer, clamped: true) * Utils.GetLerpValue(TotalDuration, TotalDuration - FadeOutDuration, Timer, clamped: true);
 
@@ -68,7 +68,7 @@ namespace ExampleMod.Content.Projectiles
 			// Point towards where it is moving, applied offset for top right of the sprite respecting spriteDirection
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2 - MathHelper.PiOver4 * Projectile.spriteDirection;
 
-			// The code in this method is important to align the sprite with the hitbox how we want it to
+			// code in this method is important to align the sprite with the hitbox how we want it to
 			SetVisualOffsets();
 		}
 

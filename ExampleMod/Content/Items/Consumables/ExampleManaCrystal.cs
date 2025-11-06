@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This file showcases how to create an item that increases the player's maximum mana on use.
+	// 此文件 showcases how to create an item that increases the player's maximum mana on use.
 	// Within your ModPlayer, you need to save/load a count of usages. You also need to sync the data to other players.
-	// The overlay used to display the custom mana crystals can be found in Common/UI/ResourceDisplay/VanillaManaOverlay.cs
+	// overlay used to display the custom mana crystals can be found in Common/UI/ResourceDisplay/VanillaManaOverlay.cs
 	internal class ExampleManaCrystal : ModItem
 	{
 		public static readonly int MaxExampleManaCrystals = 10;
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items.Consumables
 				return null;
 			}
 
-			// This method handles permanently increasing the player's max mana and displaying the blue mana text
+			// 此方法 handles permanently increasing the player's max mana and displaying the blue mana text
 			player.UseManaMaxIncreasingItem(ManaPerCrystal);
 
 			// This field tracks how many of the example crystals have been consumed

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	// This example attempts to showcase most of the common boot accessory effects.
+	// 此示例 attempts to showcase most of the common boot accessory effects.
 	// Of particular note is a showcase of the correct approaches to various movement speed modifications.
 	[AutoloadEquip(EquipType.Shoes)]
 	public class ExampleBoots : ModItem

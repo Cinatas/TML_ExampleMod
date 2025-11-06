@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Armor
 {
-	// The AutoloadEquip attribute automatically attaches an equip texture to this item.
+	// AutoloadEquip attribute automatically attaches an equip texture to this item.
 	// Providing the EquipType.Head value here will result in TML expecting a X_Head.png file to be placed next to the item's main texture.
 	[AutoloadEquip(EquipType.Head)]
 	public class ExampleHood : ModItem
@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Armor
 		public static LocalizedText SetBonusText { get; private set; }
 
 		public override void SetStaticDefaults() {
-			// We are passing in "{0}" into WithFormatArgs to replace "{0}" with itself because we do the final formatting for this LocalizedText in UpdateArmorSet itself according to the players current ReversedUpDownArmorSetBonuses setting.
+			// 我们 are passing in "{0}" into WithFormatArgs to replace "{0}" with itself because we do the final formatting for this LocalizedText in UpdateArmorSet itself according to the players current ReversedUpDownArmorSetBonuses setting.
 			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs("{0}", ManaCostReductionPercent);
 		}
 
@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Items.Armor
 
 		// UpdateArmorSet allows you to give set bonuses to the armor.
 		public override void UpdateArmorSet(Player player) {
-			// This is the setbonus tooltip:
+			// 这是 the setbonus tooltip:
 			//   Double tap or hold DOWN/UP to toggle various armor shadow effects
 			//   10% reduced mana cost
 			player.setBonus = SetBonusText.Format(Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN"));

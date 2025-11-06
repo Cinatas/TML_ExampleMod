@@ -17,7 +17,7 @@ namespace ExampleMod.Content.TileEntities
 	/// </summary>
 	public class AdvancedPylonTileEntity : TEModdedPylon
 	{
-		// This is the main crux of this TileEntity; its pylon functionality will only work when this boolean is true.
+		// 这是 the main crux of this TileEntity; its pylon functionality will only work when this boolean is true.
 		public bool isActive;
 
 		public override void OnNetPlace() {
@@ -27,7 +27,7 @@ namespace ExampleMod.Content.TileEntities
 		}
 
 		public override void NetSend(BinaryWriter writer) {
-			// We want to make sure that our data is synced properly across clients and server.
+			// 我们 want to make sure that our data is synced properly across clients and server.
 			// NetSend is called whenever a TileEntitySharing message is sent, so the game will handle this automatically for us,
 			// granted that we send a message when we need to.
 			writer.Write(isActive);

@@ -77,23 +77,23 @@ namespace ExampleMod.Content.Tiles
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 
-			// We can determine the item to show on the cursor by getting the tile style and looking up the corresponding item drop.
+			// 我们 can determine the item to show on the cursor by getting the tile style and looking up the corresponding item drop.
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
 		}
 
 		public override float GetTorchLuck(Player player) {
 			// GetTorchLuck is called when there is an ExampleTorch nearby the client player
-			// In most use-cases you should return 1f for a good luck torch, or -1f for a bad luck torch.
-			// You can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
+			// 在 most use-cases you should return 1f for a good luck torch, or -1f for a bad luck torch.
+			// 你 can also add a smaller amount (eg 0.5) for a smaller positive/negative luck impact.
 			// Remember that the overall torch luck is decided by every torch around the player, so it may be wise to have a smaller amount of luck impact.
 			// Multiple example torches on screen will have no additional effect.
 
 			// Positive and negative luck are accumulated separately and then compared to some fixed limits in vanilla to determine overall torch luck.
 			// Positive luck is capped at 1, any value higher won't make any difference and negative luck is capped at 2.
-			// A negative luck of 2 will cancel out all torch luck bonuses.
+			// 一个 negative luck of 2 will cancel out all torch luck bonuses.
 
-			// The influence positive torch luck can have overall is 0.1 (if positive luck is any number less than 1) or 0.2 (if positive luck is greater than or equal to 1)
+			// influence positive torch luck can have overall is 0.1 (if positive luck is any number less than 1) or 0.2 (if positive luck is greater than or equal to 1)
 
 			bool inExampleUndergroundBiome = player.InModBiome<ExampleUndergroundBiome>();
 			return inExampleUndergroundBiome ? 1f : -0.1f; // ExampleTorch gives maximum positive luck when in example biome, otherwise a small negative luck
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Tiles
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
 			Tile tile = Main.tile[i, j];
 
-			// If the torch is on
+			// 如果 the torch is on
 			if (tile.TileFrameX < 66) {
 				int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
 				// Make it emit the following light.
@@ -137,7 +137,7 @@ namespace ExampleMod.Content.Tiles
 				return;
 			}
 
-			// The following code draws multiple flames on top our placed torch.
+			// following code draws multiple flames on top our placed torch.
 
 			int offsetY = 0;
 

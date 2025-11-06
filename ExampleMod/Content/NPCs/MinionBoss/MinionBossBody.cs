@@ -19,7 +19,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.NPCs.MinionBoss
 {
-	// The main part of the boss, usually referred to as "body"
+	// main part of the boss, usually referred to as "body"
 	[AutoloadBossHead] // This attribute looks for a texture called "ClassName_Head_Boss" and automatically registers it as the NPC boss head icon
 	public class MinionBossBody : ModNPC
 	{
@@ -28,13 +28,13 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		public static int secondStageHeadSlot = -1;
 
 		// This code here is called a property: It acts like a variable, but can modify other things. In this case it uses the NPC.ai[] array that has four entries.
-		// We use properties because it makes code more readable ("if (SecondStage)" vs "if (NPC.ai[0] == 1f)").
-		// We use NPC.ai[] because in combination with NPC.netUpdate we can make it multiplayer compatible. Otherwise (making our own fields) we would have to write extra code to make it work (not covered here)
+		// 我们 use properties because it makes code more readable ("if (SecondStage)" vs "if (NPC.ai[0] == 1f)").
+		// 我们 use NPC.ai[] because in combination with NPC.netUpdate we can make it multiplayer compatible. Otherwise (making our own fields) we would have to write extra code to make it work (not covered here)
 		public bool SecondStage {
 			get => NPC.ai[0] == 1f;
 			set => NPC.ai[0] = value ? 1f : 0f;
 		}
-		// If your boss has more than two stages, and since this is a boolean and can only be two things (true, false), consider using an integer or enum
+		// 如果 your boss has more than two stages, and since this is a boolean and can only be two things (true, false), consider using an integer or enum
 
 		// More advanced usage of a property, used to wrap around to floats to act as a Vector2
 		public Vector2 FirstStageDestination {
@@ -63,14 +63,14 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		private const int FirstStageTimerMax = 90;
-		// This is a reference property. It lets us write FirstStageTimer as if it's NPC.localAI[1], essentially giving it our own name
+		// 这是 a reference property. It lets us write FirstStageTimer as if it's NPC.localAI[1], essentially giving it our own name
 		public ref float FirstStageTimer => ref NPC.localAI[1];
 
-		// We could also repurpose FirstStageTimer since it's unused in the second stage, or write "=> ref FirstStageTimer", but then we have to reset the timer when the state switch happens
+		// 我们 could also repurpose FirstStageTimer since it's unused in the second stage, or write "=> ref FirstStageTimer", but then we have to reset the timer when the state switch happens
 		public ref float SecondStageTimer_SpawnEyes => ref NPC.localAI[3];
 
 		// Do NOT try to use NPC.ai[4]/NPC.localAI[4] or higher indexes, it only accepts 0, 1, 2 and 3!
-		// If you choose to go the route of "wrapping properties" for NPC.ai[], make sure they don't overlap (two properties using the same variable in different ways), and that you don't accidently use NPC.ai[] directly
+		// 如果 you choose to go the route of "wrapping properties" for NPC.ai[], make sure they don't overlap (two properties using the same variable in different ways), and that you don't accidently use NPC.ai[] directly
 
 		// Helper method to determine the minion type
 		public static int MinionType() {
@@ -93,7 +93,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void Load() {
-			// We want to give it a second boss head icon, so we register one
+			// 我们 want to give it a second boss head icon, so we register one
 			string texture = BossHeadTexture + "_SecondStage"; // Our texture is called "ClassName_Head_Boss_SecondStage"
 			secondStageHeadSlot = Mod.AddBossHeadTexture(texture, -1); // -1 because we already have one registered via the [AutoloadBossHead] attribute, it would overwrite it otherwise
 		}
@@ -101,7 +101,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		public override void BossHeadSlot(ref int index) {
 			int slot = secondStageHeadSlot;
 			if (SecondStage && slot != -1) {
-				// If the boss is in its second stage, display the other head icon instead
+				// 如果 the boss is in its second stage, display the other head icon instead
 				index = slot;
 			}
 		}
@@ -145,7 +145,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			NPC.npcSlots = 10f; // Take up open spawn slots, preventing random NPCs from spawning during the fight
 
 			// Default buff immunities should be set in SetStaticDefaults through the NPCID.Sets.ImmuneTo{X} arrays.
-			// To dynamically adjust immunities of an active NPC, NPC.buffImmune[] can be changed in AI: NPC.buffImmune[BuffID.OnFire] = true;
+			// 要 dynamically adjust immunities of an active NPC, NPC.buffImmune[] can be changed in AI: NPC.buffImmune[BuffID.OnFire] = true;
 			// This approach, however, will not preserve buff immunities. To preserve buff immunities, use the NPC.BecomeImmuneTo and NPC.ClearImmuneToBuffs methods instead, as shown in the ApplySecondStageBuffImmunities method below.
 
 			// Custom AI, 0 is "bound town NPC" AI which slows the NPC down and changes sprite orientation towards the target
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// Custom boss bar
 			NPC.BossBar = ModContent.GetInstance<MinionBossBossBar>();
 
-			// The following code assigns a music track to the boss in a simple way.
+			// following code assigns a music track to the boss in a simple way.
 			if (!Main.dedServ) {
 				Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ropocalypse2");
 			}
@@ -171,7 +171,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
 			// Do NOT misuse the ModifyNPCLoot and OnKill hooks: the former is only used for registering drops, the latter for everything else
 
-			// The order in which you add loot will appear as such in the Bestiary. To mirror vanilla boss order:
+			// order in which you add loot will appear as such in the Bestiary. To mirror vanilla boss order:
 			// 1. Trophy
 			// 2. Classic Mode ("not expert")
 			// 3. Expert Mode (usually just the treasure bag)
@@ -188,7 +188,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MinionBossMask>(), 7));
 
 			// This part is not required for a boss and is just showcasing some advanced stuff you can do with drop rules to control how items spawn
-			// We make 12-15 ExampleItems spawn randomly in all directions, like the lunar pillar fragments. Hereby we need the DropOneByOne rule,
+			// 我们 make 12-15 ExampleItems spawn randomly in all directions, like the lunar pillar fragments. Hereby we need the DropOneByOne rule,
 			// which requires these parameters to be defined
 			int itemType = ModContent.ItemType<ExampleItem>();
 			var parameters = new DropOneByOne.Parameters() {
@@ -216,7 +216,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void OnKill() {
-			// The first time this boss is killed, spawn ExampleOre into the world. This code is above SetEventFlagCleared because that will set downedMinionBoss to true.
+			// first time this boss is killed, spawn ExampleOre into the world. This code is above SetEventFlagCleared because that will set downedMinionBoss to true.
 			if (!DownedBossSystem.downedMinionBoss) {
 				ModContent.GetInstance<ExampleOreSystem>().BlessWorldWithExampleOre();
 			}
@@ -227,7 +227,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// Since this hook is only ran in singleplayer and serverside, we would have to sync it manually.
 			// Thankfully, vanilla sends the MessageID.WorldData packet if a BOSS was killed automatically, shortly after this hook is ran
 
-			// If your NPC is not a boss and you need to sync the world (which includes ModSystem, check DownedBossSystem), use this code:
+			// 如果 your NPC is not a boss and you need to sync the world (which includes ModSystem, check DownedBossSystem), use this code:
 			/*
 			if (Main.netMode == NetmodeID.Server) {
 				NetMessage.SendData(MessageID.WorldData);
@@ -236,7 +236,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void BossLoot(ref string name, ref int potionType) {
-			// Here you'd want to change the potion type that drops when the boss is defeated. Because this boss is early pre-hardmode, we keep it unchanged
+			// 在这里 you'd want to change the potion type that drops when the boss is defeated. Because this boss is early pre-hardmode, we keep it unchanged
 			// (Lesser Healing Potion). If you wanted to change it, simply write "potionType = ItemID.HealingPotion;" or any other potion type
 		}
 
@@ -247,7 +247,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 		public override void FindFrame(int frameHeight) {
 			// This NPC animates with a simple "go from start frame to final frame, and loop back to start frame" rule
-			// In this case: First stage: 0-1-2-0-1-2, Second stage: 3-4-5-3-4-5, 5 being "total frame count - 1"
+			// 在 this case: First stage: 0-1-2-0-1-2, Second stage: 3-4-5-3-4-5, 5 being "total frame count - 1"
 			int startFrame = 0;
 			int finalFrame = 2;
 
@@ -256,7 +256,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 				finalFrame = Main.npcFrameCount[NPC.type] - 1;
 
 				if (NPC.frame.Y < startFrame * frameHeight) {
-					// If we were animating the first stage frames and then switch to second stage, immediately change to the start frame of the second stage
+					// 如果 we were animating the first stage frames and then switch to second stage, immediately change to the start frame of the second stage
 					NPC.frame.Y = startFrame * frameHeight;
 				}
 			}
@@ -275,9 +275,9 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 		}
 
 		public override void HitEffect(NPC.HitInfo hit) {
-			// If the NPC dies, spawn gore and play a sound
+			// 如果 the NPC dies, spawn gore and play a sound
 			if (Main.netMode == NetmodeID.Server) {
-				// We don't want Mod.Find<ModGore> to run on servers as it will crash because gores are not loaded on servers
+				// 我们 don't want Mod.Find<ModGore> to run on servers as it will crash because gores are not loaded on servers
 				return;
 			}
 
@@ -310,9 +310,9 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			Player player = Main.player[NPC.target];
 
 			if (player.dead) {
-				// If the targeted player is dead, flee
+				// 如果 the targeted player is dead, flee
 				NPC.velocity.Y -= 0.04f;
-				// This method makes it so when the boss is in "despawn range" (outside of the screen), it despawns in 10 ticks
+				// 此方法 makes it so when the boss is in "despawn range" (outside of the screen), it despawns in 10 ticks
 				NPC.EncourageDespawn(10);
 				return;
 			}
@@ -356,7 +356,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 					continue; // spawn failed due to spawn cap
 
 				// Now that the minion is spawned, we need to prepare it with data that is necessary for it to work
-				// This is not required usually if you simply spawn NPCs, but because the minion is tied to the body, we need to pass this information to it
+				// 这是 not required usually if you simply spawn NPCs, but because the minion is tied to the body, we need to pass this information to it
 				MinionBossMinion minion = (MinionBossMinion)minionNPC.ModNPC;
 				minion.ParentIndex = NPC.whoAmI; // Let the minion know who the "parent" is
 				minion.PositionOffset = i / (float)count; // Give it a separate position offset
@@ -391,7 +391,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 
 			if (MinionHealthTotal <= 0 && Main.netMode != NetmodeID.MultiplayerClient) {
-				// If we have no shields (aka "no minions alive"), we initiate the second stage, and notify other players that this NPC has reached its second stage
+				// 如果 we have no shields (aka "no minions alive"), we initiate the second stage, and notify other players that this NPC has reached its second stage
 				// by setting NPC.netUpdate to true in this tick. It will send important data like position, velocity and the NPC.ai[] array to all connected clients
 
 				// Because SecondStage is a property using NPC.ai[], it will get synced this way
@@ -402,7 +402,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 		private void DoFirstStage(Player player) {
 			// Each time the timer is 0, pick a random position a fixed distance away from the player but towards the opposite side
-			// The NPC moves directly towards it with fixed speed, while displaying its trajectory as a telegraph
+			// NPC moves directly towards it with fixed speed, while displaying its trajectory as a telegraph
 
 			FirstStageTimer++;
 			if (FirstStageTimer > FirstStageTimerMax) {
@@ -443,13 +443,13 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			NPC.velocity = toDestinationNormalized * speed / 30;
 
 			if (FirstStageDestination != LastFirstStageDestination) {
-				// If destination changed
+				// 如果 destination changed
 				NPC.TargetClosest(); // Pick the closest player target again
 
 				// "Why is this not in the same code that sets FirstStageDestination?" Because in multiplayer it's ran by the server.
-				// The client has to know when the destination changes a different way. Keeping track of the previous ticks' destination is one way
+				// client has to know when the destination changes a different way. Keeping track of the previous ticks' destination is one way
 				if (Main.netMode != NetmodeID.Server) {
-					// For visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
+					// 对于 visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
 					NPC.position += NPC.netOffset;
 
 					// Draw a line between the NPC and its destination, represented as dusts every 20 pixels
@@ -484,7 +484,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			Vector2 toAbovePlayer = abovePlayer - NPC.Center;
 			Vector2 toAbovePlayerNormalized = toAbovePlayer.SafeNormalize(Vector2.UnitY);
 
-			// The NPC tries to go towards the offsetX position, but most likely it will never get there exactly, or close to if the player is moving
+			// NPC tries to go towards the offsetX position, but most likely it will never get there exactly, or close to if the player is moving
 			// This checks if the npc is "70% there", and then changes direction
 			float changeDirOffset = offsetX * 0.7f;
 
@@ -496,7 +496,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			float speed = 8f;
 			float inertia = 40f;
 
-			// If the boss is somehow below the player, move faster to catch up
+			// 如果 the boss is somehow below the player, move faster to catch up
 			if (NPC.Top.Y > player.Bottom.Y) {
 				speed = 12f;
 			}
@@ -544,7 +544,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			}
 			// Halfway through stage 2, this boss becomes immune to the OnFire buff.
 			// This code will only run once because of the !NPC.buffImmune[BuffID.OnFire] check.
-			// If you make a similar check for just a life percentage in a boss, you will need to use a bool to track if the corresponding code has run yet or not.
+			// 如果 you make a similar check for just a life percentage in a boss, you will need to use a bool to track if the corresponding code has run yet or not.
 			NPC.BecomeImmuneTo(BuffID.OnFire);
 
 			// Finally, this boss will clear all the buffs it currently has that it is now immune to. ClearImmuneToBuffs should not be run on multiplayer clients, the server has authority over buffs.
@@ -553,7 +553,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 				if (anyBuffsCleared) {
 					// Since we cleared some fire related buffs, spawn some smoke to communicate that the fire buffs have been extinguished.
-					// This example is commented out because it would require a ModPacket to manually sync in order to work in multiplayer.
+					// 此示例 is commented out because it would require a ModPacket to manually sync in order to work in multiplayer.
 					/* for (int g = 0; g < 8; g++) {
 						Gore gore = Gore.NewGoreDirect(NPC.GetSource_FromThis(), NPC.Center, default, Main.rand.Next(61, 64), 1f);
 						gore.scale = 1.5f;

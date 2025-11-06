@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Tiles
 		private Asset<Texture2D> oasisTopsTexture;
 		private Asset<Texture2D> topsTexture;
 
-		// This is a blind copy-paste from Vanilla's PurityPalmTree settings.
+		// 这是 a blind copy-paste from Vanilla's PurityPalmTree settings.
 		//TODO: This needs some explanations
 		public override TreePaintingSettings TreeShaderSettings => new TreePaintingSettings {
 			UseSpecialGroups = true,
@@ -30,8 +30,8 @@ namespace ExampleMod.Content.Tiles
 			topsTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Tiles/Plants/ExamplePalmTree_Tops");
 		}
 
-		// This is the primary texture for the trunk. Branches and foliage use different settings.
-		// The first row will be the Ocean textures, the second row will be Oasis Textures.
+		// 这是 the primary texture for the trunk. Branches and foliage use different settings.
+		// first row will be the Ocean textures, the second row will be Oasis Textures.
 		public override Asset<Texture2D> GetTexture() => texture;
 
 		public override int SaplingGrowthType(ref int style) {

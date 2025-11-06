@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Ammo
 		public ref float Progress => ref Projectile.ai[0];
 
 		public override void SetDefaults() {
-			// This method quickly sets the projectile properties to match other sprays.
+			// 此方法 quickly sets the projectile properties to match other sprays.
 			Projectile.DefaultToSpray();
 			Projectile.aiStyle = 0; // Here we set aiStyle back to 0 because we have custom AI code
 		}
@@ -111,26 +111,26 @@ namespace ExampleMod.Content.Items.Ammo
 							NetMessage.SendTileSquare(-1, k, l, 1);
 						}
 
-						// If the tile is stone, convert to ExampleBlock
+						// 如果 the tile is stone, convert to ExampleBlock
 						if (TileID.Sets.Conversion.Stone[type]) {
 							Main.tile[k, l].TileType = (ushort)ModContent.TileType<ExampleBlock>();
 							WorldGen.SquareTileFrame(k, l);
 							NetMessage.SendTileSquare(-1, k, l, 1);
 						}
-						// If the tile is sand, convert to ExampleSand
+						// 如果 the tile is sand, convert to ExampleSand
 						else if (TileID.Sets.Conversion.Sand[type]) {
 							Main.tile[k, l].TileType = (ushort)ModContent.TileType<ExampleSand>();
 							WorldGen.SquareTileFrame(k, l);
 							NetMessage.SendTileSquare(-1, k, l, 1);
 						}
-						// If the tile is a chair, convert to ExampleChair
+						// 如果 the tile is a chair, convert to ExampleChair
 						else if (type == TileID.Chairs && Main.tile[k, l - 1].TileType == TileID.Chairs) {
 							Main.tile[k, l].TileType = (ushort)ModContent.TileType<ExampleChair>();
 							Main.tile[k, l - 1].TileType = (ushort)ModContent.TileType<ExampleChair>();
 							WorldGen.SquareTileFrame(k, l);
 							NetMessage.SendTileSquare(-1, k, l, 1);
 						}
-						// If the tile is a workbench, convert to ExampleWorkBench
+						// 如果 the tile is a workbench, convert to ExampleWorkBench
 						else if (type == TileID.WorkBenches && Main.tile[k - 1, l].TileType == TileID.WorkBenches) {
 							Main.tile[k, l].TileType = (ushort)ModContent.TileType<ExampleWorkbench>();
 							Main.tile[k - 1, l].TileType = (ushort)ModContent.TileType<ExampleWorkbench>();

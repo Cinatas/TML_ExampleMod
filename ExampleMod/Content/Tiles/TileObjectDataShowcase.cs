@@ -10,9 +10,9 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles
 {
 	// This tile serves as a showcase for TileObjectData.
-	// In particular, this contrived example shows how styles are laid out in the spritesheet when multiple styles, multiple alternate placements, random style range, animations, and toggle states are all desired.
-	// If you place this tile, you'll noticed that it has both left and right variants depending on the player direction. You'll also notice that there are 4 random style variations for left and right. Once placed, the tile will animate through 3 frames of animation. Right clicking on the tile will change the tile to an "off" state, halting the animation and showing the 4th frame of animation. There are 4 tile styles contained in this example as well.
-	// The StyleMultiplier section of the Tile wiki page, https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#stylemultiplier, has a simpler visualization only showing alternate placements and random style variations.
+	// 在 particular, this contrived example shows how styles are laid out in the spritesheet when multiple styles, multiple alternate placements, random style range, animations, and toggle states are all desired.
+	// 如果 you place this tile, you'll noticed that it has both left and right variants depending on the player direction. You'll also notice that there are 4 random style variations for left and right. Once placed, the tile will animate through 3 frames of animation. Right clicking on the tile will change the tile to an "off" state, halting the animation and showing the 4th frame of animation. There are 4 tile styles contained in this example as well.
+	// StyleMultiplier section of the Tile wiki page, https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#stylemultiplier, has a simpler visualization only showing alternate placements and random style variations.
 	// Please experiment by placing this tile using both the "TileObjectData Showcase Style 3 - ExampleBlock" item and one of the other TileObjectData Showcase items. This tile anchors to specific tiles to the left and right, you'll need to place this tile between pillars of those specific tiles. By doing this you should be able to visualize the full potential of TileObjectData.
 	// Not many tiles will require such complicated layout, but this serves as example of how each feature affects the resulting spritesheet.
 	// Since this tile is "StyleHorizontal = true", styles in the spritesheet are positioned left to right. Each alternate placement and
@@ -40,9 +40,9 @@ namespace ExampleMod.Content.Tiles
 			TileObjectData.newTile.StyleWrapLimit = 16; // We will wrap to the next line in the texture after 16 placement styles, or 2 styles.
 			TileObjectData.newTile.StyleLineSkip = 4; // This gives extra lines in the spritesheet for animation or tile states.
 
-			// Here we declare that the tile will be placeable when facing left.
+			// 在这里 we declare that the tile will be placeable when facing left.
 			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
-			// The tile only anchors between specific tiles to the left and right. These are defined in each Subtile below.
+			// tile only anchors between specific tiles to the left and right. These are defined in each Subtile below.
 			TileObjectData.newTile.AnchorLeft = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
 			TileObjectData.newTile.AnchorRight = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
 
@@ -87,13 +87,13 @@ namespace ExampleMod.Content.Tiles
 
 			TileObjectData.addTile(Type);
 
-			// We can automatically set the animation frame height from CoordinateFullHeight for any typical tile that uses the expected layout.
+			// 我们 can automatically set the animation frame height from CoordinateFullHeight for any typical tile that uses the expected layout.
 			AnimationFrameHeight = TileObjectData.GetTileData(Type, 0).CoordinateFullHeight;
 		}
 
 		// Displays various info about the tile placement in chat.
 		private int PostPlaceMethod(int x, int y, int type, int style, int direction, int alternate) {
-			// Note that alternate here is the alternate index, not the alternate placement style. We'll use some math to calculate the random offset and placement style values
+			// 注意 that alternate here is the alternate index, not the alternate placement style. We'll use some math to calculate the random offset and placement style values
 			var tileData = TileObjectData.GetTileData(type, style, alternate);
 
 			int alternatePlacement = -1;
@@ -105,7 +105,7 @@ namespace ExampleMod.Content.Tiles
 			return 0;
 		}
 
-		// When this tile is right clicked, it changes to a new state by changing TileFrameY. This "off" state is the "Fra 3" sprites in the spritesheet.
+		// 当 this tile is right clicked, it changes to a new state by changing TileFrameY. This "off" state is the "Fra 3" sprites in the spritesheet.
 		public override bool RightClick(int i, int j) {
 			SoundEngine.PlaySound(SoundID.Mech, new Vector2(i * 16, j * 16));
 
@@ -140,9 +140,9 @@ namespace ExampleMod.Content.Tiles
 
 		public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {
 			var tile = Main.tile[i, j];
-			// If the tile is "on", then the tile will animate between the "Fra 0", "Fra 1", and "Fra 2" sprites. This is already applied because we set AnimationFrameHeight in SetStaticDefaults and adjust frame in AnimateTile.
+			// 如果 the tile is "on", then the tile will animate between the "Fra 0", "Fra 1", and "Fra 2" sprites. This is already applied because we set AnimationFrameHeight in SetStaticDefaults and adjust frame in AnimateTile.
 
-			// If the tile is "off", however, then we set frameYOffset to 0 to disable the automatic animation for this specific tile. 96 is the Y position of the "Fra 3" sprites in the spritesheet. (32 * 3)
+			// 如果 the tile is "off", however, then we set frameYOffset to 0 to disable the automatic animation for this specific tile. 96 is the Y position of the "Fra 3" sprites in the spritesheet. (32 * 3)
 			if (tile.TileFrameY % 128 >= 96) {
 				frameYOffset = 0;
 			}

@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// AIType = ProjectileID.RocketI;
 		}
 		public override void AI() {
-			// If timeLeft is <= 3, then explode the rocket.
+			// 如果 timeLeft is <= 3, then explode the rocket.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow();
 			}
@@ -85,7 +85,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			}
 		}
 
-		// When the rocket hits a tile, NPC, or player, get ready to explode.
+		// 当 the rocket hits a tile, NPC, or player, get ready to explode.
 		public override bool OnTileCollide(Vector2 oldVelocity) {
 			Projectile.velocity *= 0f; // Stop moving so the explosion is where the rocket was.
 			Projectile.timeLeft = 3; // Set the timeLeft to 3 so it can get ready to explode.
@@ -164,7 +164,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			//	int minTileY = (int)(Projectile.Center.Y / 16f - blastRadius);
 			//	int maxTileY = (int)(Projectile.Center.Y / 16f + blastRadius);
 
-				// Make sure the tiles are inside the world.
+				// 确保 the tiles are inside the world.
 			// Utils.ClampWithinWorld(ref minTileX, ref maxTileX, ref minTileY, ref maxTileY);
 
 			// Check to see if the walls should be destroyed, too.

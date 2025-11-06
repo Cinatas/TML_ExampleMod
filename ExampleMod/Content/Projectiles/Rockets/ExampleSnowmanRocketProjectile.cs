@@ -33,7 +33,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// AIType = ProjectileID.RocketSnowmanI;
 		}
 		public override void AI() {
-			// If timeLeft is <= 3, then explode the rocket.
+			// 如果 timeLeft is <= 3, then explode the rocket.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				PrepareBombToBlow();
 			}
@@ -102,14 +102,14 @@ namespace ExampleMod.Content.Projectiles.Rockets
 					// Search through all of the NPCs to find a target.
 					for (int i = 0; i < Main.maxNPCs; i++) {
 						NPC searchNPC = Main.npc[i];
-						// If the target can be homed on to.
+						// 如果 the target can be homed on to.
 						if (searchNPC.CanBeChasedBy(this)) {
 							// Get the target's position.
 							float targetPosX = searchNPC.position.X + (searchNPC.width / 2);
 							float targetPosY = searchNPC.position.Y + (searchNPC.height / 2);
 							// Find the distance from the projectile to the target.
 							float distanceFromProjToTarget = Math.Abs(Projectile.position.X + (Projectile.width / 2) - targetPosX) + Math.Abs(Projectile.position.Y + (Projectile.height / 2) - targetPosY);
-							// If the distance is within the max homing distance and the projectile has line of sight.
+							// 如果 the distance is within the max homing distance and the projectile has line of sight.
 							if (distanceFromProjToTarget < maxHomingDistance && Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, searchNPC.position, searchNPC.width, searchNPC.height)) {
 								maxHomingDistance = distanceFromProjToTarget;
 								projDestinationX = targetPosX;
@@ -120,14 +120,14 @@ namespace ExampleMod.Content.Projectiles.Rockets
 					}
 				}
 
-				// If the rocket is not homing, set its destination to ahead of where it is currently traveling.
+				// 如果 the rocket is not homing, set its destination to ahead of where it is currently traveling.
 				if (!isHoming) {
 					projDestinationX = Projectile.position.X + (Projectile.width / 2) + Projectile.velocity.X * 100f;
 					projDestinationY = Projectile.position.Y + (Projectile.height / 2) + Projectile.velocity.Y * 100f;
 				}
 
 				// Values above 16f could cause the rocket to no clip through blocks.
-				// To increase the speed even more, increase extraUpdates in SetDefaults().
+				// 要 increase the speed even more, increase extraUpdates in SetDefaults().
 				float speed = 16f;
 
 				// Travel to the position set above. Either it will be to the target's position or just ahead of itself.
@@ -212,7 +212,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// To make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
 		}
 	}
 }

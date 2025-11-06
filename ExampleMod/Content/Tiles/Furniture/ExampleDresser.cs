@@ -134,7 +134,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			return true;
 		}
 
-		// This is not a hook, this is just a normal method used by the MouseOver and MouseOverFar hooks to avoid repeating code.
+		// 这是 not a hook, this is just a normal method used by the MouseOver and MouseOverFar hooks to avoid repeating code.
 		public void MouseOverNearAndFarSharedLogic(Player player, int i, int j) {
 			Tile tile = Main.tile[i, j];
 			int left = i;

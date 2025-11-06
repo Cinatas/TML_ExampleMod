@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Items.Consumables
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
 				if (!petBoughtFlag || NPC.AnyNPCs(npcType)) {
 					// Send the ModPacket if used by a player in multiplayer so that other players can receive the change, too.
-					// The ModPacket is handled in ExampleMod.Networking.cs
+					// ModPacket is handled in ExampleMod.Networking.cs
 					ModPacket packet = ModContent.GetInstance<ExampleMod>().GetPacket();
 					packet.Write((byte)ExampleMod.MessageType.ExampleTownPetUnlockOrExchange);
 					packet.Send();

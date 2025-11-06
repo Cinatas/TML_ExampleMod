@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Items.Ammo
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
-		// Here we create recipe for 999/ExampleCustomAmmo stack from 1/ExampleItem
+		// 在这里 we create recipe for 999/ExampleCustomAmmo stack from 1/ExampleItem
 		public override void AddRecipes() {
 			CreateRecipe(999)
 				.AddIngredient<ExampleItem>()

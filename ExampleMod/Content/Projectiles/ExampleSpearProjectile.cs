@@ -32,7 +32,7 @@ namespace ExampleMod.Content.Projectiles
 			float halfDuration = duration * 0.5f;
 			float progress;
 
-			// Here 'progress' is set to a value that goes from 0.0 to 1.0 and back during the item use animation.
+			// 在这里 'progress' is set to a value that goes from 0.0 to 1.0 and back during the item use animation.
 			if (Projectile.timeLeft < halfDuration) {
 				progress = Projectile.timeLeft / halfDuration;
 			}
@@ -45,11 +45,11 @@ namespace ExampleMod.Content.Projectiles
 
 			// Apply proper rotation to the sprite.
 			if (Projectile.spriteDirection == -1) {
-				// If sprite is facing left, rotate 45 degrees
+				// 如果 sprite is facing left, rotate 45 degrees
 				Projectile.rotation += MathHelper.ToRadians(45f);
 			}
 			else {
-				// If sprite is facing right, rotate 135 degrees
+				// 如果 sprite is facing right, rotate 135 degrees
 				Projectile.rotation += MathHelper.ToRadians(135f);
 			}
 

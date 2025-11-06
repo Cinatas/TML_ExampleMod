@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Biomes
 {
-	// Shows setting up two basic biomes. For a more complicated example, please request.
+	// 展示 setting up two basic biomes. For a more complicated example, please request.
 	public class ExampleSurfaceBiome : ModBiome
 	{
 		// Select all the scenery

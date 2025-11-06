@@ -44,7 +44,7 @@ namespace ExampleMod.Content.Items
 		public override void SetDefaults() {
 			Item.width = 20;
 			Item.height = 20;
-			// Note that Item.width and height are the in-world hitbox dimensions and don't have to match the texture dimensions. Be mindful of this distinction when writing custom item drawing code.
+			// 注意 that Item.width and height are the in-world hitbox dimensions and don't have to match the texture dimensions. Be mindful of this distinction when writing custom item drawing code.
 		}
 
 		public override bool CanRightClick() => true;
@@ -104,7 +104,7 @@ namespace ExampleMod.Content.Items
 
 		public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
 			if (drawMode == DrawModeGlowmask) {
-				// For a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
+				// 对于 a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
 				spriteBatch.Draw(frontTexture.Value, position, frame, drawColor, 0, origin, scale, SpriteEffects.None, 0);
 			}
 		}
@@ -163,7 +163,7 @@ namespace ExampleMod.Content.Items
 			Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, origin.Y);
 
 			if (drawMode == DrawModeGlowmask) {
-				// For a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
+				// 对于 a glowmask that is the same dimensions as the item sprite, we can use all the provided parameters as is to draw the glowmask texture.
 				// Instead of the provided lightColor, however, we use Color.White since we want to draw the glowmask texture at full brightness regardless of world lighting conditions.
 				spriteBatch.Draw(frontTexture.Value, drawPosition, itemFrame, Color.White, rotation, origin, scale, SpriteEffects.None, 0);
 			}

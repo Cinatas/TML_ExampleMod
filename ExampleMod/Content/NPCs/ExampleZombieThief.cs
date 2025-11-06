@@ -49,7 +49,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
@@ -116,7 +116,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void SaveData(TagCompound tag) {
 			if (StolenItems > 0) {
-				// Note that at this point it may have less than 10 stolen items, if another mod or part of our decides to save the NPC
+				// 注意 that at this point it may have less than 10 stolen items, if another mod or part of our decides to save the NPC
 				tag["StolenItems"] = StolenItems;
 			}
 		}

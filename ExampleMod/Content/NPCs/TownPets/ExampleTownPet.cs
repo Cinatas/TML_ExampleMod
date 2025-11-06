@@ -92,7 +92,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs) {
-			// If we've used the License, our Town Pet can freely respawn.
+			// 如果 we've used the License, our Town Pet can freely respawn.
 			if (ExampleTownPetSystem.boughtExampleTownPet) {
 				return true;
 			}
@@ -107,7 +107,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		}
 
 		// Create a bunch of lists for our names. Each variant gets its own list of names.
-		// You can these lists as long or as short as you'd like. 
+		// 你 can these lists as long or as short as you'd like. 
 		public readonly List<string> NameList0 = new() {
 			"Monochromatic", "Grayscale", "Unpainted"
 		};
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			return NPC.townNpcVariationIndex switch { // Change the name based on the variation.
 				0 => NameList0,
 				1 => NameList1, // Variant 1 will be the Shimmered variant if your NPC has a shimmer variant.
-				// The Green (2) variant shows one approach to localizing Town NPC names.
+				// Green (2) variant shows one approach to localizing Town NPC names.
 				// One additional benefit of this approach is a separate mod can add a Mods.ExampleMod.NPCs.ExampleTownPet.Names.Green.Emerald key and it will automatically be used as an name option.
 				2 => Language.FindAll(Lang.CreateDialogFilter(this.GetLocalizationKey("Names.Green"))).Select(x => x.Value).ToList(),
 				3 => NameList3,
@@ -155,8 +155,8 @@ namespace ExampleMod.Content.NPCs.TownPets
 		}
 
 		public override bool PreAI() {
-			// If your Town Pet can sit in chairs with NPCID.Sets.CannotSitOnFurniture[Type] = false
-			// We want to move the Town NPC up visually to match the height of the chair.
+			// 如果 your Town Pet can sit in chairs with NPCID.Sets.CannotSitOnFurniture[Type] = false
+			// 我们 want to move the Town NPC up visually to match the height of the chair.
 			// NPC.ai[0] is set to 5f for Town NPC AI when they are sitting in a chair.
 			if (NPC.ai[0] == 5f) {
 				DrawOffsetY = -10; // Remember: Negative Y is up. So, this is moving the NPC up visually by 10 pixels.
@@ -166,13 +166,13 @@ namespace ExampleMod.Content.NPCs.TownPets
 			}
 			// Do not try to add or subtract from the DrawOffsetY. It'll cause the sprite to change its height every frame which will make it go off of the screen.
 
-			// If your Town Pet doesn't sit in furniture, you can remove this entire PreAI() method.
+			// 如果 your Town Pet doesn't sit in furniture, you can remove this entire PreAI() method.
 
 			return base.PreAI();
 		}
 
 		public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects) {
-			// If your Town Pet can sit in chairs with NPCID.Sets.CannotSitOnFurniture[Type] = false
+			// 如果 your Town Pet can sit in chairs with NPCID.Sets.CannotSitOnFurniture[Type] = false
 			// and you've done the above DrawOffsetY to raise it up to the chair's height,
 			// you'll notice the chat bubble that appears when hovering over them doesn't get raised up.
 			// So, let's move it up as well.
@@ -183,7 +183,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 		/*
 		public override void EmoteBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects) {
-			// Here is an example of how we can modify the emote bubble.
+			// 在这里 is an example of how we can modify the emote bubble.
 
 			// Flip the emote bubble and move it.
 			spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -196,8 +196,8 @@ namespace ExampleMod.Content.NPCs.TownPets
 
 		public override void PartyHatPosition(ref Vector2 position, ref SpriteEffects spriteEffects) {
 			// With this hook, we have full control over the position of the party hat.
-			// We have already set NPCID.Sets.HatOffsetY[Type] = -2 in SetStaticDefaults which will move the party hat up 2 pixels at all times.
-			// We also set PCID.Sets.NPCFramingGroup[Type] = 8 in SetStaticDefaults.
+			// 我们 have already set NPCID.Sets.HatOffsetY[Type] = -2 in SetStaticDefaults which will move the party hat up 2 pixels at all times.
+			// 我们 also set PCID.Sets.NPCFramingGroup[Type] = 8 in SetStaticDefaults.
 			// NPCFramingGroup is used vertically offset the party hat to match the animations of the NPC.
 			// Group 8 has no inherit offsets for the party hat.
 
@@ -243,7 +243,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 			}
 			position.X += xOffset * NPC.spriteDirection;
 
-			// We set NPCID.Sets.HatOffsetY[Type] = -2 so that means every frame is moved up 2 additional units.
+			// 我们 set NPCID.Sets.HatOffsetY[Type] = -2 so that means every frame is moved up 2 additional units.
 			int yOffset = 0;
 			// Then move the party hat up/down depending on the frame.
 			// These numbers were achieved by measuring the sprite relative to the "normal" position of the party hat.
@@ -314,7 +314,7 @@ namespace ExampleMod.Content.NPCs.TownPets
 		public int RollVariation() {
 			int random = Main.rand.Next(7); // 7 variants; 0 through 6.
 
-			// If your Town Pet has a shimmer variant:
+			// 如果 your Town Pet has a shimmer variant:
 			// townNpcVariationIndex of 1 makes it shimmered, even when it isn't.
 			// if (random == 1) {
 			//	random = 7; // So variation 1 becomes number 7.

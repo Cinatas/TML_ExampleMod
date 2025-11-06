@@ -7,11 +7,11 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items
 {
-	// This class showcases a "pickup". Also known as a power-up.
+	// 此类 showcases a "pickup". Also known as a power-up.
 	// Pickup refers to items that don't enter then inventory when picked up, but rather have some other effect when obtained.
 	// Pickups usually provide resources to the player, such as hearts providing life or stars providing mana. Nebula armor boosters are another example.
-	// This example drops from enemies when Example Resource is low, similar to how hearts and stars only drop if the player is lacking health or mana.
-	// See ExampleResourcePickupGlobalNPC for the item drop code.
+	// 此示例 drops from enemies when Example Resource is low, similar to how hearts and stars only drop if the player is lacking health or mana.
+	// 参见 ExampleResourcePickupGlobalNPC for the item drop code.
 	public class ExampleResourcePickup : ModItem {
 		public static readonly int ExampleResourceHealAmount = 50;
 
@@ -30,19 +30,19 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override bool OnPickup(Player player) {
-			// When the item is picked up, heal the player's ExampleResource stat and spawn and sync the corresponding CombatText
+			// 当 the item is picked up, heal the player's ExampleResource stat and spawn and sync the corresponding CombatText
 			player.GetModPlayer<ExampleResourcePlayer>().HealExampleResource(ExampleResourceHealAmount);
 
-			// We need to play this ourselves since we are returning false meaning it won't play automatically.
+			// 我们 need to play this ourselves since we are returning false meaning it won't play automatically.
 			SoundEngine.PlaySound(SoundID.Grab, player.Center);
 
-			// We return false to prevent the item from going into the players inventory.
+			// 我们 return false to prevent the item from going into the players inventory.
 			return false;
 		}
 
 		// Since ItemID.Sets.IsAPickup is true, we don't need to override the ItemSpace hook to allow picking up the item when inventory is full
 
-		// We can override CanPickup to prevent attempting to pick up this item when at max ExampleResource, but hearts and stars do not do this so we won't either.
+		// 我们 can override CanPickup to prevent attempting to pick up this item when at max ExampleResource, but hearts and stars do not do this so we won't either.
 
 		// GrabRange can be used to implement effects similar to Heartreach potion or Celestial Magnet.
 		public override void GrabRange(Player player, ref int grabRange) {

@@ -26,7 +26,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.usesLocalNPCImmunity = true; // Used for hit cooldown changes in the ai hook
 			Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
 
-			// Here we reuse the flail projectile aistyle and set the aitype to the Sunfury. These lines will get our projectile to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code for the other behaviors you wish to use.
+			// 在这里 we reuse the flail projectile aistyle and set the aitype to the Sunfury. These lines will get our projectile to behave exactly like Sunfury would. This only affects the AI code, you'll need to adapt other code for the other behaviors you wish to use.
 			Projectile.aiStyle = ProjAIStyleID.Flail;
 			AIType = ProjectileID.Sunfury;
 
@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Projectiles
 			return Color.White;
 		}
 
-		// In PreDrawExtras, we trick the game into thinking the projectile is actually a Sunfury projectile. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the Projectile.type back to normal so we don't break anything.  
+		// 在 PreDrawExtras, we trick the game into thinking the projectile is actually a Sunfury projectile. After PreDrawExtras, the Terraria code will draw the chain. Drawing the chain ourselves is quite complicated, ExampleAdvancedFlailProjectile has an example of that. Then, in PreDraw, we restore the Projectile.type back to normal so we don't break anything.  
 		public override bool PreDrawExtras() {
 			Projectile.type = ProjectileID.Sunfury;
 			return base.PreDrawExtras();
@@ -90,7 +90,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// Finally, you can slightly customize the AI if you read and understand the vanilla aiStyle source code. You can't customize the range, retract speeds, or anything else. If you need to customize those things, you'll need to follow ExampleAdvancedFlailProjectile. This example spawns a Grenade right when the flail starts to retract. 
 		public override void AI() {
-			// The only reason this code works is because the author read the vanilla code and comprehended it well enough to tack on additional logic.
+			// only reason this code works is because the author read the vanilla code and comprehended it well enough to tack on additional logic.
 			if (Main.myPlayer == Projectile.owner && Projectile.ai[0] == 2f && Projectile.ai[1] == 0f) {
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.velocity, ProjectileID.Grenade, Projectile.damage, Projectile.knockBack, Main.myPlayer);
 				Projectile.ai[1]++;

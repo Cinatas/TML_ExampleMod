@@ -31,12 +31,12 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// AIType = ProjectileID.ProximityMineI;
 		}
 		public override void AI() {
-			// If timeLeft is <= 3, then explode the mine.
+			// 如果 timeLeft is <= 3, then explode the mine.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow();
 			}
 			else {
-				// If the mine is not moving or barely moving, make it turn almost invisible.
+				// 如果 the mine is not moving or barely moving, make it turn almost invisible.
 				if (Projectile.velocity.X > -0.2f && Projectile.velocity.X < 0.2f && Projectile.velocity.Y > -0.2f && Projectile.velocity.Y < 0.2f) {
 					Projectile.alpha += 2;
 					if (Projectile.alpha > 200) {
@@ -56,7 +56,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			Projectile.velocity.Y += 0.2f; // Make it fall down. Remember, positive Y is down.
 			Projectile.velocity *= 0.97f; // Make it slow down.
 
-			// If the mine is moving very slowly, just make it stop entirely.
+			// 如果 the mine is moving very slowly, just make it stop entirely.
 			if (Projectile.velocity.X > -0.1f && Projectile.velocity.X < 0.1f) {
 				Projectile.velocity.X = 0f;
 			}
@@ -78,7 +78,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				Projectile.velocity.Y = oldVelocity.Y * -0.4f;
 			}
 			// Return false so the projectile doesn't get killed. If you do want your projectile to explode on contact with tiles, do not return true here.
-			// If you return true, the projectile will die without being resized (no blast radius).
+			// 如果 you return true, the projectile will die without being resized (no blast radius).
 			// Instead, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
 			return false;
 		}
@@ -142,7 +142,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// To make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
 		}
 	}
 }

@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			// Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
+			// 在这里 we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
 			var line = new TooltipLine(Mod, "Verbose:RemoveMe", "This tooltip won't show in-game");
 			tooltips.Add(line);
 
@@ -37,14 +37,14 @@ namespace ExampleMod.Content.Items
 			};
 			tooltips.Add(line);
 
-			// Here we give the item name a rainbow effect.
+			// 在这里 we give the item name a rainbow effect.
 			foreach (TooltipLine line2 in tooltips) {
 				if (line2.Mod == "Terraria" && line2.Name == "ItemName") {
 					line2.OverrideColor = Main.DiscoColor;
 				}
 			}
 
-			// Here we will hide all tooltips whose title end with ':RemoveMe'
+			// 在这里 we will hide all tooltips whose title end with ':RemoveMe'
 			// One like that is added at the start of this method
 			foreach (var l in tooltips) {
 				if (l.Name.EndsWith(":RemoveMe")) {

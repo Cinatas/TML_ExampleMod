@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Projectiles
 	{
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.LastPrism;
 
-		// The vanilla Last Prism is an animated item with 5 frames of animation. We copy that here.
+		// vanilla Last Prism is an animated item with 5 frames of animation. We copy that here.
 		private const int NumAnimationFrames = 5;
 
 		// This controls how many individual beams are fired by the Prism.
@@ -33,9 +33,9 @@ namespace ExampleMod.Content.Projectiles
 		private const int SoundInterval = 20;
 
 		// These values place caps on the mana consumption rate of the Prism.
-		// When first used, the Prism consumes mana once every MaxManaConsumptionDelay frames.
+		// 当 first used, the Prism consumes mana once every MaxManaConsumptionDelay frames.
 		// Every time mana is consumed, the pace becomes one frame faster, meaning mana consumption smoothly increases.
-		// When capped out, the Prism consumes mana once every MinManaConsumptionDelay frames.
+		// 当 capped out, the Prism consumes mana once every MinManaConsumptionDelay frames.
 		private const float MaxManaConsumptionDelay = 15f;
 		private const float MinManaConsumptionDelay = 5f;
 
@@ -97,10 +97,10 @@ namespace ExampleMod.Content.Projectiles
 				UpdateAim(rrp, player.HeldItem.shootSpeed);
 
 				// player.CheckMana returns true if the mana cost can be paid. Since the second argument is true, the mana is actually consumed.
-				// If mana shouldn't consumed this frame, the || operator short-circuits its evaluation player.CheckMana never executes.
+				// 如果 mana shouldn't consumed this frame, the || operator short-circuits its evaluation player.CheckMana never executes.
 				bool manaIsAvailable = !ShouldConsumeMana() || player.CheckMana(player.HeldItem.mana, true, false);
 
-				// The Prism immediately stops functioning if the player is Cursed (player.noItems) or "Crowd Controlled", e.g. the Frozen debuff.
+				// Prism immediately stops functioning if the player is Cursed (player.noItems) or "Crowd Controlled", e.g. the Frozen debuff.
 				// player.channel indicates whether the player is still holding down the mouse button to use the item.
 				bool stillInUse = player.channel && manaIsAvailable && !player.noItems && !player.CCed;
 
@@ -109,7 +109,7 @@ namespace ExampleMod.Content.Projectiles
 					FireBeams();
 				}
 
-				// If the Prism cannot continue to be used, then destroy it immediately.
+				// 如果 the Prism cannot continue to be used, then destroy it immediately.
 				else if (!stillInUse) {
 					Projectile.Kill();
 				}
@@ -129,7 +129,7 @@ namespace ExampleMod.Content.Projectiles
 			// As the Prism charges up and focuses the beams, its animation plays faster.
 			int framesPerAnimationUpdate = FrameCounter >= MaxCharge ? 2 : FrameCounter >= (MaxCharge * 0.66f) ? 3 : 4;
 
-			// If necessary, change which specific frame of the animation is displayed.
+			// 如果 necessary, change which specific frame of the animation is displayed.
 			if (Projectile.frameCounter >= framesPerAnimationUpdate) {
 				Projectile.frameCounter = 0;
 				if (++Projectile.frame >= NumAnimationFrames) {
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void PlaySounds() {
-			// The Prism makes sound intermittently while in use, using the vanilla Projectile variable soundDelay.
+			// Prism makes sound intermittently while in use, using the vanilla Projectile variable soundDelay.
 			if (Projectile.soundDelay <= 0) {
 				Projectile.soundDelay = SoundInterval;
 
@@ -153,23 +153,23 @@ namespace ExampleMod.Content.Projectiles
 		private void UpdatePlayerVisuals(Player player, Vector2 playerHandPos) {
 			// Place the Prism directly into the player's hand at all times.
 			Projectile.Center = playerHandPos;
-			// The beams emit from the tip of the Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
+			// beams emit from the tip of the Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 			Projectile.spriteDirection = Projectile.direction;
 
-			// The Prism is a holdout Projectile, so change the player's variables to reflect that.
+			// Prism is a holdout Projectile, so change the player's variables to reflect that.
 			// Constantly resetting player.itemTime and player.itemAnimation prevents the player from switching items or doing anything else.
 			player.ChangeDir(Projectile.direction);
 			player.heldProj = Projectile.whoAmI;
 			player.itemTime = 2;
 			player.itemAnimation = 2;
 
-			// If you do not multiply by Projectile.direction, the player's hand will point the wrong direction while facing left.
+			// 如果 you do not multiply by Projectile.direction, the player's hand will point the wrong direction while facing left.
 			player.itemRotation = (Projectile.velocity * Projectile.direction).ToRotation();
 		}
 
 		private bool ShouldConsumeMana() {
-			// If the mana consumption timer hasn't been initialized yet, initialize it and consume mana on frame 1.
+			// 如果 the mana consumption timer hasn't been initialized yet, initialize it and consume mana on frame 1.
 			if (ManaConsumptionRate == 0f) {
 				NextManaFrame = ManaConsumptionRate = MaxManaConsumptionDelay;
 				return true;
@@ -178,7 +178,7 @@ namespace ExampleMod.Content.Projectiles
 			// Should mana be consumed this frame?
 			bool consume = FrameCounter == NextManaFrame;
 
-			// If mana is being consumed this frame, update the rate of mana consumption and write down the next frame mana will be consumed.
+			// 如果 mana is being consumed this frame, update the rate of mana consumption and write down the next frame mana will be consumed.
 			if (consume) {
 				// MathHelper.Clamp(X,A,B) guarantees that A <= X <= B. If X is outside the range, it will be set to A or B accordingly.
 				ManaConsumptionRate = MathHelper.Clamp(ManaConsumptionRate - 1f, MinManaConsumptionDelay, MaxManaConsumptionDelay);
@@ -205,7 +205,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		private void FireBeams() {
-			// If for some reason the beam velocity can't be correctly normalized, set it to a default value.
+			// 如果 for some reason the beam velocity can't be correctly normalized, set it to a default value.
 			Vector2 beamVelocity = Vector2.Normalize(Projectile.velocity);
 			if (beamVelocity.HasNaNs()) {
 				beamVelocity = -Vector2.UnitY;
@@ -232,7 +232,7 @@ namespace ExampleMod.Content.Projectiles
 			int spriteSheetOffset = frameHeight * Projectile.frame;
 			Vector2 sheetInsertPosition = (Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition).Floor();
 
-			// The Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
+			// Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
 			// It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
 			Color drawColor = ExampleLastPrism.OverrideColor;
 			Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);

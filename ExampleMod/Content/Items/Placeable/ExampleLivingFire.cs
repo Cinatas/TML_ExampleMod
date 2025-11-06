@@ -7,7 +7,7 @@ namespace ExampleMod.Content.Items.Placeable
 {
 	public class ExampleLivingFire : ModItem
 	{
-		// We will be using this color several times.
+		// 我们 will be using this color several times.
 		// Defining it like this means we only need to change this Vector3 if we want to change the color of everything.
 		public static Vector3 LightColor = new Vector3(0.7f, 0.8f, 0.8f);
 

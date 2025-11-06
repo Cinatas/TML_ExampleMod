@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
 			Item.autoReuse = true; // Whether or not you can hold click to automatically use it again.
 
-			// The sound that this item plays when used.
+			// sound that this item plays when used.
 			Item.UseSound = new SoundStyle($"{nameof(ExampleMod)}/Assets/Sounds/Items/Guns/ExampleGun") {
 				Volume = 0.9f,
 				PitchVariance = 0.2f,
@@ -52,7 +52,7 @@ namespace ExampleMod.Content.Items.Weapons
 				.Register();
 		}
 
-		// This method lets you adjust position of the gun in the player's hands. Play with these values until it looks good with your graphics.
+		// 此方法 lets you adjust position of the gun in the player's hands. Play with these values until it looks good with your graphics.
 		public override Vector2? HoldoutOffset() {
 			return new Vector2(2f, -2f);
 		}
@@ -116,7 +116,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		// How can I shoot 2 different projectiles at the same time?
 		/*public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			// Here we manually spawn the 2nd projectile, manually specifying the projectile type that we wish to shoot.
+			// 在这里 we manually spawn the 2nd projectile, manually specifying the projectile type that we wish to shoot.
 			Projectile.NewProjectile(source, position, velocity, ProjectileID.GrenadeI, damage, knockback, player.whoAmI);
 
 			// By returning true, the vanilla behavior will take place, which will shoot the 1st projectile, the one determined by the ammo.
@@ -125,7 +125,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 		// How can I choose between several projectiles randomly?
 		/*public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			// Here we randomly set type to either the original (as defined by the ammo), a vanilla projectile, or a mod projectile.
+			// 在这里 we randomly set type to either the original (as defined by the ammo), a vanilla projectile, or a mod projectile.
 			type = Main.rand.Next(new int[] { type, ProjectileID.GoldenBullet, ModContent.ProjectileType<Projectiles.ExampleBullet>() });
 		}*/
 	}

@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override Color? GetAlpha(Color lightColor) {
-			// When overriding GetAlpha, you usually want to take the projectiles alpha into account. As it is a value between 0 and 255,
+			// 当 overriding GetAlpha, you usually want to take the projectiles alpha into account. As it is a value between 0 and 255,
 			// it's annoying to convert it into a float to multiply. Luckily the Opacity property handles that for us (0f transparent, 1f opaque)
 			return Color.White * Projectile.Opacity;
 		}
@@ -76,7 +76,7 @@ namespace ExampleMod.Content.Projectiles
 			// Accelerate
 			Projectile.velocity *= 1.01f;
 
-			// If the sprite points upwards, this will make it point towards the move direction (for other sprite orientations, change MathHelper.PiOver2)
+			// 如果 the sprite points upwards, this will make it point towards the move direction (for other sprite orientations, change MathHelper.PiOver2)
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 		}
 	}

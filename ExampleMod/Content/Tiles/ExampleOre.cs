@@ -50,15 +50,15 @@ namespace ExampleMod.Content.Tiles
 			BlessedWithExampleOreMessage = Mod.GetLocalization($"WorldGen.{nameof(BlessedWithExampleOreMessage)}");
 		}
 
-		// This method is called from MinionBossBody.OnKill the first time the boss is killed.
-		// The logic is located here for organizational purposes.
+		// 此方法 is called from MinionBossBody.OnKill the first time the boss is killed.
+		// logic is located here for organizational purposes.
 		public void BlessWorldWithExampleOre() {
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
 				return; // This should not happen, but just in case.
 			}
 
 			// Since this happens during gameplay, we need to run this code on another thread. If we do not, the game will experience lag for a brief moment. This is especially necessary for world generation tasks that would take even longer to execute.
-			// See https://github.com/tModLoader/tModLoader/wiki/World-Generation/#long-running-tasks for more information.
+			// 参见 https://github.com/tModLoader/tModLoader/wiki/World-Generation/#long-running-tasks for more information.
 			ThreadPool.QueueUserWorkItem(_ => {
 				// Broadcast a message to notify the user.
 				if (Main.netMode == NetmodeID.SinglePlayer) {
@@ -111,7 +111,7 @@ namespace ExampleMod.Content.Tiles
 			// Ores are quite simple, we simply use a for loop and the WorldGen.TileRunner to place splotches of the specified Tile in the world.
 			// "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.
 			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 6E-05); k++) {
-				// The inside of this for loop corresponds to one single splotch of our Ore.
+				// inside of this for loop corresponds to one single splotch of our Ore.
 				// First, we randomly choose any coordinate in the world by choosing a random x and y value.
 				int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 

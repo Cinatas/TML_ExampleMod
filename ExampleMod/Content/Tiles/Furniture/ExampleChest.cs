@@ -66,8 +66,8 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.addTile(Type);
 		}
 
-		// This example shows using GetItemDrops to manually decide item drops. This example is for a tile with a TileObjectData.
-		// This example is commented out because the RegisterItemDrop line in SetStaticDefaults above handles this situation and is the recommended approach, but the code is still useful to learn from if conditional drops need to be implemented.
+		// 此示例 shows using GetItemDrops to manually decide item drops. This example is for a tile with a TileObjectData.
+		// 此示例 is commented out because the RegisterItemDrop line in SetStaticDefaults above handles this situation and is the recommended approach, but the code is still useful to learn from if conditional drops need to be implemented.
 		/*
 		public override IEnumerable<Item> GetItemDrops(int i, int j) {
 			Tile tile = Main.tile[i, j];
@@ -110,9 +110,9 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override bool LockChest(int i, int j, ref short frameXAdjustment, ref bool manual) {
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
-			// We need to return true only if the tile style is the unlocked variant of a chest that supports locking. 
+			// 我们 need to return true only if the tile style is the unlocked variant of a chest that supports locking. 
 			if (style == 0) {
-				// We can check other conditions as well, such as how biome chests can't be locked until Plantera is defeated
+				// 我们 can check other conditions as well, such as how biome chests can't be locked until Plantera is defeated
 				return true;
 			}
 			return false;
@@ -147,7 +147,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// We override KillMultiTile to handle additional logic other than the item drop. In this case, unregistering the Chest from the world
+			// 我们 override KillMultiTile to handle additional logic other than the item drop. In this case, unregistering the Chest from the world
 			Chest.DestroyChest(i, j);
 		}
 
@@ -194,7 +194,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			}
 			else {
 				if (isLocked) {
-					// Make sure to change the code in UnlockChest if you don't want the chest to only unlock at night.
+					// 确保 to change the code in UnlockChest if you don't want the chest to only unlock at night.
 					int key = ModContent.ItemType<ExampleChestKey>();
 					if (player.HasItemInInventoryOrOpenVoidBag(key) && Chest.Unlock(left, top) && player.ConsumeItem(key, includeVoidBag: true)) {
 						if (Main.netMode == NetmodeID.MultiplayerClient) {

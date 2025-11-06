@@ -10,9 +10,9 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles.Furniture
 {
-	// You might have noticed that ExampleDoorClosed.png has 3 copies of the same sprite. These allow for random variation.
+	// 你 might have noticed that ExampleDoorClosed.png has 3 copies of the same sprite. These allow for random variation.
 	// Each time a door is closed, the game logic randomly chooses a random sprite for each of the 3 tiles.
-	// The random variation should be very subtle. Each tile is randomized independently.
+	// random variation should be very subtle. Each tile is randomized independently.
 	// All doors do this, but the feature can be ignored by just repeating the same sprite 3 times as this example does.
 	public class ExampleDoorClosed : ModTile
 	{
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.Door"));
 
 			// Placement
-			// In addition to copying from the TileObjectData.Something templates, modders can copy from specific tile types. CopyFrom won't copy subtile data, so style specific properties won't be copied, such as how Obsidian doors are immune to lava.
+			// 在 addition to copying from the TileObjectData.Something templates, modders can copy from specific tile types. CopyFrom won't copy subtile data, so style specific properties won't be copied, such as how Obsidian doors are immune to lava.
 			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.ClosedDoor, 0));
 			/* This is what is copied from the ClosedDoor tile
 			TileObjectData.newTile.Width = 1;

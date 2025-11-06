@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Weapons
 {
 	// ExampleCustomSwingSword is an example of a sword with a custom swing using a held projectile
-	// This is great if you want to make melee weapons with complex swing behavior
+	// 这是 great if you want to make melee weapons with complex swing behavior
 	public class ExampleCustomSwingSword : ModItem
 	{
 		public int attackType = 0; // keeps track of which attack it is
@@ -22,7 +22,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.rare = ItemRarityID.Green;
 
 			// Use Properties
-			// Note that useTime and useAnimation for this item don't actually affect the behavior because the held projectile handles that. 
+			// 注意 that useTime and useAnimation for this item don't actually affect the behavior because the held projectile handles that. 
 			// Each attack takes a different amount of time to execute
 			// Conforming to the item useTime and useAnimation makes it much harder to design
 			// It does, however, affect the item tooltip, so don't leave it out.
@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			// Using the shoot function, we override the swing projectile to set ai[0] (which attack it is)
+			// 使用 the shoot function, we override the swing projectile to set ai[0] (which attack it is)
 			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, attackType);
 			attackType = (attackType + 1) % 2; // Increment attackType to make sure next swing is different
 			comboExpireTimer = 0; // Every time the weapon is used, we reset this so the combo does not expire

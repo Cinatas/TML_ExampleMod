@@ -18,7 +18,7 @@ namespace ExampleMod.Content.Buffs
 		public override void Update(Player player, ref int buffIndex) {
 			ExampleCostumePlayer p = player.GetModPlayer<ExampleCostumePlayer>();
 
-			// We use blockyAccessoryPrevious here instead of blockyAccessory because UpdateBuffs happens before UpdateEquips but after ResetEffects.
+			// 我们 use blockyAccessoryPrevious here instead of blockyAccessory because UpdateBuffs happens before UpdateEquips but after ResetEffects.
 			if (player.townNPCs >= 1 && p.BlockyAccessoryPrevious) {
 				p.BlockyPower = true;
 

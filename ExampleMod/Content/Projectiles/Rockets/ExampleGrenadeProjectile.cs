@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			// AIType = ProjectileID.GrenadeI;
 		}
 		public override void AI() {
-			// If timeLeft is <= 3, then explode the grenade.
+			// 如果 timeLeft is <= 3, then explode the grenade.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow();
 			}
@@ -75,7 +75,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 			}
 
 			// Return false so the projectile doesn't get killed. If you do want your projectile to explode on contact with tiles, do not return true here.
-			// If you return true, the projectile will die without being resized (no blast radius).
+			// 如果 you return true, the projectile will die without being resized (no blast radius).
 			// Instead, set `Projectile.timeLeft = 3;` like the Example Rocket Projectile.
 			return false;
 		}
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Projectiles.Rockets
 				smokeGore.velocity -= Vector2.One;
 			}
 
-			// To make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
+			// 要 make the explosion destroy tiles, take a look at the commented out code in Example Rocket Projectile.
 		}
 	}
 }

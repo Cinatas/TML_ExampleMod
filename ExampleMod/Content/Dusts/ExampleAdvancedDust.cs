@@ -23,7 +23,7 @@ namespace ExampleMod.Content.Dusts
 			dust.noGravity = true;
 
 			// Since the vanilla dust texture has all the dust in 1 file, we'll need to do some math.
-			// If you want to use a vanilla dust texture, you can copy and paste it, changing the desiredVanillaDustTexture
+			// 如果 you want to use a vanilla dust texture, you can copy and paste it, changing the desiredVanillaDustTexture
 			int desiredVanillaDustTexture = 139;
 			int frameX = desiredVanillaDustTexture * 10 % 1000;
 			int frameY = desiredVanillaDustTexture * 10 / 1000 * 30 + Main.rand.Next(3) * 10;
@@ -34,17 +34,17 @@ namespace ExampleMod.Content.Dusts
 
 		// This Update method shows off some interesting movement. Using customData assigned to a Player, we spiral around the Player while slowly getting closer. In practice, it looks like a vortex.
 		public override bool Update(Dust dust) {
-			// Here we rotate and scale down the dust. The dustIndex % 2 == 0 part lets half the dust rotate clockwise and the other half counter clockwise
+			// 在这里 we rotate and scale down the dust. The dustIndex % 2 == 0 part lets half the dust rotate clockwise and the other half counter clockwise
 			dust.rotation += 0.1f * (dust.dustIndex % 2 == 0 ? -1 : 1);
 			dust.scale -= 0.05f;
 
-			// Here we use the customData field. If customData is the type we expect, Player, we do some special movement.
+			// 在这里 we use the customData field. If customData is the type we expect, Player, we do some special movement.
 			if (dust.customData != null && dust.customData is Player player) {
-				// Here we assign position to some offset from the player that was assigned. This offset scales with dust.scale. The scale and rotation cause the spiral movement we desired.
+				// 在这里 we assign position to some offset from the player that was assigned. This offset scales with dust.scale. The scale and rotation cause the spiral movement we desired.
 				dust.position = player.Center + Vector2.UnitX.RotatedBy(dust.rotation, Vector2.Zero) * dust.scale * 50;
 			}
 
-			// Here we make sure to kill any dust that get really small.
+			// 在这里 we make sure to kill any dust that get really small.
 			if (dust.scale < 0.25f)
 				dust.active = false;
 

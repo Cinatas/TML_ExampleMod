@@ -58,7 +58,7 @@ namespace ExampleMod.Content.Tiles.Plants
 		}
 
 		public override void RandomUpdate(int i, int j) {
-			// A random chance to slow down growth
+			// 一个 random chance to slow down growth
 			if (!WorldGen.genRand.NextBool(20)) {
 				return;
 			}
@@ -75,7 +75,7 @@ namespace ExampleMod.Content.Tiles.Plants
 				growSuccess = WorldGen.GrowPalmTree(i, j);
 			}
 
-			// A flag to check if a player is near the sapling
+			// 一个 flag to check if a player is near the sapling
 			bool isPlayerNear = WorldGen.PlayerLOS(i, j);
 
 			//If growing the tree was a success and the player is near, show growing effects

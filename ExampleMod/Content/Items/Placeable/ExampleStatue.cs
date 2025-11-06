@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Placeable
 {
-	// The item used to place the statue.
+	// item used to place the statue.
 	public class ExampleStatue : ModItem
 	{
 		public override void SetDefaults() {

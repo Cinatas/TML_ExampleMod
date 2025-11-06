@@ -19,9 +19,9 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		private static readonly float RangeHypotenuse = (float)(Math.Sqrt(2.0) * Range); // This comes from the formula for calculating the diagonal of a square (a * √2)
 		private static readonly float RangeHypotenuseSquared = RangeHypotenuse * RangeHypotenuse;
 
-		// The following 2 lines of code are ref properties (learn about them in google) to the Projectile.ai array entries, which will help us make our code way more readable.
+		// following 2 lines of code are ref properties (learn about them in google) to the Projectile.ai array entries, which will help us make our code way more readable.
 		// We're using the ai array because it's automatically synchronized by the base game in multiplayer, which saves us from writing a lot of boilerplate code.
-		// Note that the Projectile.ai array is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and sync them manually.
+		// 注意 that the Projectile.ai array is only 3 entries big. If you need more than 3 synchronized variables - you'll have to use fields and sync them manually.
 		public ref float AIFadeProgress => ref Projectile.ai[0];
 		public ref float AIDashCharge => ref Projectile.ai[1];
 
@@ -47,7 +47,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		public override void AI() {
 			Player player = Main.player[Projectile.owner];
 
-			// If the player is no longer active (online) - deactivate (remove) the projectile.
+			// 如果 the player is no longer active (online) - deactivate (remove) the projectile.
 			if (!player.active) {
 				Projectile.active = false;
 				return;
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 		}
 
 		private void UpdateDash(Player player) {
-			// The following code makes our pet dash at enemies when certain conditions are met
+			// following code makes our pet dash at enemies when certain conditions are met
 
 			AIDashCharge++;
 
@@ -151,7 +151,7 @@ namespace ExampleMod.Content.Pets.ExampleLightPet
 				Projectile.velocity *= 0.98f;
 			}
 
-			// If the pet stops - launch it into a random direction at a low speed.
+			// 如果 the pet stops - launch it into a random direction at a low speed.
 			if (Projectile.velocity == Vector2.Zero) {
 				Projectile.velocity = Vector2.UnitX.RotatedBy(Main.rand.NextFloat() * MathHelper.TwoPi) * 2f;
 			}

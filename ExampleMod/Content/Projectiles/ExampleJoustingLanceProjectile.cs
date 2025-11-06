@@ -24,7 +24,7 @@ namespace ExampleMod.Content.Projectiles
 		public override void SetDefaults() {
 			Projectile.netImportant = true; // Sync this projectile if a player joins mid game.
 
-			// The width and height do not affect the collision of the Jousting Lance because we calculate that separately (see Colliding() below)
+			// width and height do not affect the collision of the Jousting Lance because we calculate that separately (see Colliding() below)
 			Projectile.width = 25;
 			Projectile.height = 25;
 
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Projectiles
 			// AIType = ProjectileID.JoustingLance; 
 		}
 
-		// This is the behavior of the Jousting Lances.
+		// 这是 the behavior of the Jousting Lances.
 		public override void AI() {
 			Player owner = Main.player[Projectile.owner]; // Get the owner of the projectile.
 			Projectile.direction = owner.direction; // Direction will be -1 when facing left and +1 when facing right. 
@@ -60,7 +60,7 @@ namespace ExampleMod.Content.Projectiles
 				owner.SetDummyItemTime(holdOutFrame); // This makes it so the projectile never dies while we are holding it (except when we take damage, see ExampleJoustingLancePlayer).
 			}
 
-			// If the Jousting Lance is no longer being used, kill the projectile.
+			// 如果 the Jousting Lance is no longer being used, kill the projectile.
 			if (owner.ItemAnimationEndingOrEnded) {
 				Projectile.Kill();
 				return;
@@ -81,7 +81,7 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.position += Projectile.velocity * tipDist; // The projectile velocity contains the orientation of the lance, multiply it by the tipDist to position the tip.
 
 			// Set the rotation of the projectile.
-			// For reference, 0 is the top left, 180 degrees or pi radians is the bottom right.
+			// 对于 reference, 0 is the top left, 180 degrees or pi radians is the bottom right.
 			Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + (float)Math.PI * 3 / 4f;
 
 			// Fade the projectile in when it first spawns
@@ -90,7 +90,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.alpha = 0;
 			}
 
-			// The Hallowed and Shadow Jousting Lance spawn dusts when the player is moving above a certain speed.
+			// Hallowed and Shadow Jousting Lance spawn dusts when the player is moving above a certain speed.
 			float minimumDustVelocity = 6f;
 
 			// This Vector2.Dot is the dot product between the projectile's velocity and the player's velocity normalized to be between -1 and 1.
@@ -101,7 +101,7 @@ namespace ExampleMod.Content.Projectiles
 			float playerVelocity = owner.velocity.Length();
 
 			if (playerVelocity > minimumDustVelocity && movementInLanceDirection > 0.8f) {
-				// The chance for the dust to spawn. The actual chance (see below) is 1/dustChance. We make the chance higher the faster the player is moving by making the denominator smaller.
+				// chance for the dust to spawn. The actual chance (see below) is 1/dustChance. We make the chance higher the faster the player is moving by making the denominator smaller.
 				int dustChance = 8;
 				if (playerVelocity > minimumDustVelocity + 1f) {
 					dustChance = 5;
@@ -139,7 +139,7 @@ namespace ExampleMod.Content.Projectiles
 			modifiers.SourceDamage *= 0.1f + Main.player[Projectile.owner].velocity.Length() / 7f * 0.9f;
 		}
 
-		// This is the custom collision that Jousting Lances uses. 
+		// 这是 the custom collision that Jousting Lances uses. 
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			float rotationFactor = Projectile.rotation + (float)Math.PI / 4f; // The rotation of the Jousting Lance.
 			float scaleFactor = 95f; // How far back the hit-line will be from the tip of the Jousting Lance. You will need to modify this if you have a longer or shorter Jousting Lance. Vanilla uses 95f
@@ -147,19 +147,19 @@ namespace ExampleMod.Content.Projectiles
 			float collisionPoint = 0f; // collisionPoint is needed for CheckAABBvLineCollision(), but it isn't used for our collision here. Keep it at 0f.
 
 			// This Rectangle is the width and height of the Jousting Lance's hitbox which is used for the first step of collision.
-			// You will need to modify the last two numbers if you have a bigger or smaller Jousting Lance.
+			// 你 will need to modify the last two numbers if you have a bigger or smaller Jousting Lance.
 			// Vanilla uses (0, 0, 300, 300) which that is quite large for the size of the Jousting Lance.
-			// The size doesn't matter too much because this rectangle is only a basic check for the collision (the hit-line is much more important).
+			// size doesn't matter too much because this rectangle is only a basic check for the collision (the hit-line is much more important).
 			Rectangle lanceHitboxBounds = new Rectangle(0, 0, 300, 300);
 
 			// Set the position of the large rectangle.
 			lanceHitboxBounds.X = (int)Projectile.position.X - lanceHitboxBounds.Width / 2;
 			lanceHitboxBounds.Y = (int)Projectile.position.Y - lanceHitboxBounds.Height / 2;
 
-			// This is the back of the hit-line with Projectile.Center being the tip of the Jousting Lance.
+			// 这是 the back of the hit-line with Projectile.Center being the tip of the Jousting Lance.
 			Vector2 hitLineEnd = Projectile.Center + rotationFactor.ToRotationVector2() * scaleFactor;
 
-			// The following is for debugging the size of the hit line. This will allow you to easily see where it starts and ends.
+			// following is for debugging the size of the hit line. This will allow you to easily see where it starts and ends.
 			// Dust.NewDustPerfect(Projectile.Center, DustID.Pixie, Velocity: Vector2.Zero, Scale: 0.5f);
 			// Dust.NewDustPerfect(hitLineEnd, DustID.Pixie, Velocity: Vector2.Zero, Scale: 0.5f);
 
@@ -172,7 +172,7 @@ namespace ExampleMod.Content.Projectiles
 			return false;
 		}
 
-		// We need to draw the projectile manually. If you don't include this, the Jousting Lance will not be aligned with the player.
+		// 我们 need to draw the projectile manually. If you don't include this, the Jousting Lance will not be aligned with the player.
 		public override bool PreDraw(ref Color lightColor) {
 
 			// SpriteEffects change which direction the sprite is drawn.
@@ -184,13 +184,13 @@ namespace ExampleMod.Content.Projectiles
 			// Get the currently selected frame on the texture.
 			Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Type], frameY: Projectile.frame);
 
-			// The origin in this case is (0, 0) of our projectile because Projectile.Center is the tip of our Jousting Lance.
+			// origin in this case is (0, 0) of our projectile because Projectile.Center is the tip of our Jousting Lance.
 			Vector2 origin = Vector2.Zero;
 
-			// The rotation of the projectile.
+			// rotation of the projectile.
 			float rotation = Projectile.rotation;
 
-			// If the projectile is facing right, we need to rotate it by -90 degrees, move the origin, and flip the sprite horizontally.
+			// 如果 the projectile is facing right, we need to rotate it by -90 degrees, move the origin, and flip the sprite horizontally.
 			// This will make it so the bottom of the sprite is correctly facing down when shot to the right.
 			if (Projectile.direction > 0) {
 				rotation -= (float)Math.PI / 2f;
@@ -198,7 +198,7 @@ namespace ExampleMod.Content.Projectiles
 				spriteEffects = SpriteEffects.FlipHorizontally;
 			}
 
-			// The position of the sprite. Not subtracting Main.player[Projectile.owner].gfxOffY will cause the sprite to bounce when walking up blocks.
+			// position of the sprite. Not subtracting Main.player[Projectile.owner].gfxOffY will cause the sprite to bounce when walking up blocks.
 			Vector2 position = new(Projectile.Center.X, Projectile.Center.Y - Main.player[Projectile.owner].gfxOffY);
 
 			// Apply lighting and draw our projectile
@@ -208,7 +208,7 @@ namespace ExampleMod.Content.Projectiles
 				position - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
 				sourceRectangle, drawColor, rotation, origin, Projectile.scale, spriteEffects, 0);
 
-			// The following is for debugging the size of the collision rectangle. Set this to the same size as the one you have in Colliding().
+			// following is for debugging the size of the collision rectangle. Set this to the same size as the one you have in Colliding().
 			// Rectangle lanceHitboxBounds = new Rectangle(0, 0, 300, 300);
 			// Main.EntitySpriteDraw(TextureAssets.MagicPixel.Value,
 			// 	new Vector2((int)Projectile.Center.X - lanceHitboxBounds.Width / 2, (int)Projectile.Center.Y - lanceHitboxBounds.Height / 2) - Main.screenPosition,

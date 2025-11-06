@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-// This file contains ExampleSandBallProjectile, ExampleSandBallFallingProjectile, and ExampleSandBallGunProjectile.
+// 此文件 contains ExampleSandBallProjectile, ExampleSandBallFallingProjectile, and ExampleSandBallGunProjectile.
 // ExampleSandBallFallingProjectile and ExampleSandBallGunProjectile inherit from ExampleSandBallProjectile, allowing cleaner code and shared logic.
 // ExampleSandBallFallingProjectile is the projectile that spawns when the ExampleSand tile falls.
 // ExampleSandBallGunProjectile is the projectile that is shot by the Sandgun weapon.
@@ -30,7 +30,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			// The falling projectile when compared to the sandgun projectile is hostile.
+			// falling projectile when compared to the sandgun projectile is hostile.
 			Projectile.CloneDefaults(ProjectileID.EbonsandBallFalling);
 		}
 	}
@@ -43,8 +43,8 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			// The sandgun projectile when compared to the falling projectile has a ranged damage type, isn't hostile, and has extraupdates = 1.
-			// Note that EbonsandBallGun has infinite penetration, unlike SandBallGun
+			// sandgun projectile when compared to the falling projectile has a ranged damage type, isn't hostile, and has extraupdates = 1.
+			// 注意 that EbonsandBallGun has infinite penetration, unlike SandBallGun
 			Projectile.CloneDefaults(ProjectileID.EbonsandBallGun);
 			AIType = ProjectileID.EbonsandBallGun; // This is needed for some logic in the ProjAIStyleID.FallingTile code.
 		}

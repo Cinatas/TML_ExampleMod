@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Mounts
 		private Asset<Texture2D> balloonTexture;
 
 		// Since only a single instance of ModMountData ever exists, we can use player.mount._mountSpecificData to store additional data related to a specific mount.
-		// Using something like this for gameplay effects would require ModPlayer syncing, but this example is purely visual.
+		// 使用 something like this for gameplay effects would require ModPlayer syncing, but this example is purely visual.
 		protected class CarSpecificData
 		{
 			internal static float[] offsets = new float[] { 0, 14, -14 };
@@ -115,7 +115,7 @@ namespace ExampleMod.Content.Mounts
 		}
 
 		public override void SetMount(Player player, ref bool skipDust) {
-			// When this mount is mounted, we initialize _mountSpecificData with a new CarSpecificData object which will track some extra visuals for the mount.
+			// 当 this mount is mounted, we initialize _mountSpecificData with a new CarSpecificData object which will track some extra visuals for the mount.
 			player.mount._mountSpecificData = new CarSpecificData();
 
 			// This code bypasses the normal mount spawning dust and replaces it with our own visual.
@@ -131,7 +131,7 @@ namespace ExampleMod.Content.Mounts
 		public override bool Draw(List<DrawData> playerDrawData, int drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref float rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref float drawScale, float shadow) {
 			// Draw is called for each mount texture we provide, so we check drawType to avoid duplicate draws.
 			if (drawType == 0) {
-				// We draw some extra balloons before _Back texture
+				// 我们 draw some extra balloons before _Back texture
 				var balloons = (CarSpecificData)drawPlayer.mount._mountSpecificData;
 				int timer = DateTime.Now.Millisecond % 800 / 200;
 				Texture2D balloon = balloonTexture.Value;

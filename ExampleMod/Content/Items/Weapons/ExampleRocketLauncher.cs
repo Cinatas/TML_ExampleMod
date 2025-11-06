@@ -15,15 +15,15 @@ namespace ExampleMod.Content.Items.Weapons
 			AmmoID.Sets.SpecificLauncherAmmoProjectileFallback[Type] = ItemID.RocketLauncher;
 
 			// SpecificLauncherAmmoProjectileMatches can be used to provide specific projectiles for specific ammo items.
-			// This example dictates that when RocketIII ammo is used, this weapon will fire the Meowmere projectile.
-			// This is purely to show off this capability, typically SpecificLauncherAmmoProjectileFallback is all
+			// 此示例 dictates that when RocketIII ammo is used, this weapon will fire the Meowmere projectile.
+			// 这是 purely to show off this capability, typically SpecificLauncherAmmoProjectileFallback is all
 			// that is needed for an "upgrade". A completely custom rocket launcher would instead specify new and
 			// unique projectiles for all possible rocket ammo.
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches.Add(Type, new Dictionary<int, int> {
 				{ ItemID.RocketIII, ProjectileID.Meowmere }, 
 			});
 
-			// Note that some rocket launchers, like Celebration and Electrosphere Launcher, will always
+			// 注意 that some rocket launchers, like Celebration and Electrosphere Launcher, will always
 			// use their own projectiles no matter which rocket is used as ammo.
 			// This type of behavior can be implemented in ModifyShootStats
 		}

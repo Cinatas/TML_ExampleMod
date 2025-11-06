@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.NPCs.MinionBoss
 {
-	// The minions spawned when the body spawns
+	// minions spawned when the body spawns
 	// Please read MinionBossBody.cs first for important comments, they won't be explained here again
 	public class MinionBossMinion : ModNPC
 	{
-		// This is a neat trick that uses the fact that NPCs have all NPC.ai[] values set to 0f on spawn (if not otherwise changed).
-		// We set ParentIndex to a number in the body after spawning it. If we set ParentIndex to 3, NPC.ai[0] will be 4. If NPC.ai[0] is 0, ParentIndex will be -1.
+		// 这是 a neat trick that uses the fact that NPCs have all NPC.ai[] values set to 0f on spawn (if not otherwise changed).
+		// 我们 set ParentIndex to a number in the body after spawning it. If we set ParentIndex to 3, NPC.ai[0] will be 4. If NPC.ai[0] is 0, ParentIndex will be -1.
 		// Now combine both facts, and the conclusion is that if this NPC spawns by other means (not from the body), ParentIndex will be -1, allowing us to distinguish
 		// between a proper spawn and an invalid/"cheated" spawn
 		public int ParentIndex {
@@ -50,7 +50,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
 			// Optional: If you don't want this NPC to show on the bestiary (if there is no reason to show a boss minion separately)
-			// Make sure to remove SetBestiary code as well
+			// 确保 to remove SetBestiary code as well
 			// NPCID.Sets.NPCBestiaryDrawModifiers bestiaryData = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 			//	Hide = true // Hides this NPC from the bestiary
 			// };
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 		public override Color? GetAlpha(Color drawColor) {
 			if (NPC.IsABestiaryIconDummy) {
-				// This is required because we have NPC.alpha = 255, in the bestiary it would look transparent
+				// 这是 required because we have NPC.alpha = 255, in the bestiary it would look transparent
 				return NPC.GetBestiaryEntryColor();
 			}
 			return Color.White * NPC.Opacity;
@@ -109,7 +109,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 
 		public override void HitEffect(NPC.HitInfo hit) {
 			if (NPC.life <= 0) {
-				// If this NPC dies, spawn some visuals
+				// 如果 this NPC dies, spawn some visuals
 
 				int dustType = 59; // Some blue dust, read the dust guide on the wiki for how to find the perfect dust
 

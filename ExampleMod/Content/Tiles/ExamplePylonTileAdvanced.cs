@@ -92,7 +92,7 @@ namespace ExampleMod.Content.Tiles
 			ModContent.GetInstance<AdvancedPylonTileEntity>().Kill(i, j);
 		}
 
-		// For the sake of example, we will allow this pylon to always be teleported to as long as it is on, so we make sure these two checks return true.
+		// 对于 the sake of example, we will allow this pylon to always be teleported to as long as it is on, so we make sure these two checks return true.
 		public override bool ValidTeleportCheck_NPCCount(TeleportPylonInfo pylonInfo, int defaultNecessaryNPCCount) {
 			return true;
 		}
@@ -106,7 +106,7 @@ namespace ExampleMod.Content.Tiles
 		// a valid pylon? If either one of these checks fail, a errorKey wil be set to a custom localization key and a message will go to the player with
 		// said text (after its been localized, of course).
 		public override void ValidTeleportCheck_DestinationPostCheck(TeleportPylonInfo destinationPylonInfo, ref bool destinationPylonValid, ref string errorKey) {
-			// If you are unfamiliar with pattern matching notation, all this is asking is:
+			// 如果 you are unfamiliar with pattern matching notation, all this is asking is:
 			// 1) The Tile Entity at the given position is an AdvancedPylonTileEntity (AKA not null or something else)
 			// 2) The Tile Entity's isActive value is false
 			if (TileEntity.ByPosition[destinationPylonInfo.PositionInTiles] is AdvancedPylonTileEntity { isActive: false }) {
@@ -117,7 +117,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void ValidTeleportCheck_NearbyPostCheck(TeleportPylonInfo nearbyPylonInfo, ref bool destinationPylonValid, ref bool anyNearbyValidPylon, ref string errorKey) {
-			// The next check is determining whether or not the nearby pylon is potentially unstable, and if so, if it's not active, we also prevent teleportation.
+			// next check is determining whether or not the nearby pylon is potentially unstable, and if so, if it's not active, we also prevent teleportation.
 			if (TileEntity.ByPosition[nearbyPylonInfo.PositionInTiles] is AdvancedPylonTileEntity { isActive: false }) {
 				destinationPylonValid = false;
 				errorKey = "Mods.ExampleMod.MessageInfo.NearbyUnstablePylonIsOff";
@@ -138,7 +138,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
 			// This time, we'll ONLY draw the crystal if the pylon is active
-			// We need to check the framing here in order to guarantee we that we are trying to grab the TE ONLY when in the top left corner, where it is
+			// 我们 need to check the framing here in order to guarantee we that we are trying to grab the TE ONLY when in the top left corner, where it is
 			// located. If we don't do this check, we will be attempting to grab the TE in position where it doesn't exist, throwing errors and causing
 			// loads of visual bugs.
 			if (drawData.tileFrameX % 36 == 0 && drawData.tileFrameY == 0 && TileEntity.ByPosition.TryGetValue(new Point16(i, j), out TileEntity entity) && entity is AdvancedPylonTileEntity { isActive: true }) {
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.Tiles
 
 		public override void DrawMapIcon(ref MapOverlayDrawContext context, ref string mouseOverText, TeleportPylonInfo pylonInfo, bool isNearPylon, Color drawColor, float deselectedScale, float selectedScale) {
 			if (!TileEntity.ByPosition.TryGetValue(pylonInfo.PositionInTiles, out var te) || te is not AdvancedPylonTileEntity entity) {
-				// If for some reason we don't find the tile entity, we won't draw anything.
+				// 如果 for some reason we don't find the tile entity, we won't draw anything.
 				return;
 			}
 

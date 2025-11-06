@@ -71,7 +71,7 @@ namespace ExampleMod.Content.NPCs
 				Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
 				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
 				// Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
-				// If you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
+				// 如果 you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -112,7 +112,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the preferred biomes of this town NPC listed in the bestiary.
 				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
@@ -121,13 +121,13 @@ namespace ExampleMod.Content.NPCs
 				// Sets your NPC's flavor text in the bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Person is here to help you understand everything about tModLoader."),
 
-				// You can add multiple elements if you really wanted to
-				// You can also use localization keys (see Localization/en-US.lang)
+				// 你 can add multiple elements if you really wanted to
+				// 你 can also use localization keys (see Localization/en-US.lang)
 				new FlavorTextBestiaryInfoElement("Mods.ExampleMod.Bestiary.ExamplePerson")
 			});
 		}
 
-		// The PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
+		// PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
 		// Returning false will allow you to manually draw your NPC
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
 			// This code slowly rotates the NPC in the bestiary
@@ -175,14 +175,14 @@ namespace ExampleMod.Content.NPCs
 
 		public override void OnSpawn(IEntitySource source) {
 			if(source is EntitySource_SpawnNPC) {
-				// A TownNPC is "unlocked" once it successfully spawns into the world.
+				// 一个 TownNPC is "unlocked" once it successfully spawns into the world.
 				TownNPCRespawnSystem.unlockedExamplePersonSpawn = true;
 			}
 		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs) { // Requirements for the town NPC to spawn.
 			if (TownNPCRespawnSystem.unlockedExamplePersonSpawn) {
-				// If Example Person has spawned in this world before, we don't require the user satisfying the ExampleItem/ExampleBlock inventory conditions for a respawn.
+				// 如果 Example Person has spawned in this world before, we don't require the user satisfying the ExampleItem/ExampleBlock inventory conditions for a respawn.
 				return true;
 			}
 
@@ -263,7 +263,7 @@ namespace ExampleMod.Content.NPCs
 
 			string chosenChat = chat; // chat is implicitly cast to a string. This is where the random choice is made.
 
-			// Here is some additional logic based on the chosen chat line. In this case, we want to display an item in the corner for StandardDialogue4.
+			// 在这里 is some additional logic based on the chosen chat line. In this case, we want to display an item in the corner for StandardDialogue4.
 			if (chosenChat == Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue4")) {
 				// Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
 				Main.npcChatCornerItem = ItemID.HiveBackpack;
@@ -282,7 +282,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (firstButton) {
-				// We want 3 different functionalities for chat buttons, so we use HasItem to change button 1 between a shop and upgrade action.
+				// 我们 want 3 different functionalities for chat buttons, so we use HasItem to change button 1 between a shop and upgrade action.
 
 				if (Main.LocalPlayer.HasItem(ItemID.HiveBackpack)) {
 					SoundEngine.PlaySound(SoundID.Item37); // Reforge/Anvil sound
@@ -341,7 +341,7 @@ namespace ExampleMod.Content.NPCs
 					continue;
 				}
 
-				// If NPC is shimmered then reduce all prices by 50%.
+				// 如果 NPC is shimmered then reduce all prices by 50%.
 				if (NPC.IsShimmerVariant) {
 					int value = item.shopCustomPrice ?? item.value;
 					item.shopCustomPrice = value / 2;
@@ -417,7 +417,7 @@ namespace ExampleMod.Content.NPCs
 		public override int? PickEmote(Player closestPlayer, List<int> emoteList, WorldUIAnchor otherAnchor) {
 			// By default this NPC will have a chance to use the Minion Boss Emote even if Minion Boss is not downed yet
 			int type = ModContent.EmoteBubbleType<MinionBossEmote>();
-			// If the NPC is talking to the Demolitionist, it will be more likely to react with angry emote
+			// 如果 the NPC is talking to the Demolitionist, it will be more likely to react with angry emote
 			if (otherAnchor.entity is NPC { type: NPCID.Demolitionist }) {
 				type = EmoteID.EmotionAnger;
 			}

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// This is a copy of the Excalibur
+	// 这是 a copy of the Excalibur
 	public class ExampleSwingingEnergySword : ModItem
 	{
 		public override void SetDefaults() {

@@ -7,15 +7,15 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// This file contains 3 classes and shows off using inheritance to share code between classes.
+	// 此文件 contains 3 classes and shows off using inheritance to share code between classes.
 	// Terraria has many tiles that are purely decorative and do not drop items when broken.
 	// These tiles go by many names, such as ambient tiles, background tiles, piles, detritus, and rubble. We will use the term rubble because of the recently added Rubblemaker item. 
-	// The Rubblemaker (https://terraria.wiki.gg/wiki/Rubblemaker) is a special item that can place these decorative tiles. The tile placed by the Rubblemaker looks the same as the original rubble tile but behaves slightly differently.
+	// Rubblemaker (https://terraria.wiki.gg/wiki/Rubblemaker) is a special item that can place these decorative tiles. The tile placed by the Rubblemaker looks the same as the original rubble tile but behaves slightly differently.
 
 	// Example2x1RubbleBase is an abstract class, it is not an actual tile, but the other 2 classes in this file will reuse the Texture and SetStaticDefaults code shown here because they inherit from it. 
 	public abstract class Example2x1RubbleBase : ModTile
 	{
-		// We want both tiles to use the same texture
+		// 我们 want both tiles to use the same texture
 		public override string Texture => "ExampleMod/Content/Tiles/Example2x1Rubble";
 
 		public override void SetStaticDefaults() {
@@ -34,7 +34,7 @@ namespace ExampleMod.Content.Tiles
 		}
 	}
 
-	// This is the fake tile that will be placed by the Rubblemaker.
+	// 这是 the fake tile that will be placed by the Rubblemaker.
 	public class Example2x1RubbleFake : Example2x1RubbleBase
 	{
 		public override void SetStaticDefaults() {
@@ -49,7 +49,7 @@ namespace ExampleMod.Content.Tiles
 		}
 	}
 
-	// This is the natural tile, this version is placed during world generation in the RubbleWorldGen class.
+	// 这是 the natural tile, this version is placed during world generation in the RubbleWorldGen class.
 	public class Example2x1RubbleNatural : Example2x1RubbleBase
 	{
 		public override void SetStaticDefaults() {

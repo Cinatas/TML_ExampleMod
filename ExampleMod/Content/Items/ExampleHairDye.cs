@@ -12,7 +12,7 @@ namespace ExampleMod.Content.Items
 		public override void SetStaticDefaults() {
 			// Avoid loading assets on dedicated servers. They don't use graphics cards.
 			if (!Main.dedServ) {
-				// The following code creates a hair color-returning delegate (anonymous method), and associates it with this item's type Id.
+				// following code creates a hair color-returning delegate (anonymous method), and associates it with this item's type Id.
 				GameShaders.Hair.BindShader(
 					Item.type,
 					new LegacyHairShaderData().UseLegacyMethod((Player player, Color newColor, ref bool lighting) => Main.DiscoColor) // Returning Main.DiscoColor will make our hair an animated rainbow. You can return any Color here.

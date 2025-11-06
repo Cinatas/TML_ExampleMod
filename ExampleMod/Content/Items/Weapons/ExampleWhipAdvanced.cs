@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items.Weapons
 {
 	public class ExampleWhipAdvanced : ModItem
 	{
-		// The texture doesn't have the same name as the item, so this property points to it.
+		// texture doesn't have the same name as the item, so this property points to it.
 		public override string Texture => "ExampleMod/Content/Items/Weapons/ExampleWhip";
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExampleWhipAdvancedDebuff.TagDamagePercent);

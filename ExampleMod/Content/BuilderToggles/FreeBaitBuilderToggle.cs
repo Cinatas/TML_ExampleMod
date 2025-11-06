@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.BuilderToggles;
 
-// This example shows almost all BuilderToggle hooks.
+// 此示例 shows almost all BuilderToggle hooks.
 // As it is just an example, it behaves more like a "button" than a "toggle".
 // Left clicking allows you to select bait type and right clicking gives you 10 free bait of the selected type.
 // Custom drawing is showcased in this example to handle frame changes.
@@ -29,7 +29,7 @@ public class FreeBaitBuilderToggle : BuilderToggle
 
 	public override bool OnLeftClick(ref SoundStyle? sound) {
 		// Change the click sound.
-		// If you don't want a sound to play, set sound to null.
+		// 如果 you don't want a sound to play, set sound to null.
 		sound = SoundID.DrumTomHigh;
 		return true;
 	}

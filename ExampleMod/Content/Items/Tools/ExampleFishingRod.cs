@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Tools
 {
 	// ExampleFishingRod is a fishing rod item.
-	// The code in SetDefaults and the code setting lineOriginOffset in ModifyFishingLine is all the would be needed for a typical working fishing rod item.
+	// code in SetDefaults and the code setting lineOriginOffset in ModifyFishingLine is all the would be needed for a typical working fishing rod item.
 	// All of the rest of the code showcases other additional capabilities, such as multiple bobbers, custom line colors, and fishing in lava.
 	public class ExampleFishingRod : ModItem
 	{
@@ -63,7 +63,7 @@ namespace ExampleMod.Content.Items.Tools
 				lineColor = exampleBobber.FishingLineColor;
 			}
 			else {
-				// If the bobber isn't ExampleBobber, a Fishing Bobber accessory is in effect and we use DiscoColor instead.
+				// 如果 the bobber isn't ExampleBobber, a Fishing Bobber accessory is in effect and we use DiscoColor instead.
 				lineColor = Main.DiscoColor;
 			}
 		}

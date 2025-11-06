@@ -43,7 +43,7 @@ namespace ExampleMod.Content.Items.Weapons
 			tooltips.Add(new TooltipLine(Mod, "ExampleResourceCost", UsesXExampleResourceText.Format(exampleResourceCost)));
 		}
 
-		// Make sure you can't use the item if you don't have enough resource
+		// 确保 you can't use the item if you don't have enough resource
 		public override bool CanUseItem(Player player) {
 			var exampleResourcePlayer = player.GetModPlayer<ExampleResourcePlayer>();
 

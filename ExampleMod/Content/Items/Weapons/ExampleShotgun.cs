@@ -60,7 +60,7 @@ namespace ExampleMod.Content.Items.Weapons
 				.Register();
 		}
 
-		// This method lets you adjust position of the gun in the player's hands. Play with these values until it looks good with your graphics.
+		// 此方法 lets you adjust position of the gun in the player's hands. Play with these values until it looks good with your graphics.
 		public override Vector2? HoldoutOffset() {
 			return new Vector2(-2f, -2f);
 		}

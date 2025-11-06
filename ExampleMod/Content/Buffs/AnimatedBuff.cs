@@ -29,9 +29,9 @@ namespace ExampleMod.Content.Buffs
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams) {
-			// You can use this hook to make something special happen when the buff icon is drawn (such as reposition it, pick a different texture, etc.).
+			// 你 can use this hook to make something special happen when the buff icon is drawn (such as reposition it, pick a different texture, etc.).
 
-			// We draw our special texture here with a specific animation.
+			// 我们 draw our special texture here with a specific animation.
 
 			// Use our animation spritesheet.
 			Texture2D ourTexture = animatedTexture.Value;
@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Buffs
 
 			// Other stuff you can do in this hook
 			/*
-			// Here we make the icon have a lime green tint.
+			// 在这里 we make the icon have a lime green tint.
 			drawParams.drawColor = Color.LimeGreen * Main.buffAlpha[buffIndex];
 			*/
 
@@ -48,11 +48,11 @@ namespace ExampleMod.Content.Buffs
 			// it handles mouseovering and clicking on the buff icon. Since our frame in the animation is 32x32 (same as the autoloaded sprite),
 			// and we don't change drawParams.position, we don't have to do anything. If you offset the position, or have a non-standard size, change it accordingly.
 
-			// We have two options here:
+			// 我们 have two options here:
 			// Option 1 is the recommended one, as it requires less code.
 			// Option 2 allows you to customize drawing even more, but then you are on your own.
 
-			// For demonstration, both options' codes are written down, but the latter is commented out using /* and */.
+			// 对于 demonstration, both options' codes are written down, but the latter is commented out using /* and */.
 
 			// OPTION 1 - Let the game draw it for us. Therefore we have to assign our variables to drawParams:
 			drawParams.Texture = ourTexture;

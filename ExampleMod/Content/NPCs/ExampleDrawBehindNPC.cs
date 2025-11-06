@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.NPCs
 {
 	// This NPC is simply an exhibition of the DrawBehind method.
-	// The npc cycles between all the available "layers" that a ModNPC can be drawn at.
+	// npc cycles between all the available "layers" that a ModNPC can be drawn at.
 	// Spawn this NPC with something like Cheat Sheet or Hero's Mod to view the effect.
 	public class ExampleDrawBehindNPC : ModNPC
 	{
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.NPCs
 			NPC.knockBackResist = 0f; // How much of the knockback it receives will actually apply. 1f: full knockback; 0f: no knockback
 		}
 
-		// The current drawing layer will change every 40 ticks
+		// current drawing layer will change every 40 ticks
 		private int CurrentLayer => (int)(NPC.ai[0] / 40);
 
 		// This changes the frame from the this NPC's texture that is drawn, depending on the current layer
@@ -58,9 +58,9 @@ namespace ExampleMod.Content.NPCs
 			}
 		}
 
-		// This method allows you to specify that this npc should be drawn behind certain elements
+		// 此方法 allows you to specify that this npc should be drawn behind certain elements
 		public override void DrawBehind(int index) {
-			// The 6 available positions are as follows:
+			// 6 available positions are as follows:
 			switch (CurrentLayer) {
 				case 0: // Behind tiles and walls
 					Main.instance.DrawCacheNPCsMoonMoon.Add(index);

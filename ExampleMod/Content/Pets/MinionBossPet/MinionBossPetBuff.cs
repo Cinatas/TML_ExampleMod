@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Pets.MinionBossPet
 {
-	// You can find a simple pet example in ExampleMod\Content\Pets\ExamplePet
+	// 你 can find a simple pet example in ExampleMod\Content\Pets\ExamplePet
 	public class MinionBossPetBuff : ModBuff
 	{
 		public override void SetStaticDefaults() {

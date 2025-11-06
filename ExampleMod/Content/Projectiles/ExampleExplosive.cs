@@ -51,7 +51,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// The projectile is very bouncy, but the spawned children projectiles shouldn't bounce at all.
+		// projectile is very bouncy, but the spawned children projectiles shouldn't bounce at all.
 		public override bool OnTileCollide(Vector2 oldVelocity) {
 			// Die immediately if IsChild is true (We set this to true for the 5 extra explosives we spawn in OnKill)
 			if (IsChild) {
@@ -62,7 +62,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 			// OnTileCollide can trigger quite frequently, so using soundDelay helps prevent the sound from overlapping too much.
 			if (Projectile.soundDelay == 0) {
-				// We adjust Volume since the sound is a bit too loud. PitchVariance gives the sound some random pitch variance.
+				// 我们 adjust Volume since the sound is a bit too loud. PitchVariance gives the sound some random pitch variance.
 				SoundStyle impactSound = new SoundStyle($"{nameof(ExampleMod)}/Assets/Sounds/Items/BananaImpact") {
 					Volume = 0.7f,
 					PitchVariance = 0.5f,
@@ -82,7 +82,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void AI() {
-			// The projectile is in the midst of exploding during the last 3 updates.
+			// projectile is in the midst of exploding during the last 3 updates.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
 				Projectile.PrepareBombToBlow(); // Get ready to explode.
 			}
@@ -132,7 +132,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnKill(int timeLeft) {
-			// If we are the original projectile running on the owner, spawn the 5 child projectiles.
+			// 如果 we are the original projectile running on the owner, spawn the 5 child projectiles.
 			if (Projectile.owner == Main.myPlayer && !IsChild) {
 				for (int i = 0; i < 5; i++) {
 					// Random upward vector.

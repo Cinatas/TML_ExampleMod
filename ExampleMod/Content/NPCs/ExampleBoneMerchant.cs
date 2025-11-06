@@ -99,7 +99,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			// 我们 can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the preferred biomes of this town NPC listed in the bestiary.
 				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
@@ -108,8 +108,8 @@ namespace ExampleMod.Content.NPCs
 				// Sets your NPC's flavor text in the bestiary.
 				new FlavorTextBestiaryInfoElement("Hailing from a mysterious greyscale cube world, the Example Bone Merchant will show you how to make a mysterious merchant underground with tModLoader."),
 
-				// You can add multiple elements if you really wanted to
-				// You can also use localization keys (see Localization/en-US.lang)
+				// 你 can add multiple elements if you really wanted to
+				// 你 can also use localization keys (see Localization/en-US.lang)
 				new FlavorTextBestiaryInfoElement("Mods.ExampleMod.Bestiary.ExampleBoneMerchant")
 			});
 		}
@@ -225,7 +225,7 @@ namespace ExampleMod.Content.NPCs
 
 		public override void DrawTownAttackGun(ref Texture2D item, ref Rectangle itemFrame, ref float scale, ref int horizontalHoldoutOffset) {
 			if (!NPC.IsShimmerVariant) {
-				// If using an existing item, use this approach
+				// 如果 using an existing item, use this approach
 				int itemType = ModContent.ItemType<ExampleCustomAmmoGun>();
 				Main.GetItemDrawFrame(itemType, out item, out itemFrame);
 				horizontalHoldoutOffset = (int)Main.DrawPlayerItemPos(1f, itemType).X - 12;

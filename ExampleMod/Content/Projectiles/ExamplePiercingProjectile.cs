@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// This file showcases the concept of piercing.
-	// The code of the item that spawns it is located at the bottom.
+	// 此文件 showcases the concept of piercing.
+	// code of the item that spawns it is located at the bottom.
 
 	// NPC.immune determines if an npc can be hit by a item or projectile owned by a particular player (it is an array, each slot corresponds to different players (whoAmI))
 	// NPC.immune is decremented towards 0 every update
@@ -56,14 +56,14 @@ namespace ExampleMod.Content.Projectiles
 			// 5b: Projectile.localNPCHitCooldown = 20; // 20 ticks before the same npc can be hit again
 		}
 
-		// See comments at the beginning of the class
+		// 参见 comments at the beginning of the class
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			// 3a: target.immune[Projectile.owner] = 20;
 			// 3b: target.immune[Projectile.owner] = 5;
 		}
 	}
 
-	// This is a simple item that is based on the FlintlockPistol and shoots ExamplePiercingProjectile to showcase it.
+	// 这是 a simple item that is based on the FlintlockPistol and shoots ExamplePiercingProjectile to showcase it.
 	internal class ExamplePiercingProjectileItem : ModItem
 	{
 		public override string Texture => $"Terraria/Images/Item_{ItemID.FlintlockPistol}";

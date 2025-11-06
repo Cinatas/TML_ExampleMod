@@ -12,19 +12,19 @@ namespace ExampleMod.Content.Tiles
 {
 	internal class ExampleAnimatedTile : ModTile
 	{
-		// If you want to know more about tiles, please follow this link
+		// 如果 you want to know more about tiles, please follow this link
 		// https://github.com/tModLoader/tModLoader/wiki/Basic-Tile
 		public override void SetStaticDefaults() {
-			// If a tile is a light source
+			// 如果 a tile is a light source
 			Main.tileLighted[Type] = true;
 			// This changes a Framed tile to a FrameImportant tile
-			// For modders, just remember to set this to true when you make a tile that uses a TileObjectData
+			// 对于 modders, just remember to set this to true when you make a tile that uses a TileObjectData
 			// Or basically all tiles that aren't like dirt, ores, or other basic building tiles
 			Main.tileFrameImportant[Type] = true;
 			// Set to True if you'd like your tile to die if hit by lava
 			Main.tileLavaDeath[Type] = true;
 			// Use this to utilize an existing template
-			// The names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
+			// names of styles are self explanatory usually (you can see all existing templates at the link mentioned earlier)
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
 			// This last call adds a new tile
 			// Before that, you can make some changes to newTile like height, origin and etc.
@@ -41,14 +41,14 @@ namespace ExampleMod.Content.Tiles
 		// Our textures animation frames are arranged horizontally, which isn't typical, so here we specify animationFrameWidth which we use later in AnimateIndividualTile
 		private readonly int animationFrameWidth = 18;
 
-		// This method allows you to determine how much light this block emits
+		// 此方法 allows you to determine how much light this block emits
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
 			r = 0.93f;
 			g = 0.11f;
 			b = 0.12f;
 		}
 
-		// This method allows you to determine whether or not the tile will draw itself flipped in the world
+		// 此方法 allows you to determine whether or not the tile will draw itself flipped in the world
 		public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
 			// Flips the sprite if x coord is odd. Makes the tile more interesting
 			if (i % 2 == 1)
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Tiles
 			frameXOffset = uniqueAnimationFrame * animationFrameWidth;
 		}
 
-		// This method allows you to change the sound a tile makes when hit
+		// 此方法 allows you to change the sound a tile makes when hit
 		public override bool KillSound(int i, int j, bool fail) {
 			// Play the glass shattering sound instead of the normal digging sound if the tile is destroyed on this hit
 			if (!fail) {
@@ -108,8 +108,8 @@ namespace ExampleMod.Content.Tiles
 			Tile tile = Main.tile[i, j];
 			Texture2D texture = TextureAssets.Tile[Type].Value;
 
-			// If you are using ModTile.SpecialDraw or PostDraw or PreDraw, use this snippet and add zero to all calls to spriteBatch.Draw
-			// The reason for this is to accommodate the shift in drawing coordinates that occurs when using the different Lighting mode
+			// 如果 you are using ModTile.SpecialDraw or PostDraw or PreDraw, use this snippet and add zero to all calls to spriteBatch.Draw
+			// reason for this is to accommodate the shift in drawing coordinates that occurs when using the different Lighting mode
 			// Press Shift+F9 to change lighting modes quickly to verify your code works for all lighting modes
 			Vector2 zero = Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);
 

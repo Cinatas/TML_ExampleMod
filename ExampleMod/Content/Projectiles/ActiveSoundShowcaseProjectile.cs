@@ -18,9 +18,9 @@ namespace ExampleMod.Content.Projectiles
 	{
 		internal enum ActiveSoundShowcaseStyle
 		{
-			// This example plays a long sound (12 seconds) and never attempts to change it. Notice how the sound plays without any location, the player and projectile can move left or right and the sound panning and volume do not change. Also note that the sound keeps playing after the projectile dies.
+			// 此示例 plays a long sound (12 seconds) and never attempts to change it. Notice how the sound plays without any location, the player and projectile can move left or right and the sound panning and volume do not change. Also note that the sound keeps playing after the projectile dies.
 			FireAndForget,
-			// This example improves on FireAndForget. The Projectile position is passed into PlaySound. The sound still does not update location, but the player can move around the initial spawn location and the sound pans and volume adjusts accordingly.
+			// 此示例 improves on FireAndForget. The Projectile position is passed into PlaySound. The sound still does not update location, but the player can move around the initial spawn location and the sound pans and volume adjusts accordingly.
 			FireAndForgetPlusInitialPosition,
 			// Further improving on FireAndForgetPlusInitialPosition, this example updates the sound location in AI and stops the sound when the projectile is killed in Kill.
 			SyncSoundToProjectilePosition,
@@ -45,7 +45,7 @@ namespace ExampleMod.Content.Projectiles
 		SoundStyle soundStyleIgniteLoop = new SoundStyle("Terraria/Sounds/Custom/dd2_kobold_ignite_loop") {
 			IsLooped = true,
 			SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest
-			// Note that MaxInstances defaults to 1.
+			// 注意 that MaxInstances defaults to 1.
 		};
 
 		public override void SetStaticDefaults() {
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Projectiles
 			// Sounds are paused when the game loses focus (Player switches to another program). In some situations the modder might want to restart a sound when the game is focused again, in other situations that might not be desired. Some of these examples use a bool, "played", to track if the sound has been played since the projectile spawned, while others do not and will attempt to restart the sound if it is not currently playing.
 
 			// Also note that in this example the SoundStyle all have "MaxInstances = 1" and "SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest" by default, so if 2 projectiles attempt to play the same sound, they'll constantly interrupt each other every AI update, making a horrible sound.
-			// In a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. For example, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances accordingly. The modder might also decide that the sound should not restart when the game is re-focused and use logic to only attempt to play the sound once.
+			// 在 a real mod, the modder should design the SoundStyle properties and PlaySound logic to meet their needs. For example, the modder might decide that 3 overlapping sounds is too chaotic and adjust MaxInstances accordingly. The modder might also decide that the sound should not restart when the game is re-focused and use logic to only attempt to play the sound once.
 			switch (Style) {
 				case ActiveSoundShowcaseStyle.FireAndForget:
 					if (!played) {
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Projectiles
 						soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position);
 					}
 					else {
-						// If the sound is playing, update the sound's position to match the current position of the projectile.
+						// 如果 the sound is playing, update the sound's position to match the current position of the projectile.
 						activeSoundTwister.Position = Projectile.position;
 					}
 					break;
@@ -97,7 +97,7 @@ namespace ExampleMod.Content.Projectiles
 						var tracker = new ProjectileAudioTracker(Projectile);
 						soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position, soundInstance => BasicSoundUpdateCallback(tracker, soundInstance));
 
-						// If only the sound stopping when the projectile is killed is required, this simpler code can be used:
+						// 如果 only the sound stopping when the projectile is killed is required, this simpler code can be used:
 						//soundSlot = SoundEngine.PlaySound(soundStyleTwister, Projectile.position, soundInstance => tracker.IsActiveAndInGame());
 
 						// Do NOT make this mistake, the ProjectileAudioTracker object must be initialized outside the callback:
@@ -108,7 +108,7 @@ namespace ExampleMod.Content.Projectiles
 					if (!SoundEngine.TryGetActiveSound(soundSlot, out var _)) {
 						var tracker = new ProjectileAudioTracker(Projectile);
 						soundSlot = SoundEngine.PlaySound(soundStyleIgniteLoop, Projectile.position, soundInstance => {
-							// The SoundUpdateCallback can be inlined if desired, such as in this example. Otherwise, LoopedSoundAdvanced shows the other approach
+							// SoundUpdateCallback can be inlined if desired, such as in this example. Otherwise, LoopedSoundAdvanced shows the other approach
 							soundInstance.Position = Projectile.position;
 							return tracker.IsActiveAndInGame();
 						});
@@ -159,9 +159,9 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void OnKill(int timeLeft) {
-			// For long sounds, the sound can be stopped when the projectile is killed.
+			// 对于 long sounds, the sound can be stopped when the projectile is killed.
 			// This approach is not foolproof, so it should NOT be used, especially for looped sounds.
-			// See SoundUpdateCallbackApproach for the better approach. This example, however, does show how an ActiveSound can be modified from another hook other than where the sound was played.
+			// 参见 SoundUpdateCallbackApproach for the better approach. This example, however, does show how an ActiveSound can be modified from another hook other than where the sound was played.
 			if (Style == ActiveSoundShowcaseStyle.SyncSoundToProjectilePosition) {
 				if (SoundEngine.TryGetActiveSound(soundSlot, out var activeSound)) {
 					activeSound.Stop();
@@ -170,7 +170,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-			// If collide with tile, reduce the penetrate.
+			// 如果 collide with tile, reduce the penetrate.
 			// So the projectile can reflect at most 3 times
 			Projectile.penetrate--;
 			if (Projectile.penetrate <= 0) {
@@ -180,12 +180,12 @@ namespace ExampleMod.Content.Projectiles
 				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
 				SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
-				// If the projectile hits the left or right side of the tile, reverse the X velocity
+				// 如果 the projectile hits the left or right side of the tile, reverse the X velocity
 				if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon) {
 					Projectile.velocity.X = -oldVelocity.X;
 				}
 
-				// If the projectile hits the top or bottom side of the tile, reverse the Y velocity
+				// 如果 the projectile hits the top or bottom side of the tile, reverse the Y velocity
 				if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) {
 					Projectile.velocity.Y = -oldVelocity.Y;
 				}

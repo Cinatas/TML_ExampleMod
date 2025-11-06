@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Consumables
 {
 	// This item showcases some advanced capabilities of healing potions. It heals a dynamic amount and adjusts its tooltip accordingly.
-	// A typical healing potion can get rid of the ModifyTooltips and GetHealLife methods and just assign Item.healLife.
-	// A mana potion is exactly the same, except Item.healMana is used instead. (Also GetHealMana would be used for dynamic mana recovery values)
+	// 一个 typical healing potion can get rid of the ModifyTooltips and GetHealLife methods and just assign Item.healLife.
+	// 一个 mana potion is exactly the same, except Item.healMana is used instead. (Also GetHealMana would be used for dynamic mana recovery values)
 	public class ExampleHealingPotion : ModItem
 	{
 		public static LocalizedText RestoreLifeText { get; private set; }
@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
 			// Find the tooltip line that corresponds to 'Heals ... life'
-			// See https://tmodloader.github.io/tModLoader/html/class_terraria_1_1_mod_loader_1_1_tooltip_line.html for a list of vanilla tooltip line names
+			// 参见 https://tmodloader.github.io/tModLoader/html/class_terraria_1_1_mod_loader_1_1_tooltip_line.html for a list of vanilla tooltip line names
 			TooltipLine line = tooltips.FirstOrDefault(x => x.Mod == "Terraria" && x.Name == "HealLife");
 
 			if (line != null) {

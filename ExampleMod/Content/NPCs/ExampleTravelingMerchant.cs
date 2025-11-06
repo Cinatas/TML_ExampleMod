@@ -32,10 +32,10 @@ namespace ExampleMod.Content.NPCs
 		// the time of day the traveler will spawn (double.MaxValue for no spawn). Saved and loaded with the world in TravelingMerchantSystem
 		public static double spawnTime = double.MaxValue;
 
-		// The list of items in the traveler's shop. Saved with the world and set when the traveler spawns. Synced by the server to clients in multi player
+		// list of items in the traveler's shop. Saved with the world and set when the traveler spawns. Synced by the server to clients in multi player
 		public readonly static List<Item> shopItems = new();
 
-		// A static instance of the declarative shop, defining all the items which can be brought. Used to create a new inventory when the NPC spawns
+		// 一个 static instance of the declarative shop, defining all the items which can be brought. Used to create a new inventory when the NPC spawns
 		public static ExampleTravelingMerchantShop Shop;
 
 		private static int ShimmerHeadIndex;
@@ -44,7 +44,7 @@ namespace ExampleMod.Content.NPCs
 		public override bool PreAI() {
 			if ((!Main.dayTime || Main.time >= despawnTime) && !IsNpcOnscreen(NPC.Center)) // If it's past the despawn time and the NPC isn't onscreen
 			{
-				// Here we despawn the NPC and send a message stating that the NPC has despawned
+				// 在这里 we despawn the NPC and send a message stating that the NPC has despawned
 				// LegacyMisc.35 is {0) has departed!
 				if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.35", NPC.FullName), 50, 125, 255);
 				else ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.35", NPC.GetFullNetName()), new Color(50, 125, 255));
@@ -111,11 +111,11 @@ namespace ExampleMod.Content.NPCs
 			// Main.time is set to 0 each morning, and only for one update. Sundialling will never skip past time 0 so this is the place for 'on new day' code
 			if (Main.dayTime && Main.time == 0) {
 				// insert code here to change the spawn chance based on other conditions (say, NPCs which have arrived, or milestones the player has passed)
-				// You can also add a day counter here to prevent the merchant from possibly spawning multiple days in a row.
+				// 你 can also add a day counter here to prevent the merchant from possibly spawning multiple days in a row.
 
 				// NPC won't spawn today if it stayed all night
 				if (!travelerIsThere && Main.rand.NextBool(4)) { // 4 = 25% Chance
-					// Here we can make it so the NPC doesn't spawn at the EXACT same time every time it does spawn
+					// 在这里 we can make it so the NPC doesn't spawn at the EXACT same time every time it does spawn
 					spawnTime = GetRandomSpawnTime(5400, 8100); // minTime = 6:00am, maxTime = 7:30am
 				}
 				else {
@@ -158,7 +158,7 @@ namespace ExampleMod.Content.NPCs
 			int h = NPC.sHeight + NPC.safeRangeY * 2;
 			Rectangle npcScreenRect = new Rectangle((int)center.X - w / 2, (int)center.Y - h / 2, w, h);
 			foreach (Player player in Main.ActivePlayers) {
-				// If any player is close enough to the traveling merchant, it will prevent the npc from despawning
+				// 如果 any player is close enough to the traveling merchant, it will prevent the npc from despawning
 				if (player.getRect().Intersects(npcScreenRect)) {
 					return true;
 				}
@@ -167,7 +167,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public static double GetRandomSpawnTime(double minTime, double maxTime) {
-			// A simple formula to get a random time between two chosen times
+			// 一个 simple formula to get a random time between two chosen times
 			return (maxTime - minTime) * Main.rand.NextDouble() + minTime;
 		}
 
@@ -223,9 +223,9 @@ namespace ExampleMod.Content.NPCs
 			shopItems.Clear();
    			shopItems.AddRange(Shop.GenerateNewInventoryList());
 
-			// In multi player, ensure the shop items are synced with clients (see TravelingMerchantSystem.cs)
+			// 在 multi player, ensure the shop items are synced with clients (see TravelingMerchantSystem.cs)
 			if (Main.netMode == NetmodeID.Server) {
-				// We recommend modders avoid sending WorldData too often, or filling it with too much data, lest too much bandwidth be consumed sending redundant data repeatedly
+				// 我们 recommend modders avoid sending WorldData too often, or filling it with too much data, lest too much bandwidth be consumed sending redundant data repeatedly
 				// Consider sending a custom packet instead of WorldData if you have a significant amount of data to synchronise
 				NetMessage.SendData(MessageID.WorldData);
    			}
@@ -248,7 +248,7 @@ namespace ExampleMod.Content.NPCs
 				// Retrieve the gore types. This NPC has shimmer variants for head, arm, and leg gore. It also has a custom hat gore. (7 gores)
 				// This NPC will spawn either the assigned party hat or a custom hat gore when not shimmered. When shimmered the top hat is part of the head and no hat gore is spawned.
 				int hatGore = NPC.GetPartyHatGore();
-				// If not wearing a party hat, and not shimmered, retrieve the custom hat gore 
+				// 如果 not wearing a party hat, and not shimmered, retrieve the custom hat gore 
 				if (hatGore == 0 && !NPC.IsShimmerVariant) {
 					hatGore = Mod.Find<ModGore>($"{Name}_Gore_Hat").Type;
 				}
@@ -361,9 +361,9 @@ namespace ExampleMod.Content.NPCs
 		}
 	}
 
-	// You have the freedom to implement custom shops however you want
-	// This example uses a 'pool' concept where items will be randomly selected from a pool with equal weight
-	// We copy a bunch of code from NPCShop and NPCShop.Entry, allowing this shop to be easily adjusted by other mods.
+	// 你 have the freedom to implement custom shops however you want
+	// 此示例 uses a 'pool' concept where items will be randomly selected from a pool with equal weight
+	// 我们 copy a bunch of code from NPCShop and NPCShop.Entry, allowing this shop to be easily adjusted by other mods.
 	// 
 	// This uses some fairly advanced C# to avoid being excessively long, so make sure you learn the language before trying to adapt it significantly
 	public class ExampleTravelingMerchantShop : AbstractNPCShop
@@ -394,7 +394,7 @@ namespace ExampleMod.Content.NPCs
 
 			// Picks a number of items (up to Slots) from the entries list, provided conditions are met.
 			public IEnumerable<Item> PickItems() {
-				// This is not a fast way to pick items without replacement, but it's certainly easy. Be careful not to do this many many times per frame, or on huge lists of items.
+				// 这是 not a fast way to pick items without replacement, but it's certainly easy. Be careful not to do this many many times per frame, or on huge lists of items.
 				var list = Entries.Where(e => !e.Disabled && e.ConditionsMet()).ToList();
 				for (int i = 0; i < Slots; i++) {
 					if (list.Count == 0)
@@ -426,7 +426,7 @@ namespace ExampleMod.Content.NPCs
 		public void Add<T>(params Condition[] conditions) where T : ModItem => Add(ModContent.ItemType<T>(), conditions);
 		public void Add(int item, params Condition[] conditions) => Add(ContentSamples.ItemsByType[item], conditions);
 
-		// Here is where we actually 'roll' the contents of the shop
+		// 在这里 is where we actually 'roll' the contents of the shop
 		public List<Item> GenerateNewInventoryList() {
 			var items = new List<Item>();
 			foreach (var pool in Pools) {

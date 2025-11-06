@@ -53,7 +53,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 
 		public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info) {
 			// Default values match the regular vanilla bed
-			// You might need to mess with the info here if your bed is not a typical 4x2 tile
+			// 你 might need to mess with the info here if your bed is not a typical 4x2 tile
 			info.VisualOffset.Y += 4f; // Move player down a notch because the bed is not as high as a regular bed
 		}
 

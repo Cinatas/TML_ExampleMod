@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Accessories
 {
-	// Showcases a more complicated extra jump, where the player can jump mid-air with it three (3) times
+	// 展示 a more complicated extra jump, where the player can jump mid-air with it three (3) times
 	public class ExampleMultiExtraJumpAccessory : ModItem
 	{
 		public override void SetDefaults() {

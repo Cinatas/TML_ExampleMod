@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
-	// This file showcases how to create an item that increases the player's maximum health on use.
+	// 此文件 showcases how to create an item that increases the player's maximum health on use.
 	// Within your ModPlayer, you need to save/load a count of usages. You also need to sync the data to other players.
-	// The overlay used to display the custom life fruit can be found in Common/UI/ResourceDisplay/VanillaLifeOverlay.cs
+	// overlay used to display the custom life fruit can be found in Common/UI/ResourceDisplay/VanillaLifeOverlay.cs
 	internal class ExampleLifeFruit : ModItem
 	{
 		public static readonly int MaxExampleLifeFruits = 10;
@@ -37,7 +37,7 @@ namespace ExampleMod.Content.Items.Consumables
 				return null;
 			}
 
-			// This method handles permanently increasing the player's max health and displaying the green heal text
+			// 此方法 handles permanently increasing the player's max health and displaying the green heal text
 			player.UseHealthMaxIncreasingItem(LifePerFruit);
 
 			// This field tracks how many of the example fruit have been consumed

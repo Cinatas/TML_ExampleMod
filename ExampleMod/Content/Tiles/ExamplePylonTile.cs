@@ -69,11 +69,11 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override NPCShop.Entry GetNPCShopEntry() {
-			// In this method we can customize the shop entry for the pylon item.
-			// The default method, base.GetNPCShopEntry(), generates a shop entry for the pylon item with the typical pylon conditions: Condition.HappyEnoughToSellPylons, Condition.AnotherTownNPCNearby, and Condition.NotInEvilBiome
+			// 在 this method we can customize the shop entry for the pylon item.
+			// default method, base.GetNPCShopEntry(), generates a shop entry for the pylon item with the typical pylon conditions: Condition.HappyEnoughToSellPylons, Condition.AnotherTownNPCNearby, and Condition.NotInEvilBiome
 			NPCShop.Entry shopEntry = base.GetNPCShopEntry();
 
-			// We will take that shop entry and add an additional condition to check for ExampleBiome, as this is typical for biome pylons
+			// 我们 will take that shop entry and add an additional condition to check for ExampleBiome, as this is typical for biome pylons
 			// This does not affect the teleport conditions, only the sale conditions
 			shopEntry.AddCondition(ExampleConditions.InExampleBiome);
 
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			// We need to clean up after ourselves, since this is still a "unique" tile, separate from Vanilla Pylons, so we must kill the TileEntity.
+			// 我们 need to clean up after ourselves, since this is still a "unique" tile, separate from Vanilla Pylons, so we must kill the TileEntity.
 			ModContent.GetInstance<SimplePylonTileEntity>().Kill(i, j);
 		}
 
@@ -114,9 +114,9 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) {
-			// We want to draw the pylon crystal the exact same way vanilla does, so we can use this built in method in ModPylon for default crystal drawing:
-			// For the sake of example, lets make our pylon create a bit more dust by decreasing the dustConsequent value down to 1. If you want your dust spawning to be identical to vanilla, set dustConsequent to 4.
-			// We also multiply the pylonShadowColor in order to decrease its opacity, so it actually looks like a "shadow"
+			// 我们 want to draw the pylon crystal the exact same way vanilla does, so we can use this built in method in ModPylon for default crystal drawing:
+			// 对于 the sake of example, lets make our pylon create a bit more dust by decreasing the dustConsequent value down to 1. If you want your dust spawning to be identical to vanilla, set dustConsequent to 4.
+			// 我们 also multiply the pylonShadowColor in order to decrease its opacity, so it actually looks like a "shadow"
 			DefaultDrawPylonCrystal(spriteBatch, i, j, crystalTexture, crystalHighlightTexture, new Vector2(0f, -12f), Color.White * 0.1f, Color.White, 1, CrystalVerticalFrameCount);
 		}
 

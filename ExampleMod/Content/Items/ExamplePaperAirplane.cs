@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Items
 
 			Item.DefaultToThrownWeapon(ModContent.ProjectileType<Projectiles.ExamplePaperAirplaneProjectile>(), 17, 5f); // A special method that sets a variety of item parameters that make the item act like a throwing weapon.
 
-			// The above Item.DefaultToThrownWeapon() does the following. Uncomment these if you don't want to use the above method or want to change something about it.
+			// above Item.DefaultToThrownWeapon() does the following. Uncomment these if you don't want to use the above method or want to change something about it.
 			// Item.autoReuse = false;
 			// Item.useStyle = ItemUseStyleID.Swing;
 			// Item.useAnimation = 17;
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items
 
 			Item.SetWeaponValues(4, 2f); // A special method that sets the damage, knockback, and bonus critical strike chance.
 
-			// The above Item.SetWeaponValues() does the following. Uncomment these if you don't want to use the above method.
+			// above Item.SetWeaponValues() does the following. Uncomment these if you don't want to use the above method.
 			// Item.damage = 4;
 			// Item.knockBack = 2;
 			// Item.crit = 0; // Even though this says 0, this is more like "bonus critical strike chance". All weapons have a base critical strike chance of 4.

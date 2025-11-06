@@ -9,15 +9,15 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// This is a copy of the Excalibur's projectile
+	// 这是 a copy of the Excalibur's projectile
 	public class ExampleSwingingEnergySwordProjectile : ModProjectile
 	{
 
-		// We could use a vanilla texture if we want instead of supplying our own.
+		// 我们 could use a vanilla texture if we want instead of supplying our own.
 		// public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.Excalibur;
 
 		public override void SetStaticDefaults() {
-			// If a Jellyfish is zapping and we attack it with this projectile, it will deal damage to us.
+			// 如果 a Jellyfish is zapping and we attack it with this projectile, it will deal damage to us.
 			// This set has the projectiles for the Night's Edge, Excalibur, Terra Blade (close range), and The Horseman's Blade (close range).
 			// This set does not have the True Night's Edge, True Excalibur, or the long range Terra Beam projectiles.
 			ProjectileID.Sets.AllowsContactDamageFromJellyfish[Type] = true;
@@ -25,7 +25,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void SetDefaults() {
-			// The width and height don't really matter here because we have custom collision.
+			// width and height don't really matter here because we have custom collision.
 			Projectile.width = 16;
 			Projectile.height = 16;
 			Projectile.friendly = true;
@@ -42,18 +42,18 @@ namespace ExampleMod.Content.Projectiles
 			// But, for this case, we want the projectile to continue to live so we can have the visuals of the swing.
 			Projectile.stopsDealingDamageAfterPenetrateHits = true;
 
-			// We will be using custom AI for this projectile. The original Excalibur uses aiStyle 190.
+			// 我们 will be using custom AI for this projectile. The original Excalibur uses aiStyle 190.
 			Projectile.aiStyle = -1;
 			// Projectile.aiStyle = ProjAIStyleID.NightsEdge; // 190
 			// AIType = ProjectileID.Excalibur;
 
-			// If you are using custom AI, add this line. Otherwise, visuals from Flasks will spawn at the center of the projectile instead of around the arc.
-			// We will spawn the visuals around the arc ourselves in the AI().
+			// 如果 you are using custom AI, add this line. Otherwise, visuals from Flasks will spawn at the center of the projectile instead of around the arc.
+			// 我们 will spawn the visuals around the arc ourselves in the AI().
 			Projectile.noEnchantmentVisuals = true;
 		}
 
 		public override void AI() {
-			// In our item, we spawn the projectile with the direction, max time, and scale
+			// 在 our item, we spawn the projectile with the direction, max time, and scale
 			// Projectile.ai[0] == direction
 			// Projectile.ai[1] == max time
 			// Projectile.ai[2] == scale
@@ -78,11 +78,11 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity;
 			Projectile.scale = scaleAdder + percentageOfLife * scaleMulti;
 
-			// The other sword projectiles that use AI Style 190 have different effects.
-			// This example only includes the Excalibur.
+			// other sword projectiles that use AI Style 190 have different effects.
+			// 此示例 only includes the Excalibur.
 			// Look at AI_190_NightsEdge() in Projectile.cs for the others.
 
-			// Here we spawn some dust inside the arc of the swing.
+			// 在这里 we spawn some dust inside the arc of the swing.
 			float dustRotation = Projectile.rotation + Main.rand.NextFloatDirection() * MathHelper.PiOver2 * 0.7f;
 			Vector2 dustPosition = Projectile.Center + dustRotation.ToRotationVector2() * 84f * Projectile.scale;
 			Vector2 dustVelocity = (dustRotation + Projectile.ai[0] * MathHelper.PiOver2).ToRotationVector2();
@@ -101,7 +101,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.scale *= Projectile.ai[2]; // Set the scale of the projectile to the scale of the item.
 
-			// If the projectile is as old as the max animation time, kill the projectile.
+			// 如果 the projectile is as old as the max animation time, kill the projectile.
 			if (Projectile.localAI[0] >= Projectile.ai[1]) {
 				Projectile.Kill();
 			}
@@ -113,11 +113,11 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// Here is where we have our custom collision.
+		// 在这里 is where we have our custom collision.
 		// This collision will only run if the projectile is within range of target with the range being Projectile.ownerHitCheckDistance
 		// Or if the projectile hasn't already hit all of the targets it can with Projectile.penetrate
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// This is how large the circumference is, aka how big the range is. Vanilla uses 94f to match it to the size of the texture.
+			// 这是 how large the circumference is, aka how big the range is. Vanilla uses 94f to match it to the size of the texture.
 			float coneLength = 94f * Projectile.scale;
 			// This number affects how much the start and end of the collision will be rotated.
 			// Bigger Pi numbers will rotate the collision counter clockwise.
@@ -136,7 +136,7 @@ namespace ExampleMod.Content.Projectiles
 				return true;
 			}
 
-			// The first cone isn't the entire swinging arc, though, so we need to check a second cone for the back of the arc.
+			// first cone isn't the entire swinging arc, though, so we need to check a second cone for the back of the arc.
 			float backOfTheSwing = Utils.Remap(Projectile.localAI[0], Projectile.ai[1] * 0.3f, Projectile.ai[1] * 0.5f, 1f, 0f);
 			if (backOfTheSwing > 0f) {
 				float coneRotation2 = coneRotation - MathHelper.PiOver4 * Projectile.ai[0] * backOfTheSwing;
@@ -154,7 +154,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void CutTiles() {
-			// Here we calculate where the projectile can destroy grass, pots, Queen Bee Larva, etc.
+			// 在这里 we calculate where the projectile can destroy grass, pots, Queen Bee Larva, etc.
 			Vector2 starting = (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * 60f * Projectile.scale;
 			Vector2 ending = (Projectile.rotation + MathHelper.PiOver4).ToRotationVector2() * 60f * Projectile.scale;
 			float width = 60f * Projectile.scale;
@@ -163,14 +163,14 @@ namespace ExampleMod.Content.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			// Vanilla has several particles that can easily be used anywhere.
-			// The particles from the Particle Orchestra are predefined by vanilla and most can not be customized that much.
+			// particles from the Particle Orchestra are predefined by vanilla and most can not be customized that much.
 			// Use auto complete to see the other ParticleOrchestraType types there are.
-			// Here we are spawning the Excalibur particle randomly inside of the target's hitbox.
+			// 在这里 we are spawning the Excalibur particle randomly inside of the target's hitbox.
 			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.Excalibur,
 				new ParticleOrchestraSettings { PositionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox) },
 				Projectile.owner);
 
-			// You could also spawn dusts at the enemy position. Here is simple an example:
+			// 你 could also spawn dusts at the enemy position. Here is simple an example:
 			// Dust.NewDust(Main.rand.NextVector2FromRectangle(target.Hitbox), 0, 0, ModContent.DustType<Content.Dusts.Sparkle>());
 
 			// Set the target's hit direction to away from the player so the knockback is in the correct direction.

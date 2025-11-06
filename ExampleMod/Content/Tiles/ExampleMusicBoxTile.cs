@@ -13,7 +13,7 @@ using Terraria.Utilities;
 
 namespace ExampleMod.Content.Tiles
 {
-	// See ExampleMod/Common/Systems/MusicLoadingSystem for an explanation on music.
+	// 参见 ExampleMod/Common/Systems/MusicLoadingSystem for an explanation on music.
 	public class ExampleMusicBoxTile : ModTile
 	{
 		public override void SetStaticDefaults() {

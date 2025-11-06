@@ -35,7 +35,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-			// If collide with tile, reduce the penetrate.
+			// 如果 collide with tile, reduce the penetrate.
 			// So the projectile can reflect at most 5 times
 			Projectile.penetrate--;
 			if (Projectile.penetrate <= 0) {
@@ -45,12 +45,12 @@ namespace ExampleMod.Content.Projectiles
 				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
 				SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
-				// If the projectile hits the left or right side of the tile, reverse the X velocity
+				// 如果 the projectile hits the left or right side of the tile, reverse the X velocity
 				if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon) {
 					Projectile.velocity.X = -oldVelocity.X;
 				}
 
-				// If the projectile hits the top or bottom side of the tile, reverse the Y velocity
+				// 如果 the projectile hits the top or bottom side of the tile, reverse the Y velocity
 				if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) {
 					Projectile.velocity.Y = -oldVelocity.Y;
 				}

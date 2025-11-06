@@ -9,7 +9,7 @@ namespace ExampleMod.Content.Items
 	{
 		public override void SetStaticDefaults() {
 			// Must be researched as many times as there are items in the game.
-			// If fully researched, and a new mod is added, it will become un-researched and require that much more
+			// 如果 fully researched, and a new mod is added, it will become un-researched and require that much more
 			// Research amount will never go down or over the max limit of 9999.
 			Item.ResearchUnlockCount = Utils.Clamp(ItemLoader.ItemCount, 1, 9999);
 
@@ -22,17 +22,17 @@ namespace ExampleMod.Content.Items
 		}
 
 		// This allows for the present to be researched even when you already have infinite of them.
-		// This is not a standard use of the research system, but allows for re-running a 'research complete' effect
+		// 这是 not a standard use of the research system, but allows for re-running a 'research complete' effect
 		private CreativeUI.ItemSacrificeResult OnSacrificeItem(On_CreativeUI.orig_SacrificeItem_refItem_refInt32_bool orig,
 				ref Item item, out int amountWeSacrificed, bool returnRemainderToPlayer) {
 
-			// If the item being sacrificed has the same type as us (is an ExampleResearchPresent) and is fully researched
+			// 如果 the item being sacrificed has the same type as us (is an ExampleResearchPresent) and is fully researched
 			if (item.type == Type && CreativeUI.GetSacrificesRemaining(Type) == 0) {
 
 				// Re-unlock all accessories, incase mods have changed
 				OnResearched(true);
 
-				// We always lose a present when researching them, even if you already had infinite of them. To show the user something happened
+				// 我们 always lose a present when researching them, even if you already had infinite of them. To show the user something happened
 				item.stack -= 1;
 
 				// This code is copied from the end of SacrificeItem
@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Items
 					item = Main.LocalPlayer.GetItem(Main.myPlayer, item, GetItemSettings.InventoryUIToInventorySettings);
 				}
 
-				// This is the amount the sacrifice counter goes up by. We didn't actually change the total number of sacrifices, so this is 0
+				// 这是 the amount the sacrifice counter goes up by. We didn't actually change the total number of sacrifices, so this is 0
 				amountWeSacrificed = 0;
 
 				// Return SacrificedAndDone, so the animation and effects happen

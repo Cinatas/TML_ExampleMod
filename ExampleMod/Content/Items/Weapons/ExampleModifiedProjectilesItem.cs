@@ -27,17 +27,17 @@ namespace ExampleMod.Content.Items.Weapons
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			// NewProjectile returns the index of the projectile it creates in the NewProjectile array.
-			// Here we are using it to gain access to the projectile object.
+			// 在这里 we are using it to gain access to the projectile object.
 			int projectileID = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 			Projectile projectile = Main.projectile[projectileID];
 
 			ExampleProjectileModifications globalProjectile = projectile.GetGlobalProjectile<ExampleProjectileModifications>();
-			// For more context, see ExampleProjectileModifications.cs
+			// 对于 more context, see ExampleProjectileModifications.cs
 			globalProjectile.SetTrail(Color.Green);
 			globalProjectile.sayTimesHitOnThirdHit = true;
 			globalProjectile.applyBuffOnHit = true;
 
-			// We do not want vanilla to spawn a duplicate projectile.
+			// 我们 do not want vanilla to spawn a duplicate projectile.
 			return false;
 		}
 	}

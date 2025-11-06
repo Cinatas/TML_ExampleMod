@@ -5,17 +5,17 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Prefixes
 {
-	// This class serves as an example for declaring item 'prefixes', or 'modifiers' in other words.
+	// 此类 serves as an example for declaring item 'prefixes', or 'modifiers' in other words.
 	public class ExamplePrefix : ModPrefix
 	{
-		// We declare a custom *virtual* property here, so that another type, ExampleDerivedPrefix, could override it and change the effective power for itself.
+		// 我们 declare a custom *virtual* property here, so that another type, ExampleDerivedPrefix, could override it and change the effective power for itself.
 		public virtual float Power => 1f;
 
 		// Change your category this way, defaults to PrefixCategory.Custom. Affects which items can get this prefix.
 		public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 
-		// See documentation for vanilla weights and more information.
-		// In case of multiple prefixes with similar functions this can be used with a switch/case to provide different chances for different prefixes
+		// 参见 documentation for vanilla weights and more information.
+		// 在 case of multiple prefixes with similar functions this can be used with a switch/case to provide different chances for different prefixes
 		// Note: a weight of 0f might still be rolled. See CanRoll to exclude prefixes.
 		// Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
 		public override float RollChance(Item item) {
@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Prefixes
 			valueMult *= 1f + 0.05f * Power;
 		}
 
-		// This is used to modify most other stats of items which have this modifier.
+		// 这是 used to modify most other stats of items which have this modifier.
 		public override void Apply(Item item) {
 			//
 		}
@@ -48,7 +48,7 @@ namespace ExampleMod.Content.Prefixes
 		public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
 			// Due to inheritance, this code runs for ExamplePrefix and ExampleDerivedPrefix. We add 2 tooltip lines, the first is the typical prefix tooltip line showing the stats boost, while the other is just some additional flavor text.
 
-			// The localization key for Mods.ExampleMod.Prefixes.PowerTooltip uses a special format that will automatically prefix + or - to the value.
+			// localization key for Mods.ExampleMod.Prefixes.PowerTooltip uses a special format that will automatically prefix + or - to the value.
 			// This shared localization is formatted with the Power value, resulting in different text for ExamplePrefix and ExampleDerivedPrefix.
 			// This results in "+1 Power" for ExamplePrefix and "+2 Power" for ExampleDerivedPrefix.
 			// Power isn't an actual stat, the effects of Power are already shown in the "+X% damage" tooltip, so this example is purely educational.
@@ -59,7 +59,7 @@ namespace ExampleMod.Content.Prefixes
 			yield return new TooltipLine(Mod, "PrefixWeaponAwesomeDescription", AdditionalTooltip.Value) {
 				IsModifier = true,
 			};
-			// If possible and suitable, try to reuse the name identifier and translation value of Terraria prefixes. For example, this code uses the vanilla translation for the word defense, resulting in "-5 defense". Note that IsModifierBad is used for this bad modifier.
+			// 如果 possible and suitable, try to reuse the name identifier and translation value of Terraria prefixes. For example, this code uses the vanilla translation for the word defense, resulting in "-5 defense". Note that IsModifierBad is used for this bad modifier.
 			/*yield return new TooltipLine(Mod, "PrefixAccDefense", "-5" + Lang.tip[25].Value) {
 				IsModifier = true,
 				IsModifierBad = true,

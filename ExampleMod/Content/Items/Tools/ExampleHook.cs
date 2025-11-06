@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items.Tools
 			Item.shootSpeed = 18f; // This defines how quickly the hook is shot.
 			Item.shoot = ModContent.ProjectileType<ExampleHookProjectile>(); // Makes the item shoot the hook's projectile when used.
 
-			// If you do not use Item.CloneDefaults(), you must set the following values for the hook to work properly:
+			// 如果 you do not use Item.CloneDefaults(), you must set the following values for the hook to work properly:
 			// Item.useStyle = ItemUseStyleID.None;
 			// Item.useTime = 0;
 			// Item.useAnimation = 0;
@@ -35,13 +35,13 @@ namespace ExampleMod.Content.Items.Tools
 		private static Asset<Texture2D> chainTexture;
 
 		public override void Load() { // This is called once on mod (re)load when this piece of content is being loaded.
-			// This is the path to the texture that we'll use for the hook's chain. Make sure to update it.
+			// 这是 the path to the texture that we'll use for the hook's chain. Make sure to update it.
 			chainTexture = ModContent.Request<Texture2D>("ExampleMod/Content/Items/Tools/ExampleHookChain");
 		}
 
 		/*
 		public override void SetStaticDefaults() {
-			// If you wish for your hook projectile to have ONE copy of it PER player, uncomment this section.
+			// 如果 you wish for your hook projectile to have ONE copy of it PER player, uncomment this section.
 			ProjectileID.Sets.SingleGrappleHook[Type] = true;
 		}
 		*/
@@ -63,7 +63,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 
 		// Use this to kill oldest hook. For hooks that kill the oldest when shot, not when the newest latches on: Like SkeletronHand
-		// You can also change the projectile like: Dual Hook, Lunar Hook
+		// 你 can also change the projectile like: Dual Hook, Lunar Hook
 		// public override void UseGrapple(Player player, ref int type) {
 		//	int hooksOut = 0;
 		//	int oldestHookIndex = -1;
@@ -111,9 +111,9 @@ namespace ExampleMod.Content.Items.Tools
 		// Can customize what tiles this hook can latch onto, or force/prevent latching altogether, like Squirrel Hook also latching to trees
 		public override bool? GrappleCanLatchOnTo(Player player, int x, int y) {
 			// By default, the hook returns null to apply the vanilla conditions for the given tile position (this tile position could be air or an actuated tile!)
-			// If you want to return true here, make sure to check for Main.tile[x, y].HasUnactuatedTile (and Main.tileSolid[Main.tile[x, y].TileType] and/or Main.tile[x, y].HasTile if needed)
+			// 如果 you want to return true here, make sure to check for Main.tile[x, y].HasUnactuatedTile (and Main.tileSolid[Main.tile[x, y].TileType] and/or Main.tile[x, y].HasTile if needed)
 
-			// We make this hook latch onto trees just like Squirrel Hook
+			// 我们 make this hook latch onto trees just like Squirrel Hook
 
 			// Tree trunks cannot be actuated so we don't need to check for that here
 			Tile tile = Main.tile[x, y];
@@ -121,7 +121,7 @@ namespace ExampleMod.Content.Items.Tools
 				return true;
 			}
 
-			// In any other case, behave like a normal hook
+			// 在 any other case, behave like a normal hook
 			return null;
 		}
 

@@ -27,15 +27,15 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.InteractibleByNPCs[Type] = true;
 
 			// TileObjectData assignment
-			// The TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will not be copying from it in this case
-			// Using Style2x2 as a base, we will create a TileObjectData with 5 alternate placements, each anchoring to a different anchor.
-			// We also adjust the Origin for the alternates to match vanilla. Style2x2 starts with a origin at 0, 1 and a AnchorBottom, these will both be adjusted in the alternates.
+			// TileID.Signs TileObjectData doesn't set StyleMultiplier to 5, so we will not be copying from it in this case
+			// 使用 Style2x2 as a base, we will create a TileObjectData with 5 alternate placements, each anchoring to a different anchor.
+			// 我们 also adjust the Origin for the alternates to match vanilla. Style2x2 starts with a origin at 0, 1 and a AnchorBottom, these will both be adjusted in the alternates.
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleMultiplier = 5; // Since each style has 5 placement styles, we set this to 5.
 			TileObjectData.newTile.AnchorBottom = AnchorData.Empty; // Clear out existing bottom anchor inherited from Style2x2 temporarily so that we don't have to set it to empty in each of the alternates. 
 
-			// To reduce code repetition, we'll use the same AnchorData value multiple times. This works because the tile is as tall as it is wide.
+			// 要 reduce code repetition, we'll use the same AnchorData value multiple times. This works because the tile is as tall as it is wide.
 			AnchorData SolidOrSolidSideAnchor2TilesLong = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 2, 0);
 
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);

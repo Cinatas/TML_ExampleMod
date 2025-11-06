@@ -14,7 +14,7 @@ namespace ExampleMod.Content.Projectiles
 {
 	public class ExampleLastPrismBeam : ModProjectile
 	{
-		// A helpful math constant for performing beam angling calculations.
+		// 一个 helpful math constant for performing beam angling calculations.
 		private const float PiBeamDivisor = MathHelper.Pi / ExampleLastPrismHoldout.NumBeams;
 
 		// How much more damage the beams do when the Prism is fully charged. Damage smoothly scales up to this multiplier.
@@ -26,18 +26,18 @@ namespace ExampleMod.Content.Projectiles
 		// Beams reduce their spread to zero as the Prism charges up. This controls the maximum spread.
 		private const float MaxBeamSpread = 2f;
 
-		// The maximum possible range of the beam. Don't set this too high or it will cause significant lag.
+		// maximum possible range of the beam. Don't set this too high or it will cause significant lag.
 		private const float MaxBeamLength = 2400f;
 
-		// The width of the beam in pixels for the purposes of tile collision.
+		// width of the beam in pixels for the purposes of tile collision.
 		// This should generally be left at 1, otherwise the beam tends to stop early when touching tiles.
 		private const float BeamTileCollisionWidth = 1f;
 
-		// The width of the beam in pixels for the purposes of entity hitbox collision.
+		// width of the beam in pixels for the purposes of entity hitbox collision.
 		// This gets scaled with the beam's scale value, so as the beam visually grows its hitbox gets wider as well.
 		private const float BeamHitboxCollisionWidth = 22f;
 
-		// The number of sample points to use when performing a collision hitscan for the beam.
+		// number of sample points to use when performing a collision hitscan for the beam.
 		// More points theoretically leads to a higher quality result, but can cause more lag. 3 tends to be enough.
 		private const int NumSamplePoints = 3;
 
@@ -47,14 +47,14 @@ namespace ExampleMod.Content.Projectiles
 		// Setting it too low will make the beam lazily pass through walls before being blocked by them.
 		private const float BeamLengthChangeFactor = 0.75f;
 
-		// The charge percentage required on the host prism for the beam to begin visual effects (e.g. impact dust).
+		// charge percentage required on the host prism for the beam to begin visual effects (e.g. impact dust).
 		private const float VisualEffectThreshold = 0.1f;
 
 		// Each Last Prism beam draws two lasers separately: an inner beam and an outer beam. This controls their opacity.
 		private const float OuterBeamOpacityMultiplier = 0.75f;
 		private const float InnerBeamOpacityMultiplier = 0.1f;
 
-		// The maximum brightness of the light emitted by the beams. Brightness scales from 0 to this value as the Prism's charge increases.
+		// maximum brightness of the light emitted by the beams. Brightness scales from 0 to this value as the Prism's charge increases.
 		private const float BeamLightBrightness = 0.75f;
 
 		// These variables control the beam's potential coloration.
@@ -91,11 +91,11 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DamageType = DamageClass.Magic;
 			Projectile.penetrate = -1;
 			Projectile.alpha = 255;
-			// The beam itself still stops on tiles, but its invisible "source" Projectile ignores them.
+			// beam itself still stops on tiles, but its invisible "source" Projectile ignores them.
 			// This prevents the beams from vanishing if the player shoves the Prism into a wall.
 			Projectile.tileCollide = false;
 
-			// Using local NPC immunity allows each beam to strike independently from one another.
+			// 使用 local NPC immunity allows each beam to strike independently from one another.
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 10;
 		}
@@ -105,7 +105,7 @@ namespace ExampleMod.Content.Projectiles
 		public override void ReceiveExtraAI(BinaryReader reader) => BeamLength = reader.ReadSingle();
 
 		public override void AI() {
-			// If something has gone wrong with either the beam or the host Prism, destroy the beam.
+			// 如果 something has gone wrong with either the beam or the host Prism, destroy the beam.
 			Projectile hostPrism = Main.projectile[(int)HostPrismIndex];
 			if (Projectile.type != ModContent.ProjectileType<ExampleLastPrismBeam>() || !hostPrism.active || hostPrism.type != ModContent.ProjectileType<ExampleLastPrismHoldout>()) {
 				Projectile.Kill();
@@ -119,7 +119,7 @@ namespace ExampleMod.Content.Projectiles
 			// Update the beam's damage every frame based on charge and the host Prism's damage.
 			Projectile.damage = (int)(hostPrism.damage * GetDamageMultiplier(chargeRatio));
 
-			// The beam cannot strike enemies until the host Prism is at a certain charge level.
+			// beam cannot strike enemies until the host Prism is at a certain charge level.
 			Projectile.friendly = hostPrism.ai[0] > ExampleLastPrismHoldout.DamageStart;
 
 			// This offset is used to make each individual beam orient differently based on its Beam ID.
@@ -136,7 +136,7 @@ namespace ExampleMod.Content.Projectiles
 				beamStartSidewaysOffset = MathHelper.Lerp(20f, 6f, chargeRatio);
 				beamStartForwardsOffset = MathHelper.Lerp(-21f, -17f, chargeRatio);
 
-				// For the first 2/3 of charge time, the opacity scales up from 0% to 40%.
+				// 对于 the first 2/3 of charge time, the opacity scales up from 0% to 40%.
 				// Spin rate increases slowly during this time.
 				if (chargeRatio <= 0.66f) {
 					float phaseRatio = chargeRatio * 1.5f;
@@ -144,7 +144,7 @@ namespace ExampleMod.Content.Projectiles
 					spinRate = MathHelper.Lerp(20f, 16f, phaseRatio);
 				}
 
-				// For the last 1/3 of charge time, the opacity scales up from 40% to 100%.
+				// 对于 the last 1/3 of charge time, the opacity scales up from 40% to 100%.
 				// Spin rate increases dramatically during this time.
 				else {
 					float phaseRatio = (chargeRatio - 0.66f) * 3f;
@@ -153,7 +153,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 			}
 
-			// If the host Prism is already at max charge, don't calculate anything. Just use the max values.
+			// 如果 the host Prism is already at max charge, don't calculate anything. Just use the max values.
 			else {
 				Projectile.scale = MaxBeamScale;
 				Projectile.Opacity = 1f;
@@ -163,7 +163,7 @@ namespace ExampleMod.Content.Projectiles
 				beamStartForwardsOffset = -17f;
 			}
 
-			// The amount to which the angle changes reduces over time so that the beams look like they are focusing.
+			// amount to which the angle changes reduces over time so that the beams look like they are focusing.
 			float deviationAngle = (hostPrism.ai[0] + beamIdOffset * spinRate) / (spinRate * ExampleLastPrismHoldout.NumBeams) * MathHelper.TwoPi;
 
 			// This trigonometry calculates where the beam is supposed to be pointing.
@@ -201,7 +201,7 @@ namespace ExampleMod.Content.Projectiles
 			if (chargeRatio >= VisualEffectThreshold) {
 				ProduceBeamDust(beamColor);
 
-				// If the game is rendering (i.e. isn't a dedicated server), make the beam disturb water.
+				// 如果 the game is rendering (i.e. isn't a dedicated server), make the beam disturb water.
 				if (Main.netMode != NetmodeID.Server) {
 					ProduceWaterRipples(beamDims);
 				}
@@ -221,7 +221,7 @@ namespace ExampleMod.Content.Projectiles
 
 		private float PerformBeamHitscan(Projectile prism, bool fullCharge) {
 			// By default, the hitscan interpolation starts at the Projectile's center.
-			// If the host Prism is fully charged, the interpolation starts at the Prism's center instead.
+			// 如果 the host Prism is fully charged, the interpolation starts at the Prism's center instead.
 			Vector2 samplingPoint = Projectile.Center;
 			if (fullCharge) {
 				samplingPoint = prism.Center;
@@ -250,7 +250,7 @@ namespace ExampleMod.Content.Projectiles
 
 		// Determines whether the specified target hitbox is intersecting with the beam.
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			// If the target is touching the beam's hitbox (which is a small rectangle vaguely overlapping the host Prism), that's good enough.
+			// 如果 the target is touching the beam's hitbox (which is a small rectangle vaguely overlapping the host Prism), that's good enough.
 			if (projHitbox.Intersects(targetHitbox)) {
 				return true;
 			}
@@ -262,7 +262,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool PreDraw(ref Color lightColor) {
-			// If the beam doesn't have a defined direction, don't draw anything.
+			// 如果 the beam doesn't have a defined direction, don't draw anything.
 			if (Projectile.velocity == Vector2.Zero) {
 				return false;
 			}
@@ -327,7 +327,7 @@ namespace ExampleMod.Content.Projectiles
 			dust.color = beamColor;
 			dust.noGravity = true;
 
-			// If the beam is currently large, make the dust faster and larger to match.
+			// 如果 the beam is currently large, make the dust faster and larger to match.
 			if (Projectile.scale > 1f) {
 				dust.velocity *= Projectile.scale;
 				dust.scale *= Projectile.scale;
@@ -337,7 +337,7 @@ namespace ExampleMod.Content.Projectiles
 		private void ProduceWaterRipples(Vector2 beamDims) {
 			WaterShaderData shaderData = (WaterShaderData)Filters.Scene["WaterDistortion"].GetShader();
 
-			// A universal time-based sinusoid which updates extremely rapidly. GlobalTime is 0 to 3600, measured in seconds.
+			// 一个 universal time-based sinusoid which updates extremely rapidly. GlobalTime is 0 to 3600, measured in seconds.
 			float waveSine = 0.1f * (float)Math.Sin(Main.GlobalTimeWrappedHourly * 20f);
 			Vector2 ripplePos = Projectile.position + new Vector2(beamDims.X * 0.5f, 0f).RotatedBy(Projectile.rotation);
 
@@ -356,7 +356,7 @@ namespace ExampleMod.Content.Projectiles
 			Vector2 beamEndPos = beamStartPos + Projectile.velocity * BeamLength;
 
 			// PlotTileLine is a function which performs the specified action to all tiles along a drawn line, with a specified width.
-			// In this case, it is cutting all tiles which can be destroyed by Projectiles, for example grass or pots.
+			// 在 this case, it is cutting all tiles which can be destroyed by Projectiles, for example grass or pots.
 			Utils.PlotTileLine(beamStartPos, beamEndPos, Projectile.width * Projectile.scale, cut);
 		}
 	}

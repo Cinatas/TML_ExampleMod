@@ -5,9 +5,9 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// This is an example showing how to create a weapon that fires custom ammunition
-	// The most important property is "Item.useAmmo". It tells you which item to use as ammo.
-	// You can see the description of other parameters in the ExampleGun class and at https://github.com/tModLoader/tModLoader/wiki/Item-Class-Documentation
+	// 这是 an example showing how to create a weapon that fires custom ammunition
+	// most important property is "Item.useAmmo". It tells you which item to use as ammo.
+	// 你 can see the description of other parameters in the ExampleGun class and at https://github.com/tModLoader/tModLoader/wiki/Item-Class-Documentation
 	public class ExampleCustomAmmoGun : ModItem
 	{
 		public override void SetDefaults() {

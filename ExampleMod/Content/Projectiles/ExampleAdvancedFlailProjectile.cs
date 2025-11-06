@@ -13,7 +13,7 @@ namespace ExampleMod.Content.Projectiles
 {
 	// Example Advanced Flail is a complete adaption of Ball O' Hurt projectile. The code has been rewritten a bit to make it easier to follow. Compare this code against the decompiled Terraria code for an example of adapting vanilla code. A few comments and extra code snippets show features from other vanilla flails as well.
 	// Example Advanced Flail shows a plethora of advanced AI and collision topics.
-	// See ExampleFlail for a simpler but less customizable flail projectile example.
+	// 参见 ExampleFlail for a simpler but less customizable flail projectile example.
 	public class ExampleAdvancedFlailProjectile : ModProjectile
 	{
 		private const string ChainTexturePath = "ExampleMod/Content/Projectiles/ExampleAdvancedFlailProjectileChain"; // The folder path to the flail chain sprite
@@ -153,7 +153,7 @@ namespace ExampleMod.Content.Projectiles
 							StateTimer = 0f;
 							Projectile.netUpdate = true;
 							Projectile.velocity *= 0.2f;
-							// This is where Drippler Crippler spawns its projectile
+							// 这是 where Drippler Crippler spawns its projectile
 							/*
 							if (Main.myPlayer == Projectile.owner)
 								Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, Projectile.velocity, 928, Projectile.damage, Projectile.knockBack, Main.myPlayer);
@@ -165,7 +165,7 @@ namespace ExampleMod.Content.Projectiles
 							StateTimer = 0f;
 							Projectile.netUpdate = true;
 							Projectile.velocity *= 0.3f;
-							// This is also where Drippler Crippler spawns its projectile, see above code.
+							// 这是 also where Drippler Crippler spawns its projectile, see above code.
 						}
 						player.ChangeDir((player.Center.X < Projectile.Center.X).ToDirectionInt());
 						Projectile.localNPCHitCooldown = movingHitCooldown;
@@ -274,7 +274,7 @@ namespace ExampleMod.Content.Projectiles
 					break;
 			}
 
-			// This is where Flower Pow launches projectiles. Decompile Terraria to view that code.
+			// 这是 where Flower Pow launches projectiles. Decompile Terraria to view that code.
 
 			Projectile.direction = (Projectile.velocity.X > 0f).ToDirectionInt();
 			Projectile.spriteDirection = Projectile.direction;
@@ -293,7 +293,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.rotation = vectorTowardsPlayer.ToRotation() + MathHelper.PiOver2;
 			}
 
-			// If you have a ball shaped flail, you can use this simplified rotation code instead
+			// 如果 you have a ball shaped flail, you can use this simplified rotation code instead
 			/*
 			if (Projectile.velocity.Length() > 1f)
 				Projectile.rotation = Projectile.velocity.ToRotation() + Projectile.velocity.X * 0.1f; // skid
@@ -350,7 +350,7 @@ namespace ExampleMod.Content.Projectiles
 				CollisionCounter += 1f;
 			}
 
-			// If in the Launched state, spawn sparks
+			// 如果 in the Launched state, spawn sparks
 			if (CurrentAIState == AIState.LaunchingForward) {
 				CurrentAIState = AIState.Ricochet;
 				Projectile.localNPCHitCooldown = defaultLocalNPCHitCooldown;
@@ -363,7 +363,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.position -= velocity;
 			}
 
-			// Here the tiles spawn dust indicating they've been hit
+			// 在这里 the tiles spawn dust indicating they've been hit
 			if (impactIntensity > 0) {
 				Projectile.netUpdate = true;
 				for (int i = 0; i < impactIntensity; i++) {
@@ -419,7 +419,7 @@ namespace ExampleMod.Content.Projectiles
 				modifiers.SourceDamage *= 2f;
 			}
 
-			// The hitDirection is always set to hit away from the player, even if the flail damages the npc while returning
+			// hitDirection is always set to hit away from the player, even if the flail damages the npc while returning
 			modifiers.HitDirectionOverride = (Main.player[Projectile.owner].Center.X < target.Center.X).ToDirectionInt();
 
 			// Knockback is only 25% as powerful when in spin mode
@@ -462,7 +462,7 @@ namespace ExampleMod.Content.Projectiles
 
 				// Flaming Mace and Drippler Crippler use code here to draw custom sprite frames with custom lighting.
 				// Cycling through frames: sourceRectangle = asset.Frame(1, 6, 0, chainCount % 6);
-				// This example shows how Flaming Mace works. It checks chainCount and changes chainTexture and draw color at different values
+				// 此示例 shows how Flaming Mace works. It checks chainCount and changes chainTexture and draw color at different values
 
 				var chainTextureToDraw = chainTexture;
 				if (chainCount >= 4) {

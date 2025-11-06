@@ -15,7 +15,7 @@ namespace ExampleMod.Content.Items.Consumables
 	// This item, when crafted, stores the players name, and only lets other players open it. Bags with the same stored name aren't stackable
 	public class ExampleCanStackItem : ModItem
 	{
-		// We set this when the item is crafted. In other contexts, this will be an empty string
+		// 我们 set this when the item is crafted. In other contexts, this will be an empty string
 		public string craftedPlayerName = string.Empty;
 
 		public override void SetDefaults() {
@@ -27,19 +27,19 @@ namespace ExampleMod.Content.Items.Consumables
 		}
 
 		public override bool CanRightClick() {
-			// The bag can't be opened if it wasn't crafted
+			// bag can't be opened if it wasn't crafted
 			if (craftedPlayerName == string.Empty) {
 				return false;
 			}
 
-			// The bag can't be opened by the player who crafted it
+			// bag can't be opened by the player who crafted it
 			return Main.LocalPlayer.name != craftedPlayerName;
 		}
 
 		public override bool CanStack(Item source) {
-			// The bag can only be stacked with other bags if the names match
+			// bag can only be stacked with other bags if the names match
 
-			// We have to cast the second item to the class (This is safe to do as the hook is only called on items of the same type)
+			// 我们 have to cast the second item to the class (This is safe to do as the hook is only called on items of the same type)
 			var name1 = craftedPlayerName;
 			var name2 = ((ExampleCanStackItem)source.ModItem).craftedPlayerName;
 
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Items.Consumables
 			itemLoot.Add(hardmodeCondition);
 		}
 
-		// The following 4 hooks are needed if your item data should be persistent between saves, and work in multiplayer
+		// following 4 hooks are needed if your item data should be persistent between saves, and work in multiplayer
 		public override void SaveData(TagCompound tag) {
 			tag.Add("craftedPlayerName", craftedPlayerName);
 		}
@@ -88,7 +88,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips) {
 			if (craftedPlayerName != string.Empty) {
-				// Here we make a distinction to disclose that the bag can't be opened by the player who crafted it
+				// 在这里 we make a distinction to disclose that the bag can't be opened by the player who crafted it
 				if (Main.LocalPlayer.name == craftedPlayerName) {
 					tooltips.Add(new TooltipLine(Mod, "CraftedPlayerNameCannotOpen", $"You crafted this bag and cannot open it!"));
 				}
@@ -103,7 +103,7 @@ namespace ExampleMod.Content.Items.Consumables
 
 		public override void OnCreated(ItemCreationContext context) {
 			if (context is RecipeItemCreationContext) {
-				// If the item was crafted, store the crafting players name
+				// 如果 the item was crafted, store the crafting players name
 				craftedPlayerName = Main.LocalPlayer.name;
 			}
 		}

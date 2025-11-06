@@ -38,10 +38,10 @@ namespace ExampleMod.Content.Items.Accessories
 				});
 			}
 			catch (Exception e) {
-				// If there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
+				// 如果 there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), il);
 
-				// If the mod cannot run without the IL hook, throw an exception instead. The exception will call DumpIL internally
+				// 如果 the mod cannot run without the IL hook, throw an exception instead. The exception will call DumpIL internally
 				// throw new ILPatchFailureException(ModContent.GetInstance<ExampleMod>(), il, e);
 			}
 		}
@@ -55,9 +55,9 @@ namespace ExampleMod.Content.Items.Accessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			// The original Hive Pack sets strongBees.
+			// original Hive Pack sets strongBees.
 			player.strongBees = true;
-			// Here we add an additional effect
+			// 在这里 we add an additional effect
 			player.GetModPlayer<WaspNestPlayer>().strongBeesUpgrade = true;
 		}
 

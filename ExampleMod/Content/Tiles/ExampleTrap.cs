@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Tiles
 {
-	// This class shows off a number of less common ModTile methods. These methods help our trap tile behave like vanilla traps. 
-	// In particular, hammer behavior is particularly tricky. The logic here is setup for multiple styles as well.
+	// 此类 shows off a number of less common ModTile methods. These methods help our trap tile behave like vanilla traps. 
+	// 在 particular, hammer behavior is particularly tricky. The logic here is setup for multiple styles as well.
 	public class ExampleTrap : ModTile
 	{
 		public override void SetStaticDefaults() {
@@ -38,7 +38,7 @@ namespace ExampleMod.Content.Tiles
 			// It can be useful to share a single tile with multiple styles.
 			yield return new Item(Mod.Find<ModItem>(Items.Placeable.ExampleTrap.GetInternalNameFromStyle(style)).Type);
 
-			// Here is an alternate approach:
+			// 在这里 is an alternate approach:
 			// int dropItem = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
 			// yield return new Item(dropItem);
 		}
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Tiles
 
 		// This progression matches vanilla tiles, you don't have to follow it if you don't want. Some vanilla traps don't have 6 states, only 4. This can be implemented with different logic in Slope. Making 8 directions is also easily done in a similar manner.
 		private static int[] frameXCycle = { 2, 3, 4, 5, 1, 0 };
-		// We can use the Slope method to override what happens when this tile is hammered.
+		// 我们 can use the Slope method to override what happens when this tile is hammered.
 		public override bool Slope(int i, int j) {
 			Tile tile = Main.tile[i, j];
 			int nextFrameX = frameXCycle[tile.TileFrameX / 18];
@@ -93,13 +93,13 @@ namespace ExampleMod.Content.Tiles
 				if (Wiring.CheckMech(i, j, 60)) {
 					spawnPosition = new Vector2(i * 16 + 8 + 0 * horizontalDirection, j * 16 + 9 + 0 * verticalDirection); // The extra numbers here help center the projectile spawn position if you need to.
 
-					// In a real mod you should be spawning projectiles that are both hostile and friendly to do damage to both players and NPC, as Terraria traps do.
-					// Make sure to change velocity, projectile, damage, and knockback.
+					// 在 a real mod you should be spawning projectiles that are both hostile and friendly to do damage to both players and NPC, as Terraria traps do.
+					// 确保 to change velocity, projectile, damage, and knockback.
 					Projectile.NewProjectile(Wiring.GetProjectileSource(i, j), spawnPosition, new Vector2(horizontalDirection, verticalDirection) * 6f, ProjectileID.IchorBullet, 20, 2f, Main.myPlayer);
 				}
 			}
 			else if (style == 1) {
-				// A longer cooldown for ChlorophyteBullet trap.
+				// 一个 longer cooldown for ChlorophyteBullet trap.
 				if (Wiring.CheckMech(i, j, 200)) {
 					spawnPosition = new Vector2(i * 16 + 8 + 0 * horizontalDirection, j * 16 + 9 + 0 * verticalDirection); // The extra numbers here help center the projectile spawn position.
 					Projectile.NewProjectile(Wiring.GetProjectileSource(i, j), spawnPosition, new Vector2(horizontalDirection, verticalDirection) * 8f, ProjectileID.ChlorophyteBullet, 40, 2f, Main.myPlayer);

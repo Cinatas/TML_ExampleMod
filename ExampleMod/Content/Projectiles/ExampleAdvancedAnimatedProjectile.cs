@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Projectiles
 {
-	// This file shows an animated projectile
-	// This file also shows advanced drawing to center the drawn projectile correctly
+	// 此文件 shows an animated projectile
+	// 此文件 also shows advanced drawing to center the drawn projectile correctly
 	public class ExampleAdvancedAnimatedProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults() {
@@ -42,7 +42,7 @@ namespace ExampleMod.Content.Projectiles
 			// All projectiles have timers that help to delay certain events
 			// Projectile.ai[0], Projectile.ai[1] — timers that are automatically synchronized on the client and server
 			// Projectile.localAI[0], Projectile.localAI[0] — only on the client
-			// In this example, a timer is used to control the fade in / out and despawn of the projectile
+			// 在 this example, a timer is used to control the fade in / out and despawn of the projectile
 			Projectile.ai[0] += 1f;
 
 			FadeInAndOut();
@@ -60,7 +60,7 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			// Despawn this projectile after 1 second (60 ticks)
-			// You can use Projectile.timeLeft = 60f in SetDefaults() for same goal
+			// 你 can use Projectile.timeLeft = 60f in SetDefaults() for same goal
 			if (Projectile.ai[0] >= 60f)
 				Projectile.Kill();
 
@@ -72,13 +72,13 @@ namespace ExampleMod.Content.Projectiles
 			// Since our sprite has an orientation, we need to adjust rotation to compensate for the draw flipping
 			if (Projectile.spriteDirection == -1) {
 				Projectile.rotation += MathHelper.Pi;
-				// For vertical sprites use MathHelper.PiOver2
+				// 对于 vertical sprites use MathHelper.PiOver2
 			}
 		}
 
 		// Many projectiles fade in so that when they spawn they don't overlap the gun muzzle they appear from
 		public void FadeInAndOut() {
-			// If last less than 50 ticks — fade in, than more — fade out
+			// 如果 last less than 50 ticks — fade in, than more — fade out
 			if (Projectile.ai[0] <= 50f) {
 				// Fade in
 				Projectile.alpha -= 25;
@@ -97,8 +97,8 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// Some advanced drawing because the texture image isn't centered or symmetrical
-		// If you don't want to manually drawing you can use vanilla projectile rendering offsets
-		// Here you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#horizontal-sprite-example
+		// 如果 you don't want to manually drawing you can use vanilla projectile rendering offsets
+		// 在这里 you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#horizontal-sprite-example
 		public override bool PreDraw(ref Color lightColor) {
 			// SpriteEffects helps to flip texture horizontally and vertically
 			SpriteEffects spriteEffects = SpriteEffects.None;
@@ -109,7 +109,7 @@ namespace ExampleMod.Content.Projectiles
 			Texture2D texture = TextureAssets.Projectile[Type].Value;
 
 			// Calculating frameHeight and current Y pos dependence of frame
-			// If texture without animation frameHeight is always texture.Height and startY is always 0
+			// 如果 texture without animation frameHeight is always texture.Height and startY is always 0
 			int frameHeight = texture.Height / Main.projFrames[Type];
 			int startY = frameHeight * Projectile.frame;
 
@@ -121,12 +121,12 @@ namespace ExampleMod.Content.Projectiles
 
 			Vector2 origin = sourceRectangle.Size() / 2f;
 
-			// If image isn't centered or symmetrical you can specify origin of the sprite
+			// 如果 image isn't centered or symmetrical you can specify origin of the sprite
 			// (0,0) for the upper-left corner
 			float offsetX = 20f;
 			origin.X = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX);
 
-			// If sprite is vertical
+			// 如果 sprite is vertical
 			// float offsetY = 20f;
 			// origin.Y = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Height - offsetY : offsetY);
 
@@ -142,7 +142,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 	}
 
-	// This is a simple item that is based on the NebulaBlaze and shoots ExampleAdvancedAnimatedProjectile to showcase it.
+	// 这是 a simple item that is based on the NebulaBlaze and shoots ExampleAdvancedAnimatedProjectile to showcase it.
 	internal class ExampleAdvancedAnimatedProjectileItem : ModItem
 	{
 		public override string Texture => $"Terraria/Images/Item_{ItemID.NebulaBlaze}";

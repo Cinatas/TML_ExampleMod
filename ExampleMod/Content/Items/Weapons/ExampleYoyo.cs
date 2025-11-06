@@ -40,9 +40,9 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.shootSpeed = 16f; // The velocity of the shot projectile.			
 		}
 
-		// Here is an example of blacklisting certain modifiers. Remove this section for standard vanilla behavior.
-		// In this example, we are blacklisting the ones that reduce damage of a melee weapon.
-		// Make sure that your item can even receive these prefixes (check the vanilla wiki on prefixes).
+		// 在这里 is an example of blacklisting certain modifiers. Remove this section for standard vanilla behavior.
+		// 在 this example, we are blacklisting the ones that reduce damage of a melee weapon.
+		// 确保 that your item can even receive these prefixes (check the vanilla wiki on prefixes).
 		private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Shameful, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
 
 		public override bool AllowPrefix(int pre) {
@@ -54,8 +54,8 @@ namespace ExampleMod.Content.Items.Weapons
 
 			if (Array.IndexOf(unwantedPrefixes, pre) > -1) {
 				// IndexOf returns a positive index of the element you search for. If not found, it's less than 0.
-				// Here we check if the selected prefix is positive (it was found).
-				// If so, we found a prefix that we don't want. Reroll.
+				// 在这里 we check if the selected prefix is positive (it was found).
+				// 如果 so, we found a prefix that we don't want. Reroll.
 				return false;
 			}
 

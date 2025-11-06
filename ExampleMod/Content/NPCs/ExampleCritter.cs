@@ -43,14 +43,14 @@ namespace ExampleMod.Content.NPCs
 				// Obtain a cursor positioned before the first instruction of the method the cursor is used for navigating and modifying the il
 				ILCursor ilCursor = new ILCursor(ilContext);
 
-				// The exact location for this hook is very complex to search for due to the hook instructions not being unique and buried deep in control flow. Switch statements are sometimes compiled to if-else chains, and debug builds litter the code with no-ops and redundant locals.
-				// In general you want to search using structure and function rather than numerical constants which may change across different versions or compile settings. Using local variable indices is almost always a bad idea.
-				// We can search for
+				// exact location for this hook is very complex to search for due to the hook instructions not being unique and buried deep in control flow. Switch statements are sometimes compiled to if-else chains, and debug builds litter the code with no-ops and redundant locals.
+				// 在 general you want to search using structure and function rather than numerical constants which may change across different versions or compile settings. Using local variable indices is almost always a bad idea.
+				// 我们 can search for
 				// switch (*)
 				//   case 61:
 				//     num115 = 361;
 
-				// In general you'd want to look for a specific switch variable, or perhaps the containing switch (type) { case 105: but the generated IL is really variable and hard to match in this case.
+				// 在 general you'd want to look for a specific switch variable, or perhaps the containing switch (type) { case 105: but the generated IL is really variable and hard to match in this case.
 				// We'll just use the fact that there are no other switch statements with case 61
 
 				ILLabel[] targets = null;
@@ -87,7 +87,7 @@ namespace ExampleMod.Content.NPCs
 				throw new Exception("Hook location not found, switch(*) { case 61: ...");
 			}
 			catch {
-				// If there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
+				// 如果 there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
 				MonoModHooks.DumpIL(ModContent.GetInstance<ExampleMod>(), ilContext);
 			}
 		}
@@ -101,10 +101,10 @@ namespace ExampleMod.Content.NPCs
 			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[Type] = true;
 			NPCID.Sets.TownCritter[Type] = true;
 
-			// The frog is immune to confused
+			// frog is immune to confused
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
-			// This is so it appears between the frog and the gold frog
+			// 这是 so it appears between the frog and the gold frog
 			NPCID.Sets.NormalGoldCritterBestiaryPriority.Insert(NPCID.Sets.NormalGoldCritterBestiaryPriority.IndexOf(ClonedNPCID) + 1, Type);
 		}
 

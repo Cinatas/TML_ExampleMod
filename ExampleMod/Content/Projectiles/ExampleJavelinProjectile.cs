@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Projectiles
 		private void NormalAI() {
 			GravityDelayTimer++; // doesn't make sense.
 
-			// For a little while, the javelin will travel with the same speed, but after this, the javelin drops velocity very quickly.
+			// 对于 a little while, the javelin will travel with the same speed, but after this, the javelin drops velocity very quickly.
 			if (GravityDelayTimer >= GravityDelay) {
 				GravityDelayTimer = GravityDelay;
 
@@ -112,13 +112,13 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.Kill();
 			}
 			else if (Main.npc[npcTarget].active && !Main.npc[npcTarget].dontTakeDamage) {
-				// If the target is active and can take damage
+				// 如果 the target is active and can take damage
 				// Set the projectile's position relative to the target's center
 				Projectile.Center = Main.npc[npcTarget].Center - Projectile.velocity * 2f;
 				Projectile.gfxOffY = Main.npc[npcTarget].gfxOffY;
 				if (hitEffect) {
 					// Perform a hit effect here, causing the npc to react as if hit.
-					// Note that this does NOT damage the NPC, the damage is done through the debuff.
+					// 注意 that this does NOT damage the NPC, the damage is done through the debuff.
 					Main.npc[npcTarget].HitEffect(0, 1.0);
 				}
 			}
@@ -146,8 +146,8 @@ namespace ExampleMod.Content.Projectiles
 				usePos -= rotationVector * 8f;
 			}
 
-			// Make sure to only spawn items if you are the projectile owner.
-			// This is an important check as Kill() is called on clients, and you only want the item to drop once
+			// 确保 to only spawn items if you are the projectile owner.
+			// 这是 an important check as Kill() is called on clients, and you only want the item to drop once
 			if (Projectile.owner == Main.myPlayer) {
 				// Drop a javelin item, 1 in 18 chance (~5.5% chance)
 				int item = 0;
@@ -156,7 +156,7 @@ namespace ExampleMod.Content.Projectiles
 				}
 
 				// Sync the drop for multiplayer
-				// Note the usage of Terraria.ID.MessageID, please use this!
+				// 注意 the usage of Terraria.ID.MessageID, please use this!
 				if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0) {
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
 				}
@@ -183,7 +183,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-			// For going through platforms and such, javelins use a tad smaller size
+			// 对于 going through platforms and such, javelins use a tad smaller size
 			width = height = 10; // notice we set the width to the height, the height to 10. so both are 10
 			return true;
 		}
@@ -199,7 +199,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
-			// If attached to an NPC, draw behind tiles (and the npc) if that NPC is behind tiles, otherwise just behind the NPC.
+			// 如果 attached to an NPC, draw behind tiles (and the npc) if that NPC is behind tiles, otherwise just behind the NPC.
 			if (IsStickingToTarget) {
 				int npcIndex = TargetWhoAmI;
 				if (npcIndex >= 0 && npcIndex < 200 && Main.npc[npcIndex].active) {
@@ -226,7 +226,7 @@ namespace ExampleMod.Content.Projectiles
 				Projectile.alpha -= AlphaFadeInSpeed;
 			}
 
-			// If alpha gets lower than 0, set it to 0
+			// 如果 alpha gets lower than 0, set it to 0
 			if (Projectile.alpha < 0) {
 				Projectile.alpha = 0;
 			}

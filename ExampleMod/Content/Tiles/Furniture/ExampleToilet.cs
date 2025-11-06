@@ -40,7 +40,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
 			TileObjectData.newTile.CoordinatePaddingFix = new Point16(0, 2);
 			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
-			// The following 3 lines are needed if you decide to add more styles and stack them vertically
+			// following 3 lines are needed if you decide to add more styles and stack them vertically
 			TileObjectData.newTile.StyleWrapLimit = 2;
 			TileObjectData.newTile.StyleMultiplier = 2;
 			TileObjectData.newTile.StyleHorizontal = true;
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 				info.TargetDirection = 1; // Facing right if sat down on the right alternate (added through addAlternate in SetStaticDefaults earlier)
 			}
 
-			// The anchor represents the bottom-most tile of the chair. This is used to align the entity hitbox
+			// anchor represents the bottom-most tile of the chair. This is used to align the entity hitbox
 			// Since i and j may be from any coordinate of the chair, we need to adjust the anchor based on that
 			info.AnchorTilePosition.X = i; // Our chair is only 1 wide, so nothing special required
 			info.AnchorTilePosition.Y = j;
@@ -84,7 +84,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// Finally, since this is a toilet, it should generate Poo while any tier of Well Fed is active
 			info.ExtraInfo.IsAToilet = true;
 
-			// Here we add a custom fun effect to this tile that vanilla toilets do not have. This shows how you can type cast the restingEntity to Player and use visualOffset as well.
+			// 在这里 we add a custom fun effect to this tile that vanilla toilets do not have. This shows how you can type cast the restingEntity to Player and use visualOffset as well.
 			if (info.RestingEntity is Player player && player.HasBuff(BuffID.Stinky)) {
 				info.VisualOffset = Main.rand.NextVector2Circular(2, 2);
 			}

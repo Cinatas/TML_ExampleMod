@@ -12,14 +12,14 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Projectiles
 {
 	// ExampleCustomSwingSword is an example of a sword with a custom swing using a held projectile
-	// This is great if you want to make melee weapons with complex swing behavior
-	// Note that this projectile only covers 2 relatively simple swings, everything else is up to you
+	// 这是 great if you want to make melee weapons with complex swing behavior
+	// 注意 that this projectile only covers 2 relatively simple swings, everything else is up to you
 	// Aside from the custom animation, the custom collision code in Colliding is very important to this weapon
 	public class ExampleCustomSwingProjectile : ModProjectile
 	{
-		// We define some constants that determine the swing range of the sword
+		// 我们 define some constants that determine the swing range of the sword
 		// Not that we use multipliers here since that simplifies the amount of tweaks for these interactions
-		// You could change the values or even replace them entirely, but they are tweaked with looks in mind
+		// 你 could change the values or even replace them entirely, but they are tweaked with looks in mind
 		private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
 		private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
 		private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
@@ -64,8 +64,8 @@ namespace ExampleMod.Content.Projectiles
 		private ref float Progress => ref Projectile.localAI[1]; // Position of sword relative to initial angle
 		private ref float Size => ref Projectile.localAI[2]; // Size of sword
 
-		// We define timing functions for each stage, taking into account melee attack speed
-		// Note that you can change this to suit the need of your projectile
+		// 我们 define timing functions for each stage, taking into account melee attack speed
+		// 注意 that you can change this to suit the need of your projectile
 		private float prepTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
 		private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
 		private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
@@ -135,8 +135,8 @@ namespace ExampleMod.Content.Projectiles
 			}
 
 			// AI depends on stage and attack
-			// Note that these stages are to facilitate the scaling effect at the beginning and end
-			// If this is not desirable for you, feel free to simplify
+			// 注意 that these stages are to facilitate the scaling effect at the beginning and end
+			// 如果 this is not desirable for you, feel free to simplify
 			switch (CurrentStage) {
 				case AttackStage.Prepare:
 					PrepareStrike();
@@ -193,7 +193,7 @@ namespace ExampleMod.Content.Projectiles
 			Utils.PlotTileLine(start, end, 15 * Projectile.scale, DelegateMethods.CutTiles);
 		}
 
-		// We make it so that the projectile can only do damage in its release and unwind phases
+		// 我们 make it so that the projectile can only do damage in its release and unwind phases
 		public override bool? CanDamage() {
 			if (CurrentStage == AttackStage.Prepare)
 				return false;
@@ -204,7 +204,7 @@ namespace ExampleMod.Content.Projectiles
 			// Make knockback go away from player
 			modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
 
-			// If the NPC is hit by the spin attack, increase knockback slightly
+			// 如果 the NPC is hit by the spin attack, increase knockback slightly
 			if (CurrentAttack == AttackType.Spin)
 				modifiers.Knockback += 1;
 		}

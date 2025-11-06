@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Ammo
 {
-	// This example is similar to the Wooden Arrow item
+	// 此示例 is similar to the Wooden Arrow item
 	public class ExampleArrow : ModItem
 	{
 		public override void SetStaticDefaults() {
@@ -28,7 +28,7 @@ namespace ExampleMod.Content.Items.Ammo
 			Item.ammo = AmmoID.Arrow; // The ammo class this ammo belongs to.
 		}
 
-		// For a more detailed explanation of recipe creation, please go to Content/ExampleRecipes.cs.
+		// 对于 a more detailed explanation of recipe creation, please go to Content/ExampleRecipes.cs.
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()

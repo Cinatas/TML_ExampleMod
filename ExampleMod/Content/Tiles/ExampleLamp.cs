@@ -12,8 +12,8 @@ using Terraria.ObjectData;
 
 namespace ExampleMod.Content.Tiles
 {
-	// This class shows off many things common to Lamp tiles in Terraria. The process for creating this example is detailed in: https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#examplelamp-tile
-	// If you can't figure out how to recreate a vanilla tile, see that guide for instructions on how to figure it out yourself.
+	// 此类 shows off many things common to Lamp tiles in Terraria. The process for creating this example is detailed in: https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#examplelamp-tile
+	// 如果 you can't figure out how to recreate a vanilla tile, see that guide for instructions on how to figure it out yourself.
 	internal class ExampleLamp : ModTile
 	{
 		private Asset<Texture2D> flameTexture;
@@ -72,7 +72,7 @@ namespace ExampleMod.Content.Tiles
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
 			Tile tile = Main.tile[i, j];
 			if (tile.TileFrameX == 0) {
-				// We can support different light colors for different styles here: switch (tile.frameY / 54)
+				// 我们 can support different light colors for different styles here: switch (tile.frameY / 54)
 				r = 1f;
 				g = 0.75f;
 				b = 1f;
@@ -107,7 +107,7 @@ namespace ExampleMod.Content.Tiles
 					dustChoice = 21; // A purple dust.
 				}
 
-				// We can support different dust for different styles here
+				// 我们 can support different dust for different styles here
 				if (dustChoice != -1) {
 					var dust = Dust.NewDustDirect(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, dustChoice, 0f, 0f, 100, default, 1f);
 
@@ -150,7 +150,7 @@ namespace ExampleMod.Content.Tiles
 
 			ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i); // Don't remove any casts.
 
-			// We can support different flames for different styles here: int style = Main.tile[j, i].frameY / 54;
+			// 我们 can support different flames for different styles here: int style = Main.tile[j, i].frameY / 54;
 			for (int c = 0; c < 7; c++) {
 				float shakeX = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
 				float shakeY = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;

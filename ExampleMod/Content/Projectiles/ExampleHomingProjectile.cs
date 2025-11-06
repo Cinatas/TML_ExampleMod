@@ -39,7 +39,7 @@ namespace ExampleMod.Content.Projectiles
 		public override void AI() {
 			float maxDetectRadius = 400f; // The maximum radius at which a projectile can detect a target
 
-			// A short delay to homing behavior after being fired
+			// 一个 short delay to homing behavior after being fired
 			if (DelayTimer < 10) {
 				DelayTimer += 1;
 				return;
@@ -50,17 +50,17 @@ namespace ExampleMod.Content.Projectiles
 				HomingTarget = FindClosestNPC(maxDetectRadius);
 			}
 
-			// If we have a homing target, make sure it is still valid. If the NPC dies or moves away, we'll want to find a new target
+			// 如果 we have a homing target, make sure it is still valid. If the NPC dies or moves away, we'll want to find a new target
 			if (HomingTarget != null && !IsValidTarget(HomingTarget)) {
 				HomingTarget = null;
 			}
 
-			// If we don't have a target, don't adjust trajectory
+			// 如果 we don't have a target, don't adjust trajectory
 			if (HomingTarget == null)
 				return;
 
-			// If found, we rotate the projectile velocity in the direction of the target.
-			// We only rotate by 3 degrees an update to give it a smooth trajectory. Increase the rotation speed here to make tighter turns
+			// 如果 found, we rotate the projectile velocity in the direction of the target.
+			// 我们 only rotate by 3 degrees an update to give it a smooth trajectory. Increase the rotation speed here to make tighter turns
 			float length = Projectile.velocity.Length();
 			float targetAngle = Projectile.AngleTo(HomingTarget.Center);
 			Projectile.velocity = Projectile.velocity.ToRotation().AngleTowards(targetAngle, MathHelper.ToRadians(3)).ToRotationVector2() * length;
@@ -68,18 +68,18 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		// Finding the closest NPC to attack within maxDetectDistance range
-		// If not found then returns null
+		// 如果 not found then returns null
 		public NPC FindClosestNPC(float maxDetectDistance) {
 			NPC closestNPC = null;
 
-			// Using squared values in distance checks will let us skip square root calculations, drastically improving this method's speed.
+			// 使用 squared values in distance checks will let us skip square root calculations, drastically improving this method's speed.
 			float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
 
 			// Loop through all NPCs
 			foreach (var target in Main.ActiveNPCs) {
 				// Check if NPC able to be targeted. 
 				if (IsValidTarget(target)) {
-					// The DistanceSquared function returns a squared distance between 2 points, skipping relatively expensive square root calculations
+					// DistanceSquared function returns a squared distance between 2 points, skipping relatively expensive square root calculations
 					float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
 
 					// Check if it is within the radius
@@ -94,7 +94,7 @@ namespace ExampleMod.Content.Projectiles
 		}
 
 		public bool IsValidTarget(NPC target) {
-			// This method checks that the NPC is:
+			// 此方法 checks that the NPC is:
 			// 1. active (alive)
 			// 2. chaseable (e.g. not a cultist archer)
 			// 3. max life bigger than 5 (e.g. not a critter)

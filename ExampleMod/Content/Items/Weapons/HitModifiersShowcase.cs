@@ -91,7 +91,7 @@ namespace ExampleMod.Content.Items.Weapons
 				case 4:
 					return "10 extra armor penetration. Test against high defense enemy";
 				case 5:
-					// This is similar to the Lightning Aura and Flymeal weapon effects
+					// 这是 similar to the Lightning Aura and Flymeal weapon effects
 					return "50% extra armor penetration. Ignores 50% of enemy defense";
 				case 6:
 					return "Will apply ExampleDefenseDebuff, reducing defense by 25%";
@@ -124,7 +124,7 @@ namespace ExampleMod.Content.Items.Weapons
 			// This 'backdoor' is a replacement for the old style of modifiers which allowed modifying the damage via `ref`
 			// Please only use this if absolutely necessary, as multiple mods freely altering the damage results will create incompatible or unintuitive player experiences.
 			//
-			// For example, the effect below could be better implemented by checking `player.GetWeaponDamage(Item)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
+			// 对于 example, the effect below could be better implemented by checking `player.GetWeaponDamage(Item)` and adding to FinalDamage.Base, SourceDamage.Base, SourceDamage.Flat or FlatBonusDamage
 			/*
 			modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
 				if (hitInfo.Damage > 10) {
@@ -170,7 +170,7 @@ namespace ExampleMod.Content.Items.Weapons
 
 			if (mode == 6) {
 				// This AddBuff is not quiet because it is affecting another player. This allows it to broadcast to all players that the target has a buff. (Main.pvpBuff must be set to true for other players to be able to give buffs to a player)
-				// Note that in PvP, it is possible to attack a player and see them take damage, but by the time the hit message arrives on the target client, they may have recharged a dodge. In this case, the target will not actually take damage, and their health will appear to restore. Because the attacking player applies the debuff, the target will receive the debuff regardless
+				// 注意 that in PvP, it is possible to attack a player and see them take damage, but by the time the hit message arrives on the target client, they may have recharged a dodge. In this case, the target will not actually take damage, and their health will appear to restore. Because the attacking player applies the debuff, the target will receive the debuff regardless
 				target.AddBuff(ModContent.BuffType<ExampleDefenseDebuff>(), 600, quiet: false);
 			}
 			else if (mode == 7) {

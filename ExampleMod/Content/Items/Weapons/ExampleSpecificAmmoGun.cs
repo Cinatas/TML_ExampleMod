@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Weapons
 {
-	// This is an example gun designed to best demonstrate the various tML hooks that can be used for ammo-related specifications.
-	// The ammo wiki guide, https://github.com/tModLoader/tModLoader/wiki/Basic-Ammo, is a good resource for learning how the ammo system works.
+	// 这是 an example gun designed to best demonstrate the various tML hooks that can be used for ammo-related specifications.
+	// ammo wiki guide, https://github.com/tModLoader/tModLoader/wiki/Basic-Ammo, is a good resource for learning how the ammo system works.
 	public class ExampleSpecificAmmoGun : ModItem
 	{
 		public static readonly int FreeAmmoChance1 = 20;
@@ -71,7 +71,7 @@ namespace ExampleMod.Content.Items.Weapons
 			// (Its sister hook, CanBeChosenAsAmmo, is called on the ammo, and has the same function.)
 			// This returns null by default, which simply picks the ammo based on whether or not ammo.ammo == weapon.useAmmo.
 			// Returning true will forcibly allow an ammo to be used; returning false will forcibly deny it.
-			// For this example, we'll forcefully deny Cursed Bullets from being used as ammunition, but otherwise make no changes to the ammo pool.
+			// 对于 this example, we'll forcefully deny Cursed Bullets from being used as ammunition, but otherwise make no changes to the ammo pool.
 			if (ammo.type == ItemID.CursedBullet)
 				return false;
 
@@ -88,9 +88,9 @@ namespace ExampleMod.Content.Items.Weapons
 			// CanConsumeAmmo allows ammo to be conserved or consumed depending on various conditions.
 			// (Its sister hook, CanBeConsumedAsAmmo, is called on the ammo, and has the same function.)
 			// This returns true by default; returning false for any reason will prevent ammo consumption.
-			// Note that returning true does NOT allow you to force ammo consumption; this currently requires use of IL editing or detours.
+			// 注意 that returning true does NOT allow you to force ammo consumption; this currently requires use of IL editing or detours.
 
-			// For this example, the first shot will have a 20% chance to conserve ammo...
+			// 对于 this example, the first shot will have a 20% chance to conserve ammo...
 			// ...the second shot will have a 63% chance to conserve ammo...
 			// ...and the third shot will have a 36% chance to conserve ammo.
 			if (player.ItemUsesThisAnimation == 0)

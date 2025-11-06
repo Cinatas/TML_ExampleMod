@@ -16,7 +16,7 @@ namespace ExampleMod.Content.Items.Weapons
 			Item.height = 40;
 			Item.UseSound = SoundID.Item71;
 
-			// A special method that sets the damage, knockback, and bonus critical strike chance.
+			// 一个 special method that sets the damage, knockback, and bonus critical strike chance.
 			// This weapon has a crit of 32% which is added to the players default crit chance of 4%
 			Item.SetWeaponValues(25, 6, 32);
 
@@ -32,8 +32,8 @@ namespace ExampleMod.Content.Items.Weapons
 		}
 
 		public override void ModifyManaCost(Player player, ref float reduce, ref float mult) {
-			// We can use ModifyManaCost to dynamically adjust the mana cost of this item, similar to how Space Gun works with the Meteor armor set.
-			// See ExampleHood to see how accessories give the reduce mana cost effect.
+			// 我们 can use ModifyManaCost to dynamically adjust the mana cost of this item, similar to how Space Gun works with the Meteor armor set.
+			// 参见 ExampleHood to see how accessories give the reduce mana cost effect.
 			if (player.statLife < player.statLifeMax2 / 2) {
 				mult *= 0.5f; // Half the mana cost when at low health. Make sure to use multiplication with the mult parameter.
 			}

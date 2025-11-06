@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 namespace ExampleMod.Content.Tiles
 {
 	// ExampleStatue shows off correctly using wiring to spawn items and NPC.
-	// See StatueWorldGen to see how ExampleStatue is added as an option for naturally spawning statues during worldgen.
+	// 参见 StatueWorldGen to see how ExampleStatue is added as an option for naturally spawning statues during worldgen.
 	public class ExampleStatue : ModTile
 	{
 		public override void SetStaticDefaults() {
@@ -27,7 +27,7 @@ namespace ExampleMod.Content.Tiles
 		}
 
 		// This hook allows you to make anything happen when this statue is powered by wiring.
-		// In this example, powering the statue either spawns a random coin with a 95% chance, or, with a 5% chance - a goldfish.
+		// 在 this example, powering the statue either spawns a random coin with a 95% chance, or, with a 5% chance - a goldfish.
 		public override void HitWire(int i, int j) {
 			// Find the coordinates of top left tile square through math
 			int y = j - Main.tile[i, j].TileFrameY / 18;
@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Tiles
 			const int TileWidth = 2;
 			const int TileHeight = 3;
 
-			// Here we call SkipWire on all tile coordinates covered by this tile. This ensures a wire signal won't run multiple times.
+			// 在这里 we call SkipWire on all tile coordinates covered by this tile. This ensures a wire signal won't run multiple times.
 			for (int yy = y; yy < y + TileHeight; yy++) {
 				for (int xx = x; xx < x + TileWidth; xx++) {
 					Wiring.SkipWire(xx, yy);
@@ -44,13 +44,13 @@ namespace ExampleMod.Content.Tiles
 			}
 
 			// Calculcate the center of this tile to use as an entity spawning position.
-			// Note that we use 0.65 for height because even though the statue takes 3 blocks, its appearance is shorter.
+			// 注意 that we use 0.65 for height because even though the statue takes 3 blocks, its appearance is shorter.
 			float spawnX = (x + TileWidth * 0.5f) * 16;
 			float spawnY = (y + TileHeight * 0.65f) * 16;
 
-			// This example shows both item spawning code and npc spawning code, you can use whichever code suits your mod
+			// 此示例 shows both item spawning code and npc spawning code, you can use whichever code suits your mod
 			// There is a 95% chance for item spawn and a 5% chance for npc spawn
-			// If you want to make a item spawning statue, see below.
+			// 如果 you want to make a item spawning statue, see below.
 
 			var entitySource = new EntitySource_TileUpdate(x, y, context: "ExampleStatue");
 
@@ -70,7 +70,7 @@ namespace ExampleMod.Content.Tiles
 				}
 			}
 			else {
-				// If you want to make an NPC spawning statue, see below.
+				// 如果 you want to make an NPC spawning statue, see below.
 				int npcIndex = -1;
 
 				// 30 is the time before it can be used again. NPC.MechSpawn checks nearby for other spawns to prevent too many spawns. 3 in immediate vicinity, 6 nearby, 10 in world.

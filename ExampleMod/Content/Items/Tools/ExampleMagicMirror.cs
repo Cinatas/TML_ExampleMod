@@ -46,7 +46,7 @@ namespace ExampleMod.Content.Items.Tools
 				// This code releases all grappling hooks and kills/despawns them.
 				player.RemoveAllGrapplingHooks();
 
-				// The actual method that moves the player back to bed/spawn.
+				// actual method that moves the player back to bed/spawn.
 				player.Spawn(PlayerSpawnContext.RecallFromItem);
 
 				// Make dust 70 times for a cool effect. This dust is the dust at the destination.

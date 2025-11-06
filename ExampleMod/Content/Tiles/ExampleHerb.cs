@@ -20,7 +20,7 @@ namespace ExampleMod.Content.Tiles
 		Grown
 	}
 
-	// A plant with 3 stages, planted, growing and grown
+	// 一个 plant with 3 stages, planted, growing and grown
 	// Sadly, modded plants are unable to be grown by the flower boots
 	//TODO smart cursor support for herbs, see SmartCursorHelper.Step_AlchemySeeds
 	//TODO Staff of Regrowth:
@@ -41,7 +41,7 @@ namespace ExampleMod.Content.Tiles
 			TileID.Sets.IgnoredByGrowingSaplings[Type] = true;
 			TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // Make this tile interact with golf balls in the same way other plants do
 
-			// We do not use this because our tile should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
+			// 我们 do not use this because our tile should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
 			//Main.tileSpelunker[Type] = true;
 
 			// Do NOT use this, it causes many unintended side effects
@@ -169,14 +169,14 @@ namespace ExampleMod.Content.Tiles
 				// Increase the x frame to change the stage
 				tile.TileFrameX += FrameWidth;
 
-				// If in multiplayer, sync the frame change
+				// 如果 in multiplayer, sync the frame change
 				if (Main.netMode != NetmodeID.SinglePlayer) {
 					NetMessage.SendTileSquare(-1, i, j, 1);
 				}
 			}
 		}
 
-		// A helper method to quickly get the current stage of the herb (assuming the tile at the coordinates is our herb)
+		// 一个 helper method to quickly get the current stage of the herb (assuming the tile at the coordinates is our herb)
 		private static PlantStage GetStage(int i, int j) {
 			Tile tile = Framing.GetTileSafely(i, j);
 			return (PlantStage)(tile.TileFrameX / FrameWidth);

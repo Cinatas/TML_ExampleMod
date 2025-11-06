@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace ExampleMod.Content.Items.Placeable
 {
 	// ExampleWaterTorch is very similar to ExampleTorch, except it can be used and placed underwater, similar to Coral Torch.
-	// The comments in this file will focus on the differences.
+	// comments in this file will focus on the differences.
 	// Both place the same tile, but a different tile style. The ExampleWaterTorch tile style has custom code seen in the ExampleTorch ModTile.
 	public class ExampleWaterTorch : ModItem
 	{

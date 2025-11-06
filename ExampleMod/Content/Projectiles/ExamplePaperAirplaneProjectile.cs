@@ -21,17 +21,17 @@ namespace ExampleMod.Content.Projectiles
 			Projectile.DamageType = DamageClass.Ranged; // Set the damage type to ranged damage.
 
 			// Setting this to true will stop the projectile from automatically flipping its sprite when changing directions.
-			// The vanilla paper airplanes have this set to true.
-			// If this is true the projectile won't flip its sprite vertically while doing a loop, but the paper airplane can be upside down if it is shot one direction and then turns around on its own.
+			// vanilla paper airplanes have this set to true.
+			// 如果 this is true the projectile won't flip its sprite vertically while doing a loop, but the paper airplane can be upside down if it is shot one direction and then turns around on its own.
 			// Set to false if you want the projectile to always be right side up.
 			Projectile.manualDirectionChange = true;
 
-			// If you are using Projectile.aiStyle = 159, setting the AIType isn't necessary here because the two types of vanilla paper airplanes aiStyles have the same AI.
+			// 如果 you are using Projectile.aiStyle = 159, setting the AIType isn't necessary here because the two types of vanilla paper airplanes aiStyles have the same AI.
 			// AIType = ProjectileID.PaperAirplaneA;
 		}
 
-		// This is the behavior of the paper airplane.
-		// If you just want the same vanilla behavior, you can instead set Projectile.aiStyle = 159 in SetDefaults and remove this AI() section.
+		// 这是 the behavior of the paper airplane.
+		// 如果 you just want the same vanilla behavior, you can instead set Projectile.aiStyle = 159 in SetDefaults and remove this AI() section.
 		public override void AI() {
 			// All projectiles have timers that help to delay certain events
 			// Projectile.ai[0], Projectile.ai[1] — timers that are automatically synchronized on the client and server
@@ -74,7 +74,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.velocity = newVelocity.SafeNormalize(Vector2.UnitY) * Projectile.velocity.Length(); // Set the velocity to the value we calculated above.
 
-			// If it is flying normally. i.e. not flying a loop.
+			// 如果 it is flying normally. i.e. not flying a loop.
 			if (!(readyForFlip && directionSameAsWind)) {
 				float yModifier = MathHelper.Lerp(0.15f, 0.05f, Math.Abs(Main.WindForVisuals));
 
@@ -82,7 +82,7 @@ namespace ExampleMod.Content.Projectiles
 				if (Projectile.timeLeft % 40 < 20) {
 					Projectile.velocity.Y -= yModifier;
 				}
-				// The other half of time, increase the y velocity a little.
+				// other half of time, increase the y velocity a little.
 				else {
 					Projectile.velocity.Y += yModifier;
 				}
@@ -113,9 +113,9 @@ namespace ExampleMod.Content.Projectiles
 			}
 		}
 
-		// We need to draw the projectile manually. If you don't include this, the projectile will be facing the wrong direction when flying left.
+		// 我们 need to draw the projectile manually. If you don't include this, the projectile will be facing the wrong direction when flying left.
 		public override bool PreDraw(ref Color lightColor) {
-			// This is where we specify which way to flip the sprite. If the projectile is moving to the left, then flip it vertically.
+			// 这是 where we specify which way to flip the sprite. If the projectile is moving to the left, then flip it vertically.
 			SpriteEffects spriteEffects = ((Projectile.spriteDirection <= 0) ? SpriteEffects.FlipVertically : SpriteEffects.None);
 
 			// Getting texture of projectile
@@ -144,7 +144,7 @@ namespace ExampleMod.Content.Projectiles
 				int newItem = Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.Hitbox, dropItemType); // Create a new item in the world.
 				Main.item[newItem].noGrabDelay = 0; // Set the new item to be able to be picked up instantly
 
-				// Here we need to make sure the item is synced in multiplayer games.
+				// 在这里 we need to make sure the item is synced in multiplayer games.
 				if (Main.netMode == NetmodeID.MultiplayerClient && newItem >= 0) {
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem, 1f);
 				}

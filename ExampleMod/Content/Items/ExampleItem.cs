@@ -10,7 +10,7 @@ namespace ExampleMod.Content.Items
 	public class ExampleItem : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// The text shown below some item names is called a tooltip. Tooltips are defined in the localization files. See en-US.hjson.
+			// text shown below some item names is called a tooltip. Tooltips are defined in the localization files. See en-US.hjson.
 
 			// How many items are needed in order to research duplication of this item in Journey mode. See https://terraria.wiki.gg/wiki/Journey_Mode#Research for a list of commonly used research amounts depending on item type. This defaults to 1, which is what most items will use, so you can omit this for most ModItems.
 			Item.ResearchUnlockCount = 100;

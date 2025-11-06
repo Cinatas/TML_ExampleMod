@@ -21,7 +21,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		/// </summary>
 		public virtual int Row => 0;
 
-		// You should decide the frame rectangle yourself by these two methods.
+		// 你 should decide the frame rectangle yourself by these two methods.
 		public override Rectangle? GetFrame() {
 			return new Rectangle(EmoteBubble.frame * 34, 28 * Row, 34, 28);
 		}
@@ -34,7 +34,7 @@ namespace ExampleMod.Content.EmoteBubbles
 		}
 	}
 
-	// This is a showcase of using the same texture for different emotes.
+	// 这是 a showcase of using the same texture for different emotes.
 	// Command names of these classes are defined using .hjson files in the Localization/ folder.
 	public class ExamplePersonEmote : ModTownEmote
 	{

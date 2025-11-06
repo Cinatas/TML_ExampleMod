@@ -9,25 +9,25 @@ namespace ExampleMod.Content.Items.Ammo
 	{
 		// Rocket Ammo is a little weird and does not work the same as bullets or arrows.
 		// Rockets I through IV have four versions: normal Rocket, Grenade, Proximity Mine, and Snowman Rocket.
-		// This example is a clone of Rocket I.
+		// 此示例 is a clone of Rocket I.
 
 		public override void SetStaticDefaults() {
 			AmmoID.Sets.IsSpecialist[Type] = true; // This item will benefit from the Shroomite Helmet.
 
-			// This is where we tell the game which projectile to spawn when using this rocket as ammo with certain launchers.
+			// 这是 where we tell the game which projectile to spawn when using this rocket as ammo with certain launchers.
 			// This specific rocket ammo is like Rocket I's.
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.RocketLauncher].Add(Type, ModContent.ProjectileType<ExampleRocketProjectile>());
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.GrenadeLauncher].Add(Type, ModContent.ProjectileType<ExampleGrenadeProjectile>());
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.ProximityMineLauncher].Add(Type, ModContent.ProjectileType<ExampleProximityMineProjectile>());
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.SnowmanCannon].Add(Type, ModContent.ProjectileType<ExampleSnowmanRocketProjectile>());
-			// We also need to say which type of Celebration Mk2 rockets to use.
-			// The Celebration Mk 2 only has four types of rockets. Change the projectile to match your ammo type.
+			// 我们 also need to say which type of Celebration Mk2 rockets to use.
+			// Celebration Mk 2 only has four types of rockets. Change the projectile to match your ammo type.
 			// Rocket I like   == ProjectileID.Celeb2Rocket
 			// Rocket II like  == ProjectileID.Celeb2RocketExplosive
 			// Rocket III like == ProjectileID.Celeb2RocketLarge
 			// Rocket IV like  == ProjectileID.Celeb2RocketExplosiveLarge
 			AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.Celeb2].Add(Type, ProjectileID.Celeb2Rocket);
-			// The Celebration and Electrosphere Launcher will always use their own projectiles no matter which rocket you use as ammo.
+			// Celebration and Electrosphere Launcher will always use their own projectiles no matter which rocket you use as ammo.
 		}
 
 		public override void SetDefaults() {

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Tools
 {
-	// This is an example bug net designed to demonstrate the use cases for various hooks related to catching NPCs such as critters with items.
+	// 这是 an example bug net designed to demonstrate the use cases for various hooks related to catching NPCs such as critters with items.
 	public class ExampleBugNet : ModItem
 	{
 		public static readonly int LavaCatchChance = 20;
@@ -48,15 +48,15 @@ namespace ExampleMod.Content.Items.Tools
 			// This hook is used to determine whether or not your catching tool can catch a given NPC.
 			// This returns null by default, which allows vanilla to decide whether or not the NPC should be caught.
 			// Returning true forces the NPC to be caught, while returning false forces the NPC to not be caught.
-			// If you're unsure what to return, return null.
-			// For this example, we'll give our example bug net a 20% chance to catch lava critters successfully (50% with a Warmth Potion buff active).
+			// 如果 you're unsure what to return, return null.
+			// 对于 this example, we'll give our example bug net a 20% chance to catch lava critters successfully (50% with a Warmth Potion buff active).
 			if (ItemID.Sets.IsLavaBait[target.catchItem]) {
 				if (Main.rand.NextBool(player.resistCold ? WarmthLavaCatchChance : LavaCatchChance, 100)) {
 					return true;
 				}
 			}
 
-			// For all cases where true isn't explicitly returned, we'll return null so that vanilla catching rules and effects can take place.
+			// 对于 all cases where true isn't explicitly returned, we'll return null so that vanilla catching rules and effects can take place.
 			return null;
 		}
 
@@ -69,7 +69,7 @@ namespace ExampleMod.Content.Items.Tools
 		}
 	}
 
-	// This class is included here as a demonstration of how to use OnSpawn to modify the item spawned from catching an NPC or other entity.
+	// 此类 is included here as a demonstration of how to use OnSpawn to modify the item spawned from catching an NPC or other entity.
 	public class ExampleCatchItemModification : GlobalItem
 	{
 		public override void OnSpawn(Item item, IEntitySource source) {

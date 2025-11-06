@@ -36,7 +36,7 @@ namespace ExampleMod.Content.Items
 				.AddDecraftCondition(Condition.InDesert)
 				.Register();
 
-			// In these 2 examples, decraft conditions are used to make the recipes decraftable only in their respective world types
+			// 在 these 2 examples, decraft conditions are used to make the recipes decraftable only in their respective world types
 			CreateRecipe()
 				.AddIngredient<ExampleItem>()
 				.AddIngredient(ItemID.RottenChunk)

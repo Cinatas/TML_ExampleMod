@@ -86,7 +86,7 @@ namespace ExampleMod.NPCs
 				if (!NPC.HasValidTarget) {
 					NPC.TargetClosest(true);
 
-					// If the NPC is a boss and it has no target, force it to fall to the underworld quickly
+					// 如果 the NPC is a boss and it has no target, force it to fall to the underworld quickly
 					if (!NPC.HasValidTarget && NPC.boss) {
 						NPC.velocity.Y += 8f;
 
@@ -185,7 +185,7 @@ namespace ExampleMod.NPCs
 		/// <param name="latestNPC">The whoAmI of the most-recently spawned segment NPC in the worm, including the head</param>
 		/// <returns></returns>
 		protected int SpawnSegment(IEntitySource source, int type, int latestNPC) {
-			// We spawn a new NPC, setting latestNPC to the newer NPC, whilst also using that same variable
+			// 我们 spawn a new NPC, setting latestNPC to the newer NPC, whilst also using that same variable
 			// to set the parent of this new NPC. The parent of the new NPC (may it be a tail or body part)
 			// will determine the movement of this new NPC.
 			// Under there, we also set the realLife value of the new NPC, because of what is explained above.
@@ -214,18 +214,18 @@ namespace ExampleMod.NPCs
 		private void HeadAI_SpawnSegments() {
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				// So, we start the AI off by checking if NPC.ai[0] (the following NPC's whoAmI) is 0.
-				// This is practically ALWAYS the case with a freshly spawned NPC, so this means this is the first update.
+				// 这是 practically ALWAYS the case with a freshly spawned NPC, so this means this is the first update.
 				// Since this is the first update, we can safely assume we need to spawn the rest of the worm (bodies + tail).
 				bool hasFollower = NPC.ai[0] > 0;
 				if (!hasFollower) {
 					// So, here we assign the NPC.realLife value.
-					// The NPC.realLife value is mainly used to determine which NPC loses life when we hit this NPC.
-					// We don't want every single piece of the worm to have its own HP pool, so this is a neat way to fix that.
+					// NPC.realLife value is mainly used to determine which NPC loses life when we hit this NPC.
+					// 我们 don't want every single piece of the worm to have its own HP pool, so this is a neat way to fix that.
 					NPC.realLife = NPC.whoAmI;
 					// latestNPC is going to be used in SpawnSegment() and I'll explain it there.
 					int latestNPC = NPC.whoAmI;
 
-					// Here we determine the length of the worm.
+					// 在这里 we determine the length of the worm.
 					int randomWormLength = Main.rand.Next(MinSegmentLength, MaxSegmentLength + 1);
 
 					int distance = randomWormLength - 2;
@@ -290,12 +290,12 @@ namespace ExampleMod.NPCs
 
 			bool collision = false;
 
-			// This is the initial check for collision with tiles.
+			// 这是 the initial check for collision with tiles.
 			for (int i = minTilePosX; i < maxTilePosX; ++i) {
 				for (int j = minTilePosY; j < maxTilePosY; ++j) {
 					Tile tile = Main.tile[i, j];
 
-					// If the tile is solid or is considered a platform, then there's valid collision
+					// 如果 the tile is solid or is considered a platform, then there's valid collision
 					if (tile.HasUnactuatedTile && (Main.tileSolid[tile.TileType] || Main.tileSolidTop[tile.TileType] && tile.TileFrameY == 0) || tile.LiquidAmount > 64) {
 						Vector2 tileWorld = new Point16(i, j).ToWorldCoordinates(0, 0);
 
@@ -314,7 +314,7 @@ namespace ExampleMod.NPCs
 		}
 
 		private void HeadAI_CheckTargetDistance(ref bool collision) {
-			// If there is no collision with tiles, we check if the distance between this NPC and its target is too large, so that we can still trigger "collision".
+			// 如果 there is no collision with tiles, we check if the distance between this NPC and its target is too large, so that we can still trigger "collision".
 			if (!collision) {
 				Rectangle hitbox = NPC.Hitbox;
 
@@ -355,7 +355,7 @@ namespace ExampleMod.NPCs
 			Player playerTarget = Main.player[NPC.target];
 
 			Vector2 forcedTarget = ForcedTargetPosition ?? playerTarget.Center;
-			// Using a ValueTuple like this allows for easy assignment of multiple values
+			// 使用 a ValueTuple like this allows for easy assignment of multiple values
 			(targetXPos, targetYPos) = (forcedTarget.X, forcedTarget.Y);
 
 			// Copy the value, since it will be clobbered later
@@ -370,7 +370,7 @@ namespace ExampleMod.NPCs
 
 			float length = (float)Math.Sqrt(dirX * dirX + dirY * dirY);
 
-			// If we do not have any type of collision, we want the NPC to fall down and de-accelerate along the X axis.
+			// 如果 we do not have any type of collision, we want the NPC to fall down and de-accelerate along the X axis.
 			if (!collision && !CanFly)
 				HeadAI_Movement_HandleFallingFromNoCollision(dirX, speed, acceleration);
 			else {
@@ -394,7 +394,7 @@ namespace ExampleMod.NPCs
 			if (NPC.velocity.Y > speed)
 				NPC.velocity.Y = speed;
 
-			// The following behavior mimics vanilla worm movement
+			// following behavior mimics vanilla worm movement
 			if (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y) < speed * 0.4f) {
 				// Velocity is sufficiently fast, but not too fast
 				if (NPC.velocity.X < 0.0f)
@@ -442,7 +442,7 @@ namespace ExampleMod.NPCs
 			dirY *= newSpeed;
 
 			if ((NPC.velocity.X > 0 && dirX > 0) || (NPC.velocity.X < 0 && dirX < 0) || (NPC.velocity.Y > 0 && dirY > 0) || (NPC.velocity.Y < 0 && dirY < 0)) {
-				// The NPC is moving towards the target location
+				// NPC is moving towards the target location
 				if (NPC.velocity.X < dirX)
 					NPC.velocity.X += acceleration;
 				else if (NPC.velocity.X > dirX)
@@ -453,7 +453,7 @@ namespace ExampleMod.NPCs
 				else if (NPC.velocity.Y > dirY)
 					NPC.velocity.Y -= acceleration;
 
-				// The intended Y-velocity is small AND the NPC is moving to the left and the target is to the right of the NPC or vice versa
+				// intended Y-velocity is small AND the NPC is moving to the left and the target is to the right of the NPC or vice versa
 				if (Math.Abs(dirY) < speed * 0.2 && ((NPC.velocity.X > 0 && dirX < 0) || (NPC.velocity.X < 0 && dirX > 0))) {
 					if (NPC.velocity.Y > 0)
 						NPC.velocity.Y += acceleration * 2f;
@@ -461,7 +461,7 @@ namespace ExampleMod.NPCs
 						NPC.velocity.Y -= acceleration * 2f;
 				}
 
-				// The intended X-velocity is small AND the NPC is moving up/down and the target is below/above the NPC
+				// intended X-velocity is small AND the NPC is moving up/down and the target is below/above the NPC
 				if (Math.Abs(dirX) < speed * 0.2 && ((NPC.velocity.Y > 0 && dirY < 0) || (NPC.velocity.Y < 0 && dirY > 0))) {
 					if (NPC.velocity.X > 0)
 						NPC.velocity.X = NPC.velocity.X + acceleration * 2f;
@@ -470,7 +470,7 @@ namespace ExampleMod.NPCs
 				}
 			}
 			else if (absDirX > absDirY) {
-				// The X distance is larger than the Y distance.  Force movement along the X-axis to be stronger
+				// X distance is larger than the Y distance.  Force movement along the X-axis to be stronger
 				if (NPC.velocity.X < dirX)
 					NPC.velocity.X += acceleration * 1.1f;
 				else if (NPC.velocity.X > dirX)
@@ -484,7 +484,7 @@ namespace ExampleMod.NPCs
 				}
 			}
 			else {
-				// The X distance is larger than the Y distance.  Force movement along the X-axis to be stronger
+				// X distance is larger than the Y distance.  Force movement along the X-axis to be stronger
 				if (NPC.velocity.Y < dirY)
 					NPC.velocity.Y += acceleration * 1.1f;
 				else if (NPC.velocity.Y > dirY)
@@ -555,12 +555,12 @@ namespace ExampleMod.NPCs
 				// Use the current NPC.Center to calculate the direction towards the "parent NPC" of this NPC.
 				float dirX = following.Center.X - worm.NPC.Center.X;
 				float dirY = following.Center.Y - worm.NPC.Center.Y;
-				// We then use Atan2 to get a correct rotation towards that parent NPC.
+				// 我们 then use Atan2 to get a correct rotation towards that parent NPC.
 				// Assumes the sprite for the NPC points upward.  You might have to modify this line to properly account for your NPC's orientation
 				worm.NPC.rotation = (float)Math.Atan2(dirY, dirX) + MathHelper.PiOver2;
-				// We also get the length of the direction vector.
+				// 我们 also get the length of the direction vector.
 				float length = (float)Math.Sqrt(dirX * dirX + dirY * dirY);
-				// We calculate a new, correct distance.
+				// 我们 calculate a new, correct distance.
 				float dist = (length - worm.NPC.width) / length;
 				float posX = dirX * dist;
 				float posY = dirY * dist;
