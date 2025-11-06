@@ -12,7 +12,7 @@ namespace ExampleMod.Common
 				amount = 0;
 			}
 		}
-		// Other ConsumeItemCallback methods...
+		// 其他 ConsumeItemCallback 方法...
 
 		// OnCraftCallbacks - These are used to run code after a recipe is crafted - See https://github.com/tModLoader/tModLoader/wiki/Intermediate-Recipes#custom-recipe-craft-behavior
 		public static void RandomlySpawnFireworks(Recipe recipe, Item item, List<Item> consumedItems, Item destinationStack) {
@@ -23,6 +23,6 @@ namespace ExampleMod.Common
 				Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_FromThis(), ItemID.Confetti, 5);
 			}
 		}
-		// Other OnCraftCallback methods...
+		// 其他 OnCraftCallback 方法...
 	}
 }

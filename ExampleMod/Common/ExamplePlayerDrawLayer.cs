@@ -10,42 +10,42 @@ namespace ExampleMod.Common
 {
 	public class ExamplePlayerDrawLayer : PlayerDrawLayer
 	{
-		// Returning true in this property makes this layer appear on the minimap player head icon.
+		// 在此属性中返回 true 可使此层出现在小地图玩家头部图标上。
 		public override bool IsHeadLayer => true;
 
 		public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) {
-			// The layer will be visible only if the player is holding an ExampleItem in their hands. Or if another modder forces this layer to be visible.
+			// 仅当玩家手持 ExampleItem 时，该层才可见。或者如果另一个模组作者强制使此层可见。
 			return drawInfo.drawPlayer.HeldItem?.type == ModContent.ItemType<ExampleItem>();
 
-			// If you'd like to reference another PlayerDrawLayer's visibility,
-			// you can do so by getting its instance via ModContent.GetInstance<OtherDrawLayer>(), and calling GetDefaultVisibility on it
+			// 如果你想引用另一个 PlayerDrawLayer 的可见性，
+			// 你可以通过 ModContent.GetInstance<OtherDrawLayer>() 获取其实例，并在其上调用 GetDefaultVisibility
 		}
 
-		// This layer will be a 'child' of the head layer, and draw before (beneath) it.
-		// If the Head layer is hidden, this layer will also be hidden.
-		// If the Head layer is moved, this layer will move with it.
+		// 此层将是头部层的子层，并在其之前（下方）绘制。
+		// 如果隐藏头部层，此层也将被隐藏。
+		// 如果移动头部层，此层将随之移动。
 		public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.Head);
-		// If you want to make a layer which isn't a child of another layer, use `new Between(Layer1, Layer2)` to specify the position.
-		// If you want to make a 'mobile' layer which can render in different locations depending on the drawInfo, use a `Multiple` position.
+		// 如果要创建不是另一个层的子层的层，请使用 `new Between(Layer1, Layer2)` 指定位置。
+		// 如果要创建可根据 drawInfo 在不同位置渲染的移动层，请使用 `Multiple` 位置。
 
 		protected override void Draw(ref PlayerDrawSet drawInfo) {
-			// The following code draws ExampleItem's texture behind the player's head.
+			// 以下代码在玩家头部后面绘制 ExampleItem 的纹理。
 			var exampleItemTexture = TextureAssets.Item[ModContent.ItemType<ExampleItem>()];
 
 			var position = drawInfo.Center + new Vector2(0f, -20f) - Main.screenPosition;
-			position = new Vector2((int)position.X, (int)position.Y); // You'll sometimes want to do this, to avoid quivering.
+			position = new Vector2((int)position.X, (int)position.Y); // 你有时会想这样做，以避免抖动。
 
-			// Queues a drawing of a sprite. Do not use SpriteBatch in drawlayers!
+			// 将精灵的绘制排队。不要在绘制层中使用 SpriteBatch！
 			drawInfo.DrawDataCache.Add(new DrawData(
-				exampleItemTexture.Value, // The texture to render.
-				position, // Position to render at.
-				null, // Source rectangle.
-				Color.White, // Color.
-				0f, // Rotation.
+				exampleItemTexture.Value, // 要渲染的纹理。
+				position, // 渲染位置。
+				null, // 源矩形。
+				Color.White, // 颜色。
+				0f, // 旋转。
 				exampleItemTexture.Size() * 0.5f, // Origin. Uses the texture's center.
-				1f, // Scale.
-				SpriteEffects.None, // SpriteEffects.
-				0 // 'Layer'. This is always 0 in Terraria.
+				1f, // 缩放。
+				SpriteEffects.None, // 精灵效果。
+				0 // 层。在 Terraria 中始终为 0。
 			));
 		}
 	}
