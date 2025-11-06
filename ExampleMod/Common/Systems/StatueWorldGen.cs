@@ -7,20 +7,20 @@ using Terraria.WorldBuilding;
 
 namespace ExampleMod.Common.Systems
 {
-	// This is a simple example of adding custom statues to world generation.
-	// In this example, we add our statue tile to the existing data structure that will be consulted whenever a random statue is placed.
+	// 这是向世界生成添加自定义雕像的简单示例。
+	// 在此示例中，我们将雕像图格添加到现有数据结构中，每当放置随机雕像时都会查询该数据结构。
 	public class StatueWorldGen : ModSystem
 	{
 		public override void Load() {
-			// Using a MonoMod detour, we can affect Terraria methods that otherwise have no tModLoader hook present.
+			// 使用 MonoMod detour，我们可以影响原本没有 tModLoader 钩子的 Terraria 方法。
 			On_WorldGen.SetupStatueList += On_WorldGen_SetupStatueList;
 		}
 
 		private void On_WorldGen_SetupStatueList(On_WorldGen.orig_SetupStatueList orig) {
-			// Call the original SetupStatueList method, this initializes GenVars.statueList with data
+			// 调用原始 SetupStatueList 方法，这会用数据初始化 GenVars.statueList
 			orig();
 
-			// The vanilla game has an array of statue types that we'll be adding ours to.
+			// 原版游戏有一个雕像类型数组，我们将把我们的添加到其中。
 			int startIndex = GenVars.statueList.Length; // Save the original length of the vanilla list to use later.
 
 			// This is an array of statues we want to add to worldgen.

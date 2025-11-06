@@ -8,14 +8,14 @@ using Terraria.WorldBuilding;
 
 namespace ExampleMod.Common.Systems
 {
-	// This ModSystem will demonstrate how to IL edit and Detour world generation passes
-	// Since world generation passes are anonymous methods (they don't have a name), they can't be edited the standard way (using IL_xx or On_xx)
+	// 此 ModSystem 将演示如何 IL 编辑和 Detour 世界生成过程
+	// 由于世界生成过程是匿名方法（它们没有名称），因此无法以标准方式编辑它们（使用 IL_xx 或 On_xx）
 	public class ExampleWorldGenHookingSystem : ModSystem
 	{
-		// All of the registration should take place in load
-		// Generation pass hooks are unloaded manually, so no Unload method is needed
+		// 所有注册都应该在加载中进行
+		// 生成过程钩子是手动卸载的，因此不需要 Unload 方法
 		public override void Load() {
-			// IL editing the pyramids pass
+			// IL 编辑金字塔过程
 			WorldGen.ModifyPass((PassLegacy)WorldGen.VanillaGenPasses["Pyramids"], Modify_Pyramids);
 
 			// Detouring the shinies pass (generates ore)

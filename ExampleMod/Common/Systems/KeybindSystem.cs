@@ -2,21 +2,21 @@
 
 namespace ExampleMod.Common.Systems
 {
-	// Acts as a container for keybinds registered by this mod.
-	// See Common/Players/ExampleKeybindPlayer for usage.
+	// 充当此模组注册的按键绑定的容器。
+	// 有关用法，请参阅 Common/Players/ExampleKeybindPlayer。
 	public class KeybindSystem : ModSystem
 	{
 		public static ModKeybind RandomBuffKeybind { get; private set; }
 		public static ModKeybind LearningExampleKeybind { get; private set; }
 
 		public override void Load() {
-			// Registers a new keybind
-			// We localize keybinds by adding a Mods.{ModName}.Keybind.{KeybindName} entry to our localization files. The actual text displayed to English users is in en-US.hjson
+			// 注册新的按键绑定
+			// 我们通过向本地化文件添加 Mods.{ModName}.Keybind.{KeybindName} 条目来本地化按键绑定。向英语用户显示的实际文本在 en-US.hjson 中
 			RandomBuffKeybind = KeybindLoader.RegisterKeybind(Mod, "RandomBuff", "P");
 			LearningExampleKeybind = KeybindLoader.RegisterKeybind(Mod, "LearningExample", "O");
 		}
 
-		// Please see ExampleMod.cs' Unload() method for a detailed explanation of the unloading process.
+		// 有关卸载过程的详细说明，请参阅 ExampleMod.cs 的 Unload() 方法。
 		public override void Unload() {
 			// Not required if your AssemblyLoadContext is unloading properly, but nulling out static fields can help you figure out what's keeping it loaded.
 			RandomBuffKeybind = null;

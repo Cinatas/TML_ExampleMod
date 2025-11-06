@@ -12,12 +12,12 @@ namespace ExampleMod.Common.Systems
 	{
 
 		public override void ModifyGameTipVisibility(IReadOnlyList<GameTipData> gameTips) {
-			// If you wish to add your OWN tips, then you have to put them in a Localization file. Check out
-			// the GameTips key in the Localization/en-US.hjson file for functionality.
+			// 如果你想添加自己的提示，则必须将它们放在本地化文件中。查看
+			// Localization/en-US.hjson 文件中的 GameTips 键以了解功能。
 
 			// What if we want to modify Vanilla tips? There is a GameTipID built into tModLoader that should make
-			// disabling certain tips easier.
-			// For example, let's turn off the blood moon and solar eclipse tips!
+			// 禁用某些提示。
+			// 例如，让我们关闭血月和日食提示！
 			gameTips[GameTipID.BloodMoonZombieDoorOpening].Hide();
 			gameTips[GameTipID.SolarEclipseCreepyMonsters].Hide();
 

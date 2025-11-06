@@ -5,7 +5,7 @@ using Terraria;
 
 namespace ExampleMod.Common.Systems
 {
-	// See ExampleMod/Common/Systems/DownedBossSystem.cs for more information about saving world data.
+	// 有关保存世界数据的更多信息，请参阅 ExampleMod/Common/Systems/DownedBossSystem.cs。
 	public class ExampleTownPetSystem : ModSystem
 	{
 		/// <summary>

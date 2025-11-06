@@ -5,11 +5,11 @@ using Terraria.ModLoader.IO;
 
 namespace ExampleMod.Common.Systems
 {
-	// Acts as a container for "downed boss" flags.
-	// Set a flag like this in your bosses OnKill hook:
+	// 充当"已击败的 Boss"标志的容器。
+	// 在你的 Boss 的 OnKill 钩子中像这样设置标志：
 	//    NPC.SetEventFlagCleared(ref DownedBossSystem.downedMinionBoss, -1);
 
-	// Saving and loading these flags requires TagCompounds, a guide exists on the wiki: https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
+	// 保存和加载这些标志需要 TagCompounds，wiki 上有指南：https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
 	public class DownedBossSystem : ModSystem
 	{
 		public static bool downedMinionBoss = false;

@@ -6,14 +6,14 @@ using ExampleMod.Content.NPCs;
 
 namespace ExampleMod.Common.Systems
 {
-	// This class tracks if specific Town NPC have ever spawned in this world. If they have, then their spawn conditions are not required anymore to respawn in the same world. This behavior is new to Terraria v1.4.4 and is not automatic, it needs code to support it.
-	// Spawn conditions that can't be undone, such as defeating bosses, would not require tracking like this since those conditions will still be true when the Town NPC attempts to respawn. Spawn conditions checking for items in the player inventory like ExamplePerson does, for example, would need tracking.
+	// 此类跟踪特定城镇 NPC 是否曾在此世界中生成。如果已生成，则不再需要其生成条件即可在同一世界中重生。此行为是 Terraria v1.4.4 的新功能，并非自动的，需要代码来支持它。
+	// 无法撤消的生成条件，例如击败 Boss，不需要这样的跟踪，因为当城镇 NPC 尝试重生时这些条件仍然为真。例如，像 ExamplePerson 那样检查玩家库存中物品的生成条件需要跟踪。
 	public class TownNPCRespawnSystem : ModSystem
 	{
-		// Tracks if ExamplePerson has ever been spawned in this world
+		// 跟踪 ExamplePerson 是否曾在此世界中生成
 		public static bool unlockedExamplePersonSpawn = false;
 
-		// Town NPC rescued in the world would follow a similar implementation, the only difference being how the value is set to true.
+		// 在世界中救出的城镇 NPC 将遵循类似的实现，唯一的区别是如何将值设置为 true。
 		// public static bool savedExamplePerson = false;
 
 		public override void ClearWorld() {

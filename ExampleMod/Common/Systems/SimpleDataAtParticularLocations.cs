@@ -20,21 +20,21 @@ using Terraria.ModLoader.IO;
 ///		If your application has multiple repeat static data in a row, you should elect to use Clustered mode in the builder to compress it. Note that you should NOT use PosData.LookupExact in this case.
 
 
-// Future TODO: Improve documentation.
+// 未来待办事项：改进文档。
 namespace ExampleMod.Common.Systems
 {
-	// Saving and loading requires TagCompounds, a guide exists on the wiki: https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
+	// 保存和加载需要 TagCompounds，wiki 上有指南：https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
 	public class SimpleDataAtParticularLocations : ModSystem
 	{
-		// Create our map. Uses generics for whatever type you want of the data to store.
+		// 创建我们的映射。对你想要存储的任何类型的数据使用泛型。
 		public PosData<byte>[] myMap;
 
-		// Next, we ensure we initialize the map on world load to an empty map.
+		// 接下来，我们确保在世界加载时将映射初始化为空映射。
 		public override void ClearWorld() {
 			myMap = new PosData<byte>[0];
 		}
 
-		// We save our data sets using TagCompounds.
+		// 我们使用 TagCompounds 保存数据集。
 		// NOTE: The tag instance provided here is always empty by default.
 		public override void SaveWorldData(TagCompound tag) {
 			if (myMap.Length != 0) {

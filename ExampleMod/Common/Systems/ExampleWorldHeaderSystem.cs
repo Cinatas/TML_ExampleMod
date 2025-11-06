@@ -40,20 +40,20 @@ namespace ExampleMod.Common.Systems
 	public class ExampleWorldHeaderPlayer : ModPlayer
 	{
 		public override void OnEnterWorld() {
-			// This data can only be checked in Single Player
+			// 此数据只能在单人模式下检查
 			if (Main.netMode != NetmodeID.SinglePlayer) {
 				return;
 			}
 
-			// Check if this world was generated with at least a specific version of a mod.
-			// Tracking mods used to generate a world was added in v2023.8, so if WorldGenModsRecorded is false we don't know for sure if ExampleMod was enabled when this world was generated.
+			// 检查此世界是否至少使用模组的特定版本生成。
+			// 在 v2023.8 中添加了跟踪用于生成世界的模组，因此如果 WorldGenModsRecorded 为 false，我们无法确定生成此世界时是否启用了 ExampleMod。
 			if (!Main.ActiveWorldFileData.WorldGenModsRecorded) {
 				return;
 			}
 
 			if (Main.ActiveWorldFileData.TryGetModVersionGeneratedWith("ExampleMod", out Version modVersion)) {
 				if (modVersion < new Version(1, 0)) {
-					// Here we could have a message about the world missing a new biome added in v1.0 of this mod that won't be present in the world because it was generated before then.
+					// 在这里，我们可以有一条关于世界缺少在此模组的 v1.0 中添加的新生物群系的消息，该生物群系不会出现在世界中，因为它是在那之前生成的。
 				}
 			}
 			else {

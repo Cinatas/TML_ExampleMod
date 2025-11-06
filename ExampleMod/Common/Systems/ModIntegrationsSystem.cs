@@ -6,12 +6,12 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.Systems
 {
-	// Showcases using Mod.Call of other mods to facilitate mod integration/compatibility/support
-	// Mod.Call is explained here https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate
-	// This only showcases one way to implement such integrations, you are free to explore your own options and other mods examples
+	// 展示使用其他模组的 Mod.Call 来促进模组集成/兼容性/支持
+	// Mod.Call 在此处解释 https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate
+	// 这只是展示了实现此类集成的一种方式，你可以自由探索自己的选项和其他模组示例
 
-	// You need to look for resources the mod developers provide regarding how they want you to add mod compatibility
-	// This can be their homepage, workshop page, wiki, GitHub, Discord, other contacts etc.
+	// 你需要查找模组开发者提供的关于他们希望你如何添加模组兼容性的资源
+	// 这可以是他们的主页、创意工坊页面、wiki、GitHub、Discord、其他联系方式等。
 	// If the mod is open source, you can visit its code distribution platform (usually GitHub) and look for "Call" in its Mod class
 
 	// In addition to the examples shown here, ExampleMod also integrates with the Census Mod (https://steamcommunity.com/sharedfiles/filedetails/?id=2687866031)

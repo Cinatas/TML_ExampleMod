@@ -6,11 +6,11 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 namespace ExampleMod.Common.Systems
 {
-	// This example shows spawning rubble tiles during world generation.
+	// 此示例展示在世界生成期间生成碎石图格。
 	public class RubbleWorldGen : ModSystem
 	{
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
-			// Add a GenPass immediately after the "Piles" pass. ExampleOreSystem explains this approach in more detail.
+			// 在"Piles"过程之后立即添加 GenPass。ExampleOreSystem 更详细地解释了这种方法。
 			int PilesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Piles"));
 
 			if (PilesIndex != -1) {
@@ -29,8 +29,8 @@ namespace ExampleMod.Common.Systems
 
 			int[] tileTypes = new int[] { ModContent.TileType<Example1x1RubbleNatural>(), ModContent.TileType<Example2x1RubbleNatural>(), ModContent.TileType<Example3x2RubbleNatural>() };
 
-			// To not be annoying, we'll only spawn 15 Example Rubble near the spawn point.
-			// This example uses the Try Until Success approach: https://github.com/tModLoader/tModLoader/wiki/World-Generation#try-until-success
+			// 为了不让人烦恼，我们只在出生点附近生成 15 个示例碎石。
+			// 此示例使用 Try Until Success 方法：https://github.com/tModLoader/tModLoader/wiki/World-Generation#try-until-success
 			for (int k = 0; k < 15; k++) {
 				bool success = false;
 				int attempts = 0;

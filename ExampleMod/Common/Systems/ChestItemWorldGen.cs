@@ -6,14 +6,14 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Common.Systems
 {
-	// This class showcases adding additional items to vanilla chests.
-	// This example simply adds additional items. More complex logic would likely be required for other scenarios.
-	// If this code is confusing, please learn about "for loops" and the "continue" and "break" keywords: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements
+	// 此类展示如何向原版箱子添加额外物品。
+	// 此示例只是添加额外物品。其他场景可能需要更复杂的逻辑。
+	// 如果此代码令人困惑，请了解"for 循环"和"continue"和"break"关键字：https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements
 	public class ChestItemWorldGen : ModSystem
 	{
-		// We use PostWorldGen for this because we want to ensure that all chests have been placed before adding items.
+		// 我们为此使用 PostWorldGen，因为我们希望确保在添加物品之前放置所有箱子。
 		public override void PostWorldGen() {
-			// Place some additional items in Frozen Chests:
+			// 在冰冻箱中放置一些额外物品：
 			// These are the 3 new items we will place.
 			int[] itemsToPlaceInFrozenChests = { ModContent.ItemType<ExampleMountItem>(), ModContent.ItemType<ExampleLightPetItem>(), ItemID.PinkJellyfishJar };
 			// This variable will help cycle through the items so that different Frozen Chests get different items
